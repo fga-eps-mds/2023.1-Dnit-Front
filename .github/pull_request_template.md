@@ -1,4 +1,4 @@
-## _Issue_ (XX)[link-para-issue]
+## [_Issue_ #XX](link-para-issue)
 <!-- Este projeto só aceita pull request de issues abertas -->
 <!--  Se você está propondo um novo recurso ou modificação, primeiro discuta-o com uma issue --> 
 <!-- A issue deve ser refrenciada diretamente com #codigo da issue -->
