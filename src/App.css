@@ -78,6 +78,8 @@
 .Central {
   height: 50%;
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .logoDnit {
@@ -87,4 +89,6 @@
   padding-top: 350px;
   padding-left: 110px;
 }
+
+
 

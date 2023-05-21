@@ -3,6 +3,7 @@ import './App.css';
 import IconGov from './assets/govIcon.png'
 import ButtonContraste from './assets/buttonContraste.png'
 import LogoDNIT from './assets/logoDnit.png'
+import CadastroForm from './components/FormularioCadastro';
 
 
 
@@ -23,7 +24,9 @@ function App() {
         <div className='Lateral'>
           <img className= "logoDnit"src={LogoDNIT} alt="Logo DNIT" />
         </div>
-        <div className='Central'></div>
+        <div className='Central'>
+          <CadastroForm/>
+        </div>
       </div>
     </div>
   );
