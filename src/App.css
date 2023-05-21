@@ -9,7 +9,7 @@
 
 .App-header {
   background-color: #FFFF;
-  height: 91px;
+  height: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -34,7 +34,8 @@
   transition: transform 0.3s ease;
 }
 .buttonContraste:hover {
-  transform: scale(1.2);
+  transform: scale(1.1);
+  transition: 0.3s;
 }
 
 .HeaderContraste {
@@ -63,21 +64,17 @@
 
 .Secao {
   background-color: #FFFF;
-  height: 100vh;
+  height: 100%;
   align-items: center;
-  justify-content: space-between;
+  overflow: hidden;
 }
 
 .Lateral {
   background-color: #002E6E;
-  width: 570px;
-  height: 809px;
   display: flex;
-}
-
-.Central {
-  height: 50%;
-  display: flex;
+  width: 40%;
+  height: 100vh;
+  float: left;
   align-items: center;
   justify-content: center;
 }
@@ -85,10 +82,19 @@
 .logoDnit {
   display: flex;
   width: 350px;
-  height: 89.21px;
-  padding-top: 350px;
-  padding-left: 110px;
+  height: 90px;
 }
+
+.Central {
+  width: 50%;
+  height: 100vh;
+  float: left;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+
 
 
 
