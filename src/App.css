@@ -1,26 +1,26 @@
 @font-face {
-  font-family: 'Rawline';
-  src: url('https://www.cdnfonts.com/rawline.font') format('truetype');
+  font-family: "Rawline";
+  src: url("https://www.cdnfonts.com/rawline.font") format("truetype");
 }
 
 .App {
   text-align: center;
+  height: 100vh;
+  font-family: Rawline, sans-serif;
 }
 
 .App-logo {
-  height: 40vmin;
   pointer-events: none;
 }
 
 .App-header {
-  background-color: #FFFF;
-  height: 100%;
+  background-color: #ffff;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: calc(10px + 2vmin);
   color: #333333;
-  border-bottom:1px solid #E5E5E5;
+  border-bottom: 1px solid #e5e5e5;
   padding: 0 25px;
 }
 
@@ -41,7 +41,7 @@
   overflow: hidden;
   display: inline-block;
 }
-.buttonContraste img{
+.buttonContraste img {
   transition: transform 0.3s ease;
 }
 .buttonContraste:hover {
@@ -50,7 +50,7 @@
 }
 
 .HeaderContraste {
-  display: flex; 
+  display: flex;
   justify-content: center;
   align-items: center;
   gap: 13px;
@@ -59,45 +59,118 @@
 }
 
 .HeaderIcon {
-  display: flex; 
+  display: flex;
   justify-content: center;
   align-items: center;
   gap: 24px;
   font-size: 24.19px;
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 .HeaderIcon p {
   padding-bottom: 3px;
-  border-left: 1px solid #CCCCCC;
+  border-left: 1px solid #cccccc;
   padding-left: 24px;
   font-family: Rawline;
 }
 
 .Secao {
-  background-color: #FFFF;
-  height: 100%;
+  background-color: #ffff;
+  display: flex;
   align-items: center;
-  overflow: hidden;
-  position: relative;
+  justify-content: center;
+  height: 89%;
+  flex-wrap: wrap;
 }
 
 .Lateral {
-  background-color: #002E6E;
-  display: flex;
+  background-color: #002e6e;
   width: 40%;
-  height: 100vh;
-  float: left;
-  align-items: center;
+  display: flex;
   justify-content: center;
-  position: relative;
+  align-items: center;
+  height: 100%;
 }
 
 .Central {
-  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+}
+
+.logoDnit {
+  width: 380px;
+  height: 96px;
+}
+
+.imgLateral {
+  width: 437px;
+  height: 291px;
+}
+
+.form {
+  background-color: white;
+  padding: 44px;
+  border: 1px solid #cccccc;
+}
+
+.form p {
+  justify-content: flex-start;
+  display: flex;
+  font-family: Rawline, sans-serif;
+}
+
+.form label {
+  font-family: Rawline, sans-serif;
+}
+
+.form h2 {
+  justify-content: flex-start;
+  display: flex;
+}
+
+.loginButton {
+  background-color: #1351b4;
+  width: 116px;
+  display: flex;
   align-items: center;
   justify-content: center;
-  display:flex;
-  border-radius: 10px;
-  position: relative;
+}
+
+.signUpButton {
+  width: 116px;
+  border-color: #1351b4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.loginButton p {
+  margin: 0;
+}
+
+.signUpButton p {
+  margin: 0;
+  color: #1351b4;
+}
+
+@media (max-width: 800px) {
+  .Lateral {
+    width: 100%;
+    height: 40%;
+  }
+
+  .Central {
+    width: 100%;
+    padding: 30px 0;
+  }
+
+  .logoDnit {
+    width: 180px;
+    height: 56px;
+  }
+
+  .imgLateral {
+    width: 237px;
+    height: 131px;
+  }
 }

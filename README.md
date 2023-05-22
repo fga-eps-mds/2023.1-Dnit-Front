@@ -1,5 +1,43 @@
 # 2023.1-Dnit-Front
 
+
+
+
+## Usando docker-compose
+
+### Pré-requisitos
+
+1. Instalar o docker
+2. Instalar o docker-compose
+3. instalar o yarn
+
+### Uso
+
+* Na primeira vez que for usar, ou após instalar uma nova dependencia.
+  * No terminal, dentro da raiz do projeto:
+    1. Rodar o comando `yarn`
+    2. Rodar o comando `sudo docker-compose build`
+    3. E por fim, rodar o comando `sudo docker-compose up`
+   
+* Nas vezes subsequentes, caso não tenha adicionado novas dependencias:
+  * Rodar o comando `sudo docker-compose up`
+
+### Encerrando a aplicação
+
+* Para encerrar execução da aplicação:
+  1. Vá até o terminal em que a mesma esta sendo executada.
+  2. Pressione simultaneamente as teclas **ctrl**+**c**
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<details>
+<summary> Instruções originais do README</summary>
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -44,3 +82,4 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+</details>
