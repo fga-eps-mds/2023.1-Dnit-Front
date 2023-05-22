@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Rawline";
+  src: url("https://www.cdnfonts.com/rawline.font") format("truetype");
+}
+
 .App {
   text-align: center;
   height: 100vh;
@@ -24,6 +29,12 @@
   height: 36.13px;
 }
 
+.logoDnit {
+  display: flex;
+  width: 350px;
+  height: 90px;
+}
+
 .buttonContraste {
   width: 20px;
   height: 20px;
@@ -44,7 +55,7 @@
   align-items: center;
   gap: 13px;
   font-size: 16px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Rawline;
 }
 
 .HeaderIcon {
@@ -59,6 +70,7 @@
   padding-bottom: 3px;
   border-left: 1px solid #cccccc;
   padding-left: 24px;
+  font-family: Rawline;
 }
 
 .Secao {
@@ -84,6 +96,7 @@
   justify-content: center;
   align-items: center;
   width: 60%;
+  height: inherit;
 }
 
 .logoDnit {
@@ -100,6 +113,14 @@
   background-color: white;
   padding: 44px;
   border: 1px solid #cccccc;
+}
+
+.formCadastro {
+  background-color: white;
+  padding: 10px 20px;
+  border: 1px solid #cccccc;
+  width: inherit;
+  margin: 49px 0;
 }
 
 .form p {

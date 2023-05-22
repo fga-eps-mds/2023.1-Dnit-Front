@@ -1,8 +1,9 @@
 import { Button, Form, Input, Space } from "antd";
 import React from "react";
 import "../App.css";
+import LogoDNIT from "../assets/logoDnitAzul.png";
 
-const CadastroForm: React.FC = () => {
+const LoginForm: React.FC = () => {
   const [form] = Form.useForm();
 
   const onFinish = (values: any) => {
@@ -10,9 +11,10 @@ const CadastroForm: React.FC = () => {
   };
 
   return (
-    <div className="formCadastro">
+    <div className="form">
+      <img className="logoDnit" src={LogoDNIT} alt="Logo DNIT" />
       <div>
-        <h2>Cadastro</h2>
+        <h2>Login</h2>
         <Form
           form={form}
           name="validateOnly"
@@ -26,38 +28,14 @@ const CadastroForm: React.FC = () => {
           <Form.Item name="password" label="Senha" rules={[{ required: true }]}>
             <Input.Password />
           </Form.Item>
-          <Form.Item
-            name="password"
-            label="Confirmar Senha"
-            rules={[{ required: true }]}
-          >
-            <Input.Password />
-          </Form.Item>
-          <Form.Item
-            name="password"
-            label="Nome Completo"
-            rules={[{ required: true }]}
-          >
-            <Input.Password />
-          </Form.Item>
-          <Form.Item
-            name="password"
-            label="Matricula"
-            rules={[{ required: true }]}
-          >
-            <Input.Password />
-          </Form.Item>
-          <Form.Item
-            name="password"
-            label="UF de lotação"
-            rules={[{ required: true }]}
-          >
-            <Input.Password />
-          </Form.Item>
+          <p>Esqueceu a senha?</p>
           <Form.Item>
             <Space>
               <Button htmlType="reset" className="signUpButton">
                 <p>Cadastrar-se</p>
+              </Button>
+              <Button type="primary" htmlType="submit" className="loginButton">
+                <p>Entrar</p>
               </Button>
             </Space>
           </Form.Item>
@@ -67,4 +45,4 @@ const CadastroForm: React.FC = () => {
   );
 };
 
-export default CadastroForm;
+export default LoginForm;
