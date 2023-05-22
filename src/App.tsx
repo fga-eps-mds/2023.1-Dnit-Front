@@ -1,24 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import imgLateral from "./assets/imgLateral.png";
+import CadastroForm from "./components/FormularioCadastro";
+import Header from "./components/Header";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <div className="Secao">
+        <div className="Lateral">
+          <img className="imgLateral" src={imgLateral} alt="Logo DNIT" />
+        </div>
+        <div className="Central">
+          <CadastroForm />
+        </div>
+      </div>
     </div>
   );
 }
