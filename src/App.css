@@ -96,6 +96,7 @@
   justify-content: center;
   align-items: center;
   width: 60%;
+  height: inherit;
 }
 
 .logoDnit {
@@ -112,6 +113,14 @@
   background-color: white;
   padding: 44px;
   border: 1px solid #cccccc;
+}
+
+.formCadastro {
+  background-color: white;
+  padding: 10px 20px;
+  border: 1px solid #cccccc;
+  width: inherit;
+  margin: 49px 0;
 }
 
 .form p {
