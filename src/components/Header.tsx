@@ -1,5 +1,5 @@
 import IconGov from '../assets/govIcon.png'
-import ButtonContraste from '../assets/buttonContraste.png'
+import ButtonContraste from '../assets/icons/buttonContraste.png'
 
 export default function Header (){
     return (
