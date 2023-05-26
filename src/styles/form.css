@@ -22,10 +22,11 @@
   justify-content: flex-start;
   display: flex;
 }
-:where(.css-dev-only-do-not-override-15rg2km).ant-input-affix-wrapper
-  > input.ant-input {
+
+.ant-input-affix-wrapper > input.ant-input {
   background-color: var(--gray1);
 }
+
 .loginButton {
   background-color: var(--blue);
   width: 116px;
@@ -95,9 +96,7 @@
   width: 17.5px;
   border-radius: 0px;
 }
-:where(.css-dev-only-do-not-override-15rg2km).ant-form-vertical
-  .ant-form-item-label
-  > label {
+.ant-form-vertical .ant-form-item-label > label {
   font-size: 1.3em;
   font-weight: 350;
   font-family: Rawline, sans-serif;
