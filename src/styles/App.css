@@ -1,0 +1,117 @@
+:root {
+  --gray1: #d9d9d9;
+  --gray2: rgba(161, 161, 161, 1);
+  --gray3: #333333;
+  --blue: rgba(19, 81, 180, 1);
+  --blue2: #002e6e;
+  --white: #fff;
+  --black: #000;
+  --black1: rgba(0, 0, 0, 0.25);
+}
+
+@import "~@fortawesome/fontawesome-free/css/all.min.css";
+.App {
+  text-align: center;
+  font-family: Rawline, sans-serif;
+}
+
+.App-logo {
+  pointer-events: none;
+}
+
+.App-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: calc(10px + 2vmin);
+  border-bottom: 1px solid var(--gray1);
+  padding: 0 25px;
+  height: 85px;
+}
+
+.iconGov {
+  width: 100px;
+  height: 36.13px;
+}
+
+.buttonContraste {
+  width: 20px;
+  height: 20px;
+  overflow: hidden;
+  display: inline-block;
+}
+.buttonContraste img {
+  transition: transform 0.3s ease;
+}
+.buttonContraste:hover {
+  transform: scale(1.1);
+  transition: 0.3s;
+}
+
+.HeaderContraste {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 13px;
+  font-size: 16px;
+}
+
+.HeaderIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  font-size: 24.19px;
+}
+
+.HeaderIcon p {
+  padding-bottom: 3px;
+  border-left: 1px solid var(--gray2);
+  padding-left: 24px;
+}
+
+.Secao {
+  background-color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.Lateral {
+  background-color: var(--blue2);
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 86px);
+}
+
+.Central {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+}
+
+.imgLateral {
+  width: 437px;
+  height: 291px;
+}
+
+@media (max-width: 1250px) {
+  .Lateral {
+    width: 100%;
+    height: 60%;
+  }
+
+  .Central {
+    width: 100%;
+    padding: 15px 0;
+  }
+
+  .imgLateral {
+    width: 237px;
+    height: 131px;
+  }
+}

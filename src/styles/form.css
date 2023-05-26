@@ -1,0 +1,125 @@
+.logoDnit {
+  width: 300px;
+  height: 66px;
+}
+.form {
+  padding: 3.5%;
+  margin-top: 0;
+  box-shadow: 0px 2px 4px var(--black1);
+  border-radius: 10px;
+}
+
+.form p {
+  justify-content: flex-start;
+  display: flex;
+}
+
+.form label {
+  font-weight: 1000;
+}
+
+.form h2 {
+  justify-content: flex-start;
+  display: flex;
+}
+:where(.css-dev-only-do-not-override-15rg2km).ant-input-affix-wrapper
+  > input.ant-input {
+  background-color: var(--gray1);
+}
+.loginButton {
+  background-color: var(--blue);
+  width: 116px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signUpButton {
+  width: 116px;
+  border-color: var(--blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.loginButton p {
+  margin: 0;
+}
+
+.signUpButton p {
+  margin: 0;
+  color: var(--blue);
+}
+
+.form a {
+  margin-bottom: 7%;
+  font-size: 13px;
+  line-height: 16px;
+  font-feature-settings: "pnum" on, "lnum" on;
+  justify-content: left;
+  display: flex;
+  transition: filter 0.3s;
+  color: var(--blue);
+  font-family: Rawline, sans-serif;
+}
+
+.form a:hover {
+  filter: brightness(0.4);
+}
+
+.form h2 {
+  font-size: 1.8em;
+  color: var(--gray3);
+  font-weight: 500;
+}
+
+.form-email {
+  margin-top: 5%;
+  font-size: 20px;
+  line-height: 23px;
+  font-feature-settings: "pnum" on, "lnum" on;
+
+  color: var(--gray3);
+}
+.fas.fa-envelope {
+  margin-right: 4%;
+  color: var(--blue);
+  height: 15.75px;
+  width: 17.5px;
+  border-radius: 0px;
+}
+
+.fas.fa-lock {
+  margin-right: 4%;
+  color: var(--blue);
+  height: 15.75px;
+  width: 17.5px;
+  border-radius: 0px;
+}
+:where(.css-dev-only-do-not-override-15rg2km).ant-form-vertical
+  .ant-form-item-label
+  > label {
+  font-size: 1.3em;
+  font-weight: 350;
+  font-family: Rawline, sans-serif;
+}
+
+.inputForm {
+  height: 5%;
+  width: 27em;
+  border: 1px solid var(--gray2);
+  border-radius: 2px;
+  background-color: var(--gray1);
+}
+
+@media (max-width: 1250px) {
+  .form {
+    padding: 5%;
+  }
+  .inputForm {
+    width: 15em;
+  }
+  .logoDnit {
+    width: 180px;
+    height: 56px;
+  }
+}
