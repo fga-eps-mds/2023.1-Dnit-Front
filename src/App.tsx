@@ -1,6 +1,6 @@
 import "./App.css";
 import imgLateral from "./assets/imgLateral.png";
-import CadastroForm from "./components/FormularioCadastro";
+import LoginForm from "./components/FormularioLogin";
 import Header from "./components/Header";
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
           <img className="imgLateral" src={imgLateral} alt="Logo DNIT" />
         </div>
         <div className="Central">
-          <CadastroForm />
+          <LoginForm />
         </div>
       </div>
     </div>
