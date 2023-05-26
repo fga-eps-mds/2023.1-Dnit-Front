@@ -1,6 +1,6 @@
 import { Button, Form, Input, Space } from "antd";
 import React from "react";
-import "../App.css";
+import "../../styles/App.css";
 
 const CadastroForm: React.FC = () => {
   const [form] = Form.useForm();

@@ -1,13 +1,17 @@
 import { Form, Input, Space } from "antd";
 import React from "react";
-import "../App.css";
-import LogoDNIT from "../assets/logoDnitAzul.png";
-import ButtonComponent from "../components/Login/buttomComponent";
-import { Estilo_Form } from "./consts/formstyle";
+import LogoDNIT from "../../assets/logoDnitAzul.png";
+import "../../styles/form.css";
+import ButtonComponent from "../Button";
 
 const LoginForm: React.FC = () => {
   const [form] = Form.useForm();
-
+  const rules = [
+    {
+      required: true,
+      message: "Por favor, preencha o campo ${name}!",
+    },
+  ];
   const onFinish = (values: any) => {
     console.log("Received values of form: ", values);
   };
@@ -26,27 +30,15 @@ const LoginForm: React.FC = () => {
           requiredMark="optional"
           className="form-email"
         >
-          <Form.Item
-            name="E-mail"
-            label="E-mail"
-            rules={[
-              { required: true, message: "Por favor, preencha o ${name}!" },
-            ]}
-          >
+          <Form.Item name="E-mail" label="E-mail" rules={rules}>
             <Input
               prefix={<i className="fas fa-envelope"></i>}
-              style={Estilo_Form}
+              className="inputForm"
             />
           </Form.Item>
-          <Form.Item
-            name="Senha"
-            label="Senha"
-            rules={[
-              { required: true, message: "Por favor, coloque a ${name}!" },
-            ]}
-          >
+          <Form.Item name="Senha" label="Senha" rules={rules}>
             <Input.Password
-              style={Estilo_Form}
+              className="inputForm"
               prefix={<i className="fas fa-lock"></i>}
             />
           </Form.Item>
@@ -58,8 +50,8 @@ const LoginForm: React.FC = () => {
                 cor="#1351B4"
                 cor_letra="#FFFFFF"
                 cor_borda="#1351B4"
-                largura="25em"
-              ></ButtonComponent>
+                largura="10em"
+              />
             </Space>
           </Form.Item>
           <a>Não possui cadastro? Cadastrar-se</a>
