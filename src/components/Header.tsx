@@ -1,6 +1,6 @@
-import "../App.css";
 import IconGov from "../assets/govIcon.png";
 import ButtonContraste from "../assets/icons/buttonContraste.png";
+import "../styles/App.css";
 
 export default function Header() {
   return (
