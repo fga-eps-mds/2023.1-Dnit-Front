@@ -1,0 +1,8 @@
+<testExecutions version="1">
+<file path="src\tests\Login.test.tsx">
+<testCase name="should render Login" duration="344" />
+</file>
+<file path="src\tests\Cadastro.test.tsx">
+<testCase name="should render Login text" duration="392" />
+</file>
+</testExecutions>

@@ -1,21 +1,14 @@
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import imgLateral from "./assets/imgLateral.png";
-import LoginForm from "./components/FormularioLogin";
-import Header from "./components/Header";
+import Cadastro from "./pages/Cadastro";
+import Login from "./pages/Login";
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <div className="Secao">
-        <div className="Lateral">
-          <img className="imgLateral" src={imgLateral} alt="Logo DNIT" />
-        </div>
-        <div className="Central">
-          <LoginForm />
-        </div>
-      </div>
-    </div>
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/cadastro" element={<Cadastro />} />
+    </Routes>
   );
 }
 
