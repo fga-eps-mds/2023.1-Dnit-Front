@@ -45,6 +45,10 @@
 .loginButton p {
   margin: 0;
 }
+.recuperarsenha {
+  display: flex;
+  justify-content: end;
+}
 
 .signUpButton p {
   margin: 0;
@@ -71,6 +75,8 @@
   font-size: 1.8em;
   color: var(--gray3);
   font-weight: 500;
+  justify-content: center;
+  
 }
 
 .form-email {
