@@ -1,9 +1,10 @@
 import { Form, Input, Space, Radio } from "antd";
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import LogoDNIT from "../../assets/logoDnitAzul.png";
 import "../../styles/form.css";
 import ButtonComponent from "../Button";
+import { faBullseye } from "@fortawesome/free-solid-svg-icons";
 
 const CadastroForm: React.FC = () => {
   const [form] = Form.useForm();
@@ -17,8 +18,13 @@ const CadastroForm: React.FC = () => {
     console.log("Received values of form: ", values);
   };
 
+  const [visible, setVisible]=useState(false);
+
+  const [visible2, setVisible2]=useState(false);
+
+
   return (
-    <div className="form">
+    <div className="formc">
       <div>
         <h2>Cadastro</h2>
         <Form
@@ -57,16 +63,39 @@ const CadastroForm: React.FC = () => {
             />  
           </Form.Item>
 
-          <Form.Item>
-            <Radio.Group  defaultValue={false}>
-              <Radio name="Usuário DNIT" value={true} >
+          <Form.Item className="item" name="tipo de usuário" rules={rules}>
+            <Radio.Group className="radioButtons" name="tipo de usuário" >
+              <Radio value={"DNIT"} checked={visible} onClick={()=>{setVisible(true);setVisible2(false)}} >
                 <p className="radio1">Usuário DNIT</p>
               </Radio>
-              <Radio defaultChecked value={false}>
-                <p className="radio2">Empresa Executora</p></Radio>
+              <Radio  value={"Terceirizada"} checked={visible2} onClick={()=>{setVisible2(true);setVisible(false)}} >
+                <p className="radio2">Empresa Terceirizada</p>
+              </Radio>
             </Radio.Group>
           </Form.Item>
-          
+
+          { visible && 
+          <div>
+          <Form.Item className="ext1" name="uf de lotação" label="UF de Lotação" rules={rules}>
+            <Input
+              prefix={<i className="fas fa-city"></i>}
+              className="inputForm"
+            />
+          </Form.Item>
+          </div>
+          } 
+
+          { visible2 && 
+          <div>
+            <Form.Item className="ext2" name="empresa executora" label="Empresa Executora" rules={rules}>
+            <Input
+              prefix={<i className="fas fa-city"></i>}
+              className="inputForm"
+            />
+          </Form.Item>
+          </div>
+          } 
+
           <Form.Item>
             <Space>
               <ButtonComponent
@@ -79,12 +108,13 @@ const CadastroForm: React.FC = () => {
             </Space>
           </Form.Item>
 
-          <Link to="/login">Já possui cadastro? Faça o Login</Link>
+          <Link  to="/login">Já possui cadastro? Faça o Login</Link>
         </Form>
         <a href="" className="politica" > Política de privacidade </a> <a href="" className="ajuda"> Precisa de ajuda?</a>
       </div>
     </div>
   );
 };
+
 
 export default CadastroForm;
