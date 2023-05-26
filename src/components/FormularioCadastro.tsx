@@ -27,36 +27,29 @@ const CadastroForm: React.FC = () => {
             <Input.Password />
           </Form.Item>
           <Form.Item
-            name="password"
+            name="confirmPassword"
             label="Confirmar Senha"
             rules={[{ required: true }]}
           >
             <Input.Password />
           </Form.Item>
           <Form.Item
-            name="password"
+            name="nome"
             label="Nome Completo"
             rules={[{ required: true }]}
           >
-            <Input.Password />
+            <Input />
           </Form.Item>
           <Form.Item
-            name="password"
-            label="Matricula"
-            rules={[{ required: true }]}
-          >
-            <Input.Password />
-          </Form.Item>
-          <Form.Item
-            name="password"
+            name="uf"
             label="UF de lotação"
             rules={[{ required: true }]}
           >
-            <Input.Password />
+            <Input />
           </Form.Item>
           <Form.Item>
             <Space>
-              <Button htmlType="reset" className="signUpButton">
+              <Button htmlType="submit" className="signUpButton">
                 <p>Cadastrar-se</p>
               </Button>
             </Space>
