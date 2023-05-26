@@ -1,6 +1,7 @@
-import { Button, Form, Input, Space } from "antd";
+import { Button, Form, Input, Space} from "antd";
 import React from "react";
 import "../../styles/App.css";
+
 
 const CadastroForm: React.FC = () => {
   const [form] = Form.useForm();
@@ -20,18 +21,18 @@ const CadastroForm: React.FC = () => {
           autoComplete="off"
           onFinish={onFinish}
         >
-          <Form.Item name="email" label="Email" rules={[{ required: true }]}>
-            <Input />
+          <Form.Item name="Nome Completo" label="Nome Completo" rules={[{ required: true }]}>
+              <Input className="input-form" /> 
           </Form.Item>
-          <Form.Item name="password" label="Senha" rules={[{ required: true }]}>
-            <Input.Password />
+          <Form.Item name="Email Institucional" label="Email Institucional" rules={[{ required: true }]}>
+            <Input className="input-form"/>  
           </Form.Item>
           <Form.Item
             name="confirmPassword"
             label="Confirmar Senha"
             rules={[{ required: true }]}
           >
-            <Input.Password />
+            <Input.Password className="input-form" />
           </Form.Item>
           <Form.Item
             name="nome"
@@ -47,6 +48,7 @@ const CadastroForm: React.FC = () => {
           >
             <Input />
           </Form.Item>
+
           <Form.Item>
             <Space>
               <Button htmlType="submit" className="signUpButton">
@@ -54,7 +56,9 @@ const CadastroForm: React.FC = () => {
               </Button>
             </Space>
           </Form.Item>
+          <Form.Item><a href="">Já possui cadastro? Faça o Login</a></Form.Item>
         </Form>
+        <a className="politica" href="">Política de privacidade</a><a href=""></a><a className="ajuda" href="">Precisa de Ajuda</a><a href=""></a>
       </div>
     </div>
   );

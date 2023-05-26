@@ -1,0 +1,223 @@
+@font-face {
+  font-family: "Rawline";
+  src: url("https://www.cdnfonts.com/rawline.font") format("truetype");
+}
+
+.App {
+  text-align: center;
+  height: 100vh;
+  font-family: Rawline, sans-serif;
+}
+
+.App-logo {
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: #ffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: calc(10px + 2vmin);
+  color: #333333;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 0 25px;
+}
+
+.iconGov {
+  width: 100px;
+  height: 36.13px;
+}
+
+.logoDnit {
+  display: flex;
+  width: 350px;
+  height: 90px;
+}
+
+.buttonContraste {
+  width: 20px;
+  height: 20px;
+  overflow: hidden;
+  display: inline-block;
+}
+.buttonContraste img {
+  transition: transform 0.3s ease;
+}
+.buttonContraste:hover {
+  transform: scale(1.1);
+  transition: 0.3s;
+}
+
+.HeaderContraste {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 13px;
+  font-size: 16px;
+  font-family: Rawline;
+}
+
+.HeaderIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  font-size: 24.19px;
+}
+
+.HeaderIcon p {
+  padding-bottom: 3px;
+  border-left: 1px solid #cccccc;
+  padding-left: 24px;
+  font-family: Rawline;
+}
+
+.Secao {
+  background-color: #ffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 89%;
+  flex-wrap: wrap;
+}
+
+.Lateral {
+  background-color: #002e6e;
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.Central {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  height: inherit;
+}
+
+.logoDnit {
+  width: 380px;
+  height: 96px;
+}
+
+.imgLateral {
+  width: 437px;
+  height: 291px;
+}
+
+.form {
+  background-color: white;
+  padding: 44px;
+  border: 1px solid #cccccc;
+}
+
+.formCadastro {
+  background-color: #FFFFFF;
+  padding: 10px 20px;
+  border: 1px solid #cccccc;
+  width: 360px;
+  margin: 49px 0;
+  border-radius: 15px;
+}
+
+.form p {
+  justify-content: center;
+  display: flex;
+  font-family: Rawline, sans-serif;
+}
+
+.form label {
+  font-family: Rawline, sans-serif;
+}
+
+.form h2 {
+  justify-content: flex-start;
+  display: flex;
+}
+
+.loginButton {
+  background-color: #1351b4;
+  width: 116px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signUpButton {
+  width: 116px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signUpButtonC{
+  width: 315px;
+  height: 27.2px;
+  background-color: #1351B4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 25px;
+}
+.signUpButtonC p {
+  margin: 0;
+}
+
+.loginButton p {
+  margin: 0;
+}
+
+.signUpButton p {
+  margin: 0;
+}
+
+.input-form{
+  background-color: #D9D9D9;
+  display:flex;
+}
+
+.emailIcon{
+  float: left;
+}
+
+.politica{
+  color: #1351B4;
+  display: flex;
+  float:left;
+  font-size: smaller;
+}
+
+.ajuda{
+  color: #1351B4;
+  display: flex;
+  float: right;
+  font-size: smaller;
+}
+
+
+@media (max-width: 800px) {
+  .Lateral {
+    width: 100%;
+    height: 40%;
+  }
+
+  .Central {
+    width: 100%;
+    padding: 30px 0;
+  }
+
+  .logoDnit {
+    width: 180px;
+    height: 56px;
+  }
+
+  .imgLateral {
+    width: 237px;
+    height: 131px;
+  }
+}
