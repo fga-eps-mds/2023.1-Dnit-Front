@@ -31,13 +31,13 @@ const LoginForm: React.FC = () => {
           requiredMark="optional"
           className="form-email"
         >
-          <Form.Item name="E-mail" label="E-mail" rules={rules}>
+          <Form.Item name="email" label="E-mail" rules={rules}>
             <Input
               prefix={<i className="fas fa-envelope"></i>}
               className="inputForm"
             />
           </Form.Item>
-          <Form.Item name="Senha" label="Senha" rules={rules}>
+          <Form.Item name="senha" label="Senha" rules={rules}>
             <Input.Password
               className="inputForm"
               prefix={<i className="fas fa-lock"></i>}
@@ -55,9 +55,7 @@ const LoginForm: React.FC = () => {
               />
             </Space>
           </Form.Item>
-          <Link to="/cadastro">
-            <a>Não possui cadastro? Cadastrar-se</a>
-          </Link>
+          <Link to="/cadastro">Não possui cadastro? Cadastrar-se</Link>
         </Form>
       </div>
     </div>
