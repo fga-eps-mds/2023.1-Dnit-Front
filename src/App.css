@@ -116,15 +116,16 @@
 }
 
 .formCadastro {
-  background-color: white;
+  background-color: #FFFFFF;
   padding: 10px 20px;
   border: 1px solid #cccccc;
-  width: inherit;
+  width: 360px;
   margin: 49px 0;
+  border-radius: 15px;
 }
 
 .form p {
-  justify-content: flex-start;
+  justify-content: center;
   display: flex;
   font-family: Rawline, sans-serif;
 }
@@ -148,19 +149,56 @@
 
 .signUpButton {
   width: 116px;
-  border-color: #1351b4;
+  background-color: white;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
+.signUpButtonC{
+  width: 315px;
+  height: 27.2px;
+  background-color: #1351B4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 25px;
+}
+.signUpButtonC p {
+  margin: 0;
+}
+
 .loginButton p {
   margin: 0;
 }
 
 .signUpButton p {
   margin: 0;
-  color: #1351b4;
 }
+
+.input-form{
+  background-color: #D9D9D9;
+  display:flex;
+}
+
+.emailIcon{
+  float: left;
+}
+
+.politica{
+  color: #1351B4;
+  display: flex;
+  float:left;
+  font-size: smaller;
+}
+
+.ajuda{
+  color: #1351B4;
+  display: flex;
+  float: right;
+  font-size: smaller;
+}
+
 
 @media (max-width: 800px) {
   .Lateral {
