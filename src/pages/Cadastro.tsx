@@ -1,7 +1,7 @@
-import "../App.css";
 import logoDnit from "../assets/logoDnit.png";
-import CadastroForm from "../components/FormularioCadastro";
 import Header from "../components/Header";
+import CadastroForm from "../components/form/FormularioCadastro";
+import "../styles/App.css";
 
 function Cadastro() {
   return (

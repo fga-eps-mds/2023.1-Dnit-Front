@@ -26,7 +26,7 @@ test("should render Login", async () => {
   );
 
   await act(async () => {
-    const emailInput = getByLabelText("Email");
+    const emailInput = getByLabelText("E-mail");
     const passwordInput = getByLabelText("Senha");
     const entrarButton = getByText("Entrar");
 
@@ -37,7 +37,7 @@ test("should render Login", async () => {
   await waitFor(() =>
     expect(consoleSpy).toHaveBeenCalledWith("Received values of form: ", {
       email: "example@example.com",
-      password: "password123",
+      senha: "password123",
     })
   );
 
