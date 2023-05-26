@@ -23,6 +23,30 @@
   display: flex;
 }
 
+.formc {
+  zoom: 80%;
+  padding: 0px 3.5%;
+  margin-top: 0px;
+  box-shadow: 0px 2px 4px var(--black1);
+  border-radius: 10px;
+  display: flex;
+  height: auto;
+}
+
+.formc p {
+  justify-content: flex-start;
+  display: flex;
+}
+
+.formc label {
+  font-weight: 1000;
+}
+
+.formc h2 {
+  justify-content: flex-start;
+  display: flex;
+}
+
 .ant-input-affix-wrapper > input.ant-input {
   background-color: var(--gray1);
 }
@@ -63,6 +87,18 @@
   font-family: Rawline, sans-serif;
 }
 
+.formc a {
+  margin-bottom: 7%;
+  font-size: 13px;
+  line-height: 16px;
+  font-feature-settings: "pnum" on, "lnum" on;
+  justify-content: left;
+  display: flex;
+  transition: filter 0.3s;
+  color: var(--blue);
+  font-family: Rawline, sans-serif;
+}
+
 .form a:hover {
   filter: brightness(0.4);
 }
@@ -73,8 +109,19 @@
   font-weight: 500;
 }
 
+.formc a:hover {
+  filter: brightness(0.4);
+}
+
+.formc h2 {
+  justify-content: center;
+  font-size: 1.8em;
+  color: var(--gray3);
+  font-weight: 500;
+}
+
 .form-email {
-  margin-top: 5%;
+  margin-top: 0px;
   font-size: 20px;
   line-height: 23px;
   font-feature-settings: "pnum" on, "lnum" on;
@@ -105,6 +152,14 @@
   border-radius: 0px;
 }
 
+.fas.fa-city {
+  margin-right: 4%;
+  color: var(--blue);
+  height: 15.75px;
+  width: 17.5px;
+  border-radius: 0px;
+}
+
 .ant-form-vertical .ant-form-item-label > label {
   font-size: 1.3em;
   font-weight: 350;
@@ -119,12 +174,40 @@
   background-color: var(--gray1);
 }
 
+
+
 .politica{
   float: left;
 }
 
 .ajuda{
   float: right;
+}
+
+.radioButtons{
+  height: fit-content;
+  background-color: white;
+}
+
+.item{
+  margin-bottom: 0px;
+}
+
+.ext1{
+  margin-bottom: 10%;
+}
+
+.ext2{
+  margin-bottom: 10%;
+}
+.radio1{
+  font-family: Rawline, sans-serif;
+  font-weight: 500;
+}
+
+.radio2{
+  font-family: Rawline, sans-serif;
+  font-weight: 500;
 }
 
 @media (max-width: 1250px) {
