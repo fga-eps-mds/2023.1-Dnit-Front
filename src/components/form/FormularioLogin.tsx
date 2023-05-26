@@ -1,5 +1,6 @@
 import { Form, Input, Space } from "antd";
 import React from "react";
+import { Link } from "react-router-dom";
 import LogoDNIT from "../../assets/logoDnitAzul.png";
 import "../../styles/form.css";
 import ButtonComponent from "../Button";
@@ -54,7 +55,9 @@ const LoginForm: React.FC = () => {
               />
             </Space>
           </Form.Item>
-          <a>Não possui cadastro? Cadastrar-se</a>
+          <Link to="/cadastro">
+            <a>Não possui cadastro? Cadastrar-se</a>
+          </Link>
         </Form>
       </div>
     </div>
