@@ -96,6 +96,15 @@
   width: 17.5px;
   border-radius: 0px;
 }
+
+.fas.fa-user {
+  margin-right: 4%;
+  color: var(--blue);
+  height: 15.75px;
+  width: 17.5px;
+  border-radius: 0px;
+}
+
 .ant-form-vertical .ant-form-item-label > label {
   font-size: 1.3em;
   font-weight: 350;
@@ -108,6 +117,14 @@
   border: 1px solid var(--gray2);
   border-radius: 2px;
   background-color: var(--gray1);
+}
+
+.politica{
+  float: left;
+}
+
+.ajuda{
+  float: right;
 }
 
 @media (max-width: 1250px) {
