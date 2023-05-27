@@ -30,8 +30,8 @@ const CadastroForm: React.FC = () => {
     const cadastroData = {
       email: values.email,
       senha: values.senha,
-      nome: "",
-      uf: 0,
+      nome: values.nome,
+      uf: 27,
     };
 
     try {
@@ -54,7 +54,7 @@ return (
         requiredMark="optional"
         className="form-email"
       >
-        <Form.Item name="nome completo" label="Nome Completo" rules={rules}>
+        <Form.Item name="nome" label="Nome Completo" rules={rules}>
           <Input
             className="inputForm"
             prefix={<i className="fas fa-user"></i>}
