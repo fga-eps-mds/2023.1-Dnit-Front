@@ -67,78 +67,7 @@ return (
               className="inputForm"
             />
           </Form.Item>
-          <Form.Item
-            name="confirmPassword"
-            label="Confirmar Senha"
-            rules={[{ required: true }]}
-          >
-            <Input.Password className="input-form" />
-          </Form.Item>
-          <Form.Item
-            name="nome"
-            label="Nome Completo"
-            rules={[{ required: true }]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item
-            name="uf"
-            label="UF de lotação"
-            rules={[{ required: true }]}
-          >
-            <Input />
-          </Form.Item>
-
-        <Form.Item className="item" name="tipo de usuário" rules={rules}>
-          <Radio.Group className="radioButtons" name="tipo de usuário" >
-            <Radio value={"DNIT"} checked={visible} onClick={() => { setVisible(true); setVisible2(false) }} >
-              <p className="radio1">Usuário DNIT</p>
-            </Radio>
-            <Radio value={"Terceirizada"} checked={visible2} onClick={() => { setVisible2(true); setVisible(false) }} >
-              <p className="radio2">Empresa Terceirizada</p>
-            </Radio>
-          </Radio.Group>
-        </Form.Item>
-
-        {visible &&
-          <div>
-            <Form.Item className="ext1" name="uf de lotação" label="UF de Lotação" rules={rules}>
-              <Input
-                prefix={<i className="fas fa-city"></i>}
-                className="inputForm"
-              />
-            </Form.Item>
-          </div>
-        }
-
-        {visible2 &&
-          <div>
-            <Form.Item className="ext2" name="empresa executora" label="Empresa Executora" rules={rules}>
-              <Input
-                prefix={<i className="fas fa-city"></i>}
-                className="inputForm"
-              />
-            </Form.Item>
-          </div>
-        }
-
-        <Form.Item>
-          <Space/>
-            <ButtonComponent
-              nome="Cadastrar-se"
-              cor="#1351B4"
-              cor_letra="#FFFFFF"
-              cor_borda="#1351B4"
-              largura="25em"
-            />
-          </Form.Item>
-
-          <Form.Item name="email" label="E-mail" rules={rules}>
-            <Input
-              prefix={<i className="fas fa-envelope"></i>}
-              className="inputForm"
-            />
-          </Form.Item>
+        
           <Form.Item name="senha" label="Senha" rules={rules}>
             <Input.Password
               className="inputForm"
