@@ -1,7 +1,9 @@
-import { Form, Input, Space } from "antd";
+import { Form, Input, Space, notification } from "antd";
 import React from "react";
 import { Link } from "react-router-dom";
 import LogoDNIT from "../../assets/logoDnitAzul.png";
+import { AuthContext } from "../../provider/Authentication";
+import fetchLogin from "../../service/login";
 import "../../styles/form.css";
 import ButtonComponent from "../Button";
 
@@ -13,12 +15,35 @@ const LoginForm: React.FC = () => {
       message: "Por favor, preencha o campo ${name}!",
     },
   ];
-  const onFinish = (values: any) => {
+
+  const { login, logout } = React.useContext(AuthContext);
+
+  React.useEffect(() => {
+    logout();
+  }, []);
+
+  const [api, contextHolder] = notification.useNotification();
+
+  const onFinish = async (values: any) => {
     console.log("Received values of form: ", values);
+    const loginData = {
+      email: values.email,
+      senha: values.senha,
+      nome: "",
+      uf: 0,
+    };
+
+    try {
+      await fetchLogin(loginData);
+      login();
+    } catch (error) {
+      api.error({ message: `Erro ao fazer login` });
+    }
   };
 
   return (
     <div className="form">
+      {contextHolder}
       <img className="logoDnit" src={LogoDNIT} alt="Logo DNIT" />
       <div>
         <h2>Login</h2>

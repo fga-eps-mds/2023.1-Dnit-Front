@@ -19,5 +19,6 @@ module.exports = {
         },
       };
     },
+    "transform-es2015-modules-commonjs",
   ],
 };
