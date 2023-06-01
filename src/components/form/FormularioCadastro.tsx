@@ -75,7 +75,18 @@ const CadastroForm: React.FC = () => {
             />
           </Form.Item>
 
-          <Form.Item name="email" label="E-mail" rules={rules}>
+          <Form.Item
+            name="email"
+            label="E-mail"
+            rules={[
+              { required: true, message: "Por favor, preencha o campo email!" },
+              {
+                type: "email",
+                warningOnly: true,
+                message: "O e-mail deve ser válido",
+              },
+            ]}
+          >
             <Input
               prefix={<i className="fas fa-envelope"></i>}
               className="inputForm"
