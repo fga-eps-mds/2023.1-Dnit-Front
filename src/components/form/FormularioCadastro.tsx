@@ -103,7 +103,19 @@ const CadastroForm: React.FC = () => {
           <Form.Item
             name="confirmar senha"
             label="Confirmar Senha"
-            rules={rules}
+            rules={[
+              { required: true, message: "Por favor, preencha o campo senha!" },
+              ({ getFieldValue }) => ({
+                validator(_, value) {
+                  if (!value || getFieldValue("senha") === value) {
+                    return Promise.resolve();
+                  }
+                  return Promise.reject(
+                    new Error("As senhas devem ser iguais")
+                  );
+                },
+              }),
+            ]}
           >
             <Input.Password
               className="inputForm"
