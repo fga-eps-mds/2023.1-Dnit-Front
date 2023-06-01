@@ -32,7 +32,6 @@ const CadastroForm: React.FC = () => {
   const [uf, setUf] = useState<UfProps[]>();
 
   const onFinish = async (values: any) => {
-    console.log("Received values of form: ", values);
     const cadastroData = {
       email: values.email,
       senha: values.senha,
@@ -55,7 +54,6 @@ const CadastroForm: React.FC = () => {
     setUf(newuf);
   }
 
-  console.log(uf);
   return (
     <div className="formc">
       {contextHolder}

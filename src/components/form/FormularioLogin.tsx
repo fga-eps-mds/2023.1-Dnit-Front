@@ -25,7 +25,6 @@ const LoginForm: React.FC = () => {
   const [api, contextHolder] = notification.useNotification();
 
   const onFinish = async (values: any) => {
-    console.log("Received values of form: ", values);
     const loginData = {
       email: values.email,
       senha: values.senha,
