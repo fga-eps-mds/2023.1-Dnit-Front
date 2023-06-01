@@ -13,10 +13,7 @@ export default function ButtonComponent(props: ButtonComponentProps) {
     borderColor: props.cor_borda,
     color: props.cor_letra,
     width: props.largura,
-    paddingTop: "2%",
-    paddingBottom: "2%",
-    paddingLeft: "13%",
-    paddingRight: "13%",
+    padding: "2% 13%",
     borderRadius: "20px",
     boxShadow: "1px 2px 4px var(--black1)",
     border: "0",
@@ -25,6 +22,7 @@ export default function ButtonComponent(props: ButtonComponentProps) {
     fontSize: "15px",
     lineHeight: "21px",
     textalign: "center",
+    marginTop: "5px",
   };
   return <button style={estilo}>{props.nome}</button>;
 }
