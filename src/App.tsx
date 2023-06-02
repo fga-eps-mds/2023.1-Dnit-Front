@@ -3,6 +3,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import Cadastro from "./pages/Cadastro";
 import Inicial from "./pages/Inicial";
 import Login from "./pages/Login";
+import EscolasCadastradas from "./pages/EscolasCadastradas";
 import { AuthContext } from "./provider/Authentication";
 import "./styles/App.css";
 
@@ -25,6 +26,8 @@ function App() {
       )}
       <Route path="/login" element={<Login />} />
       <Route path="/cadastro" element={<Cadastro />} />
+      <Route path="/escolas-cadastradas" element={<EscolasCadastradas />} />
+
     </Routes>
   );
 }
