@@ -8,12 +8,12 @@ interface ButtonComponentProps {
 }
 
 export default function ButtonComponent(props: ButtonComponentProps) {
-  const estilo = {
+  const buttonStyle = {
     backgroundColor: props.cor,
     borderColor: props.cor_borda,
     color: props.cor_letra,
     width: props.largura,
-    padding: "2% 13%",
+    padding: "4% 13%",
     borderRadius: "20px",
     boxShadow: "1px 2px 4px var(--black1)",
     border: "0",
@@ -24,5 +24,5 @@ export default function ButtonComponent(props: ButtonComponentProps) {
     textalign: "center",
     marginTop: "5px",
   };
-  return <button style={estilo}>{props.nome}</button>;
+  return <button style={buttonStyle}>{props.nome}</button>;
 }
