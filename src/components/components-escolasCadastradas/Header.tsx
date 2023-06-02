@@ -2,9 +2,9 @@ import IconGov from "../../assets/govIcon.png";
 import ButtonContraste from "../../assets/icons/buttonContraste.png";
 import "../../styles/App.css";
 
-export default function Header() {
+function Header() {
   return (
-    <header className="header">
+    <header className="App-header">
       <div className="HeaderIcon">
         <img className="iconGov" src={IconGov} alt="ícone gov" />
         <p>DNIT</p>
@@ -20,3 +20,4 @@ export default function Header() {
     </header>
   );
 }
+export default Header;
