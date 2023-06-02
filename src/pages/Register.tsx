@@ -1,9 +1,9 @@
 import logoDnit from "../assets/logoDnit.png";
 import Header from "../components/Header";
-import CadastroForm from "../components/form/FormularioCadastro";
+import RegisterForm from "../components/form/Register";
 import "../styles/App.css";
 
-function Cadastro() {
+function Register() {
   return (
     <div className="App">
       <Header />
@@ -12,11 +12,11 @@ function Cadastro() {
           <img className="logoDnit" src={logoDnit} alt="Logo DNIT" />
         </div>
         <div className="Central">
-          <CadastroForm />
+          <RegisterForm />
         </div>
       </div>
     </div>
   );
 }
 
-export default Cadastro;
+export default Register;

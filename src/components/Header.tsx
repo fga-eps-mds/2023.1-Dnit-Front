@@ -1,5 +1,5 @@
 import IconGov from "../assets/govIcon.png";
-import ButtonContraste from "../assets/icons/buttonContraste.png";
+import ButtonContrast from "../assets/icons/buttonContraste.png";
 import "../styles/App.css";
 
 export default function Header() {
@@ -9,11 +9,11 @@ export default function Header() {
         <img className="iconGov" src={IconGov} alt="ícone gov" />
         <p>DNIT</p>
       </div>
-      <div className="HeaderContraste">
+      <div className="HeaderContrast">
         <img
-          className="buttonContraste"
-          src={ButtonContraste}
-          alt="Button contraste"
+          className="buttonContrast"
+          src={ButtonContrast}
+          alt="Button contrast"
         />
         <p>Alto contraste</p>
       </div>
