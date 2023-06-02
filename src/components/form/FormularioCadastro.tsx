@@ -81,9 +81,8 @@ const CadastroForm: React.FC = () => {
             rules={[
               { required: true, message: "Por favor, preencha o campo email!" },
               {
-                type: "email",
-                warningOnly: true,
-                message: "O e-mail deve ser válido",
+                pattern: new RegExp("^[a-zA-Z0-9._%+-]+@dnit\\.gov\\.br$"),
+                message: "O e-mail deve ser institucional",
               },
             ]}
           >
