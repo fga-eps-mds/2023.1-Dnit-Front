@@ -2,12 +2,12 @@ import ButtonComponent from "../Button";
 // import { faBullseye } from "@fortawesome/free-solid-svg-icons";
 import { Form, Input, Radio, Select, Space, notification } from "antd";
 // import { AuthContext } from "../../provider/Authentication";
-import fetchCadastro from "../../service/cadastro";
+import fetchCadastro from "../../service/register";
 // import LogoDNIT from "../../assets/logoDnitAzul.png"
 
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import fetchUnidadeFederativa from "../../service/unidadeFederativa";
+import fetchUnidadeFederativa from "../../service/federativeUnit";
 import "../../styles/form.css";
 const { Option } = Select;
 
@@ -15,7 +15,7 @@ interface UfProps {
   value: number;
   label: string;
 }
-const CadastroForm: React.FC = () => {
+const RegisterForm: React.FC = () => {
   const [form] = Form.useForm();
 
   const [api, contextHolder] = notification.useNotification();
@@ -26,13 +26,13 @@ const CadastroForm: React.FC = () => {
     },
   ];
 
-  const [visible, setVisible] = useState(false);
-
-  const [visible2, setVisible2] = useState(false);
+  const [visibleRadioUF, setVisibleRadioUF] = useState(false);
+  const [visibleRadioCompanies, setVisibleRadioCompanies] = useState(false);
   const [uf, setUf] = useState<UfProps[]>();
+  const companies = [{ label: "Instituto Essência do Saber", value: 0 }];
 
   const onFinish = async (values: any) => {
-    const cadastroData = {
+    const registerData = {
       email: values.email,
       senha: values.senha,
       nome: values.nome,
@@ -40,7 +40,7 @@ const CadastroForm: React.FC = () => {
     };
 
     try {
-      await fetchCadastro(cadastroData);
+      await fetchCadastro(registerData);
       api.success({ message: "Cadastro feito!" });
       // login();
     } catch (error) {
@@ -75,6 +75,7 @@ const CadastroForm: React.FC = () => {
             />
           </Form.Item>
 
+<<<<<<< HEAD:src/components/form/FormularioCadastro.tsx
           <Form.Item
             name="email"
             label="E-mail"
@@ -86,6 +87,9 @@ const CadastroForm: React.FC = () => {
               },
             ]}
           >
+=======
+          <Form.Item name="email" label="E-mail Institucional" rules={rules}>
+>>>>>>> main:src/components/form/Register.tsx
             <Input
               prefix={<i className="fas fa-envelope"></i>}
               className="inputForm"
@@ -126,20 +130,20 @@ const CadastroForm: React.FC = () => {
             <Radio.Group className="radioButtons" name="tipo de usuário">
               <Radio
                 value={"DNIT"}
-                checked={visible}
+                checked={visibleRadioUF}
                 onClick={() => {
-                  setVisible(true);
-                  setVisible2(false);
+                  setVisibleRadioUF(true);
+                  setVisibleRadioCompanies(false);
                 }}
               >
                 <p className="radio1">Usuário DNIT</p>
               </Radio>
               <Radio
                 value={"Terceirizada"}
-                checked={visible2}
+                checked={visibleRadioCompanies}
                 onClick={() => {
-                  setVisible2(true);
-                  setVisible(false);
+                  setVisibleRadioCompanies(true);
+                  setVisibleRadioUF(false);
                 }}
               >
                 <p className="radio2">Empresa Terceirizada</p>
@@ -147,31 +151,39 @@ const CadastroForm: React.FC = () => {
             </Radio.Group>
           </Form.Item>
 
-          {visible && (
-            <div className=" select-group">
-              <i className="fas fa-city" />
-              <Form.Item
-                className="ext1 "
-                name="uf de lotação"
-                label="UF de Lotação"
-                rules={rules}
+          {visibleRadioUF && (
+            <Form.Item
+              className="ext1 "
+              name="uf de lotação"
+              rules={rules}
+              label="UF de Lotação"
+            >
+              <Select
+                onClick={fetchUf}
+                notFoundContent={<p>Carregando...</p>}
+                placement="topLeft"
+                optionLabelProp="label"
+                placeholder={<i className="fas fa-city" />}
               >
-                <Select
-                  onClick={fetchUf}
-                  notFoundContent={<p>Carregando...</p>}
-                  placement="topLeft"
-                >
-                  {uf?.map((u) => (
-                    <Option key={u.value} value={u.value}>
-                      {u.label}
-                    </Option>
-                  ))}
-                </Select>
-              </Form.Item>
-            </div>
+                {uf?.map((u) => (
+                  <Option
+                    key={u.value}
+                    value={u.value}
+                    label={
+                      <>
+                        <i className="fas fa-city" />
+                        {u.label}
+                      </>
+                    }
+                  >
+                    {u.label}
+                  </Option>
+                ))}
+              </Select>
+            </Form.Item>
           )}
 
-          {visible2 && (
+          {visibleRadioCompanies && (
             <div>
               <Form.Item
                 className="ext2"
@@ -179,10 +191,26 @@ const CadastroForm: React.FC = () => {
                 label="Empresa Executora"
                 rules={rules}
               >
-                <Input
-                  prefix={<i className="fas fa-city"></i>}
-                  className="inputForm"
-                />
+                <Select
+                  placement="topLeft"
+                  optionLabelProp="label"
+                  placeholder={<i className="fas fa-city" />}
+                >
+                  {companies.map((company) => (
+                    <Option
+                      key={company.value}
+                      value={company.value}
+                      label={
+                        <>
+                          <i className="fas fa-city" />
+                          {company.label}
+                        </>
+                      }
+                    >
+                      {company.label}
+                    </Option>
+                  ))}
+                </Select>
               </Form.Item>
             </div>
           )}
@@ -194,7 +222,7 @@ const CadastroForm: React.FC = () => {
                 cor="#1351B4"
                 cor_letra="#FFFFFF"
                 cor_borda="#1351B4"
-                largura="25em"
+                largura="10em"
               />
             </Space>
           </Form.Item>
@@ -214,4 +242,4 @@ const CadastroForm: React.FC = () => {
   );
 };
 
-export default CadastroForm;
+export default RegisterForm;

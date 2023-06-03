@@ -24,7 +24,7 @@
 }
 
 .formc {
-  padding: 0px 104px;
+  padding: 1.5% 3.5%;
   margin-top: 0px;
   box-shadow: 0px 2px 4px var(--black1);
   border-radius: 10px;
@@ -51,12 +51,17 @@
 }
 
 .ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
-  width: 27em;
+  width: 21.5em;
   border: 1px solid var(--gray2);
   border-radius: 2px;
   background-color: var(--gray1);
   text-align: left;
-  padding-left: 10%;
+  padding-left: 11px;
+}
+
+.ant-select-selection-item {
+  display: flex;
+  gap: 4px;
 }
 
 .loginButton {
@@ -96,7 +101,7 @@
 }
 
 .formc a {
-  margin-bottom: 2%;
+  margin-top: 5%;
   font-size: 13px;
   line-height: 16px;
   font-feature-settings: "pnum" on, "lnum" on;
@@ -126,6 +131,7 @@
   font-size: 1.8em;
   color: var(--gray3);
   font-weight: 500;
+  margin-top: 0;
 }
 
 .form-email {
@@ -160,6 +166,10 @@
   border-radius: 0px;
 }
 
+.fas.fa-city {
+  color: var(--blue);
+}
+
 .ant-form-item-label {
   padding: 0 0 5px;
 }
@@ -176,7 +186,6 @@
 
 .select-group {
   display: flex;
-  height: 100%;
   justify-content: flex-start;
   align-items: center;
 }
@@ -184,8 +193,6 @@
 .select-group i {
   position: absolute;
   z-index: 1;
-  margin-left: 1%;
-  margin-top: 1.5%;
   color: var(--blue);
   font-size: 15px;
 }
@@ -235,11 +242,11 @@
   .form {
     padding: 5%;
   }
+  .formc {
+    padding: 5%;
+  }
   .logoDnit {
     width: 180px;
     height: 56px;
-  }
-  .formc {
-    padding: 0px 15px;
   }
 }
