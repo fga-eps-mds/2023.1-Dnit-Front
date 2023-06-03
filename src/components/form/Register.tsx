@@ -75,10 +75,9 @@ const RegisterForm: React.FC = () => {
             />
           </Form.Item>
 
-<<<<<<< HEAD:src/components/form/FormularioCadastro.tsx
           <Form.Item
             name="email"
-            label="E-mail"
+            label="E-mail Institucional"
             rules={[
               { required: true, message: "Por favor, preencha o campo email!" },
               {
@@ -87,9 +86,6 @@ const RegisterForm: React.FC = () => {
               },
             ]}
           >
-=======
-          <Form.Item name="email" label="E-mail Institucional" rules={rules}>
->>>>>>> main:src/components/form/Register.tsx
             <Input
               prefix={<i className="fas fa-envelope"></i>}
               className="inputForm"
