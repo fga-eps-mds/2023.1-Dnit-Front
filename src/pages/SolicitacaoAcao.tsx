@@ -1,4 +1,5 @@
-import logoDnit from "../assets/logoDnit.png";
+import personagem from "../assets/julia11.png";
+import background from "../assets/fundo01.png";
 import Header from "../components/Header";
 import SolicitacaoAcaoForm from "../components/form/FormularioSolicitacaoAcao";
 import "../styles/App.css";
@@ -9,8 +10,13 @@ function SolicitacaoAcao() {
       <Header />
       <div className="Secao">
         <div className="Lateral">
-          <img className="logoDnit" src={logoDnit} alt="Logo DNIT" />
+          <div className=" Lateral">
+          <img className="imgLateral" src={personagem} alt="Personagem" />
+          <img className="imgLateral" src={background} alt="Background" />
+          </div>
+
         </div>
+          
         <div className="Central">
           <SolicitacaoAcaoForm />
         </div>

@@ -1,27 +1,21 @@
-import ButtonComponent from "../Button";
-// import { faBullseye } from "@fortawesome/free-solid-svg-icons";
-import { Button, Form, Input, Space, notification, Radio } from "antd";
-// import { AuthContext } from "../../provider/Authentication";
-import { Link } from "react-router-dom";
-import LogoDNIT from "../../assets/logoDnitAzul.png";
 import React, { useState } from "react";
+import { Button, Form, Input, Space, notification, Select } from "antd";
+import { Link } from "react-router-dom";
+import ButtonComponent from "../Button";
 import "../../styles/form.css";
+
+const { Option } = Select;
 
 const SolicitacaoAcaoForm: React.FC = () => {
   const [form] = Form.useForm();
-
-
   const [api, contextHolder] = notification.useNotification();
+
   const rules = [
     {
       required: true,
       message: "Por favor, preencha o campo ${name}!",
     },
   ];
-
-  const [visible, setVisible] = useState(false);
-
-  const [visible2, setVisible2] = useState(false);
 
   const onFinish = async (values: any) => {
     console.log("Received values of form: ", values);
@@ -32,69 +26,79 @@ const SolicitacaoAcaoForm: React.FC = () => {
       email: values.email,
       telefone: values.telefone,
       ciclos: values.ciclos,
-      quatidadede: values.quatidade,
+      quantidade: values.quantidade,
       observacoes: values.observacoes,
     };
   };
+  
 
-return (
-  <div className="formc">
-    <div>
-      <h2>Solicitação ação ao DNIT</h2>
-      <Form
-        form={form}
-        name="validateOnly"
-        layout="vertical"
-        autoComplete="off"
-        onFinish={onFinish}
-        requiredMark="optional"
-        className="form-email"
-      >
-        <Form.Item name="escola" label="Escola" rules={rules}>
-          <Input
-            className="inputForm"
-          />
-        </Form.Item>
+  return (
+    <div className="formc">
+      <div>
+        <h2>Solicitação ação ao DNIT</h2>
+        <Form
+          form={form}
+          name="validateOnly"
+          layout="vertical"
+          autoComplete="off"
+          onFinish={onFinish}
+          requiredMark="optional"
+          className="form-email"
+        >
+          <Form.Item name="escola" label="Escola" rules={rules}>
+            
+            <Select 
+              placeholder="Selecione uma escola"
+              className="inputForm form-item-select"
+              showSearch
+              
+            > 
+              <Option value="escola1">Escola 1</Option>
+              <Option value="escola2">Escola 2 </Option>
+              <Option value="escola3">Escola 3 </Option>
+              <Option value="escola4">Escola 4</Option>
+              
+              
+            </Select>
+          </Form.Item>
 
           <Form.Item name="nome do solicitante" label="Nome do Solicitante" rules={rules}>
+            <Input className="inputForm" />
+          </Form.Item>
+
+          <Form.Item name="vinculo com a escola" label="Vínculo com a Escola" rules={rules}>
+            <Input className="inputForm" />
+          </Form.Item>
+
+          <Form.Item name="email" label="E-mail" rules={rules}>
             <Input
               className="inputForm"
             />
           </Form.Item>
-          <Form.Item name="vinculo com a escola" label="Vínculo com a Escola" rules={rules}>
-            <Input.Password
-              className="inputForm"
-            />
-          </Form.Item>
 
-          <Form.Item name="email" label="E-mail" rules={rules}>
-            <Input.Password
-              className="inputForm"
-              prefix={<i className="fas fa-envelope"></i>}
-            />
-          </Form.Item>
           <Form.Item name="telefone" label="Telefone" rules={rules}>
-            <Input.Password
-              className="inputForm"
-            />
+            <Input className="inputForm" />
           </Form.Item>
 
-          <Form.Item name="ciclo de ensino" label="Ciclos de Ensino" rules={rules}>
-            <Input.Password
-              className="inputForm"
-            />
+          <Form.Item name="ciclos de ensino" label="Ciclos de Ensino" rules={rules}>
+            <Select
+              mode="multiple"
+              placeholder="Selecione os ciclos de ensino"
+              className="inputForm form-item-select"
+            >
+              <Option value="infantil">Ensino Infantil</Option>
+              <Option value="fundamental1">Ensino Fundamental - 1º, 2º e 3º ano</Option>
+              <Option value="fundamental2">Ensino Fundamental - 4º, 5º e 6º ano</Option>
+              <Option value="fundamental3">Ensino Fundamental - 7º, 8º e 9º ano</Option>
+            </Select>
           </Form.Item>
 
-          <Form.Item name="quantidade" label="Quantidade de Alunos" rules={rules}>
-            <Input.Password
-              className="inputForm"
-            />
+          <Form.Item name="quantidade de alunos" label="Quantidade de Alunos" rules={rules}>
+            <Input className="inputForm" />
           </Form.Item>
 
-          <Form.Item name="observações" label="Observações" rules={rules}>
-            <Input.Password
-              className="inputForm"
-            />
+          <Form.Item name="observacoes" label="Observações">
+            <Input className="inputForm" />
           </Form.Item>
 
           <Form.Item>
@@ -108,14 +112,13 @@ return (
               />
             </Space>
           </Form.Item>
-
-        
         </Form>
-        <a href="" className="politica" > Política de privacidade </a> <a href="" className="ajuda"> Precisa de ajuda?</a>
+        <a href="" className="politica">Política de privacidade</a>
+        <a href="" className="ajuda">Precisa de ajuda?</a>
       </div>
     </div>
   );
 };
 
-
 export default SolicitacaoAcaoForm;
+
