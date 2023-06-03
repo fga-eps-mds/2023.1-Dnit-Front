@@ -75,7 +75,17 @@ const RegisterForm: React.FC = () => {
             />
           </Form.Item>
 
-          <Form.Item name="email" label="E-mail Institucional" rules={rules}>
+          <Form.Item
+            name="email"
+            label="E-mail Institucional"
+            rules={[
+              { required: true, message: "Por favor, preencha o campo email!" },
+              {
+                pattern: new RegExp("^[a-zA-Z0-9._%+-]+@dnit\\.gov\\.br$"),
+                message: "O e-mail deve ser institucional",
+              },
+            ]}
+          >
             <Input
               prefix={<i className="fas fa-envelope"></i>}
               className="inputForm"
@@ -92,7 +102,19 @@ const RegisterForm: React.FC = () => {
           <Form.Item
             name="confirmar senha"
             label="Confirmar Senha"
-            rules={rules}
+            rules={[
+              { required: true, message: "Por favor, preencha o campo senha!" },
+              ({ getFieldValue }) => ({
+                validator(_, value) {
+                  if (!value || getFieldValue("senha") === value) {
+                    return Promise.resolve();
+                  }
+                  return Promise.reject(
+                    new Error("As senhas devem ser iguais")
+                  );
+                },
+              }),
+            ]}
           >
             <Input.Password
               className="inputForm"
