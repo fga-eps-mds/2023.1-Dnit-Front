@@ -91,6 +91,7 @@
   height: 100%;
 }
 
+
 .Central {
   display: flex;
   justify-content: center;
@@ -220,4 +221,5 @@
     width: 237px;
     height: 131px;
   }
+
 }
