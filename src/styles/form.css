@@ -238,18 +238,25 @@
   font-weight: 500;
 }
 
-.box {
-  padding: 1.5% 3.5%;
-  margin-top: 1.5rem;
-  box-shadow: 0px 2px 4px var(--black1);
-  border-radius: 10px;
-  display: flex;
-  height: 25rem;
-  width: fit-content;
+.formrs {
+  justify-self: center;
 }
 
+.formrs h2 {
+  font-family: Rawline, sans-serif;
+  justify-content: flex-start;
+  display: flex;
+  margin-bottom: 6rem;
+}
 
+.insbutton {
+  margin-top: 4rem;
+}
 
+.button1{
+  background-color: #1351B4;
+  width: 14em;
+}
 
 @media (max-width: 1250px) {
   .form {
