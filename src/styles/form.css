@@ -238,6 +238,19 @@
   font-weight: 500;
 }
 
+.box {
+  padding: 1.5% 3.5%;
+  margin-top: 1.5rem;
+  box-shadow: 0px 2px 4px var(--black1);
+  border-radius: 10px;
+  display: flex;
+  height: 25rem;
+  width: fit-content;
+}
+
+
+
+
 @media (max-width: 1250px) {
   .form {
     padding: 5%;

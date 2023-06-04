@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { AuthContext } from "./provider/Authentication";
 import "./styles/App.css";
+import RegisterSchool from "./pages/RegisterSchool";
 
 function App() {
   const { getAuth } = useContext(AuthContext);
@@ -25,6 +26,7 @@ function App() {
       )}
       <Route path="/login" element={<Login />} />
       <Route path="/cadastro" element={<Register />} />
+      <Route path="/cadastrarescola" element={<RegisterSchool />} />
     </Routes>
   );
 }
