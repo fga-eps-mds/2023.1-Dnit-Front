@@ -87,7 +87,11 @@ const RegisterForm: React.FC = () => {
                 ...(isDNITUser && {
                   pattern: new RegExp("^[a-zA-Z0-9._%+-]+@dnit\\.gov\\.br$"),
                   message: "O e-mail deve ser institucional",
-                })
+                }),
+                ...(!isDNITUser && {
+                  type: "email",
+                  message: "O e-mail não é válido",
+                }),
               }
             ]}
           >
@@ -151,7 +155,7 @@ const RegisterForm: React.FC = () => {
                   form.validateFields(["email"]);
                 }}
               >
-                <p className="radio2">Empresa Terceirizada</p>
+                <p className="radio2">Empresa Executora</p>
               </Radio>
             </Radio.Group>
           </Form.Item>
