@@ -80,6 +80,7 @@
   height: 100%;
 }
 
+
 .Central {
   display: flex;
   justify-content: center;
@@ -203,4 +204,10 @@
     width: 180px;
     height: 56px;
   }
+
+  .imgLateral {
+    width: 237px;
+    height: 131px;
+  }
+
 }
