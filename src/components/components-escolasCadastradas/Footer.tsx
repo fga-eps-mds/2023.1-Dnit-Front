@@ -1,8 +1,8 @@
-import React from 'react';
+import "../../styles/App.css";
 
-function Footer(){
+export default function Footer(){
     return (
-        <footer className="br-footer inverted">
+        <footer className="br-footer">
           <div className="container-lg">
             <div className="logo text-sm-left"><img src="https://cdngovbr-ds.estaleiro.serpro.gov.br/design-system/images/logo-positive.png" alt="Imagem"/></div>
             <div className="br-list horizontal" data-toggle="data-toggle" data-sub="data-sub">
