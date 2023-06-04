@@ -1,5 +1,4 @@
 import personagem from "../assets/julia11.png";
-import background from "../assets/fundo01.png";
 import Header from "../components/Header";
 import SolicitacaoAcaoForm from "../components/form/FormularioSolicitacaoAcao";
 import "../styles/App.css";
@@ -11,8 +10,7 @@ function SolicitacaoAcao() {
       <div className="Secao">
         <div className="Lateral">
           <div className=" Lateral">
-          <img className="imgLateral" src={personagem} alt="Personagem" />
-          <img className="imgLateral" src={background} alt="Background" />
+          <img className="imgLateral" src={personagem} alt="personagem" />
           </div>
 
         </div>
