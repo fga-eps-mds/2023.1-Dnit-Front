@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import Cadastro from "./pages/Cadastro";
-import Inicial from "./pages/Inicial";
+import Home from "./pages/Home";
 import Login from "./pages/Login";
 import SolicitacaoAcao from "./pages/SolicitacaoAcao";
+import Register from "./pages/Register";
 import { AuthContext } from "./provider/Authentication";
 import "./styles/App.css";
 
@@ -16,16 +16,16 @@ function App() {
       {isAuthenticated ? (
         <>
           <Route path="*" element={<Navigate to="/home" />} />
-          <Route path="/home" element={<Inicial />} />
+          <Route path="/home" element={<Home />} />
         </>
       ) : (
         <>
           <Route path="*" element={<Navigate to="/login" />} />
-          <Route path="/cadastro" element={<Cadastro />} />
+          <Route path="/cadastro" element={<Register />} />
         </>
       )}
       <Route path="/login" element={<Login />} />
-      <Route path="/cadastro" element={<Cadastro />} />
+      <Route path="/cadastro" element={<Register />} />
       <Route path="/solicitacaoAcao" element={<SolicitacaoAcao />} />
     </Routes>
   );

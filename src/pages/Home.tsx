@@ -2,7 +2,7 @@ import imgLateral from "../assets/imgLateral.png";
 import Header from "../components/Header";
 import "../styles/App.css";
 
-function Inicial() {
+function Home() {
   return (
     <div className="App">
       <Header />
@@ -15,4 +15,4 @@ function Inicial() {
   );
 }
 
-export default Inicial;
+export default Home;
