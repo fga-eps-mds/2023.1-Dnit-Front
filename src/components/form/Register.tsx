@@ -30,6 +30,8 @@ const RegisterForm: React.FC = () => {
   const [visibleRadioCompanies, setVisibleRadioCompanies] = useState(false);
   const [uf, setUf] = useState<UfProps[]>();
   const companies = [{ label: "Instituto Essência do Saber", value: 0 }];
+  const [isDNITUser, setIsDNITUser] = useState(false);
+
 
   const onFinish = async (values: any) => {
     const registerData = {
@@ -79,11 +81,18 @@ const RegisterForm: React.FC = () => {
             name="email"
             label="E-mail Institucional"
             rules={[
-              { required: true, message: "Por favor, preencha o campo email!" },
               {
-                pattern: new RegExp("^[a-zA-Z0-9._%+-]+@dnit\\.gov\\.br$"),
-                message: "O e-mail deve ser institucional",
-              },
+                required: true,
+                message: "Por favor, preencha o campo email!",
+                ...(isDNITUser && {
+                  pattern: new RegExp("^[a-zA-Z0-9._%+-]+@dnit\\.gov\\.br$"),
+                  message: "O e-mail deve ser institucional",
+                }),
+                ...(!isDNITUser && {
+                  type: "email",
+                  message: "O e-mail não é válido",
+                }),
+              }
             ]}
           >
             <Input
@@ -130,6 +139,8 @@ const RegisterForm: React.FC = () => {
                 onClick={() => {
                   setVisibleRadioUF(true);
                   setVisibleRadioCompanies(false);
+                  setIsDNITUser(true);
+                  form.validateFields(["email"]);
                 }}
               >
                 <p className="radio1">Usuário DNIT</p>
@@ -140,9 +151,11 @@ const RegisterForm: React.FC = () => {
                 onClick={() => {
                   setVisibleRadioCompanies(true);
                   setVisibleRadioUF(false);
+                  setIsDNITUser(false);
+                  form.validateFields(["email"]);
                 }}
               >
-                <p className="radio2">Empresa Terceirizada</p>
+                <p className="radio2">Empresa Executora</p>
               </Radio>
             </Radio.Group>
           </Form.Item>
