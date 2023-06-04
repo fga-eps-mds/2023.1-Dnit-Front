@@ -6,8 +6,10 @@ function RegisterSchool(){
     return(
         <div className="App">
             <Header />
-            <div className="box">
-            <RegS />
+            <div className="Secao2">
+                <div className="box">
+                <RegS />
+                </div>
             </div>
         </div>
     );
