@@ -67,7 +67,17 @@ const SolicitacaoAcaoForm: React.FC = () => {
           </Form.Item>
 
           <Form.Item name="vinculo com a escola" label="Vínculo com a Escola" rules={rules}>
-            <Input className="inputForm" />
+          <Select 
+              placeholder="Selecione uma escola"
+              className="inputForm form-item-select"
+            > 
+              <Option value="escola1">Professor</Option>
+              <Option value="escola2">Gestor escolar</Option>
+              <Option value="escola3">Estudante</Option>
+              <Option value="escola4">Outro</Option>
+              
+              
+            </Select>
           </Form.Item>
 
           <Form.Item name="email" label="E-mail" rules={rules}>
@@ -82,9 +92,9 @@ const SolicitacaoAcaoForm: React.FC = () => {
 
           <Form.Item name="ciclos de ensino" label="Ciclos de Ensino" rules={rules}>
             <Select
-              mode="multiple"
-              placeholder="Selecione os ciclos de ensino"
-              className="inputForm form-item-select"
+            mode="multiple"
+            placeholder="Selecione uma escola"
+            className="inputForm form-item-select"
             >
               <Option value="infantil">Ensino Infantil</Option>
               <Option value="fundamental1">Ensino Fundamental - 1º, 2º e 3º ano</Option>

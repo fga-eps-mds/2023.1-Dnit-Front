@@ -6,6 +6,9 @@ import fetchUnidadeFederativa from "../../service/federativeUnit";
 import fetchCadastro from "../../service/register";
 import "../../styles/form.css";
 import ButtonComponent from "../Button";
+
+
+
 const { Option } = Select;
 
 interface UfProps {
@@ -42,6 +45,7 @@ const RegisterForm: React.FC = () => {
       await fetchCadastro(registerData);
       api.success({ message: "Cadastro feito!" });
       login();
+      // login();
     } catch (error) {
       api.error({ message: `Erro ao fazer cadastro` });
     }
@@ -50,8 +54,12 @@ const RegisterForm: React.FC = () => {
   async function fetchUf(): Promise<void> {
     const uf = await fetchUnidadeFederativa();
     const newuf = uf.map((u) => ({ value: u.id, label: u.nome }));
-    setUf(newuf);
+      setUf(newuf);
   }
+  // async function fetchUf() {
+  //   const uf = await fetchUnidadeFederativa();
+  //   const newuf = uf.map((u) => ({ value: u.id, label: u.descricao }));
+  // }
 
   return (
     <div className="formc">
@@ -63,9 +71,10 @@ const RegisterForm: React.FC = () => {
           name="validateOnly"
           layout="vertical"
           autoComplete="off"
-          onFinish={(event) => {
-            void onFinish(event);
-          }}
+          // onFinish={(event) => {
+          //   void onFinish(event);
+          // }}
+          onFinish={onFinish}
           requiredMark="optional"
           className="form-email"
         >
@@ -80,13 +89,10 @@ const RegisterForm: React.FC = () => {
             name="email"
             label="E-mail Institucional"
             rules={[
+              { required: true, message: "Por favor, preencha o campo email!" },
               {
-                required: true,
-                message: "Por favor, preencha o campo email!",
-              },
-              {
-                type: "email",
-                message: "O email não é válido",
+                pattern: new RegExp("^[a-zA-Z0-9._%+-]+@dnit\\.gov\\.br$"),
+                message: "O e-mail deve ser institucional",
               },
             ]}
           >
@@ -146,7 +152,7 @@ const RegisterForm: React.FC = () => {
                   setVisibleRadioUF(false);
                 }}
               >
-                <p className="radio2">Empresa Executora</p>
+                <p className="radio2">Empresa Terceirizada</p>
               </Radio>
             </Radio.Group>
           </Form.Item>
@@ -159,12 +165,10 @@ const RegisterForm: React.FC = () => {
               label="UF de Lotação"
             >
               <Select
-                onClick={() => {
-                  void fetchUf();
-                }}
                 onMouseDown={() => {
                   void fetchUf();
                 }}
+                onClick={fetchUf}
                 notFoundContent={<p>Carregando...</p>}
                 placement="topLeft"
                 optionLabelProp="label"
