@@ -238,15 +238,14 @@
   font-weight: 500;
 }
 
-.formrs {
-  justify-self: center;
-}
+
 
 .formrs h2 {
   font-family: Rawline, sans-serif;
-  justify-content: flex-start;
+  justify-content: center;
   display: flex;
   margin-bottom: 6rem;
+  
 }
 
 .insbutton {
@@ -256,6 +255,12 @@
 .button1{
   background-color: #1351B4;
   width: 14em;
+}
+
+.button2{
+  width: 10em;
+  background-color: #1351B4;
+  
 }
 
 @media (max-width: 1250px) {
