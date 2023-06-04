@@ -1,4 +1,5 @@
 import IconGov from "../assets/govIcon.png";
+import IconDNIT from "../assets/icons/DNITicon.svg";
 import ButtonContrast from "../assets/icons/contrastButton.svg";
 import "../styles/App.css";
 
@@ -7,7 +8,7 @@ export default function Header() {
     <header className="App-header">
       <div className="HeaderIcon">
         <img className="iconGov" src={IconGov} alt="ícone gov" />
-        <p>DNIT</p>
+        <img className="iconDNIT" src={IconDNIT} alt="ícone dnit" />
       </div>
       <div className="HeaderContrast">
         <img
