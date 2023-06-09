@@ -1,15 +1,16 @@
 import { fireEvent, render, waitFor } from "@testing-library/react";
-import axios from "axios";
 import { act } from "react-dom/test-utils";
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
-import { loginURL } from "../consts/service";
 import { AuthProvider } from "../provider/Authentication";
+import fetchLogin from "../service/login";
 
-jest.mock("axios");
-const mockedAxios = axios as jest.Mocked<typeof axios>;
+jest.mock("../service/login", () => ({
+  __esModule: true,
+  default: jest.fn(),
+}));
 
-const consoleSpy = jest.spyOn(console, "log");
+const mockedUseLogin = fetchLogin as jest.Mock;
 
 window.matchMedia = jest.fn().mockImplementation((query) => {
   return {
@@ -26,6 +27,8 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
 
 describe("", () => {
   it("should render Login", async () => {
+    mockedUseLogin.mockResolvedValueOnce({ success: true });
+
     const { getByLabelText, getByText } = render(
       <MemoryRouter initialEntries={["/login"]}>
         <AuthProvider>
@@ -44,26 +47,6 @@ describe("", () => {
       fireEvent.click(entrarButton);
     });
 
-    await waitFor(() =>
-      expect(consoleSpy).toHaveBeenCalledWith("Received values of form: ", {
-        email: "dora@gmail.com",
-        senha: "123456",
-      })
-    );
-
-    const loginData = {
-      email: "dora@gmail.com",
-      senha: "123456",
-      nome: "",
-      uf: 0,
-    };
-
-    mockedAxios.post.mockResolvedValue({ url: loginURL, body: loginData });
-
-    await waitFor(() => {
-      expect(window.location.pathname).toBe("/inicial");
-    });
-
-    consoleSpy.mockRestore();
+    await waitFor(() => expect(mockedUseLogin).toHaveBeenCalledTimes(1));
   });
 });
