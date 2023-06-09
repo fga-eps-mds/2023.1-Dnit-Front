@@ -31,7 +31,6 @@ const RegisterForm: React.FC = () => {
   const [uf, setUf] = useState<UfProps[]>();
   const companies = [{ label: "Instituto Essência do Saber", value: 0 }];
 
-
   const onFinish = async (values: any) => {
     const registerData = {
       email: values.email,
@@ -86,8 +85,8 @@ const RegisterForm: React.FC = () => {
               },
               {
                 type: "email",
-                message: "O email não é válido"
-              }
+                message: "O email não é válido",
+              },
             ]}
           >
             <Input
@@ -160,6 +159,7 @@ const RegisterForm: React.FC = () => {
             >
               <Select
                 onClick={fetchUf}
+                onMouseDown={fetchUf}
                 notFoundContent={<p>Carregando...</p>}
                 placement="topLeft"
                 optionLabelProp="label"
@@ -167,6 +167,7 @@ const RegisterForm: React.FC = () => {
               >
                 {uf?.map((u) => (
                   <Option
+                    data-testid={`option-${u.value}`}
                     key={u.value}
                     value={u.value}
                     label={
