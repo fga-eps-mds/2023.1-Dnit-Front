@@ -1,14 +1,11 @@
-import ButtonComponent from "../Button";
-// import { faBullseye } from "@fortawesome/free-solid-svg-icons";
 import { Form, Input, Radio, Select, Space, notification } from "antd";
-// import { AuthContext } from "../../provider/Authentication";
-import fetchCadastro from "../../service/register";
-// import LogoDNIT from "../../assets/logoDnitAzul.png"
-
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../provider/Authentication";
 import fetchUnidadeFederativa from "../../service/federativeUnit";
+import fetchCadastro from "../../service/register";
 import "../../styles/form.css";
+import ButtonComponent from "../Button";
 const { Option } = Select;
 
 interface UfProps {
@@ -31,6 +28,8 @@ const RegisterForm: React.FC = () => {
   const [uf, setUf] = useState<UfProps[]>();
   const companies = [{ label: "Instituto Essência do Saber", value: 0 }];
 
+  const { login } = React.useContext(AuthContext);
+
   const onFinish = async (values: any) => {
     const registerData = {
       email: values.email,
@@ -42,13 +41,13 @@ const RegisterForm: React.FC = () => {
     try {
       await fetchCadastro(registerData);
       api.success({ message: "Cadastro feito!" });
-      // login();
+      login();
     } catch (error) {
       api.error({ message: `Erro ao fazer cadastro` });
     }
   };
 
-  async function fetchUf() {
+  async function fetchUf(): Promise<void> {
     const uf = await fetchUnidadeFederativa();
     const newuf = uf.map((u) => ({ value: u.id, label: u.descricao }));
     setUf(newuf);
@@ -64,7 +63,9 @@ const RegisterForm: React.FC = () => {
           name="validateOnly"
           layout="vertical"
           autoComplete="off"
-          onFinish={onFinish}
+          onFinish={(event) => {
+            void onFinish(event);
+          }}
           requiredMark="optional"
           className="form-email"
         >
@@ -158,8 +159,12 @@ const RegisterForm: React.FC = () => {
               label="UF de Lotação"
             >
               <Select
-                onClick={fetchUf}
-                onMouseDown={fetchUf}
+                onClick={() => {
+                  void fetchUf();
+                }}
+                onMouseDown={() => {
+                  void fetchUf();
+                }}
                 notFoundContent={<p>Carregando...</p>}
                 placement="topLeft"
                 optionLabelProp="label"

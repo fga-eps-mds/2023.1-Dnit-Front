@@ -51,7 +51,9 @@ const LoginForm: React.FC = () => {
           name="validateOnly"
           layout="vertical"
           autoComplete="off"
-          onFinish={onFinish}
+          onFinish={(event) => {
+            void onFinish(event);
+          }}
           requiredMark="optional"
           className="form-email"
         >
