@@ -9,6 +9,7 @@ module.exports = {
     "!src/index.tsx",
     "!src/App.tsx",
     "!src/service/*.{ts,tsx}",
+    "!src/provider/*.{ts,tsx}",
   ],
   collectCoverage: true,
   testEnvironment: "jest-environment-jsdom",
