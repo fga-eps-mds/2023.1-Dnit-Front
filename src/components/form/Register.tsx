@@ -30,7 +30,6 @@ const RegisterForm: React.FC = () => {
   const [visibleRadioCompanies, setVisibleRadioCompanies] = useState(false);
   const [uf, setUf] = useState<UfProps[]>();
   const companies = [{ label: "Instituto Essência do Saber", value: 0 }];
-  const [isDNITUser, setIsDNITUser] = useState(false);
 
 
   const onFinish = async (values: any) => {
@@ -84,14 +83,10 @@ const RegisterForm: React.FC = () => {
               {
                 required: true,
                 message: "Por favor, preencha o campo email!",
-                ...(isDNITUser && {
-                  pattern: new RegExp("^[a-zA-Z0-9._%+-]+@dnit\\.gov\\.br$"),
-                  message: "O e-mail deve ser institucional",
-                }),
-                ...(!isDNITUser && {
-                  type: "email",
-                  message: "O e-mail não é válido",
-                }),
+              },
+              {
+                type: "email",
+                message: "O email não é válido"
               }
             ]}
           >
@@ -139,8 +134,6 @@ const RegisterForm: React.FC = () => {
                 onClick={() => {
                   setVisibleRadioUF(true);
                   setVisibleRadioCompanies(false);
-                  setIsDNITUser(true);
-                  form.validateFields(["email"]);
                 }}
               >
                 <p className="radio1">Usuário DNIT</p>
@@ -151,8 +144,6 @@ const RegisterForm: React.FC = () => {
                 onClick={() => {
                   setVisibleRadioCompanies(true);
                   setVisibleRadioUF(false);
-                  setIsDNITUser(false);
-                  form.validateFields(["email"]);
                 }}
               >
                 <p className="radio2">Empresa Executora</p>
