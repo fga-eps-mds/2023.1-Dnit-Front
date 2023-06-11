@@ -8,13 +8,20 @@ import { link } from "fs";
 
 
 export default function RegS() {
-
+const [form] = Form.useForm();
+const rules = [
+    {
+        required: true,
+        message: "Preencha o campo ${name}!",
+    },
+];
+    
 const [screen, setScreen] = useState<"form1"|"form2"|"form3">("form1");
 
 return(
     <div className="formrs">
         {screen === "form1" && (
-            <div>
+            <div className="form1">
             <h2>Escolha como cadastrar</h2>
             <Form>
             <Form.Item className="insbutton" >
@@ -33,25 +40,129 @@ return(
             </Form.Item>
 
           </Form>
-          </div>
+        </div>
         )}
 
         {screen === "form2" && (
-            <div>
-            <h2>Cadastrar Escola</h2>
-                    <Form.Item className="insbutton">
+        <div>
+        <h2>Cadastrar Escola</h2>
+                <Form
+                form={form}
+                name="validateOnly"
+                layout="vertical"
+                autoComplete="off"
+                requiredMark="optional"
+                className="form-email"
+                >
+                <div>
+                    <div className="bloco">
+                        <Form.Item name="nome da escola" label="Nome da Escola" rules={rules}>
+                            <Input
+                            className="inputForm2"
+                            />
+                        </Form.Item>
+
+                        <Form.Item
+                            name="rede"
+                            label="Rede"
+                            rules = {rules}
+                            >
+                            <Input
+                            className="inputForm2"
+                            />
+                        </Form.Item>
+
+                        <Form.Item name="codigo da escola" label="Codigo da Escola" rules={rules}>
+                            <Input
+                            className="inputForm2"
+                            />
+                        </Form.Item>
+
+                        <Form.Item
+                            name="uf"
+                            label="UF"
+                            rules={rules}
+                            >
+                            <Input
+                            className="inputForm2"
+                            />
+                        </Form.Item>
+
+                        <Form.Item
+                            name="cep"
+                            label="CEP"
+                            rules={rules}
+                            >
+                            <Input
+                            className="inputForm2"
+                            />
+                        </Form.Item>
+                    </div>
+                    <div className="bloco2">
+                        <Form.Item name="endereço" label="Endereço" rules={rules}>
+                            <Input
+                            className="inputForm2"
+                            />
+                        </Form.Item>
+
+                        <Form.Item
+                            name="município"
+                            label="Município"
+                            rules = {rules}
+                            >
+                            <Input
+                            className="inputForm2"
+                            />
+                        </Form.Item>
+
+                        <Form.Item name="localização" label="Localização" rules={rules}>
+                            <Input
+                            className="inputForm2"
+                            />
+                        </Form.Item>
+
+                        <Form.Item
+                            name="longitude"
+                            label="Longitude"
+                            rules={rules}
+                            >
+                            <Input
+                            className="inputForm2"
+                            />
+                        </Form.Item>
+
+                        <Form.Item
+                            name="latitude"
+                            label="Latitude"
+                            rules={rules}
+                            >
+                            <Input
+                            className="inputForm2"
+                            />
+                        </Form.Item>
+                    </div>
+                </div>
+                </Form>
+
+                <div className="voltar">
                     <Space>
-                    <Button className="button1" type="primary" size="large" shape="round" onClick={() => setScreen("form1")}>
+                    <Button className="button2" type="primary" size="large" shape="round" onClick={() => setScreen("form1")}>
                     Voltar
                     </Button>
                     </Space>
-                    </Form.Item>
-            </div>
+                </div>
+                <div className="proximo">
+                    <Space>
+                    <Button className="button2" type="primary" size="large" shape="round" onClick={() => setScreen("form3")}>
+                    Próximo
+                    </Button>
+                    </Space>
+                </div>
+        </div>
         )}
     </div>
 );
 }
-
 
 
 

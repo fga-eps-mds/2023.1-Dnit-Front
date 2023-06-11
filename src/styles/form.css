@@ -202,6 +202,7 @@
   border: 1px solid var(--gray2);
   border-radius: 2px;
   background-color: var(--gray1);
+
 }
 
 .politica {
@@ -240,20 +241,31 @@
 
 
 .formrs {
+  display: flex;
   justify-content: center;
+  zoom: 90%;
+  margin-bottom: 1rem;
+  width: fit-content;
 }
 
 
 .formrs h2 {
   font-family: Rawline, sans-serif;
-  justify-content: center;
-  display: flex;
-  margin-bottom: 6rem;
+  font-size: 1.8em;
+  color: var(--gray3);
+  font-weight: 500;
+  margin-bottom: 3rem;
   
+}
+
+.form1{
+  margin-top: 2rem;
+
 }
 
 .insbutton {
   margin-top: 4rem;
+  margin-bottom: 4rem;
 }
 
 .button1{
@@ -261,11 +273,41 @@
   width: 14em;
 }
 
+
 .button2{
+  margin-top: 3rem;
+  zoom: 80%;
   width: 10em;
   background-color: #1351B4;
-  
 }
+
+.proximo{
+  float: right;
+}
+.voltar{
+  float: left;
+}
+
+.bloco{
+  width: 18rem;
+  margin-right: 2rem;
+  float: left;
+}
+.bloco2{
+  width: 18rem;
+  margin-left: 2rem;
+  float: right;
+}
+
+
+.inputForm2 {
+  height: 5%;
+  border: 1px solid var(--gray2);
+  border-radius: 2px;
+  background-color: var(--gray1);
+  width: 100%;
+}
+
 
 @media (max-width: 1250px) {
   .form {
