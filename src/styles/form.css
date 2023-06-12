@@ -299,13 +299,9 @@
   float: right;
 }
 
-
-.inputForm2 {
-  height: 5%;
-  border: 1px solid var(--gray2);
-  border-radius: 2px;
-  background-color: var(--gray1);
-  width: 100%;
+.bloco3{
+  justify-self: center;
+  width: 18rem;
 }
 
 
