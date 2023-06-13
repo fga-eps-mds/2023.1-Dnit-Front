@@ -1,10 +1,12 @@
 import "../../styles/App.css";
+import logoDnit from "../../assets/logoDnit.png";
+import "../components-escolasCadastradas/Footer.css";
 
 export default function Footer(){
     return (
         <footer className="br-footer">
           <div className="container-lg">
-            <div className="logo text-sm-left"><img src="https://cdngovbr-ds.estaleiro.serpro.gov.br/design-system/images/logo-positive.png" alt="Imagem"/></div>
+            <div className="logo text-sm-left"><img src={logoDnit} alt="Imagem"/></div>
             <div className="br-list horizontal" data-toggle="data-toggle" data-sub="data-sub">
               <div className="col-2"><a className="br-item header" href="javascript:void(0)">
                   <div className="content text-down-01 text-bold text-uppercase">Categoria 1</div>
