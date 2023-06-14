@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import "./index.css";
 import { AuthProvider } from "./provider/Authentication";
+import "@govbr-ds/core/dist/core.min.css";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

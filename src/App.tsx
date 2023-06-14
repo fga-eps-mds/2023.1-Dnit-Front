@@ -3,8 +3,11 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import Cadastro from "./pages/Cadastro";
 import Inicial from "./pages/Inicial";
 import Login from "./pages/Login";
+import AdicionarSituacao from "./pages/ExibirInformacoesEscola";
+
 import { AuthContext } from "./provider/Authentication";
 import "./styles/App.css";
+import ExibirInformacoesEscola from "./pages/ExibirInformacoesEscola";
 
 function App() {
   const { getAuth } = useContext(AuthContext);
@@ -25,6 +28,7 @@ function App() {
       )}
       <Route path="/login" element={<Login />} />
       <Route path="/cadastro" element={<Cadastro />} />
+      <Route path="/exibirinformacoesescola" element={<ExibirInformacoesEscola />} />
     </Routes>
   );
 }
