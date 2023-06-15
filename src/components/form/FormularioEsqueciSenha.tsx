@@ -15,7 +15,11 @@ const EsqueciSenhaForm: React.FC = () => {
   ];
   const [api, contextHolder] = notification.useNotification();
   const onFinish = async (values: any) => {
-    const recoverData = { email: values.email };
+    const recoverData = { 
+      email: values.email,
+      nome: "",
+      senha: "",
+    };
 
     try{
       await fetchRecuperarSenha(recoverData);

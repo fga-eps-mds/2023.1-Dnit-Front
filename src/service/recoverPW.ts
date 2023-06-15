@@ -10,7 +10,7 @@ async function fetchRecuperarSenha(
   recoverData: RecoverPasswordData
 ): Promise<RecoverPasswordResponse> {
   try {
-    const response: AxiosResponse<RecoverPasswordResponse> = await axios.post(
+    const response: AxiosResponse<RecoverPasswordResponse> = await axios.put(
         recoverPasswordURL,
         recoverData
     );
