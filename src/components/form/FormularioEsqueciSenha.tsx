@@ -1,6 +1,7 @@
-import { Form, Input, Space } from "antd";
+import { Form, Input, notification, Space } from "antd";
 import React from "react";
 import LogoDNIT from "../../assets/logoDnitAzul.png";
+import fetchRecuperarSenha from "../../service/recoverPW";
 import "../../styles/form.css";
 import ButtonComponent from "../Button";
 
@@ -12,12 +13,23 @@ const EsqueciSenhaForm: React.FC = () => {
       message: "Por favor, preencha o campo ${name}!",
     },
   ];
-  const onFinish = (values: any) => {
-    console.log("Received values of form: ", values);
+  const [api, contextHolder] = notification.useNotification();
+  const onFinish = async (values: any) => {
+    const recoverData = { email: values.email };
+
+    try{
+      await fetchRecuperarSenha(recoverData);
+      api.success({ message: "Link de recuperação enviado ao email!" });
+    } catch {
+      api.error({ message: `Erro ao enviar link de recuperação` });
+
+    }
+    console.log("Received values of form: ", values.email);
   };
 
   return (
     <div className="form">
+      {contextHolder}
       <img className="logoDnit" src={LogoDNIT} alt="Logo DNIT" />
       <div>
         <h2><strong>Recuperar Senha</strong></h2>

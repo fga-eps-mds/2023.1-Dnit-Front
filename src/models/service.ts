@@ -17,3 +17,7 @@ export interface RegisterData {
   nome: string;
   uf: number;
 }
+
+export interface RecoverPasswordData {
+  email: string;
+}
