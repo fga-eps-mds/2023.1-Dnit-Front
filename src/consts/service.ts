@@ -4,5 +4,6 @@ const federativeUnitURL = `${urlAPI}/dominio/unidadeFederativa`;
 
 const loginURL = `${urlAPI}/usuario/login`;
 const registerURL = `${urlAPI}/usuario/cadastrarUsuarioDnit`;
+const recoverPasswordURL = `${urlAPI}/usuario/recuperarSenha`;
 
-export { federativeUnitURL, loginURL, registerURL };
+export { federativeUnitURL, loginURL, registerURL, recoverPasswordURL };

@@ -120,6 +120,7 @@
   font-size: 1.8em;
   color: var(--gray3);
   font-weight: 500;
+  justify-content: center;
 }
 
 .formc a:hover {
@@ -249,4 +250,10 @@
     width: 180px;
     height: 56px;
   }
+}
+
+.esqueci{
+  display: flex;
+  justify-content: center;
+
 }

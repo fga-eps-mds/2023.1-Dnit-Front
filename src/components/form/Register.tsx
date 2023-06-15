@@ -154,7 +154,7 @@ const RegisterForm: React.FC = () => {
           {visibleRadioUF && (
             <Form.Item
               className="ext1 "
-              name="uf de lotação"
+              name="uf"
               rules={rules}
               label="UF de Lotação"
             >
