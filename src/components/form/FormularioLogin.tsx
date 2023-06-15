@@ -43,7 +43,7 @@ const LoginForm: React.FC = () => {
               prefix={<i className="fas fa-lock"></i>}
             />
           </Form.Item>
-          <a>Esqueceu a senha?</a>
+          <Link to="/esqueciSenha">Esqueceu a senha?</Link>
           <Form.Item>
             <Space>
               <ButtonComponent
