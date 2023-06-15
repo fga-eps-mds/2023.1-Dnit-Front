@@ -23,8 +23,45 @@
   display: flex;
 }
 
+.formc {
+  padding: 1.5% 3.5%;
+  margin-top: 0px;
+  box-shadow: 0px 2px 4px var(--black1);
+  border-radius: 10px;
+  display: flex;
+  height: auto;
+}
+
+.formc p {
+  justify-content: flex-start;
+  display: flex;
+}
+
+.formc label {
+  font-weight: 1000;
+}
+
+.formc h2 {
+  justify-content: flex-start;
+  display: flex;
+}
+
 .ant-input-affix-wrapper > input.ant-input {
   background-color: var(--gray1);
+}
+
+.ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+  width: 21.5em;
+  border: 1px solid var(--gray2);
+  border-radius: 2px;
+  background-color: var(--gray1);
+  text-align: left;
+  padding-left: 11px;
+}
+
+.ant-select-selection-item {
+  display: flex;
+  gap: 4px;
 }
 
 .loginButton {
@@ -63,6 +100,18 @@
   font-family: Rawline, sans-serif;
 }
 
+.formc a {
+  margin-top: 5%;
+  font-size: 13px;
+  line-height: 16px;
+  font-feature-settings: "pnum" on, "lnum" on;
+  justify-content: left;
+  display: flex;
+  transition: filter 0.3s;
+  color: var(--blue);
+  font-family: Rawline, sans-serif;
+}
+
 .form a:hover {
   filter: brightness(0.4);
 }
@@ -74,8 +123,20 @@
   justify-content: center;
 }
 
+.formc a:hover {
+  filter: brightness(0.4);
+}
+
+.formc h2 {
+  justify-content: center;
+  font-size: 1.8em;
+  color: var(--gray3);
+  font-weight: 500;
+  margin-top: 0;
+}
+
 .form-email {
-  margin-top: 5%;
+  margin-top: 0px;
   font-size: 20px;
   line-height: 23px;
   font-feature-settings: "pnum" on, "lnum" on;
@@ -97,26 +158,93 @@
   width: 17.5px;
   border-radius: 0px;
 }
+
+.fas.fa-user {
+  margin-right: 4%;
+  color: var(--blue);
+  height: 15.75px;
+  width: 17.5px;
+  border-radius: 0px;
+}
+
+.fas.fa-city {
+  color: var(--blue);
+}
+
+.ant-form-item-label {
+  padding: 0 0 5px;
+}
+
 .ant-form-vertical .ant-form-item-label > label {
-  font-size: 1.3em;
+  font-size: 1em;
   font-weight: 350;
   font-family: Rawline, sans-serif;
 }
 
+.formc .ant-form-item {
+  margin-bottom: 10px;
+}
+
+.select-group {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.select-group i {
+  position: absolute;
+  z-index: 1;
+  color: var(--blue);
+  font-size: 15px;
+}
+
 .inputForm {
   height: 5%;
-  width: 27em;
   border: 1px solid var(--gray2);
   border-radius: 2px;
   background-color: var(--gray1);
+}
+
+.politica {
+  float: left;
+}
+
+.ajuda {
+  float: right;
+}
+
+.radioButtons {
+  height: 10px;
+  background-color: white;
+}
+
+.item {
+  margin-bottom: 0px;
+}
+
+.ext1 {
+  margin-bottom: 10%;
+}
+
+.ext2 {
+  margin-bottom: 10%;
+}
+.radio1 {
+  font-family: Rawline, sans-serif;
+  font-weight: 500;
+}
+
+.radio2 {
+  font-family: Rawline, sans-serif;
+  font-weight: 500;
 }
 
 @media (max-width: 1250px) {
   .form {
     padding: 5%;
   }
-  .inputForm {
-    width: 15em;
+  .formc {
+    padding: 5%;
   }
   .logoDnit {
     width: 180px;
