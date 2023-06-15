@@ -1,13 +1,11 @@
-import { Form, Input, Space, notification } from "antd";
+import { Form, Input, notification, Space } from "antd";
 import React from "react";
-import { Link } from "react-router-dom";
 import LogoDNIT from "../../assets/logoDnitAzul.png";
-import { AuthContext } from "../../provider/Authentication";
-import fetchLogin from "../../service/login";
+import fetchRecuperarSenha from "../../service/recoverPW";
 import "../../styles/form.css";
 import ButtonComponent from "../Button";
 
-const LoginForm: React.FC = () => {
+const EsqueciSenhaForm: React.FC = () => {
   const [form] = Form.useForm();
   const rules = [
     {
@@ -15,29 +13,22 @@ const LoginForm: React.FC = () => {
       message: "Por favor, preencha o campo ${name}!",
     },
   ];
-
-  const { login, logout } = React.useContext(AuthContext);
-
-  React.useEffect(() => {
-    logout();
-  }, []);
-
   const [api, contextHolder] = notification.useNotification();
-
   const onFinish = async (values: any) => {
-    const loginData = {
+    const recoverData = { 
       email: values.email,
-      senha: values.senha,
       nome: "",
-      uf: 0,
+      senha: "",
     };
 
-    try {
-      await fetchLogin(loginData);
-      login();
-    } catch (error) {
-      api.error({ message: `Erro ao fazer login` });
+    try{
+      await fetchRecuperarSenha(recoverData);
+      api.success({ message: "Link de recuperação enviado ao email!" });
+    } catch {
+      api.error({ message: `Erro ao enviar link de recuperação` });
+
     }
+    console.log("Received values of form: ", values.email);
   };
 
   return (
@@ -45,7 +36,7 @@ const LoginForm: React.FC = () => {
       {contextHolder}
       <img className="logoDnit" src={LogoDNIT} alt="Logo DNIT" />
       <div>
-        <h2>Login</h2>
+        <h2><strong>Recuperar Senha</strong></h2>
         <Form
           form={form}
           name="validateOnly"
@@ -55,35 +46,27 @@ const LoginForm: React.FC = () => {
           requiredMark="optional"
           className="form-email"
         >
-          <Form.Item name="email" label="E-mail" rules={rules}>
+          <Form.Item name="email" label="Email" rules={rules}>
             <Input
               prefix={<i className="fas fa-envelope"></i>}
               className="inputForm"
             />
           </Form.Item>
-          <Form.Item name="senha" label="Senha" rules={rules}>
-            <Input.Password
-              className="inputForm"
-              prefix={<i className="fas fa-lock"></i>}
-            />
-          </Form.Item>
-          <Link to="/esqueciSenha">Esqueceu a senha?</Link>
-          <Form.Item>
+          <Form.Item className = "esqueci">
             <Space>
               <ButtonComponent
-                nome="Entrar"
+                nome="Enviar link de recuperação"
                 cor="#1351B4"
                 cor_letra="#FFFFFF"
                 cor_borda="#1351B4"
-                largura="10em"
+                largura="16em"
               />
             </Space>
           </Form.Item>
-          <Link to="/cadastro">Não possui cadastro? Cadastrar-se</Link>
         </Form>
       </div>
     </div>
   );
 };
 
-export default LoginForm;
+export default EsqueciSenhaForm;

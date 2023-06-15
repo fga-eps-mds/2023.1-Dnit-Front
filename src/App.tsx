@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import EsqueciSenha from "./pages/EsqueciSenha";
 import Register from "./pages/Register";
 import RecuperarSenha from "./pages/ReucperarSenha";
 import { AuthContext } from "./provider/Authentication";
@@ -27,6 +28,7 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/recuperarSenha" element={<RecuperarSenha />} />
       <Route path="/cadastro" element={<Register />} />
+      <Route path="/esqueciSenha" element={<EsqueciSenha />} />
     </Routes>
   );
 }
