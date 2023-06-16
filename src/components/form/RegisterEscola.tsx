@@ -183,20 +183,20 @@ return(
 
                         <Form.Item name="ciclos de ensino" label="Ciclos de Ensino" rules={rules}>
                             <Select
-                            
                             mode="multiple"
                             placeholder="Selecione uma escola"
-                            dropdownClassName="dp1"
                             >
+                                
                             <Option value="infantil">Ensino Infantil</Option>
                             <Option value="fundamental1">Ensino Fundamental - 1º, 2º e 3º ano</Option>
                             <Option value="fundamental2">Ensino Fundamental - 4º, 5º e 6º ano</Option>
                             <Option value="fundamental3">Ensino Fundamental - 7º, 8º e 9º ano</Option>
+
                             </Select>
                         </Form.Item>
 
                         <Form.Item name="porte" label="Porte" rules={rules}>
-                            <Input
+                            <Input 
                             className="inputForm"
                             />
                         </Form.Item>

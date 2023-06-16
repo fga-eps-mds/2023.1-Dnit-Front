@@ -49,12 +49,15 @@
 .ant-input-affix-wrapper > input.ant-input {
   background-color: var(--gray1);
 }
-
+.ant-select-selector{
+  background-color: var(--gray1) !important;
+  border: 1px solid var(--gray2) !important;
+}
 .ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
   width: 21.5em;
   border: 1px solid var(--gray2);
   border-radius: 2px;
-  background-color: var(--gray1);
+  background-color: var(--gray1) !important;
   text-align: left;
   padding-left: 11px;
 }
@@ -303,15 +306,6 @@
   justify-self: center;
   width: 18rem;
 }
-
-
-
-.dp1{
-  background-color: var(--gray1);
-  color: gray;
-  color-scheme: var(--gray1);
-}
-
 
 @media (max-width: 1250px) {
   .form {
