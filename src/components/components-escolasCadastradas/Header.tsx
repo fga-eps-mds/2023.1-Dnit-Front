@@ -10,7 +10,7 @@ function Header() {
   <div className="container-lg">
     <div className="header-top">
       <div className="header-logo"><img src={IconGov} alt="logo"/><span className="br-divider vertical"></span>
-        <div className="header-sign">Departamento Nacional de<br></br> Infraestrutura de Transportes</div>
+        <div className="header-sign">DNIT</div>
       </div>
       <div className="header-actions">
         <div className="header-links dropdown">
@@ -49,16 +49,6 @@ function Header() {
         <div className="header-info">
           <div className="header-title">Nome Projeto Dnit</div>
         </div>
-      </div>
-      <div className="header-search">
-        <div className="br-input has-icon">
-          <label htmlFor="searchbox-53667">Texto da pesquisa</label>
-          <input id="searchbox-53667" type="text" placeholder="O que você procura?"/>
-          <button className="br-button circle small" type="button" aria-label="Pesquisar"><i className="fas fa-search" aria-hidden="true"></i>
-          </button>
-        </div>
-        <button className="br-button circle search-close ml-1" type="button" aria-label="Fechar Busca" data-dismiss="search"><i className="fas fa-times" aria-hidden="true"></i>
-        </button>
       </div>
     </div>
   </div>

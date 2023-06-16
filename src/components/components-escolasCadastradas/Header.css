@@ -63,8 +63,10 @@
   .br-header .header-logo .header-sign {
     color: var(--color);
     display: none;
-    font-weight: 500;
+    font-weight: 300;
     overflow: hidden;
+    font-family: 'Rawline',sans-serif;
+    font-size: 24px;
   }
   .br-header[data-no-logo] .header-logo img {
     display: none;
@@ -256,6 +258,7 @@
   .br-header .header-menu .header-title {
     color: var(--color);
     font-size: var(--header-title-size);
+    font-weight: 250;
   }
   .br-header .header-menu .header-subtitle {
     color: var(--color);

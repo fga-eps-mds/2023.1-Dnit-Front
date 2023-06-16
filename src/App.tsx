@@ -21,7 +21,7 @@ function App() {
       ) : (
         <>
           <Route path="*" element={<Navigate to="/login" />} />
-          <Route path="/cadastro" element={<Cadastro />} />
+          <Route path="/cadastro" element={<Cadastro />} /> 
         </>
       )}
       <Route path="/login" element={<Login />} />
