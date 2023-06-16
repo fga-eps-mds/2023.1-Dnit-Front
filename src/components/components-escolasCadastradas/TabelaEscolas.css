@@ -1,3 +1,7 @@
+.container.inputs{
+  display: -webkit-flex;
+  justify-content: space-between;
+}
 .br-input {
     --input-button-margin: var(--spacing-scale-half);
     --input-padding: 0 var(--spacing-scale-2x);
@@ -20,7 +24,8 @@
     --focus: var(--focus-color);
     color: var(--color);
     position: relative;
-  }
+    margin: 0 10px 0 10px; 
+    }
 
   .container {
     display: flex;
@@ -55,6 +60,7 @@
     display: flex;
   }
   .br-input.input-inline .input-label {
+    justify-content: start;
     margin-right: var(--spacing-scale-baseh);
     margin-top: calc(var(--input-size) * 0.5 - var(--spacing-scale-half));
   }
