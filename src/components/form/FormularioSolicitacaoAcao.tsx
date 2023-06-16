@@ -1,14 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import useApi from "../../hooks/useApi";
 import { Button, Form, Input, Space, notification, Select } from "antd";
 import { Link } from "react-router-dom";
 import ButtonComponent from "../Button";
 import "../../styles/form.css";
+import { fetchSchoolByName } from "../../service/inepAPI";
+import { inepSchoolsUrl } from "../../consts/service";
 
 const { Option } = Select;
+
+
 
 const SolicitacaoAcaoForm: React.FC = () => {
   const [form] = Form.useForm();
   const [api, contextHolder] = notification.useNotification();
+
+  const [data, loadingData, setAPIURL] = useApi();
+
+  const getSchools = async (name: string) => {
+
+    setAPIURL(`${inepSchoolsUrl}?nome=${name}`)
+    // setAPIURL("http://educacao.dadosabertosbr.com/api/escolas/buscaavancada?situacaoFuncionamento=1&energiaInexistente=on&aguaInexistente=on&esgotoInexistente=on&cozinha=on")
+
+
+  }
+
+
 
   const rules = [
     {
@@ -30,7 +47,7 @@ const SolicitacaoAcaoForm: React.FC = () => {
       observacoes: values.observacoes,
     };
   };
-  
+
 
   return (
     <div className="formc">
@@ -46,19 +63,27 @@ const SolicitacaoAcaoForm: React.FC = () => {
           className="form-email"
         >
           <Form.Item name="escola" label="Escola" rules={rules}>
-            
-            <Select 
+
+            <Select
               placeholder="Selecione uma escola"
               className="inputForm form-item-select"
+              onSearch={(value) => {
+                // alert({value})
+
+                console.log(value)
+                getSchools(value);
+
+              }}
+              // onChange
               showSearch
-              
-            > 
+
+            >
               <Option value="escola1">Escola 1</Option>
               <Option value="escola2">Escola 2 </Option>
               <Option value="escola3">Escola 3 </Option>
               <Option value="escola4">Escola 4</Option>
-              
-              
+
+
             </Select>
           </Form.Item>
 
@@ -67,16 +92,16 @@ const SolicitacaoAcaoForm: React.FC = () => {
           </Form.Item>
 
           <Form.Item name="vinculo com a escola" label="Vínculo com a Escola" rules={rules}>
-          <Select 
+            <Select
               placeholder="Selecione uma escola"
               className="inputForm form-item-select"
-            > 
+            >
               <Option value="escola1">Professor</Option>
               <Option value="escola2">Gestor escolar</Option>
               <Option value="escola3">Estudante</Option>
               <Option value="escola4">Outro</Option>
-              
-              
+
+
             </Select>
           </Form.Item>
 
@@ -92,9 +117,9 @@ const SolicitacaoAcaoForm: React.FC = () => {
 
           <Form.Item name="ciclos de ensino" label="Ciclos de Ensino" rules={rules}>
             <Select
-            mode="multiple"
-            placeholder="Selecione uma escola"
-            className="inputForm form-item-select"
+              mode="multiple"
+              placeholder="Selecione uma escola"
+              className="inputForm form-item-select"
             >
               <Option value="infantil">Ensino Infantil</Option>
               <Option value="fundamental1">Ensino Fundamental - 1º, 2º e 3º ano</Option>
