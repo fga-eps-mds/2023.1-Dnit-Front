@@ -1,6 +1,6 @@
 import imgLateral from "../assets/imgLateral.png";
 import Header from "../components/Header";
-import RecuperarSenhaform from "../components/form/FormularioRecuperarSenha";
+import ResetPassword from "../components/form/ResetPassword";
 import "../styles/App.css";
 
 function RecuperarSenha() {
@@ -12,7 +12,7 @@ function RecuperarSenha() {
           <img className="imgLateral" src={imgLateral} alt="Logo DNIT" />
         </div>
         <div className="Central">
-          <RecuperarSenhaform/>
+          <ResetPassword />
         </div>
       </div>
     </div>
