@@ -1,4 +1,4 @@
-r-modal {
+.br-modal {
     --modal-size: var(--modal-medium);
     --modal-xsmall: 220px;
     --modal-small: 300px;
@@ -12,8 +12,33 @@ r-modal {
     max-width: var(--modal-size);
     z-index: var(--z-index-layer-4);
   }
+  .cancel-button{
+    background-color: red !important;
+    color: #fff !important;
+  }
+  .modal-line {
+    height: 1px;
+    width: 100%;
+    background-color: #000;
+    margin: 10px 0;
+  }
+.br-button{
+  margin-right: 0.7em !important;
+}
+.content-left{
+  align-self: flex-start !important;
+  justify-content: left !important;
+}
+.content-right{
+  align-self: flex-end !important;
+  justify-content: right !important;
+}
+.space-p{
+  margin-left: 1em !important;
+  margin-top: 1em !important;
+}
   .br-modal-header {
-    font-size: var(--font-size-scale-up-01);
+    font-size: var(--font-size-scale-up-01 ) !important;
     font-weight: var(--font-weight-bold);
     padding: var(--spacing-scale-2x) var(--spacing-scale-2x) 0;
     position: relative;
@@ -279,12 +304,7 @@ r-modal {
     --color: var(--color-dark);
     --focus-color: var(--focus-color-dark);
   }
+  
 
-  .modal-line {
-    height: 1px;
-    width: 100%;
-    background-color: #000;
-    margin: 10px 0;
-  }
   }
   
