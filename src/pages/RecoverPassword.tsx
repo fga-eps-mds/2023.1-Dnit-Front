@@ -1,6 +1,6 @@
 import imgLateral from "../assets/imgLateral.png";
 import Header from "../components/Header";
-import EsqueciSenhaForm from "../components/form/FormularioEsqueciSenha";
+import EsqueciSenhaForm from "../components/form/RecoverPassword";
 import "../styles/App.css";
 
 function EsqueciSenha() {

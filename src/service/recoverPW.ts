@@ -6,7 +6,7 @@ interface RecoverPasswordResponse {
   status: number;
 }
 
-async function fetchRecuperarSenha(
+async function fetchRecoverPassword(
   recoverData: RecoverPasswordData
 ): Promise<RecoverPasswordResponse> {
   try {
@@ -20,4 +20,4 @@ async function fetchRecuperarSenha(
   }
 }
 
-export default fetchRecuperarSenha;
+export default fetchRecoverPassword;
