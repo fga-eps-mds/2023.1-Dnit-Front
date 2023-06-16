@@ -4,8 +4,9 @@ import ButtonComponent from "../Button";
 import { useState } from "react";
 //import { link } from "fs";
 
+import "../../styles/form.css";
 
-
+const { Option } = Select;
 
 export default function RegS() {
 const [form] = Form.useForm();
@@ -180,14 +181,18 @@ return(
                             />
                         </Form.Item>
 
-                        <Form.Item
-                            name="etapas de ensino"
-                            label="Etapas de Ensino"
-                            rules = {rules}
+                        <Form.Item name="ciclos de ensino" label="Ciclos de Ensino" rules={rules}>
+                            <Select
+                            
+                            mode="multiple"
+                            placeholder="Selecione uma escola"
+                            dropdownClassName="dp1"
                             >
-                            <Input
-                            className="inputForm"
-                            />
+                            <Option value="infantil">Ensino Infantil</Option>
+                            <Option value="fundamental1">Ensino Fundamental - 1º, 2º e 3º ano</Option>
+                            <Option value="fundamental2">Ensino Fundamental - 4º, 5º e 6º ano</Option>
+                            <Option value="fundamental3">Ensino Fundamental - 7º, 8º e 9º ano</Option>
+                            </Select>
                         </Form.Item>
 
                         <Form.Item name="porte" label="Porte" rules={rules}>
@@ -238,6 +243,5 @@ return(
     </div>
 );
 }
-
 
 

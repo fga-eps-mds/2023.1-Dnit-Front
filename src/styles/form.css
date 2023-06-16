@@ -202,8 +202,8 @@
   border: 1px solid var(--gray2);
   border-radius: 2px;
   background-color: var(--gray1);
-
 }
+
 
 .politica {
   float: left;
@@ -302,6 +302,14 @@
 .bloco3{
   justify-self: center;
   width: 18rem;
+}
+
+
+
+.dp1{
+  background-color: var(--gray1);
+  color: gray;
+  color-scheme: var(--gray1);
 }
 
 
