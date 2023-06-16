@@ -1,4 +1,4 @@
-name: Front-Release
+name: DNIT-Front-Release
 on:
   push:
     tags:
