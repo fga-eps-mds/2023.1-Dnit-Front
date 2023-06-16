@@ -10,7 +10,7 @@ module.exports = {
     "!src/App.tsx",
     "!src/service/*.{ts,tsx}",
     "!src/provider/*.{ts,tsx}",
-    "!src/tests/*.{ts,tsx}",
+    "!src/tests/*",
   ],
   collectCoverage: true,
   testEnvironment: "jest-environment-jsdom",
