@@ -25,7 +25,6 @@ const LoginForm: React.FC = () => {
   const [api, contextHolder] = notification.useNotification();
 
   const onFinish = async (values: any) => {
-    console.log("Received values of form: ", values);
     const loginData = {
       email: values.email,
       senha: values.senha,
@@ -52,7 +51,9 @@ const LoginForm: React.FC = () => {
           name="validateOnly"
           layout="vertical"
           autoComplete="off"
-          onFinish={onFinish}
+          onFinish={(event) => {
+            void onFinish(event);
+          }}
           requiredMark="optional"
           className="form-email"
         >
@@ -68,7 +69,7 @@ const LoginForm: React.FC = () => {
               prefix={<i className="fas fa-lock"></i>}
             />
           </Form.Item>
-          <a>Esqueceu a senha?</a>
+          <Link to="/esqueciSenha">Esqueceu a senha?</Link>
           <Form.Item>
             <Space>
               <ButtonComponent

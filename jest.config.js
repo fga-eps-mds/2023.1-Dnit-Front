@@ -9,6 +9,7 @@ module.exports = {
     "!src/index.tsx",
     "!src/App.tsx",
     "!src/service/*.{ts,tsx}",
+    "!src/provider/*.{ts,tsx}",
   ],
   collectCoverage: true,
   testEnvironment: "jest-environment-jsdom",
@@ -34,6 +35,6 @@ module.exports = {
   moduleNameMapper: {
     "^.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|css)$":
       "<rootDir>/__mocks__/fileMock.js",
-    axios: "axios/dist/node/axios.cjs",
+    "^axios$": require.resolve("axios"),
   },
 };

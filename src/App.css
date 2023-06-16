@@ -29,27 +29,32 @@
   height: 36.13px;
 }
 
+.iconDNIT {
+  width: 100px;
+  height: 36.13px;
+}
+
 .logoDnit {
   display: flex;
   width: 350px;
   height: 90px;
 }
 
-.buttonContraste {
+.buttonContrast {
   width: 20px;
   height: 20px;
   overflow: hidden;
   display: inline-block;
 }
-.buttonContraste img {
+.buttonContrast img {
   transition: transform 0.3s ease;
 }
-.buttonContraste:hover {
+.buttonContrast:hover {
   transform: scale(1.1);
   transition: 0.3s;
 }
 
-.HeaderContraste {
+.HeaderContrast {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -116,7 +121,7 @@
 }
 
 .formCadastro {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   padding: 10px 20px;
   border: 1px solid #cccccc;
   width: 360px;
@@ -155,10 +160,10 @@
   justify-content: center;
 }
 
-.signUpButtonC{
+.signUpButtonC {
   width: 315px;
   height: 27.2px;
-  background-color: #1351B4;
+  background-color: #1351b4;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -176,29 +181,28 @@
   margin: 0;
 }
 
-.input-form{
-  background-color: #D9D9D9;
-  display:flex;
+.input-form {
+  background-color: #d9d9d9;
+  display: flex;
 }
 
-.emailIcon{
+.emailIcon {
   float: left;
 }
 
-.politica{
-  color: #1351B4;
+.politica {
+  color: #1351b4;
   display: flex;
-  float:left;
+  float: left;
   font-size: smaller;
 }
 
-.ajuda{
-  color: #1351B4;
+.ajuda {
+  color: #1351b4;
   display: flex;
   float: right;
   font-size: smaller;
 }
-
 
 @media (max-width: 800px) {
   .Lateral {
