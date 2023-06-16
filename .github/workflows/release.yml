@@ -1,4 +1,4 @@
-name: DNIT-Front-Release
+name: Front-Release
 on:
   push:
     tags:
@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Get file name
         id: name
-        run: echo "::set-output name=file_name::fga-eps-mds-2023.1-Dnit-Front-$(TZ='America/Sao_Paulo' date +'%m-%d-%Y-%H-%M-%S')-${{github.ref_name}}"
+        run: echo "::set-output name=file_name::fga-eps-mds-2023.1-Amis-Front-$(TZ='America/Sao_Paulo' date +'%m-%d-%Y-%H-%M-%S')-${{github.ref_name}}"
 
       - name: Copy repository
         uses: actions/checkout@v2
@@ -30,7 +30,7 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.TOKEN_GITHUB }}
         with:
           source_file: ${{ steps.name.outputs.file_name }}.json
-          destination_repo: 'fga-eps-mds/2023.1-Dnit-DOC'
+          destination_repo: 'fga-eps-mds/2023.1-Amis-Doc'
           destination_folder: 'analytics-raw-data'
           user_email: ${{ secrets.GIT_EMAIL}}
           user_name: ${{ secrets.GIT_USER }}
