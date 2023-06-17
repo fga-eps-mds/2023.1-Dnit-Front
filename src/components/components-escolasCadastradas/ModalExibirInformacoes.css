@@ -1,3 +1,11 @@
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 70px;
+
+}
+
 .br-modal {
     --modal-size: var(--modal-medium);
     --modal-xsmall: 220px;
@@ -10,8 +18,9 @@
     display: flex;
     flex-direction: column;
     max-width: var(--modal-size);
+    width: 50%;
     z-index: var(--z-index-layer-4);
-    max-height: 784px;
+    max-height: 570px;
   }
   .br-modal-header {
     font-size: var(--font-size-scale-up-01);
