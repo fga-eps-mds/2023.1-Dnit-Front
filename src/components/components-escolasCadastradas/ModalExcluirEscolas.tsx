@@ -4,7 +4,7 @@ export default function ModalExibirInformacoes() {
 
     const excluirEscola = async() => {
         try {
-            await fetchExcluirEscola({id_escola: 27});
+            await fetchExcluirEscola({id_escola: 26});
           } catch (error) {
             
             console.log('erros');
