@@ -21,3 +21,8 @@ export interface CadastroData {
 export interface InfoEscolaData {
   id: number;
 }
+
+export interface SalvarSituacaoData{
+  idSituacao: number,
+  idEscola: number
+}

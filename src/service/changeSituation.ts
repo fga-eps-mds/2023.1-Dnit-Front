@@ -1,24 +1,24 @@
 import axios, { AxiosResponse } from "axios";
-import { cadastroURL } from "../consts/service";
-import { CadastroData } from "../models/service";
+import { salvarSituacaoURL } from "../consts/service";
+import { SalvarSituacaoData } from "../models/service";
 
-interface CadastroResponse {
+interface SituationResponse {
     status: number;
 }
 
-async function fetchCadastro(cadastroData: CadastroData): Promise<CadastroResponse> {
+async function fetchchangeSituation(salvarSituacaoData: SalvarSituacaoData): Promise<SituationResponse> {
     try {
-        const response: AxiosResponse<CadastroResponse> = await axios.post(
-            cadastroURL,
-            cadastroData
+        const response: AxiosResponse<SituationResponse> = await axios.post(
+            salvarSituacaoURL,
+            salvarSituacaoData
         );
         console.log("response", response);
         return response.data;
     } catch (error) {
         // Lida com erros de solicitação
-        console.error("Erro ao fazer cadastro:", error);
+        console.error("Erro ao adicionar situacao:", error);
         throw error;
     }
 }
 
-export default fetchCadastro;
+export default fetchchangeSituation;
