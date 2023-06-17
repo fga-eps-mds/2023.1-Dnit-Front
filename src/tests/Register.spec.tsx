@@ -3,14 +3,14 @@ import { MemoryRouter } from "react-router-dom";
 import App from "../App";
 import { AuthProvider } from "../provider/Authentication";
 import fetchFederativeUnit from "../service/federativeUnit";
-import fetchCadastro from "../service/register";
+import fetchRegister from "../service/register";
 
 jest.mock("../service/register", () => ({
   __esModule: true,
   default: jest.fn(),
 }));
 
-const mockedUseRegister = fetchCadastro as jest.Mock;
+const mockedUseRegister = fetchRegister as jest.Mock;
 
 jest.mock("../service/federativeUnit", () => ({
   __esModule: true,

@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import EsqueciSenha from "./pages/EsqueciSenha";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import RecoverPassword from "./pages/RecoverPassword";
 import Register from "./pages/Register";
 import ResetPassword from "./pages/ResetPassword";
 import { AuthContext } from "./provider/Authentication";
@@ -28,7 +28,7 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/recuperarSenha" element={<ResetPassword />} />
       <Route path="/cadastro" element={<Register />} />
-      <Route path="/esqueciSenha" element={<EsqueciSenha />} />
+      <Route path="/esqueciSenha" element={<RecoverPassword />} />
     </Routes>
   );
 }
