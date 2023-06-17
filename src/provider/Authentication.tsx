@@ -26,7 +26,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   };
 
   const login = () => {
-    localStorage.setItem("login", "autenticado");
+    localStorage.setItem("login", "authenticated");
     getAuth();
     navigate("/home");
   };

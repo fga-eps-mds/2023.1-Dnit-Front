@@ -1,4 +1,4 @@
-export interface UnidadeFederativa {
+export interface FederativeUnit {
   id: number;
   sigla: string;
   descricao: string;
@@ -11,12 +11,13 @@ export interface LoginData {
   uf: number;
 }
 
-export interface CadastroData {
+export interface RegisterData {
   email: string;
   senha: string;
   nome: string;
   uf: number;
 }
+
 
 export interface InfoEscolaData {
   id: number;
@@ -25,4 +26,15 @@ export interface InfoEscolaData {
 export interface SalvarSituacaoData{
   idSituacao: number,
   idEscola: number
+}
+
+export interface RecoverPasswordData {
+  nome: string;
+  email: string;
+  senha: string;
+}
+
+export interface ResetPasswordData {
+  uuidAutenticacao: string;
+  senha: string;
 }
