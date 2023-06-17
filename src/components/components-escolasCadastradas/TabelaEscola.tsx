@@ -47,7 +47,6 @@ export default function TabelaEscola() {
     <caption>Escolas Cadastradas</caption>
     <thead>
       <tr>
-        <th className="column-collapse" scope="col"></th>
         <th className="column-checkbox" scope="col">
         </th>
         <th scope="col">Nome</th>
@@ -60,10 +59,6 @@ export default function TabelaEscola() {
     </thead>
     <tbody>
       <tr>
-        <td>
-          <button className="br-button circle small" type="button" aria-label="Expandir/Retrair Rótulo 01" data-toggle="collapse" data-target="collapse-1-4-27509"><i className="fas fa-chevron-down" aria-hidden="true"></i>
-          </button>
-        </td>
         <td>
           <div className="br-checkbox hidden-label">
             <input id="check-line-1-27509" name="check-line-1-27509" type="checkbox" aria-label="Selecionar linha 1" data-child="check-01-27509"/>
@@ -82,10 +77,6 @@ export default function TabelaEscola() {
       </tr>
       <tr>
         <td>
-          <button className="br-button circle small" type="button" aria-label="Expandir/Retrair Rótulo 01" data-toggle="collapse" data-target="collapse-2-4-27509"><i className="fas fa-chevron-down" aria-hidden="true"></i>
-          </button>
-        </td>
-        <td>
           <div className="br-checkbox hidden-label">
             <input id="check-line-2-27509" name="check-line-2-27509" type="checkbox" aria-label="Selecionar linha 2" data-child="check-01-27509"/>
             <label htmlFor="check-line-2-27509">Selecionar linha 2</label>
@@ -102,10 +93,6 @@ export default function TabelaEscola() {
       <td id="collapse-1-4-27509" aria-hidden="true" hidden={true} colSpan={6}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultricies aliquet lacinia. Vestibulum in interdum eros. Donec vel tempus diam. Aenean pulvinar mattis nisi in laoreet. Integer felis mi, vehicula sed pretium sit amet, pellentesque vel nisl. Curabitur metus ante, pellentesque in lectus a, sagittis imperdiet mi.</td>
       </tr>
       <tr>
-        <td>
-          <button className="br-button circle small" type="button" aria-label="Expandir/Retrair Rótulo 01" data-toggle="collapse" data-target="collapse-3-4-27509"><i className="fas fa-chevron-down" aria-hidden="true"></i>
-          </button>
-        </td>
         <td>
           <div className="br-checkbox hidden-label">
             <input id="check-line-3-27509" name="check-line-3-27509" type="checkbox" aria-label="Selecionar linha 3" data-child="check-01-27509"/>

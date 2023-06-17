@@ -13,9 +13,6 @@
   .br-table .responsive {
     overflow: auto;
   }
-  .br-table .column-collapse {
-    width: 40px;
-  }
   .br-table .column-checkbox {
     width: 24px;
   }
