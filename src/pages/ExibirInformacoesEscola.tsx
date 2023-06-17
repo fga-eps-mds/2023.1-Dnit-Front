@@ -1,10 +1,13 @@
 import ModalExibirInformacoes from "../components/components-escolasCadastradas/ModalExibirInformacoes";
 import "../styles/App.css";
+import {SelectedValueProvider} from "../context/Situation";
 
 export default function ExibirInformacoesEscola() {
   return (
     <div className="App">
-          <ModalExibirInformacoes />
+        <SelectedValueProvider>
+        <ModalExibirInformacoes />  
+        </SelectedValueProvider>
     </div>
   );
 }

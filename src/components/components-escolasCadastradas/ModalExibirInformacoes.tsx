@@ -1,69 +1,79 @@
 import '../components-escolasCadastradas/ModalExibirInformacoes.css';
+import React, { useState } from "react";
+import fetchInfoEscola from "../../service/listarInfoEscola";
+import { Dropdown, notification } from 'antd';
+import ModalBody from './ModalBody';
+import { useSelectedValue } from '../../context/Situation';
+import fetchchangeSituation from '../../service/changeSituation';
 
-export default function ModalExibirInformacoes() {
+const Modal = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-    var x = "labael/rotulo";
-    return (
-        <div className="div br-modal large">
-            <div className="br-modal-header">Nome da Escola
-            </div>
-            <div className="br-modal-body">
-                <div className="br-input">
-                    <label htmlFor="input-default">{x}</label>
-                    <input id="input-default" type="text" placeholder="Placeholder" disabled/>
-                    <label htmlFor="input-default">{x}</label>
-                    <input id="input-default" type="text" placeholder="Placeholder" disabled/>
-                    <label htmlFor="input-default">{x}</label>
-                    <input id="input-default" type="text" placeholder="Placeholder" disabled/>
-                    <label htmlFor="input-default">{x}</label>
-                    <input id="input-default" type="text" placeholder="Placeholder" disabled/> 
-                    <label htmlFor="input-default">{x}</label>
-                    <input id="input-default" type="text" placeholder="Placeholder" disabled/> 
-                    <label htmlFor="input-default">{x}</label>
-                    <input id="input-default" type="text" placeholder="Placeholder" disabled/> 
-                    <label htmlFor="input-default">{x}</label>
-                    <input id="input-default" type="text" placeholder="Placeholder" disabled/>
-                    <label htmlFor="input-default">{x}</label>
-                    <input id="input-default" type="text" placeholder="Placeholder" disabled/>
-                    <label htmlFor="input-default">{x}</label>
-                    <input id="input-default" type="text" placeholder="Placeholder" disabled/>
-                    <label htmlFor="input-default">{x}</label>
-                    <input id="input-default" type="text" placeholder="Placeholder" disabled/>
-                    <label htmlFor="input-default">{x}</label>
-                    <input id="input-default" type="text" placeholder="Placeholder" disabled/>
-                    <label htmlFor="input-default">{x}</label>
-                    <input id="input-default" type="text" placeholder="Placeholder"/>
-                    <div className="br-select">
-                    <div className="br-input">
-                        <label htmlFor="select-simple">Label</label>
-                        <input id="select-simple" type="text" placeholder="Selecione o item"/>
-                        <button className="br-button" type="button" aria-label="Exibir lista"  data-trigger="data-trigger"><i className="fas fa-angle-down" aria-hidden="true"></i>
-                        </button>
-                    </div>
-                    <div className="br-list" >
-                        <div className="br-item" >
-                        <div className="br-radio">
-                            <input id="rb0" type="radio" name="estados-simples" value="rb0"/>
-                            <label htmlFor="rb0">Acre</label>
-                        </div>
-                        </div>
-                        <div className="br-item" >
-                        <div className="br-radio">
-                            <input id="rb1" type="radio" name="estados-simples" value="rb1"/>
-                            <label htmlFor="rb1">Alagoas</label>
-                        </div>
-                        </div>
-                    </div>
-                    
+
+  const openModal = async () => {
+    setIsModalOpen(true);
+
+    try {
+      await fetchInfoEscola({ id: 10 });
+    } catch (error) {
+      console.log("error");
+    }
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const { selectedValue, setSelectedValue } = useSelectedValue();
+  const [api, contextHolder] = notification.useNotification();
+
+  const onFinish = async (values: any) => {
+    console.log("Received values of form: ", selectedValue);
+    const salvarsituacaoData = {
+      idEscola: 10,
+      idSituacao:selectedValue
+    };
+
+     try {
+      await fetchchangeSituation(salvarsituacaoData);
+    } catch (error) {
+      api.error({ message: `Erro ao salvar situação` });
+    } 
+  };
+
+  const openDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  }
+
+  return (
+    <>
+    {contextHolder}
+      <button className="br-button primary ml-2" onClick={openModal}>Visualizar informações</button>
+      {isModalOpen && (
+        <div className="modal">
+          <div className="modal-content">
+            <div>
+              <div className="container">
+                <div className="div br-modal large">
+                  <div className="br-modal-header">CED 02 de taguatinga
+                  </div>
+                  <ModalBody/>
+                  <div className="br-modal-footer justify-content-end">
+                    <button className="br-button secondary" type="button" onClick={closeModal}>Cancelar
+                    </button>
+                    <button className="br-button primary ml-2" type="button" onClick={onFinish}>Salvar
+                    </button>
+                  </div>
                 </div>
+              </div>
             </div>
-            <div className="br-modal-footer justify-content-center">
-                <button className="br-button secondary" type="button">Negar
-                </button>
-                <button className="br-button primary ml-2" type="button">Aceitar
-                </button>
-            </div>
+          </div>
+
         </div>
-        </div>
-    );
-}
+      )}
+    </>
+  );
+};
+
+export default Modal;
