@@ -30,7 +30,7 @@ describe("", () => {
     mockedUseResetPassword.mockResolvedValueOnce({ success: true });
 
     const { getByLabelText, getByText } = render(
-      <MemoryRouter initialEntries={["/recuperarSenha?token=aa$$"]}>
+      <MemoryRouter initialEntries={["/redefinirSenha?token=aa$$"]}>
         <AuthProvider>
           <App />
         </AuthProvider>
@@ -53,7 +53,7 @@ describe("", () => {
 
   it("should render Reset password", async () => {
     const { getByLabelText, getByText } = render(
-      <MemoryRouter initialEntries={["/recuperarSenha"]}>
+      <MemoryRouter initialEntries={["/redefinirSenha"]}>
         <AuthProvider>
           <App />
         </AuthProvider>
