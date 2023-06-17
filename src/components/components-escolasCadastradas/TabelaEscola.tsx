@@ -65,12 +65,40 @@ export default function TabelaEscola() {
             <label htmlFor="check-line-1-27509">Selecionar linha 1</label>
           </div>
         </td>
-        <td data-th="Título coluna 1">Linha 1 coluna 1</td>
-        <td data-th="Título coluna 2">Linha 1 coluna 2</td>
-        <td data-th="Título coluna 3">Linha 1 coluna 3</td>
-        <td data-th="Título coluna 1">Linha 1 coluna 1</td>
-        <td data-th="Título coluna 2">Linha 1 coluna 2</td>
-        <td data-th="Título coluna 3">Linha 1 coluna 3</td>
+        <td data-th="Título coluna 1">CED 02 DE TAGUATINGA</td>
+        <td data-th="Título coluna 2">Ensino Médio</td>
+        <td data-th="Título coluna 3">342</td>
+        <td data-th="Título coluna 4">A</td>
+        <td data-th="Título coluna 5">Brasília</td>
+        <td data-th="Título coluna 6">DF</td>
+      </tr>
+      <tr>
+        <td>
+          <div className="br-checkbox hidden-label">
+            <input id="check-line-1-27509" name="check-line-1-27509" type="checkbox" aria-label="Selecionar linha 1" data-child="check-01-27509"/>
+            <label htmlFor="check-line-1-27509">Selecionar linha 1</label>
+          </div>
+        </td>
+        <td data-th="Título coluna 1">Exemplo</td>
+        <td data-th="Título coluna 2"></td>
+        <td data-th="Título coluna 3"></td>
+        <td data-th="Título coluna 4"></td>
+        <td data-th="Título coluna 5"></td>
+        <td data-th="Título coluna 6"></td>
+      </tr>
+      <tr>
+        <td>
+          <div className="br-checkbox hidden-label">
+            <input id="check-line-1-27509" name="check-line-1-27509" type="checkbox" aria-label="Selecionar linha 1" data-child="check-01-27509"/>
+            <label htmlFor="check-line-1-27509">Selecionar linha 1</label>
+          </div>
+        </td>
+        <td data-th="Título coluna 1">Exemplo</td>
+        <td data-th="Título coluna 2"></td>
+        <td data-th="Título coluna 3"></td>
+        <td data-th="Título coluna 4"></td>
+        <td data-th="Título coluna 5"></td>
+        <td data-th="Título coluna 6"></td>
       </tr>
       <tr className="collapse">
       <td id="collapse-1-4-27509" aria-hidden="true" hidden={true} colSpan={6}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultricies aliquet lacinia. Vestibulum in interdum eros. Donec vel tempus diam. Aenean pulvinar mattis nisi in laoreet. Integer felis mi, vehicula sed pretium sit amet, pellentesque vel nisl. Curabitur metus ante, pellentesque in lectus a, sagittis imperdiet mi.</td>
@@ -82,12 +110,12 @@ export default function TabelaEscola() {
             <label htmlFor="check-line-2-27509">Selecionar linha 2</label>
           </div>
         </td>
-        <td data-th="Título coluna 1">Linha 2 coluna 1</td>
-        <td data-th="Título coluna 2">Linha 2 coluna 2</td>
-        <td data-th="Título coluna 3">Linha 2 coluna 3</td>
-        <td data-th="Título coluna 1">Linha 2 coluna 1</td>
-        <td data-th="Título coluna 2">Linha 2 coluna 2</td>
-        <td data-th="Título coluna 3">Linha 2 coluna 3</td>
+        <td data-th="Título coluna 1">Exemplo</td>
+        <td data-th="Título coluna 2"></td>
+        <td data-th="Título coluna 3"></td>
+        <td data-th="Título coluna 4"></td>
+        <td data-th="Título coluna 5"></td>
+        <td data-th="Título coluna 6"></td>
       </tr>
       <tr className="collapse">
       <td id="collapse-1-4-27509" aria-hidden="true" hidden={true} colSpan={6}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultricies aliquet lacinia. Vestibulum in interdum eros. Donec vel tempus diam. Aenean pulvinar mattis nisi in laoreet. Integer felis mi, vehicula sed pretium sit amet, pellentesque vel nisl. Curabitur metus ante, pellentesque in lectus a, sagittis imperdiet mi.</td>
@@ -99,12 +127,12 @@ export default function TabelaEscola() {
             <label htmlFor="check-line-3-27509">Selecionar linha 3</label>
           </div>
         </td>
-        <td data-th="Título coluna 1">Linha 3 coluna 1</td>
-        <td data-th="Título coluna 2">Linha 3 coluna 2</td>
-        <td data-th="Título coluna 3">Linha 3 coluna 3</td>
-        <td data-th="Título coluna 1">Linha 3 coluna 1</td>
-        <td data-th="Título coluna 2">Linha 3 coluna 2</td>
-        <td data-th="Título coluna 3">Linha 3 coluna 3</td>
+        <td data-th="Título coluna 1">Exemplo</td>
+        <td data-th="Título coluna 2"></td>
+        <td data-th="Título coluna 3"></td>
+        <td data-th="Título coluna 1"></td>
+        <td data-th="Título coluna 2"></td>
+        <td data-th="Título coluna 3"></td>
       </tr>
       <tr className="collapse">
       <td id="collapse-1-4-27509" aria-hidden="true" hidden={true} colSpan={6}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultricies aliquet lacinia. Vestibulum in interdum eros. Donec vel tempus diam. Aenean pulvinar mattis nisi in laoreet. Integer felis mi, vehicula sed pretium sit amet, pellentesque vel nisl. Curabitur metus ante, pellentesque in lectus a, sagittis imperdiet mi.</td>

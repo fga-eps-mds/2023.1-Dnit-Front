@@ -5,11 +5,21 @@
     --table-row-medium: var(--spacing-scale-2x);
     --table-row-large: var(--spacing-scale-3x);
   }
+
+  .br-table th {
+    background-color: rgba(0, 46, 110, 0.15);
+  }
+  
   .br-table caption {
     opacity: 0;
     position: absolute;
     z-index: -1;
   }
+
+  .br-table th {
+    color: #1351B4; 
+  }
+  
   .br-table .responsive {
     overflow: auto;
   }

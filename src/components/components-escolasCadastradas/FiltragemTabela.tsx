@@ -78,7 +78,7 @@ export default function TabelaEscolas() {
           <input 
             id="select-multtiple" 
             type="text" 
-            placeholder={selectedOptionUF ? selectedOptionUF : 'Selecione o item'}/>
+            placeholder={selectedOptionUF ? selectedOptionUF : 'Todas'}/>
           <button 
             className="br-button" 
             type="button" 
@@ -112,7 +112,7 @@ export default function TabelaEscolas() {
           <input 
             id="select-multtiple" 
             type="text" 
-            placeholder={selectedOptionSituacao ? selectedOptionSituacao : 'Selecione o item'}/>
+            placeholder={selectedOptionSituacao ? selectedOptionSituacao : 'Todas'}/>
           <button 
             className="br-button" 
             type="button" 
@@ -146,7 +146,7 @@ export default function TabelaEscolas() {
           <input 
             id="select-multtiple" 
             type="text" 
-            placeholder={selectedOptionEtapasEnsino ? selectedOptionEtapasEnsino : 'Selecione o item'}/>
+            placeholder={selectedOptionEtapasEnsino ? selectedOptionEtapasEnsino : 'Todas'}/>
           <button 
             className="br-button" 
             type="button" 
@@ -180,7 +180,7 @@ export default function TabelaEscolas() {
           <input 
             id="select-multtiple" 
             type="text" 
-            placeholder={selectedOptionMunincipio ? selectedOptionMunincipio : 'Selecione o item'}/>
+            placeholder={selectedOptionMunincipio ? selectedOptionMunincipio : 'Todos'}/>
           <button 
             className="br-button" 
             type="button" 
