@@ -7,10 +7,10 @@ interface ListarInfoEscolaResponse {
     status: number;
 }
 
-async function fetchInfoEscola(ListarInfoEscolaResponse: InfoEscolaData): Promise<ListarInfoEscolaResponse> {
+async function fetchInfoEscola({id}: InfoEscolaData): Promise<ListarInfoEscolaResponse> {
     try {
         const response: AxiosResponse<ListarInfoEscolaResponse> = await axios.get(
-            listarInfoEscolaURL
+            listarInfoEscolaURL, {params: {idEscola: id}}
         );
         console.log("response", response);
         return response.data;
