@@ -82,6 +82,10 @@
 .loginButton p {
   margin: 0;
 }
+.recuperarsenha {
+  display: flex;
+  justify-content: end;
+}
 
 .signUpButton p {
   margin: 0;

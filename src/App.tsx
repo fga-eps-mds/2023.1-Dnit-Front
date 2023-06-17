@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import RecoverPassword from "./pages/RecoverPassword";
 import Register from "./pages/Register";
+import ResetPassword from "./pages/ResetPassword";
 import { AuthContext } from "./provider/Authentication";
 import "./styles/App.css";
 
@@ -25,6 +26,7 @@ function App() {
         </>
       )}
       <Route path="/login" element={<Login />} />
+      <Route path="/redefinirSenha" element={<ResetPassword />} />
       <Route path="/cadastro" element={<Register />} />
       <Route path="/esqueciSenha" element={<RecoverPassword />} />
     </Routes>

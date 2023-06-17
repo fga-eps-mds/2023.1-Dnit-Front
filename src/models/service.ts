@@ -23,3 +23,8 @@ export interface RecoverPasswordData {
   email: string;
   senha: string;
 }
+
+export interface ResetPasswordData {
+  uuidAutenticacao: string;
+  senha: string;
+}
