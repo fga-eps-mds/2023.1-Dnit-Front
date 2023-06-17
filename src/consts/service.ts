@@ -4,5 +4,6 @@ const unidadeFederativaURL = `${urlAPI}/dominio/unidadeFederativa`;
 
 const loginURL = `${urlAPI}/usuario/login`;
 const cadastroURL = `${urlAPI}/usuario/cadastrar`;
+const listarInfoEscolaURL= `${urlAPI}/escolas/exibirinformacoesescola`;
 
-export { unidadeFederativaURL, loginURL, cadastroURL };
+export { unidadeFederativaURL, loginURL, cadastroURL, listarInfoEscolaURL };
