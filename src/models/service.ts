@@ -23,3 +23,7 @@ export interface RecoverPasswordData {
   email: string;
   senha: string;
 }
+export interface ExcluirEscolaData {
+  id_escola: number;
+  
+}
