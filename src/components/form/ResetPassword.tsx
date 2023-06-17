@@ -6,7 +6,7 @@ import fetchResetPassword from "../../service/resetPassword";
 import "../../styles/form.css";
 import ButtonComponent from "../Button";
 
-const RecuperarSenhaForm: React.FC = () => {
+const ResetPassword: React.FC = () => {
   const [form] = Form.useForm();
   const rules = [
     {
@@ -61,13 +61,10 @@ const RecuperarSenhaForm: React.FC = () => {
             />
           </Form.Item>
           <Form.Item
-            name="confirmarSenha"
-            label="Confirmar Senha"
             rules={[
-              { required: true, message: "Por favor, preencha o campo senha!" },
               ({ getFieldValue }) => ({
-                validator(_, value) {
-                  if (!value || getFieldValue("senha") === value) {
+                validator(_, fieldValue) {
+                  if (!fieldValue || getFieldValue("senha") === fieldValue) {
                     return Promise.resolve();
                   }
                   return Promise.reject(
@@ -75,7 +72,10 @@ const RecuperarSenhaForm: React.FC = () => {
                   );
                 },
               }),
+              { required: true, message: "Por favor, preencha o campo senha!" },
             ]}
+            label="Confirmar Senha"
+            name="confirmarSenha"
           >
             <Input.Password
               className="inputForm"
@@ -99,4 +99,4 @@ const RecuperarSenhaForm: React.FC = () => {
   );
 };
 
-export default RecuperarSenhaForm;
+export default ResetPassword;
