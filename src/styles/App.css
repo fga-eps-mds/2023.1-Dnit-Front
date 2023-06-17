@@ -10,11 +10,9 @@
 }
 
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
-
 .App {
   text-align: center;
   font-family: Rawline, sans-serif;
-  flex-direction: column;
 }
 
 .App-logo {
@@ -28,8 +26,7 @@
   font-size: calc(10px + 2vmin);
   border-bottom: 1px solid var(--gray1);
   padding: 0 25px;
-  height: 80px;
-  
+  height: 85px;
 }
 
 .iconGov {
@@ -57,6 +54,15 @@
   align-items: center;
   gap: 13px;
   font-size: 16px;
+}
+
+.text-alto-contraste{
+  display: inline-block;
+  vertical-align: middle;
+}
+.buttonContrast{
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .HeaderIcon {
@@ -118,20 +124,3 @@
     height: 131px;
   }
 }
-
-@import "~@fortawesome/fontawesome-free/css/all.min.css";
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: calc(10px + 2vmin);
-  border-bottom: 1px solid var(--gray1);
-  padding: 0 25px;
-  height: 85px;
-}
-
-.iconGov {
-    width: 100px;
-    height: 36.13px;
-  }

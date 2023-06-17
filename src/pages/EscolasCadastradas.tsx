@@ -2,7 +2,7 @@ import Header from "../components/components-escolasCadastradas/Header";
 import Footer from "../components/components-escolasCadastradas/Footer";
 import "../styles/App.css";
 import BreadCrumb from "../components/BreadCrumb";
-import Inicial from "./Inicial";
+//import Inicial from "./Inicial";
 import FiltragemTabela from "../components/components-escolasCadastradas/FiltragemTabela";
 import TabelaEscola from "../components/components-escolasCadastradas/TabelaEscola";
 
