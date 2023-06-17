@@ -1,9 +1,9 @@
 import imgLateral from "../assets/imgLateral.png";
 import Header from "../components/Header";
-import LoginForm from "../components/form/Login";
+import RecoverPasswordForm from "../components/form/RecoverPassword";
 import "../styles/App.css";
 
-function Login() {
+function EsqueciSenha() {
   return (
     <div className="App">
       <Header />
@@ -12,11 +12,11 @@ function Login() {
           <img className="imgLateral" src={imgLateral} alt="Logo DNIT" />
         </div>
         <div className="Central">
-          <LoginForm />
+          <RecoverPasswordForm />
         </div>
       </div>
     </div>
   );
 }
 
-export default Login;
+export default EsqueciSenha;

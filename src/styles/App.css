@@ -37,21 +37,21 @@
   height: 36.13px;
 }
 
-.buttonContraste {
+.buttonContrast {
   width: 20px;
   height: 20px;
   overflow: hidden;
   display: inline-block;
 }
-.buttonContraste img {
+.buttonContrast img {
   transition: transform 0.3s ease;
 }
-.buttonContraste:hover {
+.buttonContrast:hover {
   transform: scale(1.1);
   transition: 0.3s;
 }
 
-.HeaderContraste {
+.HeaderContrast {
   display: flex;
   justify-content: center;
   align-items: center;

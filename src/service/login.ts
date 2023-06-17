@@ -12,11 +12,8 @@ async function fetchLogin(loginData: LoginData): Promise<LoginResponse> {
       loginURL,
       loginData
     );
-    console.log("response", response);
     return response.data;
   } catch (error) {
-    // Lida com erros de solicitação
-    console.error("Erro ao fazer login:", error);
     throw error;
   }
 }

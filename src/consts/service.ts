@@ -1,8 +1,16 @@
 const urlAPI = "https://api.aprovaunb.com/api";
 
-const unidadeFederativaURL = `${urlAPI}/dominio/unidadeFederativa`;
+const federativeUnitURL = `${urlAPI}/dominio/unidadeFederativa`;
 
 const loginURL = `${urlAPI}/usuario/login`;
-const cadastroURL = `${urlAPI}/usuario/cadastrar`;
+const registerURL = `${urlAPI}/usuario/cadastrarUsuarioDnit`;
+const recoverPasswordURL = `${urlAPI}/usuario/recuperarSenha`;
+const resetPasswordURL = `${urlAPI}/usuario/redefinirSenha`;
 
-export { unidadeFederativaURL, loginURL, cadastroURL };
+export {
+  federativeUnitURL,
+  loginURL,
+  recoverPasswordURL,
+  registerURL,
+  resetPasswordURL,
+};
