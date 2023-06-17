@@ -20,7 +20,11 @@
     display: flex;
     padding: var(--header-padding) 0;
     position: relative;
+    width: 100%;
   }
+
+
+
   .br-header .header-top,
   .br-header .header-bottom {
     display: flex;
@@ -277,6 +281,7 @@
     }
     .br-header .header-menu .header-menu-trigger {
       margin-top: 3px;
+      margin-right: 50px;
     }
     .br-header .header-menu .header-info {
       padding-top: var(--spacing-scale-half);
@@ -416,6 +421,13 @@
   }
   .br-header[data-sticky] .header-logo img {
     margin-right: var(--spacing-scale-base);
+  }
+
+  .contraste{
+    width: 20px;
+    height: 20px;
+    overflow: hidden;
+    display: inline-block;
   }
   
   /*# sourceMappingURL=header.css.map*/
