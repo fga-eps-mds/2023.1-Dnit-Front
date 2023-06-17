@@ -26,7 +26,7 @@ function App() {
         </>
       )}
       <Route path="/login" element={<Login />} />
-      <Route path="/recuperarSenha" element={<ResetPassword />} />
+      <Route path="/redefinirSenha" element={<ResetPassword />} />
       <Route path="/cadastro" element={<Register />} />
       <Route path="/esqueciSenha" element={<RecoverPassword />} />
     </Routes>
