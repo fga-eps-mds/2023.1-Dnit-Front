@@ -19,6 +19,15 @@ export interface RegisterData {
 }
 
 
+export interface RecoverPasswordData {
+  nome: string;
+  email: string;
+  senha: string;
+}
+export interface ExcluirEscolaData {
+  id_escola: number;
+}
+
 export interface InfoEscolaData {
   id: number;
 }

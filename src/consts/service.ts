@@ -1,15 +1,13 @@
-const urlAPI = "https://api.aprovaunb.com/api";
-
+const urlAPI = "https://localhost:7083/api";
+//https://api.aprovaunb.com/api
 const federativeUnitURL = `${urlAPI}/dominio/unidadeFederativa`;
 const loginURL = `${urlAPI}/usuario/login`;
 const cadastroURL = `${urlAPI}/usuario/cadastrar`;
-const listarInfoEscolaURL= `${urlAPI}/escolas/listarInformacoesEscola`;
-const salvarSituacaoURL= `${urlAPI}/escolas/adicionarSituacao`;
 const registerURL = `${urlAPI}/usuario/cadastrarUsuarioDnit`;
 const recoverPasswordURL = `${urlAPI}/usuario/recuperarSenha`;
+const listarInfoEscolaURL= `${urlAPI}/escolas/listarInformacoesEscola`;
+const salvarSituacaoURL= `${urlAPI}/escolas/adicionarSituacao`;
 const resetPasswordURL = `${urlAPI}/usuario/redefinirSenha`;
+const excluirEscolaURL = `${urlAPI}/escolas/excluir`;
 
-export { loginURL, cadastroURL, listarInfoEscolaURL, salvarSituacaoURL,federativeUnitURL, recoverPasswordURL, registerURL, resetPasswordURL };
-
-
-
+export { federativeUnitURL, loginURL, registerURL, recoverPasswordURL, excluirEscolaURL, listarInfoEscolaURL, salvarSituacaoURL, cadastroURL, resetPasswordURL };
