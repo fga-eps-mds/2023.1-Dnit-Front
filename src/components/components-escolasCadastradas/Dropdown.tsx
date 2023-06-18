@@ -1,12 +1,28 @@
 import React, { ChangeEvent, useState } from "react";
 import { useSelectedValue } from "../../context/Situation";
+import fetchdeleteSituation from "../../service/deleteSituation";
+import { notification } from 'antd';
 
 
-const Dropdown = () => {
+const Dropdown = (props: any) => {
  const { selectedValue, setSelectedValue } = useSelectedValue();
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const selectedValue = event.target.value;
     setSelectedValue(Number(selectedValue));
+  };
+
+  const [api] = notification.useNotification();
+  const deleteSituation = async (values: any) => {
+    console.log("Received values of form: ", selectedValue);
+    const excluirsituacaoData = {
+      idEscola: props.id
+    };
+
+     try {
+      await fetchdeleteSituation(excluirsituacaoData);
+    } catch (error) {
+      api.error({ message: `Erro ao salvar situação` });
+    } 
   };
 
   return (
@@ -66,6 +82,7 @@ const Dropdown = () => {
             type="radio"
             name="estados-simples"
             value="0"
+            onClick={deleteSituation}
             onChange={handleChange}
           />
           <label htmlFor="rb4">Remover Situacao</label>

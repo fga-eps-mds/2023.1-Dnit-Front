@@ -9,5 +9,6 @@ const listarInfoEscolaURL= `${urlAPI}/escolas/listarInformacoesEscola`;
 const salvarSituacaoURL= `${urlAPI}/escolas/adicionarSituacao`;
 const resetPasswordURL = `${urlAPI}/usuario/redefinirSenha`;
 const excluirEscolaURL = `${urlAPI}/escolas/excluir`;
+const excluirSituacaoURL =`${urlAPI}/escolas/removerSituacao`
 
-export { federativeUnitURL, loginURL, registerURL, recoverPasswordURL, excluirEscolaURL, listarInfoEscolaURL, salvarSituacaoURL, cadastroURL, resetPasswordURL };
+export { federativeUnitURL, loginURL, registerURL, recoverPasswordURL, excluirEscolaURL, listarInfoEscolaURL, salvarSituacaoURL, cadastroURL, resetPasswordURL, excluirSituacaoURL  };

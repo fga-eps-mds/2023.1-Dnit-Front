@@ -47,3 +47,7 @@ export interface ResetPasswordData {
   uuidAutenticacao: string;
   senha: string;
 }
+
+export interface ExcluirSituacaoData{
+  idEscola: number
+}
