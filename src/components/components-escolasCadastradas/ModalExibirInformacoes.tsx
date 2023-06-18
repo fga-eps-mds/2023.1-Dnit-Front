@@ -64,10 +64,12 @@ const [isModalExcluirEscolasOpen, setIsModalExcluirEscolasOpen] = useState(false
                   <div className="br-modal-header">CED 02 de taguatinga
                   </div>
                   <ModalBody/>
-          <ModalExcluirEscolas open={isModalExcluirEscolasOpen} id={26} close={() => setIsModalExcluirEscolasOpen(false)} /> 
+                  <ModalExcluirEscolas open={isModalExcluirEscolasOpen} id={26} close={() => setIsModalExcluirEscolasOpen(false)} /> 
                   <div className="br-modal-footer ">
-                    <button className=" br-button cancel-button content-left "  type="button" onClick={() => setIsModalExcluirEscolasOpen(true)}>Excluir escola
-                    </button>
+                    <div className="content-left" style={{marginRight: "25%"}}>
+                      <button className=" br-button cancel-button"  type="button" onClick={() => setIsModalExcluirEscolasOpen(true)}>Excluir escola
+                      </button>
+                    </div>
                     <div className='content-right'>
                       <button className="br-button secondary" type="button" onClick={closeModal}>Cancelar
                       </button>
