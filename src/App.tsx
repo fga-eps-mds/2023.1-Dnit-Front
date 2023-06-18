@@ -2,10 +2,7 @@ import { useContext } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-import AdicionarSituacao from "./pages/ExibirInformacoesEscola";
-import EsqueciSenha from "./pages/EsqueciSenha";
 import Register from "./pages/Register";
-import AdicionarSituacao from "./pages/ExibirInformacoesEscola";
 import EscolasCadastradas from "./pages/EscolasCadastradas";
 import RecoverPassword from "./pages/RecoverPassword";
 import ResetPassword from "./pages/ResetPassword";
@@ -32,7 +29,6 @@ function App() {
         </>
       )}
       <Route path="/login" element={<Login />} />
-      <Route path="/cadastro" element={<Cadastro />} />
       <Route path="/exibirinformacoesescola" element={<ExibirInformacoesEscola />} />
       <Route path="/redefinirSenha" element={<ResetPassword />} />
       <Route path="/cadastro" element={<Register />} />
