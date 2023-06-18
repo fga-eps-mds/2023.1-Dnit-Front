@@ -32,7 +32,7 @@ const ModalBody = (props: any) => {
                 </div>
                 <label htmlFor="input-default">Município</label>
                 <div className="input-group">
-                    <div className="input-icon"><i className="fas fa-city" aria-hidden="true"></i>
+                    <div className="input-icon"><i className="fas fa-building" aria-hidden="true"></i>
                     </div>
                     <input id="input-default" type="text" placeholder={props.data.idMunicipio} disabled />
                 </div>
@@ -82,12 +82,12 @@ const ModalBody = (props: any) => {
                 <div className="input-group">
                     <div className="input-icon"><i className="fas fa-users" aria-hidden="true"></i>
                     </div>
-                    <input id="input-default" type="text" placeholder={props.data.numeroTotalDeDocentes} />
+                    <input id="input-default" type="text" placeholder={props.data.numeroTotalDeDocentes} disabled />
                 </div>
 
-                <div className="br-input">
+                <div className="input-default">
                     <label htmlFor="select-simple">Situação</label>
-                    <input id="select-simple" type="text" placeholder="Selecione o item" />
+                    <input id="select-simple" type="text" placeholder={props.data.idSituacao} />
                     <button className="br-button" type="button" aria-label="Exibir lista" data-trigger="data-trigger" onClick={openDropdown}><i className="fas fa-angle-down" aria-hidden="true"></i>
                     </button>
                 </div>
