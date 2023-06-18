@@ -17,7 +17,7 @@ const Dropdown = () => {
             id="rb0"
             type="radio"
             name="estados-simples"
-            value="0"
+            value="Indicação"
             onChange={handleChange}
           />
           <label htmlFor="rb0">Indicação</label>
@@ -29,7 +29,7 @@ const Dropdown = () => {
             id="rb1"
             type="radio"
             name="estados-simples"
-            value="1"
+            value="Solicitação da escola"
             onChange={handleChange}
           />
           <label htmlFor="rb1">Solicitação da escola</label>
@@ -41,7 +41,7 @@ const Dropdown = () => {
             id="rb2"
             type="radio"
             name="estados-simples"
-            value="2"
+            value="Jornada de crescimento do professor"
             onChange={handleChange}
           />
           <label htmlFor="rb2">Jornada de crescimento do professor</label>
@@ -53,7 +53,7 @@ const Dropdown = () => {
             id="rb3"
             type="radio"
             name="estados-simples"
-            value="3"
+            value="Escola crítica"
             onChange={handleChange}
           />
           <label htmlFor="rb3">Escola crítica</label>
@@ -65,7 +65,7 @@ const Dropdown = () => {
             id="rb4"
             type="radio"
             name="estados-simples"
-            value="4"
+            value="Remover situação"
             onChange={handleChange}
           />
           <label htmlFor="rb4">Remover Situacao</label>

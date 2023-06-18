@@ -8,22 +8,25 @@ import fetchchangeSituation from '../../service/changeSituation';
 import ModalExcluirEscolas from "../components-escolasCadastradas/ModalExcluirEscolas";
 
     
-const ModalExibirInformacoes = () => {
+const ModalExibirInformacoes = (props: any) => {
   const [isModalExibirInformacoesOpen, setIsModalExibirInformacoesOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [escolaData, setEscolaData] = useState({});
+  const [isModalExcluirEscolasOpen, setIsModalExcluirEscolasOpen] = useState(false);
 
-const [isModalExcluirEscolasOpen, setIsModalExcluirEscolasOpen] = useState(false);
-
+  var result = {};
 
   const openModal = async () => {
-    setIsModalExibirInformacoesOpen(true);
+    
 
     try {
-      await fetchInfoEscola({ id: 10 });
+      result = await fetchInfoEscola({ id: 24 });
+      setEscolaData(result);
+
     } catch (error) {
       console.log("error");
     }
-
+    setIsModalExibirInformacoesOpen(true);
   };
 
   const closeModal = () => {
@@ -36,7 +39,7 @@ const [isModalExcluirEscolasOpen, setIsModalExcluirEscolasOpen] = useState(false
   const onFinish = async (values: any) => {
     console.log("Received values of form: ", selectedValue);
     const salvarsituacaoData = {
-      idEscola: 10,
+      idEscola: props.id,
       idSituacao:selectedValue
     };
 
@@ -61,9 +64,9 @@ const [isModalExcluirEscolasOpen, setIsModalExcluirEscolasOpen] = useState(false
             <div>
               <div className="container">
                 <div className="div br-modal large">
-                  <div className="br-modal-header">CED 02 de taguatinga
+                 <div className="br-modal-header">to do: props.nomeEscola
                   </div>
-                  <ModalBody/>
+                  <ModalBody data = {escolaData} />
                   <ModalExcluirEscolas open={isModalExcluirEscolasOpen} id={26} close={() => setIsModalExcluirEscolasOpen(false)} /> 
                   <div className="br-modal-footer ">
                     <div className="content-left" style={{marginRight: "25%"}}>
@@ -82,10 +85,7 @@ const [isModalExcluirEscolasOpen, setIsModalExcluirEscolasOpen] = useState(false
             </div>
           </div>
         </div>
-        
       )}
-      
-
     </>
   );
 };
