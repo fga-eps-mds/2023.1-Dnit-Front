@@ -28,3 +28,30 @@ export interface ResetPasswordData {
   uuidAutenticacao: string;
   senha: string;
 }
+
+export interface SchoolData {
+    idEscola: number;
+    codigoEscola: number;
+    nomeEscola: string;
+    idRede: number;
+    descricaoRede: string;
+    cep: string;
+    idUf: number;
+    siglaUf: string;
+    endereco: string;
+    idMunicipio: number;
+    nomeMunicipio: string;
+    idLocalizacao: number;
+    descricaoLocalizacao:string;
+    longitude: string;
+    latitude: string;
+    idEtapasDeEnsino: number;
+    descricaoEtapasDeEnsino: string;
+    numeroTotalDeAlunos: number;
+    idSituacao: number;
+    descricaoSituacao: string;
+    idPorte: number;
+    descricaoPorte: string;
+    telefone: string;
+    numeroTotalDeDocentes: number;
+}

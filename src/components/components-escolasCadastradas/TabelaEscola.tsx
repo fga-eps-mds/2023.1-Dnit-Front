@@ -1,7 +1,27 @@
 import "../../styles/App.css";
 import "../components-escolasCadastradas/TabelaEscola.css";
+import fetchlistSchools from "../../service/listSchools";
+import { useEffect, useState } from "react";
+import { SchoolData } from "../../models/service";
 
 export default function TabelaEscola() {
+  const [schools , setschools] = useState<SchoolData[]>([]);
+  const getSchool = async() => {
+     try {
+      const resultschools = await fetchlistSchools();
+      console.log({resultschools})
+      setschools(resultschools);
+     } 
+     catch (error) {
+      console.log({error})
+     }
+    
+  }
+useEffect(()=>{
+  if(schools.length <= 0)
+  getSchool();
+})
+
   return (
     
 <div className="br-table" data-search="data-search" data-selection="data-selection" data-collapse="data-collapse" data-random="data-random">
@@ -58,89 +78,33 @@ export default function TabelaEscola() {
       </tr>
     </thead>
     <tbody>
-      <tr>
+      {schools.length>0 && schools.map(school => {
+        return (
+          <tr key = {school.idEscola}>
         <td>
           <div className="br-checkbox hidden-label">
             <input id="check-line-1-27509" name="check-line-1-27509" type="checkbox" aria-label="Selecionar linha 1" data-child="check-01-27509"/>
             <label htmlFor="check-line-1-27509">Selecionar linha 1</label>
           </div>
         </td>
-        <td data-th="Título coluna 1">CED 02 DE TAGUATINGA</td>
-        <td data-th="Título coluna 2">Ensino Médio</td>
-        <td data-th="Título coluna 3">342</td>
-        <td data-th="Título coluna 4">A</td>
-        <td data-th="Título coluna 5">Brasília</td>
-        <td data-th="Título coluna 6">DF</td>
+        <td data-th="Título coluna 1">{school.nomeEscola}</td>
+        <td data-th="Título coluna 2">{school.idEtapasDeEnsino}</td>
+        <td data-th="Título coluna 3">{school.numeroTotalDeAlunos}</td>
+        <td data-th="Título coluna 4">{school.idSituacao}</td>
+        <td data-th="Título coluna 5">{school.idMunicipio}</td>
+        <td data-th="Título coluna 6">{school.siglaUf}</td>
       </tr>
-      <tr>
-        <td>
-          <div className="br-checkbox hidden-label">
-            <input id="check-line-1-27509" name="check-line-1-27509" type="checkbox" aria-label="Selecionar linha 1" data-child="check-01-27509"/>
-            <label htmlFor="check-line-1-27509">Selecionar linha 1</label>
-          </div>
-        </td>
-        <td data-th="Título coluna 1">Exemplo</td>
-        <td data-th="Título coluna 2"></td>
-        <td data-th="Título coluna 3"></td>
-        <td data-th="Título coluna 4"></td>
-        <td data-th="Título coluna 5"></td>
-        <td data-th="Título coluna 6"></td>
-      </tr>
-      <tr>
-        <td>
-          <div className="br-checkbox hidden-label">
-            <input id="check-line-1-27509" name="check-line-1-27509" type="checkbox" aria-label="Selecionar linha 1" data-child="check-01-27509"/>
-            <label htmlFor="check-line-1-27509">Selecionar linha 1</label>
-          </div>
-        </td>
-        <td data-th="Título coluna 1">Exemplo</td>
-        <td data-th="Título coluna 2"></td>
-        <td data-th="Título coluna 3"></td>
-        <td data-th="Título coluna 4"></td>
-        <td data-th="Título coluna 5"></td>
-        <td data-th="Título coluna 6"></td>
-      </tr>
-      <tr className="collapse">
-      <td id="collapse-1-4-27509" aria-hidden="true" hidden={true} colSpan={6}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultricies aliquet lacinia. Vestibulum in interdum eros. Donec vel tempus diam. Aenean pulvinar mattis nisi in laoreet. Integer felis mi, vehicula sed pretium sit amet, pellentesque vel nisl. Curabitur metus ante, pellentesque in lectus a, sagittis imperdiet mi.</td>
-      </tr>
-      <tr>
-        <td>
-          <div className="br-checkbox hidden-label">
-            <input id="check-line-2-27509" name="check-line-2-27509" type="checkbox" aria-label="Selecionar linha 2" data-child="check-01-27509"/>
-            <label htmlFor="check-line-2-27509">Selecionar linha 2</label>
-          </div>
-        </td>
-        <td data-th="Título coluna 1">Exemplo</td>
-        <td data-th="Título coluna 2"></td>
-        <td data-th="Título coluna 3"></td>
-        <td data-th="Título coluna 4"></td>
-        <td data-th="Título coluna 5"></td>
-        <td data-th="Título coluna 6"></td>
-      </tr>
-      <tr className="collapse">
-      <td id="collapse-1-4-27509" aria-hidden="true" hidden={true} colSpan={6}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultricies aliquet lacinia. Vestibulum in interdum eros. Donec vel tempus diam. Aenean pulvinar mattis nisi in laoreet. Integer felis mi, vehicula sed pretium sit amet, pellentesque vel nisl. Curabitur metus ante, pellentesque in lectus a, sagittis imperdiet mi.</td>
-      </tr>
-      <tr>
-        <td>
-          <div className="br-checkbox hidden-label">
-            <input id="check-line-3-27509" name="check-line-3-27509" type="checkbox" aria-label="Selecionar linha 3" data-child="check-01-27509"/>
-            <label htmlFor="check-line-3-27509">Selecionar linha 3</label>
-          </div>
-        </td>
-        <td data-th="Título coluna 1">Exemplo</td>
-        <td data-th="Título coluna 2"></td>
-        <td data-th="Título coluna 3"></td>
-        <td data-th="Título coluna 1"></td>
-        <td data-th="Título coluna 2"></td>
-        <td data-th="Título coluna 3"></td>
-      </tr>
+        )
+      })}
+    
+  
       <tr className="collapse">
       <td id="collapse-1-4-27509" aria-hidden="true" hidden={true} colSpan={6}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultricies aliquet lacinia. Vestibulum in interdum eros. Donec vel tempus diam. Aenean pulvinar mattis nisi in laoreet. Integer felis mi, vehicula sed pretium sit amet, pellentesque vel nisl. Curabitur metus ante, pellentesque in lectus a, sagittis imperdiet mi.</td>
       </tr>
     </tbody>
   </table>
   <div className="table-footer">
-    <nav className="br-pagination" aria-label="Paginação de resultados" data-total="50" data-current="1" data-per-page="20">
+    <nav className="br-pagination" aria-label="Paginação de resultados" data-total= {schools.length} data-current="1" data-per-page="20">
       <div className="pagination-per-page">
         <div className="br-select">
           <div className="br-input">
@@ -171,7 +135,7 @@ export default function TabelaEscola() {
           </div>
         </div>
       </div><span className="br-divider d-none d-sm-block mx-3"></span>
-      <div className="pagination-inhtmlFormation d-none d-sm-flex"><span className="current">1</span>&ndash;<span className="per-page">20</span>&nbsp;de&nbsp;<span className="total">50</span>&nbsp;itens</div>
+      <div className="pagination-inhtmlFormation d-none d-sm-flex"><span className="current">1</span>&ndash;<span className="per-page">20</span>&nbsp;de&nbsp;<span className="total">{schools.length}</span>&nbsp;itens</div>
       <div className="pagination-go-to-page d-none d-sm-flex ml-auto">
         <div className="br-select">
           <div className="br-input">

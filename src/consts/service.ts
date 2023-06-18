@@ -6,6 +6,7 @@ const loginURL = `${urlAPI}/usuario/login`;
 const registerURL = `${urlAPI}/usuario/cadastrarUsuarioDnit`;
 const recoverPasswordURL = `${urlAPI}/usuario/recuperarSenha`;
 const resetPasswordURL = `${urlAPI}/usuario/redefinirSenha`;
+const listSchoolsURL = `https://localhost:7083/api/escolas/listarEscolas`;
 
 export {
   federativeUnitURL,
@@ -13,4 +14,5 @@ export {
   recoverPasswordURL,
   registerURL,
   resetPasswordURL,
+  listSchoolsURL
 };
