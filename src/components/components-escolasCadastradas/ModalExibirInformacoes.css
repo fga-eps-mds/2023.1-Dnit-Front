@@ -42,6 +42,20 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+  .content-left{
+    align-self: flex-start !important;
+    justify-self: flex-start !important;
+    justify-content: flex-start !important;
+
+  }
+  .content-right{
+    align-self: flex-end !important;
+    justify-content: right !important;
+  }
+.button-space{
+  margin-right: 2em !important;
+}
+
   .br-modal-body {
     flex: 1;
     margin: var(--spacing-scale-3x) 0 var(--spacing-scale-2x);

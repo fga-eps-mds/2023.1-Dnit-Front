@@ -37,6 +37,18 @@
   margin-left: 1em !important;
   margin-top: 1em !important;
 }
+.overlay-modal{
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
   .br-modal-header {
     font-size: var(--font-size-scale-up-01 ) !important;
     font-weight: var(--font-weight-bold);

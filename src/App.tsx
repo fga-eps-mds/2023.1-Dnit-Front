@@ -8,7 +8,7 @@ import Register from "./pages/Register";
 import { AuthContext } from "./provider/Authentication";
 import "./styles/App.css";
 import ExibirInformacoesEscola from "./pages/ExibirInformacoesEscola";
-import ExcluirEscola from "./pages/ExcluirEscola"
+
 
 function App() {
   const { getAuth } = useContext(AuthContext);
@@ -31,7 +31,7 @@ function App() {
       <Route path="/cadastro" element={<Register />} />
       <Route path="/exibirinformacoesescola" element={<ExibirInformacoesEscola />} />
       <Route path="/esqueciSenha" element={<EsqueciSenha />} />
-      <Route path="/modalexcluirescola" element={<ExcluirEscola/>}/>
+      
     </Routes>
   );
 }
