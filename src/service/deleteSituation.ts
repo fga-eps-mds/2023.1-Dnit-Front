@@ -2,13 +2,13 @@ import axios, { AxiosResponse } from "axios";
 import { excluirSituacaoURL  } from "../consts/service";
 import { ExcluirSituacaoData } from "../models/service";
 
-interface SituationResponse {
+interface deleteSituationResponse {
     status: number;
 }
 
-async function fetchdeleteSituation(excluirSituacaoData: ExcluirSituacaoData): Promise<SituationResponse> {
+async function fetchdeleteSituation(excluirSituacaoData: ExcluirSituacaoData): Promise<deleteSituationResponse> {
     try {
-        const response: AxiosResponse<SituationResponse> = await axios.post(
+        const response: AxiosResponse<deleteSituationResponse> = await axios.put(
             excluirSituacaoURL ,
             excluirSituacaoData
         );
