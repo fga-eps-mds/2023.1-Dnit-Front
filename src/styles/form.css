@@ -49,10 +49,15 @@
 .ant-input-affix-wrapper > input.ant-input {
   background-color: var(--gray1);
 }
-.ant-select-selector{
+
+.ant-select-selector {
   background-color: var(--gray1) !important;
   border: 1px solid var(--gray2) !important;
-}
+  border: 1px solid var(--gray2) !important;
+  border-radius: 2px !important;
+  width: 21.5em;
+  }
+
 .ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
   width: 21.5em;
   border: 1px solid var(--gray2);
@@ -246,7 +251,7 @@
 .formrs {
   display: flex;
   justify-content: center;
-  zoom: 90%;
+  zoom: 100%;
   margin-bottom: 1rem;
   width: fit-content;
 }
@@ -259,6 +264,10 @@
   font-weight: 500;
   margin-bottom: 3rem;
   
+}
+
+.formrs label {
+  font-weight: 1000;
 }
 
 .form1{
@@ -292,7 +301,7 @@
 }
 
 .bloco{
-  width: 18rem;
+  width: 18rem; 
   margin-right: 2rem;
   float: left;
 }
@@ -307,11 +316,25 @@
   width: 18rem;
 }
 
+.inputForm2 {
+  width: 21.5em;
+  height: 5%;
+  border: 1px solid var(--gray2);
+  border-radius: 2px;
+  background-color: var(--gray1);
+  height: 30px;
+  }
+
+
 @media (max-width: 1250px) {
   .form {
     padding: 5%;
   }
   .formc {
+    padding: 5%;
+  }
+
+  .formrs{
     padding: 5%;
   }
   .logoDnit {

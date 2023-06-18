@@ -2,20 +2,30 @@ import "../../styles/form.css";
 import { Button, Form, Input, Radio, Select, Space, notification } from "antd";
 import ButtonComponent from "../Button";
 import { useState } from "react";
+import fetchUnidadeFederativa from "../../service/federativeUnit";
 //import { link } from "fs";
-
-import "../../styles/form.css";
-
 const { Option } = Select;
 
+interface UfProps {
+    value: number;
+    label: string;
+}
+
 export default function RegS() {
-const [form] = Form.useForm();
-const rules = [
-    {
-        required: true,
-        message: "Preencha o campo ${name}!",
-    },
-];
+    const [uf, setUf] = useState<UfProps[]>();
+    
+    async function fetchUf() {
+        const uf = await fetchUnidadeFederativa();
+        const newuf = uf.map((u) => ({ value: u.id, label: u.descricao }));
+        setUf(newuf);
+    }
+    const [form] = Form.useForm();
+    const rules = [
+        {
+            required: true,
+            message: "Preencha o campo ${name}!",
+        },
+    ];
     
 const [screen, setScreen] = useState<"form1"|"form2"|"form3">("form1");
 return(
@@ -58,34 +68,51 @@ return(
                     <div className="bloco">
                         <Form.Item name="nome da escola" label="Nome da Escola" rules={rules}>
                             <Input
-                            className="inputForm"
+                            className="inputForm2"
                             />
                         </Form.Item>
 
-                        <Form.Item
-                            name="rede"
-                            label="Rede"
-                            rules = {rules}
+                        <Form.Item name="rede" label="Rede" rules={rules}>
+                            <Select
                             >
-                            <Input
-                            className="inputForm"
-                            />
+                            <Option value="Municipal">Municipal</Option>
+                            <Option value="Estadual">Estadual</Option>
+                            </Select>
                         </Form.Item>
 
                         <Form.Item name="codigo da escola" label="Codigo da Escola" rules={rules}>
                             <Input
-                            className="inputForm"
+                            className="inputForm2"
                             />
                         </Form.Item>
 
                         <Form.Item
-                            name="uf"
-                            label="UF"
-                            rules={rules}
+                        name="uf"
+                        rules={rules}
+                        label="UF"
+                        >
+
+                            <Select
+                                onClick={fetchUf}
+                                notFoundContent={<p>Carregando...</p>}
+                                placement="bottomRight"
+                                optionLabelProp="label"
+                                className="uf"
                             >
-                            <Input
-                            className="inputForm"
-                            />
+                                {uf?.map((u) => (
+                                    <Option
+                                        key={u.value}
+                                        value={u.value}
+                                        label={
+                                        <>
+                                            {u.label}
+                                        </>
+                                        }
+                                    >
+                                        {u.label}
+                                    </Option>
+                                ))}
+                            </Select>
                         </Form.Item>
 
                         <Form.Item
@@ -94,14 +121,14 @@ return(
                             rules={rules}
                             >
                             <Input
-                            className="inputForm"
+                            className="inputForm2"
                             />
                         </Form.Item>
                     </div>
                     <div className="bloco2">
                         <Form.Item name="endereço" label="Endereço" rules={rules}>
                             <Input
-                            className="inputForm"
+                            className="inputForm2"
                             />
                         </Form.Item>
 
@@ -111,14 +138,16 @@ return(
                             rules = {rules}
                             >
                             <Input
-                            className="inputForm"
+                            className="inputForm2"
                             />
                         </Form.Item>
 
                         <Form.Item name="localização" label="Localização" rules={rules}>
-                            <Input
-                            className="inputForm"
-                            />
+                        <Select
+                            >
+                            <Option value="Rural">Rural</Option>
+                            <Option value="Urbana">Urbana</Option>
+                        </Select>
                         </Form.Item>
 
                         <Form.Item
@@ -127,7 +156,7 @@ return(
                             rules={rules}
                             >
                             <Input
-                            className="inputForm"
+                            className="inputForm2"
                             />
                         </Form.Item>
 
@@ -137,7 +166,7 @@ return(
                             rules={rules}
                             >
                             <Input
-                            className="inputForm"
+                            className="inputForm2"
                             />
                         </Form.Item>
                     </div>
@@ -177,14 +206,13 @@ return(
                     <div className="bloco3">
                         <Form.Item name = "telefone" label = "Telefone" rules = {rules}>
                             <Input
-                            className = "inputForm"
+                            className = "inputForm2"
                             />
                         </Form.Item>
 
                         <Form.Item name="ciclos de ensino" label="Ciclos de Ensino" rules={rules}>
                             <Select
                             mode="multiple"
-                            placeholder="Selecione uma escola"
                             >
                                 
                             <Option value="infantil">Ensino Infantil</Option>
@@ -196,18 +224,24 @@ return(
                         </Form.Item>
 
                         <Form.Item name="porte" label="Porte" rules={rules}>
-                            <Input 
-                            className="inputForm"
-                            />
+                            <Select
+                            >
+                                <Option value="Até 50 matrículas de escolarização">Até 50 matrículas de escolarização</Option>
+                                <Option value="Entre 51 e 200 matrículas de escolarização">Entre 51 e 200 matrículas de escolarização</Option>
+                                <Option value="Entre 201 e 501 matrículas de escolarização">Entre 201 e 501 matrículas de escolarização</Option>
+                                <Option value="Entre 501 e 1000 matrículas de escolarizaçãoual">Entre 501 e 1000 matrículas de escolarização</Option>
+                                <Option value="Mais de 1000 matrículas de escolarização">Mais de 1000 matrículas de escolarização</Option>
+                        
+                            </Select>
                         </Form.Item>
-
+                        
                         <Form.Item
                             name="número total de alunos"
                             label="Número Total de Alunos"
                             rules={rules}
                             >
                             <Input
-                            className="inputForm"
+                            className="inputForm2"
                             />
                         </Form.Item>
 
@@ -217,7 +251,7 @@ return(
                             rules={rules}
                             >
                             <Input
-                            className="inputForm"
+                            className="inputForm2"
                             />
                         </Form.Item>
                     </div>

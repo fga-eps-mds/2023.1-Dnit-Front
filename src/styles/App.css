@@ -79,8 +79,7 @@
 }
 
 .Secao2 {
-    
-  height: 635.36px;
+  height: 87.5vh;
   background-color: var(--white);
   display: flex;
   justify-content: center;
@@ -111,12 +110,12 @@
 .box {
   padding: 1% 5%;
   display: flex;
-  justify-content: center;
-  align-self: center;
   box-shadow: 0px 2px 4px var(--black1);
   border-radius: 10px;
   height: fit-content;
   width: fit-content;
+  zoom: 110%;
+  justify-content: center;
 }
 
 
@@ -134,5 +133,10 @@
   .imgLateral {
     width: 237px;
     height: 131px;
+  }
+
+  .Secao2{
+    width: 100%;
+    height: 88%;
   }
 }
