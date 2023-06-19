@@ -6,6 +6,7 @@ import ModalBody from './ModalBody';
 import { useSelectedValue } from '../../context/Situation';
 import fetchchangeSituation from '../../service/changeSituation';
 import ModalExcluirEscolas from "../components-escolasCadastradas/ModalExcluirEscolas";
+import fetchDeleteSituation from "../../service/deleteSituation";
 
     
 const ModalExibirInformacoes = (props: any) => {
@@ -39,18 +40,34 @@ const ModalExibirInformacoes = (props: any) => {
   const [api, contextHolder] = notification.useNotification();
 
   const onFinish = async (values: any) => {
-    console.log("Received values of form: ", selectedValue);
-    const salvarsituacaoData = {
-      idEscola: id,
-      idSituacao:selectedValue
-    };
 
-     try {
-      await fetchchangeSituation(salvarsituacaoData);
-    } catch (error) {
-      api.error({ message: `Erro ao salvar situação` });
-    } 
-  };
+    if (selectedValue == -1){
+        console.log("Received values of form: ", selectedValue);
+        const excluirsituacaoData = {
+          idEscola: id
+        };
+   
+         try {
+          await fetchDeleteSituation(excluirsituacaoData);
+        } catch (error) {
+          api.error({ message: `Erro ao salvar situação` });
+        };
+    }
+    
+    else {
+      console.log("Received values of form: ", selectedValue);
+      const salvarsituacaoData = {
+        idEscola: id,
+        idSituacao:selectedValue
+      };
+  
+       try {
+        await fetchchangeSituation(salvarsituacaoData);
+      } catch (error) {
+        api.error({ message: `Erro ao salvar situação` });
+      } 
+    };
+  }
 
   const openDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);

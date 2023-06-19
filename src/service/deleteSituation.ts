@@ -6,11 +6,11 @@ interface deleteSituationResponse {
     status: number;
 }
 
-async function fetchdeleteSituation(excluirSituacaoData: ExcluirSituacaoData): Promise<deleteSituationResponse> {
+async function fetchDeleteSituation(excluirSituacaoData: ExcluirSituacaoData): Promise<deleteSituationResponse> {
     try {
         const response: AxiosResponse<deleteSituationResponse> = await axios.post(
-            excluirSituacaoURL ,
-            excluirSituacaoData
+            excluirSituacaoURL , null,
+            {params:{idEscola: excluirSituacaoData.idEscola}}
         );
         console.log("response", response);
         return response.data;
@@ -21,4 +21,4 @@ async function fetchdeleteSituation(excluirSituacaoData: ExcluirSituacaoData): P
     }
 }
 
-export default fetchdeleteSituation;
+export default fetchDeleteSituation;
