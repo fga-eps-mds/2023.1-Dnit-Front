@@ -18,6 +18,25 @@ export interface RegisterData {
   uf: number;
 }
 
+
+export interface RecoverPasswordData {
+  nome: string;
+  email: string;
+  senha: string;
+}
+export interface ExcluirEscolaData {
+  id_escola: number;
+}
+
+export interface InfoEscolaData {
+  id: number;
+}
+
+export interface SalvarSituacaoData{
+  idSituacao: number,
+  idEscola: number
+}
+
 export interface RecoverPasswordData {
   nome: string;
   email: string;
@@ -54,4 +73,7 @@ export interface SchoolData {
     descricaoPorte: string;
     telefone: string;
     numeroTotalDeDocentes: number;
+}
+export interface ExcluirSituacaoData{
+  idEscola: number
 }

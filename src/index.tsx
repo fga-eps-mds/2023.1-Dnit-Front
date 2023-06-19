@@ -5,6 +5,8 @@ import App from "./App";
 import "./index.css";
 import { AuthProvider } from "./provider/Authentication";
 import "@govbr-ds/core/dist/core.min.css";
+import "@govbr-ds/core/dist/core.min.js";
+
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
