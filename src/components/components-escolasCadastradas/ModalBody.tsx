@@ -2,7 +2,8 @@ import Dropdown from "./Dropdown";
 import React, { useState } from "react";
 
 const ModalBody = (props: any) => {
-
+    const {data} = props;
+    console.log({data});
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     const openDropdown = () => {
