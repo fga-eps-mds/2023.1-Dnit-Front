@@ -1,8 +1,8 @@
 import React, { ChangeEvent, useState } from "react";
 import { useSelectedValue } from "../../context/Situation";
-//import fetchdeleteSituation from "../../service/deleteSituation";
-//import { notification } from 'antd';
-import axios from 'axios';
+import fetchdeleteSituation from "../../service/deleteSituation";
+import { notification } from 'antd';
+
 
 
 const Dropdown = (props: any) => {
@@ -12,30 +12,20 @@ const Dropdown = (props: any) => {
     setSelectedValue(Number(selectedValue));
   };
 
-  // const [api] = notification.useNotification();
-  // const deleteSituation = async () => {
-  //   console.log("Received values of form: ", selectedValue);
-  //   const excluirsituacaoData = {
-  //     idEscola: props.id
-  //   };
+   const [api] = notification.useNotification();
+   const deleteSituation = async () => {
+     console.log("Received values of form: ", selectedValue);
+     const excluirsituacaoData = {
+       idEscola: props.id
+     };
 
-  //    try {
-  //     await fetchdeleteSituation(excluirsituacaoData);
-  //   } catch (error) {
-  //     api.error({ message: `Erro ao salvar situação` });
-  //   } 
-  // };
+      try {
+       await fetchdeleteSituation(excluirsituacaoData);
+     } catch (error) {
+       api.error({ message: `Erro ao salvar situação` });
+     } 
+   };
 
-  const deleteSituation = async (values: any) =>{
-    const excluirsituacaoData = {
-      idEscola: props.id
-    };
-    try {
-      await axios.put("Received values of form: ", excluirsituacaoData);
-    } catch (error) {
-      console.error('Erro ao atualizar os dados:', error);
-    }
-  }
 
   return (
     <div className="br-list" tabIndex={0}>
