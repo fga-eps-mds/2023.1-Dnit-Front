@@ -9,6 +9,8 @@ import ModalExcluirEscolas from "../components-escolasCadastradas/ModalExcluirEs
 
     
 const ModalExibirInformacoes = (props: any) => {
+  const {id} = props;
+  console.log({props});
   const [isModalExibirInformacoesOpen, setIsModalExibirInformacoesOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [escolaData, setEscolaData] = useState({});
@@ -20,7 +22,7 @@ const ModalExibirInformacoes = (props: any) => {
     
 
     try {
-      result = await fetchInfoEscola({ id: 24 });
+      result = await fetchInfoEscola({ id });
       setEscolaData(result);
 
     } catch (error) {
@@ -39,7 +41,7 @@ const ModalExibirInformacoes = (props: any) => {
   const onFinish = async (values: any) => {
     console.log("Received values of form: ", selectedValue);
     const salvarsituacaoData = {
-      idEscola: props.id,
+      idEscola: id,
       idSituacao:selectedValue
     };
 

@@ -29,7 +29,7 @@ function App() {
         </>
       )}
       <Route path="/login" element={<Login />} />
-      <Route path="/exibirinformacoesescola" element={<ExibirInformacoesEscola />} />
+      <Route path="/exibirinformacoesescola" element={<ExibirInformacoesEscola id = {10} />} />
       <Route path="/redefinirSenha" element={<ResetPassword />} />
       <Route path="/cadastro" element={<Register />} />
       <Route path="/esqueciSenha" element={<RecoverPassword />} />
