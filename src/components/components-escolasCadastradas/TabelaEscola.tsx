@@ -5,7 +5,37 @@ import { useEffect, useState } from "react";
 import { SchoolData } from "../../models/service";
 
 export default function TabelaEscola() {
+  const [showOptionsPages, setShowOptionsPages] = useState(false);
+  const optionsPages = ['5', '10', '20'];
+
+  const [schoolsperpage, setschoolsperpage] = useState(2);
+
+
   const [schools , setschools] = useState<SchoolData[]>([]);
+  const [currentpage, setcurrentpage] = useState(1);
+  const updateSchoolsPerPage = (value: number) => {
+    if(value !== schoolsperpage)
+      setschoolsperpage(value);
+  }
+  const updateCurrentPage = (value : number) => {
+    if(gettotalpages() >= (currentpage + value) && currentpage + value >= 1)
+      setcurrentpage ((currentValue) => (currentValue + value))  
+  }
+  const gettotalpages = () => {
+    let totalpages = schools.length / schoolsperpage;
+    if((totalpages % 1) !== 0){
+      totalpages = Math.floor(totalpages) + 1;
+    }
+    return totalpages;
+  }
+  const getpagerange = () => {
+    const rangeStart = ((currentpage - 1)*schoolsperpage) + 1;
+    let rangeEnd = (rangeStart + schoolsperpage) - 1;
+    if(rangeEnd > schools.length){
+      rangeEnd = schools.length;
+    }
+    return [rangeStart, rangeEnd];
+  }
   const getSchool = async() => {
      try {
       const resultschools = await fetchlistSchools();
@@ -78,7 +108,9 @@ useEffect(()=>{
       </tr>
     </thead>
     <tbody>
-      {schools.length>0 && schools.map(school => {
+      {schools.length>0 && schools.map((school, index) => {
+        const range = getpagerange();
+        if(index >= range[0] - 1 && index <= range[1] - 1)
         return (
           <tr key = {school.idEscola}>
         <td>
@@ -95,52 +127,32 @@ useEffect(()=>{
         <td data-th="Título coluna 6">{school.siglaUf}</td>
       </tr>
         )
+        return <></>
       })}
-    
-  
       <tr className="collapse">
       <td id="collapse-1-4-27509" aria-hidden="true" hidden={true} colSpan={6}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultricies aliquet lacinia. Vestibulum in interdum eros. Donec vel tempus diam. Aenean pulvinar mattis nisi in laoreet. Integer felis mi, vehicula sed pretium sit amet, pellentesque vel nisl. Curabitur metus ante, pellentesque in lectus a, sagittis imperdiet mi.</td>
       </tr>
     </tbody>
   </table>
   <div className="table-footer">
-    <nav className="br-pagination" aria-label="Paginação de resultados" data-total= {schools.length} data-current="1" data-per-page="20">
+    <nav className="br-pagination" aria-label="Paginação de resultados" data-total= {schools.length} data-current= "38" data-per-page="20">
       <div className="pagination-per-page">
         <div className="br-select">
           <div className="br-input">
             <label htmlFor="per-page-selection-random-91921">Exibir</label>
-            <input id="per-page-selection-random-91921" type="text" placeholder=" "/>
+            <input id="per-page-selection-random-91921" type="text" placeholder={schoolsperpage.toString()}/>
             <button className="br-button" type="button" aria-label="Exibir lista" tabIndex={-1} data-trigger="data-trigger"><i className="fas fa-angle-down" aria-hidden="true"></i>
             </button>
-          </div>
-          <div className="br-list" tabIndex={0}>
-            <div className="br-item" tabIndex={-1}>
-              <div className="br-radio">
-                <input id="per-page-10-random-91921" type="radio" name="per-page-random-91921" value="per-page-10-random-91921" checked/>
-                <label htmlFor="per-page-10-random-91921">10</label>
-              </div>
-            </div>
-            <div className="br-item" tabIndex={-1}>
-              <div className="br-radio">
-                <input id="per-page-20-random-91921" type="radio" name="per-page-random-91921" value="per-page-20-random-91921"/>
-                <label htmlFor="per-page-20-random-91921">20</label>
-              </div>
-            </div>
-            <div className="br-item" tabIndex={-1}>
-              <div className="br-radio">
-                <input id="per-page-30-random-91921" type="radio" name="per-page-random-91921" value="per-page-30-random-91921"/>
-                <label htmlFor="per-page-30-random-91921">30</label>
-              </div>
-            </div>
+            
           </div>
         </div>
       </div><span className="br-divider d-none d-sm-block mx-3"></span>
-      <div className="pagination-inhtmlFormation d-none d-sm-flex"><span className="current">1</span>&ndash;<span className="per-page">20</span>&nbsp;de&nbsp;<span className="total">{schools.length}</span>&nbsp;itens</div>
+      <div className="pagination-inhtmlFormation d-none d-sm-flex"><span className="current">{getpagerange()[0]}</span>&ndash;<span className="per-page">{getpagerange()[1]}</span>&nbsp;de&nbsp;<span className="total">{schools.length}</span>&nbsp;itens</div>
       <div className="pagination-go-to-page d-none d-sm-flex ml-auto">
         <div className="br-select">
           <div className="br-input">
             <label htmlFor="go-to-selection-random-15337">Página</label>
-            <input id="go-to-selection-random-15337" type="text" placeholder=" "/>
+            <input id="go-to-selection-random-15337" type="text" placeholder= {currentpage.toString()}/>
             <button className="br-button" type="button" aria-label="Exibir lista" tabIndex={-1} data-trigger="data-trigger"><i className="fas fa-angle-down" aria-hidden="true"></i>
             </button>
           </div>
@@ -167,9 +179,9 @@ useEffect(()=>{
         </div>
       </div><span className="br-divider d-none d-sm-block mx-3"></span>
       <div className="pagination-arrows ml-auto ml-sm-0">
-        <button className="br-button circle" type="button" aria-label="Voltar página"><i className="fas fa-angle-left" aria-hidden="true"></i>
+        <button className="br-button circle" type="button" aria-label="Voltar página" onClick={() => updateCurrentPage(-1)} ><i className="fas fa-angle-left" aria-hidden="true"></i>
         </button>
-        <button className="br-button circle" type="button" aria-label="Avançar página"><i className="fas fa-angle-right" aria-hidden="true"></i>
+        <button className="br-button circle" type="button" aria-label="Avançar página" onClick={() => updateCurrentPage(1)}><i className="fas fa-angle-right" aria-hidden="true"></i>
         </button>
       </div>
     </nav>
