@@ -251,7 +251,6 @@
 .formrs {
   display: flex;
   justify-content: center;
-  zoom: 100%;
   margin-bottom: 1rem;
   width: fit-content;
 }
