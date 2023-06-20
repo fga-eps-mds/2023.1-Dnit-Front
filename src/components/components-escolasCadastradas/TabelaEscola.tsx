@@ -8,12 +8,42 @@ import ModalExibirInformacoes from "./ModalExibirInformacoes";
 
 export default function TabelaEscola() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   const [showOptionsPages, setShowOptionsPages] = useState(false);
-  const optionsPages = ['5', '10', '20'];
-  const [schoolsperpage, setschoolsperpage] = useState(2);
+  const [currentPage, setCurrentPage] = useState(1);
+  
+  const [showSchoolsPerPage, setShowSchoolsPerPage] = useState(false);
+  const [schoolsPerPage, setSchoolsPerPage] = useState(2);
+  const optionsSchoolsPerPage = ['2', '5', '10', '20'];
   const [schools, setschools] = useState<SchoolData[]>([]);
+
   const [modalStates, setModalStates] = useState(Array(schools.length).fill(false));
-  const [currentpage, setcurrentpage] = useState(1);
+
+  const handleButtonClick = (selectNumeber: any) => {
+    switch (selectNumeber) {
+      case 1:
+        setShowOptionsPages(!showOptionsPages);
+        break;
+      case 2:
+
+        break;
+      default:
+        break;
+    }
+  }
+  const handleOptionClick = (option: any, selectNumber: any) => {
+    switch (selectNumber) {
+      case 1:
+        setSchoolsPerPage(option);
+        setShowSchoolsPerPage(false);
+
+        break;
+      case 2:
+        setCurrentPage(option);
+        setShowOptionsPages(false);       
+        break;
+    }
+  }
 
   const OpenModal = (id: number, index: number) => {
     const newModalStates = [...modalStates];
@@ -28,24 +58,24 @@ export default function TabelaEscola() {
   }
 
   const updateSchoolsPerPage = (value: number) => {
-    if (value !== schoolsperpage)
-      setschoolsperpage(value);
+    if (value !== schoolsPerPage)
+      setSchoolsPerPage(value);
   }
 
   const updateCurrentPage = (value: number) => {
-    if (gettotalpages() >= (currentpage + value) && currentpage + value >= 1)
-      setcurrentpage((currentValue) => (currentValue + value))
+    if (gettotalpages() >= (currentPage + value) && currentPage + value >= 1)
+      setCurrentPage((currentValue) => (currentValue + value))
   }
   const gettotalpages = () => {
-    let totalpages = schools.length / schoolsperpage;
+    let totalpages = schools.length / schoolsPerPage;
     if ((totalpages % 1) !== 0) {
       totalpages = Math.floor(totalpages) + 1;
     }
     return totalpages;
   }
   const getpagerange = () => {
-    const rangeStart = ((currentpage - 1) * schoolsperpage) + 1;
-    let rangeEnd = (rangeStart + schoolsperpage) - 1;
+    const rangeStart = ((currentPage - 1) * schoolsPerPage) + 1;
+    let rangeEnd = (rangeStart + schoolsPerPage) - 1;
     if (rangeEnd > schools.length) {
       rangeEnd = schools.length;
     }
@@ -126,7 +156,7 @@ export default function TabelaEscola() {
             if (index >= range[0] - 1 && index <= range[1] - 1)
               return (
                 <>
-                  <div className = "modal-informacoes">
+                  <div className="modal-informacoes">
                     <ModalExibirInformacoes open={modalStates[index]} id={school.idEscola} nomeEscola={school.nomeEscola} close={() => CloseModal(school.idEscola, index)} />
                   </div>
                   <tr key={school.idEscola} onClick={() => OpenModal(school.idEscola, index)}>
@@ -152,9 +182,24 @@ export default function TabelaEscola() {
             <div className="br-select">
               <div className="br-input">
                 <label htmlFor="per-page-selection-random-91921">Exibir</label>
-                <input id="per-page-selection-random-91921" type="text" placeholder={schoolsperpage.toString()} />
-                <button className="br-button" type="button" aria-label="Exibir lista" tabIndex={-1} data-trigger="data-trigger"><i className="fas fa-angle-down" aria-hidden="true"></i>
+                <input id="per-page-selection-random-91921" type="text" placeholder={schoolsPerPage.toString()} />
+                <button className="br-button" type="button" aria-label="Exibir lista" tabIndex={-1} data-trigger="data-trigger"><i className="fas fa-angle-down" aria-hidden="true" onClick={() => handleButtonClick(1)}></i>
                 </button>
+                <div className="br-input">
+                  {showOptionsPages && (
+                    <div className="select-options">
+                      {optionsSchoolsPerPage.map((options, index) => (
+                        <div
+                          key={index}
+                          className="options"
+                          onClick={() => handleOptionClick(options, 1)}
+                        >
+                          {options}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div><span className="br-divider d-none d-sm-block mx-3"></span>
@@ -163,9 +208,25 @@ export default function TabelaEscola() {
             <div className="br-select">
               <div className="br-input">
                 <label htmlFor="go-to-selection-random-15337">Página</label>
-                <input id="go-to-selection-random-15337" type="text" placeholder={currentpage.toString()} />
-                <button className="br-button" type="button" aria-label="Exibir lista" tabIndex={-1} data-trigger="data-trigger"><i className="fas fa-angle-down" aria-hidden="true"></i>
+                <input id="go-to-selection-random-15337" type="text" placeholder={currentPage.toString()} />
+                <button className="br-button" type="button" aria-label="Exibir lista" tabIndex={-1} data-trigger="data-trigger"  >
+                  <i className="fas fa-angle-down" aria-hidden="true"></i>
                 </button>
+                <div className="br-input">
+                  {showSchoolsPerPage && (
+                    <div className="select-options">
+                      {optionsSchoolsPerPage.map((options, index) => (
+                        <div
+                          key={index}
+                          className="options"
+                          onClick={() => handleOptionClick(options, 1)}
+                        >
+                          {options}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div><span className="br-divider d-none d-sm-block mx-3"></span>
