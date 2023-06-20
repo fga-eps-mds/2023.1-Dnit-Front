@@ -3,23 +3,35 @@ import "../components-escolasCadastradas/TabelaEscola.css";
 import fetchlistSchools from "../../service/listSchools";
 import { useEffect, useState } from "react";
 import { SchoolData } from "../../models/service";
+import ModalExibirInformacoes from "./ModalExibirInformacoes";
+
 
 export default function TabelaEscola() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [showOptionsPages, setShowOptionsPages] = useState(false);
   const optionsPages = ['5', '10', '20'];
-
   const [schoolsperpage, setschoolsperpage] = useState(2);
+  const [schools, setschools] = useState<SchoolData[]>([]);
+  const [modalStates, setModalStates] = useState(Array(schools.length).fill(false));
+  const [currentpage, setcurrentpage] = useState(1);
 
-  const OpenModal = (id : number) => {
-    console.log(id)
+  const OpenModal = (id: number, index: number) => {
+    const newModalStates = [...modalStates];
+    newModalStates[index] = true;
+    setModalStates(newModalStates);
   }
 
-  const [schools, setschools] = useState<SchoolData[]>([]);
-  const [currentpage, setcurrentpage] = useState(1);
+  const CloseModal = (id: number, index: number) => {
+    const newModalStates = [...modalStates];
+    newModalStates[index] = false;
+    setModalStates(newModalStates);
+  }
+
   const updateSchoolsPerPage = (value: number) => {
     if (value !== schoolsperpage)
       setschoolsperpage(value);
   }
+
   const updateCurrentPage = (value: number) => {
     if (gettotalpages() >= (currentpage + value) && currentpage + value >= 1)
       setcurrentpage((currentValue) => (currentValue + value))
@@ -113,16 +125,18 @@ export default function TabelaEscola() {
             const range = getpagerange();
             if (index >= range[0] - 1 && index <= range[1] - 1)
               return (
-                <tr key={school.idEscola} onClick={() => {OpenModal(school.idEscola)}}>
-                    
+                <>
+                  <div className = "modal-informacoes">
+                    <ModalExibirInformacoes open={modalStates[index]} id={school.idEscola} nomeEscola={school.nomeEscola} close={() => CloseModal(school.idEscola, index)} />
+                  </div>
+                  <tr key={school.idEscola} onClick={() => OpenModal(school.idEscola, index)}>
                     <td data-th="Título coluna 1">{school.nomeEscola}</td>
                     <td data-th="Título coluna 2">{school.idEtapasDeEnsino}</td>
                     <td data-th="Título coluna 3">{school.numeroTotalDeAlunos}</td>
                     <td data-th="Título coluna 4">{school.idSituacao}</td>
                     <td data-th="Título coluna 5">{school.idMunicipio}</td>
                     <td data-th="Título coluna 6">{school.siglaUf}</td>
-                </tr>
-                 
+                  </tr></>
               )
             return <></>
           })}

@@ -9,7 +9,8 @@ const ModalBody = (props: any) => {
     const openDropdown = () => {
         setIsDropdownOpen(!isDropdownOpen);
     }
-    console.log(props);
+    
+    if(!props.open) {return null}
     return (
         <div className="br-modal-body">
             <div className="br-input">
