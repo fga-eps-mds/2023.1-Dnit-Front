@@ -7,6 +7,7 @@ interface deleteSituationResponse {
 }
 
 async function fetchDeleteSituation(excluirSituacaoData: ExcluirSituacaoData): Promise<deleteSituationResponse> {
+    console.log({excluirSituacaoData})
     try {
         const response: AxiosResponse<deleteSituationResponse> = await axios.post(
             excluirSituacaoURL , null,

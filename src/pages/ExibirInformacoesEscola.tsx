@@ -1,14 +1,14 @@
 import ModalExibirInformacoes from "../components/components-escolasCadastradas/ModalExibirInformacoes";
 import "../styles/App.css";
-import {SelectedValueProvider} from "../context/Situation";
+import { SelectedValueProvider } from "../context/Situation";
 
 export default function ExibirInformacoesEscola(props: any) {
-  const {id} = props;
+  const {  escola, open, close } = props;
   return (
     <div className="App">
-        <SelectedValueProvider>
-        <ModalExibirInformacoes id = {id} />  
-        </SelectedValueProvider>
+      <SelectedValueProvider>
+        <ModalExibirInformacoes escola={escola} open={open} close={close} />
+      </SelectedValueProvider>
     </div>
   );
 }

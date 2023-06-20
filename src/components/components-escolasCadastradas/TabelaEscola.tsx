@@ -3,7 +3,7 @@ import "../components-escolasCadastradas/TabelaEscola.css";
 import fetchlistSchools from "../../service/listSchools";
 import { useEffect, useState } from "react";
 import { SchoolData } from "../../models/service";
-import ModalExibirInformacoes from "./ModalExibirInformacoes";
+import ExibirInformacoesEscola from "../../pages/ExibirInformacoesEscola";
 
 
 export default function TabelaEscola() {
@@ -157,7 +157,7 @@ export default function TabelaEscola() {
               return (
                 <>
                   <div className="modal-informacoes">
-                    <ModalExibirInformacoes open={modalStates[index]} id={school.idEscola} nomeEscola={school.nomeEscola} close={() => CloseModal(school.idEscola, index)} />
+                    <ExibirInformacoesEscola open={modalStates[index]} escola = {school}  close={() => CloseModal(school.idEscola, index)} />
                   </div>
                   <tr key={school.idEscola} onClick={() => OpenModal(school.idEscola, index)}>
                     <td data-th="Título coluna 1">{school.nomeEscola}</td>
