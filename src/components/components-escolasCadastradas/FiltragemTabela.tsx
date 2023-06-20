@@ -197,7 +197,7 @@ export default function TabelaEscolas() {
                   <div
                     key={index}
                     className="options"
-                    onClick={() => handleOptionClick(options, 4)}
+                    onClick={() => handleOptionClick(options, 4)} 
                   >
                     {options}
                   </div>

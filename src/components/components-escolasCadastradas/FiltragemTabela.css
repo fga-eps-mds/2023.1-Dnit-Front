@@ -374,6 +374,20 @@
     --color: var(--color-dark);
     --focus-color: var(--focus-color-dark);
   }
-  
+  .select-options{
+    box-shadow: 0 3px 6px 0 rgba(0,0,0,0.16);
+  }
+  .select-options div:not(:last-child){
+    border-bottom: 1px solid #ccc;
+  }
+  .options{
+    --focus-color: var(--focus-color-light);
+    --focus: var(--focus-color);  
+    background-color: #fff;
+    transition: background-color 0.3s ease;
+  }
+  .options:hover{
+    background-image: linear-gradient(rgba(var(--color-rgb),var(--hover)),rgba(var(--color-rgb),var(--hover)));
+  }
   /*# sourceMappingURL=select.css.map*/
   
