@@ -13,15 +13,15 @@ const excluirEscolaURL = `${urlAPI}/escolas/excluir`;
 const excluirSituacaoURL = `${urlAPI}/escolas/removerSituacao`
 
 export {
-  federativeUnitURL, 
-  loginURL, 
-  registerURL, 
-  recoverPasswordURL, 
-  excluirEscolaURL, 
-  listarInfoEscolaURL, 
-  salvarSituacaoURL, 
-  cadastroURL, 
-  resetPasswordURL, 
-  excluirSituacaoURL, 
-  listSchoolsURL
+    federativeUnitURL,
+    loginURL,
+    registerURL,
+    recoverPasswordURL,
+    excluirEscolaURL,
+    listarInfoEscolaURL,
+    salvarSituacaoURL,
+    cadastroURL,
+    resetPasswordURL,
+    excluirSituacaoURL,
+    listSchoolsURL
 };

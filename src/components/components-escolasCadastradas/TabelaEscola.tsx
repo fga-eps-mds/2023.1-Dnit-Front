@@ -2,7 +2,7 @@ import "../../styles/App.css";
 import "../components-escolasCadastradas/TabelaEscola.css";
 import fetchlistSchools from "../../service/listSchools";
 import { useEffect, useState } from "react";
-import { SchoolData } from "../../models/service";
+import { EscolaData } from "../../models/service";
 import ExibirInformacoesEscola from "../../pages/ExibirInformacoesEscola";
 
 
@@ -15,7 +15,7 @@ export default function TabelaEscola() {
   const [showSchoolsPerPage, setShowSchoolsPerPage] = useState(false);
   const [schoolsPerPage, setSchoolsPerPage] = useState(2);
   const optionsSchoolsPerPage = ['2', '5', '10', '20'];
-  const [schools, setschools] = useState<SchoolData[]>([]);
+  const [schools, setschools] = useState<EscolaData[]>([]);
 
   const [modalStates, setModalStates] = useState(Array(schools.length).fill(false));
 
@@ -157,7 +157,7 @@ export default function TabelaEscola() {
               return (
                 <>
                   <div className="modal-informacoes">
-                    <ExibirInformacoesEscola open={modalStates[index]} escola = {school}  close={() => CloseModal(school.idEscola, index)} />
+                    <ExibirInformacoesEscola open={modalStates[index]} escola = {school}  close={() => CloseModal(school.idEscola, index)} key={school.idEscola} />
                   </div>
                   <tr key={school.idEscola} onClick={() => OpenModal(school.idEscola, index)}>
                     <td data-th="Título coluna 1">{school.nomeEscola}</td>

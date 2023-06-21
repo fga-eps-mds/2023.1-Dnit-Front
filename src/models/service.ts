@@ -48,7 +48,7 @@ export interface ResetPasswordData {
   senha: string;
 }
 
-export interface SchoolData {
+export interface EscolaData {
     idEscola: number;
     codigoEscola: number;
     nomeEscola: string;

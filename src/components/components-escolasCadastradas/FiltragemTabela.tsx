@@ -1,60 +1,86 @@
 import "../../styles/App.css";
 import "../components-escolasCadastradas/FiltragemTabela.css";
 import React, { useState } from 'react';
+import { useFiltroTabela } from "../../context/FiltroTabela";
 
 export default function TabelaEscolas() {
 
+  const {
+
+    nomeEscola,
+    setNomeEscola,
+
+    UFSelecionada,
+    setUFSelecionada,
+
+    situacaoSelecionada,
+    setSituacaoSelecionada,
+
+    etapaDeEnsionoSelecionada,
+    setEtapaDeEnsionoSelecionada,
+
+    municipioSelecionado,
+    setMunicipioSelecionado,
+} = useFiltroTabela();
+
   const [showOptionsUF, setShowOptionsUF] = useState(false);
-  const [selectedOptionUF, setSelectedOptionUF] = useState('');
-  const optionsUF = ['UF 1', 'UF 2', 'UF 3'];
+  const optionsUF = [
+    'Acre', 'Alagoas', 'Amapá', 'Amazonas', 'Bahia', 'Ceará',
+    'Espirito Santo', 'Góias', 'Maranhão', 'Mato Grosso', 'Mato Grosso do Sul', 'Minas Gerais',
+    'Pará', 'Paraíba', 'Paraná', 'Pernanbuco', 'Piauí', 'Rio de Janeiro',
+    'Rio Grande do Sul', 'Rio Grande do Norte', 'Rondônia', 'Roraima', 'Santa Catarina', 'São Paulo',
+    'Sergipe', 'Tocantins'
+  ];
 
   const [showOptionsSituacao, setShowOptionsSituacao] = useState(false);
-  const [selectedOptionSituacao, setSelectedOptionSituacao] = useState('');
-  const optionsSituacao = ['Situacao A', 'Situacao B', 'Situacao C'];
+  const optionsSituacao = ["Indicação", "Solicitação da escola", "Jornada de crescimento do professor", "Escola crítica"];
+
 
   const [showOptionsEtapasEnsino, setShowOptionsEtapasEnsino] = useState(false);
-  const [selectedOptionEtapasEnsino, setSelectedOptionEtapasEnsino] = useState('');
   const optionsEtapasEnsino = ['1º a 3º ano', '4º a 6º ano', '7º a 9º ano'];
+  // const
 
   const [showOptionsMunincipio, setShowOptionsMunincipio] = useState(false);
-  const [selectedOptionMunincipio, setSelectedOptionMunincipio] = useState('');
   const optionsMunincipio = ['Munincipio 1', 'Munincipio 2', 'Munincipio 3'];
 
-  const handleButtonClick = (selectNumber: any) => {
+
+  const alternarEstado = (valorAtual: boolean) => (!valorAtual);
+
+  const handleButtonClick = (selectNumber: number) => {
     switch (selectNumber) {
       case 1:
-        setShowOptionsUF(!showOptionsUF);
+        setShowOptionsUF(alternarEstado);
         break;
       case 2:
-        setShowOptionsSituacao(!showOptionsSituacao);
+        setShowOptionsSituacao(alternarEstado);
         break;
       case 3:
-        setShowOptionsEtapasEnsino(!showOptionsEtapasEnsino);
+        setShowOptionsEtapasEnsino(alternarEstado);
         break;
       case 4:
-        setShowOptionsMunincipio(!showOptionsMunincipio);
+        setShowOptionsMunincipio(alternarEstado);
         break;
       default:
         break;
     }
   };
 
-  const handleOptionClick = (option:any, selectNumber:any) => {
+  const handleOptionClick = (option: string, selectNumber: number) => {
     switch (selectNumber) {
       case 1:
-        setSelectedOptionUF(option);
+        setUFSelecionada(option);
         setShowOptionsUF(false);
         break;
       case 2:
-        setSelectedOptionSituacao(option);
+        setSituacaoSelecionada(option);
         setShowOptionsSituacao(false);
         break;
       case 3:
-        setSelectedOptionEtapasEnsino(option);
+        setEtapaDeEnsionoSelecionada(option);
         setShowOptionsEtapasEnsino(false);
         break;
       case 4:
-        setSelectedOptionMunincipio(option);
+        setMunicipioSelecionado(option);
         setShowOptionsMunincipio(false);
         break;
       default:
@@ -75,17 +101,17 @@ export default function TabelaEscolas() {
       <div className="br-select" >
         <div className="br-input">
           <label htmlFor="select-multtiple">UF</label>
-          <input 
-            id="select-multtiple" 
-            type="text" 
-            placeholder={selectedOptionUF ? selectedOptionUF : 'Todas'}/>
-          <button 
-            className="br-button" 
-            type="button" 
-            aria-label="Exibir lista" 
-            tabIndex={-1} 
+          <input
+            id="select-multtiple"
+            type="text"
+            placeholder={UFSelecionada ? UFSelecionada : 'Todas'} />
+          <button
+            className="br-button"
+            type="button"
+            aria-label="Exibir lista"
+            tabIndex={-1}
             data-trigger="data-trigger"
-            onClick={()=>handleButtonClick(1)}>
+            onClick={() => handleButtonClick(1)}>
             <i className="fas fa-angle-down" aria-hidden="true"></i>
           </button>
           <div className="br-input">
@@ -101,7 +127,7 @@ export default function TabelaEscolas() {
                   </div>
                 ))}
               </div>
-              )}
+            )}
           </div>
         </div>
       </div>
@@ -109,17 +135,17 @@ export default function TabelaEscolas() {
       <div className="br-select" >
         <div className="br-input">
           <label htmlFor="select-multtiple">Situação</label>
-          <input 
-            id="select-multtiple" 
-            type="text" 
-            placeholder={selectedOptionSituacao ? selectedOptionSituacao : 'Todas'}/>
-          <button 
-            className="br-button" 
-            type="button" 
-            aria-label="Exibir lista" 
-            tabIndex={-1} 
+          <input
+            id="select-multtiple"
+            type="text"
+            placeholder={situacaoSelecionada ? situacaoSelecionada : 'Todas'} />
+          <button
+            className="br-button"
+            type="button"
+            aria-label="Exibir lista"
+            tabIndex={-1}
             data-trigger="data-trigger"
-            onClick={()=>handleButtonClick(2)}>
+            onClick={() => handleButtonClick(2)}>
             <i className="fas fa-angle-down" aria-hidden="true"></i>
           </button>
           <div className="br-input">
@@ -127,7 +153,7 @@ export default function TabelaEscolas() {
               <div className="select-options">
                 {optionsSituacao.map((options, index) => (
                   <div
-                    key={index}
+                    key={options + index}
                     className="options"
                     onClick={() => handleOptionClick(options, 2)}
                   >
@@ -135,7 +161,7 @@ export default function TabelaEscolas() {
                   </div>
                 ))}
               </div>
-              )}
+            )}
           </div>
         </div>
       </div>
@@ -143,17 +169,17 @@ export default function TabelaEscolas() {
       <div className="br-select" >
         <div className="br-input">
           <label htmlFor="select-multtiple">Etapas de Ensino</label>
-          <input 
-            id="select-multtiple" 
-            type="text" 
-            placeholder={selectedOptionEtapasEnsino ? selectedOptionEtapasEnsino : 'Todas'}/>
-          <button 
-            className="br-button" 
-            type="button" 
-            aria-label="Exibir lista" 
-            tabIndex={-1} 
+          <input
+            id="select-multtiple"
+            type="text"
+            placeholder={etapaDeEnsionoSelecionada ? etapaDeEnsionoSelecionada : 'Todas'} />
+          <button
+            className="br-button"
+            type="button"
+            aria-label="Exibir lista"
+            tabIndex={-1}
             data-trigger="data-trigger"
-            onClick={()=>handleButtonClick(3)}>
+            onClick={() => handleButtonClick(3)}>
             <i className="fas fa-angle-down" aria-hidden="true"></i>
           </button>
           <div className="br-input">
@@ -169,7 +195,7 @@ export default function TabelaEscolas() {
                   </div>
                 ))}
               </div>
-              )}
+            )}
           </div>
         </div>
       </div>
@@ -177,17 +203,17 @@ export default function TabelaEscolas() {
       <div className="br-select" >
         <div className="br-input">
           <label htmlFor="select-multtiple">Munincípio</label>
-          <input 
-            id="select-multtiple" 
-            type="text" 
-            placeholder={selectedOptionMunincipio ? selectedOptionMunincipio : 'Todos'}/>
-          <button 
-            className="br-button" 
-            type="button" 
-            aria-label="Exibir lista" 
-            tabIndex={-1} 
+          <input
+            id="select-multtiple"
+            type="text"
+            placeholder={municipioSelecionado ? municipioSelecionado : 'Todos'} />
+          <button
+            className="br-button"
+            type="button"
+            aria-label="Exibir lista"
+            tabIndex={-1}
             data-trigger="data-trigger"
-            onClick={()=>handleButtonClick(4)}>
+            onClick={() => handleButtonClick(4)}>
             <i className="fas fa-angle-down" aria-hidden="true"></i>
           </button>
           <div className="br-input">
@@ -197,13 +223,13 @@ export default function TabelaEscolas() {
                   <div
                     key={index}
                     className="options"
-                    onClick={() => handleOptionClick(options, 4)} 
+                    onClick={() => handleOptionClick(options, 4)}
                   >
                     {options}
                   </div>
                 ))}
               </div>
-              )}
+            )}
           </div>
         </div>
       </div>
