@@ -18,9 +18,9 @@ const BreadCrumb: React.FC<BreadCrumbProps> = ({ elementosLi, paginaInicial }) =
             <ul className="crumb-list">
                 <li className="crumb home"><Link className="br-button circle" to={paginaInicial.link}><span className="sr-only">Página inicial</span><i className="fas fa-home"></i></Link></li>
                 {elementosLi.map(Pagina => (
-                        <li className="crumb"><i className="icon fas fa-chevron-right"></i><a href={Pagina.link}>{Pagina.nome}</a>
-                        </li>
-                    ))}
+                    <li className="crumb" key={Pagina.nome + Pagina.link} ><i className="icon fas fa-chevron-right"></i><a href={Pagina.link}>{Pagina.nome}</a>
+                    </li>
+                ))}
             </ul>
         </div>
     );
