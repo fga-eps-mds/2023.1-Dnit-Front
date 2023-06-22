@@ -24,19 +24,19 @@ const ModalBody = (props: any) => {
                 <div className="input-group">
                     <div className="input-icon"><i className="fas fa-school" aria-hidden="true"></i>
                     </div>
-                    <input id="input-default" type="text" placeholder={props.data.idRede} disabled />
+                    <input id="input-default" type="text" placeholder={props.data.descricaoRede} disabled />
                 </div>
                 <label htmlFor="input-default">UF</label>
                 <div className="input-group">
                     <div className="input-icon"><i className="fas fa-map-pin" aria-hidden="true"></i>
                     </div>
-                    <input id="input-default" type="text" placeholder={props.data.idUf} disabled />
+                    <input id="input-default" type="text" placeholder={props.data.siglaUf} disabled />
                 </div>
                 <label htmlFor="input-default">Município</label>
                 <div className="input-group">
                     <div className="input-icon"><i className="fas fa-building" aria-hidden="true"></i>
                     </div>
-                    <input id="input-default" type="text" placeholder={props.data.idMunicipio} disabled />
+                    <input id="input-default" type="text" placeholder={props.data.nomeMunicipio} disabled />
                 </div>
                 <label htmlFor="input-default">Endereço</label>
                 <div className="input-group">
@@ -60,7 +60,7 @@ const ModalBody = (props: any) => {
                 <div className="input-group">
                     <div className="input-icon"><i className="fas fa-map" aria-hidden="true"></i>
                     </div>
-                    <input id="input-default" type="text" placeholder={props.data.idLocalizacao} disabled />
+                    <input id="input-default" type="text" placeholder={props.data.descricaoLocalizacao} disabled />
                 </div>
                 <label htmlFor="input-default">Latitude</label>
                 <div className="input-group">
@@ -89,7 +89,7 @@ const ModalBody = (props: any) => {
 
                 <div className="input-default">
                     <label htmlFor="select-simple">Situação</label>
-                    <input id="select-simple" type="text" placeholder={props.data.idSituacao} />
+                    <input id="select-simple" type="text" placeholder={props.data.descricaoSituacao} />
                     <button className="br-button" type="button" aria-label="Exibir lista" data-trigger="data-trigger" onClick={openDropdown}><i className="fas fa-angle-down" aria-hidden="true"></i>
                     </button>
                 </div>
