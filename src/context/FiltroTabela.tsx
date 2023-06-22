@@ -1,12 +1,12 @@
 import React, { createContext, useState, useContext, Dispatch, SetStateAction } from 'react';
-import { EscolaData } from '../models/service';
+import { EscolaData, FederativeUnit } from '../models/service';
 
 interface FiltroContextType {
     nomeEscola: string;
     setNomeEscola: Dispatch<SetStateAction<string>>;
 
-    UFSelecionada: string;
-    setUFSelecionada: Dispatch<SetStateAction<string>>
+    UFSelecionada: FederativeUnit | false;
+    setUFSelecionada: Dispatch<SetStateAction<FederativeUnit | false>>
 
     situacaoSelecionada: string;
     setSituacaoSelecionada: Dispatch<SetStateAction<string>>;
@@ -25,7 +25,7 @@ const FiltroContext = createContext<FiltroContextType | undefined>(undefined);
 const FiltroProvider = ({ children }: any) => {
 
     const [nomeEscola, setNomeEscola] = useState("");
-    const [UFSelecionada, setUFSelecionada] = useState("");
+    const [UFSelecionada, setUFSelecionada] = useState<FederativeUnit | false>(false);
     const [situacaoSelecionada, setSituacaoSelecionada] = useState("");
     const [etapaDeEnsionoSelecionada, setEtapaDeEnsionoSelecionada] = useState("");
     const [municipioSelecionado, setMunicipioSelecionado] = useState("");

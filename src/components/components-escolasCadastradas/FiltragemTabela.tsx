@@ -1,7 +1,9 @@
 import "../../styles/App.css";
 import "../components-escolasCadastradas/FiltragemTabela.css";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFiltroTabela } from "../../context/FiltroTabela";
+import fetchFederativeUnit from "../../service/federativeUnit";
+import { FederativeUnit } from "../../models/service";
 
 export default function TabelaEscolas() {
 
@@ -23,14 +25,32 @@ export default function TabelaEscolas() {
     setMunicipioSelecionado,
 } = useFiltroTabela();
 
+const getUf = async () => {
+  try {
+    const resposta = await fetchFederativeUnit();
+    console.log(resposta);
+    setOpcoesUf(resposta);
+  } 
+  catch (error) {
+    console.log("error");
+  }
+}
+
+useEffect(() => {
+  if(opcoesUf.length == 0)
+    getUf();
+})
+
+
   const [showOptionsUF, setShowOptionsUF] = useState(false);
-  const optionsUF = [
-    'Acre', 'Alagoas', 'Amapá', 'Amazonas', 'Bahia', 'Ceará',
-    'Espirito Santo', 'Góias', 'Maranhão', 'Mato Grosso', 'Mato Grosso do Sul', 'Minas Gerais',
-    'Pará', 'Paraíba', 'Paraná', 'Pernanbuco', 'Piauí', 'Rio de Janeiro',
-    'Rio Grande do Sul', 'Rio Grande do Norte', 'Rondônia', 'Roraima', 'Santa Catarina', 'São Paulo',
-    'Sergipe', 'Tocantins'
-  ];
+  const [opcoesUf, setOpcoesUf] = useState<FederativeUnit[]>([]);
+  // const opcoesUf = [
+  //   'Acre', 'Alagoas', 'Amapá', 'Amazonas', 'Bahia', 'Ceará',
+  //   'Espirito Santo', 'Góias', 'Maranhão', 'Mato Grosso', 'Mato Grosso do Sul', 'Minas Gerais',
+  //   'Pará', 'Paraíba', 'Paraná', 'Pernanbuco', 'Piauí', 'Rio de Janeiro',
+  //   'Rio Grande do Sul', 'Rio Grande do Norte', 'Rondônia', 'Roraima', 'Santa Catarina', 'São Paulo',
+  //   'Sergipe', 'Tocantins'
+  // ];
 
   const [showOptionsSituacao, setShowOptionsSituacao] = useState(false);
   const optionsSituacao = ["Indicação", "Solicitação da escola", "Jornada de crescimento do professor", "Escola crítica"];
@@ -65,7 +85,7 @@ export default function TabelaEscolas() {
     }
   };
 
-  const handleOptionClick = (option: string, selectNumber: number) => {
+  const handleOptionClick = (option: any, selectNumber: number) => {
     switch (selectNumber) {
       case 1:
         setUFSelecionada(option);
@@ -104,7 +124,7 @@ export default function TabelaEscolas() {
           <input
             id="select-multtiple"
             type="text"
-            placeholder={UFSelecionada ? UFSelecionada : 'Todas'} />
+            placeholder={UFSelecionada ? UFSelecionada.nome: 'Todas'} />
           <button
             className="br-button"
             type="button"
@@ -117,13 +137,19 @@ export default function TabelaEscolas() {
           <div className="br-input">
             {showOptionsUF && (
               <div className="select-options">
-                {optionsUF.map((options, index) => (
+                 <div
+                    className="options"
+                    onClick={() => handleOptionClick(false, 1)}
+                  > Todas
+                    </div>
+                {opcoesUf.map((options, index) => (
                   <div
                     key={index}
                     className="options"
                     onClick={() => handleOptionClick(options, 1)}
                   >
-                    {options}
+                    
+                    {options.nome}
                   </div>
                 ))}
               </div>
