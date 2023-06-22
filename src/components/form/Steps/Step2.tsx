@@ -11,10 +11,7 @@ interface UfProps {
 }
 
 export default function Step2({ onClickBack }: Step2Props) {
-    const onFinish = async (values: any) => {
-        console.log("OK");
-    };
-
+    
     const [form] = Form.useForm();
     const rules = [
         {
@@ -22,17 +19,23 @@ export default function Step2({ onClickBack }: Step2Props) {
             message: "Preencha o campo ${name}!",
         },
     ];
-
+    
     const [uf, setUf] = useState<UfProps[]>();
-
-
-
+    
+    
+    
     async function fetchUf() {
         const uf = await fetchUnidadeFederativa();
         const newuf = uf.map((u) => ({ value: u.id, label: u.descricao }));
         setUf(newuf);
+        
     }
 
+
+    const onFinish = async (values: any) => {
+        console.log("OK");
+    
+    };
     return (
 
         <div>
@@ -47,7 +50,7 @@ export default function Step2({ onClickBack }: Step2Props) {
                 className="form-email"
                 preserve
             >
-                <div>
+                <div className="divScroll">
                     <div className="bloco">
                         <Form.Item name="nome da escola" label="Nome da Escola" rules={rules}>
                             <Input
@@ -107,6 +110,38 @@ export default function Step2({ onClickBack }: Step2Props) {
                                 className="inputForm2"
                             />
                         </Form.Item>
+
+                        <Form.Item name="telefone" label="Telefone" rules={rules}>
+                            <Input
+                                className="inputForm2"
+                            />
+                        </Form.Item>
+
+                        <Form.Item name="ciclos de ensino" label="Ciclos de Ensino" rules={rules}>
+                            <Select
+                                mode="multiple"
+                            >
+
+                                <Option value="infantil">Ensino Infantil</Option>
+                                <Option value="fundamental1">Ensino Fundamental - 1º, 2º e 3º ano</Option>
+                                <Option value="fundamental2">Ensino Fundamental - 4º, 5º e 6º ano</Option>
+                                <Option value="fundamental3">Ensino Fundamental - 7º, 8º e 9º ano</Option>
+
+                            </Select>
+                        </Form.Item>
+
+                        <Form.Item name="porte" label="Porte" rules={rules}>
+                            <Select
+                            >
+                                <Option value="Até 50 matrículas de escolarização">Até 50 matrículas de escolarização</Option>
+                                <Option value="Entre 51 e 200 matrículas de escolarização">Entre 51 e 200 matrículas de escolarização</Option>
+                                <Option value="Entre 201 e 501 matrículas de escolarização">Entre 201 e 501 matrículas de escolarização</Option>
+                                <Option value="Entre 501 e 1000 matrículas de escolarizaçãoual">Entre 501 e 1000 matrículas de escolarização</Option>
+                                <Option value="Mais de 1000 matrículas de escolarização">Mais de 1000 matrículas de escolarização</Option>
+
+                            </Select>
+                        </Form.Item>
+
                     </div>
                     <div className="bloco2">
                         <Form.Item name="endereço" label="Endereço" rules={rules}>
@@ -152,6 +187,27 @@ export default function Step2({ onClickBack }: Step2Props) {
                                 className="inputForm2"
                             />
                         </Form.Item>
+
+                        <Form.Item
+                            name="número total de alunos"
+                            label="Número Total de Alunos"
+                            rules={rules}
+                        >
+                            <Input
+                                className="inputForm2"
+                            />
+                        </Form.Item>
+
+                        <Form.Item
+                            name="número total de docentes"
+                            label="Número Total de Docentes"
+                            rules={rules}
+                        >
+                            <Input
+                                className="inputForm2"
+                            />
+                        </Form.Item>
+
                     </div>
                 </div>
                 <div className="voltar">
@@ -164,7 +220,7 @@ export default function Step2({ onClickBack }: Step2Props) {
                 <div className="proximo">
                     <Space>
                         <Button className="button2" type="primary" size="large" htmlType="submit" shape="round">
-                            Próximo
+                            Cadastrar
                         </Button>
                     </Space>
                 </div>

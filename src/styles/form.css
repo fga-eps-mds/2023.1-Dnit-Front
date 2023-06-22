@@ -303,16 +303,13 @@
   width: 18rem; 
   margin-right: 2rem;
   float: left;
+  margin-left: 1rem;
 }
 .bloco2{
   width: 18rem;
   margin-left: 2rem;
   float: right;
-}
-
-.bloco3{
-  justify-self: center;
-  width: 18rem;
+  margin-right: 2rem;
 }
 
 .inputForm2 {
@@ -324,6 +321,12 @@
   height: 30px;
   }
 
+
+  .divScroll {
+    max-height: 27rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
 
 @media (max-width: 1250px) {
   .form {
