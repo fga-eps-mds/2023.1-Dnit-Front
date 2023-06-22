@@ -11,7 +11,7 @@ async function fetchExcluirEscola(
 ): Promise<excluirEscolaResponse> {
   try {
     const response: AxiosResponse<excluirEscolaResponse> = await axios.delete(
-      excluirEscolaURL, {params:{id:id_escola}}
+      excluirEscolaURL, {params:{id:40}}
     );
     return response.data;
   } catch (error) {

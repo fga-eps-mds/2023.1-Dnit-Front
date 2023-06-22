@@ -3,7 +3,10 @@ import "../components-escolasCadastradas/FiltragemTabela.css";
 import React, { useEffect, useState } from 'react';
 import { useFiltroTabela } from "../../context/FiltroTabela";
 import fetchFederativeUnit from "../../service/federativeUnit";
-import { FederativeUnit } from "../../models/service";
+import { EtapasDeEnsino, FederativeUnit } from "../../models/service";
+import { Situacao } from "../../models/service";
+import fetchSituacao from "../../service/Situacao";
+import fetchEtapasDeEnsino from "../../service/etapasDeEnsino";
 
 export default function TabelaEscolas() {
 
@@ -41,6 +44,45 @@ useEffect(() => {
     getUf();
 })
 
+const getSituacao = async () => {
+  try {
+    const resposta = await fetchSituacao();
+    console.log(resposta);
+    setOpcoesSituacao(resposta);
+  } 
+  catch (error) {
+    console.log("error");
+  }
+}
+
+useEffect(() => {
+  if(opcoesSituacao.length == 0)
+    getSituacao();
+})
+
+const getEtapasDeEnsino = async () => {
+  try {
+    const resposta = await fetchEtapasDeEnsino();
+    console.log(resposta);
+    setOpcoesEtapasDeEnsino(resposta);
+  } 
+  catch (error) {
+    console.log("error");
+  }
+}
+
+useEffect(() => {
+  if(opcoesSituacao.length == 0)
+    getEtapasDeEnsino();
+})
+const [showOpcoesEtapasDeEnsino, setShowOpcoesEtapasDeEnsino] = useState(false);
+const [OpcoesEtapasDeEnsino, setOpcoesEtapasDeEnsino] = useState<EtapasDeEnsino[]>([]);
+
+
+
+  const [showOptionsSituacao, setShowOptionsSituacao] = useState(false);
+  const [opcoesSituacao, setOpcoesSituacao] = useState<Situacao[]>([]);
+
 
   const [showOptionsUF, setShowOptionsUF] = useState(false);
   const [opcoesUf, setOpcoesUf] = useState<FederativeUnit[]>([]);
@@ -52,13 +94,8 @@ useEffect(() => {
   //   'Sergipe', 'Tocantins'
   // ];
 
-  const [showOptionsSituacao, setShowOptionsSituacao] = useState(false);
-  const optionsSituacao = ["Indicação", "Solicitação da escola", "Jornada de crescimento do professor", "Escola crítica"];
 
 
-  const [showOptionsEtapasEnsino, setShowOptionsEtapasEnsino] = useState(false);
-  const optionsEtapasEnsino = ['1º a 3º ano', '4º a 6º ano', '7º a 9º ano'];
-  // const
 
   const [showOptionsMunincipio, setShowOptionsMunincipio] = useState(false);
   const optionsMunincipio = ['Munincipio 1', 'Munincipio 2', 'Munincipio 3'];
@@ -75,7 +112,7 @@ useEffect(() => {
         setShowOptionsSituacao(alternarEstado);
         break;
       case 3:
-        setShowOptionsEtapasEnsino(alternarEstado);
+        setShowOpcoesEtapasDeEnsino(alternarEstado);
         break;
       case 4:
         setShowOptionsMunincipio(alternarEstado);
@@ -97,7 +134,7 @@ useEffect(() => {
         break;
       case 3:
         setEtapaDeEnsionoSelecionada(option);
-        setShowOptionsEtapasEnsino(false);
+        setShowOpcoesEtapasDeEnsino(false);
         break;
       case 4:
         setMunicipioSelecionado(option);
@@ -177,13 +214,13 @@ useEffect(() => {
           <div className="br-input">
             {showOptionsSituacao && (
               <div className="select-options">
-                {optionsSituacao.map((options, index) => (
+                {opcoesSituacao.map((options, index) => (
                   <div
-                    key={options + index}
+                    key={index}
                     className="options"
                     onClick={() => handleOptionClick(options, 2)}
                   >
-                    {options}
+                    {options.descricao}
                   </div>
                 ))}
               </div>
@@ -209,15 +246,15 @@ useEffect(() => {
             <i className="fas fa-angle-down" aria-hidden="true"></i>
           </button>
           <div className="br-input">
-            {showOptionsEtapasEnsino && (
+            {showOpcoesEtapasDeEnsino && (
               <div className="select-options">
-                {optionsEtapasEnsino.map((options, index) => (
+                {OpcoesEtapasDeEnsino.map((options, index) => (
                   <div
                     key={index}
                     className="options"
                     onClick={() => handleOptionClick(options, 3)}
                   >
-                    {options}
+                    {options.descricao}
                   </div>
                 ))}
               </div>

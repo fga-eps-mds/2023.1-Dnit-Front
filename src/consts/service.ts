@@ -11,6 +11,8 @@ const resetPasswordURL = `${urlAPI}/usuario/redefinirSenha`;
 const listSchoolsURL = `https://localhost:7083/api/escolas/listarEscolas`;
 const excluirEscolaURL = `${urlAPI}/escolas/excluir`;
 const excluirSituacaoURL = `${urlAPI}/escolas/removerSituacao`
+const SituacaoURL = `${urlAPI}/dominio/situacao`;
+const EtapasDeEnsinoURL = `${urlAPI}/dominio/etapasDeEnsino`;
 
 export {
     federativeUnitURL,
@@ -23,5 +25,7 @@ export {
     cadastroURL,
     resetPasswordURL,
     excluirSituacaoURL,
-    listSchoolsURL
+    listSchoolsURL,
+    SituacaoURL,
+    EtapasDeEnsinoURL
 };
