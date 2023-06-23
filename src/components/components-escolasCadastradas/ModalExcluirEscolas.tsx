@@ -1,25 +1,27 @@
 import fetchExcluirEscola from '../../service/excluirEscola';
 import './ModalExcluirEscolas.css';
+import { notification } from 'antd';
 import { useState } from 'react';
 
 
 
 const ModalExcluirEscolas = (props:any) => {
-    
+    const [api,contextHolder] = notification.useNotification();
     const excluirEscola = async() => {
         try {
             await fetchExcluirEscola({id_escola: props.id});
-            props.close();
+            api.success({message: "Escola excluída com sucesso!"});
+            //props.close();
+            props.onClose();
           } catch (error) {
-            
-            console.log(error);
-            
+            api.error({message: "Erro ao excluir a escola!"});
           }
     
       }
     if(!props.open) {return null}
     return (
         < >
+        {contextHolder}
         <div className='overlay-modal'>
                 <div style={{zIndex:10000, position:'absolute', top:'31%', left:'31%', right:'31%'}}>
                     <div className="div br-modal large" style={{ width:'100%'}}>

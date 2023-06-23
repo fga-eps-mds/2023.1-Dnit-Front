@@ -10,7 +10,7 @@ import fetchDeleteSituation from "../../service/deleteSituation";
 
 
 const ModalExibirInformacoes = (props: any) => {
-  const { escola, open, close } = props;
+  const { escola, open, close, onClose } = props;
   // const { escola } = props;
   // console.log({ props });
   const [isModalExibirInformacoesOpen, setIsModalExibirInformacoesOpen] = useState(false);
@@ -20,7 +20,6 @@ const ModalExibirInformacoes = (props: any) => {
   var result = {};
 
   const openModal = async () => {
-
     setIsModalExibirInformacoesOpen(true);
   };
 
@@ -30,7 +29,6 @@ const ModalExibirInformacoes = (props: any) => {
       if (open) {
         openModal();
       }
-
   })
 
 
@@ -86,7 +84,9 @@ const ModalExibirInformacoes = (props: any) => {
                 <div className="br-modal-header">{escola.nomeEscola}
                 </div>
                 <ModalBody data={escola} open={isModalExibirInformacoesOpen} />
-                <ModalExcluirEscolas open={isModalExcluirEscolasOpen} id={escola.idEscola} close={() => setIsModalExcluirEscolasOpen(false)} />
+                <ModalExcluirEscolas open={isModalExcluirEscolasOpen} id={escola.idEscola} close={() => {
+                  setIsModalExcluirEscolasOpen(false);
+                }} onClose={() => {setIsModalExibirInformacoesOpen(false)}} />
                 <div className="br-modal-footer ">
                   <div className="content-left" style={{ marginRight: "25%" }}>
                     <button className=" br-button cancel-button" type="button" onClick={() => setIsModalExcluirEscolasOpen(true)}>Excluir escola
