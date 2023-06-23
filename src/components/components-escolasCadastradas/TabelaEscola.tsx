@@ -159,7 +159,7 @@ export default function TabelaEscola() {
                   <div className="modal-informacoes">
                     <ExibirInformacoesEscola open={modalStates[index]} escola = {school}  close={() => CloseModal(school.idEscola, index)} key={school.idEscola} />
                   </div>
-                  <tr key={school.idEscola} onClick={() => OpenModal(school.idEscola, index)}>
+                  <tr key={school.idEscola} onClick={() => OpenModal(school.idEscola, index)} data-testid="linha-escola">
                     <td data-th="Título coluna 1">{school.nomeEscola}</td>
                     <td data-th="Título coluna 2">{school.descricaoEtapasDeEnsino}</td>
                     <td data-th="Título coluna 3">{school.numeroTotalDeAlunos}</td>

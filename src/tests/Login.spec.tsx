@@ -36,7 +36,7 @@ describe("", () => {
         </AuthProvider>
       </MemoryRouter>
     );
-
+  
     await act(async () => {
       const emailInput = getByLabelText("E-mail");
       const passwordInput = getByLabelText("Senha");
