@@ -64,9 +64,12 @@ useEffect(() => {
 
 const getMunicipio = async () => {
   try {
-    const resposta = await fetchMunicipio();
-    console.log(resposta);
-    setOpcoesMunicipio(resposta);
+    if(UFSelecionada){
+      const resposta = await fetchMunicipio(UFSelecionada.id);
+      console.log(resposta);
+      setOpcoesMunicipio(resposta);
+
+    }
   } 
   catch (error) {
     console.log("error");
