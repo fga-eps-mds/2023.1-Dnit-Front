@@ -7,6 +7,8 @@ import { EtapasDeEnsino, FederativeUnit } from "../../models/service";
 import { Situacao } from "../../models/service";
 import fetchSituacao from "../../service/Situacao";
 import fetchEtapasDeEnsino from "../../service/etapasDeEnsino";
+import fetchMunicipio from "../../service/municipio";
+import { Municipio } from "../../models/service";
 
 export default function TabelaEscolas() {
 
@@ -54,10 +56,26 @@ const getSituacao = async () => {
     console.log("error");
   }
 }
-
 useEffect(() => {
   if(opcoesSituacao.length == 0)
     getSituacao();
+})
+
+
+const getMunicipio = async () => {
+  try {
+    const resposta = await fetchMunicipio();
+    console.log(resposta);
+    setOpcoesMunicipio(resposta);
+  } 
+  catch (error) {
+    console.log("error");
+  }
+}
+
+useEffect(() => {
+  if(opcoesMunicipio.length == 0)
+    getMunicipio();
 })
 
 const getEtapasDeEnsino = async () => {
@@ -75,31 +93,17 @@ useEffect(() => {
   if(opcoesSituacao.length == 0)
     getEtapasDeEnsino();
 })
-const [showOpcoesEtapasDeEnsino, setShowOpcoesEtapasDeEnsino] = useState(false);
-const [OpcoesEtapasDeEnsino, setOpcoesEtapasDeEnsino] = useState<EtapasDeEnsino[]>([]);
-
-
+  const [showOpcoesEtapasDeEnsino, setShowOpcoesEtapasDeEnsino] = useState(false);
+  const [OpcoesEtapasDeEnsino, setOpcoesEtapasDeEnsino] = useState<EtapasDeEnsino[]>([]);
 
   const [showOptionsSituacao, setShowOptionsSituacao] = useState(false);
   const [opcoesSituacao, setOpcoesSituacao] = useState<Situacao[]>([]);
 
-
   const [showOptionsUF, setShowOptionsUF] = useState(false);
   const [opcoesUf, setOpcoesUf] = useState<FederativeUnit[]>([]);
-  // const opcoesUf = [
-  //   'Acre', 'Alagoas', 'Amapá', 'Amazonas', 'Bahia', 'Ceará',
-  //   'Espirito Santo', 'Góias', 'Maranhão', 'Mato Grosso', 'Mato Grosso do Sul', 'Minas Gerais',
-  //   'Pará', 'Paraíba', 'Paraná', 'Pernanbuco', 'Piauí', 'Rio de Janeiro',
-  //   'Rio Grande do Sul', 'Rio Grande do Norte', 'Rondônia', 'Roraima', 'Santa Catarina', 'São Paulo',
-  //   'Sergipe', 'Tocantins'
-  // ];
-
-
-
-
-  const [showOptionsMunincipio, setShowOptionsMunincipio] = useState(false);
-  const optionsMunincipio = ['Munincipio 1', 'Munincipio 2', 'Munincipio 3'];
-
+ 
+  const [showOpcoesMunicipio, setShowOpcoesMunincipio] = useState(false);
+  const [opcoesMunicipio, setOpcoesMunicipio] = useState<Municipio[]>([]);
 
   const alternarEstado = (valorAtual: boolean) => (!valorAtual);
 
@@ -115,7 +119,7 @@ const [OpcoesEtapasDeEnsino, setOpcoesEtapasDeEnsino] = useState<EtapasDeEnsino[
         setShowOpcoesEtapasDeEnsino(alternarEstado);
         break;
       case 4:
-        setShowOptionsMunincipio(alternarEstado);
+        setShowOpcoesMunincipio(alternarEstado);
         break;
       default:
         break;
@@ -138,7 +142,7 @@ const [OpcoesEtapasDeEnsino, setOpcoesEtapasDeEnsino] = useState<EtapasDeEnsino[
         break;
       case 4:
         setMunicipioSelecionado(option);
-        setShowOptionsMunincipio(false);
+        setShowOpcoesMunincipio(false);
         break;
       default:
         break;
@@ -195,13 +199,14 @@ const [OpcoesEtapasDeEnsino, setOpcoesEtapasDeEnsino] = useState<EtapasDeEnsino[
         </div>
       </div>
 
+
       <div className="br-select" >
         <div className="br-input">
           <label htmlFor="select-multtiple">Situação</label>
           <input
             id="select-multtiple"
             type="text"
-            placeholder={situacaoSelecionada ? situacaoSelecionada : 'Todas'} />
+            placeholder={situacaoSelecionada ? situacaoSelecionada.descricao: 'Todas'} />
           <button
             className="br-button"
             type="button"
@@ -214,6 +219,11 @@ const [OpcoesEtapasDeEnsino, setOpcoesEtapasDeEnsino] = useState<EtapasDeEnsino[
           <div className="br-input">
             {showOptionsSituacao && (
               <div className="select-options">
+                 <div
+                    className="options"
+                    onClick={() => handleOptionClick(false, 2)}
+                  > Todas
+                    </div>
                 {opcoesSituacao.map((options, index) => (
                   <div
                     key={index}
@@ -229,13 +239,15 @@ const [OpcoesEtapasDeEnsino, setOpcoesEtapasDeEnsino] = useState<EtapasDeEnsino[
         </div>
       </div>
 
+
+
       <div className="br-select" >
         <div className="br-input">
           <label htmlFor="select-multtiple">Etapas de Ensino</label>
           <input
             id="select-multtiple"
             type="text"
-            placeholder={etapaDeEnsionoSelecionada ? etapaDeEnsionoSelecionada : 'Todas'} />
+            placeholder={etapaDeEnsionoSelecionada ? etapaDeEnsionoSelecionada.descricao: 'Todas'} />
           <button
             className="br-button"
             type="button"
@@ -248,6 +260,11 @@ const [OpcoesEtapasDeEnsino, setOpcoesEtapasDeEnsino] = useState<EtapasDeEnsino[
           <div className="br-input">
             {showOpcoesEtapasDeEnsino && (
               <div className="select-options">
+                 <div
+                    className="options"
+                    onClick={() => handleOptionClick(false, 3)}
+                  > Todas
+                    </div>
                 {OpcoesEtapasDeEnsino.map((options, index) => (
                   <div
                     key={index}
@@ -269,7 +286,7 @@ const [OpcoesEtapasDeEnsino, setOpcoesEtapasDeEnsino] = useState<EtapasDeEnsino[
           <input
             id="select-multtiple"
             type="text"
-            placeholder={municipioSelecionado ? municipioSelecionado : 'Todos'} />
+            placeholder={municipioSelecionado ? municipioSelecionado.nome : 'Todos'} />
           <button
             className="br-button"
             type="button"
@@ -280,15 +297,20 @@ const [OpcoesEtapasDeEnsino, setOpcoesEtapasDeEnsino] = useState<EtapasDeEnsino[
             <i className="fas fa-angle-down" aria-hidden="true"></i>
           </button>
           <div className="br-input">
-            {showOptionsMunincipio && (
+            {showOpcoesMunicipio && (
               <div className="select-options">
-                {optionsMunincipio.map((options, index) => (
+                 <div
+                    className="options"
+                    onClick={() => handleOptionClick(false, 4)}
+                  > Todos
+                    </div>
+                {opcoesMunicipio.map((options, index) => (
                   <div
                     key={index}
                     className="options"
                     onClick={() => handleOptionClick(options, 4)}
                   >
-                    {options}
+                    {options.nome}
                   </div>
                 ))}
               </div>

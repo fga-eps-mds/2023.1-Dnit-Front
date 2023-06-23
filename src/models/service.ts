@@ -2,15 +2,21 @@ export interface FederativeUnit {
   id: number;
   nome: string;
 }
+
+export interface Municipio{
+  id: number;
+  nome: string;
+}
+
 export interface Situacao {
   id: number;
   descricao: string;
 }
+
 export interface EtapasDeEnsino {
   id: number;
   descricao: string;
 }
-
 
 export interface LoginData {
   email: string;

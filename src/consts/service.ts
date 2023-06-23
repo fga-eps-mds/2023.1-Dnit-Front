@@ -13,6 +13,7 @@ const excluirEscolaURL = `${urlAPI}/escolas/excluir`;
 const excluirSituacaoURL = `${urlAPI}/escolas/removerSituacao`
 const SituacaoURL = `${urlAPI}/dominio/situacao`;
 const EtapasDeEnsinoURL = `${urlAPI}/dominio/etapasDeEnsino`;
+const MunicipioURL = `${urlAPI}/dominio/municipio`;
 
 export {
     federativeUnitURL,
@@ -27,5 +28,6 @@ export {
     excluirSituacaoURL,
     listSchoolsURL,
     SituacaoURL,
-    EtapasDeEnsinoURL
+    EtapasDeEnsinoURL,
+    MunicipioURL
 };

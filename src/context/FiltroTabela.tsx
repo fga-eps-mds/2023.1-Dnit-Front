@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext, Dispatch, SetStateAction } from 'react';
-import { EscolaData, FederativeUnit } from '../models/service';
+import { EscolaData, FederativeUnit, Situacao, EtapasDeEnsino, Municipio} from '../models/service';
 
 interface FiltroContextType {
     nomeEscola: string;
@@ -8,14 +8,14 @@ interface FiltroContextType {
     UFSelecionada: FederativeUnit | false;
     setUFSelecionada: Dispatch<SetStateAction<FederativeUnit | false>>
 
-    situacaoSelecionada: string;
-    setSituacaoSelecionada: Dispatch<SetStateAction<string>>;
+    situacaoSelecionada: Situacao | false;
+    setSituacaoSelecionada: Dispatch<SetStateAction<Situacao | false>>;
 
-    etapaDeEnsionoSelecionada: string;
-    setEtapaDeEnsionoSelecionada: Dispatch<SetStateAction<string>>;
+    etapaDeEnsionoSelecionada: EtapasDeEnsino | false;
+    setEtapaDeEnsionoSelecionada: Dispatch<SetStateAction<EtapasDeEnsino | false>>;
 
-    municipioSelecionado: string;
-    setMunicipioSelecionado: Dispatch<SetStateAction<string>>;
+    municipioSelecionado: Municipio | false;
+    setMunicipioSelecionado: Dispatch<SetStateAction<Municipio | false>>;
 
 
 }
@@ -26,9 +26,9 @@ const FiltroProvider = ({ children }: any) => {
 
     const [nomeEscola, setNomeEscola] = useState("");
     const [UFSelecionada, setUFSelecionada] = useState<FederativeUnit | false>(false);
-    const [situacaoSelecionada, setSituacaoSelecionada] = useState("");
-    const [etapaDeEnsionoSelecionada, setEtapaDeEnsionoSelecionada] = useState("");
-    const [municipioSelecionado, setMunicipioSelecionado] = useState("");
+    const [situacaoSelecionada, setSituacaoSelecionada] = useState<Situacao | false>(false);
+    const [etapaDeEnsionoSelecionada, setEtapaDeEnsionoSelecionada] = useState<EtapasDeEnsino | false>(false);
+    const [municipioSelecionado, setMunicipioSelecionado] = useState<Municipio| false>(false);
 
     const [carregandoEscolas, setCarregandoEscolas] = useState<boolean>(false);
     const [escolasFiltradas, setEscolasFiltradas] = useState<EscolaData | false>(false);

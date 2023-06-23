@@ -161,10 +161,10 @@ export default function TabelaEscola() {
                   </div>
                   <tr key={school.idEscola} onClick={() => OpenModal(school.idEscola, index)}>
                     <td data-th="Título coluna 1">{school.nomeEscola}</td>
-                    <td data-th="Título coluna 2">{school.idEtapasDeEnsino}</td>
+                    <td data-th="Título coluna 2">{school.descricaoEtapasDeEnsino}</td>
                     <td data-th="Título coluna 3">{school.numeroTotalDeAlunos}</td>
-                    <td data-th="Título coluna 4">{school.idSituacao}</td>
-                    <td data-th="Título coluna 5">{school.idMunicipio}</td>
+                    <td data-th="Título coluna 4">{school.descricaoSituacao}</td>
+                    <td data-th="Título coluna 5">{school.nomeMunicipio}</td>
                     <td data-th="Título coluna 6">{school.siglaUf}</td>
                   </tr></>
               )
