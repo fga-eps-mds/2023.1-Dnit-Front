@@ -1,9 +1,31 @@
+.form3{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
 .form3 h2{
     border: 1px dashed #000; /* Define a espessura, estilo e cor da borda */
-    padding: 5px;
+    padding: 0.6em;
     font-size: 1em;
 }
 
 .botaoEscolherArquivo {
     background-color: #1351B4;
+}
+
+.secaoInserir{
+    background-color: white;
+    display: flex;
+    align-items: center;
+    width: 60em;
+    height: 15em;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.ant-upload-text{
+    padding-left: 2em;
+    padding-right: 2em;
 }

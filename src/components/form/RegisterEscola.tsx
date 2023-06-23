@@ -2,7 +2,7 @@ import "../../styles/form.css";
 import { useState } from "react";
 import Step1 from "./Steps/Step1";
 import Step2 from "./Steps/Step2";
-import Step3 from "./Steps/Setp3";
+import Step3 from "./Steps/Step3";
 import { Form } from "antd";
 export default function RegS() {
 
