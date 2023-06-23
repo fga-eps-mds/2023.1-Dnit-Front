@@ -1,0 +1,9 @@
+.form3 h2{
+    border: 1px dashed #000; /* Define a espessura, estilo e cor da borda */
+    padding: 5px;
+    font-size: 1em;
+}
+
+.botaoEscolherArquivo {
+    background-color: #1351B4;
+}

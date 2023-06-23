@@ -1,10 +1,11 @@
 import { Button, Form, Space } from "antd";
 interface Step1Props {
     onClick: () => void
+    onClickCSV?: () => void
 }
 
 
-export default function Step1({ onClick }: Step1Props) {
+export default function Step1({ onClick, onClickCSV }: Step1Props) {
     return (
 
         <div className="form1">
@@ -19,7 +20,7 @@ export default function Step1({ onClick }: Step1Props) {
                 </Form.Item>
                 <Form.Item className="insbutton">
                     <Space>
-                        <Button className="button1" type="primary" size="large" shape="round">
+                        <Button className="button1" type="primary" size="large" shape="round" onClick={onClickCSV}>
                             Utilizando Arquivo CSV
                         </Button>
                     </Space>
