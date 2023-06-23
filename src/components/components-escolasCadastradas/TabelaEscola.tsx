@@ -4,16 +4,19 @@ import fetchlistSchools from "../../service/listSchools";
 import { useEffect, useState } from "react";
 import { EscolaData } from "../../models/service";
 import ExibirInformacoesEscola from "../../pages/ExibirInformacoesEscola";
+import { useFiltroTabela } from "../../context/FiltroTabela";
+
 
 
 export default function TabelaEscola() {
+  const {escolasFiltradas}= useFiltroTabela()
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [showOptionsPages, setShowOptionsPages] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   
   const [showSchoolsPerPage, setShowSchoolsPerPage] = useState(false);
-  const [schoolsPerPage, setSchoolsPerPage] = useState(2);
+  const [schoolsPerPage, setSchoolsPerPage] = useState(5);
   const optionsSchoolsPerPage = ['2', '5', '10', '20'];
   const [schools, setschools] = useState<EscolaData[]>([]);
 
@@ -151,25 +154,26 @@ export default function TabelaEscola() {
           </tr>
         </thead>
         <tbody>
-          {schools.length > 0 && schools.map((school, index) => {
-            const range = getpagerange();
-            if (index >= range[0] - 1 && index <= range[1] - 1)
+          {escolasFiltradas !== false && escolasFiltradas.map((escola, index) => {
+           // const range = getpagerange();
+            //if (index >= range[0] - 1 && index <= range[1] - 1)
               return (
                 <>
                   <div className="modal-informacoes">
-                    <ExibirInformacoesEscola open={modalStates[index]} escola = {school}  close={() => CloseModal(school.idEscola, index)} key={school.idEscola} />
+                    <ExibirInformacoesEscola open={modalStates[index]} escola = {escola}  close={() => CloseModal(escola.idEscola, index)} key={escola.idEscola} />
                   </div>
-                  <tr key={school.idEscola} onClick={() => OpenModal(school.idEscola, index)} data-testid="linha-escola">
-                    <td data-th="Título coluna 1">{school.nomeEscola}</td>
-                    <td data-th="Título coluna 2">{school.descricaoEtapasDeEnsino}</td>
-                    <td data-th="Título coluna 3">{school.numeroTotalDeAlunos}</td>
-                    <td data-th="Título coluna 4">{school.descricaoSituacao}</td>
-                    <td data-th="Título coluna 5">{school.nomeMunicipio}</td>
-                    <td data-th="Título coluna 6">{school.siglaUf}</td>
+                  <tr key={escola.idEscola} onClick={() => OpenModal(escola.idEscola, index)} data-testid="linha-escola">
+                    <td data-th="Título coluna 1">{escola.nomeEscola}</td>
+                    <td data-th="Título coluna 2">{escola.descricaoEtapasDeEnsino}</td>
+                    <td data-th="Título coluna 3">{escola.numeroTotalDeAlunos}</td>
+                    <td data-th="Título coluna 4">{escola.descricaoSituacao}</td>
+                    <td data-th="Título coluna 5">{escola.nomeMunicipio}</td>
+                    <td data-th="Título coluna 6">{escola.siglaUf}</td>
                   </tr></>
               )
-            return <></>
-          })}
+            })
+          }
+           
 
           <tr className="collapse">
             <td id="collapse-1-4-27509" aria-hidden="true" hidden={true} colSpan={6}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultricies aliquet lacinia. Vestibulum in interdum eros. Donec vel tempus diam. Aenean pulvinar mattis nisi in laoreet. Integer felis mi, vehicula sed pretium sit amet, pellentesque vel nisl. Curabitur metus ante, pellentesque in lectus a, sagittis imperdiet mi.</td>

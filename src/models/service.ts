@@ -8,6 +8,8 @@ export interface Municipio{
   nome: string;
 }
 
+
+
 export interface Situacao {
   id: number;
   descricao: string;

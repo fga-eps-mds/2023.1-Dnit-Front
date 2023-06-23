@@ -22,8 +22,8 @@ export default function EscolasCadastradas() {
       <BreadCrumb paginaInicial={paginas[0]} elementosLi={paginas}></BreadCrumb>
       <FiltroProvider>
         <FiltragemTabela />
+        <TabelaEscola />
       </FiltroProvider>
-      <TabelaEscola />
       <Footer />
     </div>
   );

@@ -23,12 +23,14 @@ export default function TabelaEscolas() {
     situacaoSelecionada,
     setSituacaoSelecionada,
 
-    etapaDeEnsionoSelecionada,
-    setEtapaDeEnsionoSelecionada,
+    etapaDeEnsinoSelecionada,
+    setEtapaDeEnsinoSelecionada,
 
     municipioSelecionado,
     setMunicipioSelecionado,
 } = useFiltroTabela();
+
+
 
 const getUf = async () => {
   try {
@@ -140,7 +142,7 @@ useEffect(() => {
         setShowOptionsSituacao(false);
         break;
       case 3:
-        setEtapaDeEnsionoSelecionada(option);
+        setEtapaDeEnsinoSelecionada(option);
         setShowOpcoesEtapasDeEnsino(false);
         break;
       case 4:
@@ -242,15 +244,13 @@ useEffect(() => {
         </div>
       </div>
 
-
-
       <div className="br-select" >
         <div className="br-input">
           <label htmlFor="select-multtiple">Etapas de Ensino</label>
           <input
             id="select-multtiple"
             type="text"
-            placeholder={etapaDeEnsionoSelecionada ? etapaDeEnsionoSelecionada.descricao: 'Todas'} />
+            placeholder={etapaDeEnsinoSelecionada ? etapaDeEnsinoSelecionada.descricao: 'Todas'} />
           <button
             className="br-button"
             type="button"
