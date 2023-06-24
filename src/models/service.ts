@@ -28,3 +28,7 @@ export interface ResetPasswordData {
   uuidAutenticacao: string;
   senha: string;
 }
+
+export interface InsertFileData{
+  arquivo: File;
+}

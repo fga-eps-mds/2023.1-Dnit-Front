@@ -1,10 +1,19 @@
 import { Button, Form, Space } from "antd";
 import "../../../styles/form/step3.css";
 import Dragdrop from "../../Upload/DragDrop"
+import fetchInsertFile from "../../../service/insertFile";
 interface Step1Props {
     onClickBack: () => void
 }
 
+const enviarArquivo =async (values: any) => {
+    try{
+        //await fetchInsertFile()
+    }
+    catch{
+
+    }
+};
 
 export default function Step3({ onClickBack }: Step1Props) {
     function onFinish() {
@@ -20,7 +29,7 @@ export default function Step3({ onClickBack }: Step1Props) {
                 <Button className="botaoCancelar" onClick={onClickBack}>
                     Cancelar
                 </Button>
-                <Button className="button1">
+                <Button className="button1" onClick={enviarArquivo}>
                     Inserir arquivo
                 </Button>
             </div>
