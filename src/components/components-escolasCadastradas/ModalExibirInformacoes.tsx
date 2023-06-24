@@ -68,6 +68,7 @@ const ModalExibirInformacoes = (props: any) => {
         api.error({ message: `Erro ao salvar situação` });
       }
     };
+    props.close();
   }
 
   const openDropdown = () => {
