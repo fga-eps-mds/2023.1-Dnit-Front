@@ -1,10 +1,10 @@
 import "../../styles/App.css";
 import "../components-escolasCadastradas/TabelaEscola.css";
-import fetchlistSchools from "../../service/listSchools";
 import { useEffect, useState, useRef } from "react";
 import { EscolaData } from "../../models/service";
 import ExibirInformacoesEscola from "../../pages/ExibirInformacoesEscola";
 import { useFiltroTabela } from "../../context/FiltroTabela";
+import { notification } from "antd";
 
 
 
@@ -12,6 +12,8 @@ export default function TabelaEscola() {
   const { setNomeEscola, escolasFiltradas, paginaAtual, mudarPagina, escolasPorPagina, mudarQuantidadePorPaginas, irParaPagina } = useFiltroTabela()
   const nomeRef = useRef<HTMLInputElement>(null)
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const [, contextHolder] = notification.useNotification();
 
   const [showOptionsPages, setShowOptionsPages] = useState(false);
 
@@ -100,11 +102,12 @@ export default function TabelaEscola() {
        getSchool();
    }) */
 
-   
+
 
   return (
 
     <div className="br-table" data-search="data-search" data-selection="data-selection" data-collapse="data-collapse" data-random="data-random">
+      {contextHolder}
       <div className="table-header">
         <div className="top-bar">
           <div className="table-title">Escolas Cadastradas</div>
@@ -122,7 +125,7 @@ export default function TabelaEscola() {
         <div className="search-bar">
           <div className="br-input">
             <label htmlFor="table-searchbox-27509">Buscar</label>
-            <input id="table-searchbox-27509" type="text" placeholder="Buscar na tabela"  />
+            <input id="table-searchbox-27509" type="text" placeholder="Buscar na tabela" />
             <button className="br-button circle" type="button" aria-label="Buscar"><i className="fas fa-search" aria-hidden="true"  ></i>
             </button>
           </div>
