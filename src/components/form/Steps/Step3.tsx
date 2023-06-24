@@ -4,6 +4,7 @@ import Dragdrop from "../../Upload/DragDrop"
 import fetchInsertFile from "../../../service/insertFile";
 interface Step1Props {
     onClickBack: () => void
+    onClickAceito: () => void
 }
 
 const enviarArquivo =async (values: any) => {
@@ -15,7 +16,7 @@ const enviarArquivo =async (values: any) => {
     }
 };
 
-export default function Step3({ onClickBack }: Step1Props) {
+export default function Step3({ onClickBack, onClickAceito }: Step1Props) {
     function onFinish() {
         console.log("ok");
     }
@@ -29,7 +30,7 @@ export default function Step3({ onClickBack }: Step1Props) {
                 <Button className="botaoCancelar" onClick={onClickBack}>
                     Cancelar
                 </Button>
-                <Button className="button1" onClick={enviarArquivo}>
+                <Button className="button1" onClick={onClickAceito}>
                     Inserir arquivo
                 </Button>
             </div>
