@@ -1,6 +1,12 @@
-import { Button, Form, Input, Select, Space } from "antd";
+import { Button, Form, Input, Select, Space, notification } from "antd";
 import { useState } from "react";
 import fetchUnidadeFederativa from "../../../service/federativeUnit";
+import fetchCadastroEscola from "../../../service/registerSchool";
+
+
+
+
+
 const { Option } = Select;
 interface Step2Props {
     onClickBack: () => void
@@ -13,16 +19,15 @@ interface UfProps {
 export default function Step2({ onClickBack }: Step2Props) {
     
     const [form] = Form.useForm();
+    const [api, contextHolder] = notification.useNotification();
     const rules = [
         {
             required: true,
-            message: "Preencha o campo ${name}!",
+            message: "Preencha o campo ${label}!",
         },
     ];
-    
+
     const [uf, setUf] = useState<UfProps[]>();
-    
-    
     
     async function fetchUf() {
         const uf = await fetchUnidadeFederativa();
@@ -33,12 +38,36 @@ export default function Step2({ onClickBack }: Step2Props) {
 
 
     const onFinish = async (values: any) => {
-        console.log("OK");
+        const registerSchoolData = {
+            nome: values.nome,
+            rede: values.rede,
+            codigo: values.codigo,
+            uf: 27,
+            cep: values.cep,
+            telefone: values.telefone,
+            ciclos: values.ciclos,
+            porte: values.porte,
+            endereco: values.endereco,
+            municipio: values.municipio,
+            localizacao: values.localizacao,
+            longitude: values.longitude,
+            latitude: values.latitude,
+            numeroAlunos: values.numeroAlunos,
+            numeroDocentes: values.numeroDocentes
+        };
+        
+        try {
+            await fetchCadastroEscola(registerSchoolData);
+            api.success({ message: "Cadastro feito!" });
+          } catch (error) {
+            api.error({ message: `Erro ao fazer o cadastro` });
+          }
     
     };
     return (
 
         <div>
+        {contextHolder}
             <h2>Cadastrar Escola</h2>
             <Form
                 form={form}
@@ -52,7 +81,7 @@ export default function Step2({ onClickBack }: Step2Props) {
             >
                 <div className="divScroll">
                     <div className="bloco">
-                        <Form.Item name="nome da escola" label="Nome da Escola" rules={rules}>
+                        <Form.Item name="nome" label="Nome da Escola" rules={rules}>
                             <Input
                                 className="inputForm2"
                             />
@@ -66,7 +95,7 @@ export default function Step2({ onClickBack }: Step2Props) {
                             </Select>
                         </Form.Item>
 
-                        <Form.Item name="codigo da escola" label="Codigo da Escola" rules={rules}>
+                        <Form.Item name="codigo" label="Codigo da Escola" rules={rules}>
                             <Input
                                 className="inputForm2"
                             />
@@ -117,7 +146,7 @@ export default function Step2({ onClickBack }: Step2Props) {
                             />
                         </Form.Item>
 
-                        <Form.Item name="ciclos de ensino" label="Ciclos de Ensino" rules={rules}>
+                        <Form.Item name="ciclos" label="Ciclos de Ensino" rules={rules}>
                             <Select
                                 mode="multiple"
                             >
@@ -144,14 +173,14 @@ export default function Step2({ onClickBack }: Step2Props) {
 
                     </div>
                     <div className="bloco2">
-                        <Form.Item name="endereço" label="Endereço" rules={rules}>
+                        <Form.Item name="endereco" label="Endereço" rules={rules}>
                             <Input
                                 className="inputForm2"
                             />
                         </Form.Item>
 
                         <Form.Item
-                            name="município"
+                            name="municipio"
                             label="Município"
                             rules={rules}
                         >
@@ -160,7 +189,7 @@ export default function Step2({ onClickBack }: Step2Props) {
                             />
                         </Form.Item>
 
-                        <Form.Item name="localização" label="Localização" rules={rules}>
+                        <Form.Item name="localizacao" label="Localização" rules={rules}>
                             <Select
                             >
                                 <Option value="Rural">Rural</Option>
@@ -189,7 +218,7 @@ export default function Step2({ onClickBack }: Step2Props) {
                         </Form.Item>
 
                         <Form.Item
-                            name="número total de alunos"
+                            name="númeroAlunos"
                             label="Número Total de Alunos"
                             rules={rules}
                         >
@@ -199,7 +228,7 @@ export default function Step2({ onClickBack }: Step2Props) {
                         </Form.Item>
 
                         <Form.Item
-                            name="número total de docentes"
+                            name="númeroDocentes"
                             label="Número Total de Docentes"
                             rules={rules}
                         >
