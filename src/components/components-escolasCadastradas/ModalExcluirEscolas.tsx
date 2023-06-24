@@ -2,17 +2,19 @@ import { notification } from 'antd';
 import fetchExcluirEscola from '../../service/excluirEscola';
 import './ModalExcluirEscolas.css';
 import { useState } from 'react';
+import { useFiltroTabela } from '../../context/FiltroTabela';
 
 
 
 const ModalExcluirEscolas = (props: any) => {
-
+    const {fetchEscolasFiltradas} = useFiltroTabela()
     const excluirEscola = async () => {
         const nomeEscola = props.nomeEscola;
         try {
             await fetchExcluirEscola({ id_escola: props.id });
             notification.success({ message: `Escola ${nomeEscola} excluída com sucesso!` });
             props.close();
+            fetchEscolasFiltradas();
         } catch (error) {
             notification.error({ message: `Erro ao excluir a escola ${nomeEscola}! ` });
             props.close();

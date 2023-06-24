@@ -28,6 +28,7 @@ interface FiltroContextType {
     irParaPagina: (numeroPagina:number) => void;
     mudarQuantidadePorPaginas: (novaQuantia: number) => void;
     escolasPorPagina: number;
+    fetchEscolasFiltradas: () => void;
 
 
 }
@@ -156,6 +157,7 @@ const FiltroProvider = ({ children }: any) => {
         irParaPagina,
         mudarQuantidadePorPaginas,
         escolasPorPagina,
+        fetchEscolasFiltradas,
 
     };
     return (

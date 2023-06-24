@@ -87,7 +87,7 @@ const ModalExibirInformacoes = (props: any) => {
                 <ModalExcluirEscolas open={isModalExcluirEscolasOpen} id={escola.idEscola} close={() => {
                   setIsModalExcluirEscolasOpen(false);
                   close();
-                }} />
+                }} nomeEscola ={escola.nomeEscola}/>
                 <div className="br-modal-footer ">
                   <div className="content-left" style={{ marginRight: "25%" }}>
                     <button className=" br-button cancel-button" type="button" onClick={() => setIsModalExcluirEscolasOpen(true)}>Excluir escola
