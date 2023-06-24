@@ -9,11 +9,10 @@ import { useFiltroTabela } from "../../context/FiltroTabela";
 
 
 export default function TabelaEscola() {
-  const {escolasFiltradas}= useFiltroTabela()
+  const {escolasFiltradas,paginaAtual, mudarPagina, escolasPorPagina, mudarQuantidadePorPaginas}= useFiltroTabela()
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [showOptionsPages, setShowOptionsPages] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
   
   const [showSchoolsPerPage, setShowSchoolsPerPage] = useState(false);
   const [schoolsPerPage, setSchoolsPerPage] = useState(5);
@@ -37,16 +36,16 @@ export default function TabelaEscola() {
   const handleOptionClick = (option: any, selectNumber: any) => {
     switch (selectNumber) {
       case 1:
-        setSchoolsPerPage(option);
+        mudarQuantidadePorPaginas(option);
         setShowSchoolsPerPage(false);
 
         break;
       case 2:
-        setCurrentPage(option);
+        //setCurrentPage(option);
         setShowOptionsPages(false);       
         break;
     }
-  }
+  } 
 
   const OpenModal = (id: number, index: number) => {
     const newModalStates = [...modalStates];
@@ -65,10 +64,10 @@ export default function TabelaEscola() {
       setSchoolsPerPage(value);
   }
 
-  const updateCurrentPage = (value: number) => {
-    if (gettotalpages() >= (currentPage + value) && currentPage + value >= 1)
+  /*const updateCurrentPage = (value: number) => {
+    if (gettotalpages() >= (paginaAtual+ value) && paginaAtual+ value >= 1)
       setCurrentPage((currentValue) => (currentValue + value))
-  }
+  }*/
   const gettotalpages = () => {
     let totalpages = schools.length / schoolsPerPage;
     if ((totalpages % 1) !== 0) {
@@ -77,14 +76,14 @@ export default function TabelaEscola() {
     return totalpages;
   }
   const getpagerange = () => {
-    const rangeStart = ((currentPage - 1) * schoolsPerPage) + 1;
+    const rangeStart = ((paginaAtual- 1) * schoolsPerPage) + 1;
     let rangeEnd = (rangeStart + schoolsPerPage) - 1;
     if (rangeEnd > schools.length) {
       rangeEnd = schools.length;
     }
     return [rangeStart, rangeEnd];
   }
-  const getSchool = async () => {
+ /* const getSchool = async () => {
     try {
       const resultschools = await fetchlistSchools();
       console.log({ resultschools })
@@ -98,7 +97,7 @@ export default function TabelaEscola() {
   useEffect(() => {
     if (schools.length <= 0)
       getSchool();
-  })
+  }) */
 
   return (
 
@@ -181,12 +180,12 @@ export default function TabelaEscola() {
         </tbody>
       </table>
       <div className="table-footer">
-        <nav className="br-pagination" aria-label="Paginação de resultados" data-total={schools.length} data-current="38" data-per-page="20">
+        <nav className="br-pagination" aria-label="Paginação de resultados" data-total={escolasFiltradas?escolasFiltradas.length: 0} data-current="38" data-per-page="20">
           <div className="pagination-per-page">
             <div className="br-select">
               <div className="br-input">
                 <label htmlFor="per-page-selection-random-91921">Exibir</label>
-                <input id="per-page-selection-random-91921" type="text" placeholder={schoolsPerPage.toString()} />
+                <input id="per-page-selection-random-91921" type="text" placeholder={escolasPorPagina.toString()} />
                 <button className="br-button" type="button" aria-label="Exibir lista" tabIndex={-1} data-trigger="data-trigger"><i className="fas fa-angle-down" aria-hidden="true" onClick={() => handleButtonClick(1)}></i>
                 </button>
                 <div className="br-input">
@@ -212,7 +211,7 @@ export default function TabelaEscola() {
             <div className="br-select">
               <div className="br-input">
                 <label htmlFor="go-to-selection-random-15337">Página</label>
-                <input id="go-to-selection-random-15337" type="text" placeholder={currentPage.toString()} />
+                <input id="go-to-selection-random-15337" type="text" placeholder={paginaAtual.toString()} />
                 <button className="br-button" type="button" aria-label="Exibir lista" tabIndex={-1} data-trigger="data-trigger"  >
                   <i className="fas fa-angle-down" aria-hidden="true"></i>
                 </button>
@@ -235,9 +234,9 @@ export default function TabelaEscola() {
             </div>
           </div><span className="br-divider d-none d-sm-block mx-3"></span>
           <div className="pagination-arrows ml-auto ml-sm-0">
-            <button className="br-button circle" type="button" aria-label="Voltar página" onClick={() => updateCurrentPage(-1)} ><i className="fas fa-angle-left" aria-hidden="true"></i>
+            <button className="br-button circle" type="button" aria-label="Voltar página" onClick={() => mudarPagina(-1)} ><i className="fas fa-angle-left" aria-hidden="true"></i>
             </button>
-            <button className="br-button circle" type="button" aria-label="Avançar página" onClick={() => updateCurrentPage(1)}><i className="fas fa-angle-right" aria-hidden="true"></i>
+            <button className="br-button circle" type="button" aria-label="Avançar página" onClick={() => mudarPagina(1)}><i className="fas fa-angle-right" aria-hidden="true"></i>
             </button>
           </div>
         </nav>

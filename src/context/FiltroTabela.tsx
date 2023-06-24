@@ -2,6 +2,7 @@ import React, { createContext, useState, useContext, Dispatch, SetStateAction, u
 import { EscolaData, FederativeUnit, Situacao, EtapasDeEnsino, Municipio} from '../models/service';
 import axios, { AxiosResponse } from 'axios';
 import { EscolasFiltradasURL } from '../consts/service';
+import { useFetcher } from 'react-router-dom';
 
 interface FiltroContextType {
     nomeEscola: string;
@@ -20,6 +21,12 @@ interface FiltroContextType {
     setMunicipioSelecionado: Dispatch<SetStateAction<Municipio | false>>;
 
     escolasFiltradas: EscolaData[] | false;
+    totalEscolas: number;
+    totalPaginas: number;
+    paginaAtual: number;
+    mudarPagina: (incremento: number) => void;
+    mudarQuantidadePorPaginas: (novaQuantia: number) => void;
+    escolasPorPagina: number;
 
 }
 
@@ -39,13 +46,14 @@ const FiltroProvider = ({ children }: any) => {
     const [escolasPorPagina, setEscolasPorPagina] = useState(5);
     const [totalEscolas, setTotalEscolas] = useState(0);
     const [totalPaginas, setTotalPaginas] = useState(0);
+    const [paginaAtual, setpaginaAtual] = useState(1);
     
 
 
     useEffect(() => {
         fetchEscolasFiltradas();
 
-    },[nomeEscola, situacaoSelecionada, etapaDeEnsinoSelecionada, municipioSelecionado])
+    },[nomeEscola, situacaoSelecionada, etapaDeEnsinoSelecionada, municipioSelecionado, paginaAtual])
 
     interface responseData {
         escolas: EscolaData[],
@@ -60,8 +68,8 @@ const FiltroProvider = ({ children }: any) => {
           const response: AxiosResponse<responseData> = await axios.get(
             EscolasFiltradasURL,
             {params: {
-                Pagina: 1,
-                TamanhoPagina: 5,
+                Pagina: paginaAtual,
+                TamanhoPagina: escolasPorPagina,
                 Nome: nomeEscola? nomeEscola: "",
                 IdSituacao: situacaoSelecionada? situacaoSelecionada.id: "", 
                 IdEtapaEnsino: etapaDeEnsinoSelecionada? etapaDeEnsinoSelecionada.id: "",
@@ -71,9 +79,9 @@ const FiltroProvider = ({ children }: any) => {
          console.log(response.data.escolas)
           setCarregandoEscolas(false)
           setEscolasFiltradas(response.data.escolas)
-          setTotalEscolas
-          setTotalPaginas
-          setEscolasPorPagina
+          setTotalEscolas(response.data.totalEscolas)
+          setTotalPaginas(response.data.totalPaginas)
+          //setEscolasPorPagina
           //return response.data;
         } catch (error) {
           //throw error;
@@ -83,7 +91,15 @@ const FiltroProvider = ({ children }: any) => {
         }
       }
       
+const mudarPagina = (incremento:number) =>{
+   // if(paginaAtual + incremento >= 1 && paginaAtual + incremento <= totalPaginas)
+         setpaginaAtual(valorAtual => (valorAtual + incremento))
+}
+useEffect(() => {setpaginaAtual(1)}, [escolasPorPagina])
+const mudarQuantidadePorPaginas = (novaQuantia:number) => {
+    setEscolasPorPagina(novaQuantia)
 
+}
     const contextValue: FiltroContextType = {
 
         nomeEscola,
@@ -102,6 +118,13 @@ const FiltroProvider = ({ children }: any) => {
         setMunicipioSelecionado,
 
         escolasFiltradas,
+        totalEscolas,
+        totalPaginas,
+        paginaAtual,
+        mudarPagina,
+        mudarQuantidadePorPaginas,
+        escolasPorPagina,
+
     };
     return (
         <FiltroContext.Provider value={contextValue} >{children}</ FiltroContext.Provider>
