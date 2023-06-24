@@ -14,7 +14,15 @@ export default function Step3({ onClickBack }: Step1Props) {
         <div className="form3">
             <h2>Baixar Modelo de Arquivo</h2>
             <div className="secaoInserir">
-                <Dragdrop/>
+                <Dragdrop />
+            </div>
+            <div className="container-botoes">
+                <Button className="botaoCancelar" onClick={onClickBack}>
+                    Cancelar
+                </Button>
+                <Button className="button1">
+                    Inserir arquivo
+                </Button>
             </div>
         </div>
     )
