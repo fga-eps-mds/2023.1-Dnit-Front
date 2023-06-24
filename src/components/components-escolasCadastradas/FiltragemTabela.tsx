@@ -1,6 +1,6 @@
 import "../../styles/App.css";
 import "../components-escolasCadastradas/FiltragemTabela.css";
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useFiltroTabela } from "../../context/FiltroTabela";
 import fetchFederativeUnit from "../../service/federativeUnit";
 import { EtapasDeEnsino, FederativeUnit } from "../../models/service";
@@ -28,76 +28,84 @@ export default function TabelaEscolas() {
 
     municipioSelecionado,
     setMunicipioSelecionado,
-} = useFiltroTabela();
+  } = useFiltroTabela();
 
 
+  const nomeRef = useRef<HTMLInputElement>(null)
 
-const getUf = async () => {
-  try {
-    const resposta = await fetchFederativeUnit();
-    console.log(resposta);
-    setOpcoesUf(resposta);
-  } 
-  catch (error) {
-    console.log("error");
+
+  const mudarNome = () => {
+    if (nomeRef.current)
+      setNomeEscola(nomeRef.current.value);
   }
-}
-
-useEffect(() => {
-  if(opcoesUf.length == 0)
-    getUf();
-})
-
-const getSituacao = async () => {
-  try {
-    const resposta = await fetchSituacao();
-    console.log(resposta);
-    setOpcoesSituacao(resposta);
-  } 
-  catch (error) {
-    console.log("error");
-  }
-}
-useEffect(() => {
-  if(opcoesSituacao.length == 0)
-    getSituacao();
-})
 
 
-const getMunicipio = async () => {
-  try {
-    if(UFSelecionada){
-      const resposta = await fetchMunicipio(UFSelecionada.id);
+  const getUf = async () => {
+    try {
+      const resposta = await fetchFederativeUnit();
       console.log(resposta);
-      setOpcoesMunicipio(resposta);
-
+      setOpcoesUf(resposta);
     }
-  } 
-  catch (error) {
-    console.log("error");
+    catch (error) {
+      console.log("error");
+    }
   }
-}
 
-useEffect(() => {
-  if(opcoesMunicipio.length == 0)
-    getMunicipio();
-})
+  useEffect(() => {
+    if (opcoesUf.length == 0)
+      getUf();
+  })
 
-const getEtapasDeEnsino = async () => {
-  try {
-    const resposta = await fetchEtapasDeEnsino();
-    console.log(resposta);
-    setOpcoesEtapasDeEnsino(resposta);
-  } 
-  catch (error) {
-    console.log("error");
+  const getSituacao = async () => {
+    try {
+      const resposta = await fetchSituacao();
+      console.log(resposta);
+      setOpcoesSituacao(resposta);
+    }
+    catch (error) {
+      console.log("error");
+    }
   }
-}
+  useEffect(() => {
+    if (opcoesSituacao.length == 0)
+      getSituacao();
+  })
 
-useEffect(() => {
-  if(opcoesSituacao.length == 0)
-    getEtapasDeEnsino();
-})
+
+  const getMunicipio = async () => {
+    try {
+      if (UFSelecionada) {
+        const resposta = await fetchMunicipio(UFSelecionada.id);
+        console.log(resposta);
+        setOpcoesMunicipio(resposta);
+
+      }
+    }
+    catch (error) {
+      console.log("error");
+    }
+  }
+
+  useEffect(() => {
+    if (opcoesMunicipio.length == 0)
+      getMunicipio();
+  })
+
+  const getEtapasDeEnsino = async () => {
+    try {
+      const resposta = await fetchEtapasDeEnsino();
+      console.log(resposta);
+      setOpcoesEtapasDeEnsino(resposta);
+    }
+    catch (error) {
+      console.log("error");
+    }
+  }
+
+  useEffect(() => {
+    if (opcoesSituacao.length == 0)
+      getEtapasDeEnsino();
+  })
   const [showOpcoesEtapasDeEnsino, setShowOpcoesEtapasDeEnsino] = useState(false);
   const [OpcoesEtapasDeEnsino, setOpcoesEtapasDeEnsino] = useState<EtapasDeEnsino[]>([]);
 
@@ -106,7 +114,7 @@ useEffect(() => {
 
   const [showOptionsUF, setShowOptionsUF] = useState(false);
   const [opcoesUf, setOpcoesUf] = useState<FederativeUnit[]>([]);
- 
+
   const [showOpcoesMunicipio, setShowOpcoesMunincipio] = useState(false);
   const [opcoesMunicipio, setOpcoesMunicipio] = useState<Municipio[]>([]);
 
@@ -158,8 +166,8 @@ useEffect(() => {
     <div className="container inputs">
       <div className="br-input medium input-button">
         <label htmlFor="input-search-medium">Nome</label>
-        <input id="input-search-medium" type="search" placeholder="Digite o nome da Escola" />
-        <button className="br-button" type="button" aria-label="Buscar">
+        <input id="input-search-medium" type="search" ref={nomeRef} placeholder="Digite o nome da Escola" />
+        <button className="br-button" type="button" onClick={mudarNome} aria-label="Buscar">
           <i className="fas fa-search" aria-hidden="true"></i>
         </button>
       </div>
@@ -170,7 +178,7 @@ useEffect(() => {
           <input
             id="select-multtiple"
             type="text"
-            placeholder={UFSelecionada ? UFSelecionada.nome: 'Todas'} />
+            placeholder={UFSelecionada ? UFSelecionada.nome : 'Todas'} />
           <button
             className="br-button"
             type="button"
@@ -183,18 +191,18 @@ useEffect(() => {
           <div className="br-input">
             {showOptionsUF && (
               <div className="select-options">
-                 <div
-                    className="options"
-                    onClick={() => handleOptionClick(false, 1)}
-                  > Todas
-                    </div>
+                <div
+                  className="options"
+                  onClick={() => handleOptionClick(false, 1)}
+                > Todas
+                </div>
                 {opcoesUf.map((options, index) => (
                   <div
                     key={index}
                     className="options"
                     onClick={() => handleOptionClick(options, 1)}
                   >
-                    
+
                     {options.nome}
                   </div>
                 ))}
@@ -211,7 +219,7 @@ useEffect(() => {
           <input
             id="select-multtiple"
             type="text"
-            placeholder={situacaoSelecionada ? situacaoSelecionada.descricao: 'Todas'} />
+            placeholder={situacaoSelecionada ? situacaoSelecionada.descricao : 'Todas'} />
           <button
             className="br-button"
             type="button"
@@ -224,11 +232,11 @@ useEffect(() => {
           <div className="br-input">
             {showOptionsSituacao && (
               <div className="select-options">
-                 <div
-                    className="options"
-                    onClick={() => handleOptionClick(false, 2)}
-                  > Todas
-                    </div>
+                <div
+                  className="options"
+                  onClick={() => handleOptionClick(false, 2)}
+                > Todas
+                </div>
                 {opcoesSituacao.map((options, index) => (
                   <div
                     key={index}
@@ -250,7 +258,7 @@ useEffect(() => {
           <input
             id="select-multtiple"
             type="text"
-            placeholder={etapaDeEnsinoSelecionada ? etapaDeEnsinoSelecionada.descricao: 'Todas'} />
+            placeholder={etapaDeEnsinoSelecionada ? etapaDeEnsinoSelecionada.descricao : 'Todas'} />
           <button
             className="br-button"
             type="button"
@@ -263,11 +271,11 @@ useEffect(() => {
           <div className="br-input">
             {showOpcoesEtapasDeEnsino && (
               <div className="select-options">
-                 <div
-                    className="options"
-                    onClick={() => handleOptionClick(false, 3)}
-                  > Todas
-                    </div>
+                <div
+                  className="options"
+                  onClick={() => handleOptionClick(false, 3)}
+                > Todas
+                </div>
                 {OpcoesEtapasDeEnsino.map((options, index) => (
                   <div
                     key={index}
@@ -302,11 +310,11 @@ useEffect(() => {
           <div className="br-input">
             {showOpcoesMunicipio && (
               <div className="select-options">
-                 <div
-                    className="options"
-                    onClick={() => handleOptionClick(false, 4)}
-                  > Todos
-                    </div>
+                <div
+                  className="options"
+                  onClick={() => handleOptionClick(false, 4)}
+                > Todos
+                </div>
                 {opcoesMunicipio.map((options, index) => (
                   <div
                     key={index}

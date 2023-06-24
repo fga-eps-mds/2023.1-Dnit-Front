@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext, Dispatch, SetStateAction, useEffect } from 'react';
-import { EscolaData, FederativeUnit, Situacao, EtapasDeEnsino, Municipio} from '../models/service';
+import { EscolaData, FederativeUnit, Situacao, EtapasDeEnsino, Municipio } from '../models/service';
 import axios, { AxiosResponse } from 'axios';
 import { EscolasFiltradasURL } from '../consts/service';
 import { useFetcher } from 'react-router-dom';
@@ -38,22 +38,85 @@ const FiltroProvider = ({ children }: any) => {
     const [UFSelecionada, setUFSelecionada] = useState<FederativeUnit | false>(false);
     const [situacaoSelecionada, setSituacaoSelecionada] = useState<Situacao | false>(false);
     const [etapaDeEnsinoSelecionada, setEtapaDeEnsinoSelecionada] = useState<EtapasDeEnsino | false>(false);
-    const [municipioSelecionado, setMunicipioSelecionado] = useState<Municipio| false>(false);
+    const [municipioSelecionado, setMunicipioSelecionado] = useState<Municipio | false>(false);
 
     const [carregandoEscolas, setCarregandoEscolas] = useState<boolean>(false);
     const [escolasFiltradas, setEscolasFiltradas] = useState<EscolaData[] | false>(false);
 
     const [escolasPorPagina, setEscolasPorPagina] = useState(5);
+
+    const [paginaAtual, setpaginaAtual] = useState(1);
     const [totalEscolas, setTotalEscolas] = useState(0);
     const [totalPaginas, setTotalPaginas] = useState(0);
-    const [paginaAtual, setpaginaAtual] = useState(1);
-    
+
+    const [gatilho, setGatilho] = useState(false);
+
+    const ativarGatilho = () => {
+        setGatilho(valorAtual => !valorAtual)
+    }
+
+
+    async function fetchEscolasFiltradas(): Promise<any> {
+        try {
+            setCarregandoEscolas(true);
+            console.log("chamando fetch" + escolasPorPagina.toString())
+            const response: AxiosResponse<responseData> = await axios.get(
+                EscolasFiltradasURL,
+                {
+                    params: {
+                        Pagina: paginaAtual,
+                        TamanhoPagina: escolasPorPagina,
+                        Nome: nomeEscola ? nomeEscola : "",
+                        IdSituacao: situacaoSelecionada ? situacaoSelecionada.id : "",
+                        IdEtapaEnsino: etapaDeEnsinoSelecionada ? etapaDeEnsinoSelecionada.id : "",
+                        IdMunicipio: municipioSelecionado ? municipioSelecionado.id : ""
+                    }
+                }
+            );
+            // console.log(response.data.escolas)
+            setCarregandoEscolas(false)
+            setEscolasFiltradas(response.data.escolas)
+            setTotalEscolas(response.data.totalEscolas)
+            setTotalPaginas(response.data.totalPaginas)
+            //setEscolasPorPagina
+            //return response.data;
+        } catch (error) {
+            //throw error;
+            console.log({ error })
+            setCarregandoEscolas(false)
+            setEscolasFiltradas(false)
+        }
+    }
+
+    const mudarPagina = (incremento: number) => {
+        // if(paginaAtual + incremento >= 1 && paginaAtual + incremento <= totalPaginas)
+        setpaginaAtual(valorAtual => (valorAtual + incremento))
+    }
+    const mudarQuantidadePorPaginas = (novaQuantia: number) => {
+        console.log({ novaQuantia })
+        // console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+        setpaginaAtual(1);
+
+        setEscolasPorPagina(novaQuantia)
+
+    }
+
+
+    useEffect(() => {
+        // setEscolasFiltradas(false);
+        if (paginaAtual != 1)
+            setpaginaAtual(1);
+        else
+            ativarGatilho();
+
+    }, [escolasPorPagina, nomeEscola, situacaoSelecionada, etapaDeEnsinoSelecionada, municipioSelecionado])
+
 
 
     useEffect(() => {
         fetchEscolasFiltradas();
 
-    },[nomeEscola, situacaoSelecionada, etapaDeEnsinoSelecionada, municipioSelecionado, paginaAtual])
+    }, [paginaAtual, gatilho])
 
     interface responseData {
         escolas: EscolaData[],
@@ -62,44 +125,8 @@ const FiltroProvider = ({ children }: any) => {
         totalPaginas: number
     }
 
-    async function fetchEscolasFiltradas(): Promise <any> {
-        try {
-            setCarregandoEscolas(true);
-          const response: AxiosResponse<responseData> = await axios.get(
-            EscolasFiltradasURL,
-            {params: {
-                Pagina: paginaAtual,
-                TamanhoPagina: escolasPorPagina,
-                Nome: nomeEscola? nomeEscola: "",
-                IdSituacao: situacaoSelecionada? situacaoSelecionada.id: "", 
-                IdEtapaEnsino: etapaDeEnsinoSelecionada? etapaDeEnsinoSelecionada.id: "",
-                IdMunicipio: municipioSelecionado? municipioSelecionado.id: ""
-            }}
-          );
-         console.log(response.data.escolas)
-          setCarregandoEscolas(false)
-          setEscolasFiltradas(response.data.escolas)
-          setTotalEscolas(response.data.totalEscolas)
-          setTotalPaginas(response.data.totalPaginas)
-          //setEscolasPorPagina
-          //return response.data;
-        } catch (error) {
-          //throw error;
-          console.log({error})
-          setCarregandoEscolas(false)
-          setEscolasFiltradas(false)
-        }
-      }
-      
-const mudarPagina = (incremento:number) =>{
-   // if(paginaAtual + incremento >= 1 && paginaAtual + incremento <= totalPaginas)
-         setpaginaAtual(valorAtual => (valorAtual + incremento))
-}
-useEffect(() => {setpaginaAtual(1)}, [escolasPorPagina])
-const mudarQuantidadePorPaginas = (novaQuantia:number) => {
-    setEscolasPorPagina(novaQuantia)
 
-}
+
     const contextValue: FiltroContextType = {
 
         nomeEscola,

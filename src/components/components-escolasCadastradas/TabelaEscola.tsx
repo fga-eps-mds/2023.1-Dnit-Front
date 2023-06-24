@@ -1,7 +1,7 @@
 import "../../styles/App.css";
 import "../components-escolasCadastradas/TabelaEscola.css";
 import fetchlistSchools from "../../service/listSchools";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { EscolaData } from "../../models/service";
 import ExibirInformacoesEscola from "../../pages/ExibirInformacoesEscola";
 import { useFiltroTabela } from "../../context/FiltroTabela";
@@ -9,11 +9,12 @@ import { useFiltroTabela } from "../../context/FiltroTabela";
 
 
 export default function TabelaEscola() {
-  const {escolasFiltradas,paginaAtual, mudarPagina, escolasPorPagina, mudarQuantidadePorPaginas}= useFiltroTabela()
+  const { setNomeEscola, escolasFiltradas, paginaAtual, mudarPagina, escolasPorPagina, mudarQuantidadePorPaginas } = useFiltroTabela()
+  const nomeRef = useRef<HTMLInputElement>(null)
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [showOptionsPages, setShowOptionsPages] = useState(false);
-  
+
   const [showSchoolsPerPage, setShowSchoolsPerPage] = useState(false);
   const [schoolsPerPage, setSchoolsPerPage] = useState(5);
   const optionsSchoolsPerPage = ['2', '5', '10', '20'];
@@ -42,10 +43,10 @@ export default function TabelaEscola() {
         break;
       case 2:
         //setCurrentPage(option);
-        setShowOptionsPages(false);       
+        setShowOptionsPages(false);
         break;
     }
-  } 
+  }
 
   const OpenModal = (id: number, index: number) => {
     const newModalStates = [...modalStates];
@@ -76,28 +77,30 @@ export default function TabelaEscola() {
     return totalpages;
   }
   const getpagerange = () => {
-    const rangeStart = ((paginaAtual- 1) * schoolsPerPage) + 1;
+    const rangeStart = ((paginaAtual - 1) * schoolsPerPage) + 1;
     let rangeEnd = (rangeStart + schoolsPerPage) - 1;
     if (rangeEnd > schools.length) {
       rangeEnd = schools.length;
     }
     return [rangeStart, rangeEnd];
   }
- /* const getSchool = async () => {
-    try {
-      const resultschools = await fetchlistSchools();
-      console.log({ resultschools })
-      setschools(resultschools);
-    }
-    catch (error) {
-      console.log({ error })
-    }
+  /* const getSchool = async () => {
+     try {
+       const resultschools = await fetchlistSchools();
+       console.log({ resultschools })
+       setschools(resultschools);
+     }
+     catch (error) {
+       console.log({ error })
+     }
+ 
+   }
+   useEffect(() => {
+     if (schools.length <= 0)
+       getSchool();
+   }) */
 
-  }
-  useEffect(() => {
-    if (schools.length <= 0)
-      getSchool();
-  }) */
+   
 
   return (
 
@@ -119,8 +122,8 @@ export default function TabelaEscola() {
         <div className="search-bar">
           <div className="br-input">
             <label htmlFor="table-searchbox-27509">Buscar</label>
-            <input id="table-searchbox-27509" type="text" placeholder="Buscar na tabela" />
-            <button className="br-button circle" type="button" aria-label="Buscar"><i className="fas fa-search" aria-hidden="true"></i>
+            <input id="table-searchbox-27509" type="text" placeholder="Buscar na tabela"  />
+            <button className="br-button circle" type="button" aria-label="Buscar"><i className="fas fa-search" aria-hidden="true"  ></i>
             </button>
           </div>
           <button className="br-button circle" type="button" data-dismiss="search" aria-label="Fechar busca"><i className="fas fa-times" aria-hidden="true"></i>
@@ -154,25 +157,25 @@ export default function TabelaEscola() {
         </thead>
         <tbody>
           {escolasFiltradas !== false && escolasFiltradas.map((escola, index) => {
-           // const range = getpagerange();
+            // const range = getpagerange();
             //if (index >= range[0] - 1 && index <= range[1] - 1)
-              return (
-                <>
-                  <div className="modal-informacoes">
-                    <ExibirInformacoesEscola open={modalStates[index]} escola = {escola}  close={() => CloseModal(escola.idEscola, index)} key={escola.idEscola} />
-                  </div>
-                  <tr key={escola.idEscola} onClick={() => OpenModal(escola.idEscola, index)} data-testid="linha-escola">
-                    <td data-th="Título coluna 1">{escola.nomeEscola}</td>
-                    <td data-th="Título coluna 2">{escola.descricaoEtapasDeEnsino}</td>
-                    <td data-th="Título coluna 3">{escola.numeroTotalDeAlunos}</td>
-                    <td data-th="Título coluna 4">{escola.descricaoSituacao}</td>
-                    <td data-th="Título coluna 5">{escola.nomeMunicipio}</td>
-                    <td data-th="Título coluna 6">{escola.siglaUf}</td>
-                  </tr></>
-              )
-            })
+            return (
+              <>
+                <div className="modal-informacoes">
+                  <ExibirInformacoesEscola open={modalStates[index]} escola={escola} close={() => CloseModal(escola.idEscola, index)} key={escola.idEscola} />
+                </div>
+                <tr key={escola.idEscola} onClick={() => OpenModal(escola.idEscola, index)} data-testid="linha-escola">
+                  <td data-th="Título coluna 1">{escola.nomeEscola}</td>
+                  <td data-th="Título coluna 2">{escola.descricaoEtapasDeEnsino}</td>
+                  <td data-th="Título coluna 3">{escola.numeroTotalDeAlunos}</td>
+                  <td data-th="Título coluna 4">{escola.descricaoSituacao}</td>
+                  <td data-th="Título coluna 5">{escola.nomeMunicipio}</td>
+                  <td data-th="Título coluna 6">{escola.siglaUf}</td>
+                </tr></>
+            )
+          })
           }
-           
+
 
           <tr className="collapse">
             <td id="collapse-1-4-27509" aria-hidden="true" hidden={true} colSpan={6}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultricies aliquet lacinia. Vestibulum in interdum eros. Donec vel tempus diam. Aenean pulvinar mattis nisi in laoreet. Integer felis mi, vehicula sed pretium sit amet, pellentesque vel nisl. Curabitur metus ante, pellentesque in lectus a, sagittis imperdiet mi.</td>
@@ -180,7 +183,7 @@ export default function TabelaEscola() {
         </tbody>
       </table>
       <div className="table-footer">
-        <nav className="br-pagination" aria-label="Paginação de resultados" data-total={escolasFiltradas?escolasFiltradas.length: 0} data-current="38" data-per-page="20">
+        <nav className="br-pagination" aria-label="Paginação de resultados" data-total={escolasFiltradas ? escolasFiltradas.length : 0} data-current="38" data-per-page="20">
           <div className="pagination-per-page">
             <div className="br-select">
               <div className="br-input">
