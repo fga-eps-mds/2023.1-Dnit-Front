@@ -1,17 +1,15 @@
 import fetchExcluirEscola from '../../service/excluirEscola';
-import './ModalExcluirEscolas.css';
+import './style/ModalExcluirEscolas.css';
 import { useState } from 'react';
 
 
-
 const ModalExcluirEscolas = (props:any) => {
-    
     const excluirEscola = async() => {
         try {
             await fetchExcluirEscola({id_escola: props.id});
             props.close();
+
           } catch (error) {
-            
             console.log(error);
             
           }

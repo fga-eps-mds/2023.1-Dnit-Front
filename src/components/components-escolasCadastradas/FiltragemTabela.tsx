@@ -1,5 +1,5 @@
 import "../../styles/App.css";
-import "../components-escolasCadastradas/FiltragemTabela.css";
+import "../components-escolasCadastradas/style/FiltragemTabela.css";
 import React, { useState } from 'react';
 import { useFiltroTabela } from "../../context/FiltroTabela";
 

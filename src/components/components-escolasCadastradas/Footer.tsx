@@ -1,6 +1,6 @@
 import "../../styles/App.css";
 import logoDnit from "../../assets/logoDnit.png";
-import "../components-escolasCadastradas/Footer.css";
+import "../components-escolasCadastradas/style/Footer.css";
 
 export default function Footer(){
     return (

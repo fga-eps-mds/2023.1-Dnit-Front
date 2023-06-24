@@ -46,8 +46,9 @@
     align-self: flex-start !important;
     justify-self: flex-start !important;
     justify-content: flex-start !important;
+    margin-right: 8%;
+     }
 
-  }
   .content-right{
     align-self: flex-end !important;
     justify-content: right !important;
@@ -81,8 +82,9 @@
   }
   .br-modal-footer {
     display: flex;
-    flex-wrap: wrap;
-    padding: var(--spacing-scale-2x);
+    flex-direction: row;
+    padding: 10px;
+    width: 100%;
   }
   .br-modal.is-xsmall, .br-modal.xsmall {
     --modal-size: var(--modal-xsmall);
@@ -305,6 +307,5 @@
     --color: var(--color-dark);
     --focus-color: var(--focus-color-dark);
   }
-
   }
   

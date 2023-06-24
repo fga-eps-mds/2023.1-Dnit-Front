@@ -1,5 +1,5 @@
 import "../../styles/App.css";
-import "../components-escolasCadastradas/TabelaEscola.css";
+import "../components-escolasCadastradas/style/TabelaEscola.css";
 import fetchlistSchools from "../../service/listSchools";
 import { useEffect, useState } from "react";
 import { EscolaData } from "../../models/service";

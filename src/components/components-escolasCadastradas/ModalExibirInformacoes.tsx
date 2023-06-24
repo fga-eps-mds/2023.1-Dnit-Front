@@ -1,4 +1,4 @@
-import '../components-escolasCadastradas/ModalExibirInformacoes.css';
+import '../components-escolasCadastradas/style/ModalExibirInformacoes.css';
 import React, { useEffect, useState } from "react";
 import fetchInfoEscola from "../../service/listarInfoEscola";
 import { Dropdown, Result, notification } from 'antd';
@@ -88,8 +88,8 @@ const ModalExibirInformacoes = (props: any) => {
                 <ModalBody data={escola} open={isModalExibirInformacoesOpen} />
                 <ModalExcluirEscolas open={isModalExcluirEscolasOpen} id={escola.idEscola} close={() => setIsModalExcluirEscolasOpen(false)} />
                 <div className="br-modal-footer ">
-                  <div className="content-left" style={{ marginRight: "25%" }}>
-                    <button className=" br-button cancel-button" type="button" onClick={() => setIsModalExcluirEscolasOpen(true)}>Excluir escola
+                  <div className="content-left">
+                    <button className=" br-button cancel-button " type="button" onClick={() => setIsModalExcluirEscolasOpen(true)}>Excluir escola
                     </button>
                   </div>
                   <div className='content-right'>
