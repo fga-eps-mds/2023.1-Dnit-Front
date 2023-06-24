@@ -190,22 +190,22 @@ export default function TabelaEscolas() {
           </button>
           <div className="br-input">
             {showOptionsUF && (
-              <div className="select-options">
+              <div className="select-options dropdown-busca">
                 <div
                   className="options"
                   onClick={() => handleOptionClick(false, 1)}
                 > Todas
                 </div>
-                {opcoesUf.map((options, index) => (
-                  <div
-                    key={index}
-                    className="options"
-                    onClick={() => handleOptionClick(options, 1)}
-                  >
-
-                    {options.nome}
-                  </div>
-                ))}
+                {opcoesUf.map((options, index) => {
+                  return(
+                    <div
+                      key={index}
+                      className="options"
+                      onClick={() => handleOptionClick(options, 1)}
+                    >
+                      {options.nome}
+                    </div>)}
+                  )}
               </div>
             )}
           </div>
@@ -231,7 +231,7 @@ export default function TabelaEscolas() {
           </button>
           <div className="br-input">
             {showOptionsSituacao && (
-              <div className="select-options">
+              <div className="select-options dropdown-busca">
                 <div
                   className="options"
                   onClick={() => handleOptionClick(false, 2)}
@@ -270,7 +270,7 @@ export default function TabelaEscolas() {
           </button>
           <div className="br-input">
             {showOpcoesEtapasDeEnsino && (
-              <div className="select-options">
+              <div className="select-options dropdown-busca">
                 <div
                   className="options"
                   onClick={() => handleOptionClick(false, 3)}
@@ -309,7 +309,7 @@ export default function TabelaEscolas() {
           </button>
           <div className="br-input">
             {showOpcoesMunicipio && (
-              <div className="select-options">
+              <div className="select-options dropdown-busca">
                 <div
                   className="options"
                   onClick={() => handleOptionClick(false, 4)}

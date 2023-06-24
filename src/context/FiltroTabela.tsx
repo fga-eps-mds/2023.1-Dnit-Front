@@ -25,8 +25,10 @@ interface FiltroContextType {
     totalPaginas: number;
     paginaAtual: number;
     mudarPagina: (incremento: number) => void;
+    irParaPagina: (numeroPagina:number) => void;
     mudarQuantidadePorPaginas: (novaQuantia: number) => void;
     escolasPorPagina: number;
+
 
 }
 
@@ -92,9 +94,11 @@ const FiltroProvider = ({ children }: any) => {
         // if(paginaAtual + incremento >= 1 && paginaAtual + incremento <= totalPaginas)
         setpaginaAtual(valorAtual => (valorAtual + incremento))
     }
+    const irParaPagina = (numeroPagina: number) => {
+        setpaginaAtual(numeroPagina)
+    }
     const mudarQuantidadePorPaginas = (novaQuantia: number) => {
         console.log({ novaQuantia })
-        // console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
         setpaginaAtual(1);
 
         setEscolasPorPagina(novaQuantia)
@@ -149,6 +153,7 @@ const FiltroProvider = ({ children }: any) => {
         totalPaginas,
         paginaAtual,
         mudarPagina,
+        irParaPagina,
         mudarQuantidadePorPaginas,
         escolasPorPagina,
 

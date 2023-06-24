@@ -9,7 +9,7 @@ import { useFiltroTabela } from "../../context/FiltroTabela";
 
 
 export default function TabelaEscola() {
-  const { setNomeEscola, escolasFiltradas, paginaAtual, mudarPagina, escolasPorPagina, mudarQuantidadePorPaginas } = useFiltroTabela()
+  const { setNomeEscola, escolasFiltradas, paginaAtual, mudarPagina, escolasPorPagina, mudarQuantidadePorPaginas, irParaPagina } = useFiltroTabela()
   const nomeRef = useRef<HTMLInputElement>(null)
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -193,7 +193,7 @@ export default function TabelaEscola() {
                 </button>
                 <div className="br-input">
                   {showOptionsPages && (
-                    <div className="select-options">
+                    <div className="select-options dropdown-pagina">
                       {optionsSchoolsPerPage.map((options, index) => (
                         <div
                           key={index}
@@ -220,12 +220,12 @@ export default function TabelaEscola() {
                 </button>
                 <div className="br-input">
                   {showSchoolsPerPage && (
-                    <div className="select-options">
+                    <div className="select-options dropdown-pagina">
                       {optionsSchoolsPerPage.map((options, index) => (
                         <div
                           key={index}
                           className="options"
-                          onClick={() => handleOptionClick(options, 1)}
+                          onClick={() => irParaPagina(index + 1)}
                         >
                           {options}
                         </div>
