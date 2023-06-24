@@ -9,18 +9,17 @@ import { useFiltroTabela } from "../../context/FiltroTabela";
 
 
 export default function TabelaEscola() {
-  const { setNomeEscola, escolasFiltradas, paginaAtual, mudarPagina, escolasPorPagina, mudarQuantidadePorPaginas, irParaPagina } = useFiltroTabela()
+  const { setNomeEscola, escolasFiltradas, paginaAtual, mudarPagina, escolasPorPagina, mudarQuantidadePorPaginas, irParaPagina, totalEscolas } = useFiltroTabela()
   const nomeRef = useRef<HTMLInputElement>(null)
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const [showOptionsPages, setShowOptionsPages] = useState(false);
-
   const [showSchoolsPerPage, setShowSchoolsPerPage] = useState(false);
   const [schoolsPerPage, setSchoolsPerPage] = useState(5);
   const optionsSchoolsPerPage = ['2', '5', '10', '20'];
   const [schools, setschools] = useState<EscolaData[]>([]);
-
+  const [qtdePagina, setQtdePagina] = useState([]);
   const [modalStates, setModalStates] = useState(Array(schools.length).fill(false));
+
 
   const handleButtonClick = (selectNumeber: any) => {
     switch (selectNumeber) {
@@ -100,7 +99,7 @@ export default function TabelaEscola() {
        getSchool();
    }) */
 
-   
+
 
   return (
 
@@ -122,7 +121,7 @@ export default function TabelaEscola() {
         <div className="search-bar">
           <div className="br-input">
             <label htmlFor="table-searchbox-27509">Buscar</label>
-            <input id="table-searchbox-27509" type="text" placeholder="Buscar na tabela"  />
+            <input id="table-searchbox-27509" type="text" placeholder="Buscar na tabela" />
             <button className="br-button circle" type="button" aria-label="Buscar"><i className="fas fa-search" aria-hidden="true"  ></i>
             </button>
           </div>
@@ -209,7 +208,12 @@ export default function TabelaEscola() {
               </div>
             </div>
           </div><span className="br-divider d-none d-sm-block mx-3"></span>
-          <div className="pagination-inhtmlFormation d-none d-sm-flex"><span className="current">{getpagerange()[0]}</span>&ndash;<span className="per-page">{getpagerange()[1]}</span>&nbsp;de&nbsp;<span className="total">{schools.length}</span>&nbsp;itens</div>
+          <div className="pagination-inhtmlFormation d-none d-sm-flex">
+          <span className="current">{getpagerange()[0]}
+          </span>&ndash;
+          <span className="per-page">{escolasPorPagina.toString()} 
+          </span>&nbsp;de&nbsp;
+          <span className="total">{totalEscolas}</span>&nbsp;itens</div>
           <div className="pagination-go-to-page d-none d-sm-flex ml-auto">
             <div className="br-select">
               <div className="br-input">
