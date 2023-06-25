@@ -28,6 +28,7 @@ interface FiltroContextType {
     irParaPagina: (numeroPagina:number) => void;
     mudarQuantidadePorPaginas: (novaQuantia: number) => void;
     escolasPorPagina: number;
+    carregandoEscolas: boolean;
 
 
 }
@@ -76,15 +77,14 @@ const FiltroProvider = ({ children }: any) => {
                     }
                 }
             );
-            // console.log(response.data.escolas)
+         
             setCarregandoEscolas(false)
             setEscolasFiltradas(response.data.escolas)
             setTotalEscolas(response.data.totalEscolas)
             setTotalPaginas(response.data.totalPaginas)
-            //setEscolasPorPagina
-            //return response.data;
+           
         } catch (error) {
-            //throw error;
+            
             console.log({ error })
             setCarregandoEscolas(false)
             setEscolasFiltradas(false)
@@ -108,7 +108,7 @@ const FiltroProvider = ({ children }: any) => {
 
 
     useEffect(() => {
-        // setEscolasFiltradas(false);
+        
         if (paginaAtual != 1)
             setpaginaAtual(1);
         else
@@ -157,6 +157,7 @@ const FiltroProvider = ({ children }: any) => {
         irParaPagina,
         mudarQuantidadePorPaginas,
         escolasPorPagina,
+        carregandoEscolas,
 
     };
     return (

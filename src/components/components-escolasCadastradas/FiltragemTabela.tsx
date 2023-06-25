@@ -28,6 +28,7 @@ export default function TabelaEscolas() {
 
     municipioSelecionado,
     setMunicipioSelecionado,
+    carregandoEscolas,
   } = useFiltroTabela();
 
 
@@ -87,9 +88,10 @@ export default function TabelaEscolas() {
   }
 
   useEffect(() => {
-    if (opcoesMunicipio.length == 0)
+    if (opcoesMunicipio.length == 0 || carregandoEscolas)
       getMunicipio();
-  })
+  },[UFSelecionada, carregandoEscolas])
+  console.log(UFSelecionada);
 
   const getEtapasDeEnsino = async () => {
     try {

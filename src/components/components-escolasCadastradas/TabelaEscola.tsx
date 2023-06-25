@@ -219,9 +219,6 @@ export default function TabelaEscola() {
               <div className="br-input">
                 <label htmlFor="go-to-selection-random-15337">Página</label>
                 <input id="go-to-selection-random-15337" type="text" placeholder={paginaAtual.toString()} />
-                <button className="br-button" type="button" aria-label="Exibir lista" tabIndex={-1} data-trigger="data-trigger"  >
-                  <i className="fas fa-angle-down" aria-hidden="true"></i>
-                </button>
                 <div className="br-input">
                   {showSchoolsPerPage && (
                     <div className="select-options dropdown-pagina">
