@@ -1,19 +1,24 @@
 import "../../styles/App.css";
-import "../components-escolasCadastradas/style/TabelaEscola.css";
-import fetchlistSchools from "../../service/listSchools";
-import { useEffect, useState } from "react";
+import "../components-escolasCadastradas/TabelaEscola.css";
+import { useEffect, useState, useRef } from "react";
 import { EscolaData } from "../../models/service";
 import ExibirInformacoesEscola from "../../pages/ExibirInformacoesEscola";
+import { useFiltroTabela } from "../../context/FiltroTabela";
+import { notification } from "antd";
+
 
 
 export default function TabelaEscola() {
+  const { setNomeEscola, escolasFiltradas, paginaAtual, mudarPagina, escolasPorPagina, mudarQuantidadePorPaginas, irParaPagina } = useFiltroTabela()
+  const nomeRef = useRef<HTMLInputElement>(null)
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const [, contextHolder] = notification.useNotification();
+
   const [showOptionsPages, setShowOptionsPages] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  
+
   const [showSchoolsPerPage, setShowSchoolsPerPage] = useState(false);
-  const [schoolsPerPage, setSchoolsPerPage] = useState(2);
+  const [schoolsPerPage, setSchoolsPerPage] = useState(5);
   const optionsSchoolsPerPage = ['2', '5', '10', '20'];
   const [schools, setschools] = useState<EscolaData[]>([]);
 
@@ -34,13 +39,13 @@ export default function TabelaEscola() {
   const handleOptionClick = (option: any, selectNumber: any) => {
     switch (selectNumber) {
       case 1:
-        setSchoolsPerPage(option);
+        mudarQuantidadePorPaginas(option);
         setShowSchoolsPerPage(false);
 
         break;
       case 2:
-        setCurrentPage(option);
-        setShowOptionsPages(false);       
+        //setCurrentPage(option);
+        setShowOptionsPages(false);
         break;
     }
   }
@@ -62,10 +67,10 @@ export default function TabelaEscola() {
       setSchoolsPerPage(value);
   }
 
-  const updateCurrentPage = (value: number) => {
-    if (gettotalpages() >= (currentPage + value) && currentPage + value >= 1)
+  /*const updateCurrentPage = (value: number) => {
+    if (gettotalpages() >= (paginaAtual+ value) && paginaAtual+ value >= 1)
       setCurrentPage((currentValue) => (currentValue + value))
-  }
+  }*/
   const gettotalpages = () => {
     let totalpages = schools.length / schoolsPerPage;
     if ((totalpages % 1) !== 0) {
@@ -74,32 +79,35 @@ export default function TabelaEscola() {
     return totalpages;
   }
   const getpagerange = () => {
-    const rangeStart = ((currentPage - 1) * schoolsPerPage) + 1;
+    const rangeStart = ((paginaAtual - 1) * schoolsPerPage) + 1;
     let rangeEnd = (rangeStart + schoolsPerPage) - 1;
     if (rangeEnd > schools.length) {
       rangeEnd = schools.length;
     }
     return [rangeStart, rangeEnd];
   }
-  const getSchool = async () => {
-    try {
-      const resultschools = await fetchlistSchools();
-      console.log({ resultschools })
-      setschools(resultschools);
-    }
-    catch (error) {
-      console.log({ error })
-    }
+  /* const getSchool = async () => {
+     try {
+       const resultschools = await fetchlistSchools();
+       console.log({ resultschools })
+       setschools(resultschools);
+     }
+     catch (error) {
+       console.log({ error })
+     }
+ 
+   }
+   useEffect(() => {
+     if (schools.length <= 0)
+       getSchool();
+   }) */
 
-  }
-  useEffect(() => {
-    if (schools.length <= 0)
-      getSchool();
-  })
+
 
   return (
 
     <div className="br-table" data-search="data-search" data-selection="data-selection" data-collapse="data-collapse" data-random="data-random">
+      {contextHolder}
       <div className="table-header">
         <div className="top-bar">
           <div className="table-title">Escolas Cadastradas</div>
@@ -118,7 +126,7 @@ export default function TabelaEscola() {
           <div className="br-input">
             <label htmlFor="table-searchbox-27509">Buscar</label>
             <input id="table-searchbox-27509" type="text" placeholder="Buscar na tabela" />
-            <button className="br-button circle" type="button" aria-label="Buscar"><i className="fas fa-search" aria-hidden="true"></i>
+            <button className="br-button circle" type="button" aria-label="Buscar"><i className="fas fa-search" aria-hidden="true"  ></i>
             </button>
           </div>
           <button className="br-button circle" type="button" data-dismiss="search" aria-label="Fechar busca"><i className="fas fa-times" aria-hidden="true"></i>
@@ -151,25 +159,26 @@ export default function TabelaEscola() {
           </tr>
         </thead>
         <tbody>
-          {schools.length > 0 && schools.map((school, index) => {
-            const range = getpagerange();
-            if (index >= range[0] - 1 && index <= range[1] - 1)
-              return (
-                <>
-                  <div className="modal-informacoes">
-                    <ExibirInformacoesEscola open={modalStates[index]} escola = {school}  close={() => CloseModal(school.idEscola, index)} key={school.idEscola} />
-                  </div>
-                  <tr key={school.idEscola} onClick={() => OpenModal(school.idEscola, index)}>
-                    <td data-th="Título coluna 1">{school.nomeEscola}</td>
-                    <td data-th="Título coluna 2">{school.idEtapasDeEnsino}</td>
-                    <td data-th="Título coluna 3">{school.numeroTotalDeAlunos}</td>
-                    <td data-th="Título coluna 4">{school.idSituacao}</td>
-                    <td data-th="Título coluna 5">{school.idMunicipio}</td>
-                    <td data-th="Título coluna 6">{school.siglaUf}</td>
-                  </tr></>
-              )
-            return <></>
-          })}
+          {escolasFiltradas !== false && escolasFiltradas.map((escola, index) => {
+            // const range = getpagerange();
+            //if (index >= range[0] - 1 && index <= range[1] - 1)
+            return (
+              <>
+                <div className="modal-informacoes">
+                  <ExibirInformacoesEscola open={modalStates[index]} escola={escola} close={() => CloseModal(escola.idEscola, index)} key={escola.idEscola} />
+                </div>
+                <tr key={escola.idEscola} onClick={() => OpenModal(escola.idEscola, index)} data-testid="linha-escola">
+                  <td data-th="Título coluna 1">{escola.nomeEscola}</td>
+                  <td data-th="Título coluna 2">{escola.descricaoEtapasDeEnsino}</td>
+                  <td data-th="Título coluna 3">{escola.numeroTotalDeAlunos}</td>
+                  <td data-th="Título coluna 4">{escola.descricaoSituacao}</td>
+                  <td data-th="Título coluna 5">{escola.nomeMunicipio}</td>
+                  <td data-th="Título coluna 6">{escola.siglaUf}</td>
+                </tr></>
+            )
+          })
+          }
+
 
           <tr className="collapse">
             <td id="collapse-1-4-27509" aria-hidden="true" hidden={true} colSpan={6}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultricies aliquet lacinia. Vestibulum in interdum eros. Donec vel tempus diam. Aenean pulvinar mattis nisi in laoreet. Integer felis mi, vehicula sed pretium sit amet, pellentesque vel nisl. Curabitur metus ante, pellentesque in lectus a, sagittis imperdiet mi.</td>
@@ -177,17 +186,17 @@ export default function TabelaEscola() {
         </tbody>
       </table>
       <div className="table-footer">
-        <nav className="br-pagination" aria-label="Paginação de resultados" data-total={schools.length} data-current="38" data-per-page="20">
+        <nav className="br-pagination" aria-label="Paginação de resultados" data-total={escolasFiltradas ? escolasFiltradas.length : 0} data-current="38" data-per-page="20">
           <div className="pagination-per-page">
             <div className="br-select">
               <div className="br-input">
                 <label htmlFor="per-page-selection-random-91921">Exibir</label>
-                <input id="per-page-selection-random-91921" type="text" placeholder={schoolsPerPage.toString()} />
+                <input id="per-page-selection-random-91921" type="text" placeholder={escolasPorPagina.toString()} />
                 <button className="br-button" type="button" aria-label="Exibir lista" tabIndex={-1} data-trigger="data-trigger"><i className="fas fa-angle-down" aria-hidden="true" onClick={() => handleButtonClick(1)}></i>
                 </button>
                 <div className="br-input">
                   {showOptionsPages && (
-                    <div className="select-options">
+                    <div className="select-options dropdown-pagina">
                       {optionsSchoolsPerPage.map((options, index) => (
                         <div
                           key={index}
@@ -208,18 +217,18 @@ export default function TabelaEscola() {
             <div className="br-select">
               <div className="br-input">
                 <label htmlFor="go-to-selection-random-15337">Página</label>
-                <input id="go-to-selection-random-15337" type="text" placeholder={currentPage.toString()} />
+                <input id="go-to-selection-random-15337" type="text" placeholder={paginaAtual.toString()} />
                 <button className="br-button" type="button" aria-label="Exibir lista" tabIndex={-1} data-trigger="data-trigger"  >
                   <i className="fas fa-angle-down" aria-hidden="true"></i>
                 </button>
                 <div className="br-input">
                   {showSchoolsPerPage && (
-                    <div className="select-options">
+                    <div className="select-options dropdown-pagina">
                       {optionsSchoolsPerPage.map((options, index) => (
                         <div
                           key={index}
                           className="options"
-                          onClick={() => handleOptionClick(options, 1)}
+                          onClick={() => irParaPagina(index + 1)}
                         >
                           {options}
                         </div>
@@ -231,9 +240,9 @@ export default function TabelaEscola() {
             </div>
           </div><span className="br-divider d-none d-sm-block mx-3"></span>
           <div className="pagination-arrows ml-auto ml-sm-0">
-            <button className="br-button circle" type="button" aria-label="Voltar página" onClick={() => updateCurrentPage(-1)} ><i className="fas fa-angle-left" aria-hidden="true"></i>
+            <button className="br-button circle" type="button" aria-label="Voltar página" onClick={() => mudarPagina(-1)} ><i className="fas fa-angle-left" aria-hidden="true"></i>
             </button>
-            <button className="br-button circle" type="button" aria-label="Avançar página" onClick={() => updateCurrentPage(1)}><i className="fas fa-angle-right" aria-hidden="true"></i>
+            <button className="br-button circle" type="button" aria-label="Avançar página" onClick={() => mudarPagina(1)}><i className="fas fa-angle-right" aria-hidden="true"></i>
             </button>
           </div>
         </nav>

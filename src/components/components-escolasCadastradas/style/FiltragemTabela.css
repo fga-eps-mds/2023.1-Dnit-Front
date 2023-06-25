@@ -31,6 +31,16 @@
     display: flex;
     flex-direction: row;
   }
+  .dropdown-busca{
+    z-index: 800;
+    max-height: 40vh;
+    overflow:scroll;
+    overflow-x: hidden;
+    }
+  .dropdown-pagina{
+    width: 5em !important;
+
+  }
   
   .br-input input {
     background-color: var(--background-light);
@@ -222,7 +232,7 @@
     max-width: 400px;
     min-width: 100px;
     position: relative;
-    display: flex;
+    display: inline-block;
     justify-content: center;
   }
   .br-select .br-list {
@@ -376,6 +386,12 @@
   }
   .select-options{
     box-shadow: 0 3px 6px 0 rgba(0,0,0,0.16);
+    position: absolute;
+    top:100%;
+    width: 100%;
+    background-color: red;
+
+    /*max-height: 10%;*/
   }
   .select-options div:not(:last-child){
     border-bottom: 1px solid #ccc;
