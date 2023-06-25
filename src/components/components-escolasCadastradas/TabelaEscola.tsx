@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import { EscolaData } from "../../models/service";
 import ExibirInformacoesEscola from "../../pages/ExibirInformacoesEscola";
 import { useFiltroTabela } from "../../context/FiltroTabela";
+import { getPackedSettings } from "http2";
 
 
 
@@ -22,17 +23,11 @@ export default function TabelaEscola() {
         setShowOptionsPages(!showOptionsPages);
     }
   }
-  const handleOptionClick = (option: number, selectNumber: number) => {
-    switch (selectNumber) {
-      case 1:
+  const handleOptionClick = (option: number) => {
         mudarQuantidadePorPaginas(option);
         setShowSchoolsPerPage(false);
 
-        break;
-      case 2:
-        setShowOptionsPages(false);
-        break;
-    }
+     
   }
 
   const OpenModal = (id: number, index: number) => {
@@ -49,13 +44,13 @@ export default function TabelaEscola() {
 
 
   const getpagerange = () => {
-    const rangeStart = ((paginaAtual - 1) * schoolsPerPage) + 1;
-    let rangeEnd = (rangeStart + schoolsPerPage) - 1;
-    if (rangeEnd > schools.length) {
-      rangeEnd = schools.length;
-    }
+    const rangeStart = (paginaAtual - 1) * escolasPorPagina + 1;
+    let rangeEnd = paginaAtual * escolasPorPagina;
+
+    if (rangeEnd > totalEscolas) rangeEnd = totalEscolas;
+
     return [rangeStart, rangeEnd];
-  }
+  };
   return (
 
     <div className="br-table" data-search="data-search" data-selection="data-selection" data-collapse="data-collapse" data-random="data-random">
@@ -150,7 +145,7 @@ export default function TabelaEscola() {
                         <div
                           key={index}
                           className="options"
-                          onClick={() => handleOptionClick(Number(options), 1)}
+                          onClick={() => handleOptionClick(Number(options))}
                         >
                           {options}
                         </div>
@@ -164,7 +159,7 @@ export default function TabelaEscola() {
           <div className="pagination-inhtmlFormation d-none d-sm-flex">
           <span className="current">{getpagerange()[0]}
           </span>&ndash;
-          <span className="per-page">{escolasPorPagina.toString()} 
+          <span className="per-page">{getpagerange() [1]} 
           </span>&nbsp;de&nbsp;
           <span className="total">{totalEscolas}</span>&nbsp;itens</div>
           <div className="pagination-go-to-page d-none d-sm-flex ml-auto">
@@ -172,21 +167,6 @@ export default function TabelaEscola() {
               <div className="br-input">
                 <label htmlFor="go-to-selection-random-15337">Página</label>
                 <input id="go-to-selection-random-15337" type="text" placeholder={paginaAtual.toString()} />
-                <div className="br-input">
-                  {showSchoolsPerPage && (
-                    <div className="select-options dropdown-pagina">
-                      {optionsSchoolsPerPage.map((options, index) => (
-                        <div
-                          key={index}
-                          className="options"
-                          onClick={() => irParaPagina(index + 1)}
-                        >
-                          {options}
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
               </div>
             </div>
           </div><span className="br-divider d-none d-sm-block mx-3"></span>

@@ -131,8 +131,6 @@ export default function TabelaEscolas() {
       case 4:
         setShowOpcoesMunincipio(alternarEstado);
         break;
-      default:
-        break;
     }
   };
 
@@ -154,8 +152,7 @@ export default function TabelaEscolas() {
         setMunicipioSelecionado(option);
         setShowOpcoesMunincipio(false);
         break;
-      default:
-        break;
+
     }
   };
 
@@ -290,7 +287,7 @@ export default function TabelaEscolas() {
 
       <div className="br-select" >
         <div className="br-input">
-          <label htmlFor="select-multtiple">Munincípio</label>
+          <label htmlFor="select-multtiple">Município</label>
           <input
             id="select-multtiple"
             type="text"
