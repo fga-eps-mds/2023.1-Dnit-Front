@@ -31,7 +31,7 @@ export default function Step2({ onClickBack }: Step2Props) {
     
     async function fetchUf() {
         const uf = await fetchUnidadeFederativa();
-        const newuf = uf.map((u) => ({ value: u.id, label: u.descricao }));
+        const newuf = uf.map((u) => ({ value: u.id, label: u.nome }));
         setUf(newuf);
         
     }
