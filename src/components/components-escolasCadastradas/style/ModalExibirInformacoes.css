@@ -53,6 +53,15 @@
     align-self: flex-end !important;
     justify-content: right !important;
   }
+  
+  @media (max-width: 1506px) {
+    .content-right{
+      align-self: flex-end !important;
+      justify-content: right !important;
+      padding-top: 8px;
+    }
+  }
+  
 .button-space{
   margin-right: 2em !important;
 }

@@ -1,7 +1,6 @@
 import '../components-escolasCadastradas/style/ModalExibirInformacoes.css';
-import React, { useEffect, useState } from "react";
-import fetchInfoEscola from "../../service/listarInfoEscola";
-import { Dropdown, Result, notification } from 'antd';
+import { useEffect, useState } from "react";
+import { notification } from 'antd';
 import ModalBody from './ModalBody';
 import { useSelectedValue } from '../../context/Situation';
 import fetchchangeSituation from '../../service/changeSituation';
@@ -11,13 +10,8 @@ import fetchDeleteSituation from "../../service/deleteSituation";
 
 const ModalExibirInformacoes = (props: any) => {
   const { escola, open, close } = props;
-  // const { escola } = props;
-  // console.log({ props });
   const [isModalExibirInformacoesOpen, setIsModalExibirInformacoesOpen] = useState(false);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isModalExcluirEscolasOpen, setIsModalExcluirEscolasOpen] = useState(false);
-
-  var result = {};
 
   const openModal = async () => {
 
@@ -33,14 +27,13 @@ const ModalExibirInformacoes = (props: any) => {
 
   })
 
-
-
-  const { selectedValue, setSelectedValue } = useSelectedValue();
+  const { selectedValue } = useSelectedValue();
   const [api, contextHolder] = notification.useNotification();
 
   const onFinish = async (values: any) => {
+    
 
-    if (selectedValue == -1) {
+    if (selectedValue === -1) {
 
       console.log({ escola });
       const excluirSituacaoData = {
@@ -49,9 +42,9 @@ const ModalExibirInformacoes = (props: any) => {
 
       try {
         await fetchDeleteSituation(excluirSituacaoData);
+        notification.success({ message: `Situação excluída com sucesso!` });
       } catch (error) {
-        console.log({ message: `Erro ao excluir situação` })
-        api.error({ message: `Erro ao excluir situação` });
+        notification.error({ message: `Erro ao excluir situação! ` });
       };
     }
 
@@ -64,16 +57,15 @@ const ModalExibirInformacoes = (props: any) => {
 
       try {
         await fetchchangeSituation(salvarSituacaoData);
+        notification.success({ message: `Situação alterada com sucesso!` });
       } catch (error) {
+        notification.error({ message: `Erro ao alterar situação! ` });
         api.error({ message: `Erro ao salvar situação` });
       }
     };
     props.close();
   }
 
-  const openDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  }
   if (!open) { return null }
   return (
 
