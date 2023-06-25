@@ -39,28 +39,28 @@ export default function Step2({ onClickBack }: Step2Props) {
 
     const onFinish = async (values: any) => {
         const registerSchoolData = {
-            nome: values.nome,
-            rede: values.rede,
-            codigo: values.codigo,
-            uf: 27,
-            cep: values.cep,
-            telefone: values.telefone,
-            ciclos: values.ciclos,
-            porte: values.porte,
-            endereco: values.endereco,
-            municipio: values.municipio,
-            localizacao: values.localizacao,
-            longitude: values.longitude,
-            latitude: values.latitude,
-            numeroAlunos: values.numeroAlunos,
-            numeroDocentes: values.numeroDocentes
+            NomeEscola: values.nome,
+            IdRede: 1,
+            CodigoEscola: values.codigo,
+            IdUf: 27,
+            Cep: values.cep,
+            Telefone: values.telefone,
+            IdEtapasDeEnsino: 1,
+            IdPorte: 1,
+            Endereco: values.endereco,
+            IdMunicipio: 1,
+            IdLocalizacao: 1,
+            Longitude: values.longitude,
+            Latitude: values.latitude,
+            NumeroTotalAlunos: values.numeroAlunos,
+            NumeroTotalDocentes: values.numeroDocentes
         };
         
         try {
             await fetchCadastroEscola(registerSchoolData);
             api.success({ message: "Cadastro feito!" });
           } catch (error) {
-            api.error({ message: `Erro ao fazer o cadastro` });
+            api.error({ message: "Erro ao fazer o cadastro" });
           }
     
     };
@@ -90,8 +90,8 @@ export default function Step2({ onClickBack }: Step2Props) {
                         <Form.Item name="rede" label="Rede" rules={rules}>
                             <Select
                             >
-                                <Option value="Municipal">Municipal</Option>
-                                <Option value="Estadual">Estadual</Option>
+                                <Option value={1}>Municipal</Option>
+                                <Option value={2}>Estadual</Option>
                             </Select>
                         </Form.Item>
 
@@ -151,10 +151,10 @@ export default function Step2({ onClickBack }: Step2Props) {
                                 mode="multiple"
                             >
 
-                                <Option value="infantil">Ensino Infantil</Option>
-                                <Option value="fundamental1">Ensino Fundamental - 1º, 2º e 3º ano</Option>
-                                <Option value="fundamental2">Ensino Fundamental - 4º, 5º e 6º ano</Option>
-                                <Option value="fundamental3">Ensino Fundamental - 7º, 8º e 9º ano</Option>
+                                <Option value={1}>Ensino Infantil</Option>
+                                <Option value={2}>Ensino Fundamental - 1º, 2º e 3º ano</Option>
+                                <Option value={3}>Ensino Fundamental - 4º, 5º e 6º ano</Option>
+                                <Option value={4}>Ensino Fundamental - 7º, 8º e 9º ano</Option>
 
                             </Select>
                         </Form.Item>
@@ -162,11 +162,11 @@ export default function Step2({ onClickBack }: Step2Props) {
                         <Form.Item name="porte" label="Porte" rules={rules}>
                             <Select
                             >
-                                <Option value="Até 50 matrículas de escolarização">Até 50 matrículas de escolarização</Option>
-                                <Option value="Entre 51 e 200 matrículas de escolarização">Entre 51 e 200 matrículas de escolarização</Option>
-                                <Option value="Entre 201 e 501 matrículas de escolarização">Entre 201 e 501 matrículas de escolarização</Option>
-                                <Option value="Entre 501 e 1000 matrículas de escolarizaçãoual">Entre 501 e 1000 matrículas de escolarização</Option>
-                                <Option value="Mais de 1000 matrículas de escolarização">Mais de 1000 matrículas de escolarização</Option>
+                                <Option value={1}>Até 50 matrículas de escolarização</Option>
+                                <Option value={2}>Entre 51 e 200 matrículas de escolarização</Option>
+                                <Option value={3}>Entre 201 e 501 matrículas de escolarização</Option>
+                                <Option value={4}>Entre 501 e 1000 matrículas de escolarização</Option>
+                                <Option value={5}>Mais de 1000 matrículas de escolarização</Option>
 
                             </Select>
                         </Form.Item>
@@ -192,8 +192,8 @@ export default function Step2({ onClickBack }: Step2Props) {
                         <Form.Item name="localizacao" label="Localização" rules={rules}>
                             <Select
                             >
-                                <Option value="Rural">Rural</Option>
-                                <Option value="Urbana">Urbana</Option>
+                                <Option value={1}>Rural</Option>
+                                <Option value={2}>Urbana</Option>
                             </Select>
                         </Form.Item>
 

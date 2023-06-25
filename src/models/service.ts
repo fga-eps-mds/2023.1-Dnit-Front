@@ -19,19 +19,19 @@ export interface RegisterData {
 }
 
 export interface RegisterSchoolData {
-  nome: string,
-  rede: string,
-  codigo: string,
-  uf: number,
-  cep: string,
-  telefone: string,
-  ciclos: string,
-  porte: string,
-  endereco: string,
-  municipio: string,
-  localizacao: string,
-  longitude: string,
-  latitude: string,
-  numeroAlunos: string,
-  numeroDocentes: string
+  NomeEscola: string,
+  IdRede: number,
+  CodigoEscola: number,
+  IdUf: number,
+  Cep: string,
+  Telefone: string,
+  IdEtapasDeEnsino: number,
+  IdPorte: number,
+  Endereco: string,
+  IdMunicipio: number,
+  IdLocalizacao: number,
+  Longitude: string,
+  Latitude: string,
+  NumeroTotalAlunos: number,
+  NumeroTotalDocentes: number
 }
