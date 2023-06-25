@@ -85,7 +85,7 @@ const FiltroProvider = ({ children }: any) => {
            
         } catch (error) {
             
-            console.log({ error })
+       
             setCarregandoEscolas(false)
             setEscolasFiltradas(false)
         }
