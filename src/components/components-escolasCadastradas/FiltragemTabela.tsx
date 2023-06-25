@@ -161,7 +161,7 @@ export default function TabelaEscolas() {
       <div className="br-input medium input-button">
         <label htmlFor="input-search-medium">Nome</label>
         <input id="input-search-medium" type="search" ref={nomeRef} placeholder="Digite o nome da Escola" />
-        <button className="br-button" type="button" onClick={mudarNome} aria-label="Buscar">
+        <button className="br-button" type="button" onClick={mudarNome} aria-label="Buscar" data-testid = "buscar-nome">
           <i className="fas fa-search" aria-hidden="true"></i>
         </button>
       </div>
@@ -179,7 +179,7 @@ export default function TabelaEscolas() {
             aria-label="Exibir lista"
             tabIndex={-1}
             data-trigger="data-trigger"
-            onClick={() => handleButtonClick(1)}>
+            onClick={() => handleButtonClick(1)} data-testid = "buscar-uf">
             <i className="fas fa-angle-down" aria-hidden="true"></i>
           </button>
           <div className="br-input">
@@ -220,7 +220,7 @@ export default function TabelaEscolas() {
             aria-label="Exibir lista"
             tabIndex={-1}
             data-trigger="data-trigger"
-            onClick={() => handleButtonClick(2)}>
+            onClick={() => handleButtonClick(2)} data-testid = "buscar-situacao">
             <i className="fas fa-angle-down" aria-hidden="true"></i>
           </button>
           <div className="br-input">
@@ -259,7 +259,7 @@ export default function TabelaEscolas() {
             aria-label="Exibir lista"
             tabIndex={-1}
             data-trigger="data-trigger"
-            onClick={() => handleButtonClick(3)}>
+            onClick={() => handleButtonClick(3)} data-testid = "buscar-etapas">
             <i className="fas fa-angle-down" aria-hidden="true"></i>
           </button>
           <div className="br-input">
@@ -298,7 +298,7 @@ export default function TabelaEscolas() {
             aria-label="Exibir lista"
             tabIndex={-1}
             data-trigger="data-trigger"
-            onClick={() => handleButtonClick(4)}>
+            onClick={() => handleButtonClick(4)} data-testid = "buscar-municipio">
             <i className="fas fa-angle-down" aria-hidden="true"></i>
           </button>
           <div className="br-input">

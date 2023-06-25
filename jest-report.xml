@@ -1,20 +1,22 @@
 <testExecutions version="1">
 <file path="src\tests\Recover.spec.tsx">
-<testCase name=" should render Recover password" duration="852" />
+<testCase name=" should render Recover password" duration="1162" />
 </file>
 <file path="src\tests\Login.spec.tsx">
-<testCase name=" should render Login" duration="843" />
-</file>
-<file path="src\tests\tabelaEscola.spec.tsx">
-<testCase name="Lista de escolas &#xe9; exibida corretamente" duration="494" />
-<testCase name="Mudar quantidade de escolas por p&#xe1;gina" duration="241" />
+<testCase name=" should render Login" duration="1190" />
 </file>
 <file path="src\tests\Reset.spec.tsx">
-<testCase name=" should render Reset password" duration="964" />
-<testCase name=" should render Reset password" duration="586" />
+<testCase name=" should render Reset password" duration="1528" />
+<testCase name=" should render Reset password" duration="718" />
+</file>
+<file path="src\tests\tabelaEscola.spec.tsx">
+<testCase name="Lista de escolas &#xe9; exibida corretamente" duration="440" />
+<testCase name="Mudar quantidade de escolas por p&#xe1;gina" duration="235" />
+<testCase name="Exibir escola selecionada" duration="364" />
+<testCase name="Filtragem de escolas" duration="495" />
 </file>
 <file path="src\tests\Register.spec.tsx">
-<testCase name="should render Register" duration="2837" />
-<testCase name="should render error in Register form" duration="967" />
+<testCase name="should render Register" duration="3704" />
+<testCase name="should render error in Register form" duration="1459" />
 </file>
 </testExecutions>
