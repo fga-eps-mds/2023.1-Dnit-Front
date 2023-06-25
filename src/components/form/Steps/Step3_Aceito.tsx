@@ -16,7 +16,7 @@ export default function Step3_Aceito({onClickVoltar }: Step3_1Props) {
             </div>
             <div className="secaoVoltar">
                 <Button className="botaoVoltar" onClick={onClickVoltar}>
-                    Voltar
+                    Concluir
                 </Button>
             </div>
         </div>
