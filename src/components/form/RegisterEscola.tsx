@@ -29,7 +29,7 @@ export default function RegS() {
                     <Step3 onClickBack={() => setScreen("form1")} onClickAceito={() => setScreen("form3_1")} />
                 )}
                 {screen === "form3_1" && (
-                    <Step3_Aceito onClickVoltar={() => setScreen("form3")} />
+                    <Step3_Aceito onClickVoltar={() => setScreen("form1")} />
                 )}
             </Form.Provider>
         </div>
