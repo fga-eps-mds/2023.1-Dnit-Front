@@ -14,7 +14,6 @@ export default function TabelaEscolas() {
 
   const {
 
-    nomeEscola,
     setNomeEscola,
 
     UFSelecionada,
@@ -29,6 +28,7 @@ export default function TabelaEscolas() {
     municipioSelecionado,
     setMunicipioSelecionado,
     carregandoEscolas,
+
   } = useFiltroTabela();
 
 
@@ -44,11 +44,10 @@ export default function TabelaEscolas() {
   const getUf = async () => {
     try {
       const resposta = await fetchFederativeUnit();
-      console.log(resposta);
       setOpcoesUf(resposta);
     }
     catch (error) {
-      console.log("error");
+      
     }
   }
 
@@ -60,11 +59,9 @@ export default function TabelaEscolas() {
   const getSituacao = async () => {
     try {
       const resposta = await fetchSituacao();
-      console.log(resposta);
       setOpcoesSituacao(resposta);
     }
     catch (error) {
-      console.log("error");
     }
   }
   useEffect(() => {
@@ -83,7 +80,6 @@ export default function TabelaEscolas() {
       }
     }
     catch (error) {
-      console.log("error");
     }
   }
 
@@ -91,16 +87,15 @@ export default function TabelaEscolas() {
     if (opcoesMunicipio.length == 0 || carregandoEscolas)
       getMunicipio();
   },[UFSelecionada, carregandoEscolas])
-  console.log(UFSelecionada);
+
 
   const getEtapasDeEnsino = async () => {
     try {
       const resposta = await fetchEtapasDeEnsino();
-      console.log(resposta);
       setOpcoesEtapasDeEnsino(resposta);
     }
     catch (error) {
-      console.log("error");
+      
     }
   }
 

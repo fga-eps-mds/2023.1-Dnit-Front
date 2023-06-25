@@ -1,6 +1,5 @@
 import "../../styles/App.css";
 import "../components-escolasCadastradas/TabelaEscola.css";
-import fetchlistSchools from "../../service/listSchools";
 import { useEffect, useState, useRef } from "react";
 import { EscolaData } from "../../models/service";
 import ExibirInformacoesEscola from "../../pages/ExibirInformacoesEscola";
@@ -10,30 +9,20 @@ import { useFiltroTabela } from "../../context/FiltroTabela";
 
 export default function TabelaEscola() {
   const { setNomeEscola, escolasFiltradas, paginaAtual, mudarPagina, escolasPorPagina, mudarQuantidadePorPaginas, irParaPagina, totalEscolas } = useFiltroTabela()
-  const nomeRef = useRef<HTMLInputElement>(null)
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [showOptionsPages, setShowOptionsPages] = useState(false);
   const [showSchoolsPerPage, setShowSchoolsPerPage] = useState(false);
   const [schoolsPerPage, setSchoolsPerPage] = useState(5);
   const optionsSchoolsPerPage = ['2', '5', '10', '20'];
   const [schools, setschools] = useState<EscolaData[]>([]);
-  const [qtdePagina, setQtdePagina] = useState([]);
   const [modalStates, setModalStates] = useState(Array(schools.length).fill(false));
 
 
-  const handleButtonClick = (selectNumeber: any) => {
-    switch (selectNumeber) {
-      case 1:
+  const handleButtonClick = (selectNumeber: number) => {
+    if (selectNumeber == 1) {
         setShowOptionsPages(!showOptionsPages);
-        break;
-      case 2:
-
-        break;
-      default:
-        break;
     }
   }
-  const handleOptionClick = (option: any, selectNumber: any) => {
+  const handleOptionClick = (option: number, selectNumber: number) => {
     switch (selectNumber) {
       case 1:
         mudarQuantidadePorPaginas(option);
@@ -41,7 +30,6 @@ export default function TabelaEscola() {
 
         break;
       case 2:
-        //setCurrentPage(option);
         setShowOptionsPages(false);
         break;
     }
@@ -59,22 +47,7 @@ export default function TabelaEscola() {
     setModalStates(newModalStates);
   }
 
-  const updateSchoolsPerPage = (value: number) => {
-    if (value !== schoolsPerPage)
-      setSchoolsPerPage(value);
-  }
 
-  /*const updateCurrentPage = (value: number) => {
-    if (gettotalpages() >= (paginaAtual+ value) && paginaAtual+ value >= 1)
-      setCurrentPage((currentValue) => (currentValue + value))
-  }*/
-  const gettotalpages = () => {
-    let totalpages = schools.length / schoolsPerPage;
-    if ((totalpages % 1) !== 0) {
-      totalpages = Math.floor(totalpages) + 1;
-    }
-    return totalpages;
-  }
   const getpagerange = () => {
     const rangeStart = ((paginaAtual - 1) * schoolsPerPage) + 1;
     let rangeEnd = (rangeStart + schoolsPerPage) - 1;
@@ -83,24 +56,6 @@ export default function TabelaEscola() {
     }
     return [rangeStart, rangeEnd];
   }
-  /* const getSchool = async () => {
-     try {
-       const resultschools = await fetchlistSchools();
-       console.log({ resultschools })
-       setschools(resultschools);
-     }
-     catch (error) {
-       console.log({ error })
-     }
- 
-   }
-   useEffect(() => {
-     if (schools.length <= 0)
-       getSchool();
-   }) */
-
-
-
   return (
 
     <div className="br-table" data-search="data-search" data-selection="data-selection" data-collapse="data-collapse" data-random="data-random">
@@ -156,8 +111,6 @@ export default function TabelaEscola() {
         </thead>
         <tbody>
           {escolasFiltradas !== false && escolasFiltradas.map((escola, index) => {
-            // const range = getpagerange();
-            //if (index >= range[0] - 1 && index <= range[1] - 1)
             return (
               <>
                 <div className="modal-informacoes">
@@ -197,7 +150,7 @@ export default function TabelaEscola() {
                         <div
                           key={index}
                           className="options"
-                          onClick={() => handleOptionClick(options, 1)}
+                          onClick={() => handleOptionClick(Number(options), 1)}
                         >
                           {options}
                         </div>
