@@ -28,10 +28,11 @@ export interface RegisterSchoolData {
   IdEtapasDeEnsino: number,
   IdPorte: number,
   Endereco: string,
-  IdMunicipio: number,
+  //IdMunicipio: number,
   IdLocalizacao: number,
   Longitude: string,
   Latitude: string,
-  NumeroTotalAlunos: number,
-  NumeroTotalDocentes: number
+  NumeroTotalDeAlunos: number,
+  NumeroTotalDeDocentes: number
+
 }

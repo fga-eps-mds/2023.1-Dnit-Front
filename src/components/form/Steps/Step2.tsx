@@ -40,20 +40,20 @@ export default function Step2({ onClickBack }: Step2Props) {
     const onFinish = async (values: any) => {
         const registerSchoolData = {
             NomeEscola: values.nome,
-            IdRede: 1,
+            IdRede: values.rede,
             CodigoEscola: values.codigo,
-            IdUf: 27,
+            IdUf: values.uf,
             Cep: values.cep,
             Telefone: values.telefone,
-            IdEtapasDeEnsino: 1,
-            IdPorte: 1,
+            IdEtapasDeEnsino: values.ciclo,
+            IdPorte: values.porte,
             Endereco: values.endereco,
-            IdMunicipio: 1,
-            IdLocalizacao: 1,
+            //IdMunicipio: 32,
+            IdLocalizacao: values.localizacao,
             Longitude: values.longitude,
             Latitude: values.latitude,
-            NumeroTotalAlunos: values.numeroAlunos,
-            NumeroTotalDocentes: values.numeroDocentes
+            NumeroTotalDeAlunos: values.numeroAlunos,
+            NumeroTotalDeDocentes: values.numeroDocentes
         };
         
         try {
@@ -218,7 +218,7 @@ export default function Step2({ onClickBack }: Step2Props) {
                         </Form.Item>
 
                         <Form.Item
-                            name="númeroAlunos"
+                            name="numeroAlunos"
                             label="Número Total de Alunos"
                             rules={rules}
                         >
@@ -228,7 +228,7 @@ export default function Step2({ onClickBack }: Step2Props) {
                         </Form.Item>
 
                         <Form.Item
-                            name="númeroDocentes"
+                            name="numeroDocentes"
                             label="Número Total de Docentes"
                             rules={rules}
                         >
