@@ -1,30 +1,21 @@
-@font-face {
-  font-family: "Rawline";
-  src: url("https://www.cdnfonts.com/rawline.font") format("truetype");
-}
+@import "~@fortawesome/fontawesome-free/css/all.min.css";
 
-.App {
-  text-align: center;
-  height: 100vh;
-  font-family: Rawline, sans-serif;
-}
-
-.App-logo {
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #ffff;
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: calc(10px + 2vmin);
-  color: #333333;
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1px solid var(--gray1);
   padding: 0 25px;
+  height: 85px;
 }
 
 .iconGov {
+  width: 100px;
+  height: 36.13px;
+}
+
+.iconDNIT {
   width: 100px;
   height: 36.13px;
 }
@@ -213,10 +204,5 @@
   .logoDnit {
     width: 180px;
     height: 56px;
-  }
-
-  .imgLateral {
-    width: 237px;
-    height: 131px;
   }
 }

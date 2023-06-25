@@ -6,7 +6,7 @@ interface RegisterResponse {
   status: number;
 }
 
-async function fetchCadastro(
+async function fetchRegister(
   registerData: RegisterData
 ): Promise<RegisterResponse> {
   try {
@@ -20,4 +20,4 @@ async function fetchCadastro(
   }
 }
 
-export default fetchCadastro;
+export default fetchRegister;
