@@ -1,5 +1,5 @@
 import "../../styles/App.css";
-import "../components-escolasCadastradas/TabelaEscola.css";
+import "../components-escolasCadastradas/style/TabelaEscola.css";
 import { useEffect, useState, useRef } from "react";
 import { EscolaData } from "../../models/service";
 import ExibirInformacoesEscola from "../../pages/ExibirInformacoesEscola";

@@ -6,12 +6,11 @@ import { useSelectedValue } from '../../context/Situation';
 import fetchchangeSituation from '../../service/changeSituation';
 import ModalExcluirEscolas from "../components-escolasCadastradas/ModalExcluirEscolas";
 import fetchDeleteSituation from "../../service/deleteSituation";
+import { useFiltroTabela } from '../../context/FiltroTabela';
 
 
 const ModalExibirInformacoes = (props: any) => {
   const { escola, open, close, onClose } = props;
-  // const { escola } = props;
-  // console.log({ props });
   const [isModalExibirInformacoesOpen, setIsModalExibirInformacoesOpen] = useState(false);
   const [isModalExcluirEscolasOpen, setIsModalExcluirEscolasOpen] = useState(false);
 
@@ -29,6 +28,7 @@ const ModalExibirInformacoes = (props: any) => {
 
   const { selectedValue } = useSelectedValue();
   const [api, contextHolder] = notification.useNotification();
+  const {fetchEscolasFiltradas} = useFiltroTabela()
 
   const onFinish = async (values: any) => {
     
@@ -43,6 +43,7 @@ const ModalExibirInformacoes = (props: any) => {
       try {
         await fetchDeleteSituation(excluirSituacaoData);
         notification.success({ message: `Situação excluída com sucesso!` });
+        fetchEscolasFiltradas();
       } catch (error) {
         notification.error({ message: `Erro ao excluir situação! ` });
       };
@@ -58,6 +59,7 @@ const ModalExibirInformacoes = (props: any) => {
       try {
         await fetchchangeSituation(salvarSituacaoData);
         notification.success({ message: `Situação alterada com sucesso!` });
+        fetchEscolasFiltradas();
       } catch (error) {
         notification.error({ message: `Erro ao alterar situação! ` });
         api.error({ message: `Erro ao salvar situação` });
