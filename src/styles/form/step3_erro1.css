@@ -1,0 +1,20 @@
+.botaoAtencao{
+    font-size: 2em;
+    margin-left: 10.5em;
+    margin-top: 0.6em;
+}
+
+.secaoTexto h2{
+    margin-bottom: 1em;
+    margin-right: 2em;
+    margin-left: 2em;
+}
+
+.secaoAtencao{
+    display: flex;
+    justify-content: space-between;
+}
+
+.secaoAtencao h1{
+    margin-right: 10.5em;
+}
