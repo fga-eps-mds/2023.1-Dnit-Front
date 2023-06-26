@@ -288,11 +288,7 @@ const server = setupServer(
     }
   ),
   rest.delete("https://localhost:7083/api/escolas/excluir", (req, res, ctx) => {
-    const id = req.url.searchParams.get("id");
-
-    if (id === "104") {
-      return res(ctx.json({}));
-    }
+    return res(ctx.json({}));
   }),
   rest.get("https://localhost:7083/api/dominio/municipio", (req, res, ctx) => {
     return res(
