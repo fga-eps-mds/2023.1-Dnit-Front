@@ -1,11 +1,13 @@
-import React, { createContext, useState, useContext } from 'react';
+import { createContext, useContext, useState } from "react";
 
 interface SelectedValueContextType {
   selectedValue: number;
   setSelectedValue: (value: number) => void;
 }
 
-const SelectedValueContext = createContext<SelectedValueContextType | undefined>(undefined);
+const SelectedValueContext = createContext<
+  SelectedValueContextType | undefined
+>(undefined);
 
 const SelectedValueProvider = ({ children }: any) => {
   const [selectedValue, setSelectedValue] = useState(0);
@@ -26,7 +28,9 @@ const useSelectedValue = (): SelectedValueContextType => {
   const context = useContext(SelectedValueContext);
 
   if (!context) {
-    throw new Error('useSelectedValue must be used within a SelectedValueProvider');
+    throw new Error(
+      "useSelectedValue must be used within a SelectedValueProvider"
+    );
   }
 
   return context;

@@ -1,6 +1,6 @@
 import { notification } from 'antd';
 import fetchExcluirEscola from '../../service/excluirEscola';
-import './ModalExcluirEscolas.css';
+import './style/ModalExcluirEscolas.css';
 import { useState } from 'react';
 import { useFiltroTabela } from '../../context/FiltroTabela';
 
