@@ -1,231 +1,281 @@
-import { Button, Form, Input, Select, Space } from "antd";
-import { useState } from "react";
-import fetchUnidadeFederativa from "../../../service/federativeUnit";
+import { Button, Form, Input, Select, Space, notification } from "antd";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useFiltroTabela } from "../../../context/FiltroTabela";
+import {
+  EtapasDeEnsino,
+  FederativeUnit,
+  Municipio,
+} from "../../../models/service";
+import fetchEtapasDeEnsino from "../../../service/etapasDeEnsino";
+import fetchFederativeUnit from "../../../service/federativeUnit";
+import fetchMunicipio from "../../../service/municipio";
+import fetchCadastroEscola from "../../../service/registerSchool";
+
 const { Option } = Select;
 interface Step2Props {
-    onClickBack: () => void
+  onClickBack: () => void;
 }
-interface UfProps {
-    value: number;
-    label: string;
-}
-
 export default function Step2({ onClickBack }: Step2Props) {
-    
-    const [form] = Form.useForm();
-    const rules = [
-        {
-            required: true,
-            message: "Preencha o campo ${name}!",
-        },
-    ];
-    
-    const [uf, setUf] = useState<UfProps[]>();
-    
-    
-    
-    async function fetchUf() {
-        const uf = await fetchUnidadeFederativa();
-        const newuf = uf.map((u) => ({ value: u.id, label: u.descricao }));
-        setUf(newuf);
-        
+  const {
+    UFSelecionada,
+    setUFSelecionada,
+
+    carregandoEscolas,
+  } = useFiltroTabela();
+
+  const [form] = Form.useForm();
+  const [api, contextHolder] = notification.useNotification();
+  const rules = [
+    {
+      required: true,
+      message: "Preencha o campo ${label}!",
+    },
+  ];
+
+  const [opcoesUf, setOpcoesUf] = useState<FederativeUnit[]>([]);
+  const getUf = async () => {
+    try {
+      const resposta = await fetchFederativeUnit();
+      setOpcoesUf(resposta);
+    } catch (error) {}
+  };
+  useEffect(() => {
+    if (opcoesUf.length == 0) getUf();
+  });
+
+  const [opcoesMunicipio, setOpcoesMunicipio] = useState<Municipio[]>([]);
+  const getMunicipio = async () => {
+    try {
+      if (UFSelecionada) {
+        const resposta = await fetchMunicipio(UFSelecionada.id);
+        setOpcoesMunicipio(resposta);
+      }
+    } catch (error) {
+      console.log("Erro get munincipio");
     }
+  };
+  useEffect(() => {
+    if (opcoesMunicipio.length == 0 || carregandoEscolas) getMunicipio();
+  }, [UFSelecionada, carregandoEscolas]);
 
+  const [OpcoesEtapasDeEnsino, setOpcoesEtapasDeEnsino] = useState<
+    EtapasDeEnsino[]
+  >([]);
+  const getEtapasDeEnsino = async () => {
+    try {
+      const resposta = await fetchEtapasDeEnsino();
+      setOpcoesEtapasDeEnsino(resposta);
+    } catch (error) {}
+  };
 
-    const onFinish = async (values: any) => {
-        console.log("OK");
-    
+  const handleOptionClick = (option: any) => {
+    setUFSelecionada(option);
+  };
+
+  const navigate = useNavigate();
+  const onFinish = async (values: any) => {
+    const registerSchoolData = {
+      NomeEscola: values.nome,
+      IdRede: values.rede,
+      CodigoEscola: values.codigo,
+      IdUf: values.uf,
+      Cep: values.cep,
+      Telefone: values.telefone,
+      IdEtapasDeEnsino: values.ciclos,
+      IdPorte: values.porte,
+      Endereco: values.endereco,
+      IdMunicipio: values.municipio,
+      IdLocalizacao: values.localizacao,
+      Longitude: values.longitude,
+      Latitude: values.latitude,
+      NumeroTotalDeAlunos: values.numeroAlunos,
+      NumeroTotalDeDocentes: values.numeroDocentes,
     };
-    return (
 
-        <div>
-            <h2>Cadastrar Escola</h2>
-            <Form
-                form={form}
-                onFinish={onFinish}
-                name="form2"
-                layout="vertical"
-                autoComplete="off"
-                requiredMark="optional"
-                className="form-email"
-                preserve
+    try {
+      await fetchCadastroEscola(registerSchoolData);
+      notification.success({ message: "Cadastro feito!" });
+      navigate("/escolas-cadastradas");
+    } catch (error) {
+      api.error({ message: "Erro ao fazer o cadastro" });
+    }
+  };
+  return (
+    <div>
+      {contextHolder}
+      <h2>Cadastrar Escola</h2>
+      <Form
+        form={form}
+        onFinish={onFinish}
+        name="form2"
+        layout="vertical"
+        autoComplete="off"
+        requiredMark="optional"
+        className="form-email"
+        preserve
+      >
+        <div className="divScroll">
+          <div className="bloco">
+            <Form.Item name="nome" label="Nome da Escola" rules={rules}>
+              <Input className="inputForm2" />
+            </Form.Item>
+
+            <Form.Item name="rede" label="Rede" rules={rules}>
+              <Select>
+                <Option value={1}>Municipal</Option>
+                <Option value={2}>Estadual</Option>
+              </Select>
+            </Form.Item>
+
+            <Form.Item name="codigo" label="Codigo da Escola" rules={rules}>
+              <Input className="inputForm2" />
+            </Form.Item>
+
+            <Form.Item name="uf" rules={rules} label="UF">
+              <Select
+                onMouseDown={getUf}
+                notFoundContent={<p>Carregando...</p>}
+                placement="bottomRight"
+                optionLabelProp="label"
+                className="uf"
+              >
+                {opcoesUf?.map((u) => (
+                  <Option key={u.id} value={u.id} label={<>{u.nome}</>}>
+                    <button
+                      onClick={() => handleOptionClick(u)}
+                      className="option-municipio"
+                    >
+                      {u.nome}
+                    </button>
+                  </Option>
+                ))}
+              </Select>
+            </Form.Item>
+
+            <Form.Item name="cep" label="CEP" rules={rules}>
+              <Input className="inputForm2" />
+            </Form.Item>
+
+            <Form.Item name="telefone" label="Telefone" rules={rules}>
+              <Input className="inputForm2" />
+            </Form.Item>
+
+            <Form.Item name="ciclos" label="Etapas de Ensino" rules={rules}>
+              <Select
+                onClick={getEtapasDeEnsino}
+                onMouseDown={getEtapasDeEnsino}
+                notFoundContent={<p>Carregando...</p>}
+                placement="bottomRight"
+                optionLabelProp="label"
+                className="uf"
+              >
+                {OpcoesEtapasDeEnsino?.map((u) => (
+                  <Option key={u.id} value={u.id} label={<>{u.descricao}</>}>
+                    {u.descricao}
+                  </Option>
+                ))}
+              </Select>
+            </Form.Item>
+
+            <Form.Item name="porte" label="Porte" rules={rules}>
+              <Select>
+                <Option value={1}>Até 50 matrículas de escolarização</Option>
+                <Option value={2}>
+                  Entre 51 e 200 matrículas de escolarização
+                </Option>
+                <Option value={3}>
+                  Entre 201 e 501 matrículas de escolarização
+                </Option>
+                <Option value={4}>
+                  Entre 501 e 1000 matrículas de escolarização
+                </Option>
+                <Option value={5}>
+                  Mais de 1000 matrículas de escolarização
+                </Option>
+              </Select>
+            </Form.Item>
+          </div>
+          <div className="bloco2">
+            <Form.Item name="endereco" label="Endereço" rules={rules}>
+              <Input className="inputForm2" />
+            </Form.Item>
+
+            <Form.Item name="municipio" label="Município" rules={rules}>
+              <Select
+                notFoundContent={<p>Carregando...</p>}
+                placement="bottomRight"
+                optionLabelProp="label"
+                className="uf"
+                onMouseDown={getMunicipio}
+              >
+                {opcoesMunicipio?.map((u) => (
+                  <Option key={u.id} value={u.id} label={<>{u.nome}</>}>
+                    {u.nome}
+                  </Option>
+                ))}
+              </Select>
+            </Form.Item>
+
+            <Form.Item name="localizacao" label="Localização" rules={rules}>
+              <Select>
+                <Option value={1}>Rural</Option>
+                <Option value={2}>Urbana</Option>
+              </Select>
+            </Form.Item>
+
+            <Form.Item name="longitude" label="Longitude" rules={rules}>
+              <Input className="inputForm2" />
+            </Form.Item>
+
+            <Form.Item name="latitude" label="Latitude" rules={rules}>
+              <Input className="inputForm2" />
+            </Form.Item>
+
+            <Form.Item
+              name="numeroAlunos"
+              label="Número Total de Alunos"
+              rules={rules}
             >
-                <div className="divScroll">
-                    <div className="bloco">
-                        <Form.Item name="nome da escola" label="Nome da Escola" rules={rules}>
-                            <Input
-                                className="inputForm2"
-                            />
-                        </Form.Item>
+              <Input className="inputForm2" />
+            </Form.Item>
 
-                        <Form.Item name="rede" label="Rede" rules={rules}>
-                            <Select
-                            >
-                                <Option value="Municipal">Municipal</Option>
-                                <Option value="Estadual">Estadual</Option>
-                            </Select>
-                        </Form.Item>
-
-                        <Form.Item name="codigo da escola" label="Codigo da Escola" rules={rules}>
-                            <Input
-                                className="inputForm2"
-                            />
-                        </Form.Item>
-
-                        <Form.Item
-                            name="uf"
-                            rules={rules}
-                            label="UF"
-                        >
-
-                            <Select
-                                onClick={fetchUf}
-                                notFoundContent={<p>Carregando...</p>}
-                                placement="bottomRight"
-                                optionLabelProp="label"
-                                className="uf"
-                            >
-                                {uf?.map((u) => (
-                                    <Option
-                                        key={u.value}
-                                        value={u.value}
-                                        label={
-                                            <>
-                                                {u.label}
-                                            </>
-                                        }
-                                    >
-                                        {u.label}
-                                    </Option>
-                                ))}
-                            </Select>
-                        </Form.Item>
-
-                        <Form.Item
-                            name="cep"
-                            label="CEP"
-                            rules={rules}
-                        >
-                            <Input
-                                className="inputForm2"
-                            />
-                        </Form.Item>
-
-                        <Form.Item name="telefone" label="Telefone" rules={rules}>
-                            <Input
-                                className="inputForm2"
-                            />
-                        </Form.Item>
-
-                        <Form.Item name="ciclos de ensino" label="Ciclos de Ensino" rules={rules}>
-                            <Select
-                                mode="multiple"
-                            >
-
-                                <Option value="infantil">Ensino Infantil</Option>
-                                <Option value="fundamental1">Ensino Fundamental - 1º, 2º e 3º ano</Option>
-                                <Option value="fundamental2">Ensino Fundamental - 4º, 5º e 6º ano</Option>
-                                <Option value="fundamental3">Ensino Fundamental - 7º, 8º e 9º ano</Option>
-
-                            </Select>
-                        </Form.Item>
-
-                        <Form.Item name="porte" label="Porte" rules={rules}>
-                            <Select
-                            >
-                                <Option value="Até 50 matrículas de escolarização">Até 50 matrículas de escolarização</Option>
-                                <Option value="Entre 51 e 200 matrículas de escolarização">Entre 51 e 200 matrículas de escolarização</Option>
-                                <Option value="Entre 201 e 501 matrículas de escolarização">Entre 201 e 501 matrículas de escolarização</Option>
-                                <Option value="Entre 501 e 1000 matrículas de escolarizaçãoual">Entre 501 e 1000 matrículas de escolarização</Option>
-                                <Option value="Mais de 1000 matrículas de escolarização">Mais de 1000 matrículas de escolarização</Option>
-
-                            </Select>
-                        </Form.Item>
-
-                    </div>
-                    <div className="bloco2">
-                        <Form.Item name="endereço" label="Endereço" rules={rules}>
-                            <Input
-                                className="inputForm2"
-                            />
-                        </Form.Item>
-
-                        <Form.Item
-                            name="município"
-                            label="Município"
-                            rules={rules}
-                        >
-                            <Input
-                                className="inputForm2"
-                            />
-                        </Form.Item>
-
-                        <Form.Item name="localização" label="Localização" rules={rules}>
-                            <Select
-                            >
-                                <Option value="Rural">Rural</Option>
-                                <Option value="Urbana">Urbana</Option>
-                            </Select>
-                        </Form.Item>
-
-                        <Form.Item
-                            name="longitude"
-                            label="Longitude"
-                            rules={rules}
-                        >
-                            <Input
-                                className="inputForm2"
-                            />
-                        </Form.Item>
-
-                        <Form.Item
-                            name="latitude"
-                            label="Latitude"
-                            rules={rules}
-                        >
-                            <Input
-                                className="inputForm2"
-                            />
-                        </Form.Item>
-
-                        <Form.Item
-                            name="número total de alunos"
-                            label="Número Total de Alunos"
-                            rules={rules}
-                        >
-                            <Input
-                                className="inputForm2"
-                            />
-                        </Form.Item>
-
-                        <Form.Item
-                            name="número total de docentes"
-                            label="Número Total de Docentes"
-                            rules={rules}
-                        >
-                            <Input
-                                className="inputForm2"
-                            />
-                        </Form.Item>
-
-                    </div>
-                </div>
-                <div className="voltar">
-                    <Space>
-                        <Button className="button2" type="primary" size="large" shape="round" onClick={onClickBack}>
-                            Voltar
-                        </Button>
-                    </Space>
-                </div>
-                <div className="proximo">
-                    <Space>
-                        <Button className="button2" type="primary" size="large" htmlType="submit" shape="round">
-                            Cadastrar
-                        </Button>
-                    </Space>
-                </div>
-            </Form>
-
+            <Form.Item
+              name="numeroDocentes"
+              label="Número Total de Docentes"
+              rules={rules}
+            >
+              <Input className="inputForm2" />
+            </Form.Item>
+          </div>
         </div>
-    )
+        <div className="voltar">
+          <Space>
+            <Button
+              className="button2"
+              type="primary"
+              size="large"
+              shape="round"
+              onClick={onClickBack}
+            >
+              Voltar
+            </Button>
+          </Space>
+        </div>
+        <div className="proximo">
+          <Space>
+            <Button
+              className="button2"
+              type="primary"
+              size="large"
+              htmlType="submit"
+              shape="round"
+            >
+              Cadastrar
+            </Button>
+          </Space>
+        </div>
+      </Form>
+    </div>
+  );
 }
