@@ -257,3 +257,6 @@
   .options:hover{
     background-image: linear-gradient(rgba(var(--color-rgb),var(--hover)),rgba(var(--color-rgb),var(--hover)));
   }
+  .pagination-inhtmlFormation{
+    align-items: center;
+  }
