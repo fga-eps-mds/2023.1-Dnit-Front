@@ -46,7 +46,6 @@
   align-items: center;
   gap: 13px;
   font-size: 16px;
-  font-family: Rawline;
 }
 
 .HeaderIcon {
@@ -61,7 +60,6 @@
   padding-bottom: 3px;
   border-left: 1px solid #cccccc;
   padding-left: 24px;
-  font-family: Rawline;
 }
 
 .Secao {
