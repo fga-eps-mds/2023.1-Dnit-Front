@@ -381,6 +381,39 @@ const server = setupServer(
         ])
       );
     }
+  }),
+  rest.get("https://localhost:7083/api/escolas/listarInformacoesEscola", (req, res, ctx) =>{
+    const idEscola = req.url.searchParams.get("idEscola");
+
+    if (idEscola === "104") {
+      return res(
+        ctx.json(
+          {
+            idEscola: 104,
+            codigoEscola: 300,
+            nomeEscola: "Escola A",
+            idRede: 1,
+            descricaoRede: null,
+            cep: "CEP001",
+            idUf: 1,
+            descricaoUf: "Acre",
+            endereco: "Endereço A",
+            idMunicipio: 2303204,
+            nomeMunicipio: "Caririaçu",
+            idLocalizacao: 1,
+            longitude: "789.012",
+            latitude: "123.456",
+            idEtapasDeEnsino: 1,
+            descricaoEtapasEnsino: null,
+            numeroTotalDeAlunos: 100,
+            idSituacao: 2,
+            descricaoSituacao: "Solicitação da escola",
+            idPorte: 1,
+            telefone: "Telefone A",
+            numeroTotalDeDocentes: 50,
+            siglaUf: "AC",
+          }
+        ))}
   })
 );
 
