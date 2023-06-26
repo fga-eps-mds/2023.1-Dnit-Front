@@ -6,8 +6,6 @@ import ExibirInformacoesEscola from "../../pages/ExibirInformacoesEscola";
 import { useFiltroTabela } from "../../context/FiltroTabela";
 import { getPackedSettings } from "http2";
 
-
-
 export default function TabelaEscola() {
   const { setNomeEscola, escolasFiltradas, paginaAtual, mudarPagina, escolasPorPagina, mudarQuantidadePorPaginas, irParaPagina, totalEscolas } = useFiltroTabela()
   const [showOptionsPages, setShowOptionsPages] = useState(false);
@@ -103,7 +101,7 @@ export default function TabelaEscola() {
             return (
               <tr key={escola.idEscola} onClick={() => OpenModal(escola, index)} data-testid="linha-escola">
                 <td data-th="Título coluna 1">{escola.nomeEscola}</td>
-                <td data-th="Título coluna 2">{escola.descricaoEtapasDeEnsino}</td>
+                <td data-th="Título coluna 2">{escola.descricaoEtapasEnsino}</td>
                 <td data-th="Título coluna 3">{escola.numeroTotalDeAlunos}</td>
                 <td data-th="Título coluna 4">{escola.descricaoSituacao}</td>
                 <td data-th="Título coluna 5">{escola.nomeMunicipio}</td>
