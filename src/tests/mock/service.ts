@@ -89,10 +89,7 @@ const server = setupServer(
       })
     );
   }),
-
-  rest.get(
-    "https://localhost:7083/api/dominio/unidadeFederativa",
-    (req, res, ctx) => {
+  rest.get("https://localhost:7083/api/dominio/unidadeFederativa", (req, res, ctx) => {
       return res(
         ctx.json([
           {
@@ -229,9 +226,7 @@ const server = setupServer(
       ])
     );
   }),
-  rest.get(
-    "https://localhost:7083/api/dominio/etapasDeEnsino",
-    (req, res, ctx) => {
+  rest.get("https://localhost:7083/api/dominio/etapasDeEnsino", (req, res, ctx) => {
       return res(
         ctx.json([
           {
@@ -288,7 +283,7 @@ const server = setupServer(
       );
     }
   ),
-  rest.get("https://localhost:7083/api/dominio/municipio", (req, res, ctx) => {
+  rest.get("https://localhost:7083/api/dominio/municipio", (req, res, ctx) =>{ 
     const idUf = req.url.searchParams.get("idUf");
 
     if (idUf === "1") {
@@ -381,7 +376,13 @@ const server = setupServer(
         ])
       );
     }
-  })
-);
+  }),
+  rest.delete("https://localhost:7083/api/escolas/excluir", (req, res, ctx) =>{
+    const id = req.url.searchParams.get("id");
+
+    if (id === "104") {
+      return res(
+        ctx.json({}))}
+  }))
 
 export default server;

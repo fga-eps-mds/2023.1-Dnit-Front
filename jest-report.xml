@@ -1,22 +1,26 @@
 <testExecutions version="1">
-<file path="src\tests\Recover.spec.tsx">
-<testCase name=" should render Recover password" duration="1162" />
-</file>
 <file path="src\tests\Login.spec.tsx">
-<testCase name=" should render Login" duration="1190" />
+<testCase name=" should render Login" duration="464" />
+</file>
+<file path="src\tests\Recover.spec.tsx">
+<testCase name=" should render Recover password" duration="547" />
 </file>
 <file path="src\tests\Reset.spec.tsx">
-<testCase name=" should render Reset password" duration="1528" />
-<testCase name=" should render Reset password" duration="718" />
+<testCase name=" should render Reset password" duration="508" />
+<testCase name=" should render Reset password" duration="435" />
 </file>
 <file path="src\tests\tabelaEscola.spec.tsx">
-<testCase name="Lista de escolas &#xe9; exibida corretamente" duration="440" />
-<testCase name="Mudar quantidade de escolas por p&#xe1;gina" duration="235" />
-<testCase name="Exibir escola selecionada" duration="364" />
-<testCase name="Filtragem de escolas" duration="495" />
+<testCase name="Lista de escolas &#xe9; exibida corretamente" duration="373" />
+<testCase name="Mudar quantidade de escolas por p&#xe1;gina" duration="175" />
+<testCase name="Exibir escola selecionada" duration="192" />
+<testCase name="Filtragem de escolas" duration="458" />
+</file>
+<file path="src\tests\Excluir.spec.tsx">
+<testCase name="Modal de excluir escola exibida corretamente" duration="425" />
+<testCase name="Modal de excluir escola exibida erro" duration="341" />
 </file>
 <file path="src\tests\Register.spec.tsx">
-<testCase name="should render Register" duration="3704" />
-<testCase name="should render error in Register form" duration="1459" />
+<testCase name="should render Register" duration="2454" />
+<testCase name="should render error in Register form" duration="712" />
 </file>
 </testExecutions>
