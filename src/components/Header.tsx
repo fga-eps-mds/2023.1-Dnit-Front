@@ -16,7 +16,7 @@ export default function Header() {
           src={ButtonContrast}
           alt="Button contrast"
         />
-        <p>Alto contraste</p>
+        <div className='text-alto-contraste'>Alto contraste</div>
       </div>
     </header>
   );

@@ -4,6 +4,7 @@ import App from "../App";
 import { AuthProvider } from "../provider/Authentication";
 import fetchFederativeUnit from "../service/federativeUnit";
 import fetchRegister from "../service/register";
+import server from "./mock/service";
 
 jest.mock("../service/register", () => ({
   __esModule: true,
@@ -12,12 +13,9 @@ jest.mock("../service/register", () => ({
 
 const mockedUseRegister = fetchRegister as jest.Mock;
 
-jest.mock("../service/federativeUnit", () => ({
-  __esModule: true,
-  default: jest.fn(),
-}));
-
-const mockedUseFederativeUnit = fetchFederativeUnit as jest.Mock;
+beforeAll(() => server.listen());
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());
 
 window.matchMedia = jest.fn().mockImplementation((query) => {
   return {
@@ -34,12 +32,7 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
 
 test("should render Register", async () => {
   mockedUseRegister.mockResolvedValueOnce({ success: true });
-  const mockUf = [
-    { id: 1, descricao: "UF1" },
-    { id: 2, descricao: "UF2" },
-  ];
-  mockedUseFederativeUnit.mockResolvedValue(mockUf);
-
+  
   const { getByLabelText, getByText, getByRole, queryByText, getByTestId } =
     render(
       <MemoryRouter initialEntries={["/cadastro"]}>
@@ -71,7 +64,7 @@ test("should render Register", async () => {
     expect(queryByText("Carregando...")).not.toBeInTheDocument()
   );
 
-  const ufSelectValue = getByText("UF1");
+  const ufSelectValue = getByText("Acre");
   fireEvent.click(ufSelectValue);
 
   const options = getByTestId("option-1");

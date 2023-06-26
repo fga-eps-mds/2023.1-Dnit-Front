@@ -1,6 +1,22 @@
 export interface FederativeUnit {
   id: number;
-  sigla: string;
+  nome: string;
+}
+
+export interface Municipio{
+  id: number;
+  nome: string;
+}
+
+
+
+export interface Situacao {
+  id: number;
+  descricao: string;
+}
+
+export interface EtapasDeEnsino {
+  id: number;
   descricao: string;
 }
 
@@ -18,6 +34,25 @@ export interface RegisterData {
   uf: number;
 }
 
+
+export interface RecoverPasswordData {
+  nome: string;
+  email: string;
+  senha: string;
+}
+export interface ExcluirEscolaData {
+  id_escola: number;
+}
+
+export interface InfoEscolaData {
+  id: number;
+}
+
+export interface SalvarSituacaoData{
+  idSituacao: number,
+  idEscola: number
+}
+
 export interface RecoverPasswordData {
   nome: string;
   email: string;
@@ -27,4 +62,34 @@ export interface RecoverPasswordData {
 export interface ResetPasswordData {
   uuidAutenticacao: string;
   senha: string;
+}
+
+export interface EscolaData {
+    idEscola: number;
+    codigoEscola: number;
+    nomeEscola: string;
+    idRede: number;
+    descricaoRede: string;
+    cep: string;
+    idUf: number;
+    siglaUf: string;
+    endereco: string;
+    idMunicipio: number;
+    nomeMunicipio: string;
+    idLocalizacao: number;
+    descricaoLocalizacao:string;
+    longitude: string;
+    latitude: string;
+    idEtapasDeEnsino: number;
+    descricaoEtapasDeEnsino: string;
+    numeroTotalDeAlunos: number;
+    idSituacao: number;
+    descricaoSituacao: string;
+    idPorte: number;
+    descricaoPorte: string;
+    telefone: string;
+    numeroTotalDeDocentes: number;
+}
+export interface ExcluirSituacaoData{
+  idEscola: number
 }
