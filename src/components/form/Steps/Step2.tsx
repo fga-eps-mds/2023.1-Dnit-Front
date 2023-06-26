@@ -36,7 +36,6 @@ export default function Step2({ onClickBack }: Step2Props) {
 
 
     const [opcoesUf, setOpcoesUf] = useState<FederativeUnit[]>([]);
-    const [showOptionsUF, setShowOptionsUF] = useState(false);
     const getUf = async () => {
       try {
         const resposta = await fetchFederativeUnit();
@@ -52,7 +51,6 @@ export default function Step2({ onClickBack }: Step2Props) {
       })
 
     const [opcoesMunicipio, setOpcoesMunicipio] = useState<Municipio[]>([]);
-    const [showOpcoesMunicipio, setShowOpcoesMunincipio] = useState(false);
     const getMunicipio = async () => {
         console.log(UFSelecionada)
         try {
@@ -72,7 +70,6 @@ export default function Step2({ onClickBack }: Step2Props) {
       },[UFSelecionada, carregandoEscolas])
 
       const [OpcoesEtapasDeEnsino, setOpcoesEtapasDeEnsino] = useState<EtapasDeEnsino[]>([]);
-      const [showOpcoesEtapasDeEnsino, setShowOpcoesEtapasDeEnsino] = useState(false);
       const getEtapasDeEnsino = async () => {
         try {
           const resposta = await fetchEtapasDeEnsino();
@@ -83,16 +80,9 @@ export default function Step2({ onClickBack }: Step2Props) {
         }   
       }
     
-      const alternarEstado = (valorAtual: boolean) => (!valorAtual);
-
-      const handleButtonClick = () => {
-            setShowOptionsUF(alternarEstado);
-      };
-    
       const handleOptionClick = (option: any) => {
         console.log(option)
             setUFSelecionada(option);
-            setShowOptionsUF(false);
       };
 
 
@@ -167,7 +157,7 @@ export default function Step2({ onClickBack }: Step2Props) {
                             label="UF"
                         >
                             <Select
-                                
+                                onMouseDown={getUf}
                                 notFoundContent={<p>Carregando...</p>}
                                 placement="bottomRight"
                                 optionLabelProp="label"
@@ -208,6 +198,7 @@ export default function Step2({ onClickBack }: Step2Props) {
                         <Form.Item name="ciclos" label="Etapas de Ensino" rules={rules}>
                         <Select
                                 onClick={getEtapasDeEnsino}
+                                onMouseDown={getEtapasDeEnsino}
                                 notFoundContent={<p>Carregando...</p>}
                                 placement="bottomRight"
                                 optionLabelProp="label"
@@ -259,6 +250,7 @@ export default function Step2({ onClickBack }: Step2Props) {
                                 placement="bottomRight"
                                 optionLabelProp="label"
                                 className="uf"
+                                onMouseDown={getMunicipio}
                             >
                                 {opcoesMunicipio?.map((u) => (
                                     <Option
