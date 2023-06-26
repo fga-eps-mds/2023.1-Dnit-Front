@@ -391,6 +391,12 @@ const server = setupServer(
     (req, res, ctx) => {
       return res(ctx.status(200));
     }
+  ),
+  rest.post(
+    "https://localhost:7083/api/escolas/cadastrarEscola",
+    (req, res, ctx) => {
+      return res(ctx.status(200));
+    }
   )
 );
 
