@@ -45,7 +45,7 @@ test("Alterar situação escola", async () => {
 test("Alterar situação escola erro", async () => {
   server.use(
     rest.post(
-      "https://localhost:7083/api/escolas/adicionarSituacao",
+      "https://api.dnit-eps-mds.com/api/escolas/adicionarSituacao",
       (req, res, ctx) => {
         return res(ctx.status(403));
       }
@@ -107,7 +107,7 @@ test("Remover situação escola", async () => {
 test("Remover situação escola erro", async () => {
   server.use(
     rest.post(
-      "https://localhost:7083/api/escolas/removerSituacao",
+      "https://api.dnit-eps-mds.com/api/escolas/removerSituacao",
       (req, res, ctx) => {
         return res(ctx.status(403));
       }

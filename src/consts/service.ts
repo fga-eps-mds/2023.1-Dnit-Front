@@ -16,6 +16,7 @@ const SituacaoURL = `${urlAPIEscolas}/dominio/situacao`;
 const EtapasDeEnsinoURL = `${urlAPIEscolas}/dominio/etapasDeEnsino`;
 const MunicipioURL = `${urlAPIEscolas}/dominio/municipio`;
 const EscolasFiltradasURL = `${urlAPIEscolas}/escolas/obter`;
+const insertFileURL = `${urlAPIEscolas}/escolas/cadastrarEscolaPlanilha`;
 
 export {
   EscolasFiltradasURL,
@@ -26,6 +27,7 @@ export {
   excluirEscolaURL,
   excluirSituacaoURL,
   federativeUnitURL,
+  insertFileURL,
   listSchoolsURL,
   listarInfoEscolaURL,
   loginURL,

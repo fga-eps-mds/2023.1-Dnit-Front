@@ -3,11 +3,10 @@ export interface FederativeUnit {
   nome: string;
 }
 
-export interface Municipio{
+export interface Municipio {
   id: number;
   nome: string;
 }
-
 
 export interface Situacao {
   id: number;
@@ -34,22 +33,21 @@ export interface RegisterData {
 }
 
 export interface RegisterSchoolData {
-  NomeEscola: string,
-  IdRede: number,
-  CodigoEscola: number,
-  IdUf: number,
-  Cep: string,
-  Telefone: string,
-  IdEtapasDeEnsino: number,
-  IdPorte: number,
-  Endereco: string,
+  NomeEscola: string;
+  IdRede: number;
+  CodigoEscola: number;
+  IdUf: number;
+  Cep: string;
+  Telefone: string;
+  IdEtapasDeEnsino: number;
+  IdPorte: number;
+  Endereco: string;
   //IdMunicipio: number,
-  IdLocalizacao: number,
-  Longitude: string,
-  Latitude: string,
-  NumeroTotalDeAlunos: number,
-  NumeroTotalDeDocentes: number
-
+  IdLocalizacao: number;
+  Longitude: string;
+  Latitude: string;
+  NumeroTotalDeAlunos: number;
+  NumeroTotalDeDocentes: number;
 }
 
 export interface RecoverPasswordData {
@@ -65,9 +63,9 @@ export interface InfoEscolaData {
   id: number;
 }
 
-export interface SalvarSituacaoData{
-  idSituacao: number,
-  idEscola: number
+export interface SalvarSituacaoData {
+  idSituacao: number;
+  idEscola: number;
 }
 
 export interface RecoverPasswordData {
@@ -81,32 +79,35 @@ export interface ResetPasswordData {
   senha: string;
 }
 
-export interface EscolaData {
-    idEscola: number;
-    codigoEscola: number;
-    nomeEscola: string;
-    idRede: number;
-    descricaoRede: string;
-    cep: string;
-    idUf: number;
-    siglaUf: string;
-    endereco: string;
-    idMunicipio: number;
-    nomeMunicipio: string;
-    idLocalizacao: number;
-    descricaoLocalizacao:string;
-    longitude: string;
-    latitude: string;
-    idEtapasDeEnsino: number;
-    descricaoEtapasEnsino: string;
-    numeroTotalDeAlunos: number;
-    idSituacao: number;
-    descricaoSituacao: string;
-    idPorte: number;
-    descricaoPorte: string;
-    telefone: string;
-    numeroTotalDeDocentes: number;
+export interface InsertFileData {
+  arquivo: File;
 }
-export interface ExcluirSituacaoData{
-  idEscola: number
+export interface EscolaData {
+  idEscola: number;
+  codigoEscola: number;
+  nomeEscola: string;
+  idRede: number;
+  descricaoRede: string;
+  cep: string;
+  idUf: number;
+  siglaUf: string;
+  endereco: string;
+  idMunicipio: number;
+  nomeMunicipio: string;
+  idLocalizacao: number;
+  descricaoLocalizacao: string;
+  longitude: string;
+  latitude: string;
+  idEtapasDeEnsino: number;
+  descricaoEtapasEnsino: string;
+  numeroTotalDeAlunos: number;
+  idSituacao: number;
+  descricaoSituacao: string;
+  idPorte: number;
+  descricaoPorte: string;
+  telefone: string;
+  numeroTotalDeDocentes: number;
+}
+export interface ExcluirSituacaoData {
+  idEscola: number;
 }

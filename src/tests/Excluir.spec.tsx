@@ -33,7 +33,7 @@ test("Modal de excluir escola exibida corretamente", async () => {
 test("Modal de excluir escola exibida erro", async () => {
   server.use(
     rest.delete(
-      "https://localhost:7083/api/escolas/excluir",
+      "https://api.dnit-eps-mds.com/api/escolas/excluir",
       (req, res, ctx) => {
         const id = req.url.searchParams.get("id");
 

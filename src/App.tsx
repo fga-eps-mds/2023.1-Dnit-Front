@@ -1,16 +1,14 @@
 import { useContext } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
+import EscolasCadastradas from "./pages/EscolasCadastradas";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-import Register from "./pages/Register";
-import EscolasCadastradas from "./pages/EscolasCadastradas";
 import RecoverPassword from "./pages/RecoverPassword";
+import Register from "./pages/Register";
+import RegisterSchool from "./pages/RegisterSchool";
 import ResetPassword from "./pages/ResetPassword";
 import { AuthContext } from "./provider/Authentication";
 import "./styles/App.css";
-import RegisterSchool from "./pages/RegisterSchool";
-import ExibirInformacoesEscola from "./pages/ExibirInformacoesEscola";
-
 
 function App() {
   const { getAuth } = useContext(AuthContext);
