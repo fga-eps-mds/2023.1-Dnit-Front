@@ -1,5 +1,5 @@
 import { Button } from "antd";
-import IconeErro from "../../../assets/icons/iconeErro.svg";
+//import IconeErro from "../../../assets/icons/iconeErro.svg";
 import "../../../styles/form/step3_erro2.css";
 
 interface Step3_Erro2Props {
@@ -15,7 +15,6 @@ export default function Step3_erro2({ onClickVoltar }: Step3_Erro2Props) {
         <h2>
           {"("}Máximo 5000 linhas{")"}
         </h2>
-        <IconeErro />
       </div>
       <div className="secaoVoltar">
         <Button className="botaoVoltar" onClick={onClickVoltar}>

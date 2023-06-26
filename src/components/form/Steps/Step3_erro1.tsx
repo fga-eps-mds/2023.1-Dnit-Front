@@ -1,5 +1,5 @@
 import { Button } from "antd";
-import Icone_aviso from "../../../assets/icons/iconeAviso.svg";
+//import Icone_aviso from "../../../assets/icons/iconeAviso.svg";
 import { useEscolasCadastradas } from "../../../context/escolasCadastradasErro";
 import "../../../styles/form/step3_erro1.css";
 
@@ -13,8 +13,7 @@ export default function Step3_erro1({ onClickVoltar }: Step3Erro1Props) {
     <div className="form3_erro1">
       <div className="secaoTexto">
         <div className="secaoAtencao">
-          <Icone_aviso />
-          <h1>Atenção</h1>
+          <h3>Atenção</h3>
         </div>
         <h2>As escolas nas linhas</h2>
         {escolasCadastradas.map((escola) => (
