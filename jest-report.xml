@@ -1,40 +1,2599 @@
 <testExecutions version="1">
-<file path="src\tests\InfoEscola.spec.tsx">
-<testCase name="Exibir escola selecionada" duration="841" />
-</file>
 <file path="src\tests\Reset.spec.tsx">
-<testCase name=" should render Reset password" duration="960" />
-<testCase name=" should render Reset password" duration="650" />
+<testCase name=" should render Reset password" duration="627" />
+<testCase name=" should render Reset password" duration="827" />
+</file>
+<file path="src\tests\InfoEscola.spec.tsx">
+<testCase name="Exibir escola selecionada" duration="1734">
+<failure message="Error"><![CDATA[Error: Unable to find an element by: [data-testid=&quot;linha-escola&quot;]
+
+Ignored nodes: comments, script, style
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;div
+      class=&quot;App&quot;
+    &gt;
+      &lt;header
+        class=&quot;br-header&quot;
+      &gt;
+        &lt;div
+          class=&quot;container-lg&quot;
+        &gt;
+          &lt;div
+            class=&quot;header-top&quot;
+          &gt;
+            &lt;div
+              class=&quot;header-logo&quot;
+            &gt;
+              &lt;img
+                alt=&quot;logo&quot;
+                src=&quot;test-file-stub&quot;
+              /&gt;
+              &lt;div
+                class=&quot;header-sign&quot;
+              &gt;
+                DNIT
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div
+              class=&quot;HeaderContrast&quot;
+            &gt;
+              &lt;img
+                alt=&quot;Button contrast&quot;
+                class=&quot;buttonContrast&quot;
+                src=&quot;test-file-stub&quot;
+              /&gt;
+              &lt;div
+                class=&quot;text-alto-contraste&quot;
+              &gt;
+                Alto contraste
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div
+            class=&quot;header-bottom&quot;
+          &gt;
+            &lt;div
+              class=&quot;header-menu&quot;
+            &gt;
+              &lt;div
+                class=&quot;header-menu-trigger&quot;
+              &gt;
+                &lt;button
+                  aria-label=&quot;Menu&quot;
+                  class=&quot;br-button small circle&quot;
+                  data-target=&quot;#main-navigation&quot;
+                  data-toggle=&quot;menu&quot;
+                  id=&quot;navigation&quot;
+                  type=&quot;button&quot;
+                &gt;
+                  &lt;i
+                    aria-hidden=&quot;true&quot;
+                    class=&quot;fas fa-bars&quot;
+                  /&gt;
+                &lt;/button&gt;
+              &lt;/div&gt;
+              &lt;div
+                class=&quot;header-info&quot;
+              &gt;
+                &lt;div
+                  class=&quot;header-title&quot;
+                &gt;
+                  Nome Projeto Dnit
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/header&gt;
+      &lt;div
+        class=&quot;br-breadcrumb&quot;
+      &gt;
+        &lt;ul
+          class=&quot;crumb-list&quot;
+        &gt;
+          &lt;li
+            class=&quot;crumb home&quot;
+          &gt;
+            &lt;a
+              class=&quot;br-button circle&quot;
+              href=&quot;/escolas-cadastradas&quot;
+            &gt;
+              &lt;span
+                class=&quot;sr-only&quot;
+              &gt;
+                P&#xe1;gina inicial
+              &lt;/span&gt;
+              &lt;i
+                class=&quot;fas fa-home&quot;
+              /&gt;
+            &lt;/a&gt;
+          &lt;/li&gt;
+          &lt;li
+            class=&quot;crumb&quot;
+          &gt;
+            &lt;i
+              class=&quot;icon fas fa-chevron-right&quot;
+            /&gt;
+            &lt;a
+              href=&quot;/escolas-cadastradas&quot;
+            &gt;
+              Escolas Cadastradas
+            &lt;/a&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;button
+          class=&quot;ant-btn css-dev-only-do-not-override-12upa3x ant-btn-default button1&quot;
+          type=&quot;button&quot;
+        &gt;
+          &lt;span&gt;
+            Cadastrar escolas
+          &lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div
+        class=&quot;container inputs&quot;
+      &gt;
+        &lt;div
+          class=&quot;br-input medium input-button&quot;
+        &gt;
+          &lt;label
+            for=&quot;input-search-medium&quot;
+          &gt;
+            Nome
+          &lt;/label&gt;
+          &lt;input
+            id=&quot;input-search-medium&quot;
+            placeholder=&quot;Digite o nome da Escola&quot;
+            type=&quot;search&quot;
+          /&gt;
+          &lt;button
+            aria-label=&quot;Buscar&quot;
+            class=&quot;br-button&quot;
+            data-testid=&quot;buscar-nome&quot;
+            type=&quot;button&quot;
+          &gt;
+            &lt;i
+              aria-hidden=&quot;true&quot;
+              class=&quot;fas fa-search&quot;
+            /&gt;
+          &lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;br-select&quot;
+        &gt;
+          &lt;div
+            class=&quot;br-input&quot;
+          &gt;
+            &lt;label
+              for=&quot;select-multtiple&quot;
+            &gt;
+              UF
+            &lt;/label&gt;
+            &lt;input
+              disabled=&quot;&quot;
+              id=&quot;select-multtiple&quot;
+              placeholder=&quot;Todas&quot;
+              type=&quot;text&quot;
+            /&gt;
+            &lt;button
+              aria-label=&quot;Exibir lista&quot;
+              class=&quot;br-button&quot;
+              data-testid=&quot;buscar-uf&quot;
+              data-trigger=&quot;data-trigger&quot;
+              tabindex=&quot;-1&quot;
+              type=&quot;button&quot;
+            &gt;
+              &lt;i
+                aria-hidden=&quot;true&quot;
+                class=&quot;fas fa-angle-down&quot;
+              /&gt;
+            &lt;/button&gt;
+            &lt;div
+              class=&quot;br-input&quot;
+            /&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;br-select&quot;
+        &gt;
+          &lt;div
+            class=&quot;br-...
+    at waitForWrapper (D:\Users\isado\2023.1-Dnit-Front\node_modules\@testing-library\dom\dist\wait-for.js:166:27)
+    at _callee&#x24; (D:\Users\isado\2023.1-Dnit-Front\src\tests\InfoEscola.spec.tsx:17:18)
+    at call (D:\Users\isado\2023.1-Dnit-Front\src\tests\InfoEscola.spec.tsx:2:1)
+    at Generator.tryCatch (D:\Users\isado\2023.1-Dnit-Front\src\tests\InfoEscola.spec.tsx:2:1)
+    at Generator._invoke [as next] (D:\Users\isado\2023.1-Dnit-Front\src\tests\InfoEscola.spec.tsx:2:1)
+    at asyncGeneratorStep (D:\Users\isado\2023.1-Dnit-Front\src\tests\InfoEscola.spec.tsx:2:1)
+    at asyncGeneratorStep (D:\Users\isado\2023.1-Dnit-Front\src\tests\InfoEscola.spec.tsx:2:1)
+    at _next (D:\Users\isado\2023.1-Dnit-Front\src\tests\InfoEscola.spec.tsx:2:1)
+    at new Promise (&lt;anonymous&gt;)
+    at Object.&lt;anonymous&gt; (D:\Users\isado\2023.1-Dnit-Front\src\tests\InfoEscola.spec.tsx:2:1)
+    at Promise.then.completed (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\utils.js:293:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\utils.js:226:10)
+    at _callCircusTest (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:297:40)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at _runTest (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:233:3)
+    at _runTestsForDescribeBlock (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:135:9)
+    at run (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:68:3)
+    at runAndTransformResultsToJestFormat (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\testWorker.js:106:12)]]></failure>
+</testCase>
 </file>
 <file path="src\tests\Excluir.spec.tsx">
-<testCase name="Modal de excluir escola exibida corretamente" duration="745" />
-<testCase name="Modal de excluir escola exibida erro" duration="683" />
+<testCase name="Modal de excluir escola exibida corretamente" duration="1813">
+<failure message="Error"><![CDATA[Error: Unable to find an element by: [data-testid=&quot;linha-escola&quot;]
+
+Ignored nodes: comments, script, style
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;div
+      class=&quot;App&quot;
+    &gt;
+      &lt;header
+        class=&quot;br-header&quot;
+      &gt;
+        &lt;div
+          class=&quot;container-lg&quot;
+        &gt;
+          &lt;div
+            class=&quot;header-top&quot;
+          &gt;
+            &lt;div
+              class=&quot;header-logo&quot;
+            &gt;
+              &lt;img
+                alt=&quot;logo&quot;
+                src=&quot;test-file-stub&quot;
+              /&gt;
+              &lt;div
+                class=&quot;header-sign&quot;
+              &gt;
+                DNIT
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div
+              class=&quot;HeaderContrast&quot;
+            &gt;
+              &lt;img
+                alt=&quot;Button contrast&quot;
+                class=&quot;buttonContrast&quot;
+                src=&quot;test-file-stub&quot;
+              /&gt;
+              &lt;div
+                class=&quot;text-alto-contraste&quot;
+              &gt;
+                Alto contraste
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div
+            class=&quot;header-bottom&quot;
+          &gt;
+            &lt;div
+              class=&quot;header-menu&quot;
+            &gt;
+              &lt;div
+                class=&quot;header-menu-trigger&quot;
+              &gt;
+                &lt;button
+                  aria-label=&quot;Menu&quot;
+                  class=&quot;br-button small circle&quot;
+                  data-target=&quot;#main-navigation&quot;
+                  data-toggle=&quot;menu&quot;
+                  id=&quot;navigation&quot;
+                  type=&quot;button&quot;
+                &gt;
+                  &lt;i
+                    aria-hidden=&quot;true&quot;
+                    class=&quot;fas fa-bars&quot;
+                  /&gt;
+                &lt;/button&gt;
+              &lt;/div&gt;
+              &lt;div
+                class=&quot;header-info&quot;
+              &gt;
+                &lt;div
+                  class=&quot;header-title&quot;
+                &gt;
+                  Nome Projeto Dnit
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/header&gt;
+      &lt;div
+        class=&quot;br-breadcrumb&quot;
+      &gt;
+        &lt;ul
+          class=&quot;crumb-list&quot;
+        &gt;
+          &lt;li
+            class=&quot;crumb home&quot;
+          &gt;
+            &lt;a
+              class=&quot;br-button circle&quot;
+              href=&quot;/escolas-cadastradas&quot;
+            &gt;
+              &lt;span
+                class=&quot;sr-only&quot;
+              &gt;
+                P&#xe1;gina inicial
+              &lt;/span&gt;
+              &lt;i
+                class=&quot;fas fa-home&quot;
+              /&gt;
+            &lt;/a&gt;
+          &lt;/li&gt;
+          &lt;li
+            class=&quot;crumb&quot;
+          &gt;
+            &lt;i
+              class=&quot;icon fas fa-chevron-right&quot;
+            /&gt;
+            &lt;a
+              href=&quot;/escolas-cadastradas&quot;
+            &gt;
+              Escolas Cadastradas
+            &lt;/a&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;button
+          class=&quot;ant-btn css-dev-only-do-not-override-12upa3x ant-btn-default button1&quot;
+          type=&quot;button&quot;
+        &gt;
+          &lt;span&gt;
+            Cadastrar escolas
+          &lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div
+        class=&quot;container inputs&quot;
+      &gt;
+        &lt;div
+          class=&quot;br-input medium input-button&quot;
+        &gt;
+          &lt;label
+            for=&quot;input-search-medium&quot;
+          &gt;
+            Nome
+          &lt;/label&gt;
+          &lt;input
+            id=&quot;input-search-medium&quot;
+            placeholder=&quot;Digite o nome da Escola&quot;
+            type=&quot;search&quot;
+          /&gt;
+          &lt;button
+            aria-label=&quot;Buscar&quot;
+            class=&quot;br-button&quot;
+            data-testid=&quot;buscar-nome&quot;
+            type=&quot;button&quot;
+          &gt;
+            &lt;i
+              aria-hidden=&quot;true&quot;
+              class=&quot;fas fa-search&quot;
+            /&gt;
+          &lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;br-select&quot;
+        &gt;
+          &lt;div
+            class=&quot;br-input&quot;
+          &gt;
+            &lt;label
+              for=&quot;select-multtiple&quot;
+            &gt;
+              UF
+            &lt;/label&gt;
+            &lt;input
+              disabled=&quot;&quot;
+              id=&quot;select-multtiple&quot;
+              placeholder=&quot;Todas&quot;
+              type=&quot;text&quot;
+            /&gt;
+            &lt;button
+              aria-label=&quot;Exibir lista&quot;
+              class=&quot;br-button&quot;
+              data-testid=&quot;buscar-uf&quot;
+              data-trigger=&quot;data-trigger&quot;
+              tabindex=&quot;-1&quot;
+              type=&quot;button&quot;
+            &gt;
+              &lt;i
+                aria-hidden=&quot;true&quot;
+                class=&quot;fas fa-angle-down&quot;
+              /&gt;
+            &lt;/button&gt;
+            &lt;div
+              class=&quot;br-input&quot;
+            /&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;br-select&quot;
+        &gt;
+          &lt;div
+            class=&quot;br-...
+    at waitForWrapper (D:\Users\isado\2023.1-Dnit-Front\node_modules\@testing-library\dom\dist\wait-for.js:166:27)
+    at _callee&#x24; (D:\Users\isado\2023.1-Dnit-Front\src\tests\Excluir.spec.tsx:20:18)
+    at call (D:\Users\isado\2023.1-Dnit-Front\src\tests\Excluir.spec.tsx:2:1)
+    at Generator.tryCatch (D:\Users\isado\2023.1-Dnit-Front\src\tests\Excluir.spec.tsx:2:1)
+    at Generator._invoke [as next] (D:\Users\isado\2023.1-Dnit-Front\src\tests\Excluir.spec.tsx:2:1)
+    at asyncGeneratorStep (D:\Users\isado\2023.1-Dnit-Front\src\tests\Excluir.spec.tsx:2:1)
+    at asyncGeneratorStep (D:\Users\isado\2023.1-Dnit-Front\src\tests\Excluir.spec.tsx:2:1)
+    at _next (D:\Users\isado\2023.1-Dnit-Front\src\tests\Excluir.spec.tsx:2:1)
+    at new Promise (&lt;anonymous&gt;)
+    at Object.&lt;anonymous&gt; (D:\Users\isado\2023.1-Dnit-Front\src\tests\Excluir.spec.tsx:2:1)
+    at Promise.then.completed (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\utils.js:293:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\utils.js:226:10)
+    at _callCircusTest (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:297:40)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at _runTest (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:233:3)
+    at _runTestsForDescribeBlock (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:135:9)
+    at run (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:68:3)
+    at runAndTransformResultsToJestFormat (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\testWorker.js:106:12)]]></failure>
+</testCase>
+<testCase name="Modal de excluir escola exibida erro" duration="1182">
+<failure message="Error"><![CDATA[Error: Unable to find an element by: [data-testid=&quot;linha-escola&quot;]
+
+Ignored nodes: comments, script, style
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;div
+      class=&quot;App&quot;
+    &gt;
+      &lt;header
+        class=&quot;br-header&quot;
+      &gt;
+        &lt;div
+          class=&quot;container-lg&quot;
+        &gt;
+          &lt;div
+            class=&quot;header-top&quot;
+          &gt;
+            &lt;div
+              class=&quot;header-logo&quot;
+            &gt;
+              &lt;img
+                alt=&quot;logo&quot;
+                src=&quot;test-file-stub&quot;
+              /&gt;
+              &lt;div
+                class=&quot;header-sign&quot;
+              &gt;
+                DNIT
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div
+              class=&quot;HeaderContrast&quot;
+            &gt;
+              &lt;img
+                alt=&quot;Button contrast&quot;
+                class=&quot;buttonContrast&quot;
+                src=&quot;test-file-stub&quot;
+              /&gt;
+              &lt;div
+                class=&quot;text-alto-contraste&quot;
+              &gt;
+                Alto contraste
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div
+            class=&quot;header-bottom&quot;
+          &gt;
+            &lt;div
+              class=&quot;header-menu&quot;
+            &gt;
+              &lt;div
+                class=&quot;header-menu-trigger&quot;
+              &gt;
+                &lt;button
+                  aria-label=&quot;Menu&quot;
+                  class=&quot;br-button small circle&quot;
+                  data-target=&quot;#main-navigation&quot;
+                  data-toggle=&quot;menu&quot;
+                  id=&quot;navigation&quot;
+                  type=&quot;button&quot;
+                &gt;
+                  &lt;i
+                    aria-hidden=&quot;true&quot;
+                    class=&quot;fas fa-bars&quot;
+                  /&gt;
+                &lt;/button&gt;
+              &lt;/div&gt;
+              &lt;div
+                class=&quot;header-info&quot;
+              &gt;
+                &lt;div
+                  class=&quot;header-title&quot;
+                &gt;
+                  Nome Projeto Dnit
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/header&gt;
+      &lt;div
+        class=&quot;br-breadcrumb&quot;
+      &gt;
+        &lt;ul
+          class=&quot;crumb-list&quot;
+        &gt;
+          &lt;li
+            class=&quot;crumb home&quot;
+          &gt;
+            &lt;a
+              class=&quot;br-button circle&quot;
+              href=&quot;/escolas-cadastradas&quot;
+            &gt;
+              &lt;span
+                class=&quot;sr-only&quot;
+              &gt;
+                P&#xe1;gina inicial
+              &lt;/span&gt;
+              &lt;i
+                class=&quot;fas fa-home&quot;
+              /&gt;
+            &lt;/a&gt;
+          &lt;/li&gt;
+          &lt;li
+            class=&quot;crumb&quot;
+          &gt;
+            &lt;i
+              class=&quot;icon fas fa-chevron-right&quot;
+            /&gt;
+            &lt;a
+              href=&quot;/escolas-cadastradas&quot;
+            &gt;
+              Escolas Cadastradas
+            &lt;/a&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;button
+          class=&quot;ant-btn css-dev-only-do-not-override-12upa3x ant-btn-default button1&quot;
+          type=&quot;button&quot;
+        &gt;
+          &lt;span&gt;
+            Cadastrar escolas
+          &lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div
+        class=&quot;container inputs&quot;
+      &gt;
+        &lt;div
+          class=&quot;br-input medium input-button&quot;
+        &gt;
+          &lt;label
+            for=&quot;input-search-medium&quot;
+          &gt;
+            Nome
+          &lt;/label&gt;
+          &lt;input
+            id=&quot;input-search-medium&quot;
+            placeholder=&quot;Digite o nome da Escola&quot;
+            type=&quot;search&quot;
+          /&gt;
+          &lt;button
+            aria-label=&quot;Buscar&quot;
+            class=&quot;br-button&quot;
+            data-testid=&quot;buscar-nome&quot;
+            type=&quot;button&quot;
+          &gt;
+            &lt;i
+              aria-hidden=&quot;true&quot;
+              class=&quot;fas fa-search&quot;
+            /&gt;
+          &lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;br-select&quot;
+        &gt;
+          &lt;div
+            class=&quot;br-input&quot;
+          &gt;
+            &lt;label
+              for=&quot;select-multtiple&quot;
+            &gt;
+              UF
+            &lt;/label&gt;
+            &lt;input
+              disabled=&quot;&quot;
+              id=&quot;select-multtiple&quot;
+              placeholder=&quot;Todas&quot;
+              type=&quot;text&quot;
+            /&gt;
+            &lt;button
+              aria-label=&quot;Exibir lista&quot;
+              class=&quot;br-button&quot;
+              data-testid=&quot;buscar-uf&quot;
+              data-trigger=&quot;data-trigger&quot;
+              tabindex=&quot;-1&quot;
+              type=&quot;button&quot;
+            &gt;
+              &lt;i
+                aria-hidden=&quot;true&quot;
+                class=&quot;fas fa-angle-down&quot;
+              /&gt;
+            &lt;/button&gt;
+            &lt;div
+              class=&quot;br-input&quot;
+            /&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;br-select&quot;
+        &gt;
+          &lt;div
+            class=&quot;br-...
+    at waitForWrapper (D:\Users\isado\2023.1-Dnit-Front\node_modules\@testing-library\dom\dist\wait-for.js:166:27)
+    at _callee2&#x24; (D:\Users\isado\2023.1-Dnit-Front\src\tests\Excluir.spec.tsx:52:18)
+    at call (D:\Users\isado\2023.1-Dnit-Front\src\tests\Excluir.spec.tsx:2:1)
+    at Generator.tryCatch (D:\Users\isado\2023.1-Dnit-Front\src\tests\Excluir.spec.tsx:2:1)
+    at Generator._invoke [as next] (D:\Users\isado\2023.1-Dnit-Front\src\tests\Excluir.spec.tsx:2:1)
+    at asyncGeneratorStep (D:\Users\isado\2023.1-Dnit-Front\src\tests\Excluir.spec.tsx:2:1)
+    at asyncGeneratorStep (D:\Users\isado\2023.1-Dnit-Front\src\tests\Excluir.spec.tsx:2:1)
+    at _next (D:\Users\isado\2023.1-Dnit-Front\src\tests\Excluir.spec.tsx:2:1)
+    at new Promise (&lt;anonymous&gt;)
+    at Object.&lt;anonymous&gt; (D:\Users\isado\2023.1-Dnit-Front\src\tests\Excluir.spec.tsx:2:1)
+    at Promise.then.completed (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\utils.js:293:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\utils.js:226:10)
+    at _callCircusTest (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:297:40)
+    at runNextTicks (node:internal/process/task_queues:61:5)
+    at processTimers (node:internal/timers:499:9)
+    at _runTest (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:233:3)
+    at _runTestsForDescribeBlock (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:135:9)
+    at run (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:68:3)
+    at runAndTransformResultsToJestFormat (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\testWorker.js:106:12)]]></failure>
+</testCase>
 </file>
 <file path="src\tests\Situacao.spec.tsx">
-<testCase name="Alterar situa&#xe7;&#xe3;o escola" duration="875" />
-<testCase name="Alterar situa&#xe7;&#xe3;o escola erro" duration="425" />
-<testCase name="Remover situa&#xe7;&#xe3;o escola" duration="554" />
-<testCase name="Remover situa&#xe7;&#xe3;o escola erro" duration="406" />
-<testCase name="Erro de Provider de selectedValue" duration="137" />
+<testCase name="Alterar situa&#xe7;&#xe3;o escola" duration="1518">
+<failure message="Error"><![CDATA[Error: Unable to find an element by: [data-testid=&quot;linha-escola&quot;]
+
+Ignored nodes: comments, script, style
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;div
+      class=&quot;App&quot;
+    &gt;
+      &lt;header
+        class=&quot;br-header&quot;
+      &gt;
+        &lt;div
+          class=&quot;container-lg&quot;
+        &gt;
+          &lt;div
+            class=&quot;header-top&quot;
+          &gt;
+            &lt;div
+              class=&quot;header-logo&quot;
+            &gt;
+              &lt;img
+                alt=&quot;logo&quot;
+                src=&quot;test-file-stub&quot;
+              /&gt;
+              &lt;div
+                class=&quot;header-sign&quot;
+              &gt;
+                DNIT
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div
+              class=&quot;HeaderContrast&quot;
+            &gt;
+              &lt;img
+                alt=&quot;Button contrast&quot;
+                class=&quot;buttonContrast&quot;
+                src=&quot;test-file-stub&quot;
+              /&gt;
+              &lt;div
+                class=&quot;text-alto-contraste&quot;
+              &gt;
+                Alto contraste
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div
+            class=&quot;header-bottom&quot;
+          &gt;
+            &lt;div
+              class=&quot;header-menu&quot;
+            &gt;
+              &lt;div
+                class=&quot;header-menu-trigger&quot;
+              &gt;
+                &lt;button
+                  aria-label=&quot;Menu&quot;
+                  class=&quot;br-button small circle&quot;
+                  data-target=&quot;#main-navigation&quot;
+                  data-toggle=&quot;menu&quot;
+                  id=&quot;navigation&quot;
+                  type=&quot;button&quot;
+                &gt;
+                  &lt;i
+                    aria-hidden=&quot;true&quot;
+                    class=&quot;fas fa-bars&quot;
+                  /&gt;
+                &lt;/button&gt;
+              &lt;/div&gt;
+              &lt;div
+                class=&quot;header-info&quot;
+              &gt;
+                &lt;div
+                  class=&quot;header-title&quot;
+                &gt;
+                  Nome Projeto Dnit
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/header&gt;
+      &lt;div
+        class=&quot;br-breadcrumb&quot;
+      &gt;
+        &lt;ul
+          class=&quot;crumb-list&quot;
+        &gt;
+          &lt;li
+            class=&quot;crumb home&quot;
+          &gt;
+            &lt;a
+              class=&quot;br-button circle&quot;
+              href=&quot;/escolas-cadastradas&quot;
+            &gt;
+              &lt;span
+                class=&quot;sr-only&quot;
+              &gt;
+                P&#xe1;gina inicial
+              &lt;/span&gt;
+              &lt;i
+                class=&quot;fas fa-home&quot;
+              /&gt;
+            &lt;/a&gt;
+          &lt;/li&gt;
+          &lt;li
+            class=&quot;crumb&quot;
+          &gt;
+            &lt;i
+              class=&quot;icon fas fa-chevron-right&quot;
+            /&gt;
+            &lt;a
+              href=&quot;/escolas-cadastradas&quot;
+            &gt;
+              Escolas Cadastradas
+            &lt;/a&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;button
+          class=&quot;ant-btn css-dev-only-do-not-override-12upa3x ant-btn-default button1&quot;
+          type=&quot;button&quot;
+        &gt;
+          &lt;span&gt;
+            Cadastrar escolas
+          &lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div
+        class=&quot;container inputs&quot;
+      &gt;
+        &lt;div
+          class=&quot;br-input medium input-button&quot;
+        &gt;
+          &lt;label
+            for=&quot;input-search-medium&quot;
+          &gt;
+            Nome
+          &lt;/label&gt;
+          &lt;input
+            id=&quot;input-search-medium&quot;
+            placeholder=&quot;Digite o nome da Escola&quot;
+            type=&quot;search&quot;
+          /&gt;
+          &lt;button
+            aria-label=&quot;Buscar&quot;
+            class=&quot;br-button&quot;
+            data-testid=&quot;buscar-nome&quot;
+            type=&quot;button&quot;
+          &gt;
+            &lt;i
+              aria-hidden=&quot;true&quot;
+              class=&quot;fas fa-search&quot;
+            /&gt;
+          &lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;br-select&quot;
+        &gt;
+          &lt;div
+            class=&quot;br-input&quot;
+          &gt;
+            &lt;label
+              for=&quot;select-multtiple&quot;
+            &gt;
+              UF
+            &lt;/label&gt;
+            &lt;input
+              disabled=&quot;&quot;
+              id=&quot;select-multtiple&quot;
+              placeholder=&quot;Todas&quot;
+              type=&quot;text&quot;
+            /&gt;
+            &lt;button
+              aria-label=&quot;Exibir lista&quot;
+              class=&quot;br-button&quot;
+              data-testid=&quot;buscar-uf&quot;
+              data-trigger=&quot;data-trigger&quot;
+              tabindex=&quot;-1&quot;
+              type=&quot;button&quot;
+            &gt;
+              &lt;i
+                aria-hidden=&quot;true&quot;
+                class=&quot;fas fa-angle-down&quot;
+              /&gt;
+            &lt;/button&gt;
+            &lt;div
+              class=&quot;br-input&quot;
+            /&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;br-select&quot;
+        &gt;
+          &lt;div
+            class=&quot;br-...
+    at waitForWrapper (D:\Users\isado\2023.1-Dnit-Front\node_modules\@testing-library\dom\dist\wait-for.js:166:27)
+    at _callee2&#x24; (D:\Users\isado\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:25:16)
+    at call (D:\Users\isado\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at Generator.tryCatch (D:\Users\isado\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at Generator._invoke [as next] (D:\Users\isado\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at asyncGeneratorStep (D:\Users\isado\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at asyncGeneratorStep (D:\Users\isado\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at _next (D:\Users\isado\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at new Promise (&lt;anonymous&gt;)
+    at Object.&lt;anonymous&gt; (D:\Users\isado\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at Promise.then.completed (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\utils.js:293:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\utils.js:226:10)
+    at _callCircusTest (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:297:40)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at _runTest (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:233:3)
+    at _runTestsForDescribeBlock (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:135:9)
+    at run (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:68:3)
+    at runAndTransformResultsToJestFormat (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\testWorker.js:106:12)]]></failure>
+</testCase>
+<testCase name="Alterar situa&#xe7;&#xe3;o escola erro" duration="1246">
+<failure message="Error"><![CDATA[Error: Unable to find an element by: [data-testid=&quot;linha-escola&quot;]
+
+Ignored nodes: comments, script, style
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;div
+      class=&quot;App&quot;
+    &gt;
+      &lt;header
+        class=&quot;br-header&quot;
+      &gt;
+        &lt;div
+          class=&quot;container-lg&quot;
+        &gt;
+          &lt;div
+            class=&quot;header-top&quot;
+          &gt;
+            &lt;div
+              class=&quot;header-logo&quot;
+            &gt;
+              &lt;img
+                alt=&quot;logo&quot;
+                src=&quot;test-file-stub&quot;
+              /&gt;
+              &lt;div
+                class=&quot;header-sign&quot;
+              &gt;
+                DNIT
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div
+              class=&quot;HeaderContrast&quot;
+            &gt;
+              &lt;img
+                alt=&quot;Button contrast&quot;
+                class=&quot;buttonContrast&quot;
+                src=&quot;test-file-stub&quot;
+              /&gt;
+              &lt;div
+                class=&quot;text-alto-contraste&quot;
+              &gt;
+                Alto contraste
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div
+            class=&quot;header-bottom&quot;
+          &gt;
+            &lt;div
+              class=&quot;header-menu&quot;
+            &gt;
+              &lt;div
+                class=&quot;header-menu-trigger&quot;
+              &gt;
+                &lt;button
+                  aria-label=&quot;Menu&quot;
+                  class=&quot;br-button small circle&quot;
+                  data-target=&quot;#main-navigation&quot;
+                  data-toggle=&quot;menu&quot;
+                  id=&quot;navigation&quot;
+                  type=&quot;button&quot;
+                &gt;
+                  &lt;i
+                    aria-hidden=&quot;true&quot;
+                    class=&quot;fas fa-bars&quot;
+                  /&gt;
+                &lt;/button&gt;
+              &lt;/div&gt;
+              &lt;div
+                class=&quot;header-info&quot;
+              &gt;
+                &lt;div
+                  class=&quot;header-title&quot;
+                &gt;
+                  Nome Projeto Dnit
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/header&gt;
+      &lt;div
+        class=&quot;br-breadcrumb&quot;
+      &gt;
+        &lt;ul
+          class=&quot;crumb-list&quot;
+        &gt;
+          &lt;li
+            class=&quot;crumb home&quot;
+          &gt;
+            &lt;a
+              class=&quot;br-button circle&quot;
+              href=&quot;/escolas-cadastradas&quot;
+            &gt;
+              &lt;span
+                class=&quot;sr-only&quot;
+              &gt;
+                P&#xe1;gina inicial
+              &lt;/span&gt;
+              &lt;i
+                class=&quot;fas fa-home&quot;
+              /&gt;
+            &lt;/a&gt;
+          &lt;/li&gt;
+          &lt;li
+            class=&quot;crumb&quot;
+          &gt;
+            &lt;i
+              class=&quot;icon fas fa-chevron-right&quot;
+            /&gt;
+            &lt;a
+              href=&quot;/escolas-cadastradas&quot;
+            &gt;
+              Escolas Cadastradas
+            &lt;/a&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;button
+          class=&quot;ant-btn css-dev-only-do-not-override-12upa3x ant-btn-default button1&quot;
+          type=&quot;button&quot;
+        &gt;
+          &lt;span&gt;
+            Cadastrar escolas
+          &lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div
+        class=&quot;container inputs&quot;
+      &gt;
+        &lt;div
+          class=&quot;br-input medium input-button&quot;
+        &gt;
+          &lt;label
+            for=&quot;input-search-medium&quot;
+          &gt;
+            Nome
+          &lt;/label&gt;
+          &lt;input
+            id=&quot;input-search-medium&quot;
+            placeholder=&quot;Digite o nome da Escola&quot;
+            type=&quot;search&quot;
+          /&gt;
+          &lt;button
+            aria-label=&quot;Buscar&quot;
+            class=&quot;br-button&quot;
+            data-testid=&quot;buscar-nome&quot;
+            type=&quot;button&quot;
+          &gt;
+            &lt;i
+              aria-hidden=&quot;true&quot;
+              class=&quot;fas fa-search&quot;
+            /&gt;
+          &lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;br-select&quot;
+        &gt;
+          &lt;div
+            class=&quot;br-input&quot;
+          &gt;
+            &lt;label
+              for=&quot;select-multtiple&quot;
+            &gt;
+              UF
+            &lt;/label&gt;
+            &lt;input
+              disabled=&quot;&quot;
+              id=&quot;select-multtiple&quot;
+              placeholder=&quot;Todas&quot;
+              type=&quot;text&quot;
+            /&gt;
+            &lt;button
+              aria-label=&quot;Exibir lista&quot;
+              class=&quot;br-button&quot;
+              data-testid=&quot;buscar-uf&quot;
+              data-trigger=&quot;data-trigger&quot;
+              tabindex=&quot;-1&quot;
+              type=&quot;button&quot;
+            &gt;
+              &lt;i
+                aria-hidden=&quot;true&quot;
+                class=&quot;fas fa-angle-down&quot;
+              /&gt;
+            &lt;/button&gt;
+            &lt;div
+              class=&quot;br-input&quot;
+            /&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;br-select&quot;
+        &gt;
+          &lt;div
+            class=&quot;br-...
+    at waitForWrapper (D:\Users\isado\2023.1-Dnit-Front\node_modules\@testing-library\dom\dist\wait-for.js:166:27)
+    at _callee4&#x24; (D:\Users\isado\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:60:16)
+    at call (D:\Users\isado\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at Generator.tryCatch (D:\Users\isado\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at Generator._invoke [as next] (D:\Users\isado\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at asyncGeneratorStep (D:\Users\isado\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at asyncGeneratorStep (D:\Users\isado\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at _next (D:\Users\isado\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at new Promise (&lt;anonymous&gt;)
+    at Object.&lt;anonymous&gt; (D:\Users\isado\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at Promise.then.completed (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\utils.js:293:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\utils.js:226:10)
+    at _callCircusTest (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:297:40)
+    at _runTest (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:233:3)
+    at _runTestsForDescribeBlock (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:135:9)
+    at run (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:68:3)
+    at runAndTransformResultsToJestFormat (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\testWorker.js:106:12)]]></failure>
+</testCase>
+<testCase name="Remover situa&#xe7;&#xe3;o escola" duration="1248">
+<failure message="Error"><![CDATA[Error: Unable to find an element by: [data-testid=&quot;linha-escola&quot;]
+
+Ignored nodes: comments, script, style
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;div
+      class=&quot;App&quot;
+    &gt;
+      &lt;header
+        class=&quot;br-header&quot;
+      &gt;
+        &lt;div
+          class=&quot;container-lg&quot;
+        &gt;
+          &lt;div
+            class=&quot;header-top&quot;
+          &gt;
+            &lt;div
+              class=&quot;header-logo&quot;
+            &gt;
+              &lt;img
+                alt=&quot;logo&quot;
+                src=&quot;test-file-stub&quot;
+              /&gt;
+              &lt;div
+                class=&quot;header-sign&quot;
+              &gt;
+                DNIT
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div
+              class=&quot;HeaderContrast&quot;
+            &gt;
+              &lt;img
+                alt=&quot;Button contrast&quot;
+                class=&quot;buttonContrast&quot;
+                src=&quot;test-file-stub&quot;
+              /&gt;
+              &lt;div
+                class=&quot;text-alto-contraste&quot;
+              &gt;
+                Alto contraste
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div
+            class=&quot;header-bottom&quot;
+          &gt;
+            &lt;div
+              class=&quot;header-menu&quot;
+            &gt;
+              &lt;div
+                class=&quot;header-menu-trigger&quot;
+              &gt;
+                &lt;button
+                  aria-label=&quot;Menu&quot;
+                  class=&quot;br-button small circle&quot;
+                  data-target=&quot;#main-navigation&quot;
+                  data-toggle=&quot;menu&quot;
+                  id=&quot;navigation&quot;
+                  type=&quot;button&quot;
+                &gt;
+                  &lt;i
+                    aria-hidden=&quot;true&quot;
+                    class=&quot;fas fa-bars&quot;
+                  /&gt;
+                &lt;/button&gt;
+              &lt;/div&gt;
+              &lt;div
+                class=&quot;header-info&quot;
+              &gt;
+                &lt;div
+                  class=&quot;header-title&quot;
+                &gt;
+                  Nome Projeto Dnit
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/header&gt;
+      &lt;div
+        class=&quot;br-breadcrumb&quot;
+      &gt;
+        &lt;ul
+          class=&quot;crumb-list&quot;
+        &gt;
+          &lt;li
+            class=&quot;crumb home&quot;
+          &gt;
+            &lt;a
+              class=&quot;br-button circle&quot;
+              href=&quot;/escolas-cadastradas&quot;
+            &gt;
+              &lt;span
+                class=&quot;sr-only&quot;
+              &gt;
+                P&#xe1;gina inicial
+              &lt;/span&gt;
+              &lt;i
+                class=&quot;fas fa-home&quot;
+              /&gt;
+            &lt;/a&gt;
+          &lt;/li&gt;
+          &lt;li
+            class=&quot;crumb&quot;
+          &gt;
+            &lt;i
+              class=&quot;icon fas fa-chevron-right&quot;
+            /&gt;
+            &lt;a
+              href=&quot;/escolas-cadastradas&quot;
+            &gt;
+              Escolas Cadastradas
+            &lt;/a&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;button
+          class=&quot;ant-btn css-dev-only-do-not-override-12upa3x ant-btn-default button1&quot;
+          type=&quot;button&quot;
+        &gt;
+          &lt;span&gt;
+            Cadastrar escolas
+          &lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div
+        class=&quot;container inputs&quot;
+      &gt;
+        &lt;div
+          class=&quot;br-input medium input-button&quot;
+        &gt;
+          &lt;label
+            for=&quot;input-search-medium&quot;
+          &gt;
+            Nome
+          &lt;/label&gt;
+          &lt;input
+            id=&quot;input-search-medium&quot;
+            placeholder=&quot;Digite o nome da Escola&quot;
+            type=&quot;search&quot;
+          /&gt;
+          &lt;button
+            aria-label=&quot;Buscar&quot;
+            class=&quot;br-button&quot;
+            data-testid=&quot;buscar-nome&quot;
+            type=&quot;button&quot;
+          &gt;
+            &lt;i
+              aria-hidden=&quot;true&quot;
+              class=&quot;fas fa-search&quot;
+            /&gt;
+          &lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;br-select&quot;
+        &gt;
+          &lt;div
+            class=&quot;br-input&quot;
+          &gt;
+            &lt;label
+              for=&quot;select-multtiple&quot;
+            &gt;
+              UF
+            &lt;/label&gt;
+            &lt;input
+              disabled=&quot;&quot;
+              id=&quot;select-multtiple&quot;
+              placeholder=&quot;Todas&quot;
+              type=&quot;text&quot;
+            /&gt;
+            &lt;button
+              aria-label=&quot;Exibir lista&quot;
+              class=&quot;br-button&quot;
+              data-testid=&quot;buscar-uf&quot;
+              data-trigger=&quot;data-trigger&quot;
+              tabindex=&quot;-1&quot;
+              type=&quot;button&quot;
+            &gt;
+              &lt;i
+                aria-hidden=&quot;true&quot;
+                class=&quot;fas fa-angle-down&quot;
+              /&gt;
+            &lt;/button&gt;
+            &lt;div
+              class=&quot;br-input&quot;
+            /&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;br-select&quot;
+        &gt;
+          &lt;div
+            class=&quot;br-...
+    at waitForWrapper (D:\Users\isado\2023.1-Dnit-Front\node_modules\@testing-library\dom\dist\wait-for.js:166:27)
+    at _callee6&#x24; (D:\Users\isado\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:87:16)
+    at call (D:\Users\isado\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at Generator.tryCatch (D:\Users\isado\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at Generator._invoke [as next] (D:\Users\isado\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at asyncGeneratorStep (D:\Users\isado\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at asyncGeneratorStep (D:\Users\isado\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at _next (D:\Users\isado\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at new Promise (&lt;anonymous&gt;)
+    at Object.&lt;anonymous&gt; (D:\Users\isado\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at Promise.then.completed (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\utils.js:293:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\utils.js:226:10)
+    at _callCircusTest (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:297:40)
+    at _runTest (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:233:3)
+    at _runTestsForDescribeBlock (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:135:9)
+    at run (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:68:3)
+    at runAndTransformResultsToJestFormat (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\testWorker.js:106:12)]]></failure>
+</testCase>
+<testCase name="Remover situa&#xe7;&#xe3;o escola erro" duration="1184">
+<failure message="Error"><![CDATA[Error: Unable to find an element by: [data-testid=&quot;linha-escola&quot;]
+
+Ignored nodes: comments, script, style
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;div
+      class=&quot;App&quot;
+    &gt;
+      &lt;header
+        class=&quot;br-header&quot;
+      &gt;
+        &lt;div
+          class=&quot;container-lg&quot;
+        &gt;
+          &lt;div
+            class=&quot;header-top&quot;
+          &gt;
+            &lt;div
+              class=&quot;header-logo&quot;
+            &gt;
+              &lt;img
+                alt=&quot;logo&quot;
+                src=&quot;test-file-stub&quot;
+              /&gt;
+              &lt;div
+                class=&quot;header-sign&quot;
+              &gt;
+                DNIT
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div
+              class=&quot;HeaderContrast&quot;
+            &gt;
+              &lt;img
+                alt=&quot;Button contrast&quot;
+                class=&quot;buttonContrast&quot;
+                src=&quot;test-file-stub&quot;
+              /&gt;
+              &lt;div
+                class=&quot;text-alto-contraste&quot;
+              &gt;
+                Alto contraste
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div
+            class=&quot;header-bottom&quot;
+          &gt;
+            &lt;div
+              class=&quot;header-menu&quot;
+            &gt;
+              &lt;div
+                class=&quot;header-menu-trigger&quot;
+              &gt;
+                &lt;button
+                  aria-label=&quot;Menu&quot;
+                  class=&quot;br-button small circle&quot;
+                  data-target=&quot;#main-navigation&quot;
+                  data-toggle=&quot;menu&quot;
+                  id=&quot;navigation&quot;
+                  type=&quot;button&quot;
+                &gt;
+                  &lt;i
+                    aria-hidden=&quot;true&quot;
+                    class=&quot;fas fa-bars&quot;
+                  /&gt;
+                &lt;/button&gt;
+              &lt;/div&gt;
+              &lt;div
+                class=&quot;header-info&quot;
+              &gt;
+                &lt;div
+                  class=&quot;header-title&quot;
+                &gt;
+                  Nome Projeto Dnit
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/header&gt;
+      &lt;div
+        class=&quot;br-breadcrumb&quot;
+      &gt;
+        &lt;ul
+          class=&quot;crumb-list&quot;
+        &gt;
+          &lt;li
+            class=&quot;crumb home&quot;
+          &gt;
+            &lt;a
+              class=&quot;br-button circle&quot;
+              href=&quot;/escolas-cadastradas&quot;
+            &gt;
+              &lt;span
+                class=&quot;sr-only&quot;
+              &gt;
+                P&#xe1;gina inicial
+              &lt;/span&gt;
+              &lt;i
+                class=&quot;fas fa-home&quot;
+              /&gt;
+            &lt;/a&gt;
+          &lt;/li&gt;
+          &lt;li
+            class=&quot;crumb&quot;
+          &gt;
+            &lt;i
+              class=&quot;icon fas fa-chevron-right&quot;
+            /&gt;
+            &lt;a
+              href=&quot;/escolas-cadastradas&quot;
+            &gt;
+              Escolas Cadastradas
+            &lt;/a&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;button
+          class=&quot;ant-btn css-dev-only-do-not-override-12upa3x ant-btn-default button1&quot;
+          type=&quot;button&quot;
+        &gt;
+          &lt;span&gt;
+            Cadastrar escolas
+          &lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div
+        class=&quot;container inputs&quot;
+      &gt;
+        &lt;div
+          class=&quot;br-input medium input-button&quot;
+        &gt;
+          &lt;label
+            for=&quot;input-search-medium&quot;
+          &gt;
+            Nome
+          &lt;/label&gt;
+          &lt;input
+            id=&quot;input-search-medium&quot;
+            placeholder=&quot;Digite o nome da Escola&quot;
+            type=&quot;search&quot;
+          /&gt;
+          &lt;button
+            aria-label=&quot;Buscar&quot;
+            class=&quot;br-button&quot;
+            data-testid=&quot;buscar-nome&quot;
+            type=&quot;button&quot;
+          &gt;
+            &lt;i
+              aria-hidden=&quot;true&quot;
+              class=&quot;fas fa-search&quot;
+            /&gt;
+          &lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;br-select&quot;
+        &gt;
+          &lt;div
+            class=&quot;br-input&quot;
+          &gt;
+            &lt;label
+              for=&quot;select-multtiple&quot;
+            &gt;
+              UF
+            &lt;/label&gt;
+            &lt;input
+              disabled=&quot;&quot;
+              id=&quot;select-multtiple&quot;
+              placeholder=&quot;Todas&quot;
+              type=&quot;text&quot;
+            /&gt;
+            &lt;button
+              aria-label=&quot;Exibir lista&quot;
+              class=&quot;br-button&quot;
+              data-testid=&quot;buscar-uf&quot;
+              data-trigger=&quot;data-trigger&quot;
+              tabindex=&quot;-1&quot;
+              type=&quot;button&quot;
+            &gt;
+              &lt;i
+                aria-hidden=&quot;true&quot;
+                class=&quot;fas fa-angle-down&quot;
+              /&gt;
+            &lt;/button&gt;
+            &lt;div
+              class=&quot;br-input&quot;
+            /&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;br-select&quot;
+        &gt;
+          &lt;div
+            class=&quot;br-...
+    at waitForWrapper (D:\Users\isado\2023.1-Dnit-Front\node_modules\@testing-library\dom\dist\wait-for.js:166:27)
+    at _callee8&#x24; (D:\Users\isado\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:122:16)
+    at call (D:\Users\isado\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at Generator.tryCatch (D:\Users\isado\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at Generator._invoke [as next] (D:\Users\isado\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at asyncGeneratorStep (D:\Users\isado\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at asyncGeneratorStep (D:\Users\isado\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at _next (D:\Users\isado\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at new Promise (&lt;anonymous&gt;)
+    at Object.&lt;anonymous&gt; (D:\Users\isado\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at Promise.then.completed (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\utils.js:293:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\utils.js:226:10)
+    at _callCircusTest (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:297:40)
+    at _runTest (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:233:3)
+    at _runTestsForDescribeBlock (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:135:9)
+    at run (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:68:3)
+    at runAndTransformResultsToJestFormat (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\testWorker.js:106:12)]]></failure>
+</testCase>
+<testCase name="Erro de Provider de selectedValue" duration="85" />
 </file>
 <file path="src\tests\tabelaEscola.spec.tsx">
-<testCase name="Lista de escolas &#xe9; exibida corretamente" duration="561" />
-<testCase name="Mudar quantidade de escolas por p&#xe1;gina" duration="472" />
-<testCase name="Exibir escola selecionada" duration="354" />
-<testCase name="Filtragem de escolas" duration="1041" />
-</file>
-<file path="src\tests\Recover.spec.tsx">
-<testCase name=" should render Recover password" duration="442" />
-</file>
-<file path="src\tests\Login.spec.tsx">
-<testCase name=" should render Login" duration="528" />
-</file>
-<file path="src\tests\Register.spec.tsx">
-<testCase name="should render Register" duration="5082" />
-<testCase name="should render error in Register form" duration="1916" />
+<testCase name="Lista de escolas &#xe9; exibida corretamente" duration="1808">
+<failure message="Error"><![CDATA[Error: Unable to find an element by: [data-testid=&quot;linha-escola&quot;]
+
+Ignored nodes: comments, script, style
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;div
+      class=&quot;App&quot;
+    &gt;
+      &lt;header
+        class=&quot;br-header&quot;
+      &gt;
+        &lt;div
+          class=&quot;container-lg&quot;
+        &gt;
+          &lt;div
+            class=&quot;header-top&quot;
+          &gt;
+            &lt;div
+              class=&quot;header-logo&quot;
+            &gt;
+              &lt;img
+                alt=&quot;logo&quot;
+                src=&quot;test-file-stub&quot;
+              /&gt;
+              &lt;div
+                class=&quot;header-sign&quot;
+              &gt;
+                DNIT
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div
+              class=&quot;HeaderContrast&quot;
+            &gt;
+              &lt;img
+                alt=&quot;Button contrast&quot;
+                class=&quot;buttonContrast&quot;
+                src=&quot;test-file-stub&quot;
+              /&gt;
+              &lt;div
+                class=&quot;text-alto-contraste&quot;
+              &gt;
+                Alto contraste
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div
+            class=&quot;header-bottom&quot;
+          &gt;
+            &lt;div
+              class=&quot;header-menu&quot;
+            &gt;
+              &lt;div
+                class=&quot;header-menu-trigger&quot;
+              &gt;
+                &lt;button
+                  aria-label=&quot;Menu&quot;
+                  class=&quot;br-button small circle&quot;
+                  data-target=&quot;#main-navigation&quot;
+                  data-toggle=&quot;menu&quot;
+                  id=&quot;navigation&quot;
+                  type=&quot;button&quot;
+                &gt;
+                  &lt;i
+                    aria-hidden=&quot;true&quot;
+                    class=&quot;fas fa-bars&quot;
+                  /&gt;
+                &lt;/button&gt;
+              &lt;/div&gt;
+              &lt;div
+                class=&quot;header-info&quot;
+              &gt;
+                &lt;div
+                  class=&quot;header-title&quot;
+                &gt;
+                  Nome Projeto Dnit
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/header&gt;
+      &lt;div
+        class=&quot;br-breadcrumb&quot;
+      &gt;
+        &lt;ul
+          class=&quot;crumb-list&quot;
+        &gt;
+          &lt;li
+            class=&quot;crumb home&quot;
+          &gt;
+            &lt;a
+              class=&quot;br-button circle&quot;
+              href=&quot;/escolas-cadastradas&quot;
+            &gt;
+              &lt;span
+                class=&quot;sr-only&quot;
+              &gt;
+                P&#xe1;gina inicial
+              &lt;/span&gt;
+              &lt;i
+                class=&quot;fas fa-home&quot;
+              /&gt;
+            &lt;/a&gt;
+          &lt;/li&gt;
+          &lt;li
+            class=&quot;crumb&quot;
+          &gt;
+            &lt;i
+              class=&quot;icon fas fa-chevron-right&quot;
+            /&gt;
+            &lt;a
+              href=&quot;/escolas-cadastradas&quot;
+            &gt;
+              Escolas Cadastradas
+            &lt;/a&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;button
+          class=&quot;ant-btn css-dev-only-do-not-override-12upa3x ant-btn-default button1&quot;
+          type=&quot;button&quot;
+        &gt;
+          &lt;span&gt;
+            Cadastrar escolas
+          &lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div
+        class=&quot;container inputs&quot;
+      &gt;
+        &lt;div
+          class=&quot;br-input medium input-button&quot;
+        &gt;
+          &lt;label
+            for=&quot;input-search-medium&quot;
+          &gt;
+            Nome
+          &lt;/label&gt;
+          &lt;input
+            id=&quot;input-search-medium&quot;
+            placeholder=&quot;Digite o nome da Escola&quot;
+            type=&quot;search&quot;
+          /&gt;
+          &lt;button
+            aria-label=&quot;Buscar&quot;
+            class=&quot;br-button&quot;
+            data-testid=&quot;buscar-nome&quot;
+            type=&quot;button&quot;
+          &gt;
+            &lt;i
+              aria-hidden=&quot;true&quot;
+              class=&quot;fas fa-search&quot;
+            /&gt;
+          &lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;br-select&quot;
+        &gt;
+          &lt;div
+            class=&quot;br-input&quot;
+          &gt;
+            &lt;label
+              for=&quot;select-multtiple&quot;
+            &gt;
+              UF
+            &lt;/label&gt;
+            &lt;input
+              disabled=&quot;&quot;
+              id=&quot;select-multtiple&quot;
+              placeholder=&quot;Todas&quot;
+              type=&quot;text&quot;
+            /&gt;
+            &lt;button
+              aria-label=&quot;Exibir lista&quot;
+              class=&quot;br-button&quot;
+              data-testid=&quot;buscar-uf&quot;
+              data-trigger=&quot;data-trigger&quot;
+              tabindex=&quot;-1&quot;
+              type=&quot;button&quot;
+            &gt;
+              &lt;i
+                aria-hidden=&quot;true&quot;
+                class=&quot;fas fa-angle-down&quot;
+              /&gt;
+            &lt;/button&gt;
+            &lt;div
+              class=&quot;br-input&quot;
+            /&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;br-select&quot;
+        &gt;
+          &lt;div
+            class=&quot;br-...
+    at waitForWrapper (D:\Users\isado\2023.1-Dnit-Front\node_modules\@testing-library\dom\dist\wait-for.js:166:27)
+    at _callee&#x24; (D:\Users\isado\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:17:16)
+    at call (D:\Users\isado\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at Generator.tryCatch (D:\Users\isado\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at Generator._invoke [as next] (D:\Users\isado\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at asyncGeneratorStep (D:\Users\isado\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at asyncGeneratorStep (D:\Users\isado\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at _next (D:\Users\isado\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at new Promise (&lt;anonymous&gt;)
+    at Object.&lt;anonymous&gt; (D:\Users\isado\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at Promise.then.completed (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\utils.js:293:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\utils.js:226:10)
+    at _callCircusTest (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:297:40)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at _runTest (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:233:3)
+    at _runTestsForDescribeBlock (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:135:9)
+    at run (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:68:3)
+    at runAndTransformResultsToJestFormat (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\testWorker.js:106:12)]]></failure>
+</testCase>
+<testCase name="Mudar quantidade de escolas por p&#xe1;gina" duration="1208">
+<failure message="Error"><![CDATA[Error: Unable to find an element by: [data-testid=&quot;linha-escola&quot;]
+
+Ignored nodes: comments, script, style
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;div
+      class=&quot;App&quot;
+    &gt;
+      &lt;header
+        class=&quot;br-header&quot;
+      &gt;
+        &lt;div
+          class=&quot;container-lg&quot;
+        &gt;
+          &lt;div
+            class=&quot;header-top&quot;
+          &gt;
+            &lt;div
+              class=&quot;header-logo&quot;
+            &gt;
+              &lt;img
+                alt=&quot;logo&quot;
+                src=&quot;test-file-stub&quot;
+              /&gt;
+              &lt;div
+                class=&quot;header-sign&quot;
+              &gt;
+                DNIT
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div
+              class=&quot;HeaderContrast&quot;
+            &gt;
+              &lt;img
+                alt=&quot;Button contrast&quot;
+                class=&quot;buttonContrast&quot;
+                src=&quot;test-file-stub&quot;
+              /&gt;
+              &lt;div
+                class=&quot;text-alto-contraste&quot;
+              &gt;
+                Alto contraste
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div
+            class=&quot;header-bottom&quot;
+          &gt;
+            &lt;div
+              class=&quot;header-menu&quot;
+            &gt;
+              &lt;div
+                class=&quot;header-menu-trigger&quot;
+              &gt;
+                &lt;button
+                  aria-label=&quot;Menu&quot;
+                  class=&quot;br-button small circle&quot;
+                  data-target=&quot;#main-navigation&quot;
+                  data-toggle=&quot;menu&quot;
+                  id=&quot;navigation&quot;
+                  type=&quot;button&quot;
+                &gt;
+                  &lt;i
+                    aria-hidden=&quot;true&quot;
+                    class=&quot;fas fa-bars&quot;
+                  /&gt;
+                &lt;/button&gt;
+              &lt;/div&gt;
+              &lt;div
+                class=&quot;header-info&quot;
+              &gt;
+                &lt;div
+                  class=&quot;header-title&quot;
+                &gt;
+                  Nome Projeto Dnit
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/header&gt;
+      &lt;div
+        class=&quot;br-breadcrumb&quot;
+      &gt;
+        &lt;ul
+          class=&quot;crumb-list&quot;
+        &gt;
+          &lt;li
+            class=&quot;crumb home&quot;
+          &gt;
+            &lt;a
+              class=&quot;br-button circle&quot;
+              href=&quot;/escolas-cadastradas&quot;
+            &gt;
+              &lt;span
+                class=&quot;sr-only&quot;
+              &gt;
+                P&#xe1;gina inicial
+              &lt;/span&gt;
+              &lt;i
+                class=&quot;fas fa-home&quot;
+              /&gt;
+            &lt;/a&gt;
+          &lt;/li&gt;
+          &lt;li
+            class=&quot;crumb&quot;
+          &gt;
+            &lt;i
+              class=&quot;icon fas fa-chevron-right&quot;
+            /&gt;
+            &lt;a
+              href=&quot;/escolas-cadastradas&quot;
+            &gt;
+              Escolas Cadastradas
+            &lt;/a&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;button
+          class=&quot;ant-btn css-dev-only-do-not-override-12upa3x ant-btn-default button1&quot;
+          type=&quot;button&quot;
+        &gt;
+          &lt;span&gt;
+            Cadastrar escolas
+          &lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div
+        class=&quot;container inputs&quot;
+      &gt;
+        &lt;div
+          class=&quot;br-input medium input-button&quot;
+        &gt;
+          &lt;label
+            for=&quot;input-search-medium&quot;
+          &gt;
+            Nome
+          &lt;/label&gt;
+          &lt;input
+            id=&quot;input-search-medium&quot;
+            placeholder=&quot;Digite o nome da Escola&quot;
+            type=&quot;search&quot;
+          /&gt;
+          &lt;button
+            aria-label=&quot;Buscar&quot;
+            class=&quot;br-button&quot;
+            data-testid=&quot;buscar-nome&quot;
+            type=&quot;button&quot;
+          &gt;
+            &lt;i
+              aria-hidden=&quot;true&quot;
+              class=&quot;fas fa-search&quot;
+            /&gt;
+          &lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;br-select&quot;
+        &gt;
+          &lt;div
+            class=&quot;br-input&quot;
+          &gt;
+            &lt;label
+              for=&quot;select-multtiple&quot;
+            &gt;
+              UF
+            &lt;/label&gt;
+            &lt;input
+              disabled=&quot;&quot;
+              id=&quot;select-multtiple&quot;
+              placeholder=&quot;Todas&quot;
+              type=&quot;text&quot;
+            /&gt;
+            &lt;button
+              aria-label=&quot;Exibir lista&quot;
+              class=&quot;br-button&quot;
+              data-testid=&quot;buscar-uf&quot;
+              data-trigger=&quot;data-trigger&quot;
+              tabindex=&quot;-1&quot;
+              type=&quot;button&quot;
+            &gt;
+              &lt;i
+                aria-hidden=&quot;true&quot;
+                class=&quot;fas fa-angle-down&quot;
+              /&gt;
+            &lt;/button&gt;
+            &lt;div
+              class=&quot;br-input&quot;
+            /&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;br-select&quot;
+        &gt;
+          &lt;div
+            class=&quot;br-...
+    at waitForWrapper (D:\Users\isado\2023.1-Dnit-Front\node_modules\@testing-library\dom\dist\wait-for.js:166:27)
+    at _callee2&#x24; (D:\Users\isado\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:30:16)
+    at call (D:\Users\isado\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at Generator.tryCatch (D:\Users\isado\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at Generator._invoke [as next] (D:\Users\isado\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at asyncGeneratorStep (D:\Users\isado\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at asyncGeneratorStep (D:\Users\isado\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at _next (D:\Users\isado\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at new Promise (&lt;anonymous&gt;)
+    at Object.&lt;anonymous&gt; (D:\Users\isado\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at Promise.then.completed (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\utils.js:293:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\utils.js:226:10)
+    at _callCircusTest (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:297:40)
+    at _runTest (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:233:3)
+    at _runTestsForDescribeBlock (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:135:9)
+    at run (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:68:3)
+    at runAndTransformResultsToJestFormat (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\testWorker.js:106:12)]]></failure>
+</testCase>
+<testCase name="Exibir escola selecionada" duration="1177">
+<failure message="Error"><![CDATA[Error: Unable to find an element by: [data-testid=&quot;linha-escola&quot;]
+
+Ignored nodes: comments, script, style
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;div
+      class=&quot;App&quot;
+    &gt;
+      &lt;header
+        class=&quot;br-header&quot;
+      &gt;
+        &lt;div
+          class=&quot;container-lg&quot;
+        &gt;
+          &lt;div
+            class=&quot;header-top&quot;
+          &gt;
+            &lt;div
+              class=&quot;header-logo&quot;
+            &gt;
+              &lt;img
+                alt=&quot;logo&quot;
+                src=&quot;test-file-stub&quot;
+              /&gt;
+              &lt;div
+                class=&quot;header-sign&quot;
+              &gt;
+                DNIT
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div
+              class=&quot;HeaderContrast&quot;
+            &gt;
+              &lt;img
+                alt=&quot;Button contrast&quot;
+                class=&quot;buttonContrast&quot;
+                src=&quot;test-file-stub&quot;
+              /&gt;
+              &lt;div
+                class=&quot;text-alto-contraste&quot;
+              &gt;
+                Alto contraste
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div
+            class=&quot;header-bottom&quot;
+          &gt;
+            &lt;div
+              class=&quot;header-menu&quot;
+            &gt;
+              &lt;div
+                class=&quot;header-menu-trigger&quot;
+              &gt;
+                &lt;button
+                  aria-label=&quot;Menu&quot;
+                  class=&quot;br-button small circle&quot;
+                  data-target=&quot;#main-navigation&quot;
+                  data-toggle=&quot;menu&quot;
+                  id=&quot;navigation&quot;
+                  type=&quot;button&quot;
+                &gt;
+                  &lt;i
+                    aria-hidden=&quot;true&quot;
+                    class=&quot;fas fa-bars&quot;
+                  /&gt;
+                &lt;/button&gt;
+              &lt;/div&gt;
+              &lt;div
+                class=&quot;header-info&quot;
+              &gt;
+                &lt;div
+                  class=&quot;header-title&quot;
+                &gt;
+                  Nome Projeto Dnit
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/header&gt;
+      &lt;div
+        class=&quot;br-breadcrumb&quot;
+      &gt;
+        &lt;ul
+          class=&quot;crumb-list&quot;
+        &gt;
+          &lt;li
+            class=&quot;crumb home&quot;
+          &gt;
+            &lt;a
+              class=&quot;br-button circle&quot;
+              href=&quot;/escolas-cadastradas&quot;
+            &gt;
+              &lt;span
+                class=&quot;sr-only&quot;
+              &gt;
+                P&#xe1;gina inicial
+              &lt;/span&gt;
+              &lt;i
+                class=&quot;fas fa-home&quot;
+              /&gt;
+            &lt;/a&gt;
+          &lt;/li&gt;
+          &lt;li
+            class=&quot;crumb&quot;
+          &gt;
+            &lt;i
+              class=&quot;icon fas fa-chevron-right&quot;
+            /&gt;
+            &lt;a
+              href=&quot;/escolas-cadastradas&quot;
+            &gt;
+              Escolas Cadastradas
+            &lt;/a&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;button
+          class=&quot;ant-btn css-dev-only-do-not-override-12upa3x ant-btn-default button1&quot;
+          type=&quot;button&quot;
+        &gt;
+          &lt;span&gt;
+            Cadastrar escolas
+          &lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div
+        class=&quot;container inputs&quot;
+      &gt;
+        &lt;div
+          class=&quot;br-input medium input-button&quot;
+        &gt;
+          &lt;label
+            for=&quot;input-search-medium&quot;
+          &gt;
+            Nome
+          &lt;/label&gt;
+          &lt;input
+            id=&quot;input-search-medium&quot;
+            placeholder=&quot;Digite o nome da Escola&quot;
+            type=&quot;search&quot;
+          /&gt;
+          &lt;button
+            aria-label=&quot;Buscar&quot;
+            class=&quot;br-button&quot;
+            data-testid=&quot;buscar-nome&quot;
+            type=&quot;button&quot;
+          &gt;
+            &lt;i
+              aria-hidden=&quot;true&quot;
+              class=&quot;fas fa-search&quot;
+            /&gt;
+          &lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;br-select&quot;
+        &gt;
+          &lt;div
+            class=&quot;br-input&quot;
+          &gt;
+            &lt;label
+              for=&quot;select-multtiple&quot;
+            &gt;
+              UF
+            &lt;/label&gt;
+            &lt;input
+              disabled=&quot;&quot;
+              id=&quot;select-multtiple&quot;
+              placeholder=&quot;Todas&quot;
+              type=&quot;text&quot;
+            /&gt;
+            &lt;button
+              aria-label=&quot;Exibir lista&quot;
+              class=&quot;br-button&quot;
+              data-testid=&quot;buscar-uf&quot;
+              data-trigger=&quot;data-trigger&quot;
+              tabindex=&quot;-1&quot;
+              type=&quot;button&quot;
+            &gt;
+              &lt;i
+                aria-hidden=&quot;true&quot;
+                class=&quot;fas fa-angle-down&quot;
+              /&gt;
+            &lt;/button&gt;
+            &lt;div
+              class=&quot;br-input&quot;
+            /&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;br-select&quot;
+        &gt;
+          &lt;div
+            class=&quot;br-...
+    at waitForWrapper (D:\Users\isado\2023.1-Dnit-Front\node_modules\@testing-library\dom\dist\wait-for.js:166:27)
+    at _callee3&#x24; (D:\Users\isado\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:55:16)
+    at call (D:\Users\isado\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at Generator.tryCatch (D:\Users\isado\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at Generator._invoke [as next] (D:\Users\isado\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at asyncGeneratorStep (D:\Users\isado\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at asyncGeneratorStep (D:\Users\isado\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at _next (D:\Users\isado\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at new Promise (&lt;anonymous&gt;)
+    at Object.&lt;anonymous&gt; (D:\Users\isado\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at Promise.then.completed (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\utils.js:293:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\utils.js:226:10)
+    at _callCircusTest (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:297:40)
+    at runNextTicks (node:internal/process/task_queues:61:5)
+    at processTimers (node:internal/timers:499:9)
+    at _runTest (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:233:3)
+    at _runTestsForDescribeBlock (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:135:9)
+    at run (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:68:3)
+    at runAndTransformResultsToJestFormat (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\testWorker.js:106:12)]]></failure>
+</testCase>
+<testCase name="Filtragem de escolas" duration="1240">
+<failure message="Error"><![CDATA[Error: Unable to find an element by: [data-testid=&quot;linha-escola&quot;]
+
+Ignored nodes: comments, script, style
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;div
+      class=&quot;App&quot;
+    &gt;
+      &lt;header
+        class=&quot;br-header&quot;
+      &gt;
+        &lt;div
+          class=&quot;container-lg&quot;
+        &gt;
+          &lt;div
+            class=&quot;header-top&quot;
+          &gt;
+            &lt;div
+              class=&quot;header-logo&quot;
+            &gt;
+              &lt;img
+                alt=&quot;logo&quot;
+                src=&quot;test-file-stub&quot;
+              /&gt;
+              &lt;div
+                class=&quot;header-sign&quot;
+              &gt;
+                DNIT
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div
+              class=&quot;HeaderContrast&quot;
+            &gt;
+              &lt;img
+                alt=&quot;Button contrast&quot;
+                class=&quot;buttonContrast&quot;
+                src=&quot;test-file-stub&quot;
+              /&gt;
+              &lt;div
+                class=&quot;text-alto-contraste&quot;
+              &gt;
+                Alto contraste
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div
+            class=&quot;header-bottom&quot;
+          &gt;
+            &lt;div
+              class=&quot;header-menu&quot;
+            &gt;
+              &lt;div
+                class=&quot;header-menu-trigger&quot;
+              &gt;
+                &lt;button
+                  aria-label=&quot;Menu&quot;
+                  class=&quot;br-button small circle&quot;
+                  data-target=&quot;#main-navigation&quot;
+                  data-toggle=&quot;menu&quot;
+                  id=&quot;navigation&quot;
+                  type=&quot;button&quot;
+                &gt;
+                  &lt;i
+                    aria-hidden=&quot;true&quot;
+                    class=&quot;fas fa-bars&quot;
+                  /&gt;
+                &lt;/button&gt;
+              &lt;/div&gt;
+              &lt;div
+                class=&quot;header-info&quot;
+              &gt;
+                &lt;div
+                  class=&quot;header-title&quot;
+                &gt;
+                  Nome Projeto Dnit
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/header&gt;
+      &lt;div
+        class=&quot;br-breadcrumb&quot;
+      &gt;
+        &lt;ul
+          class=&quot;crumb-list&quot;
+        &gt;
+          &lt;li
+            class=&quot;crumb home&quot;
+          &gt;
+            &lt;a
+              class=&quot;br-button circle&quot;
+              href=&quot;/escolas-cadastradas&quot;
+            &gt;
+              &lt;span
+                class=&quot;sr-only&quot;
+              &gt;
+                P&#xe1;gina inicial
+              &lt;/span&gt;
+              &lt;i
+                class=&quot;fas fa-home&quot;
+              /&gt;
+            &lt;/a&gt;
+          &lt;/li&gt;
+          &lt;li
+            class=&quot;crumb&quot;
+          &gt;
+            &lt;i
+              class=&quot;icon fas fa-chevron-right&quot;
+            /&gt;
+            &lt;a
+              href=&quot;/escolas-cadastradas&quot;
+            &gt;
+              Escolas Cadastradas
+            &lt;/a&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;button
+          class=&quot;ant-btn css-dev-only-do-not-override-12upa3x ant-btn-default button1&quot;
+          type=&quot;button&quot;
+        &gt;
+          &lt;span&gt;
+            Cadastrar escolas
+          &lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div
+        class=&quot;container inputs&quot;
+      &gt;
+        &lt;div
+          class=&quot;br-input medium input-button&quot;
+        &gt;
+          &lt;label
+            for=&quot;input-search-medium&quot;
+          &gt;
+            Nome
+          &lt;/label&gt;
+          &lt;input
+            id=&quot;input-search-medium&quot;
+            placeholder=&quot;Digite o nome da Escola&quot;
+            type=&quot;search&quot;
+          /&gt;
+          &lt;button
+            aria-label=&quot;Buscar&quot;
+            class=&quot;br-button&quot;
+            data-testid=&quot;buscar-nome&quot;
+            type=&quot;button&quot;
+          &gt;
+            &lt;i
+              aria-hidden=&quot;true&quot;
+              class=&quot;fas fa-search&quot;
+            /&gt;
+          &lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;br-select&quot;
+        &gt;
+          &lt;div
+            class=&quot;br-input&quot;
+          &gt;
+            &lt;label
+              for=&quot;select-multtiple&quot;
+            &gt;
+              UF
+            &lt;/label&gt;
+            &lt;input
+              disabled=&quot;&quot;
+              id=&quot;select-multtiple&quot;
+              placeholder=&quot;Todas&quot;
+              type=&quot;text&quot;
+            /&gt;
+            &lt;button
+              aria-label=&quot;Exibir lista&quot;
+              class=&quot;br-button&quot;
+              data-testid=&quot;buscar-uf&quot;
+              data-trigger=&quot;data-trigger&quot;
+              tabindex=&quot;-1&quot;
+              type=&quot;button&quot;
+            &gt;
+              &lt;i
+                aria-hidden=&quot;true&quot;
+                class=&quot;fas fa-angle-down&quot;
+              /&gt;
+            &lt;/button&gt;
+            &lt;div
+              class=&quot;br-input&quot;
+            /&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;br-select&quot;
+        &gt;
+          &lt;div
+            class=&quot;br-...
+    at waitForWrapper (D:\Users\isado\2023.1-Dnit-Front\node_modules\@testing-library\dom\dist\wait-for.js:166:27)
+    at _callee4&#x24; (D:\Users\isado\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:74:16)
+    at call (D:\Users\isado\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at Generator.tryCatch (D:\Users\isado\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at Generator._invoke [as next] (D:\Users\isado\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at asyncGeneratorStep (D:\Users\isado\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at asyncGeneratorStep (D:\Users\isado\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at _next (D:\Users\isado\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at new Promise (&lt;anonymous&gt;)
+    at Object.&lt;anonymous&gt; (D:\Users\isado\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at Promise.then.completed (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\utils.js:293:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\utils.js:226:10)
+    at _callCircusTest (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:297:40)
+    at _runTest (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:233:3)
+    at _runTestsForDescribeBlock (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:135:9)
+    at run (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:68:3)
+    at runAndTransformResultsToJestFormat (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\testWorker.js:106:12)]]></failure>
+</testCase>
 </file>
 <file path="src\tests\CadastrarEscola.spec.tsx">
-<testCase name="Lista de escolas &#xe9; exibida corretamente" duration="7666" />
-<testCase name="Lista de escolas &#xe9; exibida corretamente" duration="289" />
+<testCase name="Lista de escolas &#xe9; exibida corretamente" duration="4733">
+<failure message="Error"><![CDATA[Error: expect(element).not.toBeInTheDocument()
+
+expected document not to contain element, found &lt;p&gt;Carregando...&lt;/p&gt; instead
+
+Ignored nodes: comments, script, style
+&lt;html&gt;
+  &lt;head /&gt;
+  &lt;body&gt;
+    &lt;div&gt;
+      &lt;div
+        class=&quot;App&quot;
+      &gt;
+        &lt;header
+          class=&quot;App-header&quot;
+        &gt;
+          &lt;div
+            class=&quot;HeaderIcon&quot;
+            data-testid=&quot;redirecionar&quot;
+          &gt;
+            &lt;img
+              alt=&quot;&#xed;cone gov&quot;
+              class=&quot;iconGov&quot;
+              src=&quot;test-file-stub&quot;
+            /&gt;
+            &lt;img
+              alt=&quot;&#xed;cone dnit&quot;
+              class=&quot;iconDNIT&quot;
+              src=&quot;test-file-stub&quot;
+            /&gt;
+          &lt;/div&gt;
+          &lt;div
+            class=&quot;HeaderContrast&quot;
+          &gt;
+            &lt;img
+              alt=&quot;Button contrast&quot;
+              class=&quot;buttonContrast&quot;
+              src=&quot;test-file-stub&quot;
+            /&gt;
+            &lt;div
+              class=&quot;text-alto-contraste&quot;
+            &gt;
+              Alto contraste
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/header&gt;
+        &lt;div
+          class=&quot;Secao2&quot;
+        &gt;
+          &lt;div
+            class=&quot;box&quot;
+          &gt;
+            &lt;div
+              class=&quot;formrs&quot;
+            &gt;
+              &lt;div&gt;
+                &lt;h2&gt;
+                  Cadastrar Escola
+                &lt;/h2&gt;
+                &lt;form
+                  autocomplete=&quot;off&quot;
+                  class=&quot;ant-form ant-form-vertical css-dev-only-do-not-override-12upa3x form-email&quot;
+                  id=&quot;form2&quot;
+                &gt;
+                  &lt;div
+                    class=&quot;divScroll&quot;
+                  &gt;
+                    &lt;div
+                      class=&quot;bloco&quot;
+                    &gt;
+                      &lt;div
+                        class=&quot;ant-form-item css-dev-only-do-not-override-12upa3x ant-form-item-has-success&quot;
+                      &gt;
+                        &lt;div
+                          class=&quot;ant-row ant-form-item-row css-dev-only-do-not-override-12upa3x&quot;
+                        &gt;
+                          &lt;div
+                            class=&quot;ant-col ant-form-item-label css-dev-only-do-not-override-12upa3x&quot;
+                          &gt;
+                            &lt;label
+                              class=&quot;ant-form-item-required ant-form-item-required-mark-optional&quot;
+                              for=&quot;form2_nome&quot;
+                              title=&quot;Nome da Escola&quot;
+                            &gt;
+                              Nome da Escola
+                            &lt;/label&gt;
+                          &lt;/div&gt;
+                          &lt;div
+                            class=&quot;ant-col ant-form-item-control css-dev-only-do-not-override-12upa3x&quot;
+                          &gt;
+                            &lt;div
+                              class=&quot;ant-form-item-control-input&quot;
+                            &gt;
+                              &lt;div
+                                class=&quot;ant-form-item-control-input-content&quot;
+                              &gt;
+                                &lt;input
+                                  aria-required=&quot;true&quot;
+                                  class=&quot;ant-input ant-input-status-success css-dev-only-do-not-override-12upa3x inputForm2&quot;
+                                  id=&quot;form2_nome&quot;
+                                  type=&quot;text&quot;
+                                  value=&quot;Escola A&quot;
+                                /&gt;
+                              &lt;/div&gt;
+                            &lt;/div&gt;
+                          &lt;/div&gt;
+                        &lt;/div&gt;
+                      &lt;/div&gt;
+                      &lt;div
+                        class=&quot;ant-form-item css-dev-only-do-not-override-12upa3x&quot;
+                      &gt;
+                        &lt;div
+                          class=&quot;ant-row ant-form-item-row css-dev-only-do-not-override-12upa3x&quot;
+                        &gt;
+                          &lt;div
+                            class=&quot;ant-col ant-form-item-label css-dev-only-do-not-override-12upa3x&quot;
+                          &gt;
+                            &lt;label
+                              class=&quot;ant-form-item-required ant-form-item-required-mark-optional&quot;
+                              for=&quot;form2_rede&quot;
+                              title=&quot;Rede&quot;
+                            &gt;
+                              Rede
+                            &lt;/label&gt;
+                          &lt;/div&gt;
+                          &lt;div
+                            class=&quot;ant-col ant-form-item-control css-dev-only-do-not-override-12upa3x&quot;
+                          &gt;
+                            &lt;div
+                              class=&quot;ant-form-item-control-input&quot;
+                            &gt;
+                              &lt;div
+                                class=&quot;ant-form-item-control-input-content&quot;
+                              &gt;
+                                &lt;div
+                                  aria-required=&quot;true&quot;
+                                  class=&quot;ant-select ant-select-in-form-item css-dev-only-do-not-override-12upa3x ant-select-single ant-select-show-arrow&quot;
+                                &gt;
+                                  &lt;div
+                                    class=&quot;ant-select-selector&quot;
+                                  &gt;
+                                    &lt;span
+                                      class=&quot;ant-select-selection-search&quot;
+                            ...
+    at toBeInTheDocument (D:\Users\isado\2023.1-Dnit-Front\src\tests\CadastrarEscola.spec.tsx:35:53)
+    at runWithExpensiveErrorDiagnosticsDisabled (D:\Users\isado\2023.1-Dnit-Front\node_modules\@testing-library\dom\dist\config.js:47:12)
+    at checkCallback (D:\Users\isado\2023.1-Dnit-Front\node_modules\@testing-library\dom\dist\wait-for.js:127:77)
+    at checkRealTimersCallback (D:\Users\isado\2023.1-Dnit-Front\node_modules\@testing-library\dom\dist\wait-for.js:121:16)
+    at Timeout.task [as _onTimeout] (D:\Users\isado\2023.1-Dnit-Front\node_modules\jsdom\lib\jsdom\browser\Window.js:520:19)
+    at listOnTimeout (node:internal/timers:559:17)
+    at processTimers (node:internal/timers:502:7)]]></failure>
+</testCase>
+<testCase name="Lista de escolas &#xe9; exibida corretamente" duration="440" />
+<testCase name="Lista de escolas redireciona pra listagem" duration="340" />
+</file>
+<file path="src\tests\Login.spec.tsx">
+<testCase name=" should render Login" duration="489" />
+</file>
+<file path="src\tests\Register.spec.tsx">
+<testCase name="should render Register" duration="5553">
+<failure message="Error"><![CDATA[Error: thrown: &quot;Exceeded timeout of 5000 ms for a test.
+Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout.&quot;
+    at Object.test (D:\Users\isado\2023.1-Dnit-Front\src\tests\Register.spec.tsx:33:1)
+    at Runtime._execModule (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runtime\build\index.js:1429:24)
+    at Runtime._loadModule (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runtime\build\index.js:1013:12)
+    at Runtime.requireModule (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runtime\build\index.js:873:12)
+    at jestAdapter (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:77:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at runTestInternal (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\testWorker.js:106:12)]]></failure>
+</testCase>
+<testCase name="should render error in Register form" duration="1839" />
+</file>
+<file path="src\tests\Recover.spec.tsx">
+<testCase name=" should render Recover password" duration="404" />
 </file>
 </testExecutions>

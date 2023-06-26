@@ -17,7 +17,6 @@ interface Step2Props {
   onClickBack: () => void;
 }
 export default function Step2({ onClickBack }: Step2Props) {
-
   const {
     UFSelecionada,
     setUFSelecionada,
@@ -47,14 +46,14 @@ export default function Step2({ onClickBack }: Step2Props) {
 
   const [opcoesMunicipio, setOpcoesMunicipio] = useState<Municipio[]>([]);
   const getMunicipio = async () => {
-    console.log("Erro get munincipio")
     try {
       if (UFSelecionada) {
-        console.log("Erro get munincipio")
         const resposta = await fetchMunicipio(UFSelecionada.id);
         setOpcoesMunicipio(resposta);
       }
-    } catch (error) {console.log("Erro get munincipio")}
+    } catch (error) {
+      console.log("Erro get munincipio");
+    }
   };
   useEffect(() => {
     if (opcoesMunicipio.length == 0 || carregandoEscolas) getMunicipio();
@@ -97,7 +96,7 @@ export default function Step2({ onClickBack }: Step2Props) {
     try {
       await fetchCadastroEscola(registerSchoolData);
       notification.success({ message: "Cadastro feito!" });
-      navigate('/escolas-cadastradas')
+      navigate("/escolas-cadastradas");
     } catch (error) {
       api.error({ message: "Erro ao fazer o cadastro" });
     }
@@ -145,7 +144,7 @@ export default function Step2({ onClickBack }: Step2Props) {
                   <Option key={u.id} value={u.id} label={<>{u.nome}</>}>
                     <button
                       onClick={() => handleOptionClick(u)}
-                      className='option-municipio'
+                      className="option-municipio"
                     >
                       {u.nome}
                     </button>
