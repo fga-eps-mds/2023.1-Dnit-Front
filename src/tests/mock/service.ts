@@ -2,95 +2,98 @@ import { rest } from "msw";
 import { setupServer } from "msw/node";
 
 const server = setupServer(
-  rest.get("https://localhost:7083/api/escolas/obter", (req, res, ctx) => {
-    return res(
-      ctx.json({
-        pagina: 1,
-        escolasPorPagina: 5,
-        totalEscolas: 13,
-        totalPaginas: 3,
-        escolas: [
-          {
-            idEscola: 104,
-            codigoEscola: 300,
-            nomeEscola: "Escola A",
-            idRede: 1,
-            descricaoRede: null,
-            cep: "CEP001",
-            idUf: 1,
-            descricaoUf: "Acre",
-            endereco: "Endereço A",
-            idMunicipio: 2303204,
-            nomeMunicipio: "Caririaçu",
-            idLocalizacao: 1,
-            longitude: "789.012",
-            latitude: "123.456",
-            idEtapasDeEnsino: 1,
-            descricaoEtapasEnsino: null,
-            numeroTotalDeAlunos: 100,
-            idSituacao: 2,
-            descricaoSituacao: "Solicitação da escola",
-            idPorte: 1,
-            telefone: "Telefone A",
-            numeroTotalDeDocentes: 50,
-            siglaUf: "AC",
-          },
-          {
-            idEscola: 105,
-            codigoEscola: 301,
-            nomeEscola: "Escola B",
-            idRede: 1,
-            descricaoRede: null,
-            cep: "CEP002",
-            idUf: 2,
-            descricaoUf: "Alagoas",
-            endereco: "Endereço B",
-            idMunicipio: 2303303,
-            nomeMunicipio: "Cariús",
-            idLocalizacao: 1,
-            longitude: "890.123",
-            latitude: "234.567",
-            idEtapasDeEnsino: 2,
-            descricaoEtapasEnsino: null,
-            numeroTotalDeAlunos: 200,
-            idSituacao: 3,
-            descricaoSituacao: "Jornada de crescimento do professor",
-            idPorte: 1,
-            telefone: "Telefone B",
-            numeroTotalDeDocentes: 60,
-            siglaUf: "AL",
-          },
-          {
-            idEscola: 110,
-            codigoEscola: 301,
-            nomeEscola: "Escola G",
-            idRede: 1,
-            descricaoRede: null,
-            cep: "CEP002",
-            idUf: 2,
-            descricaoUf: "Alagoas",
-            endereco: "Endereço B",
-            idMunicipio: 1400159,
-            nomeMunicipio: "Bonfim",
-            idLocalizacao: 1,
-            longitude: "890.123",
-            latitude: "234.567",
-            idEtapasDeEnsino: 2,
-            descricaoEtapasEnsino: null,
-            numeroTotalDeAlunos: 200,
-            idSituacao: 3,
-            descricaoSituacao: "Jornada de crescimento do professor",
-            idPorte: 1,
-            telefone: "Telefone B",
-            numeroTotalDeDocentes: 60,
-            siglaUf: "AL",
-          },
-        ],
-      })
-    );
-  }),
   rest.get(
-    "https://localhost:7083/api/dominio/unidadeFederativa",
+    "https://api.dnit-eps-mds.com/api/escolas/obter",
+    (req, res, ctx) => {
+      return res(
+        ctx.json({
+          pagina: 1,
+          escolasPorPagina: 5,
+          totalEscolas: 13,
+          totalPaginas: 3,
+          escolas: [
+            {
+              idEscola: 104,
+              codigoEscola: 300,
+              nomeEscola: "Escola A",
+              idRede: 1,
+              descricaoRede: null,
+              cep: "CEP001",
+              idUf: 1,
+              descricaoUf: "Acre",
+              endereco: "Endereço A",
+              idMunicipio: 2303204,
+              nomeMunicipio: "Caririaçu",
+              idLocalizacao: 1,
+              longitude: "789.012",
+              latitude: "123.456",
+              idEtapasDeEnsino: 1,
+              descricaoEtapasEnsino: null,
+              numeroTotalDeAlunos: 100,
+              idSituacao: 2,
+              descricaoSituacao: "Solicitação da escola",
+              idPorte: 1,
+              telefone: "Telefone A",
+              numeroTotalDeDocentes: 50,
+              siglaUf: "AC",
+            },
+            {
+              idEscola: 105,
+              codigoEscola: 301,
+              nomeEscola: "Escola B",
+              idRede: 1,
+              descricaoRede: null,
+              cep: "CEP002",
+              idUf: 2,
+              descricaoUf: "Alagoas",
+              endereco: "Endereço B",
+              idMunicipio: 2303303,
+              nomeMunicipio: "Cariús",
+              idLocalizacao: 1,
+              longitude: "890.123",
+              latitude: "234.567",
+              idEtapasDeEnsino: 2,
+              descricaoEtapasEnsino: null,
+              numeroTotalDeAlunos: 200,
+              idSituacao: 3,
+              descricaoSituacao: "Jornada de crescimento do professor",
+              idPorte: 1,
+              telefone: "Telefone B",
+              numeroTotalDeDocentes: 60,
+              siglaUf: "AL",
+            },
+            {
+              idEscola: 110,
+              codigoEscola: 301,
+              nomeEscola: "Escola G",
+              idRede: 1,
+              descricaoRede: null,
+              cep: "CEP002",
+              idUf: 2,
+              descricaoUf: "Alagoas",
+              endereco: "Endereço B",
+              idMunicipio: 1400159,
+              nomeMunicipio: "Bonfim",
+              idLocalizacao: 1,
+              longitude: "890.123",
+              latitude: "234.567",
+              idEtapasDeEnsino: 2,
+              descricaoEtapasEnsino: null,
+              numeroTotalDeAlunos: 200,
+              idSituacao: 3,
+              descricaoSituacao: "Jornada de crescimento do professor",
+              idPorte: 1,
+              telefone: "Telefone B",
+              numeroTotalDeDocentes: 60,
+              siglaUf: "AL",
+            },
+          ],
+        })
+      );
+    }
+  ),
+  rest.get(
+    "https://api.dnit-eps-mds.com/api/dominio/unidadeFederativa",
     (req, res, ctx) => {
       return res(
         ctx.json([
@@ -206,30 +209,33 @@ const server = setupServer(
       );
     }
   ),
-  rest.get("https://localhost:7083/api/dominio/situacao", (req, res, ctx) => {
-    return res(
-      ctx.json([
-        {
-          id: 4,
-          descricao: "Escola Crítica",
-        },
-        {
-          id: 1,
-          descricao: "Indicação",
-        },
-        {
-          id: 3,
-          descricao: "Jornada de crescimento do professor",
-        },
-        {
-          id: 2,
-          descricao: "Solicitação da escola",
-        },
-      ])
-    );
-  }),
   rest.get(
-    "https://localhost:7083/api/dominio/etapasDeEnsino",
+    "https://api.dnit-eps-mds.com/api/dominio/situacao",
+    (req, res, ctx) => {
+      return res(
+        ctx.json([
+          {
+            id: 4,
+            descricao: "Escola Crítica",
+          },
+          {
+            id: 1,
+            descricao: "Indicação",
+          },
+          {
+            id: 3,
+            descricao: "Jornada de crescimento do professor",
+          },
+          {
+            id: 2,
+            descricao: "Solicitação da escola",
+          },
+        ])
+      );
+    }
+  ),
+  rest.get(
+    "https://api.dnit-eps-mds.com/api/dominio/etapasDeEnsino",
     (req, res, ctx) => {
       return res(
         ctx.json([
@@ -287,113 +293,119 @@ const server = setupServer(
       );
     }
   ),
-  rest.delete("https://localhost:7083/api/escolas/excluir", (req, res, ctx) => {
-    return res(ctx.json({}));
-  }),
-  rest.get("https://localhost:7083/api/dominio/municipio", (req, res, ctx) => {
-    return res(
-      ctx.json([
-        {
-          nome: "Acrelândia",
-          id: 1200013,
-        },
-        {
-          nome: "Assis Brasil",
-          id: 1200054,
-        },
-        {
-          nome: "Brasiléia",
-          id: 1200104,
-        },
-        {
-          nome: "Bujari",
-          id: 1200138,
-        },
-        {
-          nome: "Caririaçu",
-          id: 1200179,
-        },
-        {
-          nome: "Cruzeiro do Sul",
-          id: 1200203,
-        },
-        {
-          nome: "Epitaciolândia",
-          id: 1200252,
-        },
-        {
-          nome: "Feijó",
-          id: 1200302,
-        },
-        {
-          nome: "Jordão",
-          id: 1200328,
-        },
-        {
-          nome: "Mâncio Lima",
-          id: 1200336,
-        },
-        {
-          nome: "Manoel Urbano",
-          id: 1200344,
-        },
-        {
-          nome: "Marechal Thaumaturgo",
-          id: 1200351,
-        },
-        {
-          nome: "Plácido de Castro",
-          id: 1200385,
-        },
-        {
-          nome: "Porto Acre",
-          id: 1200807,
-        },
-        {
-          nome: "Rio Branco",
-          id: 1200401,
-        },
-        {
-          nome: "Rodrigues Alves",
-          id: 1200427,
-        },
-        {
-          nome: "Santa Rosa do Purus",
-          id: 1200435,
-        },
-        {
-          nome: "Senador Guiomard",
-          id: 1200450,
-        },
-        {
-          nome: "Sena Madureira",
-          id: 1200500,
-        },
-        {
-          nome: "Tarauacá",
-          id: 1200609,
-        },
-        {
-          nome: "Xapuri",
-          id: 1200708,
-        },
-      ])
-    );
-  }),
+  rest.delete(
+    "https://api.dnit-eps-mds.com/api/escolas/excluir",
+    (req, res, ctx) => {
+      return res(ctx.json({}));
+    }
+  ),
+  rest.get(
+    "https://api.dnit-eps-mds.com/api/dominio/municipio",
+    (req, res, ctx) => {
+      return res(
+        ctx.json([
+          {
+            nome: "Acrelândia",
+            id: 1200013,
+          },
+          {
+            nome: "Assis Brasil",
+            id: 1200054,
+          },
+          {
+            nome: "Brasiléia",
+            id: 1200104,
+          },
+          {
+            nome: "Bujari",
+            id: 1200138,
+          },
+          {
+            nome: "Caririaçu",
+            id: 1200179,
+          },
+          {
+            nome: "Cruzeiro do Sul",
+            id: 1200203,
+          },
+          {
+            nome: "Epitaciolândia",
+            id: 1200252,
+          },
+          {
+            nome: "Feijó",
+            id: 1200302,
+          },
+          {
+            nome: "Jordão",
+            id: 1200328,
+          },
+          {
+            nome: "Mâncio Lima",
+            id: 1200336,
+          },
+          {
+            nome: "Manoel Urbano",
+            id: 1200344,
+          },
+          {
+            nome: "Marechal Thaumaturgo",
+            id: 1200351,
+          },
+          {
+            nome: "Plácido de Castro",
+            id: 1200385,
+          },
+          {
+            nome: "Porto Acre",
+            id: 1200807,
+          },
+          {
+            nome: "Rio Branco",
+            id: 1200401,
+          },
+          {
+            nome: "Rodrigues Alves",
+            id: 1200427,
+          },
+          {
+            nome: "Santa Rosa do Purus",
+            id: 1200435,
+          },
+          {
+            nome: "Senador Guiomard",
+            id: 1200450,
+          },
+          {
+            nome: "Sena Madureira",
+            id: 1200500,
+          },
+          {
+            nome: "Tarauacá",
+            id: 1200609,
+          },
+          {
+            nome: "Xapuri",
+            id: 1200708,
+          },
+        ])
+      );
+    }
+  ),
   rest.post(
-    "https://localhost:7083/api/escolas/adicionarSituacao",
+    "https://api.dnit-eps-mds.com/api/escolas/adicionarSituacao",
     (req, res, ctx) => {
       return res(ctx.status(200));
     }
   ),
   rest.post(
-    "https://localhost:7083/api/escolas/removerSituacao",
+    "https://api.dnit-eps-mds.com/api/escolas/removerSituacao",
     (req, res, ctx) => {
       return res(ctx.status(200));
     }
   ),
   rest.post(
-    "https://localhost:7083/api/escolas/cadastrarEscola",
+    "https://api.dnit-eps-mds.com/api/escolas/cadastrarEscola",
     (req, res, ctx) => {
       return res(ctx.status(200));
     }
