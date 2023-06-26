@@ -62,7 +62,6 @@ const FiltroProvider = ({ children }: any) => {
     async function fetchEscolasFiltradas(): Promise<any> {
         try {
             setCarregandoEscolas(true);
-            console.log("chamando fetch" + escolasPorPagina.toString())
             const response: AxiosResponse<responseData> = await axios.get(
                 EscolasFiltradasURL,
                 {
@@ -99,7 +98,6 @@ const FiltroProvider = ({ children }: any) => {
         setpaginaAtual(numeroPagina)
     }
     const mudarQuantidadePorPaginas = (novaQuantia: number) => {
-        console.log({ novaQuantia })
         setpaginaAtual(1);
 
         setEscolasPorPagina(novaQuantia)
