@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import EscolasCadastradas from "./pages/EscolasCadastradas";
-import Home from "./pages/Home";
 import Login from "./pages/Login";
 import RecoverPassword from "./pages/RecoverPassword";
 import Register from "./pages/Register";
@@ -18,8 +17,8 @@ function App() {
     <Routes>
       {isAuthenticated ? (
         <>
-          <Route path="*" element={<Navigate to="/home" />} />
-          <Route path="/home" element={<Home />} />
+          <Route path="*" element={<Navigate to="/escolas-cadastradas" />} />
+          <Route path="/escolas-cadastradas" element={<EscolasCadastradas />} />
         </>
       ) : (
         <>
