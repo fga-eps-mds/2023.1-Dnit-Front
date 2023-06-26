@@ -1,6 +1,7 @@
 import React from 'react';
 import "../styles/BreadCrumb.css";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { Button } from 'antd';
 
 interface Pagina {
     nome: string;
@@ -13,6 +14,7 @@ interface BreadCrumbProps {
 }
 
 const BreadCrumb: React.FC<BreadCrumbProps> = ({ elementosLi, paginaInicial }) => {
+    const navigate = useNavigate();
     return (
         <div className="br-breadcrumb">
             <ul className="crumb-list">
@@ -22,6 +24,8 @@ const BreadCrumb: React.FC<BreadCrumbProps> = ({ elementosLi, paginaInicial }) =
                     </li>
                 ))}
             </ul>
+
+            <Button className='button1' onClick={() => navigate('/cadastrarescola') }>Cadastrar escolas</Button>
         </div>
     );
 };

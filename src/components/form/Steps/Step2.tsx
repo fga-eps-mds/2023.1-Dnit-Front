@@ -1,5 +1,6 @@
 import { Button, Form, Input, Select, Space, notification } from "antd";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useFiltroTabela } from "../../../context/FiltroTabela";
 import {
   EtapasDeEnsino,
@@ -16,6 +17,7 @@ interface Step2Props {
   onClickBack: () => void;
 }
 export default function Step2({ onClickBack }: Step2Props) {
+
   const {
     UFSelecionada,
     setUFSelecionada,
@@ -45,12 +47,14 @@ export default function Step2({ onClickBack }: Step2Props) {
 
   const [opcoesMunicipio, setOpcoesMunicipio] = useState<Municipio[]>([]);
   const getMunicipio = async () => {
+    console.log("Erro get munincipio")
     try {
       if (UFSelecionada) {
+        console.log("Erro get munincipio")
         const resposta = await fetchMunicipio(UFSelecionada.id);
         setOpcoesMunicipio(resposta);
       }
-    } catch (error) {}
+    } catch (error) {console.log("Erro get munincipio")}
   };
   useEffect(() => {
     if (opcoesMunicipio.length == 0 || carregandoEscolas) getMunicipio();
@@ -70,6 +74,7 @@ export default function Step2({ onClickBack }: Step2Props) {
     setUFSelecionada(option);
   };
 
+  const navigate = useNavigate();
   const onFinish = async (values: any) => {
     const registerSchoolData = {
       NomeEscola: values.nome,
@@ -91,7 +96,8 @@ export default function Step2({ onClickBack }: Step2Props) {
 
     try {
       await fetchCadastroEscola(registerSchoolData);
-      api.success({ message: "Cadastro feito!" });
+      notification.success({ message: "Cadastro feito!" });
+      navigate('/escolas-cadastradas')
     } catch (error) {
       api.error({ message: "Erro ao fazer o cadastro" });
     }
@@ -137,12 +143,12 @@ export default function Step2({ onClickBack }: Step2Props) {
               >
                 {opcoesUf?.map((u) => (
                   <Option key={u.id} value={u.id} label={<>{u.nome}</>}>
-                    <a
+                    <button
                       onClick={() => handleOptionClick(u)}
-                      style={{ color: "black" }}
+                      className='option-municipio'
                     >
                       {u.nome}
-                    </a>
+                    </button>
                   </Option>
                 ))}
               </Select>

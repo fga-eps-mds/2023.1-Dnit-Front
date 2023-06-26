@@ -9,7 +9,6 @@ import { FiltroProvider } from "../context/FiltroTabela";
 export default function EscolasCadastradas() {
 
   const paginas = [
-    { nome: "Inicio", link: "/home" },
     { nome: "Escolas Cadastradas", link: "/escolas-cadastradas" }
   ];
   return (
