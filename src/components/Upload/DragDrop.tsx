@@ -6,6 +6,7 @@ import '../../styles/form/step3.css';
 import { UploadChangeParam } from 'antd/lib/upload';
 import axios from 'axios';
 import "../../styles/form/step3.css"
+import { useEscolasCadastradas } from '../../context/escolasCadastradasErro';
 
 const { Dragger } = Upload;
 
@@ -38,7 +39,7 @@ const props: UploadProps = {
 const App: React.FC<DragDropProps> = ({onClickBack, onClickError, onClickAceito, onClickErroJaCadastrada}: DragDropProps) => {
   const uploadRef = useRef<any>(null);
   const [fileList, setFileList] = useState<UploadFile<any>[]>([]);
-
+  const {setEscolasCadastradas} = useEscolasCadastradas()
   const handleButtonClick = async () => {
     if (fileList.length > 0) {
       const formData = new FormData();
@@ -55,6 +56,7 @@ const App: React.FC<DragDropProps> = ({onClickBack, onClickError, onClickAceito,
           // A resposta do back-end é uma lista não nula
           // Faça o que for necessário com a lista
           onClickErroJaCadastrada();
+          setEscolasCadastradas(response.data);
           console.log('Lista não nula:', response.data);
         } else {
           // A resposta do back-end é uma lista nula
