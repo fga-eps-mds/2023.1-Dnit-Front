@@ -11,6 +11,9 @@ const { Dragger } = Upload;
 
 interface DragDropProps {
   onClickBack: () => void
+  onClickError: () => void
+  onClickAceito: () => void
+  onClickErroJaCadastrada: () => void
 }
 
 const props: UploadProps = {
@@ -23,10 +26,7 @@ const props: UploadProps = {
     if (status !== 'uploading') {
       console.log(info.file, info.fileList);
     }
-    if (status === 'done') {
-      console.log(info.file.response)
-      message.success(`${name} arquivo adicionado com sucesso.`);
-    } else if (status === 'error') {
+    if (status === 'error') {
       message.error(`${name} falha ao receber arquivo.`);
     }
   },
@@ -35,7 +35,7 @@ const props: UploadProps = {
   },
 };
 
-const App: React.FC<DragDropProps> = ({onClickBack}: DragDropProps) => {
+const App: React.FC<DragDropProps> = ({onClickBack, onClickError, onClickAceito, onClickErroJaCadastrada}: DragDropProps) => {
   const uploadRef = useRef<any>(null);
   const [fileList, setFileList] = useState<UploadFile<any>[]>([]);
 
@@ -50,10 +50,26 @@ const App: React.FC<DragDropProps> = ({onClickBack}: DragDropProps) => {
           formData
         );
         console.log(response.data);
-        message.success('Arquivo enviado com sucesso.');
-      } catch (error) {
+
+        if (response.data && Array.isArray(response.data) && response.data.length > 0) {
+          // A resposta do back-end é uma lista não nula
+          // Faça o que for necessário com a lista
+          onClickErroJaCadastrada();
+          console.log('Lista não nula:', response.data);
+        } else {
+          // A resposta do back-end é uma lista nula
+          message.success(`Arquivo adicionado com sucesso.`);
+          onClickAceito();
+          console.log('Lista nula');
+        }
+
+      } catch (error:any) {
         console.error(error);
-        message.error('Ocorreu um erro ao enviar o arquivo.');
+        if(error.response && error.response.status == 406){
+          onClickError();
+        }
+        const mensagem = error.response.data;
+        message.error(`${mensagem}`);
       }
     } else {
       message.warning('Nenhum arquivo carregado.');
@@ -79,7 +95,7 @@ const App: React.FC<DragDropProps> = ({onClickBack}: DragDropProps) => {
           Cancelar
         </Button>
         <Button className="botaoEnviar" type="primary" onClick={handleButtonClick}>
-          Enviar
+          Enviar arquivo
         </Button>
       </div>
     </>

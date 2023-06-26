@@ -22,13 +22,13 @@ export default function RegS() {
                 }}
             >
                 {screen === "form1" && (
-                    <Step1 onClick={() => setScreen("form2")} onClickCSV={() => setScreen("form3")} />
+                    <Step1 onClick={() => setScreen("form2")} onClickCSV={() => setScreen("form3")} /> 
                 )}
                 {screen === "form2" && (
                     <Step2 onClickBack={() => setScreen("form1")} />
                 )}
                 {screen === "form3" && (
-                    <Step3 onClickBack={() => setScreen("form1")} onClickAceito={() => setScreen("form3_1")} />
+                    <Step3 onClickBack={() => setScreen("form1")} onClickError={() => setScreen("form3_erro2")} onClickAceito={() => setScreen("form3_1")} onClickErroJaCadastrada={() => setScreen("form3_erro1")}/>
                 )}
                 {screen === "form3_1" && (
                     <Step3_Aceito onClickVoltar={() => setScreen("form1")} />
