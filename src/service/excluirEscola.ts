@@ -7,11 +7,11 @@ interface excluirEscolaResponse {
 }
 
 async function fetchExcluirEscola(
-  {id_escola}: ExcluirEscolaData
+  { id_escola }: ExcluirEscolaData
 ): Promise<excluirEscolaResponse> {
   try {
     const response: AxiosResponse<excluirEscolaResponse> = await axios.delete(
-      excluirEscolaURL, {params:{id:40}}
+      excluirEscolaURL, { params: { id: id_escola } }
     );
     return response.data;
   } catch (error) {
