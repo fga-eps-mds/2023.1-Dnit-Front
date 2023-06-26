@@ -1,43 +1,59 @@
 <testExecutions version="1">
-<file path="src\tests\Reset.spec.tsx">
-<testCase name=" should render Reset password" duration="1266" />
-<testCase name=" should render Reset password" duration="873" />
+<file path="src\tests\Login.spec.tsx">
+<testCase name=" should render Login" duration="1198" />
 </file>
-<file path="src\tests\InfoEscola.spec.tsx">
-<testCase name="Exibir escola selecionada" duration="1495" />
+<file path="src\tests\Reset.spec.tsx">
+<testCase name=" should render Reset password" duration="1086" />
+<testCase name=" should render Reset password" duration="897" />
 </file>
 <file path="src\tests\Excluir.spec.tsx">
-<testCase name="Modal de excluir escola exibida corretamente" duration="1344" />
-<testCase name="Modal de excluir escola exibida erro" duration="988" />
+<testCase name="Modal de excluir escola exibida corretamente" duration="1127" />
+<testCase name="Modal de excluir escola exibida erro" duration="692" />
 </file>
 <file path="src\tests\Situacao.spec.tsx">
-<testCase name="Alterar situa&#xe7;&#xe3;o escola" duration="1349" />
-<testCase name="Alterar situa&#xe7;&#xe3;o escola erro" duration="660" />
-<testCase name="Remover situa&#xe7;&#xe3;o escola" duration="830" />
-<testCase name="Remover situa&#xe7;&#xe3;o escola erro" duration="291" />
-<testCase name="Erro de Provider de selectedValue" duration="344" />
+<testCase name="Alterar situa&#xe7;&#xe3;o escola" duration="1170" />
+<testCase name="Alterar situa&#xe7;&#xe3;o escola erro" duration="639" />
+<testCase name="Remover situa&#xe7;&#xe3;o escola" duration="650" />
+<testCase name="Remover situa&#xe7;&#xe3;o escola erro" duration="459" />
+<testCase name="Erro de Provider de selectedValue" duration="119" />
 </file>
 <file path="src\tests\tabelaEscola.spec.tsx">
-<testCase name="Lista de escolas &#xe9; exibida corretamente" duration="1122" />
-<testCase name="Clicar em Cadastrar escola" duration="821" />
-<testCase name="Mudar quantidade de escolas por p&#xe1;gina" duration="394" />
-<testCase name="Exibir escola selecionada" duration="291" />
-<testCase name="Filtragem de escolas" duration="671" />
-</file>
-<file path="src\tests\Register.spec.tsx">
-<testCase name="should render Register" duration="4830" />
-<testCase name="should render error in Register form" duration="1108" />
-</file>
-<file path="src\tests\CadastrarEscola.spec.tsx">
-<testCase name="Lista de escolas &#xe9; exibida corretamente" duration="7875" />
-<testCase name="Lista de escolas &#xe9; exibida corretamente" duration="355" />
-<testCase name="Lista de escolas redireciona pra listagem" duration="156" />
-<testCase name="Cadastro CSV" duration="1081" />
+<testCase name="Lista de escolas &#xe9; exibida corretamente" duration="917" />
+<testCase name="Clicar em Cadastrar escola" duration="759" />
+<testCase name="Mudar quantidade de escolas por p&#xe1;gina" duration="541" />
+<testCase name="Exibir escola selecionada" duration="463" />
+<testCase name="Filtragem de escolas" duration="814" />
 </file>
 <file path="src\tests\Recover.spec.tsx">
-<testCase name=" should render Recover password" duration="352" />
+<testCase name=" should render Recover password" duration="572" />
 </file>
-<file path="src\tests\Login.spec.tsx">
-<testCase name=" should render Login" duration="356" />
+<file path="src\tests\InfoEscola.spec.tsx">
+<testCase name="Exibir escola selecionada" duration="524" />
+</file>
+<file path="src\tests\Register.spec.tsx">
+<testCase name="should render Register" duration="5697">
+<failure message="Error"><![CDATA[Error: thrown: &quot;Exceeded timeout of 5000 ms for a test.
+Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout.&quot;
+    at Object.test (D:\Users\isado\2023.1-Dnit-Front\src\tests\Register.spec.tsx:33:1)
+    at Runtime._execModule (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runtime\build\index.js:1429:24)
+    at Runtime._loadModule (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runtime\build\index.js:1013:12)
+    at Runtime.requireModule (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runtime\build\index.js:873:12)
+    at jestAdapter (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:77:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at runTestInternal (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\testWorker.js:106:12)]]></failure>
+</testCase>
+<testCase name="should render error in Register form" duration="1977" />
+</file>
+<file path="src\tests\CadastrarEscola.spec.tsx">
+<testCase name="Lista de escolas &#xe9; exibida corretamente" duration="8075" />
+<testCase name="Lista de escolas &#xe9; exibida corretamente" duration="268" />
+<testCase name="Lista de escolas redireciona pra listagem" duration="151" />
+<testCase name="Cadastro CSV" duration="258" />
+<testCase name="Cadastro CSV erro" duration="167" />
+<testCase name="Cadastro CSV vazio" duration="173" />
+<testCase name="Cadastro sem enviar CSV" duration="112" />
+<testCase name="Sem o provider" duration="60" />
 </file>
 </testExecutions>

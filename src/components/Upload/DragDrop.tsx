@@ -63,9 +63,8 @@ const App: React.FC<DragDropProps> = ({
           onClickAceito();
         }
       } catch (error: any) {
-        if (error.response && error.response.status == 406) {
-          onClickError();
-        }
+        error.response && error.response.status == 406 && onClickError();
+
         const mensagem = error.response?.data;
         message.error(`${mensagem}`);
       }

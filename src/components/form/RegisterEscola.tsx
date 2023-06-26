@@ -14,13 +14,7 @@ export default function RegS() {
   >("form1");
   return (
     <div className="formrs">
-      <Form.Provider
-        onFormFinish={(name) => {
-          if (name === "form2") {
-            console.log("form2");
-          }
-        }}
-      >
+      <Form.Provider>
         {screen === "form1" && (
           <Step1
             onClick={() => setScreen("form2")}
