@@ -50,11 +50,18 @@
   background-color: var(--gray1);
 }
 
+.ant-select-selector {
+  background-color: var(--gray1) !important;
+  border: 1px solid var(--gray2) !important;
+  border-radius: 2px !important;
+  width: 21.5em;
+}
+
 .ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
   width: 21.5em;
   border: 1px solid var(--gray2);
   border-radius: 2px;
-  background-color: var(--gray1);
+  background-color: var(--gray1) !important;
   text-align: left;
   padding-left: 11px;
 }
@@ -243,11 +250,90 @@
   font-weight: 500;
 }
 
+.formrs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+  width: fit-content;
+}
+
+.formrs h2 {
+  font-family: Rawline, sans-serif;
+  font-size: 1.8em;
+  color: var(--gray3);
+  font-weight: 500;
+  margin-bottom: 3rem;
+}
+
+.formrs label {
+  font-weight: 1000;
+}
+
+.form1 {
+  margin-top: 2rem;
+}
+
+.insbutton {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
+.button1 {
+  background-color: #1351b4;
+  width: 14em;
+}
+
+.button2 {
+  margin-top: 3rem;
+  zoom: 80%;
+  width: 10em;
+  background-color: #1351b4;
+}
+
+.proximo {
+  float: right;
+}
+.voltar {
+  float: left;
+}
+
+.bloco {
+  width: 18rem;
+  margin-right: 2rem;
+  float: left;
+  margin-left: 1rem;
+}
+.bloco2 {
+  width: 18rem;
+  margin-left: 2rem;
+  float: right;
+  margin-right: 2rem;
+}
+
+.inputForm2 {
+  width: 21.5em;
+  height: 5%;
+  font-weight: 350;
+  border: 1px solid var(--gray2);
+  border-radius: 2px;
+  background-color: var(--gray1);
+}
+
+.divScroll {
+  max-height: 48vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
 @media (max-width: 1250px) {
   .form {
     padding: 5%;
   }
   .formc {
+    padding: 5%;
+  }
+
+  .formrs {
     padding: 5%;
   }
   .logoDnit {
@@ -256,8 +342,7 @@
   }
 }
 
-.esqueci{
+.esqueci {
   display: flex;
   justify-content: center;
-
 }

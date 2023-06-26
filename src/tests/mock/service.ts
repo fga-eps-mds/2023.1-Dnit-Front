@@ -89,7 +89,6 @@ const server = setupServer(
       })
     );
   }),
-
   rest.get(
     "https://localhost:7083/api/dominio/unidadeFederativa",
     (req, res, ctx) => {
@@ -288,100 +287,117 @@ const server = setupServer(
       );
     }
   ),
+  rest.delete("https://localhost:7083/api/escolas/excluir", (req, res, ctx) => {
+    return res(ctx.json({}));
+  }),
   rest.get("https://localhost:7083/api/dominio/municipio", (req, res, ctx) => {
-    const idUf = req.url.searchParams.get("idUf");
-
-    if (idUf === "1") {
-      return res(
-        ctx.json([
-          {
-            nome: "Acrelândia",
-            id: 1200013,
-          },
-          {
-            nome: "Assis Brasil",
-            id: 1200054,
-          },
-          {
-            nome: "Brasiléia",
-            id: 1200104,
-          },
-          {
-            nome: "Bujari",
-            id: 1200138,
-          },
-          {
-            nome: "Caririaçu",
-            id: 1200179,
-          },
-          {
-            nome: "Cruzeiro do Sul",
-            id: 1200203,
-          },
-          {
-            nome: "Epitaciolândia",
-            id: 1200252,
-          },
-          {
-            nome: "Feijó",
-            id: 1200302,
-          },
-          {
-            nome: "Jordão",
-            id: 1200328,
-          },
-          {
-            nome: "Mâncio Lima",
-            id: 1200336,
-          },
-          {
-            nome: "Manoel Urbano",
-            id: 1200344,
-          },
-          {
-            nome: "Marechal Thaumaturgo",
-            id: 1200351,
-          },
-          {
-            nome: "Plácido de Castro",
-            id: 1200385,
-          },
-          {
-            nome: "Porto Acre",
-            id: 1200807,
-          },
-          {
-            nome: "Rio Branco",
-            id: 1200401,
-          },
-          {
-            nome: "Rodrigues Alves",
-            id: 1200427,
-          },
-          {
-            nome: "Santa Rosa do Purus",
-            id: 1200435,
-          },
-          {
-            nome: "Senador Guiomard",
-            id: 1200450,
-          },
-          {
-            nome: "Sena Madureira",
-            id: 1200500,
-          },
-          {
-            nome: "Tarauacá",
-            id: 1200609,
-          },
-          {
-            nome: "Xapuri",
-            id: 1200708,
-          },
-        ])
-      );
+    return res(
+      ctx.json([
+        {
+          nome: "Acrelândia",
+          id: 1200013,
+        },
+        {
+          nome: "Assis Brasil",
+          id: 1200054,
+        },
+        {
+          nome: "Brasiléia",
+          id: 1200104,
+        },
+        {
+          nome: "Bujari",
+          id: 1200138,
+        },
+        {
+          nome: "Caririaçu",
+          id: 1200179,
+        },
+        {
+          nome: "Cruzeiro do Sul",
+          id: 1200203,
+        },
+        {
+          nome: "Epitaciolândia",
+          id: 1200252,
+        },
+        {
+          nome: "Feijó",
+          id: 1200302,
+        },
+        {
+          nome: "Jordão",
+          id: 1200328,
+        },
+        {
+          nome: "Mâncio Lima",
+          id: 1200336,
+        },
+        {
+          nome: "Manoel Urbano",
+          id: 1200344,
+        },
+        {
+          nome: "Marechal Thaumaturgo",
+          id: 1200351,
+        },
+        {
+          nome: "Plácido de Castro",
+          id: 1200385,
+        },
+        {
+          nome: "Porto Acre",
+          id: 1200807,
+        },
+        {
+          nome: "Rio Branco",
+          id: 1200401,
+        },
+        {
+          nome: "Rodrigues Alves",
+          id: 1200427,
+        },
+        {
+          nome: "Santa Rosa do Purus",
+          id: 1200435,
+        },
+        {
+          nome: "Senador Guiomard",
+          id: 1200450,
+        },
+        {
+          nome: "Sena Madureira",
+          id: 1200500,
+        },
+        {
+          nome: "Tarauacá",
+          id: 1200609,
+        },
+        {
+          nome: "Xapuri",
+          id: 1200708,
+        },
+      ])
+    );
+  }),
+  rest.post(
+    "https://localhost:7083/api/escolas/adicionarSituacao",
+    (req, res, ctx) => {
+      return res(ctx.status(200));
     }
-  })
+  ),
+  rest.post(
+    "https://localhost:7083/api/escolas/removerSituacao",
+    (req, res, ctx) => {
+      return res(ctx.status(200));
+    }
+  ),
+  rest.post(
+    "https://localhost:7083/api/escolas/cadastrarEscola",
+    (req, res, ctx) => {
+      return res(ctx.status(200));
+    }
+  )
 );
 
 export default server;

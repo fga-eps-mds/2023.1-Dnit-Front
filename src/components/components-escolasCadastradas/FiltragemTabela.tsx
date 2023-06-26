@@ -1,19 +1,20 @@
-import "../../styles/App.css";
-import "../components-escolasCadastradas/FiltragemTabela.css";
-import React, { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef, useState } from "react";
 import { useFiltroTabela } from "../../context/FiltroTabela";
-import fetchFederativeUnit from "../../service/federativeUnit";
-import { EtapasDeEnsino, FederativeUnit } from "../../models/service";
-import { Situacao } from "../../models/service";
+import {
+  EtapasDeEnsino,
+  FederativeUnit,
+  Municipio,
+  Situacao,
+} from "../../models/service";
 import fetchSituacao from "../../service/Situacao";
 import fetchEtapasDeEnsino from "../../service/etapasDeEnsino";
+import fetchFederativeUnit from "../../service/federativeUnit";
 import fetchMunicipio from "../../service/municipio";
-import { Municipio } from "../../models/service";
+import "../../styles/App.css";
+import "../components-escolasCadastradas/style/FiltragemTabela.css";
 
 export default function TabelaEscolas() {
-
   const {
-
     setNomeEscola,
 
     UFSelecionada,
@@ -28,83 +29,63 @@ export default function TabelaEscolas() {
     municipioSelecionado,
     setMunicipioSelecionado,
     carregandoEscolas,
-
   } = useFiltroTabela();
 
-
-  const nomeRef = useRef<HTMLInputElement>(null)
-
+  const nomeRef = useRef<HTMLInputElement>(null);
 
   const mudarNome = () => {
-    if (nomeRef.current)
-      setNomeEscola(nomeRef.current.value);
-  }
-
+    if (nomeRef.current) setNomeEscola(nomeRef.current.value);
+  };
 
   const getUf = async () => {
     try {
       const resposta = await fetchFederativeUnit();
       setOpcoesUf(resposta);
-    }
-    catch (error) {
-      
-    }
-  }
+    } catch (error) {}
+  };
 
   useEffect(() => {
-    if (opcoesUf.length == 0)
-      getUf();
-  })
+    if (opcoesUf.length == 0) getUf();
+  });
 
   const getSituacao = async () => {
     try {
       const resposta = await fetchSituacao();
       setOpcoesSituacao(resposta);
-    }
-    catch (error) {
-    }
-  }
+    } catch (error) {}
+  };
   useEffect(() => {
-    if (opcoesSituacao.length == 0)
-      getSituacao();
-  })
-
+    if (opcoesSituacao.length == 0) getSituacao();
+  });
 
   const getMunicipio = async () => {
     try {
       if (UFSelecionada) {
         const resposta = await fetchMunicipio(UFSelecionada.id);
-        console.log(resposta);
         setOpcoesMunicipio(resposta);
-
       }
-    }
-    catch (error) {
-    }
-  }
+    } catch (error) {}
+  };
 
   useEffect(() => {
-    if (opcoesMunicipio.length == 0 || carregandoEscolas)
-      getMunicipio();
-  },[UFSelecionada, carregandoEscolas])
-
+    if (opcoesMunicipio.length == 0 || carregandoEscolas) getMunicipio();
+  }, [UFSelecionada, carregandoEscolas]);
 
   const getEtapasDeEnsino = async () => {
     try {
       const resposta = await fetchEtapasDeEnsino();
       setOpcoesEtapasDeEnsino(resposta);
-    }
-    catch (error) {
-      
-    }
-  }
+    } catch (error) {}
+  };
 
   useEffect(() => {
-    if (opcoesSituacao.length == 0)
-      getEtapasDeEnsino();
-  })
-  const [showOpcoesEtapasDeEnsino, setShowOpcoesEtapasDeEnsino] = useState(false);
-  const [OpcoesEtapasDeEnsino, setOpcoesEtapasDeEnsino] = useState<EtapasDeEnsino[]>([]);
+    if (opcoesSituacao.length == 0) getEtapasDeEnsino();
+  });
+  const [showOpcoesEtapasDeEnsino, setShowOpcoesEtapasDeEnsino] =
+    useState(false);
+  const [OpcoesEtapasDeEnsino, setOpcoesEtapasDeEnsino] = useState<
+    EtapasDeEnsino[]
+  >([]);
 
   const [showOptionsSituacao, setShowOptionsSituacao] = useState(false);
   const [opcoesSituacao, setOpcoesSituacao] = useState<Situacao[]>([]);
@@ -115,7 +96,7 @@ export default function TabelaEscolas() {
   const [showOpcoesMunicipio, setShowOpcoesMunincipio] = useState(false);
   const [opcoesMunicipio, setOpcoesMunicipio] = useState<Municipio[]>([]);
 
-  const alternarEstado = (valorAtual: boolean) => (!valorAtual);
+  const alternarEstado = (valorAtual: boolean) => !valorAtual;
 
   const handleButtonClick = (selectNumber: number) => {
     switch (selectNumber) {
@@ -152,7 +133,6 @@ export default function TabelaEscolas() {
         setMunicipioSelecionado(option);
         setShowOpcoesMunincipio(false);
         break;
-
     }
   };
 
@@ -160,26 +140,40 @@ export default function TabelaEscolas() {
     <div className="container inputs">
       <div className="br-input medium input-button">
         <label htmlFor="input-search-medium">Nome</label>
-        <input id="input-search-medium" type="search" ref={nomeRef} placeholder="Digite o nome da Escola" />
-        <button className="br-button" type="button" onClick={mudarNome} aria-label="Buscar" data-testid = "buscar-nome">
+        <input
+          id="input-search-medium"
+          type="search"
+          ref={nomeRef}
+          placeholder="Digite o nome da Escola"
+        />
+        <button
+          className="br-button"
+          type="button"
+          onClick={mudarNome}
+          aria-label="Buscar"
+          data-testid="buscar-nome"
+        >
           <i className="fas fa-search" aria-hidden="true"></i>
         </button>
       </div>
 
-      <div className="br-select" >
+      <div className="br-select">
         <div className="br-input">
           <label htmlFor="select-multtiple">UF</label>
           <input
             id="select-multtiple"
             type="text"
-            placeholder={UFSelecionada ? UFSelecionada.nome : 'Todas'} />
+            placeholder={UFSelecionada ? UFSelecionada.nome : "Todas"}
+          />
           <button
             className="br-button"
             type="button"
             aria-label="Exibir lista"
             tabIndex={-1}
             data-trigger="data-trigger"
-            onClick={() => handleButtonClick(1)} data-testid = "buscar-uf">
+            onClick={() => handleButtonClick(1)}
+            data-testid="buscar-uf"
+          >
             <i className="fas fa-angle-down" aria-hidden="true"></i>
           </button>
           <div className="br-input">
@@ -188,39 +182,46 @@ export default function TabelaEscolas() {
                 <div
                   className="options"
                   onClick={() => handleOptionClick(false, 1)}
-                > Todas
+                >
+                  {" "}
+                  Todas
                 </div>
                 {opcoesUf.map((options, index) => {
-                  return(
+                  return (
                     <div
                       key={index}
                       className="options"
                       onClick={() => handleOptionClick(options, 1)}
                     >
                       {options.nome}
-                    </div>)}
-                  )}
+                    </div>
+                  );
+                })}
               </div>
             )}
           </div>
         </div>
       </div>
 
-
-      <div className="br-select" >
+      <div className="br-select">
         <div className="br-input">
           <label htmlFor="select-multtiple">Situação</label>
           <input
             id="select-multtiple"
             type="text"
-            placeholder={situacaoSelecionada ? situacaoSelecionada.descricao : 'Todas'} />
+            placeholder={
+              situacaoSelecionada ? situacaoSelecionada.descricao : "Todas"
+            }
+          />
           <button
             className="br-button"
             type="button"
             aria-label="Exibir lista"
             tabIndex={-1}
             data-trigger="data-trigger"
-            onClick={() => handleButtonClick(2)} data-testid = "buscar-situacao">
+            onClick={() => handleButtonClick(2)}
+            data-testid="buscar-situacao"
+          >
             <i className="fas fa-angle-down" aria-hidden="true"></i>
           </button>
           <div className="br-input">
@@ -229,7 +230,9 @@ export default function TabelaEscolas() {
                 <div
                   className="options"
                   onClick={() => handleOptionClick(false, 2)}
-                > Todas
+                >
+                  {" "}
+                  Todas
                 </div>
                 {opcoesSituacao.map((options, index) => (
                   <div
@@ -246,20 +249,27 @@ export default function TabelaEscolas() {
         </div>
       </div>
 
-      <div className="br-select" >
+      <div className="br-select">
         <div className="br-input">
           <label htmlFor="select-multtiple">Etapas de Ensino</label>
           <input
             id="select-multtiple"
             type="text"
-            placeholder={etapaDeEnsinoSelecionada ? etapaDeEnsinoSelecionada.descricao : 'Todas'} />
+            placeholder={
+              etapaDeEnsinoSelecionada
+                ? etapaDeEnsinoSelecionada.descricao
+                : "Todas"
+            }
+          />
           <button
             className="br-button"
             type="button"
             aria-label="Exibir lista"
             tabIndex={-1}
             data-trigger="data-trigger"
-            onClick={() => handleButtonClick(3)} data-testid = "buscar-etapas">
+            onClick={() => handleButtonClick(3)}
+            data-testid="buscar-etapas"
+          >
             <i className="fas fa-angle-down" aria-hidden="true"></i>
           </button>
           <div className="br-input">
@@ -268,7 +278,9 @@ export default function TabelaEscolas() {
                 <div
                   className="options"
                   onClick={() => handleOptionClick(false, 3)}
-                > Todas
+                >
+                  {" "}
+                  Todas
                 </div>
                 {OpcoesEtapasDeEnsino.map((options, index) => (
                   <div
@@ -285,20 +297,25 @@ export default function TabelaEscolas() {
         </div>
       </div>
 
-      <div className="br-select" >
+      <div className="br-select">
         <div className="br-input">
           <label htmlFor="select-multtiple">Município</label>
           <input
             id="select-multtiple"
             type="text"
-            placeholder={municipioSelecionado ? municipioSelecionado.nome : 'Todos'} />
+            placeholder={
+              municipioSelecionado ? municipioSelecionado.nome : "Todos"
+            }
+          />
           <button
             className="br-button"
             type="button"
             aria-label="Exibir lista"
             tabIndex={-1}
             data-trigger="data-trigger"
-            onClick={() => handleButtonClick(4)} data-testid = "buscar-municipio">
+            onClick={() => handleButtonClick(4)}
+            data-testid="buscar-municipio"
+          >
             <i className="fas fa-angle-down" aria-hidden="true"></i>
           </button>
           <div className="br-input">
@@ -307,7 +324,9 @@ export default function TabelaEscolas() {
                 <div
                   className="options"
                   onClick={() => handleOptionClick(false, 4)}
-                > Todos
+                >
+                  {" "}
+                  Todos
                 </div>
                 {opcoesMunicipio.map((options, index) => (
                   <div

@@ -8,6 +8,7 @@ import RecoverPassword from "./pages/RecoverPassword";
 import ResetPassword from "./pages/ResetPassword";
 import { AuthContext } from "./provider/Authentication";
 import "./styles/App.css";
+import RegisterSchool from "./pages/RegisterSchool";
 import ExibirInformacoesEscola from "./pages/ExibirInformacoesEscola";
 
 
@@ -29,9 +30,9 @@ function App() {
         </>
       )}
       <Route path="/login" element={<Login />} />
-      <Route path="/exibirinformacoesescola" element={<ExibirInformacoesEscola id = {10} />} />
       <Route path="/redefinirSenha" element={<ResetPassword />} />
       <Route path="/cadastro" element={<Register />} />
+      <Route path="/cadastrarescola" element={<RegisterSchool />} />
       <Route path="/esqueciSenha" element={<RecoverPassword />} />
       <Route path="/escolas-cadastradas" element={<EscolasCadastradas />} />
     </Routes>

@@ -33,6 +33,24 @@ export interface RegisterData {
   uf: number;
 }
 
+export interface RegisterSchoolData {
+  NomeEscola: string,
+  IdRede: number,
+  CodigoEscola: number,
+  IdUf: number,
+  Cep: string,
+  Telefone: string,
+  IdEtapasDeEnsino: number,
+  IdPorte: number,
+  Endereco: string,
+  //IdMunicipio: number,
+  IdLocalizacao: number,
+  Longitude: string,
+  Latitude: string,
+  NumeroTotalDeAlunos: number,
+  NumeroTotalDeDocentes: number
+
+}
 
 export interface RecoverPasswordData {
   nome: string;

@@ -1,22 +1,184 @@
 <testExecutions version="1">
-<file path="src\tests\Recover.spec.tsx">
-<testCase name=" should render Recover password" duration="1162" />
-</file>
-<file path="src\tests\Login.spec.tsx">
-<testCase name=" should render Login" duration="1190" />
-</file>
-<file path="src\tests\Reset.spec.tsx">
-<testCase name=" should render Reset password" duration="1528" />
-<testCase name=" should render Reset password" duration="718" />
-</file>
-<file path="src\tests\tabelaEscola.spec.tsx">
-<testCase name="Lista de escolas &#xe9; exibida corretamente" duration="440" />
-<testCase name="Mudar quantidade de escolas por p&#xe1;gina" duration="235" />
-<testCase name="Exibir escola selecionada" duration="364" />
-<testCase name="Filtragem de escolas" duration="495" />
-</file>
-<file path="src\tests\Register.spec.tsx">
-<testCase name="should render Register" duration="3704" />
-<testCase name="should render error in Register form" duration="1459" />
+<file path="src\tests\CadastrarEscola.spec.tsx">
+<testCase name="Lista de escolas &#xe9; exibida corretamente" duration="1469">
+<failure message="Error"><![CDATA[Error: Unable to find an element with the text: Acre. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;div
+      class=&quot;App&quot;
+    &gt;
+      &lt;header
+        class=&quot;App-header&quot;
+      &gt;
+        &lt;div
+          class=&quot;HeaderIcon&quot;
+        &gt;
+          &lt;img
+            alt=&quot;&#xed;cone gov&quot;
+            class=&quot;iconGov&quot;
+            src=&quot;test-file-stub&quot;
+          /&gt;
+          &lt;img
+            alt=&quot;&#xed;cone dnit&quot;
+            class=&quot;iconDNIT&quot;
+            src=&quot;test-file-stub&quot;
+          /&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;HeaderContrast&quot;
+        &gt;
+          &lt;img
+            alt=&quot;Button contrast&quot;
+            class=&quot;buttonContrast&quot;
+            src=&quot;test-file-stub&quot;
+          /&gt;
+          &lt;div
+            class=&quot;text-alto-contraste&quot;
+          &gt;
+            Alto contraste
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/header&gt;
+      &lt;div
+        class=&quot;Secao2&quot;
+      &gt;
+        &lt;div
+          class=&quot;box&quot;
+        &gt;
+          &lt;div
+            class=&quot;formrs&quot;
+          &gt;
+            &lt;div&gt;
+              &lt;h2&gt;
+                Cadastrar Escola
+              &lt;/h2&gt;
+              &lt;form
+                autocomplete=&quot;off&quot;
+                class=&quot;ant-form ant-form-vertical css-dev-only-do-not-override-12upa3x form-email&quot;
+                id=&quot;form2&quot;
+              &gt;
+                &lt;div
+                  class=&quot;divScroll&quot;
+                &gt;
+                  &lt;div
+                    class=&quot;bloco&quot;
+                  &gt;
+                    &lt;div
+                      class=&quot;ant-form-item css-dev-only-do-not-override-12upa3x ant-form-item-is-validating&quot;
+                    &gt;
+                      &lt;div
+                        class=&quot;ant-row ant-form-item-row css-dev-only-do-not-override-12upa3x&quot;
+                      &gt;
+                        &lt;div
+                          class=&quot;ant-col ant-form-item-label css-dev-only-do-not-override-12upa3x&quot;
+                        &gt;
+                          &lt;label
+                            class=&quot;ant-form-item-required ant-form-item-required-mark-optional&quot;
+                            for=&quot;form2_nome&quot;
+                            title=&quot;Nome da Escola&quot;
+                          &gt;
+                            Nome da Escola
+                          &lt;/label&gt;
+                        &lt;/div&gt;
+                        &lt;div
+                          class=&quot;ant-col ant-form-item-control css-dev-only-do-not-override-12upa3x&quot;
+                        &gt;
+                          &lt;div
+                            class=&quot;ant-form-item-control-input&quot;
+                          &gt;
+                            &lt;div
+                              class=&quot;ant-form-item-control-input-content&quot;
+                            &gt;
+                              &lt;input
+                                aria-required=&quot;true&quot;
+                                class=&quot;ant-input ant-input-status-validating css-dev-only-do-not-override-12upa3x inputForm2&quot;
+                                id=&quot;form2_nome&quot;
+                                type=&quot;text&quot;
+                                value=&quot;Escola A&quot;
+                              /&gt;
+                            &lt;/div&gt;
+                          &lt;/div&gt;
+                        &lt;/div&gt;
+                      &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div
+                      class=&quot;ant-form-item css-dev-only-do-not-override-12upa3x&quot;
+                    &gt;
+                      &lt;div
+                        class=&quot;ant-row ant-form-item-row css-dev-only-do-not-override-12upa3x&quot;
+                      &gt;
+                        &lt;div
+                          class=&quot;ant-col ant-form-item-label css-dev-only-do-not-override-12upa3x&quot;
+                        &gt;
+                          &lt;label
+                            class=&quot;ant-form-item-required ant-form-item-required-mark-optional&quot;
+                            for=&quot;form2_rede&quot;
+                            title=&quot;Rede&quot;
+                          &gt;
+                            Rede
+                          &lt;/label&gt;
+                        &lt;/div&gt;
+                        &lt;div
+                          class=&quot;ant-col ant-form-item-control css-dev-only-do-not-override-12upa3x&quot;
+                        &gt;
+                          &lt;div
+                            class=&quot;ant-form-item-control-input&quot;
+                          &gt;
+                            &lt;div
+                              class=&quot;ant-form-item-control-input-content&quot;
+                            &gt;
+                              &lt;div
+                                aria-required=&quot;true&quot;
+                                class=&quot;ant-select ant-select-in-form-item css-dev-only-do-not-override-12upa3x ant-select-single ant-select-show-arrow&quot;
+                              &gt;
+                                &lt;div
+                                  class=&quot;ant-select-selector&quot;
+                                &gt;
+                                  &lt;span
+                                    class=&quot;ant-select-selection-search&quot;
+                                  &gt;
+                                    &lt;input
+                                      aria-activedescendant=&quot;form2_rede_list_0&quot;
+                                      aria-autocomplete=&quot;list&quot;
+                                      aria-controls=&quot;form2_rede_list&quot;
+                ...
+    at waitForWrapper (D:\Users\isado\2023.1-Dnit-Front\node_modules\@testing-library\dom\dist\wait-for.js:166:27)
+    at _callee&#x24; (D:\Users\isado\2023.1-Dnit-Front\src\tests\CadastrarEscola.spec.tsx:44:18)
+    at call (D:\Users\isado\2023.1-Dnit-Front\src\tests\CadastrarEscola.spec.tsx:2:1)
+    at Generator.tryCatch (D:\Users\isado\2023.1-Dnit-Front\src\tests\CadastrarEscola.spec.tsx:2:1)
+    at Generator._invoke [as next] (D:\Users\isado\2023.1-Dnit-Front\src\tests\CadastrarEscola.spec.tsx:2:1)
+    at asyncGeneratorStep (D:\Users\isado\2023.1-Dnit-Front\src\tests\CadastrarEscola.spec.tsx:2:1)
+    at asyncGeneratorStep (D:\Users\isado\2023.1-Dnit-Front\src\tests\CadastrarEscola.spec.tsx:2:1)
+    at _next (D:\Users\isado\2023.1-Dnit-Front\src\tests\CadastrarEscola.spec.tsx:2:1)
+    at new Promise (&lt;anonymous&gt;)
+    at D:\Users\isado\2023.1-Dnit-Front\src\tests\CadastrarEscola.spec.tsx:2:1
+    at D:\Users\isado\2023.1-Dnit-Front\node_modules\@testing-library\react\dist\act-compat.js:64:24
+    at act (D:\Users\isado\2023.1-Dnit-Front\node_modules\react\cjs\react.development.js:2512:16)
+    at D:\Users\isado\2023.1-Dnit-Front\node_modules\@testing-library\react\dist\act-compat.js:63:25
+    at _callee2&#x24; (D:\Users\isado\2023.1-Dnit-Front\src\tests\CadastrarEscola.spec.tsx:38:12)
+    at call (D:\Users\isado\2023.1-Dnit-Front\src\tests\CadastrarEscola.spec.tsx:2:1)
+    at Generator.tryCatch (D:\Users\isado\2023.1-Dnit-Front\src\tests\CadastrarEscola.spec.tsx:2:1)
+    at Generator._invoke [as next] (D:\Users\isado\2023.1-Dnit-Front\src\tests\CadastrarEscola.spec.tsx:2:1)
+    at asyncGeneratorStep (D:\Users\isado\2023.1-Dnit-Front\src\tests\CadastrarEscola.spec.tsx:2:1)
+    at asyncGeneratorStep (D:\Users\isado\2023.1-Dnit-Front\src\tests\CadastrarEscola.spec.tsx:2:1)
+    at _next (D:\Users\isado\2023.1-Dnit-Front\src\tests\CadastrarEscola.spec.tsx:2:1)
+    at new Promise (&lt;anonymous&gt;)
+    at Object.&lt;anonymous&gt; (D:\Users\isado\2023.1-Dnit-Front\src\tests\CadastrarEscola.spec.tsx:2:1)
+    at Promise.then.completed (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\utils.js:293:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\utils.js:226:10)
+    at _callCircusTest (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:297:40)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at _runTest (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:233:3)
+    at _runTestsForDescribeBlock (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:135:9)
+    at run (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:68:3)
+    at runAndTransformResultsToJestFormat (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\runTest.js:444:34)]]></failure>
+</testCase>
+<testCase name="Lista de escolas &#xe9; exibida corretamente" duration="206" />
 </file>
 </testExecutions>
