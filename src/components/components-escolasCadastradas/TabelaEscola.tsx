@@ -149,7 +149,7 @@ export default function TabelaEscola() {
                 >
                   <td data-th="Título coluna 1">{escola.nomeEscola}</td>
                   <td data-th="Título coluna 2">
-                    {escola.descricaoEtapasDeEnsino}
+                    {escola.descricaoEtapasEnsino}
                   </td>
                   <td data-th="Título coluna 3">
                     {escola.numeroTotalDeAlunos}

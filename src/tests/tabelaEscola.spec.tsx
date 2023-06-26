@@ -7,6 +7,19 @@ beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
+window.matchMedia = jest.fn().mockImplementation((query) => {
+  return {
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: jest.fn(),
+    removeListener: jest.fn(),
+    addEventListener: jest.fn(),
+    removeEventListener: jest.fn(),
+    dispatchEvent: jest.fn(),
+  };
+});
+
 test("Lista de escolas é exibida corretamente", async () => {
   render(
     <MemoryRouter initialEntries={["/escolas-cadastradas"]}>
@@ -18,6 +31,17 @@ test("Lista de escolas é exibida corretamente", async () => {
     const escolas = screen.getAllByTestId("linha-escola");
     expect(escolas).toHaveLength(3);
   });
+});
+
+test("Clicar em Cadastrar escola", async () => {
+  render(
+    <MemoryRouter initialEntries={["/escolas-cadastradas"]}>
+      <App />
+    </MemoryRouter>
+  );
+
+  const cadastrar = screen.getByText("Cadastrar escolas");
+  fireEvent.click(cadastrar);
 });
 
 test("Mudar quantidade de escolas por página", async () => {
@@ -113,4 +137,3 @@ test("Filtragem de escolas", async () => {
   const buscarEtapasTodas = screen.getByText("Todas");
   fireEvent.click(buscarEtapasTodas);
 });
-

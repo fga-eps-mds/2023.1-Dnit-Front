@@ -9,7 +9,6 @@ export interface Municipio{
 }
 
 
-
 export interface Situacao {
   id: number;
   descricao: string;
@@ -99,7 +98,7 @@ export interface EscolaData {
     longitude: string;
     latitude: string;
     idEtapasDeEnsino: number;
-    descricaoEtapasDeEnsino: string;
+    descricaoEtapasEnsino: string;
     numeroTotalDeAlunos: number;
     idSituacao: number;
     descricaoSituacao: string;

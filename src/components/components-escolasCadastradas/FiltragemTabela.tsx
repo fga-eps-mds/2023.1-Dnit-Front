@@ -164,6 +164,7 @@ export default function TabelaEscolas() {
             id="select-multtiple"
             type="text"
             placeholder={UFSelecionada ? UFSelecionada.nome : "Todas"}
+            disabled
           />
           <button
             className="br-button"
@@ -212,6 +213,7 @@ export default function TabelaEscolas() {
             placeholder={
               situacaoSelecionada ? situacaoSelecionada.descricao : "Todas"
             }
+            disabled
           />
           <button
             className="br-button"
@@ -260,6 +262,7 @@ export default function TabelaEscolas() {
                 ? etapaDeEnsinoSelecionada.descricao
                 : "Todas"
             }
+            disabled
           />
           <button
             className="br-button"
@@ -306,6 +309,7 @@ export default function TabelaEscolas() {
             placeholder={
               municipioSelecionado ? municipioSelecionado.nome : "Todos"
             }
+            disabled
           />
           <button
             className="br-button"
