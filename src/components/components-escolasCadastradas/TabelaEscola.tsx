@@ -9,101 +9,54 @@ import { notification } from "antd";
 
 
 export default function TabelaEscola() {
-  const { setNomeEscola, escolasFiltradas, paginaAtual, mudarPagina, escolasPorPagina, mudarQuantidadePorPaginas, irParaPagina } = useFiltroTabela()
-  const nomeRef = useRef<HTMLInputElement>(null)
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const {escolasFiltradas, paginaAtual, mudarPagina, escolasPorPagina, mudarQuantidadePorPaginas, totalEscolas } = useFiltroTabela()
 
   const [, contextHolder] = notification.useNotification();
 
   const [showOptionsPages, setShowOptionsPages] = useState(false);
-
   const [showSchoolsPerPage, setShowSchoolsPerPage] = useState(false);
-  const [schoolsPerPage, setSchoolsPerPage] = useState(5);
   const optionsSchoolsPerPage = ['2', '5', '10', '20'];
   const [schools, setschools] = useState<EscolaData[]>([]);
-
   const [modalStates, setModalStates] = useState(Array(schools.length).fill(false));
+  const [escolaSelecionada, setEscolaSelecionada] = useState<EscolaData>();
+  const [indexescolaSelecionada, setIndexEscolaSelecionada] = useState<number>(0);
 
-  const handleButtonClick = (selectNumeber: any) => {
-    switch (selectNumeber) {
-      case 1:
-        setShowOptionsPages(!showOptionsPages);
-        break;
-      case 2:
 
-        break;
-      default:
-        break;
+  const handleButtonClick = (selectNumeber: number) => {
+    if (selectNumeber == 1) {
+      setShowOptionsPages(!showOptionsPages);
     }
   }
-  const handleOptionClick = (option: any, selectNumber: any) => {
-    switch (selectNumber) {
-      case 1:
-        mudarQuantidadePorPaginas(option);
-        setShowSchoolsPerPage(false);
+  const handleOptionClick = (option: number) => {
+    mudarQuantidadePorPaginas(option);
+    setShowSchoolsPerPage(false);
 
-        break;
-      case 2:
-        //setCurrentPage(option);
-        setShowOptionsPages(false);
-        break;
-    }
+
   }
 
-  const OpenModal = (id: number, index: number) => {
+  const OpenModal = (id: EscolaData, index: number) => {
     const newModalStates = [...modalStates];
     newModalStates[index] = true;
     setModalStates(newModalStates);
+    setEscolaSelecionada(id);
+    setIndexEscolaSelecionada(index);
   }
 
-  const CloseModal = (id: number, index: number) => {
+  const CloseModal = (index: number) => {
     const newModalStates = [...modalStates];
     newModalStates[index] = false;
     setModalStates(newModalStates);
   }
 
-  const updateSchoolsPerPage = (value: number) => {
-    if (value !== schoolsPerPage)
-      setSchoolsPerPage(value);
-  }
 
-  /*const updateCurrentPage = (value: number) => {
-    if (gettotalpages() >= (paginaAtual+ value) && paginaAtual+ value >= 1)
-      setCurrentPage((currentValue) => (currentValue + value))
-  }*/
-  const gettotalpages = () => {
-    let totalpages = schools.length / schoolsPerPage;
-    if ((totalpages % 1) !== 0) {
-      totalpages = Math.floor(totalpages) + 1;
-    }
-    return totalpages;
-  }
   const getpagerange = () => {
-    const rangeStart = ((paginaAtual - 1) * schoolsPerPage) + 1;
-    let rangeEnd = (rangeStart + schoolsPerPage) - 1;
-    if (rangeEnd > schools.length) {
-      rangeEnd = schools.length;
-    }
+    const rangeStart = (paginaAtual - 1) * escolasPorPagina + 1;
+    let rangeEnd = paginaAtual * escolasPorPagina;
+
+    if (rangeEnd > totalEscolas) rangeEnd = totalEscolas;
+
     return [rangeStart, rangeEnd];
-  }
-  /* const getSchool = async () => {
-     try {
-       const resultschools = await fetchlistSchools();
-       console.log({ resultschools })
-       setschools(resultschools);
-     }
-     catch (error) {
-       console.log({ error })
-     }
- 
-   }
-   useEffect(() => {
-     if (schools.length <= 0)
-       getSchool();
-   }) */
-
-
-
+  };
   return (
 
     <div className="br-table" data-search="data-search" data-selection="data-selection" data-collapse="data-collapse" data-random="data-random">
@@ -111,16 +64,6 @@ export default function TabelaEscola() {
       <div className="table-header">
         <div className="top-bar">
           <div className="table-title">Escolas Cadastradas</div>
-          <div className="actions-trigger text-nowrap">
-            <div className="br-list" id="target01-27509" hidden>
-              <button className="br-item" type="button" data-density="small">Densidade alta
-              </button><span className="br-divider"></span>
-              <button className="br-item" type="button" data-density="medium">Densidade média
-              </button><span className="br-divider"></span>
-              <button className="br-item" type="button" data-density="large">Densidade baixa
-              </button>
-            </div>
-          </div>
         </div>
         <div className="search-bar">
           <div className="br-input">
@@ -160,31 +103,25 @@ export default function TabelaEscola() {
         </thead>
         <tbody>
           {escolasFiltradas !== false && escolasFiltradas.map((escola, index) => {
-            // const range = getpagerange();
-            //if (index >= range[0] - 1 && index <= range[1] - 1)
             return (
-              <>
-                <div className="modal-informacoes">
-                  <ExibirInformacoesEscola open={modalStates[index]} escola={escola} close={() => CloseModal(escola.idEscola, index)} key={escola.idEscola} />
-                </div>
-                <tr key={escola.idEscola} onClick={() => OpenModal(escola.idEscola, index)} data-testid="linha-escola">
-                  <td data-th="Título coluna 1">{escola.nomeEscola}</td>
-                  <td data-th="Título coluna 2">{escola.descricaoEtapasDeEnsino}</td>
-                  <td data-th="Título coluna 3">{escola.numeroTotalDeAlunos}</td>
-                  <td data-th="Título coluna 4">{escola.descricaoSituacao}</td>
-                  <td data-th="Título coluna 5">{escola.nomeMunicipio}</td>
-                  <td data-th="Título coluna 6">{escola.siglaUf}</td>
-                </tr></>
+              <tr key={escola.idEscola} onClick={() => OpenModal(escola, index)} data-testid="linha-escola">
+                <td data-th="Título coluna 1">{escola.nomeEscola}</td>
+                <td data-th="Título coluna 2">{escola.descricaoEtapasDeEnsino}</td>
+                <td data-th="Título coluna 3">{escola.numeroTotalDeAlunos}</td>
+                <td data-th="Título coluna 4">{escola.descricaoSituacao}</td>
+                <td data-th="Título coluna 5">{escola.nomeMunicipio}</td>
+                <td data-th="Título coluna 6">{escola.siglaUf}</td>
+              </tr>
             )
           })
           }
-
-
-          <tr className="collapse">
-            <td id="collapse-1-4-27509" aria-hidden="true" hidden={true} colSpan={6}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultricies aliquet lacinia. Vestibulum in interdum eros. Donec vel tempus diam. Aenean pulvinar mattis nisi in laoreet. Integer felis mi, vehicula sed pretium sit amet, pellentesque vel nisl. Curabitur metus ante, pellentesque in lectus a, sagittis imperdiet mi.</td>
-          </tr>
         </tbody>
       </table>
+
+      <div className="modal-informacoes">
+        <ExibirInformacoesEscola open={modalStates[indexescolaSelecionada]} escola={escolaSelecionada} close={() => CloseModal(indexescolaSelecionada)} />
+      </div>
+
       <div className="table-footer">
         <nav className="br-pagination" aria-label="Paginação de resultados" data-total={escolasFiltradas ? escolasFiltradas.length : 0} data-current="38" data-per-page="20">
           <div className="pagination-per-page">
@@ -192,7 +129,8 @@ export default function TabelaEscola() {
               <div className="br-input">
                 <label htmlFor="per-page-selection-random-91921">Exibir</label>
                 <input id="per-page-selection-random-91921" type="text" placeholder={escolasPorPagina.toString()} />
-                <button className="br-button" type="button" aria-label="Exibir lista" tabIndex={-1} data-trigger="data-trigger"><i className="fas fa-angle-down" aria-hidden="true" onClick={() => handleButtonClick(1)}></i>
+                <button className="br-button" type="button" aria-label="Exibir lista" tabIndex={-1} data-trigger="data-trigger">
+                  <i className="fas fa-angle-down" aria-hidden="true" onClick={() => handleButtonClick(1)} data-testid= "dropdown-exibir"></i>
                 </button>
                 <div className="br-input">
                   {showOptionsPages && (
@@ -201,7 +139,8 @@ export default function TabelaEscola() {
                         <div
                           key={index}
                           className="options"
-                          onClick={() => handleOptionClick(options, 1)}
+                          onClick={() => handleOptionClick(Number(options))}
+                          data-testid= {`options-${options}`}
                         >
                           {options}
                         </div>
@@ -212,37 +151,26 @@ export default function TabelaEscola() {
               </div>
             </div>
           </div><span className="br-divider d-none d-sm-block mx-3"></span>
-          <div className="pagination-inhtmlFormation d-none d-sm-flex"><span className="current">{getpagerange()[0]}</span>&ndash;<span className="per-page">{getpagerange()[1]}</span>&nbsp;de&nbsp;<span className="total">{schools.length}</span>&nbsp;itens</div>
+          <div className="pagination-inhtmlFormation d-none d-sm-flex">
+            <span className="current">{getpagerange()[0]}
+            </span>&ndash;
+            <span className="per-page">{getpagerange()[1]}
+            </span>&nbsp;de&nbsp;
+            <span className="total">{totalEscolas}</span>&nbsp;itens</div>
           <div className="pagination-go-to-page d-none d-sm-flex ml-auto">
             <div className="br-select">
               <div className="br-input">
                 <label htmlFor="go-to-selection-random-15337">Página</label>
                 <input id="go-to-selection-random-15337" type="text" placeholder={paginaAtual.toString()} />
-                <button className="br-button" type="button" aria-label="Exibir lista" tabIndex={-1} data-trigger="data-trigger"  >
-                  <i className="fas fa-angle-down" aria-hidden="true"></i>
-                </button>
-                <div className="br-input">
-                  {showSchoolsPerPage && (
-                    <div className="select-options dropdown-pagina">
-                      {optionsSchoolsPerPage.map((options, index) => (
-                        <div
-                          key={index}
-                          className="options"
-                          onClick={() => irParaPagina(index + 1)}
-                        >
-                          {options}
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
               </div>
             </div>
           </div><span className="br-divider d-none d-sm-block mx-3"></span>
           <div className="pagination-arrows ml-auto ml-sm-0">
-            <button className="br-button circle" type="button" aria-label="Voltar página" onClick={() => mudarPagina(-1)} ><i className="fas fa-angle-left" aria-hidden="true"></i>
+            <button className="br-button circle" type="button" aria-label="Voltar página" onClick={() => mudarPagina(-1)} >
+              <i className="fas fa-angle-left" aria-hidden="true" data-testid= "voltar-pagina"></i>
             </button>
-            <button className="br-button circle" type="button" aria-label="Avançar página" onClick={() => mudarPagina(1)}><i className="fas fa-angle-right" aria-hidden="true"></i>
+            <button className="br-button circle" type="button" aria-label="Avançar página" onClick={() => mudarPagina(1)}>
+              <i className="fas fa-angle-right" aria-hidden="true" data-testid= "avancar-pagina"></i>
             </button>
           </div>
         </nav>

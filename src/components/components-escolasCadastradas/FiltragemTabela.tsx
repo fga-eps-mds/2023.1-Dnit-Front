@@ -14,7 +14,6 @@ export default function TabelaEscolas() {
 
   const {
 
-    nomeEscola,
     setNomeEscola,
 
     UFSelecionada,
@@ -28,6 +27,8 @@ export default function TabelaEscolas() {
 
     municipioSelecionado,
     setMunicipioSelecionado,
+    carregandoEscolas,
+
   } = useFiltroTabela();
 
 
@@ -43,11 +44,10 @@ export default function TabelaEscolas() {
   const getUf = async () => {
     try {
       const resposta = await fetchFederativeUnit();
-      console.log(resposta);
       setOpcoesUf(resposta);
     }
     catch (error) {
-      console.log("error");
+      
     }
   }
 
@@ -59,11 +59,9 @@ export default function TabelaEscolas() {
   const getSituacao = async () => {
     try {
       const resposta = await fetchSituacao();
-      console.log(resposta);
       setOpcoesSituacao(resposta);
     }
     catch (error) {
-      console.log("error");
     }
   }
   useEffect(() => {
@@ -82,23 +80,22 @@ export default function TabelaEscolas() {
       }
     }
     catch (error) {
-      console.log("error");
     }
   }
 
   useEffect(() => {
-    if (opcoesMunicipio.length == 0)
+    if (opcoesMunicipio.length == 0 || carregandoEscolas)
       getMunicipio();
-  })
+  },[UFSelecionada, carregandoEscolas])
+
 
   const getEtapasDeEnsino = async () => {
     try {
       const resposta = await fetchEtapasDeEnsino();
-      console.log(resposta);
       setOpcoesEtapasDeEnsino(resposta);
     }
     catch (error) {
-      console.log("error");
+      
     }
   }
 
@@ -134,8 +131,6 @@ export default function TabelaEscolas() {
       case 4:
         setShowOpcoesMunincipio(alternarEstado);
         break;
-      default:
-        break;
     }
   };
 
@@ -157,8 +152,7 @@ export default function TabelaEscolas() {
         setMunicipioSelecionado(option);
         setShowOpcoesMunincipio(false);
         break;
-      default:
-        break;
+
     }
   };
 
@@ -167,7 +161,7 @@ export default function TabelaEscolas() {
       <div className="br-input medium input-button">
         <label htmlFor="input-search-medium">Nome</label>
         <input id="input-search-medium" type="search" ref={nomeRef} placeholder="Digite o nome da Escola" />
-        <button className="br-button" type="button" onClick={mudarNome} aria-label="Buscar">
+        <button className="br-button" type="button" onClick={mudarNome} aria-label="Buscar" data-testid = "buscar-nome">
           <i className="fas fa-search" aria-hidden="true"></i>
         </button>
       </div>
@@ -185,7 +179,7 @@ export default function TabelaEscolas() {
             aria-label="Exibir lista"
             tabIndex={-1}
             data-trigger="data-trigger"
-            onClick={() => handleButtonClick(1)}>
+            onClick={() => handleButtonClick(1)} data-testid = "buscar-uf">
             <i className="fas fa-angle-down" aria-hidden="true"></i>
           </button>
           <div className="br-input">
@@ -226,7 +220,7 @@ export default function TabelaEscolas() {
             aria-label="Exibir lista"
             tabIndex={-1}
             data-trigger="data-trigger"
-            onClick={() => handleButtonClick(2)}>
+            onClick={() => handleButtonClick(2)} data-testid = "buscar-situacao">
             <i className="fas fa-angle-down" aria-hidden="true"></i>
           </button>
           <div className="br-input">
@@ -265,7 +259,7 @@ export default function TabelaEscolas() {
             aria-label="Exibir lista"
             tabIndex={-1}
             data-trigger="data-trigger"
-            onClick={() => handleButtonClick(3)}>
+            onClick={() => handleButtonClick(3)} data-testid = "buscar-etapas">
             <i className="fas fa-angle-down" aria-hidden="true"></i>
           </button>
           <div className="br-input">
@@ -293,7 +287,7 @@ export default function TabelaEscolas() {
 
       <div className="br-select" >
         <div className="br-input">
-          <label htmlFor="select-multtiple">Munincípio</label>
+          <label htmlFor="select-multtiple">Município</label>
           <input
             id="select-multtiple"
             type="text"
@@ -304,7 +298,7 @@ export default function TabelaEscolas() {
             aria-label="Exibir lista"
             tabIndex={-1}
             data-trigger="data-trigger"
-            onClick={() => handleButtonClick(4)}>
+            onClick={() => handleButtonClick(4)} data-testid = "buscar-municipio">
             <i className="fas fa-angle-down" aria-hidden="true"></i>
           </button>
           <div className="br-input">

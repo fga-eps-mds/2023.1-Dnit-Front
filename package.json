@@ -30,6 +30,7 @@
     "jest-environment-jsdom": "^29.5.0",
     "jest-sonar": "^0.2.16",
     "jest-sonar-reporter": "^2.0.0",
+    "msw": "^1.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.11.2",
