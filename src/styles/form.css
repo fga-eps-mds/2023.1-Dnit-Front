@@ -320,6 +320,7 @@
 .inputForm2 {
   width: 21.5em;
   height: 5%;
+  font-weight: 350;
   border: 1px solid var(--gray2);
   border-radius: 2px;
   background-color: var(--gray1);
@@ -328,7 +329,7 @@
 
 
   .divScroll {
-    max-height: 27rem;
+    max-height: 48vh;
     overflow-y: scroll;
     overflow-x: hidden;
   }
