@@ -1,167 +1,59 @@
 <testExecutions version="1">
-<file path="src\tests\Cadastro.test.tsx">
-<testCase name="should render Login text" duration="444" />
+<file path="src\tests\Login.spec.tsx">
+<testCase name=" should render Login" duration="1198" />
 </file>
-<file path="src\tests\Login.test.tsx">
-<testCase name=" should render Login" duration="1403">
-<failure message="Error"><![CDATA[Error: expect(received).toBe(expected) // Object.is equality
-
-Expected: &quot;/inicial&quot;
-Received: &quot;/&quot;
-
-Ignored nodes: comments, script, style
-&lt;html&gt;
-  &lt;head /&gt;
-  &lt;body&gt;
-    &lt;div&gt;
-      &lt;div
-        class=&quot;App&quot;
-      &gt;
-        &lt;header
-          class=&quot;App-header&quot;
-        &gt;
-          &lt;div
-            class=&quot;HeaderIcon&quot;
-          &gt;
-            &lt;img
-              alt=&quot;&#xed;cone gov&quot;
-              class=&quot;iconGov&quot;
-              src=&quot;test-file-stub&quot;
-            /&gt;
-            &lt;p&gt;
-              DNIT
-            &lt;/p&gt;
-          &lt;/div&gt;
-          &lt;div
-            class=&quot;HeaderContraste&quot;
-          &gt;
-            &lt;img
-              alt=&quot;Button contraste&quot;
-              class=&quot;buttonContraste&quot;
-              src=&quot;test-file-stub&quot;
-            /&gt;
-            &lt;p&gt;
-              Alto contraste
-            &lt;/p&gt;
-          &lt;/div&gt;
-        &lt;/header&gt;
-        &lt;div
-          class=&quot;Secao&quot;
-        &gt;
-          &lt;div
-            class=&quot;Lateral&quot;
-          &gt;
-            &lt;img
-              alt=&quot;Logo DNIT&quot;
-              class=&quot;imgLateral&quot;
-              src=&quot;test-file-stub&quot;
-            /&gt;
-          &lt;/div&gt;
-          &lt;div
-            class=&quot;Central&quot;
-          &gt;
-            &lt;div
-              class=&quot;form&quot;
-            &gt;
-              &lt;img
-                alt=&quot;Logo DNIT&quot;
-                class=&quot;logoDnit&quot;
-                src=&quot;test-file-stub&quot;
-              /&gt;
-              &lt;div&gt;
-                &lt;h2&gt;
-                  Login
-                &lt;/h2&gt;
-                &lt;form
-                  autocomplete=&quot;off&quot;
-                  class=&quot;ant-form ant-form-vertical css-dev-only-do-not-override-w8mnev form-email&quot;
-                  id=&quot;validateOnly&quot;
-                &gt;
-                  &lt;div
-                    class=&quot;ant-form-item css-dev-only-do-not-override-w8mnev ant-form-item-has-success&quot;
-                  &gt;
-                    &lt;div
-                      class=&quot;ant-row ant-form-item-row css-dev-only-do-not-override-w8mnev&quot;
-                    &gt;
-                      &lt;div
-                        class=&quot;ant-col ant-form-item-label css-dev-only-do-not-override-w8mnev&quot;
-                      &gt;
-                        &lt;label
-                          class=&quot;ant-form-item-required ant-form-item-required-mark-optional&quot;
-                          for=&quot;validateOnly_email&quot;
-                          title=&quot;E-mail&quot;
-                        &gt;
-                          E-mail
-                        &lt;/label&gt;
-                      &lt;/div&gt;
-                      &lt;div
-                        class=&quot;ant-col ant-form-item-control css-dev-only-do-not-override-w8mnev&quot;
-                      &gt;
-                        &lt;div
-                          class=&quot;ant-form-item-control-input&quot;
-                        &gt;
-                          &lt;div
-                            class=&quot;ant-form-item-control-input-content&quot;
-                          &gt;
-                            &lt;span
-                              class=&quot;ant-input-affix-wrapper inputForm ant-input-affix-wrapper-status-success css-dev-only-do-not-override-w8mnev&quot;
-                            &gt;
-                              &lt;span
-                                class=&quot;ant-input-prefix&quot;
-                              &gt;
-                                &lt;i
-                                  class=&quot;fas fa-envelope&quot;
-                                /&gt;
-                              &lt;/span&gt;
-                              &lt;input
-                                aria-required=&quot;true&quot;
-                                class=&quot;ant-input css-dev-only-do-not-override-w8mnev&quot;
-                                id=&quot;validateOnly_email&quot;
-                                type=&quot;text&quot;
-                                value=&quot;dora@gmail.com&quot;
-                              /&gt;
-                            &lt;/span&gt;
-                          &lt;/div&gt;
-                        &lt;/div&gt;
-                      &lt;/div&gt;
-                    &lt;/div&gt;
-                  &lt;/div&gt;
-                  &lt;div
-                    class=&quot;ant-form-item css-dev-only-do-not-override-w8mnev ant-form-item-has-success&quot;
-                  &gt;
-                    &lt;div
-                      class=&quot;ant-row ant-form-item-row css-dev-only-do-not-override-w8mnev&quot;
-                    &gt;
-                      &lt;div
-                        class=&quot;ant-col ant-form-item-label css-dev-only-do-not-override-w8mnev&quot;
-                      &gt;
-                        &lt;label
-                          class=&quot;ant-form-item-required ant-form-item-required-mark-optional&quot;
-                          for=&quot;validateOnly_senha&quot;
-                          title=&quot;Senha&quot;
-                        &gt;
-                          Senha
-                        &lt;/label&gt;
-                      &lt;/div&gt;
-                      &lt;div
-                        class=&quot;ant-col ant-form-item-control css-dev-only-do-not-override-w8mnev&quot;
-                      &gt;
-                        &lt;div
-                          class=&quot;ant-form-item-control-input&quot;
-                        &gt;
-                          &lt;div
-                            class=&quot;ant-form-item-control-input-content&quot;
-                          &gt;
-                            &lt;span
-                              class=&quot;ant-input-affix-wrapper ant-input-password inputForm ant-input-affix-wrapper-status-success css-dev-only-do-not-override-w8mnev&quot;
-  ...
-    at C:\Users\Isadora\2023.1-Dnit-Front\src\tests\Login.test.tsx:64:40
-    at runWithExpensiveErrorDiagnosticsDisabled (C:\Users\Isadora\2023.1-Dnit-Front\node_modules\@testing-library\dom\dist\config.js:47:12)
-    at checkCallback (C:\Users\Isadora\2023.1-Dnit-Front\node_modules\@testing-library\dom\dist\wait-for.js:127:77)
-    at checkRealTimersCallback (C:\Users\Isadora\2023.1-Dnit-Front\node_modules\@testing-library\dom\dist\wait-for.js:121:16)
-    at Timeout.task [as _onTimeout] (C:\Users\Isadora\2023.1-Dnit-Front\node_modules\jsdom\lib\jsdom\browser\Window.js:516:19)
-    at listOnTimeout (node:internal/timers:559:17)
-    at processTimers (node:internal/timers:502:7)]]></failure>
+<file path="src\tests\Reset.spec.tsx">
+<testCase name=" should render Reset password" duration="1086" />
+<testCase name=" should render Reset password" duration="897" />
+</file>
+<file path="src\tests\Excluir.spec.tsx">
+<testCase name="Modal de excluir escola exibida corretamente" duration="1127" />
+<testCase name="Modal de excluir escola exibida erro" duration="692" />
+</file>
+<file path="src\tests\Situacao.spec.tsx">
+<testCase name="Alterar situa&#xe7;&#xe3;o escola" duration="1170" />
+<testCase name="Alterar situa&#xe7;&#xe3;o escola erro" duration="639" />
+<testCase name="Remover situa&#xe7;&#xe3;o escola" duration="650" />
+<testCase name="Remover situa&#xe7;&#xe3;o escola erro" duration="459" />
+<testCase name="Erro de Provider de selectedValue" duration="119" />
+</file>
+<file path="src\tests\tabelaEscola.spec.tsx">
+<testCase name="Lista de escolas &#xe9; exibida corretamente" duration="917" />
+<testCase name="Clicar em Cadastrar escola" duration="759" />
+<testCase name="Mudar quantidade de escolas por p&#xe1;gina" duration="541" />
+<testCase name="Exibir escola selecionada" duration="463" />
+<testCase name="Filtragem de escolas" duration="814" />
+</file>
+<file path="src\tests\Recover.spec.tsx">
+<testCase name=" should render Recover password" duration="572" />
+</file>
+<file path="src\tests\InfoEscola.spec.tsx">
+<testCase name="Exibir escola selecionada" duration="524" />
+</file>
+<file path="src\tests\Register.spec.tsx">
+<testCase name="should render Register" duration="5697">
+<failure message="Error"><![CDATA[Error: thrown: &quot;Exceeded timeout of 5000 ms for a test.
+Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout.&quot;
+    at Object.test (D:\Users\isado\2023.1-Dnit-Front\src\tests\Register.spec.tsx:33:1)
+    at Runtime._execModule (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runtime\build\index.js:1429:24)
+    at Runtime._loadModule (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runtime\build\index.js:1013:12)
+    at Runtime.requireModule (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runtime\build\index.js:873:12)
+    at jestAdapter (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:77:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at runTestInternal (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (D:\Users\isado\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\testWorker.js:106:12)]]></failure>
 </testCase>
+<testCase name="should render error in Register form" duration="1977" />
+</file>
+<file path="src\tests\CadastrarEscola.spec.tsx">
+<testCase name="Lista de escolas &#xe9; exibida corretamente" duration="8075" />
+<testCase name="Lista de escolas &#xe9; exibida corretamente" duration="268" />
+<testCase name="Lista de escolas redireciona pra listagem" duration="151" />
+<testCase name="Cadastro CSV" duration="258" />
+<testCase name="Cadastro CSV erro" duration="167" />
+<testCase name="Cadastro CSV vazio" duration="173" />
+<testCase name="Cadastro sem enviar CSV" duration="112" />
+<testCase name="Sem o provider" duration="60" />
 </file>
 </testExecutions>

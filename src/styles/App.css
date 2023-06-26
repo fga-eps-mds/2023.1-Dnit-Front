@@ -56,12 +56,22 @@
   font-size: 16px;
 }
 
+.text-alto-contraste {
+  display: inline-block;
+  vertical-align: middle;
+}
+.buttonContrast {
+  display: inline-block;
+  vertical-align: middle;
+}
+
 .HeaderIcon {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 24px;
   font-size: 24.19px;
+  cursor: pointer;
 }
 
 .HeaderIcon p {
@@ -76,6 +86,14 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+.Secao2 {
+  height: 87.5vh;
+  background-color: var(--white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .Lateral {
@@ -99,6 +117,16 @@
   height: 291px;
 }
 
+.box {
+  padding: 1% 5%;
+  display: flex;
+  box-shadow: 0px 2px 4px var(--black1);
+  border-radius: 10px;
+  height: fit-content;
+  width: fit-content;
+  justify-content: center;
+}
+
 @media (max-width: 1250px) {
   .Lateral {
     width: 100%;
@@ -113,5 +141,10 @@
   .imgLateral {
     width: 237px;
     height: 131px;
+  }
+
+  .Secao2 {
+    width: 100%;
+    height: 85%;
   }
 }
