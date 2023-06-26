@@ -409,6 +409,12 @@ const server = setupServer(
     (req, res, ctx) => {
       return res(ctx.status(200));
     }
+  ),
+  rest.post(
+    "https://api.dnit-eps-mds.com/api/escolas/cadastrarEscolaPlanilha",
+    (req, res, ctx) => {
+      return res(ctx.status(200));
+    }
   )
 );
 

@@ -1,80 +1,76 @@
-import React, { useRef, useState } from 'react';
-import { FileOutlined } from '@ant-design/icons';
-import type { UploadProps, UploadFile } from 'antd';
-import { message, Upload, Button } from 'antd';
-import '../../styles/form/step3.css';
-import { UploadChangeParam } from 'antd/lib/upload';
-import axios from 'axios';
-import "../../styles/form/step3.css"
-import { useEscolasCadastradas } from '../../context/escolasCadastradasErro';
+import { FileOutlined } from "@ant-design/icons";
+import type { UploadFile, UploadProps } from "antd";
+import { Button, Upload, message } from "antd";
+import { UploadChangeParam } from "antd/lib/upload";
+import axios from "axios";
+import React, { useRef, useState } from "react";
+import { insertFileURL } from "../../consts/service";
+import { useEscolasCadastradas } from "../../context/escolasCadastradasErro";
+import "../../styles/form/step3.css";
 
 const { Dragger } = Upload;
 
 interface DragDropProps {
-  onClickBack: () => void
-  onClickError: () => void
-  onClickAceito: () => void
-  onClickErroJaCadastrada: () => void
+  onClickBack: () => void;
+  onClickError: () => void;
+  onClickAceito: () => void;
+  onClickErroJaCadastrada: () => void;
 }
 
 const props: UploadProps = {
-  name: 'arquivo',
+  name: "arquivo",
   multiple: true,
-  action: 'https://localhost:7083/api/escolas/cadastrarEscolaPlanilha',
+  action: insertFileURL,
   beforeUpload: () => false,
   onChange(info) {
     const { status, name } = info.file;
-    if (status !== 'uploading') {
-      console.log(info.file, info.fileList);
-    }
-    if (status === 'error') {
+
+    if (status === "error") {
       message.error(`${name} falha ao receber arquivo.`);
     }
   },
-  onDrop(e) {
-    console.log('Dropped files', e.dataTransfer.files);
-  },
 };
 
-const App: React.FC<DragDropProps> = ({onClickBack, onClickError, onClickAceito, onClickErroJaCadastrada}: DragDropProps) => {
+const App: React.FC<DragDropProps> = ({
+  onClickBack,
+  onClickError,
+  onClickAceito,
+  onClickErroJaCadastrada,
+}: DragDropProps) => {
   const uploadRef = useRef<any>(null);
   const [fileList, setFileList] = useState<UploadFile<any>[]>([]);
-  const {setEscolasCadastradas} = useEscolasCadastradas()
+  const { setEscolasCadastradas } = useEscolasCadastradas();
   const handleButtonClick = async () => {
     if (fileList.length > 0) {
       const formData = new FormData();
-      formData.append('arquivo', fileList[0].originFileObj as File);
+      formData.append("arquivo", fileList[0].originFileObj as File);
 
       try {
-        const response = await axios.post(
-          'https://localhost:7083/api/escolas/cadastrarEscolaPlanilha',
-          formData
-        );
-        console.log(response.data);
+        const response = await axios.post(insertFileURL, formData);
 
-        if (response.data && Array.isArray(response.data) && response.data.length > 0) {
+        if (
+          response.data &&
+          Array.isArray(response.data) &&
+          response.data.length > 0
+        ) {
           // A resposta do back-end é uma lista não nula
           // Faça o que for necessário com a lista
           onClickErroJaCadastrada();
           setEscolasCadastradas(response.data);
-          console.log('Lista não nula:', response.data);
         } else {
           // A resposta do back-end é uma lista nula
           message.success(`Arquivo adicionado com sucesso.`);
           onClickAceito();
-          console.log('Lista nula');
         }
-
-      } catch (error:any) {
-        console.error(error);
-        if(error.response && error.response.status == 406){
+      } catch (error: any) {
+        if (error.response && error.response.status == 406) {
           onClickError();
         }
-        const mensagem = error.response.data;
+        const mensagem = error.response?.data;
         message.error(`${mensagem}`);
       }
     } else {
-      message.warning('Nenhum arquivo carregado.');
+      message.warning("Nenhum arquivo carregado.");
     }
   };
 
@@ -84,7 +80,13 @@ const App: React.FC<DragDropProps> = ({onClickBack, onClickError, onClickAceito,
 
   return (
     <>
-      <Dragger ref={uploadRef} {...props} fileList={fileList} onChange={handleFileChange}>
+      <Dragger
+        ref={uploadRef}
+        {...props}
+        fileList={fileList}
+        onChange={handleFileChange}
+        data-testid="drag-drop-container"
+      >
         <p className="ant-upload-drag-icon">
           <FileOutlined />
         </p>
@@ -96,7 +98,11 @@ const App: React.FC<DragDropProps> = ({onClickBack, onClickError, onClickAceito,
         <Button className="botaoCancelar" onClick={onClickBack}>
           Cancelar
         </Button>
-        <Button className="botaoEnviar" type="primary" onClick={handleButtonClick}>
+        <Button
+          className="botaoEnviar"
+          type="primary"
+          onClick={handleButtonClick}
+        >
           Enviar arquivo
         </Button>
       </div>

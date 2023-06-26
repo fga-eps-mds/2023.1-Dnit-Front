@@ -118,3 +118,27 @@ test("Lista de escolas redireciona pra listagem", async () => {
   const inserirInformacoes = screen.getByTestId("redirecionar");
   fireEvent.click(inserirInformacoes);
 });
+
+test("Cadastro CSV", async () => {
+  render(
+    <MemoryRouter initialEntries={["/cadastrarEscola"]}>
+      <App />
+    </MemoryRouter>
+  );
+  const arquivo = screen.getByText("Utilizando Arquivo CSV");
+  fireEvent.click(arquivo);
+
+  const file = new File(["file content"], "file.csv", { type: "text/csv" });
+  const dragDropContainer = screen.getByTestId("drag-drop-container");
+  fireEvent.change(dragDropContainer, { target: { files: [file] } });
+
+  await screen.findByText("file.csv");
+
+  const enviarButton = screen.getByText("Enviar arquivo");
+  fireEvent.click(enviarButton);
+
+  screen.debug(undefined, 100000);
+
+  const cancelar = screen.getByText("Cancelar");
+  fireEvent.click(cancelar);
+});
