@@ -18,8 +18,6 @@ function App() {
       {isAuthenticated ? (
         <>
           <Route path="*" element={<Navigate to="/escolas-cadastradas" />} />
-          <Route path="/escolas-cadastradas" element={<EscolasCadastradas />} />
-          <Route path="/cadastrarescola" element={<RegisterSchool />} />
         </>
       ) : (
         <>
@@ -27,6 +25,8 @@ function App() {
           <Route path="/cadastro" element={<Register />} />
         </>
       )}
+      <Route path="/escolas-cadastradas" element={<EscolasCadastradas />} />
+      <Route path="/cadastrarescola" element={<RegisterSchool />} />
       <Route path="/login" element={<Login />} />
       <Route path="/redefinirSenha" element={<ResetPassword />} />
       <Route path="/cadastro" element={<Register />} />
