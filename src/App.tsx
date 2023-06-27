@@ -12,7 +12,7 @@ import "./styles/App.css";
 function App() {
   const { getAuth } = useContext(AuthContext);
   const isAuthenticated = getAuth();
-
+  document.title="DNIT";
   return (
     <Routes>
       {isAuthenticated ? (
