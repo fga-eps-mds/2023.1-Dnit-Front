@@ -19,6 +19,7 @@ function App() {
         <>
           <Route path="*" element={<Navigate to="/escolas-cadastradas" />} />
           <Route path="/escolas-cadastradas" element={<EscolasCadastradas />} />
+          <Route path="/cadastrarescola" element={<RegisterSchool />} />
         </>
       ) : (
         <>
@@ -29,9 +30,7 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/redefinirSenha" element={<ResetPassword />} />
       <Route path="/cadastro" element={<Register />} />
-      <Route path="/cadastrarescola" element={<RegisterSchool />} />
       <Route path="/esqueciSenha" element={<RecoverPassword />} />
-      <Route path="/escolas-cadastradas" element={<EscolasCadastradas />} />
     </Routes>
   );
 }
