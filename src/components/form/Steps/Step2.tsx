@@ -11,6 +11,7 @@ import fetchEtapasDeEnsino from "../../../service/etapasDeEnsino";
 import fetchFederativeUnit from "../../../service/federativeUnit";
 import fetchMunicipio from "../../../service/municipio";
 import fetchCadastroEscola from "../../../service/registerSchool";
+import { stat } from "fs/promises";
 
 const { Option } = Select;
 interface Step2Props {
@@ -139,6 +140,7 @@ export default function Step2({ onClickBack }: Step2Props) {
                 placement="bottomRight"
                 optionLabelProp="label"
                 className="uf"
+                
               >
                 {opcoesUf?.map((u) => (
                   <Option key={u.id} value={u.id} label={<>{u.nome}</>}>
@@ -156,7 +158,8 @@ export default function Step2({ onClickBack }: Step2Props) {
             <Form.Item name="cep" label="CEP" rules={rules}>
               <Input className="inputForm2" />
             </Form.Item>
-
+            </div>
+            <div className="bloco2">
             <Form.Item name="telefone" label="Telefone" rules={rules}>
               <Input className="inputForm2" />
             </Form.Item>
@@ -195,8 +198,6 @@ export default function Step2({ onClickBack }: Step2Props) {
                 </Option>
               </Select>
             </Form.Item>
-          </div>
-          <div className="bloco2">
             <Form.Item name="endereco" label="Endereço" rules={rules}>
               <Input className="inputForm2" />
             </Form.Item>
@@ -208,7 +209,7 @@ export default function Step2({ onClickBack }: Step2Props) {
                 optionLabelProp="label"
                 className="uf"
                 onMouseDown={getMunicipio}
-              >
+                >
                 {opcoesMunicipio?.map((u) => (
                   <Option key={u.id} value={u.id} label={<>{u.nome}</>}>
                     {u.nome}
@@ -216,7 +217,8 @@ export default function Step2({ onClickBack }: Step2Props) {
                 ))}
               </Select>
             </Form.Item>
-
+            </div>
+            <div className="bloco3">
             <Form.Item name="localizacao" label="Localização" rules={rules}>
               <Select>
                 <Option value={1}>Rural</Option>

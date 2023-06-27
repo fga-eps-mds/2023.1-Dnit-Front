@@ -3,7 +3,7 @@
   height: 66px;
 }
 .form {
-  padding: 3.5%;
+  padding: 0%;
   margin-top: 0;
   box-shadow: 0px 2px 4px var(--black1);
   border-radius: 10px;
@@ -261,8 +261,8 @@
   font-family: Rawline, sans-serif;
   font-size: 1.8em;
   color: var(--gray3);
-  font-weight: 500;
-  margin-bottom: 3rem;
+  font-weight: 750;
+  margin-bottom: 0.5rem;
 }
 
 .formrs label {
@@ -284,7 +284,7 @@
 }
 
 .button2 {
-  margin-top: 3rem;
+  margin-top: 1rem;
   zoom: 80%;
   width: 10em;
   background-color: #1351b4;
@@ -300,14 +300,17 @@
 .bloco {
   width: 18rem;
   margin-right: 2rem;
-  float: left;
   margin-left: 1rem;
 }
 .bloco2 {
   width: 18rem;
   margin-left: 2rem;
-  float: right;
   margin-right: 2rem;
+}
+.bloco3 {
+  width: 18rem;
+  margin-left: 2rem;
+  margin-right:1rem;
 }
 
 .inputForm2 {
@@ -320,9 +323,8 @@
 }
 
 .divScroll {
-  max-height: 48vh;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  display: flex;
+  flex-direction: row;
 }
 
 @media (max-width: 1250px) {
