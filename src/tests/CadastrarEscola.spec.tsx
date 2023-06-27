@@ -23,7 +23,7 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
 
 test("Lista de escolas é exibida corretamente", async () => {
   render(
-    <MemoryRouter initialEntries={["/cadastrarEscola"]}>
+    <MemoryRouter initialEntries={["/cadastrarescola"]}>
       <App />
     </MemoryRouter>
   );
@@ -101,7 +101,7 @@ test("Lista de escolas é exibida corretamente", async () => {
 
 test("Lista de escolas é exibida corretamente", async () => {
   render(
-    <MemoryRouter initialEntries={["/cadastrarEscola"]}>
+    <MemoryRouter initialEntries={["/cadastrarescola"]}>
       <App />
     </MemoryRouter>
   );
@@ -113,7 +113,7 @@ test("Lista de escolas é exibida corretamente", async () => {
 
 test("Lista de escolas redireciona pra listagem", async () => {
   render(
-    <MemoryRouter initialEntries={["/cadastrarEscola"]}>
+    <MemoryRouter initialEntries={["/cadastrarescola"]}>
       <App />
     </MemoryRouter>
   );
@@ -123,7 +123,7 @@ test("Lista de escolas redireciona pra listagem", async () => {
 
 test("Cadastro CSV", async () => {
   render(
-    <MemoryRouter initialEntries={["/cadastrarEscola"]}>
+    <MemoryRouter initialEntries={["/cadastrarescola"]}>
       <App />
     </MemoryRouter>
   );
@@ -155,7 +155,7 @@ test("Cadastro CSV erro", async () => {
     )
   );
   render(
-    <MemoryRouter initialEntries={["/cadastrarEscola"]}>
+    <MemoryRouter initialEntries={["/cadastrarescola"]}>
       <App />
     </MemoryRouter>
   );
@@ -186,7 +186,7 @@ test("Cadastro CSV vazio", async () => {
     )
   );
   render(
-    <MemoryRouter initialEntries={["/cadastrarEscola"]}>
+    <MemoryRouter initialEntries={["/cadastrarescola"]}>
       <App />
     </MemoryRouter>
   );
@@ -210,14 +210,14 @@ test("Cadastro CSV vazio", async () => {
 test("Cadastro sem enviar CSV", async () => {
   server.use(
     rest.post(
-      "https://api.dnit-eps-mds.com/api/escolas/cadastrarEscolaPlanilha",
+      "https://api.dnit-eps-mds.com/api/escolas/cadastrarescolaPlanilha",
       (req, res, ctx) => {
         return res(ctx.json([]));
       }
     )
   );
   render(
-    <MemoryRouter initialEntries={["/cadastrarEscola"]}>
+    <MemoryRouter initialEntries={["/cadastrarescola"]}>
       <App />
     </MemoryRouter>
   );

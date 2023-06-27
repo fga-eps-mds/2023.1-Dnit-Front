@@ -12,13 +12,12 @@ import "./styles/App.css";
 function App() {
   const { getAuth } = useContext(AuthContext);
   const isAuthenticated = getAuth();
-
+  document.title="DNIT";
   return (
     <Routes>
       {isAuthenticated ? (
         <>
           <Route path="*" element={<Navigate to="/escolas-cadastradas" />} />
-          <Route path="/escolas-cadastradas" element={<EscolasCadastradas />} />
         </>
       ) : (
         <>
@@ -26,12 +25,12 @@ function App() {
           <Route path="/cadastro" element={<Register />} />
         </>
       )}
+      <Route path="/escolas-cadastradas" element={<EscolasCadastradas />} />
+      <Route path="/cadastrarescola" element={<RegisterSchool />} />
       <Route path="/login" element={<Login />} />
       <Route path="/redefinirSenha" element={<ResetPassword />} />
       <Route path="/cadastro" element={<Register />} />
-      <Route path="/cadastrarescola" element={<RegisterSchool />} />
       <Route path="/esqueciSenha" element={<RecoverPassword />} />
-      <Route path="/escolas-cadastradas" element={<EscolasCadastradas />} />
     </Routes>
   );
 }
