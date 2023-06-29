@@ -10,21 +10,41 @@ import { fetchSchoolByName } from "../../service/inepAPI";
 const { Option } = Select;
 
 
+interface EscolaInepData {
+  cod: number;
+  estado: string;
+  nome: string;
+}
+
+
 
 const SolicitacaoAcaoForm: React.FC = () => {
   const [form] = Form.useForm();
+
+  // const ordena=(a,b)=>{
+
+  // }
+
+
   const [api, contextHolder] = notification.useNotification();
 
   const [data, loadingData, setAPIURL] = useApi();
 
-  const getSchools = async (name: string) => {
+  const getSchools = async (name: string, estado: string = "") => {
 
-    // setAPIURL(`${inepSchoolsUrl}?nome=${name}`)
+    setAPIURL(`https://localhost:7083/api/solicitacaoAcao/escolas/?nome=${name}&estado=${estado}`)
     // setAPIURL("http://educacao.dadosabertosbr.com/api/escolas/buscaavancada?situacaoFuncionamento=1&energiaInexistente=on&aguaInexistente=on&esgotoInexistente=on&cozinha=on")
 
 
   }
+  const [escolasInep, setEscolasInep] = useState([{ cod: -1 }] as EscolaInepData[])
 
+
+  useEffect(() => {
+    if (data)
+      setEscolasInep(data);
+
+  }, [data])
 
 
   const rules = [
@@ -67,21 +87,43 @@ const SolicitacaoAcaoForm: React.FC = () => {
             <Select
               placeholder="Selecione uma escola"
               className="inputForm form-item-select"
+              filterOption={(input, option) => {
+                // console.log(option)
+                // return true;
+                if (option === undefined){
+                    console.log("Option undefined")
+                  return false;
+                }
+
+                const { label: text = '' } = option
+                if (text === null){
+                  console.log("text null")
+                  return false
+                }
+
+                if (typeof text === 'string') {
+                  console.log(text)
+                  console.log(text.toLowerCase())
+                  return text.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                }
+                return text.toString().indexOf(input.toLowerCase()) >= 0
+
+              }}
               onSearch={(value) => {
                 // alert({value})
-
-                console.log(value)
-                getSchools(value);
+                if (value.length >= 3)
+                  getSchools(value);
 
               }}
               // onChange
               showSearch
 
             >
-              <Option value="escola1">Escola 1</Option>
+              {escolasInep && escolasInep[0].cod !== -1 && escolasInep.map((escola: EscolaInepData) => <Option key={escola.cod} value={escola.nome.toLowerCase()}>{escola.estado + ": " + escola.nome.toLowerCase()}</Option>)}
+              {/* <Option value="escola1">Escola 1</Option>
               <Option value="escola2">Escola 2 </Option>
               <Option value="escola3">Escola 3 </Option>
-              <Option value="escola4">Escola 4</Option>
+              <Option value="escola4">Escola 4</Option> */}
 
 
             </Select>
@@ -96,10 +138,10 @@ const SolicitacaoAcaoForm: React.FC = () => {
               placeholder="Selecione uma escola"
               className="inputForm form-item-select"
             >
-              <Option value="escola1">Professor</Option>
+              {/* <Option value="escola1">Professor</Option>
               <Option value="escola2">Gestor escolar</Option>
               <Option value="escola3">Estudante</Option>
-              <Option value="escola4">Outro</Option>
+              <Option value="escola4">Outro</Option> */}
 
 
             </Select>
