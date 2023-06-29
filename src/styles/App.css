@@ -89,7 +89,7 @@
 }
 
 .Secao2 {
-  height: 88vh;
+  height: 86vh;
   background-color: var(--white);
   display: flex;
   justify-content: center;
@@ -118,6 +118,7 @@
 }
 
 .box {
+  margin-top: 2%;
   padding: 0% 5%;
   display: flex;
   box-shadow: 0px 2px 4px var(--black1);
