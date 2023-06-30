@@ -20,6 +20,9 @@ interface FiltroContextType {
   nomeEscola: string;
   setNomeEscola: Dispatch<SetStateAction<string>>;
 
+  NomePesquisado: string;
+  setNomePesquisado: Dispatch<SetStateAction<string>>
+
   UFSelecionada: FederativeUnit | false;
   setUFSelecionada: Dispatch<SetStateAction<FederativeUnit | false>>;
 
@@ -46,8 +49,13 @@ interface FiltroContextType {
 
 const FiltroContext = createContext<FiltroContextType | undefined>(undefined);
 
+
+
 const FiltroProvider = ({ children }: any) => {
+
+  const [NomePesquisado, setNomePesquisado] = useState("");
   const [nomeEscola, setNomeEscola] = useState("");
+  
   const [UFSelecionada, setUFSelecionada] = useState<FederativeUnit | false>(
     false
   );
@@ -123,6 +131,7 @@ const FiltroProvider = ({ children }: any) => {
 
     setEscolasPorPagina(novaQuantia);
   };
+  console.log(escolasPorPagina)
 
   useEffect(() => {
     if (paginaAtual != 1) setpaginaAtual(1);
@@ -150,6 +159,9 @@ const FiltroProvider = ({ children }: any) => {
   const contextValue: FiltroContextType = {
     nomeEscola,
     setNomeEscola,
+
+    NomePesquisado,
+    setNomePesquisado,
 
     UFSelecionada,
     setUFSelecionada,

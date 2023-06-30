@@ -1,23 +1,28 @@
 import { notification } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFiltroTabela } from "../../context/FiltroTabela";
 import { EscolaData } from "../../models/service";
 import ExibirInformacoesEscola from "../../pages/ExibirInformacoesEscola";
 import "../../styles/App.css";
 import "../components-escolasCadastradas/style/TabelaEscola.css";
+import { EscolasFiltradasURL } from "../../consts/service";
 
 export default function TabelaEscola() {
   const {
     escolasFiltradas,
     paginaAtual,
+    NomePesquisado,
     mudarPagina,
     escolasPorPagina,
     mudarQuantidadePorPaginas,
     totalEscolas,
   } = useFiltroTabela();
 
+  escolasFiltradas && console.log(escolasFiltradas.length)
+
   const [, contextHolder] = notification.useNotification();
 
+  const [qtdeEscolasFiltradas, setQtdeEscolasFiltradas] = useState(false);
   const [showOptionsPages, setShowOptionsPages] = useState(false);
   const [showSchoolsPerPage, setShowSchoolsPerPage] = useState(false);
   const optionsSchoolsPerPage = ["2", "5", "10", "20"];
@@ -61,6 +66,7 @@ export default function TabelaEscola() {
 
     return [rangeStart, rangeEnd];
   };
+  
   return (
     <div
       className="br-table"
@@ -139,8 +145,10 @@ export default function TabelaEscola() {
           </tr>
         </thead>
         <tbody>
-          {escolasFiltradas !== false &&
-            escolasFiltradas.map((escola, index) => {
+          {escolasFiltradas &&
+            escolasFiltradas.filter (escola => escola.nomeEscola.toLowerCase().includes(NomePesquisado.toLowerCase()))
+            .map((escola, index) => {
+              console.log(escolasFiltradas.length)
               return (
                 <tr
                   key={escola.idEscola}
@@ -176,8 +184,6 @@ export default function TabelaEscola() {
           className="br-pagination"
           aria-label="Paginação de resultados"
           data-total={escolasFiltradas ? escolasFiltradas.length : 0}
-          data-current="38"
-          data-per-page="20"
         >
           <div className="pagination-per-page">
             <div className="br-select">

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { ChangeEvent, ChangeEventHandler, useEffect, useRef, useState } from "react";
 import { useFiltroTabela } from "../../context/FiltroTabela";
 import {
   EtapasDeEnsino,
@@ -17,6 +17,9 @@ export default function TabelaEscolas() {
   const {
     setNomeEscola,
 
+    NomePesquisado,
+    setNomePesquisado,
+    
     UFSelecionada,
     setUFSelecionada,
 
@@ -31,11 +34,18 @@ export default function TabelaEscolas() {
     carregandoEscolas,
   } = useFiltroTabela();
 
-  const nomeRef = useRef<HTMLInputElement>(null);
+  
+  const [UfPesquisada, setUfPesquisada] = useState("");
 
-  const mudarNome = () => {
-    if (nomeRef.current) setNomeEscola(nomeRef.current.value);
+  const mudarNome = (e: ChangeEvent<HTMLInputElement>) => {
+    setNomePesquisado(e.currentTarget.value);
   };
+
+  const mudarUf = (e: ChangeEvent<HTMLInputElement>) => {
+    setUfPesquisada(e.currentTarget.value);
+  };
+
+    console.log(UfPesquisada);
 
   const getUf = async () => {
     try {
@@ -143,13 +153,13 @@ export default function TabelaEscolas() {
         <input
           id="input-search-medium"
           type="search"
-          ref={nomeRef}
+          value = {NomePesquisado}
+          onChange={mudarNome}
           placeholder="Digite o nome da Escola"
         />
         <button
           className="br-button"
           type="button"
-          onClick={mudarNome}
           aria-label="Buscar"
           data-testid="buscar-nome"
         >
@@ -163,8 +173,10 @@ export default function TabelaEscolas() {
           <input
             id="select-multtiple"
             type="text"
+            value = {UfPesquisada}
+            onChange={mudarUf}
+            onFocus= {() =>handleButtonClick(1)}
             placeholder={UFSelecionada ? UFSelecionada.nome : "Todas"}
-            disabled
           />
           <button
             className="br-button"
@@ -184,10 +196,11 @@ export default function TabelaEscolas() {
                   className="options"
                   onClick={() => handleOptionClick(false, 1)}
                 >
-                  {" "}
-                  Todas
+                {!UfPesquisada && "Todas"}
+                  
                 </div>
-                {opcoesUf.map((options, index) => {
+                {opcoesUf.filter(uf => uf.nome.toLowerCase().includes(UfPesquisada.toLowerCase()))
+                .map((options, index) => {
                   return (
                     <div
                       key={index}
@@ -213,7 +226,6 @@ export default function TabelaEscolas() {
             placeholder={
               situacaoSelecionada ? situacaoSelecionada.descricao : "Todas"
             }
-            disabled
           />
           <button
             className="br-button"
@@ -262,7 +274,7 @@ export default function TabelaEscolas() {
                 ? etapaDeEnsinoSelecionada.descricao
                 : "Todas"
             }
-            disabled
+
           />
           <button
             className="br-button"
@@ -309,7 +321,6 @@ export default function TabelaEscolas() {
             placeholder={
               municipioSelecionado ? municipioSelecionado.nome : "Todos"
             }
-            disabled
           />
           <button
             className="br-button"
