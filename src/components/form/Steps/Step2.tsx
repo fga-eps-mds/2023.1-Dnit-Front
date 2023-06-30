@@ -6,12 +6,14 @@ import {
   EtapasDeEnsino,
   FederativeUnit,
   Municipio,
+  viaCEP,
 } from "../../../models/service";
 import fetchEtapasDeEnsino from "../../../service/etapasDeEnsino";
 import fetchFederativeUnit from "../../../service/federativeUnit";
 import fetchMunicipio from "../../../service/municipio";
 import fetchCadastroEscola from "../../../service/registerSchool";
 import { stat } from "fs/promises";
+import fetchCEP from "../../../service/viaCEP";
 
 const { Option } = Select;
 interface Step2Props {
@@ -34,6 +36,14 @@ export default function Step2({ onClickBack }: Step2Props) {
     },
   ];
 
+  const[viaCEP, setViaCEP] = useState<viaCEP[]>([]);
+  const getCEP = async (cep: number) => {
+    try {
+      const res = await fetchCEP(cep);
+      setViaCEP(res);
+    } catch (error) {}
+  };
+  
   const [opcoesUf, setOpcoesUf] = useState<FederativeUnit[]>([]);
   const getUf = async () => {
     try {
