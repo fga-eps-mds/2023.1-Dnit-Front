@@ -2,14 +2,21 @@ import { ChangeEvent } from "react";
 import { useSelectedValue } from "../../context/Situation";
 
 const Dropdown = (props: any) => {
-  const { selectedValue, setSelectedValue } = useSelectedValue();
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const { setSelectedValue } = useSelectedValue();
+
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const selectedValue = event.target.value;
     setSelectedValue(Number(selectedValue));
+    console.log(selectedValue);
+    props.onClick((selectedValue));
+    props.onClose();
   };
 
+
+  
+
   return (
-    <div className="br-list" tabIndex={0}>
+    <div className="br-list" tabIndex={0}>''
       <div className="br-item" tabIndex={-1}>
         <div className="br-radio">
           <input

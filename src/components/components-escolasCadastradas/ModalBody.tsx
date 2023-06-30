@@ -3,14 +3,22 @@ import Dropdown from "./Dropdown";
 
 const ModalBody = (props: any) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [selectedValue, setSelectedValue] = useState(null);
 
   const openDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
+
   };
 
   if (!props.open) {
     return null;
   }
+
+  const getDescricaoSituacao = (value: number) => {
+    const situacao = props.data.descricaoSituacao
+    return situacao ? situacao.label : '';
+  }
+
   return (
     <div className="br-modal-body">
       <div className="br-input">
@@ -161,7 +169,7 @@ const ModalBody = (props: any) => {
 
         <div className="input-default">
           <label htmlFor="select-simple">Situação</label>
-          <input
+          <input 
             id="select-simple"
             type="text"
             placeholder={props.data.descricaoSituacao}
@@ -177,7 +185,7 @@ const ModalBody = (props: any) => {
             <i className="fas fa-angle-down" aria-hidden="true"></i>
           </button>
         </div>
-        {isDropdownOpen && <Dropdown />}
+        {isDropdownOpen && <Dropdown onClose={openDropdown} onClick={setSelectedValue} />}
         <label htmlFor="input-icon">Observacao</label>
         <div className="input-group">
           <div className="input-icon">
