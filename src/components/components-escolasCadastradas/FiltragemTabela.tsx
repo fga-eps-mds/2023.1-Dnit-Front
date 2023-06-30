@@ -36,6 +36,9 @@ export default function TabelaEscolas() {
 
   
   const [UfPesquisada, setUfPesquisada] = useState("");
+  const [SituacaoPesquisada, setSituacaoPesquisada] = useState("");
+  const [EtapaPesquisada, setEtapaPesquisada] = useState("");
+  const [MunicipioPesquisado, setMunicipioPesquisado] = useState("");
 
   const mudarNome = (e: ChangeEvent<HTMLInputElement>) => {
     setNomePesquisado(e.currentTarget.value);
@@ -45,7 +48,18 @@ export default function TabelaEscolas() {
     setUfPesquisada(e.currentTarget.value);
   };
 
-    console.log(UfPesquisada);
+  const mudarSituacao = (e: ChangeEvent<HTMLInputElement>) => {
+    setSituacaoPesquisada(e.currentTarget.value);
+  };
+
+  const mudarEtapa = (e: ChangeEvent<HTMLInputElement>) => {
+    setEtapaPesquisada(e.currentTarget.value);
+  };
+
+  const mudarMunicipio = (e: ChangeEvent<HTMLInputElement>) => {
+    setMunicipioPesquisado(e.currentTarget.value);
+  };
+
 
   const getUf = async () => {
     try {
@@ -116,7 +130,7 @@ export default function TabelaEscolas() {
       case 2:
         setShowOptionsSituacao(alternarEstado);
         break;
-      case 3:
+      case 3: 
         setShowOpcoesEtapasDeEnsino(alternarEstado);
         break;
       case 4:
@@ -223,6 +237,9 @@ export default function TabelaEscolas() {
           <input
             id="select-multtiple"
             type="text"
+            value = {SituacaoPesquisada}
+            onChange={mudarSituacao}
+            onFocus= {() =>handleButtonClick(2)}
             placeholder={
               situacaoSelecionada ? situacaoSelecionada.descricao : "Todas"
             }
@@ -245,10 +262,10 @@ export default function TabelaEscolas() {
                   className="options"
                   onClick={() => handleOptionClick(false, 2)}
                 >
-                  {" "}
-                  Todas
+                  {!SituacaoPesquisada && "Todas"}
                 </div>
-                {opcoesSituacao.map((options, index) => (
+                {opcoesSituacao.filter(situacao => situacao.descricao.toLowerCase().includes(SituacaoPesquisada.toLowerCase()))
+                .map((options, index) => (
                   <div
                     key={index}
                     className="options"
@@ -269,6 +286,9 @@ export default function TabelaEscolas() {
           <input
             id="select-multtiple"
             type="text"
+            value = {EtapaPesquisada}
+            onChange={mudarEtapa}
+            onFocus={() => handleButtonClick(3)}
             placeholder={
               etapaDeEnsinoSelecionada
                 ? etapaDeEnsinoSelecionada.descricao
@@ -294,10 +314,10 @@ export default function TabelaEscolas() {
                   className="options"
                   onClick={() => handleOptionClick(false, 3)}
                 >
-                  {" "}
-                  Todas
+                  {!EtapaPesquisada && "Todas"}
                 </div>
-                {OpcoesEtapasDeEnsino.map((options, index) => (
+                {OpcoesEtapasDeEnsino.filter(etapa => etapa.descricao.toLowerCase().includes(EtapaPesquisada.toLowerCase()))
+                .map((options, index) => (
                   <div
                     key={index}
                     className="options"
@@ -318,6 +338,9 @@ export default function TabelaEscolas() {
           <input
             id="select-multtiple"
             type="text"
+            value={MunicipioPesquisado}
+            onChange={mudarMunicipio}
+            onFocus={() => handleButtonClick(4)}
             placeholder={
               municipioSelecionado ? municipioSelecionado.nome : "Todos"
             }
@@ -340,10 +363,10 @@ export default function TabelaEscolas() {
                   className="options"
                   onClick={() => handleOptionClick(false, 4)}
                 >
-                  {" "}
-                  Todos
+                  {!MunicipioPesquisado && "Todas"}
                 </div>
-                {opcoesMunicipio.map((options, index) => (
+                {opcoesMunicipio.filter(municipio => municipio.nome.toLowerCase().includes(MunicipioPesquisado.toLowerCase()))
+                .map((options, index) => (
                   <div
                     key={index}
                     className="options"
