@@ -95,7 +95,7 @@ const FiltroProvider = ({ children }: any) => {
           params: {
             Pagina: paginaAtual,
             TamanhoPagina: escolasPorPagina,
-            Nome: nomeEscola ? nomeEscola : "",
+            Nome: NomePesquisado ? NomePesquisado : "",
             IdSituacao: situacaoSelecionada ? situacaoSelecionada.id : "",
             IdEtapaEnsino: etapaDeEnsinoSelecionada
               ? etapaDeEnsinoSelecionada.id
@@ -143,6 +143,7 @@ const FiltroProvider = ({ children }: any) => {
     etapaDeEnsinoSelecionada,
     municipioSelecionado,
     UFSelecionada,
+    NomePesquisado
   ]);
 
   useEffect(() => {

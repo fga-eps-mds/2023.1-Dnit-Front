@@ -146,8 +146,7 @@ export default function TabelaEscola() {
         </thead>
         <tbody>
           {escolasFiltradas &&
-            escolasFiltradas.filter (escola => escola.nomeEscola.toLowerCase().includes(NomePesquisado.toLowerCase()))
-            .map((escola, index) => {
+            escolasFiltradas.map((escola, index) => {
               console.log(escolasFiltradas.length)
               return (
                 <tr
