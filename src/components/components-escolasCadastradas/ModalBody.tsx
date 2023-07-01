@@ -1,22 +1,33 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Dropdown from "./Dropdown";
+import fetchSituacao from "../../service/Situacao";
 
 const ModalBody = (props: any) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [selectedValue, setSelectedValue] = useState(null);
+  const [selectedValue, setSelectedValue] = useState("");
+
+  useEffect(() => {
+    
+  },[selectedValue])
 
   const openDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
-
   };
 
-  if (!props.open) {
-    return null;
+  console.log(props.data.descricaoSituacao, selectedValue);
+
+  const chamarSituacao = async(selecionada: string) =>{
+    const situacoes = await fetchSituacao()
+    situacoes.forEach(situacao=>
+      {if(situacao.id === Number(selecionada))
+      return situacao.descricao}
+      )
   }
 
-  const getDescricaoSituacao = (value: number) => {
+  const getDescricaoSituacao = async() => {
     const situacao = props.data.descricaoSituacao
-    return situacao ? situacao.label : '';
+    console.log(chamarSituacao(selectedValue));
+    return selectedValue ? await chamarSituacao(selectedValue) : situacao;
   }
 
   return (
@@ -170,9 +181,12 @@ const ModalBody = (props: any) => {
         <div className="input-default">
           <label htmlFor="select-simple">Situação</label>
           <input 
+          onFocus={openDropdown}
+          value={selectedValue}
+          onChange={(e)=> setSelectedValue(e.currentTarget.value)}
             id="select-simple"
             type="text"
-            placeholder={props.data.descricaoSituacao}
+            placeholder={getDescricaoSituacao()}
           />
           <button
             className="br-button"
@@ -185,7 +199,7 @@ const ModalBody = (props: any) => {
             <i className="fas fa-angle-down" aria-hidden="true"></i>
           </button>
         </div>
-        {isDropdownOpen && <Dropdown onClose={openDropdown} onClick={setSelectedValue} />}
+        {isDropdownOpen && <Dropdown onClose={openDropdown} onClick={setSelectedValue} selectedValue ={selectedValue} />}
         <label htmlFor="input-icon">Observacao</label>
         <div className="input-group">
           <div className="input-icon">
