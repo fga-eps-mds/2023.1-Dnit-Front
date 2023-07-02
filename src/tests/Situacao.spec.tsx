@@ -140,7 +140,35 @@ test("Remover situação escola erro", async () => {
 });
 
 test("Erro de Provider de selectedValue", async () => {
-  expect(() => render(<ModalExibirInformacoes />)).toThrow(
+  const escola=
+    {
+      idEscola: 104,
+      codigoEscola: 300,
+      nomeEscola: "Escola A",
+      idRede: 1,
+      descricaoRede: "abc",
+      cep: "CEP001",
+      idUf: 1,
+      descricaoUf: "Acre",
+      endereco: "Endereço A",
+      idMunicipio: 2303204,
+      nomeMunicipio: "Caririaçu",
+      idLocalizacao: 1,
+      longitude: "789.012",
+      latitude: "123.456",
+      idEtapasDeEnsino: 1,
+      descricaoEtapasEnsino: "abc",
+      numeroTotalDeAlunos: 100,
+      idSituacao: 2,
+      descricaoSituacao: "Solicitação da escola",
+      idPorte: 1,
+      telefone: "Telefone A",
+      numeroTotalDeDocentes: 50,
+      siglaUf: "AC",
+      descricaoLocalizacao: "longe", 
+      descricaoPorte:"123",
+    }
+  expect(() => render(<ModalExibirInformacoes  escola={escola} open={true} close={():void => {}} />)).toThrow(
     new Error("useSelectedValue must be used within a SelectedValueProvider")
   );
 });

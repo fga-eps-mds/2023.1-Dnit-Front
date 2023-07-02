@@ -1,49 +1,48 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent } from "react";
 import { useSelectedValue } from "../../context/Situation";
-import fetchSituacao from "../../service/Situacao";
 import { Situacao } from "../../models/service";
 
-const Dropdown = (props: any) => {
-  const { setSelectedValue } = useSelectedValue();
-  const [situacoes, setSituacoes] = useState<Situacao[]>();
+interface Dropdownprops{
+  situacoes: Situacao[]
+  onClick:(value:string)=>void;
+  onClose:()=> void;
+  descricao: string;
+}
+const Dropdown = ({situacoes, onClick, onClose, descricao}:Dropdownprops) => {
+  const { setSelectedValue, selectedValue } = useSelectedValue();
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const selectedValue = event.target.value;
-    setSelectedValue(Number(selectedValue));
+    setSelectedValue(selectedValue);
     console.log(selectedValue);
-    props.onClick(selectedValue);
-    props.onClose();
+    onClick(selectedValue);
+    onClose();
   };
-  const chamarSituacao = async() =>{
-    const situacoes = await fetchSituacao()
-    setSituacoes(situacoes);
-  }
-chamarSituacao();
   
-
   return (
     <div className="br-list" tabIndex={0}>
-      {situacoes && situacoes.filter(situacao=>situacao.descricao.toLowerCase().includes(props.selectedValue.toLowerCase())).map(situacao =>
+      {situacoes && situacoes.filter(situacao=>situacao.descricao.toLowerCase().includes(selectedValue.toLowerCase())).map(situacao =>
       (<div className="br-item" tabIndex={-1} key={situacao.id}>
-      <div className="br-radio">
+      <div className="br-radio"> 
         <input
           id={situacao.id.toString()}
           type="radio"
           name="estados-simples"
-          value={situacao.id.toString()}
+          value={selectedValue ? selectedValue : situacao.descricao}
           onChange={handleChange}
+          checked={selectedValue ? !!selectedValue : situacao.descricao === descricao}
         />
         <label htmlFor= {situacao.id.toString()} >{situacao.descricao}</label>
       </div>
     </div>)
         )}
-        {!props.selectedValue &&
+        {!selectedValue &&
         <div className="br-item" tabIndex={-1}>
         <div className="br-radio">
           <input
             id="rb4"
             type="radio"
             name="estados-simples"
-            value="-1"
+            value="Remover Situação"
             onChange={handleChange}
           />
           <label htmlFor="rb4">Remover Situação</label>

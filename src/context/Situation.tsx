@@ -1,8 +1,8 @@
 import { createContext, useContext, useState } from "react";
 
 interface SelectedValueContextType {
-  selectedValue: number;
-  setSelectedValue: (value: number) => void;
+  selectedValue: string;
+  setSelectedValue: (value: string) => void;
 }
 
 const SelectedValueContext = createContext<
@@ -10,7 +10,7 @@ const SelectedValueContext = createContext<
 >(undefined);
 
 const SelectedValueProvider = ({ children }: any) => {
-  const [selectedValue, setSelectedValue] = useState(0);
+  const [selectedValue, setSelectedValue] = useState('');
 
   const contextValue: SelectedValueContextType = {
     selectedValue,

@@ -1,34 +1,23 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Dropdown from "./Dropdown";
 import fetchSituacao from "../../service/Situacao";
+import { useSelectedValue } from "../../context/Situation";
+import { Situacao } from "../../models/service";
 
 const ModalBody = (props: any) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [selectedValue, setSelectedValue] = useState("");
+  const { setSelectedValue, selectedValue } = useSelectedValue();
+  const[situacoes, setSituacoes]= useState <Situacao[]>();
 
-  useEffect(() => {
-    
-  },[selectedValue])
-
-  const openDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
-
-  console.log(props.data.descricaoSituacao, selectedValue);
-
-  const chamarSituacao = async(selecionada: string) =>{
+  const chamarSituacao = async() =>{
     const situacoes = await fetchSituacao()
-    situacoes.forEach(situacao=>
-      {if(situacao.id === Number(selecionada))
-      return situacao.descricao}
-      )
+    setSituacoes(situacoes);
   }
 
-  const getDescricaoSituacao = async() => {
-    const situacao = props.data.descricaoSituacao
-    console.log(chamarSituacao(selectedValue));
-    return selectedValue ? await chamarSituacao(selectedValue) : situacao;
-  }
+  const openDropdown = async() => {
+    setIsDropdownOpen(!isDropdownOpen);
+    await chamarSituacao();
+  };
 
   return (
     <div className="br-modal-body">
@@ -118,7 +107,40 @@ const ModalBody = (props: any) => {
           />
         </div>
         </div>
-        <div className="br-input">
+          <div className="br-input">
+        <div className="input-default">
+          <label htmlFor="select-simple">Situação</label>
+          <input 
+          onFocus={openDropdown}
+          value={selectedValue}
+          onChange={(e)=> setSelectedValue(e.currentTarget.value)}
+            id="select-simple"
+            type="text"
+            placeholder={selectedValue ? selectedValue : props.data.descricaoSituacao}
+          />
+          <div style={{ display: "flex", flexDirection: "row-reverse" }}>
+            <button
+              className="br-button"
+              type="button"
+              aria-label="Exibir lista"
+              data-trigger="data-trigger"
+              onClick={openDropdown}
+              data-testid="dropdown-situacao"
+            >
+              <i className="fas fa-angle-down" aria-hidden="true"></i>
+            </button>
+            {selectedValue && (
+              <button
+                className="br-button"
+                type="button"
+                onClick={() => setSelectedValue("")}
+              >
+                <i className="fas fa-close" aria-hidden="true"></i>
+              </button>
+            )}
+          </div>
+        </div>
+        {isDropdownOpen && situacoes && <Dropdown onClose={openDropdown} onClick={setSelectedValue} situacoes={situacoes} descricao={props.data.descricaoSituacao}/>}
         <label htmlFor="input-default">Localização</label>
         <div className="input-group">
           <div className="input-icon">
@@ -180,28 +202,6 @@ const ModalBody = (props: any) => {
           />
         </div>
 
-        <div className="input-default">
-          <label htmlFor="select-simple">Situação</label>
-          <input 
-          onFocus={openDropdown}
-          value={selectedValue}
-          onChange={(e)=> setSelectedValue(e.currentTarget.value)}
-            id="select-simple"
-            type="text"
-            placeholder={getDescricaoSituacao()}
-          />
-          <button
-            className="br-button"
-            type="button"
-            aria-label="Exibir lista"
-            data-trigger="data-trigger"
-            onClick={openDropdown}
-            data-testid="dropdown-situacao"
-          >
-            <i className="fas fa-angle-down" aria-hidden="true"></i>
-          </button>
-        </div>
-        {isDropdownOpen && <Dropdown onClose={openDropdown} onClick={setSelectedValue} selectedValue ={selectedValue} />}
         <label htmlFor="input-icon">Observacao</label>
         <div className="input-group">
           <div className="input-icon">

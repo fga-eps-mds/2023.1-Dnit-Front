@@ -7,9 +7,16 @@ import fetchDeleteSituation from "../../service/deleteSituation";
 import ModalExcluirEscolas from "../components-escolasCadastradas/ModalExcluirEscolas";
 import "../components-escolasCadastradas/style/ModalExibirInformacoes.css";
 import ModalBody from "./ModalBody";
+import fetchSituacao from "../../service/Situacao";
+import { EscolaData } from "../../models/service";
 
-const ModalExibirInformacoes = (props: any) => {
-  const { escola, open, close, onClose } = props;
+
+interface ModalProps{
+  escola: EscolaData
+  open: boolean
+  close: () => void
+}
+const ModalExibirInformacoes = ({escola,open,close}:ModalProps) => {
   const [isModalExibirInformacoesOpen, setIsModalExibirInformacoesOpen] =
     useState(false);
   const [isModalExcluirEscolasOpen, setIsModalExcluirEscolasOpen] =
@@ -26,12 +33,24 @@ const ModalExibirInformacoes = (props: any) => {
       }
   });
 
-  const { selectedValue } = useSelectedValue();
+  const { selectedValue, setSelectedValue } = useSelectedValue();
   const [api, contextHolder] = notification.useNotification();
   const { fetchEscolasFiltradas } = useFiltroTabela();
 
+  const chamarSituacao = async() =>{
+    const situacoes = await fetchSituacao()
+    var id = 0;
+    situacoes && situacoes.forEach(situacao=>{
+      if(situacao.descricao === selectedValue)id = situacao.id;
+    }
+    )
+    if(selectedValue === 'Remover Situação')return -1;
+    return id;
+  }
+
   const onFinish = async (values: any) => {
-    if (selectedValue === -1) {
+    const idSituacao = await chamarSituacao();
+    if (idSituacao === -1) {
       const excluirSituacaoData = {
         idEscola: escola.idEscola,
       };
@@ -46,7 +65,7 @@ const ModalExibirInformacoes = (props: any) => {
     } else {
       const salvarSituacaoData = {
         idEscola: escola.idEscola,
-        idSituacao: selectedValue,
+        idSituacao: idSituacao,
       };
 
       try {
@@ -58,18 +77,16 @@ const ModalExibirInformacoes = (props: any) => {
         api.error({ message: `Erro ao salvar situação` });
       }
     }
-    props.close();
+    close();
   };
 
   if (!open) {
     return null;
   }
   return (
-    <>
+      <div>
       {contextHolder}
-      <div className="modal">
-        <div className="modal-content">
-          <div>
+        <div >
             <div className="container">
               <div className="div br-modal large">
                 <div className="br-modal-header">{escola.nomeEscola}</div>
@@ -78,7 +95,7 @@ const ModalExibirInformacoes = (props: any) => {
                   open={isModalExcluirEscolasOpen}
                   id={escola.idEscola}
                   close={() => {
-                    setIsModalExcluirEscolasOpen(false);
+                    setIsModalExcluirEscolasOpen(false); 
                     close();
                   }}
                   nomeEscola={escola.nomeEscola}
@@ -97,7 +114,7 @@ const ModalExibirInformacoes = (props: any) => {
                     <button
                       className="br-button secondary"
                       type="button"
-                      onClick={close}
+                      onClick={()=>{close();setSelectedValue('')}}
                     >
                       Cancelar
                     </button>
@@ -112,10 +129,9 @@ const ModalExibirInformacoes = (props: any) => {
                 </div>
               </div>
             </div>
-          </div>
+
         </div>
       </div>
-    </>
   );
 };
 
