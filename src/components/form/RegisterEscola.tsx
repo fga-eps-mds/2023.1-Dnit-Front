@@ -6,7 +6,7 @@ import Step1 from "./Steps/Step1";
 import Step2 from "./Steps/Step2";
 import Step3 from "./Steps/Step3";
 import Step3_Aceito from "./Steps/Step3_Aceito";
-import Step3_erro1 from "./Steps/Step3_erro1";
+import Step3_erro1 from "./Steps/Step3_Listagem";
 import Step3_erro2 from "./Steps/Step3_erro2";
 export default function RegS() {
   const [screen, setScreen] = useState<
