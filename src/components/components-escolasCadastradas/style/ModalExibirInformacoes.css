@@ -20,10 +20,9 @@
     max-width: var(--modal-size);
     width: 50%;
     z-index: var(--z-index-layer-4);
-    max-height: 570px;
-    position: fixed;
-    height: 155%;
-    top: 55%;
+    position: fixed !important;
+    height: 85vh;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
   } 
@@ -52,7 +51,7 @@
     align-self: flex-start !important;
     justify-self: flex-start !important;
     justify-content: flex-start !important;
-    margin-right: 8%;
+    margin-right: 31%;
      }
 
   .content-right{
@@ -60,13 +59,7 @@
     justify-content: right !important;
   }
   
-  @media (max-width: 1506px) {
-    .content-right{
-      align-self: flex-end !important;
-      justify-content: right !important;
-      padding-top: 8px;
-    }
-  }
+  
   
 .button-space{
   margin-right: 2em !important;
@@ -74,7 +67,7 @@
 
   .br-modal-body {
     flex: 1;
-    height: 500px;
+    height: 100vh;
     margin: var(--spacing-scale-3x) 0 var(--spacing-scale-2x);
     padding: 0 var(--spacing-scale-2x);
     display: flex; 
