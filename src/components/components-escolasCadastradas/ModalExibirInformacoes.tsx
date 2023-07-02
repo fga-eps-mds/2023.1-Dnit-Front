@@ -86,7 +86,7 @@ const ModalExibirInformacoes = ({escola,open,close}:ModalProps) => {
   return (
       <div>
       {contextHolder}
-        <div >
+        <div>
             <div className="container">
               <div className="div br-modal large">
                 <div className="br-modal-header">{escola.nomeEscola}</div>
