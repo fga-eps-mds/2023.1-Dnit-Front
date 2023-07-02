@@ -117,6 +117,8 @@ const ModalBody = (props: any) => {
             disabled
           />
         </div>
+        </div>
+        <div className="br-input">
         <label htmlFor="input-default">Localização</label>
         <div className="input-group">
           <div className="input-icon">
@@ -208,7 +210,7 @@ const ModalBody = (props: any) => {
           <input id="input-default" type="text" placeholder="Exemplo" />
         </div>
       </div>
-    </div>
+      </div>
   );
 };
 

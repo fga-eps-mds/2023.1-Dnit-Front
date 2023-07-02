@@ -21,7 +21,13 @@
     width: 50%;
     z-index: var(--z-index-layer-4);
     max-height: 570px;
-  }
+    position: fixed;
+    height: 155%;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  } 
+  
   .br-modal-header {
     font-size: var(--font-size-scale-up-01);
     font-weight: var(--font-weight-bold);
@@ -68,11 +74,20 @@
 
   .br-modal-body {
     flex: 1;
+    height: 500px;
     margin: var(--spacing-scale-3x) 0 var(--spacing-scale-2x);
-    overflow: auto;
     padding: 0 var(--spacing-scale-2x);
+    display: flex; 
+    justify-content: space-between; 
     text-align: left;
   }
+
+  .br-modal-body .br-input {
+    flex-basis: 50%;
+    margin-bottom: 5px;
+    padding: 10px;
+  }
+  
   .br-modal-body::-webkit-scrollbar {
     height: var(--spacing-scale-base);
     width: var(--spacing-scale-base);
