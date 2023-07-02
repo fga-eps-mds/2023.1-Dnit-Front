@@ -46,7 +46,7 @@ const App: React.FC<DragDropProps> = ({
       formData.append("arquivo", fileList[0].originFileObj as File);
 
       try {
-        const response = await axios.post(insertFileURL, formData);
+        const response = await axios.post('https://localhost:7083/api/escolas/cadastrarEscolaPlanilha', formData);
 
         if (
           response.data &&

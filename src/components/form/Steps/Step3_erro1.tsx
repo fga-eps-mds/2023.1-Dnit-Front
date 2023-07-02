@@ -12,14 +12,10 @@ export default function Step3_erro1({ onClickVoltar }: Step3Erro1Props) {
   return (
     <div className="form3_erro1">
       <div className="secaoTexto">
-        <div className="secaoAtencao">
-          <h3>Atenção</h3>
-        </div>
-        <h2>As escolas nas linhas</h2>
+        <h2>Apenas as escolas abaixo foram adicionadas:</h2>
         {escolasCadastradas.map((escola) => (
           <h2 key={escola}>{escola}</h2>
         ))}
-        <h2>não foram cadastradas pois já existem no sistema.</h2>
       </div>
       <div className="secaoVoltar">
         <Button className="botaoVoltar" onClick={onClickVoltar}>
