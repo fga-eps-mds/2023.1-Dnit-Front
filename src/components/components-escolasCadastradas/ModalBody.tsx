@@ -8,7 +8,6 @@ const ModalBody = (props: any) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { setSelectedValue, selectedValue } = useSelectedValue();
   const[situacoes, setSituacoes]= useState <Situacao[]>();
-  const [observacao, setObservacao] = useState(props.data.observacao);
 
   const chamarSituacao = async() =>{
     const situacoes = await fetchSituacao()
@@ -20,12 +19,26 @@ const ModalBody = (props: any) => {
     await chamarSituacao();
   };
 
+  const handleSituacaoChange = (event:any) => {
+    setSelectedValue(event.currentTarget.value)
+    console.log(event.target.value);
+    props.onUpdateSituacao(event.target.value);
+  };
+
   const handleObservacaoChange = (event:any) => {
-    setObservacao(event.target.value);
+    props.onUpdateObservacao(event.target.value);
   };
 
   const handleTelefoneChange = (event:any) => {
     props.onUpdateTelefone(event.target.value);
+  };
+
+  const handleLatitudeChange = (event:any) => {
+    props.onUpdateLatitude(event.target.value);
+  };
+
+  const handleLongitudeChange = (event:any) => {
+    props.onUpdateLongitude(event.target.value);
   };
 
   const handleNumAlunosChange = (event:any) => {
@@ -109,7 +122,6 @@ const ModalBody = (props: any) => {
             type="text"
             onChange={handleTelefoneChange}
             placeholder={props.data.telefone}
-            disabled
           />
         </div>
         <label htmlFor="input-default">CEP</label>
@@ -131,7 +143,7 @@ const ModalBody = (props: any) => {
           <input 
           onFocus={openDropdown}
           value={selectedValue}
-          onChange={(e)=> setSelectedValue(e.currentTarget.value)}
+          onChange={handleSituacaoChange}
             id="select-simple"
             type="text"
             placeholder={selectedValue ? selectedValue : props.data.descricaoSituacao}
@@ -180,7 +192,7 @@ const ModalBody = (props: any) => {
             id="input-default"
             type="text"
             placeholder={props.data.latitude}
-            disabled
+            onChange={handleLatitudeChange}
           />
         </div>
         <label htmlFor="input-default">Longitude</label>
@@ -192,7 +204,7 @@ const ModalBody = (props: any) => {
             id="input-default"
             type="text"
             placeholder={props.data.longitude}
-            disabled
+            onChange={handleLongitudeChange}
           />
         </div>
         <label htmlFor="input-default">Número total de alunos</label>
@@ -203,9 +215,8 @@ const ModalBody = (props: any) => {
           <input
             id="input-default"
             type="text"
-            onChange={handleNumAlunosChange}
             placeholder={props.data.numeroTotalDeAlunos}
-            disabled
+            onChange={handleNumAlunosChange}
           />
         </div>
         <label htmlFor="input-icon">Número total de docentes</label>
@@ -216,9 +227,8 @@ const ModalBody = (props: any) => {
           <input
             id="input-default"
             type="text"
-            onChange={handleNumDocentesChange}
             placeholder={props.data.numeroTotalDeDocentes}
-            disabled
+            onChange={handleNumDocentesChange}
           />
         </div>
 
@@ -230,7 +240,6 @@ const ModalBody = (props: any) => {
           <input 
           id="input-default" 
           type="text" 
-          value={observacao}
           onChange={handleObservacaoChange}
           placeholder={props.data.observacao} />
         </div>

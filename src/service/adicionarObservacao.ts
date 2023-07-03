@@ -7,14 +7,19 @@ interface AdicionarObservacaoResponse {
 }
 
 async function fetchAdicionarObservacao(
-  idEscola: number, observacao: string
+  adicionarObservacao: AdicionarObservacaoData
 
 ): Promise<AdicionarObservacaoResponse> {
   try {
     const response: AxiosResponse<AdicionarObservacaoResponse> = await axios.put(
-      adicionarObservacaoURL, 
+      adicionarObservacaoURL,
       null,
-      {params: {idEscola, observacao}}
+      {
+        params: {
+          idEscola: adicionarObservacao.idEscola,
+          observacao: adicionarObservacao.observacao
+        }
+      }
     );
     return response.data;
   } catch (error) {

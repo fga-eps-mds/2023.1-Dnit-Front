@@ -8,34 +8,55 @@ import ModalExcluirEscolas from "../components-escolasCadastradas/ModalExcluirEs
 import "../components-escolasCadastradas/style/ModalExibirInformacoes.css";
 import ModalBody from "./ModalBody";
 import fetchSituacao from "../../service/Situacao";
-import { AdicionarObservacaoData, EscolaData } from "../../models/service";
+import { EscolaData } from "../../models/service";
 import fetchAdicionarObservacao from "../../service/adicionarObservacao";
 import fetchAlterarTelefone from "../../service/alterarTelefone";
+import fetchAlterarLatitude from "../../service/alterarLatitude";
+import fetchAlterarLongitude from "../../service/alterarLongitude";
 import fetchAlterarNumDeAlunos from "../../service/alterarNumDeAlunos";
 import fetchAlterarNumDeDocentes from "../../service/alterarNumDeDocentes";
 
 
-interface ModalProps{
+interface ModalProps {
   escola: EscolaData
   open: boolean
   close: () => void
 }
 
-const ModalExibirInformacoes = ({escola,open,close}:ModalProps) => {
+const ModalExibirInformacoes = ({ escola, open, close }: ModalProps) => {
   const [isModalExibirInformacoesOpen, setIsModalExibirInformacoesOpen] =
     useState(false);
   const [isModalExcluirEscolasOpen, setIsModalExcluirEscolasOpen] =
     useState(false);
+  const [observacao, setObservacao] = useState(escola.observacao);
   const [telefone, setTelefone] = useState(escola.telefone);
+  const [latitude, setLatitude] = useState(escola.latitude);
+  const [longitude, setLongitude] = useState(escola.longitude);
   const [numAlunos, setNumAlunos] = useState(escola.numeroTotalDeAlunos);
   const [numDocentes, setNumDocentes] = useState(escola.numeroTotalDeDocentes);
+  const [situacao, setSituacao] = useState(escola.idSituacao);
+  const situacaoAtual = escola.idSituacao;
+  console.log(situacaoAtual);
+  //const [situacaoAtual, setSituacaoAtual] = useState(escola.idSituacao);
 
-  const openModal = async () => {
-    setIsModalExibirInformacoesOpen(true);
+  const atualizarSituacao = (novaSituacao: any) => {
+    setSituacao(novaSituacao);
+  };
+
+  const atualizarObservacao = (novaObservacao: any) => {
+    setObservacao(novaObservacao);
   };
 
   const atualizarTelefone = (novoTelefone: any) => {
     setTelefone(novoTelefone);
+  };
+
+  const atualizarLatitude = (novaLatitude: any) => {
+    setLatitude(novaLatitude);
+  };
+
+  const atualizarLongitude = (novaLongitude: any) => {
+    setLongitude(novaLongitude);
   };
 
   const atualizarNumAlunos = (novoNumAlunos: any) => {
@@ -46,6 +67,9 @@ const ModalExibirInformacoes = ({escola,open,close}:ModalProps) => {
     setNumDocentes(novoNumDocentes);
   };
 
+  const openModal = async () => {
+    setIsModalExibirInformacoesOpen(true);
+  };
 
   useEffect(() => {
     if (!isModalExibirInformacoesOpen)
@@ -58,14 +82,14 @@ const ModalExibirInformacoes = ({escola,open,close}:ModalProps) => {
   const [api, contextHolder] = notification.useNotification();
   const { fetchEscolasFiltradas } = useFiltroTabela();
 
-  const chamarSituacao = async() =>{
+  const chamarSituacao = async () => {
     const situacoes = await fetchSituacao()
     var id = 0;
-    situacoes && situacoes.forEach(situacao=>{
-      if(situacao.descricao === selectedValue)id = situacao.id;
+    situacoes && situacoes.forEach(situacao => {
+      if (situacao.descricao === selectedValue) id = situacao.id;
     }
     )
-    if(selectedValue === 'Remover Situação')return -1;
+    if (selectedValue === 'Remover Situação') return -1;
     return id;
   }
 
@@ -80,13 +104,11 @@ const ModalExibirInformacoes = ({escola,open,close}:ModalProps) => {
       try {
         await fetchDeleteSituation(excluirSituacaoData);
         notification.success({ message: `Situação excluída com sucesso!` });
-        fetchEscolasFiltradas();
+        //fetchEscolasFiltradas();
       } catch (error) {
         notification.error({ message: `Erro ao excluir situação! ` });
       }
-    }
-    
-    else  {
+    } else if (situacao !== situacaoAtual) {
       const salvarSituacaoData = {
         idEscola: escola.idEscola,
         idSituacao: idSituacao,
@@ -94,27 +116,28 @@ const ModalExibirInformacoes = ({escola,open,close}:ModalProps) => {
 
       try {
         await fetchchangeSituation(salvarSituacaoData);
+        console.log("Await aqui");
         notification.success({ message: `Situação alterada com sucesso!` });
       } catch (error) {
         notification.error({ message: `Erro ao alterar situação! ` });
-        api.error({ message: `Erro ao salvar situação` });
+        //api.error({ message: `Erro ao salvar situação` });
       }
+    } else {
+      console.log("Situação continua a mesma!");
     }
 
-    const adicionarObservacaoData = {
+    const adicionarObsData = {
       idEscola: escola.idEscola,
-      observacao: escola.observacao,
+      observacao: observacao
     };
 
     try {
-      await fetchAdicionarObservacao(escola.idEscola, escola.observacao);
-      notification.success({ message: `observação adicionada com sucesso!` });
+      await fetchAdicionarObservacao(adicionarObsData);
+      //notification.success({ message: `Observação adicionada com sucesso!` });
     } catch (error) {
       notification.error({ message: `Erro ao adicionar observacao! ` });
-      api.error({ message: `Erro ao adicionar observacao` });
+      //api.error({ message: `Erro ao adicionar observacao` });
     }
-    close();
-    console.log(escola.observacao);
 
     const alterarTelefoneData = {
       idEscola: escola.idEscola,
@@ -127,6 +150,32 @@ const ModalExibirInformacoes = ({escola,open,close}:ModalProps) => {
     } catch (error) {
       notification.error({ message: `Erro ao adicionar telefone! ` });
       //api.error({ message: `Erro ao adicionar telefone` });
+    }
+
+    const alterarLongitudeData = {
+      idEscola: escola.idEscola,
+      longitude: longitude
+    };
+
+    try {
+      await fetchAlterarLongitude(alterarLongitudeData);
+      //notification.success({ message: `Longitude alterada com sucesso!` });
+    } catch (error) {
+      notification.error({ message: `Erro ao adicionar longitude! ` });
+      //api.error({ message: `Erro ao adicionar telefone` });
+    }
+
+    const alterarLatitudeData = {
+      idEscola: escola.idEscola,
+      latitude: latitude
+    };
+
+    try {
+      await fetchAlterarLatitude(alterarLatitudeData);
+      //notification.success({ message: `Latitude alterada com sucesso!` });
+    } catch (error) {
+      notification.error({ message: `Erro ao adicionar latitude! ` });
+      //api.error({ message: `Erro ao adicionar latitude` });
     }
 
     const alterarNumAlunos = {
@@ -158,68 +207,72 @@ const ModalExibirInformacoes = ({escola,open,close}:ModalProps) => {
 
     fetchEscolasFiltradas();
     close();
-
   };
-    
-
 
   if (!open) {
     return null;
   }
   return (
-      <div>
+    <div>
       {contextHolder}
-        <div>
-            <div className="container">
-              <div className="div br-modal large">
-                <div className="br-modal-header">{escola.nomeEscola}</div>
-                <ModalBody data={escola}
-                 open={isModalExibirInformacoesOpen}
-                 onUpdateTelefone={atualizarTelefone}
-                 onUpdateNumAlunos={atualizarNumAlunos}
-                 onUpdateNumDocentes={atualizarNumDocentes}
-                  />
-                <ModalExcluirEscolas
-                  open={isModalExcluirEscolasOpen}
-                  id={escola.idEscola}
-                  close={() => {
-                    setIsModalExcluirEscolasOpen(false); 
-                    close();
-                  }}
-                  nomeEscola={escola.nomeEscola}
-                />
-                <div className="br-modal-footer ">
-                  <div className="content-left">
-                    <button
-                      className=" br-button cancel-button "
-                      type="button"
-                      onClick={() => setIsModalExcluirEscolasOpen(true)}
-                    >
-                      Excluir escola
-                    </button>
-                  </div>
-                  <div className="content-right">
-                    <button
-                      className="br-button secondary"
-                      type="button"
-                      onClick={()=>{close();setSelectedValue('')}}
-                    >
-                      Cancelar
-                    </button>
-                    <button
-                      className="br-button primary ml-2 "
-                      type="button"
-                      onClick={onFinish}
-                    >
-                      Salvar
-                    </button>
-                  </div>
-                </div>
+      <div>
+        <div className="container">
+          <div className="div br-modal large">
+            <div className="br-modal-header">{escola.nomeEscola}</div>
+            <ModalBody
+              data={escola}
+              open={isModalExibirInformacoesOpen}
+              onUpdateSituacao={atualizarSituacao}
+              onUpdateObservacao={atualizarObservacao}
+              onUpdateTelefone={atualizarTelefone}
+              onUpdateLatitude={atualizarLatitude}
+              onUpdateLongitude={atualizarLongitude}
+              onUpdateNumAlunos={atualizarNumAlunos}
+              onUpdateNumDocentes={atualizarNumDocentes}
+            //onUpdateSituacao={handleAlterarSituacao}
+
+            />
+            <ModalExcluirEscolas
+              open={isModalExcluirEscolasOpen}
+              id={escola.idEscola}
+              close={() => {
+                setIsModalExcluirEscolasOpen(false);
+                close();
+              }}
+              nomeEscola={escola.nomeEscola}
+            />
+            <div className="br-modal-footer ">
+              <div className="content-left">
+                <button
+                  className=" br-button cancel-button "
+                  type="button"
+                  onClick={() => setIsModalExcluirEscolasOpen(true)}
+                >
+                  Excluir escola
+                </button>
+              </div>
+              <div className="content-right">
+                <button
+                  className="br-button secondary"
+                  type="button"
+                  onClick={() => { close(); setSelectedValue('') }}
+                >
+                  Cancelar
+                </button>
+                <button
+                  className="br-button primary ml-2 "
+                  type="button"
+                  onClick={onFinish}
+                >
+                  Salvar
+                </button>
               </div>
             </div>
-
+          </div>
         </div>
+
       </div>
+    </div>
   );
 };
 

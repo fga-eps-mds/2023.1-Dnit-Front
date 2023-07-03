@@ -123,6 +123,16 @@ export interface AlterarTelefoneData {
   telefone: string;
 }
 
+export interface AlterarLongitudeData {
+  idEscola: number;
+  longitude: string;
+}
+
+export interface AlterarLatitudeData {
+  idEscola: number;
+  latitude: string;
+}
+
 export interface AlterarNumDeAlunosData {
   idEscola: number;
   numeroTotalDeAlunos: number;

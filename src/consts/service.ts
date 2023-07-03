@@ -1,4 +1,5 @@
 const urlAPIUsuario = "https://api.aprovaunb.com/api";
+//const urlAPIEscolas = "https://api.dnit-eps-mds.com/api";
 const urlAPIEscolas = "https://localhost:7083/api";
 const federativeUnitURL = `${urlAPIEscolas}/dominio/unidadeFederativa`;
 const loginURL = `${urlAPIUsuario}/usuario/login`;
@@ -19,6 +20,8 @@ const EscolasFiltradasURL = `${urlAPIEscolas}/escolas/obter`;
 const insertFileURL = `${urlAPIEscolas}/escolas/cadastrarEscolaPlanilha`;
 const adicionarObservacaoURL = `${urlAPIEscolas}/escolas/adicionarObservacao`;
 const alterarTelefoneURL = `${urlAPIEscolas}/escolas/alterarTelefone`;
+const alterarLatitudeURL = `${urlAPIEscolas}/escolas/alterarLatitude`;
+const alterarLongitudeURL = `${urlAPIEscolas}/escolas/alterarLongitude`;
 const alterarNumAlunosURL = `${urlAPIEscolas}/escolas/alterarNumeroDeAlunos`;
 const alterarNumDocentesURL = `${urlAPIEscolas}/escolas/alterarNumeroDeDocentes`;
 
@@ -42,6 +45,8 @@ export {
   salvarSituacaoURL,
   adicionarObservacaoURL,
   alterarTelefoneURL,
+  alterarLatitudeURL,
+  alterarLongitudeURL,
   alterarNumAlunosURL,
   alterarNumDocentesURL,
 };
