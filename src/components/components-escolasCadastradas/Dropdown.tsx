@@ -13,7 +13,6 @@ const Dropdown = ({situacoes, onClick, onClose, descricao}:Dropdownprops) => {
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const selectedValue = event.target.value;
     setSelectedValue(selectedValue);
-    console.log(selectedValue);
     onClick(selectedValue);
     onClose();
   };
