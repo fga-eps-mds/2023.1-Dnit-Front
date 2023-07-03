@@ -117,3 +117,18 @@ export interface AdicionarObservacaoData {
   idEscola: number;
   observacao: string;
 }
+
+export interface AlterarTelefoneData {
+  idEscola: number;
+  telefone: string;
+}
+
+export interface AlterarNumDeAlunosData {
+  idEscola: number;
+  numeroTotalDeAlunos: number;
+}
+
+export interface AlterarNumDeDocentesData {
+  idEscola: number;
+  numeroTotalDeDocentes: number;
+}

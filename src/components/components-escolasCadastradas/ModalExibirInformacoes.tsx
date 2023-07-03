@@ -10,6 +10,9 @@ import ModalBody from "./ModalBody";
 import fetchSituacao from "../../service/Situacao";
 import { AdicionarObservacaoData, EscolaData } from "../../models/service";
 import fetchAdicionarObservacao from "../../service/adicionarObservacao";
+import fetchAlterarTelefone from "../../service/alterarTelefone";
+import fetchAlterarNumDeAlunos from "../../service/alterarNumDeAlunos";
+import fetchAlterarNumDeDocentes from "../../service/alterarNumDeDocentes";
 
 
 interface ModalProps{
@@ -23,10 +26,26 @@ const ModalExibirInformacoes = ({escola,open,close}:ModalProps) => {
     useState(false);
   const [isModalExcluirEscolasOpen, setIsModalExcluirEscolasOpen] =
     useState(false);
+  const [telefone, setTelefone] = useState(escola.telefone);
+  const [numAlunos, setNumAlunos] = useState(escola.numeroTotalDeAlunos);
+  const [numDocentes, setNumDocentes] = useState(escola.numeroTotalDeDocentes);
 
   const openModal = async () => {
     setIsModalExibirInformacoesOpen(true);
   };
+
+  const atualizarTelefone = (novoTelefone: any) => {
+    setTelefone(novoTelefone);
+  };
+
+  const atualizarNumAlunos = (novoNumAlunos: any) => {
+    setNumAlunos(novoNumAlunos);
+  };
+
+  const atualizarNumDocentes = (novoNumDocentes: any) => {
+    setNumDocentes(novoNumDocentes);
+  };
+
 
   useEffect(() => {
     if (!isModalExibirInformacoesOpen)
@@ -96,7 +115,53 @@ const ModalExibirInformacoes = ({escola,open,close}:ModalProps) => {
     }
     close();
     console.log(escola.observacao);
+
+    const alterarTelefoneData = {
+      idEscola: escola.idEscola,
+      telefone: telefone
+    };
+
+    try {
+      await fetchAlterarTelefone(alterarTelefoneData);
+      //notification.success({ message: `Telefone alterado com sucesso!` });
+    } catch (error) {
+      notification.error({ message: `Erro ao adicionar telefone! ` });
+      //api.error({ message: `Erro ao adicionar telefone` });
+    }
+
+    const alterarNumAlunos = {
+      idEscola: escola.idEscola,
+      numeroTotalDeAlunos: numAlunos,
+    };
+
+    try {
+      await fetchAlterarNumDeAlunos(alterarNumAlunos);
+      //notification.success({ message: `Número de alunos alterado com sucesso!` });
+    } catch (error) {
+      notification.error({ message: `Erro ao adicionar número de alunos! ` });
+      //api.error({ message: `Erro ao adicionar telefone` });
+    }
+
+    const alterarNumDocentesData = {
+      idEscola: escola.idEscola,
+      numeroTotalDeDocentes: numDocentes,
+    };
+
+    try {
+      await fetchAlterarNumDeDocentes(alterarNumDocentesData);
+      //notification.success({ message: `Número de docentes alterado com sucesso!` });
+    } catch (error) {
+      notification.error({ message: `Erro ao adicionar número de docentes! ` });
+      //api.error({ message: `Erro ao adicionar telefone` });
+    }
+    notification.success({ message: `Dados alterados com sucesso!` });
+
+    fetchEscolasFiltradas();
+    close();
+
   };
+    
+
 
   if (!open) {
     return null;
@@ -108,7 +173,12 @@ const ModalExibirInformacoes = ({escola,open,close}:ModalProps) => {
             <div className="container">
               <div className="div br-modal large">
                 <div className="br-modal-header">{escola.nomeEscola}</div>
-                <ModalBody data={escola} open={isModalExibirInformacoesOpen} />
+                <ModalBody data={escola}
+                 open={isModalExibirInformacoesOpen}
+                 onUpdateTelefone={atualizarTelefone}
+                 onUpdateNumAlunos={atualizarNumAlunos}
+                 onUpdateNumDocentes={atualizarNumDocentes}
+                  />
                 <ModalExcluirEscolas
                   open={isModalExcluirEscolasOpen}
                   id={escola.idEscola}

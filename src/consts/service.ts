@@ -18,6 +18,9 @@ const MunicipioURL = `${urlAPIEscolas}/dominio/municipio`;
 const EscolasFiltradasURL = `${urlAPIEscolas}/escolas/obter`;
 const insertFileURL = `${urlAPIEscolas}/escolas/cadastrarEscolaPlanilha`;
 const adicionarObservacaoURL = `${urlAPIEscolas}/escolas/adicionarObservacao`;
+const alterarTelefoneURL = `${urlAPIEscolas}/escolas/alterarTelefone`;
+const alterarNumAlunosURL = `${urlAPIEscolas}/escolas/alterarNumeroDeAlunos`;
+const alterarNumDocentesURL = `${urlAPIEscolas}/escolas/alterarNumeroDeDocentes`;
 
 export {
   EscolasFiltradasURL,
@@ -38,4 +41,7 @@ export {
   resetPasswordURL,
   salvarSituacaoURL,
   adicionarObservacaoURL,
+  alterarTelefoneURL,
+  alterarNumAlunosURL,
+  alterarNumDocentesURL,
 };

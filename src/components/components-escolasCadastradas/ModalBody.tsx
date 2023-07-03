@@ -24,6 +24,18 @@ const ModalBody = (props: any) => {
     setObservacao(event.target.value);
   };
 
+  const handleTelefoneChange = (event:any) => {
+    props.onUpdateTelefone(event.target.value);
+  };
+
+  const handleNumAlunosChange = (event:any) => {
+    props.onUpdateNumAlunos(Number(event.target.value));
+  };
+
+  const handleNumDocentesChange = (event:any) => {
+    props.onUpdateNumDocentes(Number(event.target.value));
+  };
+
   return (
     <div className="br-modal-body">
       <div className="br-input">
@@ -95,6 +107,7 @@ const ModalBody = (props: any) => {
           <input
             id="input-default"
             type="text"
+            onChange={handleTelefoneChange}
             placeholder={props.data.telefone}
             disabled
           />
@@ -190,6 +203,7 @@ const ModalBody = (props: any) => {
           <input
             id="input-default"
             type="text"
+            onChange={handleNumAlunosChange}
             placeholder={props.data.numeroTotalDeAlunos}
             disabled
           />
@@ -202,6 +216,7 @@ const ModalBody = (props: any) => {
           <input
             id="input-default"
             type="text"
+            onChange={handleNumDocentesChange}
             placeholder={props.data.numeroTotalDeDocentes}
             disabled
           />
