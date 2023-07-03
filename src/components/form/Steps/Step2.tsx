@@ -37,7 +37,7 @@ export default function Step2({ onClickBack }: Step2Props) {
   ];
 
   const[viaCEP, setViaCEP] = useState<viaCEP[]>([]);
-  const getCEP = async (cep: number) => {
+  const getCEP = async (cep: string) => {
     try {
       const res = await fetchCEP(cep);
       setViaCEP(res);
@@ -166,7 +166,12 @@ export default function Step2({ onClickBack }: Step2Props) {
             </Form.Item>
 
             <Form.Item name="cep" label="CEP" rules={rules}>
-              <Input className="inputForm2" />
+              <Input className="inputForm2" 
+
+              onChange={(event) => {
+                 getCEP(event.target.value);
+                }}
+              />
             </Form.Item>
             </div>
             <div className="bloco2">

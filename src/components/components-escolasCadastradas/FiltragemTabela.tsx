@@ -245,6 +245,7 @@ export default function TabelaEscolas() {
             }
           />
           <button
+          
             className="br-button"
             type="button"
             aria-label="Exibir lista"
@@ -280,10 +281,11 @@ export default function TabelaEscolas() {
         </div>
       </div>
 
-      <div className="br-select">
-        <div className="br-input">
+      <div className="br-select" >
+        <div className="br-input" >
           <label htmlFor="select-multtiple">Etapas de Ensino</label>
           <input
+          
             id="select-multtiple"
             type="text"
             value = {EtapaPesquisada}
@@ -297,6 +299,7 @@ export default function TabelaEscolas() {
 
           />
           <button
+          
             className="br-button"
             type="button"
             aria-label="Exibir lista"

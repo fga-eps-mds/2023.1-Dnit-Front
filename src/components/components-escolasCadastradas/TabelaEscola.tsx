@@ -240,6 +240,7 @@ export default function TabelaEscola() {
                   id="go-to-selection-random-15337"
                   type="text"
                   placeholder={paginaAtual.toString()}
+                  disabled
                 />
               </div>
             </div>
