@@ -2,93 +2,112 @@ import { rest } from "msw";
 import { setupServer } from "msw/node";
 
 const server = setupServer(
+  rest.post("https://api.aprovaunb.com/api/usuario/login", (req, res, ctx) => {
+    // Armazena um token de autenticação simulado no localStorage
+    localStorage.setItem("token", "autenticado");
+
+    return res(ctx.status(200), ctx.json({ success: true }));
+  }),
+
   rest.get(
     "https://api.dnit-eps-mds.com/api/escolas/obter",
     (req, res, ctx) => {
+      const token = localStorage.getItem("token");
+      // Verifica se o usuário está autenticado
+      if (!token) {
+        return res(
+          ctx.status(401),
+          ctx.json({ message: "Usuário não autenticado" })
+        );
+      }
+      // Retorna uma resposta simulando a lista de escolas
       return res(
-        ctx.json({
-          pagina: 1,
-          escolasPorPagina: 5,
-          totalEscolas: 13,
-          totalPaginas: 3,
-          escolas: [
-            {
-              idEscola: 104,
-              codigoEscola: 300,
-              nomeEscola: "Escola A",
-              idRede: 1,
-              descricaoRede: null,
-              cep: "CEP001",
-              idUf: 1,
-              descricaoUf: "Acre",
-              endereco: "Endereço A",
-              idMunicipio: 2303204,
-              nomeMunicipio: "Caririaçu",
-              idLocalizacao: 1,
-              longitude: "789.012",
-              latitude: "123.456",
-              idEtapasDeEnsino: 1,
-              descricaoEtapasEnsino: null,
-              numeroTotalDeAlunos: 100,
-              idSituacao: 2,
-              descricaoSituacao: "Solicitação da escola",
-              idPorte: 1,
-              telefone: "Telefone A",
-              numeroTotalDeDocentes: 50,
-              siglaUf: "AC",
-            },
-            {
-              idEscola: 105,
-              codigoEscola: 301,
-              nomeEscola: "Escola B",
-              idRede: 1,
-              descricaoRede: null,
-              cep: "CEP002",
-              idUf: 2,
-              descricaoUf: "Alagoas",
-              endereco: "Endereço B",
-              idMunicipio: 2303303,
-              nomeMunicipio: "Cariús",
-              idLocalizacao: 1,
-              longitude: "890.123",
-              latitude: "234.567",
-              idEtapasDeEnsino: 2,
-              descricaoEtapasEnsino: null,
-              numeroTotalDeAlunos: 200,
-              idSituacao: 3,
-              descricaoSituacao: "Jornada de crescimento do professor",
-              idPorte: 1,
-              telefone: "Telefone B",
-              numeroTotalDeDocentes: 60,
-              siglaUf: "AL",
-            },
-            {
-              idEscola: 110,
-              codigoEscola: 301,
-              nomeEscola: "Escola G",
-              idRede: 1,
-              descricaoRede: null,
-              cep: "CEP002",
-              idUf: 2,
-              descricaoUf: "Alagoas",
-              endereco: "Endereço B",
-              idMunicipio: 1400159,
-              nomeMunicipio: "Bonfim",
-              idLocalizacao: 1,
-              longitude: "890.123",
-              latitude: "234.567",
-              idEtapasDeEnsino: 2,
-              descricaoEtapasEnsino: null,
-              numeroTotalDeAlunos: 200,
-              idSituacao: 3,
-              descricaoSituacao: "Jornada de crescimento do professor",
-              idPorte: 1,
-              telefone: "Telefone B",
-              numeroTotalDeDocentes: 60,
-              siglaUf: "AL",
-            },
-          ],
-        })
+        ctx.status(200),
+        ctx.json([
+          ctx.json({
+            pagina: 1,
+            escolasPorPagina: 5,
+            totalEscolas: 13,
+            totalPaginas: 3,
+            escolas: [
+              {
+                idEscola: 104,
+                codigoEscola: 300,
+                nomeEscola: "Escola A",
+                idRede: 1,
+                descricaoRede: null,
+                cep: "CEP001",
+                idUf: 1,
+                descricaoUf: "Acre",
+                endereco: "Endereço A",
+                idMunicipio: 2303204,
+                nomeMunicipio: "Caririaçu",
+                idLocalizacao: 1,
+                longitude: "789.012",
+                latitude: "123.456",
+                idEtapasDeEnsino: 1,
+                descricaoEtapasEnsino: null,
+                numeroTotalDeAlunos: 100,
+                idSituacao: 2,
+                descricaoSituacao: "Solicitação da escola",
+                idPorte: 1,
+                telefone: "Telefone A",
+                numeroTotalDeDocentes: 50,
+                siglaUf: "AC",
+              },
+              {
+                idEscola: 105,
+                codigoEscola: 301,
+                nomeEscola: "Escola B",
+                idRede: 1,
+                descricaoRede: null,
+                cep: "CEP002",
+                idUf: 2,
+                descricaoUf: "Alagoas",
+                endereco: "Endereço B",
+                idMunicipio: 2303303,
+                nomeMunicipio: "Cariús",
+                idLocalizacao: 1,
+                longitude: "890.123",
+                latitude: "234.567",
+                idEtapasDeEnsino: 2,
+                descricaoEtapasEnsino: null,
+                numeroTotalDeAlunos: 200,
+                idSituacao: 3,
+                descricaoSituacao: "Jornada de crescimento do professor",
+                idPorte: 1,
+                telefone: "Telefone B",
+                numeroTotalDeDocentes: 60,
+                siglaUf: "AL",
+              },
+              {
+                idEscola: 110,
+                codigoEscola: 301,
+                nomeEscola: "Escola G",
+                idRede: 1,
+                descricaoRede: null,
+                cep: "CEP002",
+                idUf: 2,
+                descricaoUf: "Alagoas",
+                endereco: "Endereço B",
+                idMunicipio: 1400159,
+                nomeMunicipio: "Bonfim",
+                idLocalizacao: 1,
+                longitude: "890.123",
+                latitude: "234.567",
+                idEtapasDeEnsino: 2,
+                descricaoEtapasEnsino: null,
+                numeroTotalDeAlunos: 200,
+                idSituacao: 3,
+                descricaoSituacao: "Jornada de crescimento do professor",
+                idPorte: 1,
+                telefone: "Telefone B",
+                numeroTotalDeDocentes: 60,
+                siglaUf: "AL",
+              },
+            ],
+          })
+        ])
       );
     }
   ),
@@ -212,7 +231,16 @@ const server = setupServer(
   rest.get(
     "https://api.dnit-eps-mds.com/api/dominio/situacao",
     (req, res, ctx) => {
+      const token = localStorage.getItem("token");
+      // Verifica se o usuário está autenticado
+      if (!token) {
+        return res(
+          ctx.status(401),
+          ctx.json({ message: "Usuário não autenticado" })
+        );
+      }
       return res(
+        ctx.status(200),
         ctx.json([
           {
             id: 4,
@@ -237,7 +265,16 @@ const server = setupServer(
   rest.get(
     "https://api.dnit-eps-mds.com/api/dominio/etapasDeEnsino",
     (req, res, ctx) => {
+      const token = localStorage.getItem("token");
+      // Verifica se o usuário está autenticado
+      if (!token) {
+        return res(
+          ctx.status(401),
+          ctx.json({ message: "Usuário não autenticado" })
+        );
+      }
       return res(
+        ctx.status(200),
         ctx.json([
           {
             id: 8,
@@ -296,13 +333,30 @@ const server = setupServer(
   rest.delete(
     "https://api.dnit-eps-mds.com/api/escolas/excluir",
     (req, res, ctx) => {
-      return res(ctx.json({}));
+      const token = localStorage.getItem("token");
+      // Verifica se o usuário está autenticado
+      if (!token) {
+        return res(
+          ctx.status(401),
+          ctx.json({ message: "Usuário não autenticado" })
+        );
+      }
+      return res(ctx.status(200), ctx.json({}));
     }
   ),
   rest.get(
     "https://api.dnit-eps-mds.com/api/dominio/municipio",
     (req, res, ctx) => {
+      const token = localStorage.getItem("token");
+      // Verifica se o usuário está autenticado
+      if (!token) {
+        return res(
+          ctx.status(401),
+          ctx.json({ message: "Usuário não autenticado" })
+        );
+      }
       return res(
+        ctx.status(200),
         ctx.json([
           {
             nome: "Acrelândia",
@@ -395,25 +449,95 @@ const server = setupServer(
   rest.post(
     "https://api.dnit-eps-mds.com/api/escolas/adicionarSituacao",
     (req, res, ctx) => {
+      const token = localStorage.getItem("token");
+      // Verifica se o usuário está autenticado
+      if (!token) {
+        return res(
+          ctx.status(401),
+          ctx.json({ message: "Usuário não autenticado" })
+        );
+      }
       return res(ctx.status(200));
     }
   ),
   rest.post(
     "https://api.dnit-eps-mds.com/api/escolas/removerSituacao",
     (req, res, ctx) => {
+      const token = localStorage.getItem("token");
+      // Verifica se o usuário está autenticado
+      if (!token) {
+        return res(
+          ctx.status(401),
+          ctx.json({ message: "Usuário não autenticado" })
+        );
+      }
       return res(ctx.status(200));
     }
   ),
   rest.post(
     "https://api.dnit-eps-mds.com/api/escolas/cadastrarEscola",
     (req, res, ctx) => {
+      const token = localStorage.getItem("token");
+      // Verifica se o usuário está autenticado
+      if (!token) {
+        return res(
+          ctx.status(401),
+          ctx.json({ message: "Usuário não autenticado" })
+        );
+      }
       return res(ctx.status(200));
     }
   ),
   rest.post(
     "https://api.dnit-eps-mds.com/api/escolas/cadastrarEscolaPlanilha",
     (req, res, ctx) => {
+      const token = localStorage.getItem("token");
+      // Verifica se o usuário está autenticado
+      if (!token) {
+        return res(
+          ctx.status(401),
+          ctx.json({ message: "Usuário não autenticado" })
+        );
+      }
       return res(ctx.json([2, 3]));
+    }
+  ),
+
+  rest.get("https://api.dnit-eps-mds.com/api/escolas/listarInformacoesEscola",
+    (req, res, ctx) => {
+      const token = localStorage.getItem("token");
+      // Verifica se o usuário está autenticado
+      if (!token) {
+        return res(
+          ctx.status(401),
+          ctx.json({ message: "Usuário não autenticado" })
+        );
+      }
+      return res(ctx.json([{
+        idEscola: 104,
+        codigoEscola: 300,
+        nomeEscola: "Escola A",
+        idRede: 1,
+        descricaoRede: null,
+        cep: "CEP001",
+        idUf: 1,
+        descricaoUf: "Acre",
+        endereco: "Endereço A",
+        idMunicipio: 2303204,
+        nomeMunicipio: "Caririaçu",
+        idLocalizacao: 1,
+        longitude: "789.012",
+        latitude: "123.456",
+        idEtapasDeEnsino: 1,
+        descricaoEtapasEnsino: null,
+        numeroTotalDeAlunos: 100,
+        idSituacao: 2,
+        descricaoSituacao: "Solicitação da escola",
+        idPorte: 1,
+        telefone: "Telefone A",
+        numeroTotalDeDocentes: 50,
+        siglaUf: "AC",
+    }]));
     }
   )
 );
