@@ -1,12 +1,12 @@
 import { Button } from "antd";
 //import IconeErro from "../../../assets/icons/iconeErro.svg";
-import "../../../styles/form/step3_erro2.css";
+import "../../../styles/form/step3_erroTamanho.css";
 
 interface Step3_Erro2Props {
   onClickVoltar: () => void;
 }
 
-export default function Step3_erro2({ onClickVoltar }: Step3_Erro2Props) {
+export default function Step3_erroTamanho({ onClickVoltar }: Step3_Erro2Props) {
   return (
     <div className="form3_erro1">
       <div className="secaoTexto">

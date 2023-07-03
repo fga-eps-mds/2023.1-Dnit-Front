@@ -7,7 +7,7 @@ interface Step3Erro1Props {
   onClickVoltar: () => void;
 }
 
-export default function Step3_erro1({ onClickVoltar }: Step3Erro1Props) {
+export default function Step3_listagem({ onClickVoltar }: Step3Erro1Props) {
   const { escolasCadastradas } = useEscolasCadastradas();
   return (
     <div className="form3_erro1">

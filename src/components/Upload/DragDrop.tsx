@@ -51,7 +51,7 @@ const App: React.FC<DragDropProps> = ({
         if (
           response.data &&
           Array.isArray(response.data) &&
-          response.data.length > 0
+          response.data.length > 0 && response.data.length < 6 
         ) {
           // A resposta do back-end é uma lista não nula
           // Faça o que for necessário com a lista
@@ -61,6 +61,7 @@ const App: React.FC<DragDropProps> = ({
           // A resposta do back-end é uma lista nula
           message.success(`Arquivo adicionado com sucesso.`);
           onClickAceito();
+          setEscolasCadastradas(response.data);
         }
       } catch (error: any) {
         error.response && error.response.status == 406 && onClickError();
