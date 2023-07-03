@@ -82,19 +82,20 @@ const ModalExibirInformacoes = ({escola,open,close}:ModalProps) => {
       }
     }
 
-  //   const adicionarObservacaoData = {
-  //     idEscola: adicionarObservacao.idEscola,
-  //     observacao: adicionarObservacao.observacao,
-  //   };
+    const adicionarObservacaoData = {
+      idEscola: escola.idEscola,
+      observacao: escola.observacao,
+    };
 
-  //   try {
-  //     await fetchAdicionarObservacao(adicionarObservacaoData);
-  //     notification.success({ message: `observação adicionada com sucesso!` });
-  //   } catch (error) {
-  //     notification.error({ message: `Erro ao adicionar situação! ` });
-  //     api.error({ message: `Erro ao adicionar situação` });
-  //   }
-  //   close();
+    try {
+      await fetchAdicionarObservacao(escola.idEscola, escola.observacao);
+      notification.success({ message: `observação adicionada com sucesso!` });
+    } catch (error) {
+      notification.error({ message: `Erro ao adicionar observacao! ` });
+      api.error({ message: `Erro ao adicionar observacao` });
+    }
+    close();
+    console.log(escola.observacao);
   };
 
   if (!open) {

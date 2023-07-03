@@ -8,6 +8,7 @@ const ModalBody = (props: any) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { setSelectedValue, selectedValue } = useSelectedValue();
   const[situacoes, setSituacoes]= useState <Situacao[]>();
+  const [observacao, setObservacao] = useState(props.data.observacao);
 
   const chamarSituacao = async() =>{
     const situacoes = await fetchSituacao()
@@ -17,6 +18,10 @@ const ModalBody = (props: any) => {
   const openDropdown = async() => {
     setIsDropdownOpen(!isDropdownOpen);
     await chamarSituacao();
+  };
+
+  const handleObservacaoChange = (event:any) => {
+    setObservacao(event.target.value);
   };
 
   return (
@@ -207,7 +212,12 @@ const ModalBody = (props: any) => {
           <div className="input-icon">
             <i className="fas fa-info-circle" aria-hidden="true"></i>
           </div>
-          <input id="input-default" type="text" placeholder={props.data.observacao} />
+          <input 
+          id="input-default" 
+          type="text" 
+          value={observacao}
+          onChange={handleObservacaoChange}
+          placeholder={props.data.observacao} />
         </div>
       </div>
       </div>
