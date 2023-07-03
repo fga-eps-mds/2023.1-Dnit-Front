@@ -8,7 +8,8 @@ import ModalExcluirEscolas from "../components-escolasCadastradas/ModalExcluirEs
 import "../components-escolasCadastradas/style/ModalExibirInformacoes.css";
 import ModalBody from "./ModalBody";
 import fetchSituacao from "../../service/Situacao";
-import { EscolaData } from "../../models/service";
+import { AdicionarObservacaoData, EscolaData } from "../../models/service";
+import fetchAdicionarObservacao from "../../service/adicionarObservacao";
 
 
 interface ModalProps{
@@ -16,6 +17,7 @@ interface ModalProps{
   open: boolean
   close: () => void
 }
+
 const ModalExibirInformacoes = ({escola,open,close}:ModalProps) => {
   const [isModalExibirInformacoesOpen, setIsModalExibirInformacoesOpen] =
     useState(false);
@@ -50,6 +52,7 @@ const ModalExibirInformacoes = ({escola,open,close}:ModalProps) => {
 
   const onFinish = async (values: any) => {
     const idSituacao = await chamarSituacao();
+
     if (idSituacao === -1) {
       const excluirSituacaoData = {
         idEscola: escola.idEscola,
@@ -62,7 +65,9 @@ const ModalExibirInformacoes = ({escola,open,close}:ModalProps) => {
       } catch (error) {
         notification.error({ message: `Erro ao excluir situação! ` });
       }
-    } else {
+    }
+    
+    else  {
       const salvarSituacaoData = {
         idEscola: escola.idEscola,
         idSituacao: idSituacao,
@@ -71,13 +76,25 @@ const ModalExibirInformacoes = ({escola,open,close}:ModalProps) => {
       try {
         await fetchchangeSituation(salvarSituacaoData);
         notification.success({ message: `Situação alterada com sucesso!` });
-        fetchEscolasFiltradas();
       } catch (error) {
         notification.error({ message: `Erro ao alterar situação! ` });
         api.error({ message: `Erro ao salvar situação` });
       }
     }
-    close();
+
+  //   const adicionarObservacaoData = {
+  //     idEscola: adicionarObservacao.idEscola,
+  //     observacao: adicionarObservacao.observacao,
+  //   };
+
+  //   try {
+  //     await fetchAdicionarObservacao(adicionarObservacaoData);
+  //     notification.success({ message: `observação adicionada com sucesso!` });
+  //   } catch (error) {
+  //     notification.error({ message: `Erro ao adicionar situação! ` });
+  //     api.error({ message: `Erro ao adicionar situação` });
+  //   }
+  //   close();
   };
 
   if (!open) {

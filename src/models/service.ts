@@ -107,7 +107,13 @@ export interface EscolaData {
   descricaoPorte: string;
   telefone: string;
   numeroTotalDeDocentes: number;
+  observacao: string;
 }
 export interface ExcluirSituacaoData {
   idEscola: number;
+}
+
+export interface AdicionarObservacaoData {
+  idEscola: number;
+  observacao: string;
 }

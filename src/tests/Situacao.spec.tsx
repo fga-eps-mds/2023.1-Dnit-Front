@@ -167,6 +167,7 @@ test("Erro de Provider de selectedValue", async () => {
       siglaUf: "AC",
       descricaoLocalizacao: "longe", 
       descricaoPorte:"123",
+      observacao: "observacao teste",
     }
   expect(() => render(<ModalExibirInformacoes  escola={escola} open={true} close={():void => {}} />)).toThrow(
     new Error("useSelectedValue must be used within a SelectedValueProvider")

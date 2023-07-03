@@ -207,7 +207,7 @@ const ModalBody = (props: any) => {
           <div className="input-icon">
             <i className="fas fa-info-circle" aria-hidden="true"></i>
           </div>
-          <input id="input-default" type="text" placeholder="Exemplo" />
+          <input id="input-default" type="text" placeholder={props.data.observacao} />
         </div>
       </div>
       </div>
