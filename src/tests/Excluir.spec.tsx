@@ -9,6 +9,8 @@ afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
 test("Modal de excluir escola exibida corretamente", async () => {
+  const response = await fetch("https://api.aprovaunb.com/api/usuario/login", { method: "POST" });
+  expect(response.status).toEqual(200);
   render(
     <MemoryRouter initialEntries={["/escolas-cadastradas"]}>
       <App />
@@ -31,6 +33,8 @@ test("Modal de excluir escola exibida corretamente", async () => {
 });
 
 test("Modal de excluir escola exibida erro", async () => {
+  const response = await fetch("https://api.aprovaunb.com/api/usuario/login", { method: "POST" });
+  expect(response.status).toEqual(200);
   server.use(
     rest.delete(
       "https://api.dnit-eps-mds.com/api/escolas/excluir",

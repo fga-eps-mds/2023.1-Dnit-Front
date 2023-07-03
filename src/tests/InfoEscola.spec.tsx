@@ -8,20 +8,22 @@ afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
 test("Exibir escola selecionada", async () => {
-    render(
-      <MemoryRouter initialEntries={["/escolas-cadastradas"]}>
-        <App />
-      </MemoryRouter>
-    );
-  
-    await waitFor(() => {
-      const escolas = screen.getAllByTestId("linha-escola");
-      expect(escolas).toHaveLength(3);
-    });
-  
-    const abrirEscolaSelecionada = screen.getByText("Escola A");
-    fireEvent.click(abrirEscolaSelecionada);
-  
-    const fecharEscolaSelecionada = screen.getByText("Cancelar");
-    fireEvent.click(fecharEscolaSelecionada);
+  const response = await fetch("https://api.aprovaunb.com/api/usuario/login", { method: "POST" });
+  expect(response.status).toEqual(200);
+  render(
+    <MemoryRouter initialEntries={["/escolas-cadastradas"]}>
+      <App />
+    </MemoryRouter>
+  );
+
+  await waitFor(() => {
+    const escolas = screen.getAllByTestId("linha-escola");
+    expect(escolas).toHaveLength(3);
   });
+
+  const abrirEscolaSelecionada = screen.getByText("Escola A");
+  fireEvent.click(abrirEscolaSelecionada);
+
+  const fecharEscolaSelecionada = screen.getByText("Cancelar");
+  fireEvent.click(fecharEscolaSelecionada);
+});

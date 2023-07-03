@@ -21,6 +21,9 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
 });
 
 test("Lista de escolas é exibida corretamente", async () => {
+  const response = await fetch("https://api.aprovaunb.com/api/usuario/login", { method: "POST" });
+  expect(response.status).toEqual(200);
+
   render(
     <MemoryRouter initialEntries={["/escolas-cadastradas"]}>
       <App />
@@ -34,6 +37,8 @@ test("Lista de escolas é exibida corretamente", async () => {
 });
 
 test("Clicar em Cadastrar escola", async () => {
+  const response = await fetch("https://api.aprovaunb.com/api/usuario/login", { method: "POST" });
+  expect(response.status).toEqual(200);
   render(
     <MemoryRouter initialEntries={["/escolas-cadastradas"]}>
       <App />
@@ -45,6 +50,8 @@ test("Clicar em Cadastrar escola", async () => {
 });
 
 test("Mudar quantidade de escolas por página", async () => {
+  const response = await fetch("https://api.aprovaunb.com/api/usuario/login", { method: "POST" });
+  expect(response.status).toEqual(200);
   render(
     <MemoryRouter initialEntries={["/escolas-cadastradas"]}>
       <App />
@@ -70,6 +77,8 @@ test("Mudar quantidade de escolas por página", async () => {
 });
 
 test("Exibir escola selecionada", async () => {
+  const response = await fetch("https://api.aprovaunb.com/api/usuario/login", { method: "POST" });
+  expect(response.status).toEqual(200);
   render(
     <MemoryRouter initialEntries={["/escolas-cadastradas"]}>
       <App />
@@ -89,6 +98,8 @@ test("Exibir escola selecionada", async () => {
 });
 
 test("Filtragem de escolas", async () => {
+  const response = await fetch("https://api.aprovaunb.com/api/usuario/login", { method: "POST" });
+  expect(response.status).toEqual(200);
   render(
     <MemoryRouter initialEntries={["/escolas-cadastradas"]}>
       <App />
