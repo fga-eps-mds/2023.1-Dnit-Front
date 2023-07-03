@@ -1,47 +1,3573 @@
 <testExecutions version="1">
 <file path="src\tests\Reset.spec.tsx">
-<testCase name=" should render Reset password" duration="548" />
-<testCase name=" should render Reset password" duration="274" />
+<testCase name=" should render Reset password" duration="1741" />
+<testCase name=" should render Reset password" duration="1105" />
 </file>
 <file path="src\tests\InfoEscola.spec.tsx">
-<testCase name="Exibir escola selecionada" duration="681" />
+<testCase name="Exibir escola selecionada" duration="1956">
+<failure message="Error"><![CDATA[Error: Unable to find an element by: [data-testid=&quot;linha-escola&quot;]
+
+Ignored nodes: comments, script, style
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;div
+      class=&quot;App&quot;
+    &gt;
+      &lt;header
+        class=&quot;br-header&quot;
+      &gt;
+        &lt;div
+          class=&quot;container-lg&quot;
+        &gt;
+          &lt;div
+            class=&quot;header-top&quot;
+          &gt;
+            &lt;div
+              class=&quot;header-logo&quot;
+            &gt;
+              &lt;img
+                alt=&quot;logo&quot;
+                src=&quot;test-file-stub&quot;
+              /&gt;
+              &lt;div
+                class=&quot;header-sign&quot;
+              &gt;
+                DNIT
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div
+              class=&quot;HeaderContrast&quot;
+            &gt;
+              &lt;img
+                alt=&quot;Button contrast&quot;
+                class=&quot;buttonContrast&quot;
+                src=&quot;test-file-stub&quot;
+              /&gt;
+              &lt;div
+                class=&quot;text-alto-contraste&quot;
+              &gt;
+                Alto contraste
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div
+            class=&quot;header-bottom&quot;
+          &gt;
+            &lt;div
+              class=&quot;header-menu&quot;
+            &gt;
+              &lt;div
+                class=&quot;header-menu-trigger&quot;
+              &gt;
+                &lt;button
+                  aria-label=&quot;Menu&quot;
+                  class=&quot;br-button small circle&quot;
+                  data-target=&quot;#main-navigation&quot;
+                  data-toggle=&quot;menu&quot;
+                  id=&quot;navigation&quot;
+                  type=&quot;button&quot;
+                &gt;
+                  &lt;i
+                    aria-hidden=&quot;true&quot;
+                    class=&quot;fas fa-bars&quot;
+                  /&gt;
+                &lt;/button&gt;
+              &lt;/div&gt;
+              &lt;div
+                class=&quot;header-info&quot;
+              &gt;
+                &lt;div
+                  class=&quot;header-title&quot;
+                &gt;
+                  Nome Projeto Dnit
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/header&gt;
+      &lt;div
+        class=&quot;br-breadcrumb&quot;
+      &gt;
+        &lt;ul
+          class=&quot;crumb-list&quot;
+        &gt;
+          &lt;li
+            class=&quot;crumb home&quot;
+          &gt;
+            &lt;a
+              class=&quot;br-button circle&quot;
+              href=&quot;/escolas-cadastradas&quot;
+            &gt;
+              &lt;span
+                class=&quot;sr-only&quot;
+              &gt;
+                P&#xe1;gina inicial
+              &lt;/span&gt;
+              &lt;i
+                class=&quot;fas fa-home&quot;
+              /&gt;
+            &lt;/a&gt;
+          &lt;/li&gt;
+          &lt;li
+            class=&quot;crumb&quot;
+          &gt;
+            &lt;i
+              class=&quot;icon fas fa-chevron-right&quot;
+            /&gt;
+            &lt;a
+              href=&quot;/escolas-cadastradas&quot;
+            &gt;
+              Escolas Cadastradas
+            &lt;/a&gt;
+          &lt;/li&gt;
+          &lt;li
+            class=&quot;crumb&quot;
+          &gt;
+            &lt;i
+              class=&quot;icon fas fa-chevron-right&quot;
+            /&gt;
+            &lt;a
+              href=&quot;/login&quot;
+            &gt;
+              Logout
+            &lt;/a&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;button
+          class=&quot;ant-btn css-dev-only-do-not-override-12jzuas ant-btn-default button1&quot;
+          type=&quot;button&quot;
+        &gt;
+          &lt;span&gt;
+            Cadastrar escolas
+          &lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div
+        class=&quot;container inputs&quot;
+      &gt;
+        &lt;div
+          class=&quot;br-input medium input-button&quot;
+        &gt;
+          &lt;label
+            for=&quot;input-search-medium&quot;
+          &gt;
+            Nome
+          &lt;/label&gt;
+          &lt;input
+            id=&quot;input-search-medium&quot;
+            placeholder=&quot;Digite o nome da Escola&quot;
+            type=&quot;search&quot;
+            value=&quot;&quot;
+          /&gt;
+          &lt;button
+            aria-label=&quot;Buscar&quot;
+            class=&quot;br-button&quot;
+            data-testid=&quot;buscar-nome&quot;
+            type=&quot;button&quot;
+          &gt;
+            &lt;i
+              aria-hidden=&quot;true&quot;
+              class=&quot;fas fa-search&quot;
+            /&gt;
+          &lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;br-select&quot;
+        &gt;
+          &lt;div
+            class=&quot;br-input&quot;
+          &gt;
+            &lt;label
+              for=&quot;select-multtiple&quot;
+            &gt;
+              UF
+            &lt;/label&gt;
+            &lt;input
+              id=&quot;select-multtiple&quot;
+              placeholder=&quot;Todas&quot;
+              type=&quot;text&quot;
+              value=&quot;&quot;
+            /&gt;
+            &lt;button
+              aria-label=&quot;Exibir lista&quot;
+              class=&quot;br-button&quot;
+              data-testid=&quot;buscar-uf&quot;
+              data-trigger=&quot;data-trigger&quot;
+              tabindex=&quot;-1&quot;
+              type=&quot;button&quot;
+            &gt;
+              &lt;i
+                aria-hidden=&quot;true&quot;
+  ...
+    at waitForWrapper (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\@testing-library\react\node_modules\@testing-library\dom\dist\wait-for.js:166:27)
+    at _callee&#x24; (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\InfoEscola.spec.tsx:17:18)
+    at call (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\InfoEscola.spec.tsx:2:1)
+    at Generator.tryCatch (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\InfoEscola.spec.tsx:2:1)
+    at Generator._invoke [as next] (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\InfoEscola.spec.tsx:2:1)
+    at asyncGeneratorStep (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\InfoEscola.spec.tsx:2:1)
+    at asyncGeneratorStep (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\InfoEscola.spec.tsx:2:1)
+    at _next (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\InfoEscola.spec.tsx:2:1)
+    at new Promise (&lt;anonymous&gt;)
+    at Object.&lt;anonymous&gt; (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\InfoEscola.spec.tsx:2:1)
+    at Promise.then.completed (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\utils.js:293:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\utils.js:226:10)
+    at _callCircusTest (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\run.js:297:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTest (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\run.js:233:3)
+    at _runTestsForDescribeBlock (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\run.js:135:9)
+    at run (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\run.js:68:3)
+    at runAndTransformResultsToJestFormat (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-runner\build\testWorker.js:106:12)]]></failure>
+</testCase>
 </file>
 <file path="src\tests\Excluir.spec.tsx">
-<testCase name="Modal de excluir escola exibida corretamente" duration="785" />
-<testCase name="Modal de excluir escola exibida erro" duration="339" />
-</file>
-<file path="src\tests\tabelaEscola.spec.tsx">
-<testCase name="Lista de escolas &#xe9; exibida corretamente" duration="537" />
-<testCase name="Clicar em Cadastrar escola" duration="358" />
-<testCase name="Mudar quantidade de escolas por p&#xe1;gina" duration="244" />
-<testCase name="Exibir escola selecionada" duration="315" />
-<testCase name="Filtragem de escolas" duration="570" />
+<testCase name="Modal de excluir escola exibida corretamente" duration="2093">
+<failure message="Error"><![CDATA[Error: Unable to find an element by: [data-testid=&quot;linha-escola&quot;]
+
+Ignored nodes: comments, script, style
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;div
+      class=&quot;App&quot;
+    &gt;
+      &lt;header
+        class=&quot;br-header&quot;
+      &gt;
+        &lt;div
+          class=&quot;container-lg&quot;
+        &gt;
+          &lt;div
+            class=&quot;header-top&quot;
+          &gt;
+            &lt;div
+              class=&quot;header-logo&quot;
+            &gt;
+              &lt;img
+                alt=&quot;logo&quot;
+                src=&quot;test-file-stub&quot;
+              /&gt;
+              &lt;div
+                class=&quot;header-sign&quot;
+              &gt;
+                DNIT
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div
+              class=&quot;HeaderContrast&quot;
+            &gt;
+              &lt;img
+                alt=&quot;Button contrast&quot;
+                class=&quot;buttonContrast&quot;
+                src=&quot;test-file-stub&quot;
+              /&gt;
+              &lt;div
+                class=&quot;text-alto-contraste&quot;
+              &gt;
+                Alto contraste
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div
+            class=&quot;header-bottom&quot;
+          &gt;
+            &lt;div
+              class=&quot;header-menu&quot;
+            &gt;
+              &lt;div
+                class=&quot;header-menu-trigger&quot;
+              &gt;
+                &lt;button
+                  aria-label=&quot;Menu&quot;
+                  class=&quot;br-button small circle&quot;
+                  data-target=&quot;#main-navigation&quot;
+                  data-toggle=&quot;menu&quot;
+                  id=&quot;navigation&quot;
+                  type=&quot;button&quot;
+                &gt;
+                  &lt;i
+                    aria-hidden=&quot;true&quot;
+                    class=&quot;fas fa-bars&quot;
+                  /&gt;
+                &lt;/button&gt;
+              &lt;/div&gt;
+              &lt;div
+                class=&quot;header-info&quot;
+              &gt;
+                &lt;div
+                  class=&quot;header-title&quot;
+                &gt;
+                  Nome Projeto Dnit
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/header&gt;
+      &lt;div
+        class=&quot;br-breadcrumb&quot;
+      &gt;
+        &lt;ul
+          class=&quot;crumb-list&quot;
+        &gt;
+          &lt;li
+            class=&quot;crumb home&quot;
+          &gt;
+            &lt;a
+              class=&quot;br-button circle&quot;
+              href=&quot;/escolas-cadastradas&quot;
+            &gt;
+              &lt;span
+                class=&quot;sr-only&quot;
+              &gt;
+                P&#xe1;gina inicial
+              &lt;/span&gt;
+              &lt;i
+                class=&quot;fas fa-home&quot;
+              /&gt;
+            &lt;/a&gt;
+          &lt;/li&gt;
+          &lt;li
+            class=&quot;crumb&quot;
+          &gt;
+            &lt;i
+              class=&quot;icon fas fa-chevron-right&quot;
+            /&gt;
+            &lt;a
+              href=&quot;/escolas-cadastradas&quot;
+            &gt;
+              Escolas Cadastradas
+            &lt;/a&gt;
+          &lt;/li&gt;
+          &lt;li
+            class=&quot;crumb&quot;
+          &gt;
+            &lt;i
+              class=&quot;icon fas fa-chevron-right&quot;
+            /&gt;
+            &lt;a
+              href=&quot;/login&quot;
+            &gt;
+              Logout
+            &lt;/a&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;button
+          class=&quot;ant-btn css-dev-only-do-not-override-12jzuas ant-btn-default button1&quot;
+          type=&quot;button&quot;
+        &gt;
+          &lt;span&gt;
+            Cadastrar escolas
+          &lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div
+        class=&quot;container inputs&quot;
+      &gt;
+        &lt;div
+          class=&quot;br-input medium input-button&quot;
+        &gt;
+          &lt;label
+            for=&quot;input-search-medium&quot;
+          &gt;
+            Nome
+          &lt;/label&gt;
+          &lt;input
+            id=&quot;input-search-medium&quot;
+            placeholder=&quot;Digite o nome da Escola&quot;
+            type=&quot;search&quot;
+            value=&quot;&quot;
+          /&gt;
+          &lt;button
+            aria-label=&quot;Buscar&quot;
+            class=&quot;br-button&quot;
+            data-testid=&quot;buscar-nome&quot;
+            type=&quot;button&quot;
+          &gt;
+            &lt;i
+              aria-hidden=&quot;true&quot;
+              class=&quot;fas fa-search&quot;
+            /&gt;
+          &lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;br-select&quot;
+        &gt;
+          &lt;div
+            class=&quot;br-input&quot;
+          &gt;
+            &lt;label
+              for=&quot;select-multtiple&quot;
+            &gt;
+              UF
+            &lt;/label&gt;
+            &lt;input
+              id=&quot;select-multtiple&quot;
+              placeholder=&quot;Todas&quot;
+              type=&quot;text&quot;
+              value=&quot;&quot;
+            /&gt;
+            &lt;button
+              aria-label=&quot;Exibir lista&quot;
+              class=&quot;br-button&quot;
+              data-testid=&quot;buscar-uf&quot;
+              data-trigger=&quot;data-trigger&quot;
+              tabindex=&quot;-1&quot;
+              type=&quot;button&quot;
+            &gt;
+              &lt;i
+                aria-hidden=&quot;true&quot;
+  ...
+    at waitForWrapper (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\@testing-library\react\node_modules\@testing-library\dom\dist\wait-for.js:166:27)
+    at _callee&#x24; (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Excluir.spec.tsx:18:16)
+    at call (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Excluir.spec.tsx:2:1)
+    at Generator.tryCatch (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Excluir.spec.tsx:2:1)
+    at Generator._invoke [as next] (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Excluir.spec.tsx:2:1)
+    at asyncGeneratorStep (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Excluir.spec.tsx:2:1)
+    at asyncGeneratorStep (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Excluir.spec.tsx:2:1)
+    at _next (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Excluir.spec.tsx:2:1)
+    at new Promise (&lt;anonymous&gt;)
+    at Object.&lt;anonymous&gt; (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Excluir.spec.tsx:2:1)
+    at Promise.then.completed (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\utils.js:293:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\utils.js:226:10)
+    at _callCircusTest (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\run.js:297:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTest (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\run.js:233:3)
+    at _runTestsForDescribeBlock (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\run.js:135:9)
+    at run (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\run.js:68:3)
+    at runAndTransformResultsToJestFormat (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-runner\build\testWorker.js:106:12)]]></failure>
+</testCase>
+<testCase name="Modal de excluir escola exibida erro" duration="1312">
+<failure message="Error"><![CDATA[Error: Unable to find an element by: [data-testid=&quot;linha-escola&quot;]
+
+Ignored nodes: comments, script, style
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;div
+      class=&quot;App&quot;
+    &gt;
+      &lt;header
+        class=&quot;br-header&quot;
+      &gt;
+        &lt;div
+          class=&quot;container-lg&quot;
+        &gt;
+          &lt;div
+            class=&quot;header-top&quot;
+          &gt;
+            &lt;div
+              class=&quot;header-logo&quot;
+            &gt;
+              &lt;img
+                alt=&quot;logo&quot;
+                src=&quot;test-file-stub&quot;
+              /&gt;
+              &lt;div
+                class=&quot;header-sign&quot;
+              &gt;
+                DNIT
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div
+              class=&quot;HeaderContrast&quot;
+            &gt;
+              &lt;img
+                alt=&quot;Button contrast&quot;
+                class=&quot;buttonContrast&quot;
+                src=&quot;test-file-stub&quot;
+              /&gt;
+              &lt;div
+                class=&quot;text-alto-contraste&quot;
+              &gt;
+                Alto contraste
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div
+            class=&quot;header-bottom&quot;
+          &gt;
+            &lt;div
+              class=&quot;header-menu&quot;
+            &gt;
+              &lt;div
+                class=&quot;header-menu-trigger&quot;
+              &gt;
+                &lt;button
+                  aria-label=&quot;Menu&quot;
+                  class=&quot;br-button small circle&quot;
+                  data-target=&quot;#main-navigation&quot;
+                  data-toggle=&quot;menu&quot;
+                  id=&quot;navigation&quot;
+                  type=&quot;button&quot;
+                &gt;
+                  &lt;i
+                    aria-hidden=&quot;true&quot;
+                    class=&quot;fas fa-bars&quot;
+                  /&gt;
+                &lt;/button&gt;
+              &lt;/div&gt;
+              &lt;div
+                class=&quot;header-info&quot;
+              &gt;
+                &lt;div
+                  class=&quot;header-title&quot;
+                &gt;
+                  Nome Projeto Dnit
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/header&gt;
+      &lt;div
+        class=&quot;br-breadcrumb&quot;
+      &gt;
+        &lt;ul
+          class=&quot;crumb-list&quot;
+        &gt;
+          &lt;li
+            class=&quot;crumb home&quot;
+          &gt;
+            &lt;a
+              class=&quot;br-button circle&quot;
+              href=&quot;/escolas-cadastradas&quot;
+            &gt;
+              &lt;span
+                class=&quot;sr-only&quot;
+              &gt;
+                P&#xe1;gina inicial
+              &lt;/span&gt;
+              &lt;i
+                class=&quot;fas fa-home&quot;
+              /&gt;
+            &lt;/a&gt;
+          &lt;/li&gt;
+          &lt;li
+            class=&quot;crumb&quot;
+          &gt;
+            &lt;i
+              class=&quot;icon fas fa-chevron-right&quot;
+            /&gt;
+            &lt;a
+              href=&quot;/escolas-cadastradas&quot;
+            &gt;
+              Escolas Cadastradas
+            &lt;/a&gt;
+          &lt;/li&gt;
+          &lt;li
+            class=&quot;crumb&quot;
+          &gt;
+            &lt;i
+              class=&quot;icon fas fa-chevron-right&quot;
+            /&gt;
+            &lt;a
+              href=&quot;/login&quot;
+            &gt;
+              Logout
+            &lt;/a&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;button
+          class=&quot;ant-btn css-dev-only-do-not-override-12jzuas ant-btn-default button1&quot;
+          type=&quot;button&quot;
+        &gt;
+          &lt;span&gt;
+            Cadastrar escolas
+          &lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div
+        class=&quot;container inputs&quot;
+      &gt;
+        &lt;div
+          class=&quot;br-input medium input-button&quot;
+        &gt;
+          &lt;label
+            for=&quot;input-search-medium&quot;
+          &gt;
+            Nome
+          &lt;/label&gt;
+          &lt;input
+            id=&quot;input-search-medium&quot;
+            placeholder=&quot;Digite o nome da Escola&quot;
+            type=&quot;search&quot;
+            value=&quot;&quot;
+          /&gt;
+          &lt;button
+            aria-label=&quot;Buscar&quot;
+            class=&quot;br-button&quot;
+            data-testid=&quot;buscar-nome&quot;
+            type=&quot;button&quot;
+          &gt;
+            &lt;i
+              aria-hidden=&quot;true&quot;
+              class=&quot;fas fa-search&quot;
+            /&gt;
+          &lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;br-select&quot;
+        &gt;
+          &lt;div
+            class=&quot;br-input&quot;
+          &gt;
+            &lt;label
+              for=&quot;select-multtiple&quot;
+            &gt;
+              UF
+            &lt;/label&gt;
+            &lt;input
+              id=&quot;select-multtiple&quot;
+              placeholder=&quot;Todas&quot;
+              type=&quot;text&quot;
+              value=&quot;&quot;
+            /&gt;
+            &lt;button
+              aria-label=&quot;Exibir lista&quot;
+              class=&quot;br-button&quot;
+              data-testid=&quot;buscar-uf&quot;
+              data-trigger=&quot;data-trigger&quot;
+              tabindex=&quot;-1&quot;
+              type=&quot;button&quot;
+            &gt;
+              &lt;i
+                aria-hidden=&quot;true&quot;
+  ...
+    at waitForWrapper (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\@testing-library\react\node_modules\@testing-library\dom\dist\wait-for.js:166:27)
+    at _callee2&#x24; (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Excluir.spec.tsx:52:16)
+    at call (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Excluir.spec.tsx:2:1)
+    at Generator.tryCatch (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Excluir.spec.tsx:2:1)
+    at Generator._invoke [as next] (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Excluir.spec.tsx:2:1)
+    at asyncGeneratorStep (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Excluir.spec.tsx:2:1)
+    at asyncGeneratorStep (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Excluir.spec.tsx:2:1)
+    at _next (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Excluir.spec.tsx:2:1)
+    at new Promise (&lt;anonymous&gt;)
+    at Object.&lt;anonymous&gt; (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Excluir.spec.tsx:2:1)
+    at Promise.then.completed (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\utils.js:293:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\utils.js:226:10)
+    at _callCircusTest (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\run.js:297:40)
+    at _runTest (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\run.js:233:3)
+    at _runTestsForDescribeBlock (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\run.js:135:9)
+    at run (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\run.js:68:3)
+    at runAndTransformResultsToJestFormat (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-runner\build\testWorker.js:106:12)]]></failure>
+</testCase>
 </file>
 <file path="src\tests\Situacao.spec.tsx">
-<testCase name="Alterar situa&#xe7;&#xe3;o escola" duration="820" />
-<testCase name="Alterar situa&#xe7;&#xe3;o escola erro" duration="414" />
-<testCase name="Remover situa&#xe7;&#xe3;o escola" duration="370" />
-<testCase name="Remover situa&#xe7;&#xe3;o escola erro" duration="280" />
-<testCase name="Erro de Provider de selectedValue" duration="71" />
+<testCase name="Alterar situa&#xe7;&#xe3;o escola" duration="2074">
+<failure message="Error"><![CDATA[Error: Unable to find an element by: [data-testid=&quot;linha-escola&quot;]
+
+Ignored nodes: comments, script, style
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;div
+      class=&quot;App&quot;
+    &gt;
+      &lt;header
+        class=&quot;br-header&quot;
+      &gt;
+        &lt;div
+          class=&quot;container-lg&quot;
+        &gt;
+          &lt;div
+            class=&quot;header-top&quot;
+          &gt;
+            &lt;div
+              class=&quot;header-logo&quot;
+            &gt;
+              &lt;img
+                alt=&quot;logo&quot;
+                src=&quot;test-file-stub&quot;
+              /&gt;
+              &lt;div
+                class=&quot;header-sign&quot;
+              &gt;
+                DNIT
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div
+              class=&quot;HeaderContrast&quot;
+            &gt;
+              &lt;img
+                alt=&quot;Button contrast&quot;
+                class=&quot;buttonContrast&quot;
+                src=&quot;test-file-stub&quot;
+              /&gt;
+              &lt;div
+                class=&quot;text-alto-contraste&quot;
+              &gt;
+                Alto contraste
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div
+            class=&quot;header-bottom&quot;
+          &gt;
+            &lt;div
+              class=&quot;header-menu&quot;
+            &gt;
+              &lt;div
+                class=&quot;header-menu-trigger&quot;
+              &gt;
+                &lt;button
+                  aria-label=&quot;Menu&quot;
+                  class=&quot;br-button small circle&quot;
+                  data-target=&quot;#main-navigation&quot;
+                  data-toggle=&quot;menu&quot;
+                  id=&quot;navigation&quot;
+                  type=&quot;button&quot;
+                &gt;
+                  &lt;i
+                    aria-hidden=&quot;true&quot;
+                    class=&quot;fas fa-bars&quot;
+                  /&gt;
+                &lt;/button&gt;
+              &lt;/div&gt;
+              &lt;div
+                class=&quot;header-info&quot;
+              &gt;
+                &lt;div
+                  class=&quot;header-title&quot;
+                &gt;
+                  Nome Projeto Dnit
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/header&gt;
+      &lt;div
+        class=&quot;br-breadcrumb&quot;
+      &gt;
+        &lt;ul
+          class=&quot;crumb-list&quot;
+        &gt;
+          &lt;li
+            class=&quot;crumb home&quot;
+          &gt;
+            &lt;a
+              class=&quot;br-button circle&quot;
+              href=&quot;/escolas-cadastradas&quot;
+            &gt;
+              &lt;span
+                class=&quot;sr-only&quot;
+              &gt;
+                P&#xe1;gina inicial
+              &lt;/span&gt;
+              &lt;i
+                class=&quot;fas fa-home&quot;
+              /&gt;
+            &lt;/a&gt;
+          &lt;/li&gt;
+          &lt;li
+            class=&quot;crumb&quot;
+          &gt;
+            &lt;i
+              class=&quot;icon fas fa-chevron-right&quot;
+            /&gt;
+            &lt;a
+              href=&quot;/escolas-cadastradas&quot;
+            &gt;
+              Escolas Cadastradas
+            &lt;/a&gt;
+          &lt;/li&gt;
+          &lt;li
+            class=&quot;crumb&quot;
+          &gt;
+            &lt;i
+              class=&quot;icon fas fa-chevron-right&quot;
+            /&gt;
+            &lt;a
+              href=&quot;/login&quot;
+            &gt;
+              Logout
+            &lt;/a&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;button
+          class=&quot;ant-btn css-dev-only-do-not-override-12jzuas ant-btn-default button1&quot;
+          type=&quot;button&quot;
+        &gt;
+          &lt;span&gt;
+            Cadastrar escolas
+          &lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div
+        class=&quot;container inputs&quot;
+      &gt;
+        &lt;div
+          class=&quot;br-input medium input-button&quot;
+        &gt;
+          &lt;label
+            for=&quot;input-search-medium&quot;
+          &gt;
+            Nome
+          &lt;/label&gt;
+          &lt;input
+            id=&quot;input-search-medium&quot;
+            placeholder=&quot;Digite o nome da Escola&quot;
+            type=&quot;search&quot;
+            value=&quot;&quot;
+          /&gt;
+          &lt;button
+            aria-label=&quot;Buscar&quot;
+            class=&quot;br-button&quot;
+            data-testid=&quot;buscar-nome&quot;
+            type=&quot;button&quot;
+          &gt;
+            &lt;i
+              aria-hidden=&quot;true&quot;
+              class=&quot;fas fa-search&quot;
+            /&gt;
+          &lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;br-select&quot;
+        &gt;
+          &lt;div
+            class=&quot;br-input&quot;
+          &gt;
+            &lt;label
+              for=&quot;select-multtiple&quot;
+            &gt;
+              UF
+            &lt;/label&gt;
+            &lt;input
+              id=&quot;select-multtiple&quot;
+              placeholder=&quot;Todas&quot;
+              type=&quot;text&quot;
+              value=&quot;&quot;
+            /&gt;
+            &lt;button
+              aria-label=&quot;Exibir lista&quot;
+              class=&quot;br-button&quot;
+              data-testid=&quot;buscar-uf&quot;
+              data-trigger=&quot;data-trigger&quot;
+              tabindex=&quot;-1&quot;
+              type=&quot;button&quot;
+            &gt;
+              &lt;i
+                aria-hidden=&quot;true&quot;
+  ...
+    at waitForWrapper (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\@testing-library\react\node_modules\@testing-library\dom\dist\wait-for.js:166:27)
+    at _callee2&#x24; (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:25:16)
+    at call (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at Generator.tryCatch (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at Generator._invoke [as next] (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at asyncGeneratorStep (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at asyncGeneratorStep (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at _next (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at new Promise (&lt;anonymous&gt;)
+    at Object.&lt;anonymous&gt; (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at Promise.then.completed (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\utils.js:293:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\utils.js:226:10)
+    at _callCircusTest (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\run.js:297:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTest (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\run.js:233:3)
+    at _runTestsForDescribeBlock (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\run.js:135:9)
+    at run (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\run.js:68:3)
+    at runAndTransformResultsToJestFormat (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-runner\build\testWorker.js:106:12)]]></failure>
+</testCase>
+<testCase name="Alterar situa&#xe7;&#xe3;o escola erro" duration="1549">
+<failure message="Error"><![CDATA[Error: Unable to find an element by: [data-testid=&quot;linha-escola&quot;]
+
+Ignored nodes: comments, script, style
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;div
+      class=&quot;App&quot;
+    &gt;
+      &lt;header
+        class=&quot;br-header&quot;
+      &gt;
+        &lt;div
+          class=&quot;container-lg&quot;
+        &gt;
+          &lt;div
+            class=&quot;header-top&quot;
+          &gt;
+            &lt;div
+              class=&quot;header-logo&quot;
+            &gt;
+              &lt;img
+                alt=&quot;logo&quot;
+                src=&quot;test-file-stub&quot;
+              /&gt;
+              &lt;div
+                class=&quot;header-sign&quot;
+              &gt;
+                DNIT
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div
+              class=&quot;HeaderContrast&quot;
+            &gt;
+              &lt;img
+                alt=&quot;Button contrast&quot;
+                class=&quot;buttonContrast&quot;
+                src=&quot;test-file-stub&quot;
+              /&gt;
+              &lt;div
+                class=&quot;text-alto-contraste&quot;
+              &gt;
+                Alto contraste
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div
+            class=&quot;header-bottom&quot;
+          &gt;
+            &lt;div
+              class=&quot;header-menu&quot;
+            &gt;
+              &lt;div
+                class=&quot;header-menu-trigger&quot;
+              &gt;
+                &lt;button
+                  aria-label=&quot;Menu&quot;
+                  class=&quot;br-button small circle&quot;
+                  data-target=&quot;#main-navigation&quot;
+                  data-toggle=&quot;menu&quot;
+                  id=&quot;navigation&quot;
+                  type=&quot;button&quot;
+                &gt;
+                  &lt;i
+                    aria-hidden=&quot;true&quot;
+                    class=&quot;fas fa-bars&quot;
+                  /&gt;
+                &lt;/button&gt;
+              &lt;/div&gt;
+              &lt;div
+                class=&quot;header-info&quot;
+              &gt;
+                &lt;div
+                  class=&quot;header-title&quot;
+                &gt;
+                  Nome Projeto Dnit
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/header&gt;
+      &lt;div
+        class=&quot;br-breadcrumb&quot;
+      &gt;
+        &lt;ul
+          class=&quot;crumb-list&quot;
+        &gt;
+          &lt;li
+            class=&quot;crumb home&quot;
+          &gt;
+            &lt;a
+              class=&quot;br-button circle&quot;
+              href=&quot;/escolas-cadastradas&quot;
+            &gt;
+              &lt;span
+                class=&quot;sr-only&quot;
+              &gt;
+                P&#xe1;gina inicial
+              &lt;/span&gt;
+              &lt;i
+                class=&quot;fas fa-home&quot;
+              /&gt;
+            &lt;/a&gt;
+          &lt;/li&gt;
+          &lt;li
+            class=&quot;crumb&quot;
+          &gt;
+            &lt;i
+              class=&quot;icon fas fa-chevron-right&quot;
+            /&gt;
+            &lt;a
+              href=&quot;/escolas-cadastradas&quot;
+            &gt;
+              Escolas Cadastradas
+            &lt;/a&gt;
+          &lt;/li&gt;
+          &lt;li
+            class=&quot;crumb&quot;
+          &gt;
+            &lt;i
+              class=&quot;icon fas fa-chevron-right&quot;
+            /&gt;
+            &lt;a
+              href=&quot;/login&quot;
+            &gt;
+              Logout
+            &lt;/a&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;button
+          class=&quot;ant-btn css-dev-only-do-not-override-12jzuas ant-btn-default button1&quot;
+          type=&quot;button&quot;
+        &gt;
+          &lt;span&gt;
+            Cadastrar escolas
+          &lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div
+        class=&quot;container inputs&quot;
+      &gt;
+        &lt;div
+          class=&quot;br-input medium input-button&quot;
+        &gt;
+          &lt;label
+            for=&quot;input-search-medium&quot;
+          &gt;
+            Nome
+          &lt;/label&gt;
+          &lt;input
+            id=&quot;input-search-medium&quot;
+            placeholder=&quot;Digite o nome da Escola&quot;
+            type=&quot;search&quot;
+            value=&quot;&quot;
+          /&gt;
+          &lt;button
+            aria-label=&quot;Buscar&quot;
+            class=&quot;br-button&quot;
+            data-testid=&quot;buscar-nome&quot;
+            type=&quot;button&quot;
+          &gt;
+            &lt;i
+              aria-hidden=&quot;true&quot;
+              class=&quot;fas fa-search&quot;
+            /&gt;
+          &lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;br-select&quot;
+        &gt;
+          &lt;div
+            class=&quot;br-input&quot;
+          &gt;
+            &lt;label
+              for=&quot;select-multtiple&quot;
+            &gt;
+              UF
+            &lt;/label&gt;
+            &lt;input
+              id=&quot;select-multtiple&quot;
+              placeholder=&quot;Todas&quot;
+              type=&quot;text&quot;
+              value=&quot;&quot;
+            /&gt;
+            &lt;button
+              aria-label=&quot;Exibir lista&quot;
+              class=&quot;br-button&quot;
+              data-testid=&quot;buscar-uf&quot;
+              data-trigger=&quot;data-trigger&quot;
+              tabindex=&quot;-1&quot;
+              type=&quot;button&quot;
+            &gt;
+              &lt;i
+                aria-hidden=&quot;true&quot;
+  ...
+    at waitForWrapper (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\@testing-library\react\node_modules\@testing-library\dom\dist\wait-for.js:166:27)
+    at _callee4&#x24; (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:60:16)
+    at call (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at Generator.tryCatch (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at Generator._invoke [as next] (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at asyncGeneratorStep (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at asyncGeneratorStep (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at _next (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at new Promise (&lt;anonymous&gt;)
+    at Object.&lt;anonymous&gt; (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at Promise.then.completed (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\utils.js:293:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\utils.js:226:10)
+    at _callCircusTest (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\run.js:297:40)
+    at _runTest (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\run.js:233:3)
+    at _runTestsForDescribeBlock (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\run.js:135:9)
+    at run (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\run.js:68:3)
+    at runAndTransformResultsToJestFormat (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-runner\build\testWorker.js:106:12)]]></failure>
+</testCase>
+<testCase name="Remover situa&#xe7;&#xe3;o escola" duration="1399">
+<failure message="Error"><![CDATA[Error: Unable to find an element by: [data-testid=&quot;linha-escola&quot;]
+
+Ignored nodes: comments, script, style
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;div
+      class=&quot;App&quot;
+    &gt;
+      &lt;header
+        class=&quot;br-header&quot;
+      &gt;
+        &lt;div
+          class=&quot;container-lg&quot;
+        &gt;
+          &lt;div
+            class=&quot;header-top&quot;
+          &gt;
+            &lt;div
+              class=&quot;header-logo&quot;
+            &gt;
+              &lt;img
+                alt=&quot;logo&quot;
+                src=&quot;test-file-stub&quot;
+              /&gt;
+              &lt;div
+                class=&quot;header-sign&quot;
+              &gt;
+                DNIT
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div
+              class=&quot;HeaderContrast&quot;
+            &gt;
+              &lt;img
+                alt=&quot;Button contrast&quot;
+                class=&quot;buttonContrast&quot;
+                src=&quot;test-file-stub&quot;
+              /&gt;
+              &lt;div
+                class=&quot;text-alto-contraste&quot;
+              &gt;
+                Alto contraste
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div
+            class=&quot;header-bottom&quot;
+          &gt;
+            &lt;div
+              class=&quot;header-menu&quot;
+            &gt;
+              &lt;div
+                class=&quot;header-menu-trigger&quot;
+              &gt;
+                &lt;button
+                  aria-label=&quot;Menu&quot;
+                  class=&quot;br-button small circle&quot;
+                  data-target=&quot;#main-navigation&quot;
+                  data-toggle=&quot;menu&quot;
+                  id=&quot;navigation&quot;
+                  type=&quot;button&quot;
+                &gt;
+                  &lt;i
+                    aria-hidden=&quot;true&quot;
+                    class=&quot;fas fa-bars&quot;
+                  /&gt;
+                &lt;/button&gt;
+              &lt;/div&gt;
+              &lt;div
+                class=&quot;header-info&quot;
+              &gt;
+                &lt;div
+                  class=&quot;header-title&quot;
+                &gt;
+                  Nome Projeto Dnit
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/header&gt;
+      &lt;div
+        class=&quot;br-breadcrumb&quot;
+      &gt;
+        &lt;ul
+          class=&quot;crumb-list&quot;
+        &gt;
+          &lt;li
+            class=&quot;crumb home&quot;
+          &gt;
+            &lt;a
+              class=&quot;br-button circle&quot;
+              href=&quot;/escolas-cadastradas&quot;
+            &gt;
+              &lt;span
+                class=&quot;sr-only&quot;
+              &gt;
+                P&#xe1;gina inicial
+              &lt;/span&gt;
+              &lt;i
+                class=&quot;fas fa-home&quot;
+              /&gt;
+            &lt;/a&gt;
+          &lt;/li&gt;
+          &lt;li
+            class=&quot;crumb&quot;
+          &gt;
+            &lt;i
+              class=&quot;icon fas fa-chevron-right&quot;
+            /&gt;
+            &lt;a
+              href=&quot;/escolas-cadastradas&quot;
+            &gt;
+              Escolas Cadastradas
+            &lt;/a&gt;
+          &lt;/li&gt;
+          &lt;li
+            class=&quot;crumb&quot;
+          &gt;
+            &lt;i
+              class=&quot;icon fas fa-chevron-right&quot;
+            /&gt;
+            &lt;a
+              href=&quot;/login&quot;
+            &gt;
+              Logout
+            &lt;/a&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;button
+          class=&quot;ant-btn css-dev-only-do-not-override-12jzuas ant-btn-default button1&quot;
+          type=&quot;button&quot;
+        &gt;
+          &lt;span&gt;
+            Cadastrar escolas
+          &lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div
+        class=&quot;container inputs&quot;
+      &gt;
+        &lt;div
+          class=&quot;br-input medium input-button&quot;
+        &gt;
+          &lt;label
+            for=&quot;input-search-medium&quot;
+          &gt;
+            Nome
+          &lt;/label&gt;
+          &lt;input
+            id=&quot;input-search-medium&quot;
+            placeholder=&quot;Digite o nome da Escola&quot;
+            type=&quot;search&quot;
+            value=&quot;&quot;
+          /&gt;
+          &lt;button
+            aria-label=&quot;Buscar&quot;
+            class=&quot;br-button&quot;
+            data-testid=&quot;buscar-nome&quot;
+            type=&quot;button&quot;
+          &gt;
+            &lt;i
+              aria-hidden=&quot;true&quot;
+              class=&quot;fas fa-search&quot;
+            /&gt;
+          &lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;br-select&quot;
+        &gt;
+          &lt;div
+            class=&quot;br-input&quot;
+          &gt;
+            &lt;label
+              for=&quot;select-multtiple&quot;
+            &gt;
+              UF
+            &lt;/label&gt;
+            &lt;input
+              id=&quot;select-multtiple&quot;
+              placeholder=&quot;Todas&quot;
+              type=&quot;text&quot;
+              value=&quot;&quot;
+            /&gt;
+            &lt;button
+              aria-label=&quot;Exibir lista&quot;
+              class=&quot;br-button&quot;
+              data-testid=&quot;buscar-uf&quot;
+              data-trigger=&quot;data-trigger&quot;
+              tabindex=&quot;-1&quot;
+              type=&quot;button&quot;
+            &gt;
+              &lt;i
+                aria-hidden=&quot;true&quot;
+  ...
+    at waitForWrapper (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\@testing-library\react\node_modules\@testing-library\dom\dist\wait-for.js:166:27)
+    at _callee6&#x24; (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:87:16)
+    at call (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at Generator.tryCatch (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at Generator._invoke [as next] (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at asyncGeneratorStep (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at asyncGeneratorStep (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at _next (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at new Promise (&lt;anonymous&gt;)
+    at Object.&lt;anonymous&gt; (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at Promise.then.completed (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\utils.js:293:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\utils.js:226:10)
+    at _callCircusTest (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\run.js:297:40)
+    at _runTest (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\run.js:233:3)
+    at _runTestsForDescribeBlock (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\run.js:135:9)
+    at run (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\run.js:68:3)
+    at runAndTransformResultsToJestFormat (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-runner\build\testWorker.js:106:12)]]></failure>
+</testCase>
+<testCase name="Remover situa&#xe7;&#xe3;o escola erro" duration="1227">
+<failure message="Error"><![CDATA[Error: Unable to find an element by: [data-testid=&quot;linha-escola&quot;]
+
+Ignored nodes: comments, script, style
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;div
+      class=&quot;App&quot;
+    &gt;
+      &lt;header
+        class=&quot;br-header&quot;
+      &gt;
+        &lt;div
+          class=&quot;container-lg&quot;
+        &gt;
+          &lt;div
+            class=&quot;header-top&quot;
+          &gt;
+            &lt;div
+              class=&quot;header-logo&quot;
+            &gt;
+              &lt;img
+                alt=&quot;logo&quot;
+                src=&quot;test-file-stub&quot;
+              /&gt;
+              &lt;div
+                class=&quot;header-sign&quot;
+              &gt;
+                DNIT
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div
+              class=&quot;HeaderContrast&quot;
+            &gt;
+              &lt;img
+                alt=&quot;Button contrast&quot;
+                class=&quot;buttonContrast&quot;
+                src=&quot;test-file-stub&quot;
+              /&gt;
+              &lt;div
+                class=&quot;text-alto-contraste&quot;
+              &gt;
+                Alto contraste
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div
+            class=&quot;header-bottom&quot;
+          &gt;
+            &lt;div
+              class=&quot;header-menu&quot;
+            &gt;
+              &lt;div
+                class=&quot;header-menu-trigger&quot;
+              &gt;
+                &lt;button
+                  aria-label=&quot;Menu&quot;
+                  class=&quot;br-button small circle&quot;
+                  data-target=&quot;#main-navigation&quot;
+                  data-toggle=&quot;menu&quot;
+                  id=&quot;navigation&quot;
+                  type=&quot;button&quot;
+                &gt;
+                  &lt;i
+                    aria-hidden=&quot;true&quot;
+                    class=&quot;fas fa-bars&quot;
+                  /&gt;
+                &lt;/button&gt;
+              &lt;/div&gt;
+              &lt;div
+                class=&quot;header-info&quot;
+              &gt;
+                &lt;div
+                  class=&quot;header-title&quot;
+                &gt;
+                  Nome Projeto Dnit
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/header&gt;
+      &lt;div
+        class=&quot;br-breadcrumb&quot;
+      &gt;
+        &lt;ul
+          class=&quot;crumb-list&quot;
+        &gt;
+          &lt;li
+            class=&quot;crumb home&quot;
+          &gt;
+            &lt;a
+              class=&quot;br-button circle&quot;
+              href=&quot;/escolas-cadastradas&quot;
+            &gt;
+              &lt;span
+                class=&quot;sr-only&quot;
+              &gt;
+                P&#xe1;gina inicial
+              &lt;/span&gt;
+              &lt;i
+                class=&quot;fas fa-home&quot;
+              /&gt;
+            &lt;/a&gt;
+          &lt;/li&gt;
+          &lt;li
+            class=&quot;crumb&quot;
+          &gt;
+            &lt;i
+              class=&quot;icon fas fa-chevron-right&quot;
+            /&gt;
+            &lt;a
+              href=&quot;/escolas-cadastradas&quot;
+            &gt;
+              Escolas Cadastradas
+            &lt;/a&gt;
+          &lt;/li&gt;
+          &lt;li
+            class=&quot;crumb&quot;
+          &gt;
+            &lt;i
+              class=&quot;icon fas fa-chevron-right&quot;
+            /&gt;
+            &lt;a
+              href=&quot;/login&quot;
+            &gt;
+              Logout
+            &lt;/a&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;button
+          class=&quot;ant-btn css-dev-only-do-not-override-12jzuas ant-btn-default button1&quot;
+          type=&quot;button&quot;
+        &gt;
+          &lt;span&gt;
+            Cadastrar escolas
+          &lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div
+        class=&quot;container inputs&quot;
+      &gt;
+        &lt;div
+          class=&quot;br-input medium input-button&quot;
+        &gt;
+          &lt;label
+            for=&quot;input-search-medium&quot;
+          &gt;
+            Nome
+          &lt;/label&gt;
+          &lt;input
+            id=&quot;input-search-medium&quot;
+            placeholder=&quot;Digite o nome da Escola&quot;
+            type=&quot;search&quot;
+            value=&quot;&quot;
+          /&gt;
+          &lt;button
+            aria-label=&quot;Buscar&quot;
+            class=&quot;br-button&quot;
+            data-testid=&quot;buscar-nome&quot;
+            type=&quot;button&quot;
+          &gt;
+            &lt;i
+              aria-hidden=&quot;true&quot;
+              class=&quot;fas fa-search&quot;
+            /&gt;
+          &lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;br-select&quot;
+        &gt;
+          &lt;div
+            class=&quot;br-input&quot;
+          &gt;
+            &lt;label
+              for=&quot;select-multtiple&quot;
+            &gt;
+              UF
+            &lt;/label&gt;
+            &lt;input
+              id=&quot;select-multtiple&quot;
+              placeholder=&quot;Todas&quot;
+              type=&quot;text&quot;
+              value=&quot;&quot;
+            /&gt;
+            &lt;button
+              aria-label=&quot;Exibir lista&quot;
+              class=&quot;br-button&quot;
+              data-testid=&quot;buscar-uf&quot;
+              data-trigger=&quot;data-trigger&quot;
+              tabindex=&quot;-1&quot;
+              type=&quot;button&quot;
+            &gt;
+              &lt;i
+                aria-hidden=&quot;true&quot;
+  ...
+    at waitForWrapper (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\@testing-library\react\node_modules\@testing-library\dom\dist\wait-for.js:166:27)
+    at _callee8&#x24; (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:122:16)
+    at call (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at Generator.tryCatch (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at Generator._invoke [as next] (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at asyncGeneratorStep (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at asyncGeneratorStep (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at _next (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at new Promise (&lt;anonymous&gt;)
+    at Object.&lt;anonymous&gt; (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Situacao.spec.tsx:2:1)
+    at Promise.then.completed (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\utils.js:293:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\utils.js:226:10)
+    at _callCircusTest (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\run.js:297:40)
+    at _runTest (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\run.js:233:3)
+    at _runTestsForDescribeBlock (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\run.js:135:9)
+    at run (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\run.js:68:3)
+    at runAndTransformResultsToJestFormat (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-runner\build\testWorker.js:106:12)]]></failure>
+</testCase>
+<testCase name="Erro de Provider de selectedValue" duration="84" />
 </file>
-<file path="src\tests\Login.spec.tsx">
-<testCase name=" should render Login" duration="659" />
-</file>
-<file path="src\tests\Recover.spec.tsx">
-<testCase name=" should render Recover password" duration="424" />
-</file>
-<file path="src\tests\Register.spec.tsx">
-<testCase name="should render Register" duration="3999" />
-<testCase name="should render error in Register form" duration="1512" />
+<file path="src\tests\tabelaEscola.spec.tsx">
+<testCase name="Lista de escolas &#xe9; exibida corretamente" duration="1904">
+<failure message="Error"><![CDATA[Error: Unable to find an element by: [data-testid=&quot;linha-escola&quot;]
+
+Ignored nodes: comments, script, style
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;div
+      class=&quot;App&quot;
+    &gt;
+      &lt;header
+        class=&quot;br-header&quot;
+      &gt;
+        &lt;div
+          class=&quot;container-lg&quot;
+        &gt;
+          &lt;div
+            class=&quot;header-top&quot;
+          &gt;
+            &lt;div
+              class=&quot;header-logo&quot;
+            &gt;
+              &lt;img
+                alt=&quot;logo&quot;
+                src=&quot;test-file-stub&quot;
+              /&gt;
+              &lt;div
+                class=&quot;header-sign&quot;
+              &gt;
+                DNIT
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div
+              class=&quot;HeaderContrast&quot;
+            &gt;
+              &lt;img
+                alt=&quot;Button contrast&quot;
+                class=&quot;buttonContrast&quot;
+                src=&quot;test-file-stub&quot;
+              /&gt;
+              &lt;div
+                class=&quot;text-alto-contraste&quot;
+              &gt;
+                Alto contraste
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div
+            class=&quot;header-bottom&quot;
+          &gt;
+            &lt;div
+              class=&quot;header-menu&quot;
+            &gt;
+              &lt;div
+                class=&quot;header-menu-trigger&quot;
+              &gt;
+                &lt;button
+                  aria-label=&quot;Menu&quot;
+                  class=&quot;br-button small circle&quot;
+                  data-target=&quot;#main-navigation&quot;
+                  data-toggle=&quot;menu&quot;
+                  id=&quot;navigation&quot;
+                  type=&quot;button&quot;
+                &gt;
+                  &lt;i
+                    aria-hidden=&quot;true&quot;
+                    class=&quot;fas fa-bars&quot;
+                  /&gt;
+                &lt;/button&gt;
+              &lt;/div&gt;
+              &lt;div
+                class=&quot;header-info&quot;
+              &gt;
+                &lt;div
+                  class=&quot;header-title&quot;
+                &gt;
+                  Nome Projeto Dnit
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/header&gt;
+      &lt;div
+        class=&quot;br-breadcrumb&quot;
+      &gt;
+        &lt;ul
+          class=&quot;crumb-list&quot;
+        &gt;
+          &lt;li
+            class=&quot;crumb home&quot;
+          &gt;
+            &lt;a
+              class=&quot;br-button circle&quot;
+              href=&quot;/escolas-cadastradas&quot;
+            &gt;
+              &lt;span
+                class=&quot;sr-only&quot;
+              &gt;
+                P&#xe1;gina inicial
+              &lt;/span&gt;
+              &lt;i
+                class=&quot;fas fa-home&quot;
+              /&gt;
+            &lt;/a&gt;
+          &lt;/li&gt;
+          &lt;li
+            class=&quot;crumb&quot;
+          &gt;
+            &lt;i
+              class=&quot;icon fas fa-chevron-right&quot;
+            /&gt;
+            &lt;a
+              href=&quot;/escolas-cadastradas&quot;
+            &gt;
+              Escolas Cadastradas
+            &lt;/a&gt;
+          &lt;/li&gt;
+          &lt;li
+            class=&quot;crumb&quot;
+          &gt;
+            &lt;i
+              class=&quot;icon fas fa-chevron-right&quot;
+            /&gt;
+            &lt;a
+              href=&quot;/login&quot;
+            &gt;
+              Logout
+            &lt;/a&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;button
+          class=&quot;ant-btn css-dev-only-do-not-override-12jzuas ant-btn-default button1&quot;
+          type=&quot;button&quot;
+        &gt;
+          &lt;span&gt;
+            Cadastrar escolas
+          &lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div
+        class=&quot;container inputs&quot;
+      &gt;
+        &lt;div
+          class=&quot;br-input medium input-button&quot;
+        &gt;
+          &lt;label
+            for=&quot;input-search-medium&quot;
+          &gt;
+            Nome
+          &lt;/label&gt;
+          &lt;input
+            id=&quot;input-search-medium&quot;
+            placeholder=&quot;Digite o nome da Escola&quot;
+            type=&quot;search&quot;
+            value=&quot;&quot;
+          /&gt;
+          &lt;button
+            aria-label=&quot;Buscar&quot;
+            class=&quot;br-button&quot;
+            data-testid=&quot;buscar-nome&quot;
+            type=&quot;button&quot;
+          &gt;
+            &lt;i
+              aria-hidden=&quot;true&quot;
+              class=&quot;fas fa-search&quot;
+            /&gt;
+          &lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;br-select&quot;
+        &gt;
+          &lt;div
+            class=&quot;br-input&quot;
+          &gt;
+            &lt;label
+              for=&quot;select-multtiple&quot;
+            &gt;
+              UF
+            &lt;/label&gt;
+            &lt;input
+              id=&quot;select-multtiple&quot;
+              placeholder=&quot;Todas&quot;
+              type=&quot;text&quot;
+              value=&quot;&quot;
+            /&gt;
+            &lt;button
+              aria-label=&quot;Exibir lista&quot;
+              class=&quot;br-button&quot;
+              data-testid=&quot;buscar-uf&quot;
+              data-trigger=&quot;data-trigger&quot;
+              tabindex=&quot;-1&quot;
+              type=&quot;button&quot;
+            &gt;
+              &lt;i
+                aria-hidden=&quot;true&quot;
+  ...
+    at waitForWrapper (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\@testing-library\react\node_modules\@testing-library\dom\dist\wait-for.js:166:27)
+    at _callee&#x24; (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:30:16)
+    at call (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at Generator.tryCatch (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at Generator._invoke [as next] (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at asyncGeneratorStep (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at asyncGeneratorStep (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at _next (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at new Promise (&lt;anonymous&gt;)
+    at Object.&lt;anonymous&gt; (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at Promise.then.completed (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\utils.js:293:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\utils.js:226:10)
+    at _callCircusTest (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\run.js:297:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTest (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\run.js:233:3)
+    at _runTestsForDescribeBlock (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\run.js:135:9)
+    at run (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\run.js:68:3)
+    at runAndTransformResultsToJestFormat (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-runner\build\testWorker.js:106:12)]]></failure>
+</testCase>
+<testCase name="Clicar em Cadastrar escola" duration="1113" />
+<testCase name="Mudar quantidade de escolas por p&#xe1;gina" duration="1304">
+<failure message="Error"><![CDATA[Error: Unable to find an element by: [data-testid=&quot;linha-escola&quot;]
+
+Ignored nodes: comments, script, style
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;div
+      class=&quot;App&quot;
+    &gt;
+      &lt;header
+        class=&quot;br-header&quot;
+      &gt;
+        &lt;div
+          class=&quot;container-lg&quot;
+        &gt;
+          &lt;div
+            class=&quot;header-top&quot;
+          &gt;
+            &lt;div
+              class=&quot;header-logo&quot;
+            &gt;
+              &lt;img
+                alt=&quot;logo&quot;
+                src=&quot;test-file-stub&quot;
+              /&gt;
+              &lt;div
+                class=&quot;header-sign&quot;
+              &gt;
+                DNIT
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div
+              class=&quot;HeaderContrast&quot;
+            &gt;
+              &lt;img
+                alt=&quot;Button contrast&quot;
+                class=&quot;buttonContrast&quot;
+                src=&quot;test-file-stub&quot;
+              /&gt;
+              &lt;div
+                class=&quot;text-alto-contraste&quot;
+              &gt;
+                Alto contraste
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div
+            class=&quot;header-bottom&quot;
+          &gt;
+            &lt;div
+              class=&quot;header-menu&quot;
+            &gt;
+              &lt;div
+                class=&quot;header-menu-trigger&quot;
+              &gt;
+                &lt;button
+                  aria-label=&quot;Menu&quot;
+                  class=&quot;br-button small circle&quot;
+                  data-target=&quot;#main-navigation&quot;
+                  data-toggle=&quot;menu&quot;
+                  id=&quot;navigation&quot;
+                  type=&quot;button&quot;
+                &gt;
+                  &lt;i
+                    aria-hidden=&quot;true&quot;
+                    class=&quot;fas fa-bars&quot;
+                  /&gt;
+                &lt;/button&gt;
+              &lt;/div&gt;
+              &lt;div
+                class=&quot;header-info&quot;
+              &gt;
+                &lt;div
+                  class=&quot;header-title&quot;
+                &gt;
+                  Nome Projeto Dnit
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/header&gt;
+      &lt;div
+        class=&quot;br-breadcrumb&quot;
+      &gt;
+        &lt;ul
+          class=&quot;crumb-list&quot;
+        &gt;
+          &lt;li
+            class=&quot;crumb home&quot;
+          &gt;
+            &lt;a
+              class=&quot;br-button circle&quot;
+              href=&quot;/escolas-cadastradas&quot;
+            &gt;
+              &lt;span
+                class=&quot;sr-only&quot;
+              &gt;
+                P&#xe1;gina inicial
+              &lt;/span&gt;
+              &lt;i
+                class=&quot;fas fa-home&quot;
+              /&gt;
+            &lt;/a&gt;
+          &lt;/li&gt;
+          &lt;li
+            class=&quot;crumb&quot;
+          &gt;
+            &lt;i
+              class=&quot;icon fas fa-chevron-right&quot;
+            /&gt;
+            &lt;a
+              href=&quot;/escolas-cadastradas&quot;
+            &gt;
+              Escolas Cadastradas
+            &lt;/a&gt;
+          &lt;/li&gt;
+          &lt;li
+            class=&quot;crumb&quot;
+          &gt;
+            &lt;i
+              class=&quot;icon fas fa-chevron-right&quot;
+            /&gt;
+            &lt;a
+              href=&quot;/login&quot;
+            &gt;
+              Logout
+            &lt;/a&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;button
+          class=&quot;ant-btn css-dev-only-do-not-override-12jzuas ant-btn-default button1&quot;
+          type=&quot;button&quot;
+        &gt;
+          &lt;span&gt;
+            Cadastrar escolas
+          &lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div
+        class=&quot;container inputs&quot;
+      &gt;
+        &lt;div
+          class=&quot;br-input medium input-button&quot;
+        &gt;
+          &lt;label
+            for=&quot;input-search-medium&quot;
+          &gt;
+            Nome
+          &lt;/label&gt;
+          &lt;input
+            id=&quot;input-search-medium&quot;
+            placeholder=&quot;Digite o nome da Escola&quot;
+            type=&quot;search&quot;
+            value=&quot;&quot;
+          /&gt;
+          &lt;button
+            aria-label=&quot;Buscar&quot;
+            class=&quot;br-button&quot;
+            data-testid=&quot;buscar-nome&quot;
+            type=&quot;button&quot;
+          &gt;
+            &lt;i
+              aria-hidden=&quot;true&quot;
+              class=&quot;fas fa-search&quot;
+            /&gt;
+          &lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;br-select&quot;
+        &gt;
+          &lt;div
+            class=&quot;br-input&quot;
+          &gt;
+            &lt;label
+              for=&quot;select-multtiple&quot;
+            &gt;
+              UF
+            &lt;/label&gt;
+            &lt;input
+              id=&quot;select-multtiple&quot;
+              placeholder=&quot;Todas&quot;
+              type=&quot;text&quot;
+              value=&quot;&quot;
+            /&gt;
+            &lt;button
+              aria-label=&quot;Exibir lista&quot;
+              class=&quot;br-button&quot;
+              data-testid=&quot;buscar-uf&quot;
+              data-trigger=&quot;data-trigger&quot;
+              tabindex=&quot;-1&quot;
+              type=&quot;button&quot;
+            &gt;
+              &lt;i
+                aria-hidden=&quot;true&quot;
+  ...
+    at waitForWrapper (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\@testing-library\react\node_modules\@testing-library\dom\dist\wait-for.js:166:27)
+    at _callee3&#x24; (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:54:16)
+    at call (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at Generator.tryCatch (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at Generator._invoke [as next] (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at asyncGeneratorStep (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at asyncGeneratorStep (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at _next (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at new Promise (&lt;anonymous&gt;)
+    at Object.&lt;anonymous&gt; (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at Promise.then.completed (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\utils.js:293:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\utils.js:226:10)
+    at _callCircusTest (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\run.js:297:40)
+    at runNextTicks (node:internal/process/task_queues:60:5)
+    at processTimers (node:internal/timers:509:9)
+    at _runTest (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\run.js:233:3)
+    at _runTestsForDescribeBlock (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\run.js:135:9)
+    at run (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\run.js:68:3)
+    at runAndTransformResultsToJestFormat (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-runner\build\testWorker.js:106:12)]]></failure>
+</testCase>
+<testCase name="Exibir escola selecionada" duration="1281">
+<failure message="Error"><![CDATA[Error: Unable to find an element by: [data-testid=&quot;linha-escola&quot;]
+
+Ignored nodes: comments, script, style
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;div
+      class=&quot;App&quot;
+    &gt;
+      &lt;header
+        class=&quot;br-header&quot;
+      &gt;
+        &lt;div
+          class=&quot;container-lg&quot;
+        &gt;
+          &lt;div
+            class=&quot;header-top&quot;
+          &gt;
+            &lt;div
+              class=&quot;header-logo&quot;
+            &gt;
+              &lt;img
+                alt=&quot;logo&quot;
+                src=&quot;test-file-stub&quot;
+              /&gt;
+              &lt;div
+                class=&quot;header-sign&quot;
+              &gt;
+                DNIT
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div
+              class=&quot;HeaderContrast&quot;
+            &gt;
+              &lt;img
+                alt=&quot;Button contrast&quot;
+                class=&quot;buttonContrast&quot;
+                src=&quot;test-file-stub&quot;
+              /&gt;
+              &lt;div
+                class=&quot;text-alto-contraste&quot;
+              &gt;
+                Alto contraste
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div
+            class=&quot;header-bottom&quot;
+          &gt;
+            &lt;div
+              class=&quot;header-menu&quot;
+            &gt;
+              &lt;div
+                class=&quot;header-menu-trigger&quot;
+              &gt;
+                &lt;button
+                  aria-label=&quot;Menu&quot;
+                  class=&quot;br-button small circle&quot;
+                  data-target=&quot;#main-navigation&quot;
+                  data-toggle=&quot;menu&quot;
+                  id=&quot;navigation&quot;
+                  type=&quot;button&quot;
+                &gt;
+                  &lt;i
+                    aria-hidden=&quot;true&quot;
+                    class=&quot;fas fa-bars&quot;
+                  /&gt;
+                &lt;/button&gt;
+              &lt;/div&gt;
+              &lt;div
+                class=&quot;header-info&quot;
+              &gt;
+                &lt;div
+                  class=&quot;header-title&quot;
+                &gt;
+                  Nome Projeto Dnit
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/header&gt;
+      &lt;div
+        class=&quot;br-breadcrumb&quot;
+      &gt;
+        &lt;ul
+          class=&quot;crumb-list&quot;
+        &gt;
+          &lt;li
+            class=&quot;crumb home&quot;
+          &gt;
+            &lt;a
+              class=&quot;br-button circle&quot;
+              href=&quot;/escolas-cadastradas&quot;
+            &gt;
+              &lt;span
+                class=&quot;sr-only&quot;
+              &gt;
+                P&#xe1;gina inicial
+              &lt;/span&gt;
+              &lt;i
+                class=&quot;fas fa-home&quot;
+              /&gt;
+            &lt;/a&gt;
+          &lt;/li&gt;
+          &lt;li
+            class=&quot;crumb&quot;
+          &gt;
+            &lt;i
+              class=&quot;icon fas fa-chevron-right&quot;
+            /&gt;
+            &lt;a
+              href=&quot;/escolas-cadastradas&quot;
+            &gt;
+              Escolas Cadastradas
+            &lt;/a&gt;
+          &lt;/li&gt;
+          &lt;li
+            class=&quot;crumb&quot;
+          &gt;
+            &lt;i
+              class=&quot;icon fas fa-chevron-right&quot;
+            /&gt;
+            &lt;a
+              href=&quot;/login&quot;
+            &gt;
+              Logout
+            &lt;/a&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;button
+          class=&quot;ant-btn css-dev-only-do-not-override-12jzuas ant-btn-default button1&quot;
+          type=&quot;button&quot;
+        &gt;
+          &lt;span&gt;
+            Cadastrar escolas
+          &lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div
+        class=&quot;container inputs&quot;
+      &gt;
+        &lt;div
+          class=&quot;br-input medium input-button&quot;
+        &gt;
+          &lt;label
+            for=&quot;input-search-medium&quot;
+          &gt;
+            Nome
+          &lt;/label&gt;
+          &lt;input
+            id=&quot;input-search-medium&quot;
+            placeholder=&quot;Digite o nome da Escola&quot;
+            type=&quot;search&quot;
+            value=&quot;&quot;
+          /&gt;
+          &lt;button
+            aria-label=&quot;Buscar&quot;
+            class=&quot;br-button&quot;
+            data-testid=&quot;buscar-nome&quot;
+            type=&quot;button&quot;
+          &gt;
+            &lt;i
+              aria-hidden=&quot;true&quot;
+              class=&quot;fas fa-search&quot;
+            /&gt;
+          &lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;br-select&quot;
+        &gt;
+          &lt;div
+            class=&quot;br-input&quot;
+          &gt;
+            &lt;label
+              for=&quot;select-multtiple&quot;
+            &gt;
+              UF
+            &lt;/label&gt;
+            &lt;input
+              id=&quot;select-multtiple&quot;
+              placeholder=&quot;Todas&quot;
+              type=&quot;text&quot;
+              value=&quot;&quot;
+            /&gt;
+            &lt;button
+              aria-label=&quot;Exibir lista&quot;
+              class=&quot;br-button&quot;
+              data-testid=&quot;buscar-uf&quot;
+              data-trigger=&quot;data-trigger&quot;
+              tabindex=&quot;-1&quot;
+              type=&quot;button&quot;
+            &gt;
+              &lt;i
+                aria-hidden=&quot;true&quot;
+  ...
+    at waitForWrapper (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\@testing-library\react\node_modules\@testing-library\dom\dist\wait-for.js:166:27)
+    at _callee4&#x24; (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:79:16)
+    at call (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at Generator.tryCatch (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at Generator._invoke [as next] (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at asyncGeneratorStep (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at asyncGeneratorStep (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at _next (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at new Promise (&lt;anonymous&gt;)
+    at Object.&lt;anonymous&gt; (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at Promise.then.completed (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\utils.js:293:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\utils.js:226:10)
+    at _callCircusTest (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\run.js:297:40)
+    at _runTest (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\run.js:233:3)
+    at _runTestsForDescribeBlock (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\run.js:135:9)
+    at run (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\run.js:68:3)
+    at runAndTransformResultsToJestFormat (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-runner\build\testWorker.js:106:12)]]></failure>
+</testCase>
+<testCase name="Filtragem de escolas" duration="1250">
+<failure message="Error"><![CDATA[Error: Unable to find an element by: [data-testid=&quot;linha-escola&quot;]
+
+Ignored nodes: comments, script, style
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;div
+      class=&quot;App&quot;
+    &gt;
+      &lt;header
+        class=&quot;br-header&quot;
+      &gt;
+        &lt;div
+          class=&quot;container-lg&quot;
+        &gt;
+          &lt;div
+            class=&quot;header-top&quot;
+          &gt;
+            &lt;div
+              class=&quot;header-logo&quot;
+            &gt;
+              &lt;img
+                alt=&quot;logo&quot;
+                src=&quot;test-file-stub&quot;
+              /&gt;
+              &lt;div
+                class=&quot;header-sign&quot;
+              &gt;
+                DNIT
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div
+              class=&quot;HeaderContrast&quot;
+            &gt;
+              &lt;img
+                alt=&quot;Button contrast&quot;
+                class=&quot;buttonContrast&quot;
+                src=&quot;test-file-stub&quot;
+              /&gt;
+              &lt;div
+                class=&quot;text-alto-contraste&quot;
+              &gt;
+                Alto contraste
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div
+            class=&quot;header-bottom&quot;
+          &gt;
+            &lt;div
+              class=&quot;header-menu&quot;
+            &gt;
+              &lt;div
+                class=&quot;header-menu-trigger&quot;
+              &gt;
+                &lt;button
+                  aria-label=&quot;Menu&quot;
+                  class=&quot;br-button small circle&quot;
+                  data-target=&quot;#main-navigation&quot;
+                  data-toggle=&quot;menu&quot;
+                  id=&quot;navigation&quot;
+                  type=&quot;button&quot;
+                &gt;
+                  &lt;i
+                    aria-hidden=&quot;true&quot;
+                    class=&quot;fas fa-bars&quot;
+                  /&gt;
+                &lt;/button&gt;
+              &lt;/div&gt;
+              &lt;div
+                class=&quot;header-info&quot;
+              &gt;
+                &lt;div
+                  class=&quot;header-title&quot;
+                &gt;
+                  Nome Projeto Dnit
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/header&gt;
+      &lt;div
+        class=&quot;br-breadcrumb&quot;
+      &gt;
+        &lt;ul
+          class=&quot;crumb-list&quot;
+        &gt;
+          &lt;li
+            class=&quot;crumb home&quot;
+          &gt;
+            &lt;a
+              class=&quot;br-button circle&quot;
+              href=&quot;/escolas-cadastradas&quot;
+            &gt;
+              &lt;span
+                class=&quot;sr-only&quot;
+              &gt;
+                P&#xe1;gina inicial
+              &lt;/span&gt;
+              &lt;i
+                class=&quot;fas fa-home&quot;
+              /&gt;
+            &lt;/a&gt;
+          &lt;/li&gt;
+          &lt;li
+            class=&quot;crumb&quot;
+          &gt;
+            &lt;i
+              class=&quot;icon fas fa-chevron-right&quot;
+            /&gt;
+            &lt;a
+              href=&quot;/escolas-cadastradas&quot;
+            &gt;
+              Escolas Cadastradas
+            &lt;/a&gt;
+          &lt;/li&gt;
+          &lt;li
+            class=&quot;crumb&quot;
+          &gt;
+            &lt;i
+              class=&quot;icon fas fa-chevron-right&quot;
+            /&gt;
+            &lt;a
+              href=&quot;/login&quot;
+            &gt;
+              Logout
+            &lt;/a&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;button
+          class=&quot;ant-btn css-dev-only-do-not-override-12jzuas ant-btn-default button1&quot;
+          type=&quot;button&quot;
+        &gt;
+          &lt;span&gt;
+            Cadastrar escolas
+          &lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div
+        class=&quot;container inputs&quot;
+      &gt;
+        &lt;div
+          class=&quot;br-input medium input-button&quot;
+        &gt;
+          &lt;label
+            for=&quot;input-search-medium&quot;
+          &gt;
+            Nome
+          &lt;/label&gt;
+          &lt;input
+            id=&quot;input-search-medium&quot;
+            placeholder=&quot;Digite o nome da Escola&quot;
+            type=&quot;search&quot;
+            value=&quot;&quot;
+          /&gt;
+          &lt;button
+            aria-label=&quot;Buscar&quot;
+            class=&quot;br-button&quot;
+            data-testid=&quot;buscar-nome&quot;
+            type=&quot;button&quot;
+          &gt;
+            &lt;i
+              aria-hidden=&quot;true&quot;
+              class=&quot;fas fa-search&quot;
+            /&gt;
+          &lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;br-select&quot;
+        &gt;
+          &lt;div
+            class=&quot;br-input&quot;
+          &gt;
+            &lt;label
+              for=&quot;select-multtiple&quot;
+            &gt;
+              UF
+            &lt;/label&gt;
+            &lt;input
+              id=&quot;select-multtiple&quot;
+              placeholder=&quot;Todas&quot;
+              type=&quot;text&quot;
+              value=&quot;&quot;
+            /&gt;
+            &lt;button
+              aria-label=&quot;Exibir lista&quot;
+              class=&quot;br-button&quot;
+              data-testid=&quot;buscar-uf&quot;
+              data-trigger=&quot;data-trigger&quot;
+              tabindex=&quot;-1&quot;
+              type=&quot;button&quot;
+            &gt;
+              &lt;i
+                aria-hidden=&quot;true&quot;
+  ...
+    at waitForWrapper (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\@testing-library\react\node_modules\@testing-library\dom\dist\wait-for.js:166:27)
+    at _callee5&#x24; (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:98:16)
+    at call (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at Generator.tryCatch (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at Generator._invoke [as next] (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at asyncGeneratorStep (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at asyncGeneratorStep (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at _next (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at new Promise (&lt;anonymous&gt;)
+    at Object.&lt;anonymous&gt; (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\tabelaEscola.spec.tsx:2:1)
+    at Promise.then.completed (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\utils.js:293:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\utils.js:226:10)
+    at _callCircusTest (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\run.js:297:40)
+    at _runTest (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\run.js:233:3)
+    at _runTestsForDescribeBlock (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\run.js:135:9)
+    at run (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\run.js:68:3)
+    at runAndTransformResultsToJestFormat (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-runner\build\testWorker.js:106:12)]]></failure>
+</testCase>
 </file>
 <file path="src\tests\CadastrarEscola.spec.tsx">
-<testCase name="Lista de escolas &#xe9; exibida corretamente" duration="5675" />
-<testCase name="Lista de escolas &#xe9; exibida corretamente" duration="180" />
-<testCase name="Lista de escolas redireciona pra listagem" duration="115" />
-<testCase name="Cadastro CSV" duration="160" />
-<testCase name="Cadastro CSV erro" duration="106" />
-<testCase name="Cadastro CSV vazio" duration="176" />
-<testCase name="Cadastro sem enviar CSV" duration="80" />
-<testCase name="Sem o provider" duration="22" />
+<testCase name="Lista de escolas &#xe9; exibida corretamente" duration="2636">
+<failure message="Error"><![CDATA[TestingLibraryElementError: Unable to find an element with the text: Acre. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;div
+      class=&quot;App&quot;
+    &gt;
+      &lt;header
+        class=&quot;App-header&quot;
+      &gt;
+        &lt;div
+          class=&quot;HeaderIcon&quot;
+          data-testid=&quot;redirecionar&quot;
+        &gt;
+          &lt;img
+            alt=&quot;&#xed;cone gov&quot;
+            class=&quot;iconGov&quot;
+            src=&quot;test-file-stub&quot;
+          /&gt;
+          &lt;img
+            alt=&quot;&#xed;cone dnit&quot;
+            class=&quot;iconDNIT&quot;
+            src=&quot;test-file-stub&quot;
+          /&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;HeaderContrast&quot;
+        &gt;
+          &lt;img
+            alt=&quot;Button contrast&quot;
+            class=&quot;buttonContrast&quot;
+            src=&quot;test-file-stub&quot;
+          /&gt;
+          &lt;div
+            class=&quot;text-alto-contraste&quot;
+          &gt;
+            Alto contraste
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/header&gt;
+      &lt;div
+        class=&quot;Secao2&quot;
+      &gt;
+        &lt;div
+          class=&quot;box&quot;
+        &gt;
+          &lt;div
+            class=&quot;formrs&quot;
+          &gt;
+            &lt;div&gt;
+              &lt;h2&gt;
+                Cadastrar Escola
+              &lt;/h2&gt;
+              &lt;form
+                autocomplete=&quot;off&quot;
+                class=&quot;ant-form ant-form-vertical css-dev-only-do-not-override-12jzuas form-email&quot;
+                id=&quot;form2&quot;
+              &gt;
+                &lt;div
+                  class=&quot;divScroll&quot;
+                &gt;
+                  &lt;div
+                    class=&quot;bloco&quot;
+                  &gt;
+                    &lt;div
+                      class=&quot;ant-form-item css-dev-only-do-not-override-12jzuas ant-form-item-is-validating&quot;
+                    &gt;
+                      &lt;div
+                        class=&quot;ant-row ant-form-item-row css-dev-only-do-not-override-12jzuas&quot;
+                      &gt;
+                        &lt;div
+                          class=&quot;ant-col ant-form-item-label css-dev-only-do-not-override-12jzuas&quot;
+                        &gt;
+                          &lt;label
+                            class=&quot;ant-form-item-required ant-form-item-required-mark-optional&quot;
+                            for=&quot;form2_nome&quot;
+                            title=&quot;Nome da Escola&quot;
+                          &gt;
+                            Nome da Escola
+                          &lt;/label&gt;
+                        &lt;/div&gt;
+                        &lt;div
+                          class=&quot;ant-col ant-form-item-control css-dev-only-do-not-override-12jzuas&quot;
+                        &gt;
+                          &lt;div
+                            class=&quot;ant-form-item-control-input&quot;
+                          &gt;
+                            &lt;div
+                              class=&quot;ant-form-item-control-input-content&quot;
+                            &gt;
+                              &lt;input
+                                aria-required=&quot;true&quot;
+                                class=&quot;ant-input ant-input-status-validating css-dev-only-do-not-override-12jzuas inputForm2&quot;
+                                id=&quot;form2_nome&quot;
+                                type=&quot;text&quot;
+                                value=&quot;Escola A&quot;
+                              /&gt;
+                            &lt;/div&gt;
+                          &lt;/div&gt;
+                        &lt;/div&gt;
+                      &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div
+                      class=&quot;ant-form-item css-dev-only-do-not-override-12jzuas&quot;
+                    &gt;
+                      &lt;div
+                        class=&quot;ant-row ant-form-item-row css-dev-only-do-not-override-12jzuas&quot;
+                      &gt;
+                        &lt;div
+                          class=&quot;ant-col ant-form-item-label css-dev-only-do-not-override-12jzuas&quot;
+                        &gt;
+                          &lt;label
+                            class=&quot;ant-form-item-required ant-form-item-required-mark-optional&quot;
+                            for=&quot;form2_rede&quot;
+                            title=&quot;Rede&quot;
+                          &gt;
+                            Rede
+                          &lt;/label&gt;
+                        &lt;/div&gt;
+                        &lt;div
+                          class=&quot;ant-col ant-form-item-control css-dev-only-do-not-override-12jzuas&quot;
+                        &gt;
+                          &lt;div
+                            class=&quot;ant-form-item-control-input&quot;
+                          &gt;
+                            &lt;div
+                              class=&quot;ant-form-item-control-input-content&quot;
+                            &gt;
+                              &lt;div
+                                aria-required=&quot;true&quot;
+                                class=&quot;ant-select ant-select-in-form-item css-dev-only-do-not-override-12jzuas ant-select-single ant-select-show-arrow&quot;
+                              &gt;
+                                &lt;div
+                                  class=&quot;ant-select-selector&quot;
+                                &gt;
+                                  &lt;span
+                                    class=&quot;ant-select-selection-search&quot;
+                                  &gt;
+                                    &lt;input
+                                      aria-activedescendant=&quot;form2_rede_list_0&quot;
+                                      aria-autocomplete=&quot;list&quot;
+                                      aria-c...
+    at Object.getElementError (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\@testing-library\react\node_modules\@testing-library\dom\dist\config.js:37:19)
+    at C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\@testing-library\react\node_modules\@testing-library\dom\dist\query-helpers.js:76:38
+    at C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\@testing-library\react\node_modules\@testing-library\dom\dist\query-helpers.js:52:17
+    at C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\@testing-library\react\node_modules\@testing-library\dom\dist\query-helpers.js:95:19
+    at getByText (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\CadastrarEscola.spec.tsx:39:32)
+    at call (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\CadastrarEscola.spec.tsx:2:1)
+    at Generator.tryCatch (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\CadastrarEscola.spec.tsx:2:1)
+    at Generator._invoke [as next] (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\CadastrarEscola.spec.tsx:2:1)
+    at asyncGeneratorStep (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\CadastrarEscola.spec.tsx:2:1)
+    at asyncGeneratorStep (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\CadastrarEscola.spec.tsx:2:1)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)]]></failure>
+</testCase>
+<testCase name="Lista de escolas &#xe9; exibida corretamente" duration="1258" />
+<testCase name="Lista de escolas redireciona pra listagem" duration="592" />
+<testCase name="Cadastro CSV" duration="1720">
+<failure message="Error"><![CDATA[Error: write after end
+    at new NodeError (node:internal/errors:399:5)
+    at write_ (node:_http_outgoing:878:11)
+    at NodeClientRequest.write (node:_http_outgoing:831:15)
+    at C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\@mswjs\interceptors\src\interceptors\ClientRequest\NodeClientRequest.ts:204:22
+    at runNextTicks (node:internal/process/task_queues:60:5)
+    at listOnTimeout (node:internal/timers:538:9)
+    at processTimers (node:internal/timers:512:7)]]></failure>,<failure message="Error"><![CDATA[Error: write after end
+    at new NodeError (node:internal/errors:399:5)
+    at write_ (node:_http_outgoing:878:11)
+    at NodeClientRequest.write (node:_http_outgoing:831:15)
+    at C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\@mswjs\interceptors\src\interceptors\ClientRequest\NodeClientRequest.ts:204:22
+    at runNextTicks (node:internal/process/task_queues:60:5)
+    at listOnTimeout (node:internal/timers:538:9)
+    at processTimers (node:internal/timers:512:7)]]></failure>,<failure message="Error"><![CDATA[Error: Unable to find an element with the text: n&#xe3;o foram cadastradas pois j&#xe1; existem no sistema.. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;div
+      class=&quot;App&quot;
+    &gt;
+      &lt;header
+        class=&quot;App-header&quot;
+      &gt;
+        &lt;div
+          class=&quot;HeaderIcon&quot;
+          data-testid=&quot;redirecionar&quot;
+        &gt;
+          &lt;img
+            alt=&quot;&#xed;cone gov&quot;
+            class=&quot;iconGov&quot;
+            src=&quot;test-file-stub&quot;
+          /&gt;
+          &lt;img
+            alt=&quot;&#xed;cone dnit&quot;
+            class=&quot;iconDNIT&quot;
+            src=&quot;test-file-stub&quot;
+          /&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;HeaderContrast&quot;
+        &gt;
+          &lt;img
+            alt=&quot;Button contrast&quot;
+            class=&quot;buttonContrast&quot;
+            src=&quot;test-file-stub&quot;
+          /&gt;
+          &lt;div
+            class=&quot;text-alto-contraste&quot;
+          &gt;
+            Alto contraste
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/header&gt;
+      &lt;div
+        class=&quot;Secao2&quot;
+      &gt;
+        &lt;div
+          class=&quot;box&quot;
+        &gt;
+          &lt;div
+            class=&quot;formrs&quot;
+          &gt;
+            &lt;div
+              class=&quot;form3&quot;
+            &gt;
+              &lt;h2&gt;
+                Inserir escolas via planilha
+              &lt;/h2&gt;
+              &lt;div
+                class=&quot;secaoInserir&quot;
+              &gt;
+                &lt;span
+                  class=&quot;ant-upload-wrapper css-dev-only-do-not-override-12jzuas&quot;
+                &gt;
+                  &lt;div
+                    class=&quot;ant-upload ant-upload-drag css-dev-only-do-not-override-12jzuas&quot;
+                  &gt;
+                    &lt;span
+                      class=&quot;ant-upload ant-upload-btn&quot;
+                      role=&quot;button&quot;
+                      tabindex=&quot;0&quot;
+                    &gt;
+                      &lt;input
+                        accept=&quot;&quot;
+                        data-testid=&quot;drag-drop-container&quot;
+                        multiple=&quot;&quot;
+                        style=&quot;display: none;&quot;
+                        type=&quot;file&quot;
+                      /&gt;
+                      &lt;div
+                        class=&quot;ant-upload-drag-container&quot;
+                      &gt;
+                        &lt;p
+                          class=&quot;ant-upload-drag-icon&quot;
+                        &gt;
+                          &lt;span
+                            aria-label=&quot;file&quot;
+                            class=&quot;anticon anticon-file&quot;
+                            role=&quot;img&quot;
+                          &gt;
+                            &lt;svg
+                              aria-hidden=&quot;true&quot;
+                              data-icon=&quot;file&quot;
+                              fill=&quot;currentColor&quot;
+                              focusable=&quot;false&quot;
+                              height=&quot;1em&quot;
+                              viewBox=&quot;64 64 896 896&quot;
+                              width=&quot;1em&quot;
+                            &gt;
+                              &lt;path
+                                d=&quot;M854.6 288.6L639.4 73.4c-6-6-14.1-9.4-22.6-9.4H192c-17.7 0-32 14.3-32 32v832c0 17.7 14.3 32 32 32h640c17.7 0 32-14.3 32-32V311.3c0-8.5-3.4-16.7-9.4-22.7zM790.2 326H602V137.8L790.2 326zm1.8 562H232V136h302v216a42 42 0 0042 42h216v494z&quot;
+                              /&gt;
+                            &lt;/svg&gt;
+                          &lt;/span&gt;
+                        &lt;/p&gt;
+                        &lt;p
+                          class=&quot;ant-upload-text&quot;
+                        &gt;
+                          Voc&#xea; pode clicar ou arrastar arquivos aqui para adicion&#xe1;-los.
+                        &lt;/p&gt;
+                      &lt;/div&gt;
+                    &lt;/span&gt;
+                  &lt;/div&gt;
+                  &lt;div
+                    class=&quot;ant-upload-list ant-upload-list-text&quot;
+                  &gt;
+                    &lt;div
+                      class=&quot;ant-upload-list-item-container&quot;
+                    &gt;
+                      &lt;div
+                        class=&quot;ant-upload-list-item ant-upload-list-item-undefined&quot;
+                      &gt;
+                        &lt;div
+                          class=&quot;ant-upload-icon&quot;
+                        &gt;
+                          &lt;span
+                            aria-label=&quot;paper-clip&quot;
+                            class=&quot;anticon anticon-paper-clip&quot;
+                            role=&quot;img&quot;
+                          &gt;
+                            &lt;svg
+                              aria-hidden=&quot;true&quot;
+                              data-icon=&quot;paper-clip&quot;
+                              fill=&quot;currentColor&quot;
+                              focusable=&quot;false&quot;
+                              height=&quot;1em&quot;
+                              viewBox=&quot;64 64 896 896&quot;
+                              width=&quot;1em&quot;
+                            &gt;
+                              &lt;path
+                                d=&quot;M779.3 196.6c-94.2-94.2-247.6-94.2-341.7 0l-261 260.8c-1.7 1.7-2.6 4-2.6 6.4s.9 4.7 2.6 6.4l36.9 36.9a9 9 0 0012.7 0l261-260.8c32.4-32.4 75.5-50.2 121.3-50.2s88.9 17.8 121.2 50.2c32.4 32.4 50.2 75.5 50.2 121.2 0 45.8-17.8 88.8-50.2 121.2l-266 265.9-43.1 43.1c-40.3 40.3-105.8 40.3-146.1 0-19.5-19.5-30.2-45.4-30.2-73s10.7-53.5 30.2-73l263.9-263.8c6.7-6.6 15.5-10.3 24.9-10.3h.1c9.4 0 18.1 3.7 24.7 10.3 6.7 6.7 10.3 15.5 10.3 24.9 0 9.3-3.7 18.1-10.3 24.7L372.4 653c-1.7 1.7-2.6 4-2.6 6.4s.9 4.7 2.6 6.4l36.9 36.9a9 9 0 0012.7 0l215.6-215.6c19.9-19.9 30.8-46.3 30.8-74.4s-11-54.6-30.8-74.4c-41.1-41.1-107.9-41-149 0L463 364 224.8 602.1A172.22 172.22 0 00174 724.8c0 46.3 18.1 89.8 50.8 122.5 33.9 33.8 78.3 50.7 122.7 50.7 44.4 0 88.8-16.9 122.6-50.7l309.2-309C824.8 492.7 850 432 850 367.5c.1-64.6-25.1-125.3-70.7-170.9z&quot;
+                              /&gt;
+                            &lt;/svg&gt;
+                          &lt;/span&gt;
+                        &lt;/div&gt;
+                        &lt;span
+                          class=&quot;ant-upload-list-item-name&quot;
+                          title=&quot;file.csv&quot;
+                        &gt;
+                          file.csv
+                        &lt;/span&gt;
+                        &lt;span
+                          class=&quot;ant-upload-list-item-actions&quot;
+                        &gt;
+                          &lt;button
+                            class=&quot;ant-btn css-dev-only-do-not-override-12jzuas ant-btn-text ant-btn-sm ant-btn-icon-only ant-upload-list-item-action&quot;
+                            title=&quot;Remove file&quot;
+                            type=&quot;button&quot;
+                          &gt;
+                            &lt;span
+                              class=&quot;ant-btn-icon&quot;
+                            &gt;
+                              &lt;span
+                                aria-label=&quot;delete&quot;
+                                class=&quot;anticon anticon-delete&quot;
+                                role=&quot;img&quot;
+                                tabindex=&quot;-1&quot;
+                              &gt;
+                                &lt;svg
+                                  aria-hidden=&quot;true&quot;
+                                  data-icon=&quot;delete&quot;
+                                  fill=&quot;currentColor&quot;
+                                  focusable=&quot;false&quot;
+                                  height=&quot;1em&quot;
+                                  viewBox=&quot;64 64 896 896&quot;
+                                  width=&quot;1em&quot;
+                                &gt;
+                                  &lt;path
+                                    d=&quot;M360 184h-8c4.4 0 8-3.6 8-8v8h304v-8c0 4.4 3.6 8 8 8h-8v72h72v-80c0-35.3-28.7-64-64-64H352c-35.3 0-64 28.7-64 64v80h72v-72zm504 72H160c-17.7 0-32 14.3-32 32v32c0 4.4 3.6 8 8 8h60.4l24.7 523c1.6 34.1 29.8 61 63.9 61h454c34.2 0 62.3-26.8 63.9-61l24.7-523H888c4.4 0 8-3.6 8-8v-32c0-17.7-14.3-32-32-32zM731.3 840H292.7l-24.2-512h487l-24.2 512z&quot;
+                                  /&gt;
+                                &lt;/svg&gt;
+                              &lt;/span&gt;
+                            &lt;/span&gt;
+                          &lt;/button&gt;
+                        &lt;/span&gt;
+                      &lt;/div&gt;
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+                &lt;/span&gt;
+                &lt;div
+                  class=&quot;container-botoes&quot;
+                &gt;
+                  &lt;button
+                    class=&quot;ant-btn css-dev-only-do-not-override-12jzuas ant-btn-default botaoCancelar&quot;
+                    type=&quot;button&quot;
+                  &gt;
+                    &lt;span&gt;
+                      Cancelar
+                    &lt;/span&gt;
+                  &lt;/button&gt;
+                  &lt;button
+                    class=&quot;ant-btn css-dev-only-do-not-override-12jzuas ant-btn-primary botaoEnviar&quot;
+                    type=&quot;button&quot;
+                  &gt;
+                    &lt;span&gt;
+                      Enviar arquivo
+                    &lt;/span&gt;
+                  &lt;/button&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div
+    class=&quot;ant-message ant-message-top css-dev-only-do-not-override-12jzuas&quot;
+    style=&quot;left: 50%; transform: translateX(-50%); top: 8px;&quot;
+  &gt;
+    &lt;div
+      class=&quot;ant-message-notice ant-message-notice-error css-dev-only-do-not-override-12jzuas&quot;
+    &gt;
+      &lt;div
+        class=&quot;ant-message-notice-content&quot;
+      &gt;
+        &lt;div
+          class=&quot;ant-message-custom-content ant-message-error&quot;
+        &gt;
+          &lt;span
+            aria-label=&quot;close-circle&quot;
+            class=&quot;anticon anticon-close-circle&quot;
+            role=&quot;img&quot;
+          &gt;
+            &lt;svg
+              aria-hidden=&quot;true&quot;
+              data-icon=&quot;close-circle&quot;
+              fill=&quot;currentColor&quot;
+              focusable=&quot;false&quot;
+              height=&quot;1em&quot;
+              viewBox=&quot;64 64 896 896&quot;
+              width=&quot;1em&quot;
+            &gt;
+              &lt;path
+                d=&quot;M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm165.4 618.2l-66-.3L512 563.4l-99.3 118.4-66.1.3c-4.4 0-8-3.5-8-8 0-1.9.7-3.7 1.9-5.2l130.1-155L340.5 359a8.32 8.32 0 01-1.9-5.2c0-4.4 3.6-8 8-8l66.1.3L512 464.6l99.3-118.4 66-.3c4.4 0 8 3.5 8 8 0 1.9-.7 3.7-1.9 5.2L553.5 514l130 155c1.2 1.5 1.9 3.3 1.9 5.2 0 4.4-3.6 8-8 8z&quot;
+              /&gt;
+            &lt;/svg&gt;
+          &lt;/span&gt;
+          &lt;span&gt;
+            undefined
+          &lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+    at waitForWrapper (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\@testing-library\react\node_modules\@testing-library\dom\dist\wait-for.js:166:27)
+    at C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\@testing-library\react\node_modules\@testing-library\dom\dist\query-helpers.js:86:33
+    at findByText (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\CadastrarEscola.spec.tsx:142:16)
+    at call (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\CadastrarEscola.spec.tsx:2:1)
+    at Generator.tryCatch (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\CadastrarEscola.spec.tsx:2:1)
+    at Generator._invoke [as next] (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\CadastrarEscola.spec.tsx:2:1)
+    at asyncGeneratorStep (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\CadastrarEscola.spec.tsx:2:1)
+    at asyncGeneratorStep (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\CadastrarEscola.spec.tsx:2:1)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)]]></failure>
+</testCase>
+<testCase name="Cadastro CSV erro" duration="1303">
+<failure message="Error"><![CDATA[Error: write after end
+    at new NodeError (node:internal/errors:399:5)
+    at write_ (node:_http_outgoing:878:11)
+    at NodeClientRequest.write (node:_http_outgoing:831:15)
+    at C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\@mswjs\interceptors\src\interceptors\ClientRequest\NodeClientRequest.ts:204:22]]></failure>,<failure message="Error"><![CDATA[Error: write after end
+    at new NodeError (node:internal/errors:399:5)
+    at write_ (node:_http_outgoing:878:11)
+    at NodeClientRequest.write (node:_http_outgoing:831:15)
+    at C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\@mswjs\interceptors\src\interceptors\ClientRequest\NodeClientRequest.ts:204:22]]></failure>,<failure message="Error"><![CDATA[Error: Unable to find an element with the text: Erro na inser&#xe7;&#xe3;o das escolas!. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+&lt;body&gt;
+  &lt;div
+    class=&quot;ant-message ant-message-top css-dev-only-do-not-override-12jzuas&quot;
+    style=&quot;left: 50%; transform: translateX(-50%); top: 8px;&quot;
+  &gt;
+    &lt;div
+      class=&quot;ant-message-notice ant-message-notice-error css-dev-only-do-not-override-12jzuas&quot;
+    &gt;
+      &lt;div
+        class=&quot;ant-message-notice-content&quot;
+      &gt;
+        &lt;div
+          class=&quot;ant-message-custom-content ant-message-error&quot;
+        &gt;
+          &lt;span
+            aria-label=&quot;close-circle&quot;
+            class=&quot;anticon anticon-close-circle&quot;
+            role=&quot;img&quot;
+          &gt;
+            &lt;svg
+              aria-hidden=&quot;true&quot;
+              data-icon=&quot;close-circle&quot;
+              fill=&quot;currentColor&quot;
+              focusable=&quot;false&quot;
+              height=&quot;1em&quot;
+              viewBox=&quot;64 64 896 896&quot;
+              width=&quot;1em&quot;
+            &gt;
+              &lt;path
+                d=&quot;M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm165.4 618.2l-66-.3L512 563.4l-99.3 118.4-66.1.3c-4.4 0-8-3.5-8-8 0-1.9.7-3.7 1.9-5.2l130.1-155L340.5 359a8.32 8.32 0 01-1.9-5.2c0-4.4 3.6-8 8-8l66.1.3L512 464.6l99.3-118.4 66-.3c4.4 0 8 3.5 8 8 0 1.9-.7 3.7-1.9 5.2L553.5 514l130 155c1.2 1.5 1.9 3.3 1.9 5.2 0 4.4-3.6 8-8 8z&quot;
+              /&gt;
+            &lt;/svg&gt;
+          &lt;/span&gt;
+          &lt;span&gt;
+            undefined
+          &lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div
+      class=&quot;ant-message-notice ant-message-notice-error css-dev-only-do-not-override-12jzuas&quot;
+    &gt;
+      &lt;div
+        class=&quot;ant-message-notice-content&quot;
+      &gt;
+        &lt;div
+          class=&quot;ant-message-custom-content ant-message-error&quot;
+        &gt;
+          &lt;span
+            aria-label=&quot;close-circle&quot;
+            class=&quot;anticon anticon-close-circle&quot;
+            role=&quot;img&quot;
+          &gt;
+            &lt;svg
+              aria-hidden=&quot;true&quot;
+              data-icon=&quot;close-circle&quot;
+              fill=&quot;currentColor&quot;
+              focusable=&quot;false&quot;
+              height=&quot;1em&quot;
+              viewBox=&quot;64 64 896 896&quot;
+              width=&quot;1em&quot;
+            &gt;
+              &lt;path
+                d=&quot;M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm165.4 618.2l-66-.3L512 563.4l-99.3 118.4-66.1.3c-4.4 0-8-3.5-8-8 0-1.9.7-3.7 1.9-5.2l130.1-155L340.5 359a8.32 8.32 0 01-1.9-5.2c0-4.4 3.6-8 8-8l66.1.3L512 464.6l99.3-118.4 66-.3c4.4 0 8 3.5 8 8 0 1.9-.7 3.7-1.9 5.2L553.5 514l130 155c1.2 1.5 1.9 3.3 1.9 5.2 0 4.4-3.6 8-8 8z&quot;
+              /&gt;
+            &lt;/svg&gt;
+          &lt;/span&gt;
+          &lt;span&gt;
+            undefined
+          &lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;div
+      class=&quot;App&quot;
+    &gt;
+      &lt;header
+        class=&quot;App-header&quot;
+      &gt;
+        &lt;div
+          class=&quot;HeaderIcon&quot;
+          data-testid=&quot;redirecionar&quot;
+        &gt;
+          &lt;img
+            alt=&quot;&#xed;cone gov&quot;
+            class=&quot;iconGov&quot;
+            src=&quot;test-file-stub&quot;
+          /&gt;
+          &lt;img
+            alt=&quot;&#xed;cone dnit&quot;
+            class=&quot;iconDNIT&quot;
+            src=&quot;test-file-stub&quot;
+          /&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;HeaderContrast&quot;
+        &gt;
+          &lt;img
+            alt=&quot;Button contrast&quot;
+            class=&quot;buttonContrast&quot;
+            src=&quot;test-file-stub&quot;
+          /&gt;
+          &lt;div
+            class=&quot;text-alto-contraste&quot;
+          &gt;
+            Alto contraste
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/header&gt;
+      &lt;div
+        class=&quot;Secao2&quot;
+      &gt;
+        &lt;div
+          class=&quot;box&quot;
+        &gt;
+          &lt;div
+            class=&quot;formrs&quot;
+          &gt;
+            &lt;div
+              class=&quot;form3&quot;
+            &gt;
+              &lt;h2&gt;
+                Inserir escolas via planilha
+              &lt;/h2&gt;
+              &lt;div
+                class=&quot;secaoInserir&quot;
+              &gt;
+                &lt;span
+                  class=&quot;ant-upload-wrapper css-dev-only-do-not-override-12jzuas&quot;
+                &gt;
+                  &lt;div
+                    class=&quot;ant-upload ant-upload-drag css-dev-only-do-not-override-12jzuas&quot;
+                  &gt;
+                    &lt;span
+                      class=&quot;ant-upload ant-upload-btn&quot;
+                      role=&quot;button&quot;
+                      tabindex=&quot;0&quot;
+                    &gt;
+                      &lt;input
+                        accept=&quot;&quot;
+                        data-testid=&quot;drag-drop-container&quot;
+                        multiple=&quot;&quot;
+                        style=&quot;display: none;&quot;
+                        type=&quot;file&quot;
+                      /&gt;
+                      &lt;div
+                        class=&quot;ant-upload-drag-container&quot;
+                      &gt;
+                        &lt;p
+                          class=&quot;ant-upload-drag-icon&quot;
+                        &gt;
+                          &lt;span
+                            aria-label=&quot;file&quot;
+                            class=&quot;anticon anticon-file&quot;
+                            role=&quot;img&quot;
+                          &gt;
+                            &lt;svg
+                              aria-hidden=&quot;true&quot;
+                              data-icon=&quot;file&quot;
+                              fill=&quot;currentColor&quot;
+                              focusable=&quot;false&quot;
+                              height=&quot;1em&quot;
+                              viewBox=&quot;64 64 896 896&quot;
+                              width=&quot;1em&quot;
+                            &gt;
+                              &lt;path
+                                d=&quot;M854.6 288.6L639.4 73.4c-6-6-14.1-9.4-22.6-9.4H192c-17.7 0-32 14.3-32 32v832c0 17.7 14.3 32 32 32h640c17.7 0 32-14.3 32-32V311.3c0-8.5-3.4-16.7-9.4-22.7zM790.2 326H602V137.8L790.2 326zm1.8 562H232V136h302v216a42 42 0 0042 42h216v494z&quot;
+                              /&gt;
+                            &lt;/svg&gt;
+                          &lt;/span&gt;
+                        &lt;/p&gt;
+                        &lt;p
+                          class=&quot;ant-upload-text&quot;
+                        &gt;
+                          Voc&#xea; pode clicar ou arrastar arquivos aqui para adicion&#xe1;-los.
+                        &lt;/p&gt;
+                      &lt;/div&gt;
+                    &lt;/span&gt;
+                  &lt;/div&gt;
+                  &lt;div
+                    class=&quot;ant-upload-list ant-upload-list-text&quot;
+                  &gt;
+                    &lt;div
+                      class=&quot;ant-upload-list-item-container&quot;
+                    &gt;
+                      &lt;div
+                        class=&quot;ant-upload-list-item ant-upload-list-item-undefined&quot;
+                      &gt;
+                        &lt;div
+                          class=&quot;ant-upload-icon&quot;
+                        &gt;
+                          &lt;span
+                            aria-label=&quot;paper-clip&quot;
+                            class=&quot;anticon anticon-paper-clip&quot;
+                            role=&quot;img&quot;
+                          &gt;
+                            &lt;svg
+                              aria-hidden=&quot;true&quot;
+                              data-icon=&quot;paper-clip&quot;
+                              fill=&quot;currentColor&quot;
+                              focusable=&quot;false&quot;
+                              height=&quot;1em&quot;
+                              viewBox=&quot;64 64 896 896&quot;
+                              width=&quot;1em&quot;
+                            &gt;
+                              &lt;path
+                                d=&quot;M779.3 196.6c-94.2-94.2-247.6-94.2-341.7 0l-261 260.8c-1.7 1.7-2.6 4-2.6 6.4s.9 4.7 2.6 6.4l36.9 36.9a9 9 0 0012.7 0l261-260.8c32.4-32.4 75.5-50.2 121.3-50.2s88.9 17.8 121.2 50.2c32.4 32.4 50.2 75.5 50.2 121.2 0 45.8-17.8 88.8-50.2 121.2l-266 265.9-43.1 43.1c-40.3 40.3-105.8 40.3-146.1 0-19.5-19.5-30.2-45.4-30.2-73s10.7-53.5 30.2-73l263.9-263.8c6.7-6.6 15.5-10.3 24.9-10.3h.1c9.4 0 18.1 3.7 24.7 10.3 6.7 6.7 10.3 15.5 10.3 24.9 0 9.3-3.7 18.1-10.3 24.7L372.4 653c-1.7 1.7-2.6 4-2.6 6.4s.9 4.7 2.6 6.4l36.9 36.9a9 9 0 0012.7 0l215.6-215.6c19.9-19.9 30.8-46.3 30.8-74.4s-11-54.6-30.8-74.4c-41.1-41.1-107.9-41-149 0L463 364 224.8 602.1A172.22 172.22 0 00174 724.8c0 46.3 18.1 89.8 50.8 122.5 33.9 33.8 78.3 50.7 122.7 50.7 44.4 0 88.8-16.9 122.6-50.7l309.2-309C824.8 492.7 850 432 850 367.5c.1-64.6-25.1-125.3-70.7-170.9z&quot;
+                              /&gt;
+                            &lt;/svg&gt;
+                          &lt;/span&gt;
+                        &lt;/div&gt;
+                        &lt;span
+                          class=&quot;ant-upload-list-item-name&quot;
+                          title=&quot;file.csv&quot;
+                        &gt;
+                          file.csv
+                        &lt;/span&gt;
+                        &lt;span
+                          class=&quot;ant-upload-list-item-actions&quot;
+                        &gt;
+                          &lt;button
+                            class=&quot;ant-btn css-dev-only-do-not-override-12jzuas ant-btn-text ant-btn-sm ant-btn-icon-only ant-upload-list-item-action&quot;
+                            title=&quot;Remove file&quot;
+                            type=&quot;button&quot;
+                          &gt;
+                            &lt;span
+                              class=&quot;ant-btn-icon&quot;
+                            &gt;
+                              &lt;span
+                                aria-label=&quot;delete&quot;
+                                class=&quot;anticon anticon-delete&quot;
+                                role=&quot;img&quot;
+                                tabindex=&quot;-1&quot;
+                              &gt;
+                                &lt;svg
+                                  aria-hidden=&quot;true&quot;
+                                  data-icon=&quot;delete&quot;
+                                  fill=&quot;currentColor&quot;
+                                  focusable=&quot;false&quot;
+                                  height=&quot;1em&quot;
+                                  viewBox=&quot;64 64 896 896&quot;
+                                  width=&quot;1em&quot;
+                                &gt;
+                                  &lt;path
+                                    d=&quot;M360 184h-8c4.4 0 8-3.6 8-8v8h304v-8c0 4.4 3.6 8 8 8h-8v72h72v-80c0-35.3-28.7-64-64-64H352c-35.3 0-64 28.7-64 64v80h72v-72zm504 72H160c-17.7 0-32 14.3-32 32v32c0 4.4 3.6 8 8 8h60.4l24.7 523c1.6 34.1 29.8 61 63.9 61h454c34.2 0 62.3-26.8 63.9-61l24.7-523H888c4.4 0 8-3.6 8-8v-32c0-17.7-14.3-32-32-32zM731.3 840H292.7l-24.2-512h487l-24.2 512z&quot;
+                                  /&gt;
+                                &lt;/svg&gt;
+                              &lt;/span&gt;
+                            &lt;/span&gt;
+                          &lt;/button&gt;
+                        &lt;/span&gt;
+                      &lt;/div&gt;
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+                &lt;/span&gt;
+                &lt;div
+                  class=&quot;container-botoes&quot;
+                &gt;
+                  &lt;button
+                    class=&quot;ant-btn css-dev-only-do-not-override-12jzuas ant-btn-default botaoCancelar&quot;
+                    type=&quot;button&quot;
+                  &gt;
+                    &lt;span&gt;
+                      Cancelar
+                    &lt;/span&gt;
+                  &lt;/button&gt;
+                  &lt;button
+                    class=&quot;ant-btn css-dev-only-do-not-override-12jzuas ant-btn-primary botaoEnviar&quot;
+                    type=&quot;button&quot;
+                  &gt;
+                    &lt;span&gt;
+                      Enviar arquivo
+                    &lt;/span&gt;
+                  &lt;/button&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+    at waitForWrapper (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\@testing-library\react\node_modules\@testing-library\dom\dist\wait-for.js:166:27)
+    at C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\@testing-library\react\node_modules\@testing-library\dom\dist\query-helpers.js:86:33
+    at findByText (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\CadastrarEscola.spec.tsx:173:16)
+    at call (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\CadastrarEscola.spec.tsx:2:1)
+    at Generator.tryCatch (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\CadastrarEscola.spec.tsx:2:1)
+    at Generator._invoke [as next] (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\CadastrarEscola.spec.tsx:2:1)
+    at asyncGeneratorStep (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\CadastrarEscola.spec.tsx:2:1)
+    at asyncGeneratorStep (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\CadastrarEscola.spec.tsx:2:1)]]></failure>
+</testCase>
+<testCase name="Cadastro CSV vazio" duration="1310">
+<failure message="Error"><![CDATA[Error: self-signed certificate
+    at TLSSocket.onConnectSecure (node:_tls_wrap:1540:34)
+    at TLSSocket.emit (node:events:513:28)
+    at TLSSocket._finishInit (node:_tls_wrap:959:8)
+    at TLSWrap.ssl.onhandshakedone (node:_tls_wrap:743:12)]]></failure>,<failure message="Error"><![CDATA[Error: self-signed certificate
+    at TLSSocket.onConnectSecure (node:_tls_wrap:1540:34)
+    at TLSSocket.emit (node:events:513:28)
+    at TLSSocket._finishInit (node:_tls_wrap:959:8)
+    at TLSWrap.ssl.onhandshakedone (node:_tls_wrap:743:12)]]></failure>,<failure message="Error"><![CDATA[Error: write after end
+    at new NodeError (node:internal/errors:399:5)
+    at write_ (node:_http_outgoing:878:11)
+    at NodeClientRequest.write (node:_http_outgoing:831:15)
+    at C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\@mswjs\interceptors\src\interceptors\ClientRequest\NodeClientRequest.ts:204:22]]></failure>,<failure message="Error"><![CDATA[Error: write after end
+    at new NodeError (node:internal/errors:399:5)
+    at write_ (node:_http_outgoing:878:11)
+    at NodeClientRequest.write (node:_http_outgoing:831:15)
+    at C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\@mswjs\interceptors\src\interceptors\ClientRequest\NodeClientRequest.ts:204:22]]></failure>,<failure message="Error"><![CDATA[Error: self-signed certificate
+    at TLSSocket.onConnectSecure (node:_tls_wrap:1540:34)
+    at TLSSocket.emit (node:events:513:28)
+    at TLSSocket._finishInit (node:_tls_wrap:959:8)
+    at TLSWrap.ssl.onhandshakedone (node:_tls_wrap:743:12)]]></failure>,<failure message="Error"><![CDATA[Error: Unable to find an element with the text: Inser&#xe7;&#xe3;o de arquivos conclu&#xed;da com sucesso. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+&lt;body&gt;
+  &lt;div
+    class=&quot;ant-message ant-message-top css-dev-only-do-not-override-12jzuas&quot;
+    style=&quot;left: 50%; transform: translateX(-50%); top: 8px;&quot;
+  &gt;
+    &lt;div
+      class=&quot;ant-message-notice ant-message-notice-error css-dev-only-do-not-override-12jzuas&quot;
+    &gt;
+      &lt;div
+        class=&quot;ant-message-notice-content&quot;
+      &gt;
+        &lt;div
+          class=&quot;ant-message-custom-content ant-message-error&quot;
+        &gt;
+          &lt;span
+            aria-label=&quot;close-circle&quot;
+            class=&quot;anticon anticon-close-circle&quot;
+            role=&quot;img&quot;
+          &gt;
+            &lt;svg
+              aria-hidden=&quot;true&quot;
+              data-icon=&quot;close-circle&quot;
+              fill=&quot;currentColor&quot;
+              focusable=&quot;false&quot;
+              height=&quot;1em&quot;
+              viewBox=&quot;64 64 896 896&quot;
+              width=&quot;1em&quot;
+            &gt;
+              &lt;path
+                d=&quot;M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm165.4 618.2l-66-.3L512 563.4l-99.3 118.4-66.1.3c-4.4 0-8-3.5-8-8 0-1.9.7-3.7 1.9-5.2l130.1-155L340.5 359a8.32 8.32 0 01-1.9-5.2c0-4.4 3.6-8 8-8l66.1.3L512 464.6l99.3-118.4 66-.3c4.4 0 8 3.5 8 8 0 1.9-.7 3.7-1.9 5.2L553.5 514l130 155c1.2 1.5 1.9 3.3 1.9 5.2 0 4.4-3.6 8-8 8z&quot;
+              /&gt;
+            &lt;/svg&gt;
+          &lt;/span&gt;
+          &lt;span&gt;
+            undefined
+          &lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div
+      class=&quot;ant-message-notice ant-message-notice-error css-dev-only-do-not-override-12jzuas&quot;
+    &gt;
+      &lt;div
+        class=&quot;ant-message-notice-content&quot;
+      &gt;
+        &lt;div
+          class=&quot;ant-message-custom-content ant-message-error&quot;
+        &gt;
+          &lt;span
+            aria-label=&quot;close-circle&quot;
+            class=&quot;anticon anticon-close-circle&quot;
+            role=&quot;img&quot;
+          &gt;
+            &lt;svg
+              aria-hidden=&quot;true&quot;
+              data-icon=&quot;close-circle&quot;
+              fill=&quot;currentColor&quot;
+              focusable=&quot;false&quot;
+              height=&quot;1em&quot;
+              viewBox=&quot;64 64 896 896&quot;
+              width=&quot;1em&quot;
+            &gt;
+              &lt;path
+                d=&quot;M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm165.4 618.2l-66-.3L512 563.4l-99.3 118.4-66.1.3c-4.4 0-8-3.5-8-8 0-1.9.7-3.7 1.9-5.2l130.1-155L340.5 359a8.32 8.32 0 01-1.9-5.2c0-4.4 3.6-8 8-8l66.1.3L512 464.6l99.3-118.4 66-.3c4.4 0 8 3.5 8 8 0 1.9-.7 3.7-1.9 5.2L553.5 514l130 155c1.2 1.5 1.9 3.3 1.9 5.2 0 4.4-3.6 8-8 8z&quot;
+              /&gt;
+            &lt;/svg&gt;
+          &lt;/span&gt;
+          &lt;span&gt;
+            undefined
+          &lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div
+      class=&quot;ant-message-notice ant-message-notice-error css-dev-only-do-not-override-12jzuas&quot;
+    &gt;
+      &lt;div
+        class=&quot;ant-message-notice-content&quot;
+      &gt;
+        &lt;div
+          class=&quot;ant-message-custom-content ant-message-error&quot;
+        &gt;
+          &lt;span
+            aria-label=&quot;close-circle&quot;
+            class=&quot;anticon anticon-close-circle&quot;
+            role=&quot;img&quot;
+          &gt;
+            &lt;svg
+              aria-hidden=&quot;true&quot;
+              data-icon=&quot;close-circle&quot;
+              fill=&quot;currentColor&quot;
+              focusable=&quot;false&quot;
+              height=&quot;1em&quot;
+              viewBox=&quot;64 64 896 896&quot;
+              width=&quot;1em&quot;
+            &gt;
+              &lt;path
+                d=&quot;M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm165.4 618.2l-66-.3L512 563.4l-99.3 118.4-66.1.3c-4.4 0-8-3.5-8-8 0-1.9.7-3.7 1.9-5.2l130.1-155L340.5 359a8.32 8.32 0 01-1.9-5.2c0-4.4 3.6-8 8-8l66.1.3L512 464.6l99.3-118.4 66-.3c4.4 0 8 3.5 8 8 0 1.9-.7 3.7-1.9 5.2L553.5 514l130 155c1.2 1.5 1.9 3.3 1.9 5.2 0 4.4-3.6 8-8 8z&quot;
+              /&gt;
+            &lt;/svg&gt;
+          &lt;/span&gt;
+          &lt;span&gt;
+            undefined
+          &lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;div
+      class=&quot;App&quot;
+    &gt;
+      &lt;header
+        class=&quot;App-header&quot;
+      &gt;
+        &lt;div
+          class=&quot;HeaderIcon&quot;
+          data-testid=&quot;redirecionar&quot;
+        &gt;
+          &lt;img
+            alt=&quot;&#xed;cone gov&quot;
+            class=&quot;iconGov&quot;
+            src=&quot;test-file-stub&quot;
+          /&gt;
+          &lt;img
+            alt=&quot;&#xed;cone dnit&quot;
+            class=&quot;iconDNIT&quot;
+            src=&quot;test-file-stub&quot;
+          /&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;HeaderContrast&quot;
+        &gt;
+          &lt;img
+            alt=&quot;Button contrast&quot;
+            class=&quot;buttonContrast&quot;
+            src=&quot;test-file-stub&quot;
+          /&gt;
+          &lt;div
+            class=&quot;text-alto-contraste&quot;
+          &gt;
+            Alto contraste
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/header&gt;
+      &lt;div
+        class=&quot;Secao2&quot;
+      &gt;
+        &lt;div
+          class=&quot;box&quot;
+        &gt;
+          &lt;div
+            class=&quot;formrs&quot;
+          &gt;
+            &lt;div
+              class=&quot;form3&quot;
+            &gt;
+              &lt;h2&gt;
+                Inserir escolas via planilha
+              &lt;/h2&gt;
+              &lt;div
+                class=&quot;secaoInserir&quot;
+              &gt;
+                &lt;span
+                  class=&quot;ant-upload-wrapper css-dev-only-do-not-override-12jzuas&quot;
+                &gt;
+                  &lt;div
+                    class=&quot;ant-upload ant-upload-drag css-dev-only-do-not-override-12jzuas&quot;
+                  &gt;
+                    &lt;span
+                      class=&quot;ant-upload ant-upload-btn&quot;
+                      role=&quot;button&quot;
+                      tabindex=&quot;0&quot;
+                    &gt;
+                      &lt;input
+                        accept=&quot;&quot;
+                        data-testid=&quot;drag-drop-container&quot;
+                        multiple=&quot;&quot;
+                        style=&quot;display: none;&quot;
+                        type=&quot;file&quot;
+                      /&gt;
+                      &lt;div
+                        class=&quot;ant-upload-drag-container&quot;
+                      &gt;
+                        &lt;p
+                          class=&quot;ant-upload-drag-icon&quot;
+                        &gt;
+                          &lt;span
+                            aria-label=&quot;file&quot;
+                            class=&quot;anticon anticon-file&quot;
+                            role=&quot;img&quot;
+                          &gt;
+                            &lt;svg
+                              aria-hidden=&quot;true&quot;
+                              data-icon=&quot;file&quot;
+                              fill=&quot;currentColor&quot;
+                              focusable=&quot;false&quot;
+                              height=&quot;1em&quot;
+                              viewBox=&quot;64 64 896 896&quot;
+                              width=&quot;1em&quot;
+                            &gt;
+                              &lt;path
+                                d=&quot;M854.6 288.6L639.4 73.4c-6-6-14.1-9.4-22.6-9.4H192c-17.7 0-32 14.3-32 32v832c0 17.7 14.3 32 32 32h640c17.7 0 32-14.3 32-32V311.3c0-8.5-3.4-16.7-9.4-22.7zM790.2 326H602V137.8L790.2 326zm1.8 562H232V136h302v216a42 42 0 0042 42h216v494z&quot;
+                              /&gt;
+                            &lt;/svg&gt;
+                          &lt;/span&gt;
+                        &lt;/p&gt;
+                        &lt;p
+                          class=&quot;ant-upload-text&quot;
+                        &gt;
+                          Voc&#xea; pode clicar ou arrastar arquivos aqui para adicion&#xe1;-los.
+                        &lt;/p&gt;
+                      &lt;/div&gt;
+                    &lt;/span&gt;
+                  &lt;/div&gt;
+                  &lt;div
+                    class=&quot;ant-upload-list ant-upload-list-text&quot;
+                  &gt;
+                    &lt;div
+                      class=&quot;ant-upload-list-item-container&quot;
+                    &gt;
+                      &lt;div
+                        class=&quot;ant-upload-list-item ant-upload-list-item-undefined&quot;
+                      &gt;
+                        &lt;div
+                          class=&quot;ant-upload-icon&quot;
+                        &gt;
+                          &lt;span
+                            aria-label=&quot;paper-clip&quot;
+                            class=&quot;anticon anticon-paper-clip&quot;
+                            role=&quot;img&quot;
+                          &gt;
+                            &lt;svg
+                              aria-hidden=&quot;true&quot;
+                              data-icon=&quot;paper-clip&quot;
+                              fill=&quot;currentColor&quot;
+                              focusable=&quot;false&quot;
+                              height=&quot;1em&quot;
+                              viewBox=&quot;64 64 896 896&quot;
+                              width=&quot;1em&quot;
+                            &gt;
+                              &lt;path
+                                d=&quot;M779.3 196.6c-94.2-94.2-247.6-94.2-341.7 0l-261 260.8c-1.7 1.7-2.6 4-2.6 6.4s.9 4.7 2.6 6.4l36.9 36.9a9 9 0 0012.7 0l261-260.8c32.4-32.4 75.5-50.2 121.3-50.2s88.9 17.8 121.2 50.2c32.4 32.4 50.2 75.5 50.2 121.2 0 45.8-17.8 88.8-50.2 121.2l-266 265.9-43.1 43.1c-40.3 40.3-105.8 40.3-146.1 0-19.5-19.5-30.2-45.4-30.2-73s10.7-53.5 30.2-73l263.9-263.8c6.7-6.6 15.5-10.3 24.9-10.3h.1c9.4 0 18.1 3.7 24.7 10.3 6.7 6.7 10.3 15.5 10.3 24.9 0 9.3-3.7 18.1-10.3 24.7L372.4 653c-1.7 1.7-2.6 4-2.6 6.4s.9 4.7 2.6 6.4l36.9 36.9a9 9 0 0012.7 0l215.6-215.6c19.9-19.9 30.8-46.3 30.8-74.4s-11-54.6-30.8-74.4c-41.1-41.1-107.9-41-149 0L463 364 224.8 602.1A172.22 172.22 0 00174 724.8c0 46.3 18.1 89.8 50.8 122.5 33.9 33.8 78.3 50.7 122.7 50.7 44.4 0 88.8-16.9 122.6-50.7l309.2-309C824.8 492.7 850 432 850 367.5c.1-64.6-25.1-125.3-70.7-170.9z&quot;
+                              /&gt;
+                            &lt;/svg&gt;
+                          &lt;/span&gt;
+                        &lt;/div&gt;
+                        &lt;span
+                          class=&quot;ant-upload-list-item-name&quot;
+                          title=&quot;file.csv&quot;
+                        &gt;
+                          file.csv
+                        &lt;/span&gt;
+                        &lt;span
+                          class=&quot;ant-upload-list-item-actions&quot;
+                        &gt;
+                          &lt;button
+                            class=&quot;ant-btn css-dev-only-do-not-override-12jzuas ant-btn-text ant-btn-sm ant-btn-icon-only ant-upload-list-item-action&quot;
+                            title=&quot;Remove file&quot;
+                            type=&quot;button&quot;
+                          &gt;
+                            &lt;span
+                              class=&quot;ant-btn-icon&quot;
+                            &gt;
+                              &lt;span
+                                aria-label=&quot;delete&quot;
+                                class=&quot;anticon anticon-delete&quot;
+                                role=&quot;img&quot;
+                                tabindex=&quot;-1&quot;
+                              &gt;
+                                &lt;svg
+                                  aria-hidden=&quot;true&quot;
+                                  data-icon=&quot;delete&quot;
+                                  fill=&quot;currentColor&quot;
+                                  focusable=&quot;false&quot;
+                                  height=&quot;1em&quot;
+                                  viewBox=&quot;64 64 896 896&quot;
+                                  width=&quot;1em&quot;
+                                &gt;
+                                  &lt;path
+                                    d=&quot;M360 184h-8c4.4 0 8-3.6 8-8v8h304v-8c0 4.4 3.6 8 8 8h-8v72h72v-80c0-35.3-28.7-64-64-64H352c-35.3 0-64 28.7-64 64v80h72v-72zm504 72H160c-17.7 0-32 14.3-32 32v32c0 4.4 3.6 8 8 8h60.4l24.7 523c1.6 34.1 29.8 61 63.9 61h454c34.2 0 62.3-26.8 63.9-61l24.7-523H888c4.4 0 8-3.6 8-8v-32c0-17.7-14.3-32-32-32zM731.3 840H292.7l-24.2-512h487l-24.2 512z&quot;
+                                  /&gt;
+                                &lt;/svg&gt;
+                              &lt;/span&gt;
+                            &lt;/span&gt;
+                          &lt;/button&gt;
+                        &lt;/span&gt;
+                      &lt;/div&gt;
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+                &lt;/span&gt;
+                &lt;div
+                  class=&quot;container-botoes&quot;
+                &gt;
+                  &lt;button
+                    class=&quot;ant-btn css-dev-only-do-not-override-12jzuas ant-btn-default botaoCancelar&quot;
+                    type=&quot;button&quot;
+                  &gt;
+                    &lt;span&gt;
+                      Cancelar
+                    &lt;/span&gt;
+                  &lt;/button&gt;
+                  &lt;button
+                    class=&quot;ant-btn css-dev-only-do-not-override-12jzuas ant-btn-primary botaoEnviar&quot;
+                    type=&quot;button&quot;
+                  &gt;
+                    &lt;span&gt;
+                      Enviar arquivo
+                    &lt;/span&gt;
+                  &lt;/button&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+    at waitForWrapper (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\@testing-library\react\node_modules\@testing-library\dom\dist\wait-for.js:166:27)
+    at C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\@testing-library\react\node_modules\@testing-library\dom\dist\query-helpers.js:86:33
+    at findByText (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\CadastrarEscola.spec.tsx:204:16)
+    at call (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\CadastrarEscola.spec.tsx:2:1)
+    at Generator.tryCatch (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\CadastrarEscola.spec.tsx:2:1)
+    at Generator._invoke [as next] (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\CadastrarEscola.spec.tsx:2:1)
+    at asyncGeneratorStep (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\CadastrarEscola.spec.tsx:2:1)
+    at asyncGeneratorStep (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\CadastrarEscola.spec.tsx:2:1)]]></failure>
+</testCase>
+<testCase name="Cadastro sem enviar CSV" duration="228" />
+<testCase name="Sem o provider" duration="47" />
+</file>
+<file path="src\tests\Recover.spec.tsx">
+<testCase name=" should render Recover password" duration="481" />
+</file>
+<file path="src\tests\Login.spec.tsx">
+<testCase name=" should render Login" duration="857" />
+</file>
+<file path="src\tests\Register.spec.tsx">
+<testCase name="should render Register" duration="8404">
+<failure message="Error"><![CDATA[Error: thrown: &quot;Exceeded timeout of 5000 ms for a test.
+Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout.&quot;
+    at Object.test (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\src\tests\Register.spec.tsx:33:1)
+    at Runtime._execModule (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-runtime\build\index.js:1429:24)
+    at Runtime._loadModule (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-runtime\build\index.js:1013:12)
+    at Runtime.requireModule (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-runtime\build\index.js:873:12)
+    at jestAdapter (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:77:13)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at runTestInternal (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jest-runner\build\testWorker.js:106:12)]]></failure>
+</testCase>
+<testCase name="should render error in Register form" duration="2262">
+<failure message="Error"><![CDATA[AxiosError: Network Error
+    at XMLHttpRequest.handleError (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\axios\lib\adapters\xhr.js:158:14)
+    at XMLHttpRequest.invokeTheCallbackFunction (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jsdom\lib\jsdom\living\generated\EventHandlerNonNull.js:14:28)
+    at XMLHttpRequest.&lt;anonymous&gt; (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jsdom\lib\jsdom\living\helpers\create-event-accessor.js:35:32)
+    at innerInvokeEventListeners (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:350:25)
+    at invokeEventListeners (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:286:3)
+    at XMLHttpRequestImpl._dispatch (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:233:9)
+    at fireAnEvent (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jsdom\lib\jsdom\living\helpers\events.js:18:36)
+    at requestErrorSteps (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jsdom\lib\jsdom\living\xhr\xhr-utils.js:131:3)
+    at Object.dispatchError (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jsdom\lib\jsdom\living\xhr\xhr-utils.js:60:3)
+    at Request.&lt;anonymous&gt; (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jsdom\lib\jsdom\living\xhr\XMLHttpRequest-impl.js:655:18)
+    at Request.emit (node:events:525:35)
+    at NodeClientRequest.&lt;anonymous&gt; (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\jsdom\lib\jsdom\living\helpers\http-request.js:121:14)
+    at NodeClientRequest.emit (node:events:525:35)
+    at NodeClientRequest.Object.&lt;anonymous&gt;.NodeClientRequest.emit (C:\Users\viaco\OneDrive\Documentos\2023.1-Dnit-Front\node_modules\@mswjs\interceptors\src\interceptors\ClientRequest\NodeClientRequest.ts:299:22)
+    at TLSSocket.socketErrorListener (node:_http_client:502:9)
+    at TLSSocket.emit (node:events:513:28)
+    at emitErrorNT (node:internal/streams/destroy:151:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:116:3)
+    at processTicksAndRejections (node:internal/process/task_queues:82:21)]]></failure>
+</testCase>
 </file>
 </testExecutions>

@@ -1,6 +1,7 @@
 export interface FederativeUnit {
   id: number;
   nome: string;
+  sigla: string;
 }
 
 export interface viaCEP{

@@ -39,11 +39,14 @@ export default function Step2({ onClickBack }: Step2Props) {
   const[viaCEP, setViaCEP] = useState<viaCEP[]>([]);
   const getCEP = async (cep: string) => {
     try {
+      if(cep.length === 8){
       const res = await fetchCEP(cep);
-      setViaCEP(res);
+      form.setFieldValue("endereco", res.logradouro)
+      form.setFieldValue("municipio", res.localidade)
+      form.setFieldValue("uf", res.uf)
+      }
     } catch (error) {}
   };
-  
   const [opcoesUf, setOpcoesUf] = useState<FederativeUnit[]>([]);
   const getUf = async () => {
     try {
@@ -86,17 +89,21 @@ export default function Step2({ onClickBack }: Step2Props) {
 
   const navigate = useNavigate();
   const onFinish = async (values: any) => {
+    const uf = await fetchFederativeUnit();
+    const ufFiltrada = uf.filter(uf => uf.sigla === values.uf)
+    const municipio = await fetchMunicipio(ufFiltrada[0].id);
+    const municipioFiltrado = municipio.filter(municipio => municipio.nome === values.municipio)
     const registerSchoolData = {
       NomeEscola: values.nome,
       IdRede: values.rede,
       CodigoEscola: values.codigo,
-      IdUf: values.uf,
+      IdUf: ufFiltrada[0].id,
       Cep: values.cep,
       Telefone: values.telefone,
       IdEtapasDeEnsino: values.ciclos,
       IdPorte: values.porte,
       Endereco: values.endereco,
-      IdMunicipio: values.municipio,
+      IdMunicipio: municipioFiltrado[0].id,
       IdLocalizacao: values.localizacao,
       Longitude: values.longitude,
       Latitude: values.latitude,
@@ -143,28 +150,6 @@ export default function Step2({ onClickBack }: Step2Props) {
               <Input className="inputForm2" />
             </Form.Item>
 
-            <Form.Item name="uf" rules={rules} label="UF">
-              <Select
-                onMouseDown={getUf}
-                notFoundContent={<p>Carregando...</p>}
-                placement="bottomRight"
-                optionLabelProp="label"
-                className="uf"
-                
-              >
-                {opcoesUf?.map((u) => (
-                  <Option key={u.id} value={u.id} label={<>{u.nome}</>}>
-                    <button
-                      onClick={() => handleOptionClick(u)}
-                      className="option-municipio"
-                    >
-                      {u.nome}
-                    </button>
-                  </Option>
-                ))}
-              </Select>
-            </Form.Item>
-
             <Form.Item name="cep" label="CEP" rules={rules}>
               <Input className="inputForm2" 
 
@@ -173,6 +158,12 @@ export default function Step2({ onClickBack }: Step2Props) {
                 }}
               />
             </Form.Item>
+
+            <Form.Item name="uf" rules={rules} label="UF">
+            <Input className="inputForm2" />
+            </Form.Item>
+
+           
             </div>
             <div className="bloco2">
             <Form.Item name="telefone" label="Telefone" rules={rules}>
@@ -218,19 +209,7 @@ export default function Step2({ onClickBack }: Step2Props) {
             </Form.Item>
 
             <Form.Item name="municipio" label="Município" rules={rules}>
-              <Select
-                notFoundContent={<p>Carregando...</p>}
-                placement="bottomRight"
-                optionLabelProp="label"
-                className="uf"
-                onMouseDown={getMunicipio}
-                >
-                {opcoesMunicipio?.map((u) => (
-                  <Option key={u.id} value={u.id} label={<>{u.nome}</>}>
-                    {u.nome}
-                  </Option>
-                ))}
-              </Select>
+              <Input className="inputForm2" />
             </Form.Item>
             </div>
             <div className="bloco3">
