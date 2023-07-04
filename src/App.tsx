@@ -8,11 +8,12 @@ import RegisterSchool from "./pages/RegisterSchool";
 import ResetPassword from "./pages/ResetPassword";
 import { AuthContext } from "./provider/Authentication";
 import "./styles/App.css";
+import CadastrarRodovias from "./pages/CadastrarRodovias";
 
 function App() {
   const { getAuth } = useContext(AuthContext);
   const isAuthenticated = getAuth();
-  document.title="DNIT";
+  document.title = "DNIT";
   return (
     <Routes>
       {isAuthenticated ? (
@@ -31,6 +32,7 @@ function App() {
       <Route path="/redefinirSenha" element={<ResetPassword />} />
       <Route path="/cadastro" element={<Register />} />
       <Route path="/esqueciSenha" element={<RecoverPassword />} />
+      <Route path="/cadastrarRodovias" element={<CadastrarRodovias />} />
     </Routes>
   );
 }
