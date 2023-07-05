@@ -78,7 +78,6 @@ export default function Step2({ onClickBack }: Step2Props) {
   try {
     if (cep.length === 8) {
       const res = await fetchCEP(cep);
-      console.log(res.erro);
       if (res.erro) {
         setErroCEP(false);
         setMsgCEP(true);
@@ -104,7 +103,6 @@ export default function Step2({ onClickBack }: Step2Props) {
       setMsgCEP(false);
     }
   } catch (error) {}
-  console.log(cepEnviado);
 };
 
 

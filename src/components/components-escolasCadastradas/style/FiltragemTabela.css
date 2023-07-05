@@ -455,7 +455,7 @@
   width: 300px;
   border-color: var(--border-color-alternative) !important;
   border-radius: var(--surface-rounder-sm) !important;
-  height: 50px;
+  height: 40px;
   overflow-y: scroll;
 }
 
