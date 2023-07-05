@@ -1,5 +1,5 @@
 import { Button, Form, Input, Select, Space, notification, message } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import fetchEtapasDeEnsino from "../../../service/etapasDeEnsino";
 import fetchFederativeUnit from "../../../service/federativeUnit";
@@ -7,12 +7,22 @@ import fetchMunicipio from "../../../service/municipio";
 import fetchCadastroEscola from "../../../service/registerSchool";
 import fetchCEP from "../../../service/viaCEP";
 import "../../../styles/form/step2.css";
+import { useFiltroTabela } from "../../../context/FiltroTabela";
+import { FederativeUnit, Municipio } from "../../../models/service";
 
 const { Option } = Select;
 interface Step2Props {
   onClickBack: () => void;
 }
 export default function Step2({ onClickBack }: Step2Props) {
+
+  const {
+    UFSelecionada,
+    setUFSelecionada,
+
+    carregandoEscolas,
+  } = useFiltroTabela();
+
   const [form] = Form.useForm();
   const [api, contextHolder] = notification.useNotification();
   const [erroCEP, setErroCEP] = useState(false);
@@ -73,6 +83,33 @@ export default function Step2({ onClickBack }: Step2Props) {
       message: "CEP inválido"
     },
   ];
+
+  const [opcoesMunicipio, setOpcoesMunicipio] = useState<Municipio[]>([]);
+  const getMunicipio = async () => {
+    try {
+      if (UFSelecionada) {
+        const resposta = await fetchMunicipio(UFSelecionada.id);
+        setOpcoesMunicipio(resposta);
+      }
+    } catch (error) {
+      console.log("Erro get munincipio");
+    }
+  };
+
+  const [opcoesUf, setOpcoesUf] = useState<FederativeUnit[]>([]);
+  const getUf = async () => {
+    try {
+      const resposta = await fetchFederativeUnit();
+      setOpcoesUf(resposta);
+    } catch (error) {}
+  };
+  useEffect(() => {
+    if (opcoesUf.length == 0) getUf();
+  });
+
+  const handleOptionClick = (option: any) => {
+    setUFSelecionada(option);
+  };
 
  const getCEP = async (cep: string) => {
   try {
@@ -203,7 +240,27 @@ export default function Step2({ onClickBack }: Step2Props) {
             </Form.Item>
 
             <Form.Item name="uf" rules={rules} label="UF(sigla)">
-              <Input className="inputForm2" disabled={erroCEP}/>
+            <Select
+                disabled={erroCEP}
+                onMouseDown={getUf}
+                notFoundContent={<p>Carregando...</p>}
+                placement="bottomRight"
+                optionLabelProp="label"
+                className="uf"
+                
+              >
+                {opcoesUf?.map((u) => (
+                  <Option key={u.id} value={u.id} label={<>{u.nome}</>}>
+                    <button
+                    
+                      onClick={() => handleOptionClick(u)}
+                      className="option-municipio"
+                    >
+                      {u.nome}
+                    </button>
+                  </Option>
+                ))}
+              </Select>
             </Form.Item>
           </div>
           <div className="bloco2">
@@ -253,7 +310,20 @@ export default function Step2({ onClickBack }: Step2Props) {
             </Form.Item>
 
             <Form.Item name="municipio" label="Município" rules={rules}>
-              <Input className="inputForm2" disabled={erroCEP}/>
+            <Select
+                disabled={erroCEP}
+                notFoundContent={<p>Carregando...</p>}
+                placement="bottomRight"
+                optionLabelProp="label"
+                className="uf"
+                onMouseDown={getMunicipio}
+                >
+                {opcoesMunicipio?.map((u) => (
+                  <Option key={u.id} value={u.id} label={<>{u.nome}</>}>
+                    {u.nome}
+                  </Option>
+                ))}
+              </Select>
             </Form.Item>
           </div>
           <div className="bloco3">
