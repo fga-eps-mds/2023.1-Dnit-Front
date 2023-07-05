@@ -1,4 +1,4 @@
-import { Button, Form, Input, Select, Space, notification } from "antd";
+import { Button, Form, Input, Select, Space, notification, message } from "antd";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import fetchEtapasDeEnsino from "../../../service/etapasDeEnsino";
@@ -15,6 +15,8 @@ interface Step2Props {
 export default function Step2({ onClickBack }: Step2Props) {
   const [form] = Form.useForm();
   const [api, contextHolder] = notification.useNotification();
+  const [erroCEP, setErroCEP] = useState(false);
+  const [msgCEP, setMsgCEP] = useState(false);
   const rules = [
     {
       required: true,
@@ -63,16 +65,42 @@ export default function Step2({ onClickBack }: Step2Props) {
     },
   ];
 
-  const getCEP = async (cep: string) => {
-    try {
-      if (cep.length === 8) {
-        const res = await fetchCEP(cep);
-        form.setFieldValue("endereco", res.logradouro);
-        form.setFieldValue("municipio", res.localidade);
-        form.setFieldValue("uf", res.uf);
+  const rulesCEP = [
+    {
+      required: false,
+    },
+  ];
+
+ const getCEP = async (cep: string) => {
+  try {
+    if (cep.length === 8) {
+      const res = await fetchCEP(cep);
+      console.log(res.erro);
+      if (res.erro) {
+        setErroCEP(false);
+        setMsgCEP(true);
+        form.setFields([
+          {
+            name: "cep",
+            errors: ["CEP não encontrado"],
+          },
+        ]);
+      } else {
+        setErroCEP(true);
+        setMsgCEP(false);
+        form.setFieldsValue({
+          endereco: res.logradouro,
+          municipio: res.localidade,
+          uf: res.uf,
+        });
       }
-    } catch (error) {}
-  };
+    } else {
+      setErroCEP(false);
+      setMsgCEP(false);
+    }
+  } catch (error) {}
+};
+
 
   const getEtapasDeEnsino = async () => {
     try {
@@ -156,7 +184,7 @@ export default function Step2({ onClickBack }: Step2Props) {
               <Input className="inputForm2" />
             </Form.Item>
 
-            <Form.Item name="cep" label="CEP" rules={rules}>
+            <Form.Item name="cep" label="CEP" rules={rulesCEP}>
               <Input
                 className="inputForm2"
                 onChange={(event) => {
@@ -166,7 +194,7 @@ export default function Step2({ onClickBack }: Step2Props) {
             </Form.Item>
 
             <Form.Item name="uf" rules={rules} label="UF">
-              <Input className="inputForm2" />
+              <Input className="inputForm2" disabled={erroCEP}/>
             </Form.Item>
           </div>
           <div className="bloco2">
@@ -216,7 +244,7 @@ export default function Step2({ onClickBack }: Step2Props) {
             </Form.Item>
 
             <Form.Item name="municipio" label="Município" rules={rules}>
-              <Input className="inputForm2" />
+              <Input className="inputForm2" disabled={erroCEP}/>
             </Form.Item>
           </div>
           <div className="bloco3">

@@ -15,6 +15,7 @@ export interface viaCEP {
   gia: string;
   ddd: string;
   siafi: string;
+  erro?: boolean;
 }
 
 export interface Municipio {
