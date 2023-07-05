@@ -31,13 +31,6 @@ test("Lista de escolas é exibida corretamente", async () => {
   fireEvent.click(inserirInformacoes);
   const nome = screen.getByLabelText("Nome da Escola");
   fireEvent.change(nome, { target: { value: "Escola A" } });
-  const ufSelect = screen.getByLabelText("UF");
-  fireEvent.mouseDown(ufSelect);
-  await waitFor(() =>
-    expect(screen.queryByText("Carregando...")).not.toBeInTheDocument()
-  );
-  const ufSelectValue = screen.getByText("Acre");
-  fireEvent.click(ufSelectValue);
 
   const codigo = screen.getByLabelText("Codigo da Escola");
   fireEvent.change(codigo, { target: { value: "123" } });
@@ -48,7 +41,7 @@ test("Lista de escolas é exibida corretamente", async () => {
   fireEvent.click(redeMunicipal);
 
   const cep = screen.getByLabelText("CEP");
-  fireEvent.change(cep, { target: { value: "12345" } });
+  fireEvent.change(cep, { target: { value: "12345678" } });
   const telefone = screen.getByLabelText("Telefone");
   fireEvent.change(telefone, { target: { value: "123" } });
 
@@ -69,14 +62,6 @@ test("Lista de escolas é exibida corretamente", async () => {
 
   const endereco = screen.getByLabelText("Endereço");
   fireEvent.change(endereco, { target: { value: "Rua Lebron JAMES" } });
-
-  const municipio = screen.getByLabelText("Município");
-  fireEvent.mouseDown(municipio);
-  await waitFor(() =>
-    expect(screen.queryByText("Carregando...")).not.toBeInTheDocument()
-  );
-  const municipioValue = screen.getByText("Acrelândia");
-  fireEvent.click(municipioValue);
 
   const local = screen.getByLabelText("Localização");
   fireEvent.mouseDown(local);

@@ -415,7 +415,23 @@ const server = setupServer(
     (req, res, ctx) => {
       return res(ctx.json([2, 3]));
     }
-  )
+  ),
+  rest.get("GET https://viacep.com.br/ws/12345678/json", (req, res, ctx) => {
+    return res(
+      ctx.json({
+        cep: "12345-678",
+        logradouro: "SHA Conjunto Chácara",
+        complemento: "",
+        bairro: "Setor Habitacional Arniqueira (Águas Claras)",
+        localidade: "Brasília",
+        uf: "DF",
+        ibge: "5300108",
+        gia: "",
+        ddd: "61",
+        siafi: "9701",
+      })
+    );
+  })
 );
 
 export default server;
