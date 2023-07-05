@@ -4,7 +4,7 @@ export interface FederativeUnit {
   sigla: string;
 }
 
-export interface viaCEP{
+export interface viaCEP {
   cep: string;
   logradouro: string;
   complemento: string;
@@ -113,7 +113,7 @@ export interface EscolaData {
   longitude: string;
   latitude: string;
   idEtapasDeEnsino: number;
-  descricaoEtapasEnsino: string;
+  etapaEnsino: {};
   numeroTotalDeAlunos: number;
   idSituacao: number;
   descricaoSituacao: string;

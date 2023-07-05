@@ -1,18 +1,10 @@
 import { Button, Form, Input, Select, Space, notification } from "antd";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useFiltroTabela } from "../../../context/FiltroTabela";
-import {
-  EtapasDeEnsino,
-  FederativeUnit,
-  Municipio,
-  viaCEP,
-} from "../../../models/service";
 import fetchEtapasDeEnsino from "../../../service/etapasDeEnsino";
 import fetchFederativeUnit from "../../../service/federativeUnit";
 import fetchMunicipio from "../../../service/municipio";
 import fetchCadastroEscola from "../../../service/registerSchool";
-import { stat } from "fs/promises";
 import fetchCEP from "../../../service/viaCEP";
 
 const { Option } = Select;
@@ -20,13 +12,6 @@ interface Step2Props {
   onClickBack: () => void;
 }
 export default function Step2({ onClickBack }: Step2Props) {
-  const {
-    UFSelecionada,
-    setUFSelecionada,
-
-    carregandoEscolas,
-  } = useFiltroTabela();
-
   const [form] = Form.useForm();
   const [api, contextHolder] = notification.useNotification();
   const rules = [
@@ -39,7 +24,8 @@ export default function Step2({ onClickBack }: Step2Props) {
     {
       required: false,
       pattern: /^-?([1-8]?\d|90)(,\d{1,7})?$/,
-      message: "Deve estar entre -90 e +90 e até 7 casas decimais, utilizando vírgula!",
+      message:
+        "Deve estar entre -90 e +90 e até 7 casas decimais, utilizando vírgula!",
     },
   ];
 
@@ -47,10 +33,10 @@ export default function Step2({ onClickBack }: Step2Props) {
     {
       required: false,
       pattern: /^-?((1?[0-7]|[0-9])?\d|180)(,\d{1,7})?$/,
-      message: "Deve estar entre -180 e +180 e até 7 casas decimais, utilizando vírgula!",
+      message:
+        "Deve estar entre -180 e +180 e até 7 casas decimais, utilizando vírgula!",
     },
   ];
-
 
   const rulesCodigoEscola = [
     {
@@ -76,42 +62,16 @@ export default function Step2({ onClickBack }: Step2Props) {
     },
   ];
 
-  const[viaCEP, setViaCEP] = useState<viaCEP[]>([]);
   const getCEP = async (cep: string) => {
     try {
-      if(cep.length === 8){
-      const res = await fetchCEP(cep);
-      form.setFieldValue("endereco", res.logradouro)
-      form.setFieldValue("municipio", res.localidade)
-      form.setFieldValue("uf", res.uf)
+      if (cep.length === 8) {
+        const res = await fetchCEP(cep);
+        form.setFieldValue("endereco", res.logradouro);
+        form.setFieldValue("municipio", res.localidade);
+        form.setFieldValue("uf", res.uf);
       }
     } catch (error) {}
   };
-  const [opcoesUf, setOpcoesUf] = useState<FederativeUnit[]>([]);
-  const getUf = async () => {
-    try {
-      const resposta = await fetchFederativeUnit();
-      setOpcoesUf(resposta);
-    } catch (error) {}
-  };
-  useEffect(() => {
-    if (opcoesUf.length == 0) getUf();
-  });
-
-  const [opcoesMunicipio, setOpcoesMunicipio] = useState<Municipio[]>([]);
-  const getMunicipio = async () => {
-    try {
-      if (UFSelecionada) {
-        const resposta = await fetchMunicipio(UFSelecionada.id);
-        setOpcoesMunicipio(resposta);
-      }
-    } catch (error) {
-      console.log("Erro get munincipio");
-    }
-  };
-  useEffect(() => {
-    if (opcoesMunicipio.length == 0 || carregandoEscolas) getMunicipio();
-  }, [UFSelecionada, carregandoEscolas]);
 
   const getEtapasDeEnsino = async () => {
     try {
@@ -121,21 +81,19 @@ export default function Step2({ onClickBack }: Step2Props) {
     } catch (error) {}
   };
 
-const [OpcoesEtapasDeEnsino, setOpcoesEtapasDeEnsino] = useState<
+  const [OpcoesEtapasDeEnsino, setOpcoesEtapasDeEnsino] = useState<
     { value: number; label: string }[]
   >([]);
-
-  const handleOptionClick = (option: any) => {
-    setUFSelecionada(option);
-  };
 
   const navigate = useNavigate();
   const onFinish = async (values: any) => {
     const uf = await fetchFederativeUnit();
-    const ufFiltrada = uf.filter(uf => {console.log(uf, values); return uf.sigla === values.uf})
-    console.log(ufFiltrada)
+    const ufFiltrada = uf.filter((uf) => uf.sigla === values.uf);
     const municipio = await fetchMunicipio(ufFiltrada[0].id);
-    const municipioFiltrado = municipio.filter(municipio => municipio.nome === values.municipio)
+    const municipioFiltrado = municipio.filter(
+      (municipio) => municipio.nome === values.municipio
+    );
+
     const registerSchoolData = {
       NomeEscola: values.nome,
       IdRede: values.rede,
@@ -189,33 +147,35 @@ const [OpcoesEtapasDeEnsino, setOpcoesEtapasDeEnsino] = useState<
               </Select>
             </Form.Item>
 
-            <Form.Item name="codigo" label="Codigo da Escola" rules={rulesCodigoEscola}>
+            <Form.Item
+              name="codigo"
+              label="Codigo da Escola"
+              rules={rulesCodigoEscola}
+            >
               <Input className="inputForm2" />
             </Form.Item>
 
             <Form.Item name="cep" label="CEP" rules={rules}>
-              <Input className="inputForm2" 
-
-              onChange={(event) => {
-                 getCEP(event.target.value);
+              <Input
+                className="inputForm2"
+                onChange={(event) => {
+                  getCEP(event.target.value);
                 }}
               />
             </Form.Item>
 
             <Form.Item name="uf" rules={rules} label="UF">
-            <Input className="inputForm2" />
+              <Input className="inputForm2" />
             </Form.Item>
-
-           
-            </div>
-            <div className="bloco2">
+          </div>
+          <div className="bloco2">
             <Form.Item name="telefone" label="Telefone" rules={rulesTelefone}>
               <Input className="inputForm2" />
             </Form.Item>
 
             <Form.Item name="ciclos" label="Etapas de Ensino" rules={rules}>
               <Select
-                mode = "multiple"
+                mode="multiple"
                 onClick={getEtapasDeEnsino}
                 options={OpcoesEtapasDeEnsino}
                 onMouseDown={getEtapasDeEnsino}
@@ -257,8 +217,8 @@ const [OpcoesEtapasDeEnsino, setOpcoesEtapasDeEnsino] = useState<
             <Form.Item name="municipio" label="Município" rules={rules}>
               <Input className="inputForm2" />
             </Form.Item>
-            </div>
-            <div className="bloco3">
+          </div>
+          <div className="bloco3">
             <Form.Item name="localizacao" label="Localização" rules={rules}>
               <Select>
                 <Option value={1}>Rural</Option>
@@ -266,9 +226,12 @@ const [OpcoesEtapasDeEnsino, setOpcoesEtapasDeEnsino] = useState<
               </Select>
             </Form.Item>
 
-            <Form.Item name="longitude" label="Longitude" rules={rulesLongitude} >
+            <Form.Item
+              name="longitude"
+              label="Longitude"
+              rules={rulesLongitude}
+            >
               <Input className="inputForm2" />
-
             </Form.Item>
 
             <Form.Item name="latitude" label="Latitude" rules={rulesLatitude}>

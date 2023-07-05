@@ -10,7 +10,6 @@ import {
 import { EscolasFiltradasURL } from "../consts/service";
 import {
   EscolaData,
-  EtapasDeEnsino,
   FederativeUnit,
   Municipio,
   Situacao,
@@ -21,7 +20,7 @@ interface FiltroContextType {
   setNomeEscola: Dispatch<SetStateAction<string>>;
 
   NomePesquisado: string;
-  setNomePesquisado: Dispatch<SetStateAction<string>>
+  setNomePesquisado: Dispatch<SetStateAction<string>>;
 
   UFSelecionada: FederativeUnit | false;
   setUFSelecionada: Dispatch<SetStateAction<FederativeUnit | false>>;
@@ -29,8 +28,8 @@ interface FiltroContextType {
   situacaoSelecionada: Situacao | false;
   setSituacaoSelecionada: Dispatch<SetStateAction<Situacao | false>>;
 
-  etapaDeEnsinoSelecionada: EtapasDeEnsino | false;
-  setEtapaDeEnsinoSelecionada: Dispatch<SetStateAction<EtapasDeEnsino | false>>;
+  etapaDeEnsinoSelecionada: number[];
+  setEtapaDeEnsinoSelecionada: Dispatch<SetStateAction<number[]>>;
 
   municipioSelecionado: Municipio | false;
   setMunicipioSelecionado: Dispatch<SetStateAction<Municipio | false>>;
@@ -49,13 +48,10 @@ interface FiltroContextType {
 
 const FiltroContext = createContext<FiltroContextType | undefined>(undefined);
 
-
-
 const FiltroProvider = ({ children }: any) => {
-
   const [NomePesquisado, setNomePesquisado] = useState("");
   const [nomeEscola, setNomeEscola] = useState("");
-  
+
   const [UFSelecionada, setUFSelecionada] = useState<FederativeUnit | false>(
     false
   );
@@ -63,8 +59,8 @@ const FiltroProvider = ({ children }: any) => {
     Situacao | false
   >(false);
   const [etapaDeEnsinoSelecionada, setEtapaDeEnsinoSelecionada] = useState<
-    EtapasDeEnsino | false
-  >(false);
+    number[]
+  >([]);
   const [municipioSelecionado, setMunicipioSelecionado] = useState<
     Municipio | false
   >(false);
@@ -89,6 +85,11 @@ const FiltroProvider = ({ children }: any) => {
   async function fetchEscolasFiltradas(): Promise<any> {
     try {
       setCarregandoEscolas(true);
+      const idEtapaEnsinoParams = etapaDeEnsinoSelecionada.map(
+        (item, index) => ({
+          [`IdEtapaEnsino[${index}]`]: item,
+        })
+      );
       const response: AxiosResponse<responseData> = await axios.get(
         EscolasFiltradasURL,
         {
@@ -97,11 +98,12 @@ const FiltroProvider = ({ children }: any) => {
             TamanhoPagina: escolasPorPagina,
             Nome: NomePesquisado ? NomePesquisado : "",
             IdSituacao: situacaoSelecionada ? situacaoSelecionada.id : "",
-            IdEtapaEnsino: etapaDeEnsinoSelecionada
-              ? etapaDeEnsinoSelecionada.id
-              : [],
             IdMunicipio: municipioSelecionado ? municipioSelecionado.id : "",
             IdUf: UFSelecionada ? UFSelecionada.id : "",
+            ...idEtapaEnsinoParams.reduce(
+              (acc, obj) => ({ ...acc, ...obj }),
+              {}
+            ),
           },
         }
       );
@@ -131,7 +133,6 @@ const FiltroProvider = ({ children }: any) => {
 
     setEscolasPorPagina(novaQuantia);
   };
-  console.log(escolasPorPagina)
 
   useEffect(() => {
     if (paginaAtual != 1) setpaginaAtual(1);
@@ -143,7 +144,7 @@ const FiltroProvider = ({ children }: any) => {
     etapaDeEnsinoSelecionada,
     municipioSelecionado,
     UFSelecionada,
-    NomePesquisado
+    NomePesquisado,
   ]);
 
   useEffect(() => {

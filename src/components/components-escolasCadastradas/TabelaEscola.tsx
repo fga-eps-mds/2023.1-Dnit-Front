@@ -1,11 +1,10 @@
 import { notification } from "antd";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useFiltroTabela } from "../../context/FiltroTabela";
 import { EscolaData } from "../../models/service";
 import ExibirInformacoesEscola from "../../pages/ExibirInformacoesEscola";
 import "../../styles/App.css";
 import "../components-escolasCadastradas/style/TabelaEscola.css";
-import { EscolasFiltradasURL } from "../../consts/service";
 
 export default function TabelaEscola() {
   const {
@@ -17,8 +16,6 @@ export default function TabelaEscola() {
     mudarQuantidadePorPaginas,
     totalEscolas,
   } = useFiltroTabela();
-
-  escolasFiltradas && console.log(escolasFiltradas.length)
 
   const [, contextHolder] = notification.useNotification();
 
@@ -66,7 +63,7 @@ export default function TabelaEscola() {
 
     return [rangeStart, rangeEnd];
   };
-  
+
   return (
     <div
       className="br-table"
@@ -145,28 +142,33 @@ export default function TabelaEscola() {
           </tr>
         </thead>
         <tbody>
-          {escolasFiltradas &&
-            escolasFiltradas.map((escola, index) => {
-              console.log(escolasFiltradas.length)
-              return (
-                <tr
-                  key={escola.idEscola}
-                  onClick={() => OpenModal(escola, index)}
-                  data-testid="linha-escola"
-                >
-                  <td data-th="Título coluna 1">{escola.nomeEscola}</td>
-                  <td data-th="Título coluna 2">
-                    {escola.descricaoEtapasEnsino}
-                  </td>
-                  <td data-th="Título coluna 3">
-                    {escola.numeroTotalDeAlunos}
-                  </td>
-                  <td data-th="Título coluna 4">{escola.descricaoSituacao}</td>
-                  <td data-th="Título coluna 5">{escola.nomeMunicipio}</td>
-                  <td data-th="Título coluna 6">{escola.siglaUf}</td>
-                </tr>
-              );
-            })}
+          {escolasFiltradas
+            ? escolasFiltradas?.map((escola, index) => {
+                const etapas = Object.values(escola.etapaEnsino);
+                return (
+                  <tr
+                    key={escola.idEscola}
+                    onClick={() => OpenModal(escola, index)}
+                    data-testid="linha-escola"
+                  >
+                    <td data-th="Título coluna 1">{escola.nomeEscola}</td>
+                    <td data-th="Título coluna 2">
+                      {etapas.map((etapas: any, index: number) => (
+                        <span key={index}>{etapas} ,</span>
+                      ))}
+                    </td>
+                    <td data-th="Título coluna 3">
+                      {escola.numeroTotalDeAlunos}
+                    </td>
+                    <td data-th="Título coluna 4">
+                      {escola.descricaoSituacao}
+                    </td>
+                    <td data-th="Título coluna 5">{escola.nomeMunicipio}</td>
+                    <td data-th="Título coluna 6">{escola.siglaUf}</td>
+                  </tr>
+                );
+              })
+            : null}
         </tbody>
       </table>
 
