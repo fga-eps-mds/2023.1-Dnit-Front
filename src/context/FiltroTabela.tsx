@@ -99,7 +99,7 @@ const FiltroProvider = ({ children }: any) => {
             IdSituacao: situacaoSelecionada ? situacaoSelecionada.id : "",
             IdEtapaEnsino: etapaDeEnsinoSelecionada
               ? etapaDeEnsinoSelecionada.id
-              : "",
+              : [],
             IdMunicipio: municipioSelecionado ? municipioSelecionado.id : "",
             IdUf: UFSelecionada ? UFSelecionada.id : "",
           },

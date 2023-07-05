@@ -35,6 +35,21 @@ export default function Step2({ onClickBack }: Step2Props) {
       message: "Preencha o campo ${label}!",
     },
   ];
+  const rulesLatitude = [
+    {
+      required: true,
+      pattern: /^-?([1-8]?\d|90)(,\d{1,7})?$/,
+      message: "Deve estar entre -90 e +90 e até 7 casas decimais, utilizando vírgula!",
+    },
+  ];
+
+  const rulesLongitude = [
+    {
+      required: true,
+      pattern: /^-?((1?[0-7]|[0-9])?\d|180)(,\d{1,7})?$/,
+      message: "Deve estar entre -180 e +180 e até 7 casas decimais, utilizando vírgula!",
+    },
+  ];
 
   const[viaCEP, setViaCEP] = useState<viaCEP[]>([]);
   const getCEP = async (cep: string) => {
@@ -73,15 +88,17 @@ export default function Step2({ onClickBack }: Step2Props) {
     if (opcoesMunicipio.length == 0 || carregandoEscolas) getMunicipio();
   }, [UFSelecionada, carregandoEscolas]);
 
-  const [OpcoesEtapasDeEnsino, setOpcoesEtapasDeEnsino] = useState<
-    EtapasDeEnsino[]
-  >([]);
   const getEtapasDeEnsino = async () => {
     try {
       const resposta = await fetchEtapasDeEnsino();
-      setOpcoesEtapasDeEnsino(resposta);
+      const etapas = resposta.map((e) => ({ label: e.descricao, value: e.id }));
+      setOpcoesEtapasDeEnsino(etapas);
     } catch (error) {}
   };
+
+const [OpcoesEtapasDeEnsino, setOpcoesEtapasDeEnsino] = useState<
+    { value: number; label: string }[]
+  >([]);
 
   const handleOptionClick = (option: any) => {
     setUFSelecionada(option);
@@ -90,7 +107,8 @@ export default function Step2({ onClickBack }: Step2Props) {
   const navigate = useNavigate();
   const onFinish = async (values: any) => {
     const uf = await fetchFederativeUnit();
-    const ufFiltrada = uf.filter(uf => uf.sigla === values.uf)
+    const ufFiltrada = uf.filter(uf => {console.log(uf, values); return uf.sigla === values.uf})
+    console.log(ufFiltrada)
     const municipio = await fetchMunicipio(ufFiltrada[0].id);
     const municipioFiltrado = municipio.filter(municipio => municipio.nome === values.municipio)
     const registerSchoolData = {
@@ -143,6 +161,7 @@ export default function Step2({ onClickBack }: Step2Props) {
               <Select>
                 <Option value={1}>Municipal</Option>
                 <Option value={2}>Estadual</Option>
+                <Option value={3}>Privada</Option>
               </Select>
             </Form.Item>
 
@@ -172,16 +191,19 @@ export default function Step2({ onClickBack }: Step2Props) {
 
             <Form.Item name="ciclos" label="Etapas de Ensino" rules={rules}>
               <Select
+                mode = "multiple"
                 onClick={getEtapasDeEnsino}
+                options={OpcoesEtapasDeEnsino}
                 onMouseDown={getEtapasDeEnsino}
                 notFoundContent={<p>Carregando...</p>}
                 placement="bottomRight"
                 optionLabelProp="label"
                 className="uf"
+                showSearch={false}
               >
                 {OpcoesEtapasDeEnsino?.map((u) => (
-                  <Option key={u.id} value={u.id} label={<>{u.descricao}</>}>
-                    {u.descricao}
+                  <Option key={u.label} value={u.value} label={<>{u.value}</>}>
+                    {u.value}
                   </Option>
                 ))}
               </Select>
@@ -220,11 +242,11 @@ export default function Step2({ onClickBack }: Step2Props) {
               </Select>
             </Form.Item>
 
-            <Form.Item name="longitude" label="Longitude" rules={rules}>
+            <Form.Item name="longitude" label="Longitude" rules={rulesLongitude}>
               <Input className="inputForm2" />
             </Form.Item>
 
-            <Form.Item name="latitude" label="Latitude" rules={rules}>
+            <Form.Item name="latitude" label="Latitude" rules={rulesLatitude}>
               <Input className="inputForm2" />
             </Form.Item>
 
