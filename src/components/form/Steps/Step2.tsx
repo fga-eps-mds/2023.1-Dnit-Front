@@ -16,7 +16,7 @@ export default function Step2({ onClickBack }: Step2Props) {
   const [form] = Form.useForm();
   const [api, contextHolder] = notification.useNotification();
   const [erroCEP, setErroCEP] = useState(false);
-  const [msgCEP, setMsgCEP] = useState(false);
+  const [setMsgCEP] = useState(false);
   let cepEnviado = "0";
   const rules = [
     {
@@ -80,7 +80,6 @@ export default function Step2({ onClickBack }: Step2Props) {
       const res = await fetchCEP(cep);
       if (res.erro) {
         setErroCEP(false);
-        setMsgCEP(true);
         form.setFields([
           {
             name: "cep",
@@ -90,7 +89,6 @@ export default function Step2({ onClickBack }: Step2Props) {
         cepEnviado = "0";
       } else {
         setErroCEP(true);
-        setMsgCEP(false);
         form.setFieldsValue({
           endereco: res.logradouro,
           municipio: res.localidade,
@@ -100,7 +98,6 @@ export default function Step2({ onClickBack }: Step2Props) {
       }
     } else {
       setErroCEP(false);
-      setMsgCEP(false);
     }
   } catch (error) {}
 };
