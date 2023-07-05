@@ -1,3 +1,6 @@
 .select-etapas .ant-select-selector {
+  background-color: #fff !important;
+}
+.select-etapas-cadastro .ant-select-selector {
   background-color: var(--gray1) !important;
 }

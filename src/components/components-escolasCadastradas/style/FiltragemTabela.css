@@ -451,7 +451,7 @@
 /*# sourceMappingURL=select.css.map*/
 
 .select-etapas .ant-select-selector {
-  background-color: white !important;
+  background-color: #fff !important;
   width: 300px;
   border-color: var(--border-color-alternative) !important;
   border-radius: var(--surface-rounder-sm) !important;

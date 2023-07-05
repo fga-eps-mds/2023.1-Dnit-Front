@@ -17,6 +17,7 @@ export default function Step2({ onClickBack }: Step2Props) {
   const [api, contextHolder] = notification.useNotification();
   const [erroCEP, setErroCEP] = useState(false);
   const [msgCEP, setMsgCEP] = useState(false);
+  let cepEnviado = "0";
   const rules = [
     {
       required: true,
@@ -67,7 +68,9 @@ export default function Step2({ onClickBack }: Step2Props) {
 
   const rulesCEP = [
     {
-      required: false,
+      required: true,
+      pattern: /^\d{8}$/,
+      message: "CEP inválido"
     },
   ];
 
@@ -85,6 +88,7 @@ export default function Step2({ onClickBack }: Step2Props) {
             errors: ["CEP não encontrado"],
           },
         ]);
+        cepEnviado = "0";
       } else {
         setErroCEP(true);
         setMsgCEP(false);
@@ -93,12 +97,14 @@ export default function Step2({ onClickBack }: Step2Props) {
           municipio: res.localidade,
           uf: res.uf,
         });
+        cepEnviado = cep; 
       }
     } else {
       setErroCEP(false);
       setMsgCEP(false);
     }
   } catch (error) {}
+  console.log(cepEnviado);
 };
 
 
@@ -123,12 +129,20 @@ export default function Step2({ onClickBack }: Step2Props) {
       (municipio) => municipio.nome === values.municipio
     );
 
+    if(!values.latitude){
+      values.latitude = '0'
+    }
+
+    if(!values.longitude){
+      values.longitude = '0'
+    }
+   
     const registerSchoolData = {
       NomeEscola: values.nome,
       IdRede: values.rede,
       CodigoEscola: values.codigo,
       IdUf: ufFiltrada[0].id,
-      Cep: values.cep,
+      Cep: cepEnviado,
       Telefone: values.telefone,
       IdEtapasDeEnsino: values.ciclos,
       IdPorte: values.porte,
@@ -193,7 +207,7 @@ export default function Step2({ onClickBack }: Step2Props) {
               />
             </Form.Item>
 
-            <Form.Item name="uf" rules={rules} label="UF">
+            <Form.Item name="uf" rules={rules} label="UF(sigla)">
               <Input className="inputForm2" disabled={erroCEP}/>
             </Form.Item>
           </div>
@@ -211,7 +225,7 @@ export default function Step2({ onClickBack }: Step2Props) {
                 notFoundContent={<p>Carregando...</p>}
                 placement="bottomRight"
                 optionLabelProp="label"
-                className="select-etapas"
+                className="select-etapas-cadastro"
                 showSearch={false}
               >
                 {OpcoesEtapasDeEnsino?.map((u) => (
