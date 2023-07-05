@@ -37,7 +37,7 @@ export default function Step2({ onClickBack }: Step2Props) {
   ];
   const rulesLatitude = [
     {
-      required: true,
+      required: false,
       pattern: /^-?([1-8]?\d|90)(,\d{1,7})?$/,
       message: "Deve estar entre -90 e +90 e até 7 casas decimais, utilizando vírgula!",
     },
@@ -45,9 +45,34 @@ export default function Step2({ onClickBack }: Step2Props) {
 
   const rulesLongitude = [
     {
-      required: true,
+      required: false,
       pattern: /^-?((1?[0-7]|[0-9])?\d|180)(,\d{1,7})?$/,
       message: "Deve estar entre -180 e +180 e até 7 casas decimais, utilizando vírgula!",
+    },
+  ];
+
+
+  const rulesCodigoEscola = [
+    {
+      required: true,
+      pattern: /^\d{8}$/,
+      message: "O código deve conter 8 digitos",
+    },
+  ];
+
+  const rulesTelefone = [
+    {
+      required: true,
+      pattern: /^\d{10,11}$/,
+      message: "O telefone deve conter DDD + 9 ou 8 digitos",
+    },
+  ];
+
+  const rulesNumeroAlunoDocentes = [
+    {
+      required: true,
+      pattern: /^[1-9]\d*$/,
+      message: "Deve conter apenas números",
     },
   ];
 
@@ -147,7 +172,6 @@ const [OpcoesEtapasDeEnsino, setOpcoesEtapasDeEnsino] = useState<
         name="form2"
         layout="vertical"
         autoComplete="off"
-        requiredMark="optional"
         className="form-email"
         preserve
       >
@@ -165,7 +189,7 @@ const [OpcoesEtapasDeEnsino, setOpcoesEtapasDeEnsino] = useState<
               </Select>
             </Form.Item>
 
-            <Form.Item name="codigo" label="Codigo da Escola" rules={rules}>
+            <Form.Item name="codigo" label="Codigo da Escola" rules={rulesCodigoEscola}>
               <Input className="inputForm2" />
             </Form.Item>
 
@@ -185,7 +209,7 @@ const [OpcoesEtapasDeEnsino, setOpcoesEtapasDeEnsino] = useState<
            
             </div>
             <div className="bloco2">
-            <Form.Item name="telefone" label="Telefone" rules={rules}>
+            <Form.Item name="telefone" label="Telefone" rules={rulesTelefone}>
               <Input className="inputForm2" />
             </Form.Item>
 
@@ -242,8 +266,9 @@ const [OpcoesEtapasDeEnsino, setOpcoesEtapasDeEnsino] = useState<
               </Select>
             </Form.Item>
 
-            <Form.Item name="longitude" label="Longitude" rules={rulesLongitude}>
+            <Form.Item name="longitude" label="Longitude" rules={rulesLongitude} >
               <Input className="inputForm2" />
+
             </Form.Item>
 
             <Form.Item name="latitude" label="Latitude" rules={rulesLatitude}>
@@ -253,7 +278,7 @@ const [OpcoesEtapasDeEnsino, setOpcoesEtapasDeEnsino] = useState<
             <Form.Item
               name="numeroAlunos"
               label="Número Total de Alunos"
-              rules={rules}
+              rules={rulesNumeroAlunoDocentes}
             >
               <Input className="inputForm2" />
             </Form.Item>
@@ -261,7 +286,7 @@ const [OpcoesEtapasDeEnsino, setOpcoesEtapasDeEnsino] = useState<
             <Form.Item
               name="numeroDocentes"
               label="Número Total de Docentes"
-              rules={rules}
+              rules={rulesNumeroAlunoDocentes}
             >
               <Input className="inputForm2" />
             </Form.Item>
