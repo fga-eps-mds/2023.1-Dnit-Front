@@ -32,7 +32,6 @@ export default function TabelaEscolas() {
 
   const [UfPesquisada, setUfPesquisada] = useState("");
   const [SituacaoPesquisada, setSituacaoPesquisada] = useState("");
-  const [EtapaPesquisada, setEtapaPesquisada] = useState("");
   const [MunicipioPesquisado, setMunicipioPesquisado] = useState("");
 
   const mudarNome = (e: ChangeEvent<HTMLInputElement>) => {

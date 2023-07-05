@@ -10,7 +10,6 @@ export default function TabelaEscola() {
   const {
     escolasFiltradas,
     paginaAtual,
-    NomePesquisado,
     mudarPagina,
     escolasPorPagina,
     mudarQuantidadePorPaginas,
@@ -19,7 +18,6 @@ export default function TabelaEscola() {
 
   const [, contextHolder] = notification.useNotification();
 
-  const [qtdeEscolasFiltradas, setQtdeEscolasFiltradas] = useState(false);
   const [showOptionsPages, setShowOptionsPages] = useState(false);
   const [showSchoolsPerPage, setShowSchoolsPerPage] = useState(false);
   const optionsSchoolsPerPage = ["2", "5", "10", "20"];
@@ -153,8 +151,10 @@ export default function TabelaEscola() {
                   >
                     <td data-th="Título coluna 1">{escola.nomeEscola}</td>
                     <td data-th="Título coluna 2">
-                      {etapas.map((etapas: any, index: number) => (
-                        <span key={index}>{etapas} ,</span>
+                      {etapas.map((etapas: any) => (
+                        <span key={etapas}>
+                          {etapas} <br />
+                        </span>
                       ))}
                     </td>
                     <td data-th="Título coluna 3">

@@ -6,6 +6,7 @@ import fetchFederativeUnit from "../../../service/federativeUnit";
 import fetchMunicipio from "../../../service/municipio";
 import fetchCadastroEscola from "../../../service/registerSchool";
 import fetchCEP from "../../../service/viaCEP";
+import "../../../styles/form/step2.css";
 
 const { Option } = Select;
 interface Step2Props {
@@ -182,7 +183,7 @@ export default function Step2({ onClickBack }: Step2Props) {
                 notFoundContent={<p>Carregando...</p>}
                 placement="bottomRight"
                 optionLabelProp="label"
-                className="uf"
+                className="select-etapas"
                 showSearch={false}
               >
                 {OpcoesEtapasDeEnsino?.map((u) => (

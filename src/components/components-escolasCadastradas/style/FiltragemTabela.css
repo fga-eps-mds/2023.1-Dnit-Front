@@ -122,15 +122,6 @@
 .br-input.has-icon input {
   padding-right: var(--input-padding-icon);
 }
-.br-input.has-icon .br-button.circle {
-  float: right;
-  margin-right: var(--spacing-scale-half);
-  margin-top: calc(
-    (var(--button-size) + var(--spacing-scale-half) + var(--spacing-scale-half)) *
-      -1
-  );
-  transform: translateY(0);
-}
 .br-input.has-icon.small .br-button.circle {
   margin-top: calc((var(--button-size) + var(--spacing-scale-base)) * -1);
 }
