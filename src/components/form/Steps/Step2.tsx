@@ -1,91 +1,148 @@
-import { Button, Form, Input, Select, Space, notification } from "antd";
-import { useEffect, useState } from "react";
+import { Button, Form, Input, Select, Space, notification, message } from "antd";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useFiltroTabela } from "../../../context/FiltroTabela";
-import {
-  EtapasDeEnsino,
-  FederativeUnit,
-  Municipio,
-} from "../../../models/service";
 import fetchEtapasDeEnsino from "../../../service/etapasDeEnsino";
 import fetchFederativeUnit from "../../../service/federativeUnit";
 import fetchMunicipio from "../../../service/municipio";
 import fetchCadastroEscola from "../../../service/registerSchool";
+import fetchCEP from "../../../service/viaCEP";
+import "../../../styles/form/step2.css";
 
 const { Option } = Select;
 interface Step2Props {
   onClickBack: () => void;
 }
 export default function Step2({ onClickBack }: Step2Props) {
-  const {
-    UFSelecionada,
-    setUFSelecionada,
-
-    carregandoEscolas,
-  } = useFiltroTabela();
-
   const [form] = Form.useForm();
   const [api, contextHolder] = notification.useNotification();
+  const [erroCEP, setErroCEP] = useState(false);
+  const [setMsgCEP] = useState(false);
+  let cepEnviado = "0";
   const rules = [
     {
       required: true,
       message: "Preencha o campo ${label}!",
     },
   ];
+  const rulesLatitude = [
+    {
+      required: false,
+      pattern: /^-?([1-8]?\d|90)(,\d{1,7})?$/,
+      message:
+        "Deve estar entre -90 e +90 e até 7 casas decimais, utilizando vírgula!",
+    },
+  ];
 
-  const [opcoesUf, setOpcoesUf] = useState<FederativeUnit[]>([]);
-  const getUf = async () => {
-    try {
-      const resposta = await fetchFederativeUnit();
-      setOpcoesUf(resposta);
-    } catch (error) {}
-  };
-  useEffect(() => {
-    if (opcoesUf.length == 0) getUf();
-  });
+  const rulesLongitude = [
+    {
+      required: false,
+      pattern: /^-?((1?[0-7]|[0-9])?\d|180)(,\d{1,7})?$/,
+      message:
+        "Deve estar entre -180 e +180 e até 7 casas decimais, utilizando vírgula!",
+    },
+  ];
 
-  const [opcoesMunicipio, setOpcoesMunicipio] = useState<Municipio[]>([]);
-  const getMunicipio = async () => {
-    try {
-      if (UFSelecionada) {
-        const resposta = await fetchMunicipio(UFSelecionada.id);
-        setOpcoesMunicipio(resposta);
+  const rulesCodigoEscola = [
+    {
+      required: true,
+      pattern: /^\d{8}$/,
+      message: "O código deve conter 8 digitos",
+    },
+  ];
+
+  const rulesTelefone = [
+    {
+      required: true,
+      pattern: /^\d{10,11}$/,
+      message: "O telefone deve conter DDD + 9 ou 8 digitos",
+    },
+  ];
+
+  const rulesNumeroAlunoDocentes = [
+    {
+      required: true,
+      pattern: /^[1-9]\d*$/,
+      message: "Deve conter apenas números",
+    },
+  ];
+
+  const rulesCEP = [
+    {
+      required: true,
+      pattern: /^\d{8}$/,
+      message: "CEP inválido"
+    },
+  ];
+
+ const getCEP = async (cep: string) => {
+  try {
+    if (cep.length === 8) {
+      const res = await fetchCEP(cep);
+      if (res.erro) {
+        setErroCEP(false);
+        form.setFields([
+          {
+            name: "cep",
+            errors: ["CEP não encontrado"],
+          },
+        ]);
+        cepEnviado = "0";
+      } else {
+        setErroCEP(true);
+        form.setFieldsValue({
+          endereco: res.logradouro,
+          municipio: res.localidade,
+          uf: res.uf,
+        });
+        cepEnviado = cep; 
       }
-    } catch (error) {
-      console.log("Erro get munincipio");
+    } else {
+      setErroCEP(false);
     }
-  };
-  useEffect(() => {
-    if (opcoesMunicipio.length == 0 || carregandoEscolas) getMunicipio();
-  }, [UFSelecionada, carregandoEscolas]);
+  } catch (error) {}
+};
 
-  const [OpcoesEtapasDeEnsino, setOpcoesEtapasDeEnsino] = useState<
-    EtapasDeEnsino[]
-  >([]);
+
   const getEtapasDeEnsino = async () => {
     try {
       const resposta = await fetchEtapasDeEnsino();
-      setOpcoesEtapasDeEnsino(resposta);
+      const etapas = resposta.map((e) => ({ label: e.descricao, value: e.id }));
+      setOpcoesEtapasDeEnsino(etapas);
     } catch (error) {}
   };
 
-  const handleOptionClick = (option: any) => {
-    setUFSelecionada(option);
-  };
+  const [OpcoesEtapasDeEnsino, setOpcoesEtapasDeEnsino] = useState<
+    { value: number; label: string }[]
+  >([]);
 
   const navigate = useNavigate();
   const onFinish = async (values: any) => {
+    const uf = await fetchFederativeUnit();
+    const ufFiltrada = uf.filter((uf) => uf.sigla === values.uf);
+    const municipio = await fetchMunicipio(ufFiltrada[0].id);
+    const municipioFiltrado = municipio.filter(
+      (municipio) => municipio.nome === values.municipio
+    );
+
+    if(!values.latitude){
+      values.latitude = '0'
+    }
+
+    if(!values.longitude){
+      values.longitude = '0'
+    }
+   
     const registerSchoolData = {
       NomeEscola: values.nome,
       IdRede: values.rede,
       CodigoEscola: values.codigo,
-      IdUf: values.uf,
-      Cep: values.cep,
+      IdUf: ufFiltrada[0].id,
+      Cep: cepEnviado,
       Telefone: values.telefone,
       IdEtapasDeEnsino: values.ciclos,
       IdPorte: values.porte,
       Endereco: values.endereco,
-      IdMunicipio: values.municipio,
+      IdMunicipio: municipioFiltrado[0].id,
       IdLocalizacao: values.localizacao,
       Longitude: values.longitude,
       Latitude: values.latitude,
@@ -111,7 +168,6 @@ export default function Step2({ onClickBack }: Step2Props) {
         name="form2"
         layout="vertical"
         autoComplete="off"
-        requiredMark="optional"
         className="form-email"
         preserve
       >
@@ -125,54 +181,51 @@ export default function Step2({ onClickBack }: Step2Props) {
               <Select>
                 <Option value={1}>Municipal</Option>
                 <Option value={2}>Estadual</Option>
+                <Option value={3}>Privada</Option>
               </Select>
             </Form.Item>
 
-            <Form.Item name="codigo" label="Codigo da Escola" rules={rules}>
+            <Form.Item
+              name="codigo"
+              label="Codigo da Escola"
+              rules={rulesCodigoEscola}
+            >
               <Input className="inputForm2" />
             </Form.Item>
 
-            <Form.Item name="uf" rules={rules} label="UF">
-              <Select
-                onMouseDown={getUf}
-                notFoundContent={<p>Carregando...</p>}
-                placement="bottomRight"
-                optionLabelProp="label"
-                className="uf"
-              >
-                {opcoesUf?.map((u) => (
-                  <Option key={u.id} value={u.id} label={<>{u.nome}</>}>
-                    <button
-                      onClick={() => handleOptionClick(u)}
-                      className="option-municipio"
-                    >
-                      {u.nome}
-                    </button>
-                  </Option>
-                ))}
-              </Select>
+            <Form.Item name="cep" label="CEP" rules={rulesCEP}>
+              <Input
+                className="inputForm2"
+                onChange={(event) => {
+                  getCEP(event.target.value);
+                }}
+              />
             </Form.Item>
 
-            <Form.Item name="cep" label="CEP" rules={rules}>
-              <Input className="inputForm2" />
+            <Form.Item name="uf" rules={rules} label="UF(sigla)">
+              <Input className="inputForm2" disabled={erroCEP}/>
             </Form.Item>
-
-            <Form.Item name="telefone" label="Telefone" rules={rules}>
+          </div>
+          <div className="bloco2">
+            <Form.Item name="telefone" label="Telefone" rules={rulesTelefone}>
               <Input className="inputForm2" />
             </Form.Item>
 
             <Form.Item name="ciclos" label="Etapas de Ensino" rules={rules}>
               <Select
+                mode="multiple"
                 onClick={getEtapasDeEnsino}
+                options={OpcoesEtapasDeEnsino}
                 onMouseDown={getEtapasDeEnsino}
                 notFoundContent={<p>Carregando...</p>}
                 placement="bottomRight"
                 optionLabelProp="label"
-                className="uf"
+                className="select-etapas-cadastro"
+                showSearch={false}
               >
                 {OpcoesEtapasDeEnsino?.map((u) => (
-                  <Option key={u.id} value={u.id} label={<>{u.descricao}</>}>
-                    {u.descricao}
+                  <Option key={u.label} value={u.value} label={<>{u.value}</>}>
+                    {u.value}
                   </Option>
                 ))}
               </Select>
@@ -195,28 +248,15 @@ export default function Step2({ onClickBack }: Step2Props) {
                 </Option>
               </Select>
             </Form.Item>
-          </div>
-          <div className="bloco2">
             <Form.Item name="endereco" label="Endereço" rules={rules}>
               <Input className="inputForm2" />
             </Form.Item>
 
             <Form.Item name="municipio" label="Município" rules={rules}>
-              <Select
-                notFoundContent={<p>Carregando...</p>}
-                placement="bottomRight"
-                optionLabelProp="label"
-                className="uf"
-                onMouseDown={getMunicipio}
-              >
-                {opcoesMunicipio?.map((u) => (
-                  <Option key={u.id} value={u.id} label={<>{u.nome}</>}>
-                    {u.nome}
-                  </Option>
-                ))}
-              </Select>
+              <Input className="inputForm2" disabled={erroCEP}/>
             </Form.Item>
-
+          </div>
+          <div className="bloco3">
             <Form.Item name="localizacao" label="Localização" rules={rules}>
               <Select>
                 <Option value={1}>Rural</Option>
@@ -224,18 +264,22 @@ export default function Step2({ onClickBack }: Step2Props) {
               </Select>
             </Form.Item>
 
-            <Form.Item name="longitude" label="Longitude" rules={rules}>
+            <Form.Item
+              name="longitude"
+              label="Longitude"
+              rules={rulesLongitude}
+            >
               <Input className="inputForm2" />
             </Form.Item>
 
-            <Form.Item name="latitude" label="Latitude" rules={rules}>
+            <Form.Item name="latitude" label="Latitude" rules={rulesLatitude}>
               <Input className="inputForm2" />
             </Form.Item>
 
             <Form.Item
               name="numeroAlunos"
               label="Número Total de Alunos"
-              rules={rules}
+              rules={rulesNumeroAlunoDocentes}
             >
               <Input className="inputForm2" />
             </Form.Item>
@@ -243,7 +287,7 @@ export default function Step2({ onClickBack }: Step2Props) {
             <Form.Item
               name="numeroDocentes"
               label="Número Total de Docentes"
-              rules={rules}
+              rules={rulesNumeroAlunoDocentes}
             >
               <Input className="inputForm2" />
             </Form.Item>
