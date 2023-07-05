@@ -21,7 +21,7 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
   };
 });
 
-test("Lista de escolas é exibida corretamente", async () => {
+test("Cadastro feito", async () => {
   render(
     <MemoryRouter initialEntries={["/cadastrarescola"]}>
       <App />
@@ -84,7 +84,16 @@ test("Lista de escolas é exibida corretamente", async () => {
   fireEvent.click(cadastrar);
 });
 
-test("Lista de escolas é exibida corretamente", async () => {
+test("Erro no cadastro", async () => {
+  server.use(
+    rest.post(
+      "https://api.dnit-eps-mds.com/api/escolas/cadastrarEscola",
+      (req, res, ctx) => {
+        return res(ctx.status(400));
+      }
+    )
+  );
+
   render(
     <MemoryRouter initialEntries={["/cadastrarescola"]}>
       <App />
@@ -92,8 +101,78 @@ test("Lista de escolas é exibida corretamente", async () => {
   );
   const inserirInformacoes = screen.getByText("Inserindo informações");
   fireEvent.click(inserirInformacoes);
+
+  const nome = screen.getByLabelText("Nome da Escola");
+  fireEvent.change(nome, { target: { value: "Escola B" } });
+
+  const codigo = screen.getByLabelText("Codigo da Escola");
+  fireEvent.change(codigo, { target: { value: "12345678" } });
+
+  const rede = screen.getByLabelText("Rede");
+  fireEvent.mouseDown(rede);
+  const redeMunicipal = screen.getByText("Municipal");
+  fireEvent.click(redeMunicipal);
+
+  const cep = screen.getByLabelText("CEP");
+  fireEvent.change(cep, { target: { value: "12345678" } });
+  const telefone = screen.getByLabelText("Telefone");
+  fireEvent.change(telefone, { target: { value: "1234567891" } });
+
+  const etapas = screen.getByLabelText("Etapas de Ensino");
+  fireEvent.mouseDown(etapas);
+  await waitFor(() =>
+    expect(screen.queryByText("Carregando...")).not.toBeInTheDocument()
+  );
+  const etapasSelecionada = screen.getByText("Educação Infantil");
+  fireEvent.click(etapasSelecionada);
+
+  const porte = screen.getByLabelText("Porte");
+  fireEvent.mouseDown(porte);
+  const porteSelecionado = screen.getByText(
+    "Até 50 matrículas de escolarização"
+  );
+  fireEvent.click(porteSelecionado);
+
+  const endereco = screen.getByLabelText("Endereço");
+  fireEvent.change(endereco, { target: { value: "Rua Lebron JAMES" } });
+
+  const local = screen.getByLabelText("Localização");
+  fireEvent.mouseDown(local);
+  const localSelecionado = screen.getByText("Rural");
+  fireEvent.click(localSelecionado);
+
+  const latitude = screen.getByLabelText("Latitude");
+  fireEvent.change(latitude, { target: { value: "89" } });
+
+  const longitude = screen.getByLabelText("Longitude");
+  fireEvent.change(longitude, { target: { value: "123" } });
+
+  const numeroAlunos = screen.getByLabelText("Número Total de Alunos");
+  fireEvent.change(numeroAlunos, { target: { value: "123" } });
+
+  const numeroDocentes = screen.getByLabelText("Número Total de Docentes");
+  fireEvent.change(numeroDocentes, { target: { value: "123" } });
+
+  const cadastrar = screen.getByText("Cadastrar");
+  fireEvent.click(cadastrar);
+
+  await screen.findByText("Erro ao fazer o cadastro");
+
   const voltar = screen.getByText("Voltar");
   fireEvent.click(voltar);
+});
+
+test("Erro no cep", async () => {
+  render(
+    <MemoryRouter initialEntries={["/cadastrarescola"]}>
+      <App />
+    </MemoryRouter>
+  );
+  const inserirInformacoes = screen.getByText("Inserindo informações");
+  fireEvent.click(inserirInformacoes);
+
+  const cep = screen.getByLabelText("CEP");
+  fireEvent.change(cep, { target: { value: "1234567" } });
 });
 
 test("Lista de escolas redireciona pra listagem", async () => {
