@@ -1,16 +1,13 @@
 import axios, { AxiosResponse, GenericAbortSignal } from "axios";
-import { inepSchoolsUrl } from "../consts/service";
+import { EscolasInepURL } from "../consts/service";
 import { InepSchoolData } from "../models/service";
 
 
-async function fetchSchoolByName(name: string, signal: GenericAbortSignal): Promise<InepSchoolData[]> {
+async function fetchEscolasInep(estado: string, municipio: number): Promise<InepSchoolData[]> {
 
     try {
-        console.log("AAAAAAAAAA")
         const response: AxiosResponse<InepSchoolData[]> = await axios.get(
-            `${inepSchoolsUrl}?nome=` + name, {
-            signal:signal
-        }
+            `${EscolasInepURL}?estado=${estado}&municipio=${municipio}`
         );
         return response.data;
     } catch (error) {
@@ -18,4 +15,4 @@ async function fetchSchoolByName(name: string, signal: GenericAbortSignal): Prom
     }
 }
 
-export { fetchSchoolByName };
+export { fetchEscolasInep };
