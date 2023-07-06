@@ -17,7 +17,7 @@ export default function CadAcidentes({
 }: Step1_AcidentesProps) {
   return (
     <div className="form3">
-      <h2>Inserir Acidentes via planilha</h2>
+      <h2>Inserir Sinistros via planilha</h2>
       <div className="secaoInserir">
         <Dragdrop
           onClickBack={onClickBack}

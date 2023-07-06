@@ -28,7 +28,7 @@ function App() {
       )}
       <Route path="/escolas-cadastradas" element={<EscolasCadastradas />} />
       <Route path="/cadastrarescola" element={<RegisterSchool />} />
-      <Route path="/cadastraracidentes" element={<CadastrarAcidentes/>} />
+      <Route path="/cadastrarsinistros" element={<CadastrarAcidentes/>} />
       <Route path="/login" element={<Login />} />
       <Route path="/redefinirSenha" element={<ResetPassword />} />
       <Route path="/cadastro" element={<Register />} />
