@@ -1,5 +1,5 @@
 import { Button, Form, Input, Select, Space, notification, message } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import fetchEtapasDeEnsino from "../../../service/etapasDeEnsino";
 import fetchFederativeUnit from "../../../service/federativeUnit";
@@ -7,16 +7,25 @@ import fetchMunicipio from "../../../service/municipio";
 import fetchCadastroEscola from "../../../service/registerSchool";
 import fetchCEP from "../../../service/viaCEP";
 import "../../../styles/form/step2.css";
+import { useFiltroTabela } from "../../../context/FiltroTabela";
+import { FederativeUnit, Municipio } from "../../../models/service";
 
 const { Option } = Select;
 interface Step2Props {
   onClickBack: () => void;
 }
 export default function Step2({ onClickBack }: Step2Props) {
+
+  const {
+    UFSelecionada,
+    setUFSelecionada,
+
+   
+  } = useFiltroTabela();
+
   const [form] = Form.useForm();
   const [api, contextHolder] = notification.useNotification();
   const [erroCEP, setErroCEP] = useState(false);
-  const [setMsgCEP] = useState(false);
   let cepEnviado = "0";
   const rules = [
     {
@@ -74,33 +83,64 @@ export default function Step2({ onClickBack }: Step2Props) {
     },
   ];
 
- const getCEP = async (cep: string) => {
-  try {
-    if (cep.length === 8) {
-      const res = await fetchCEP(cep);
-      if (res.erro) {
-        setErroCEP(false);
-        form.setFields([
-          {
-            name: "cep",
-            errors: ["CEP não encontrado"],
-          },
-        ]);
-        cepEnviado = "0";
-      } else {
-        setErroCEP(true);
-        form.setFieldsValue({
-          endereco: res.logradouro,
-          municipio: res.localidade,
-          uf: res.uf,
-        });
-        cepEnviado = cep; 
+  const [opcoesMunicipio, setOpcoesMunicipio] = useState<Municipio[]>([]);
+  const getMunicipio = async () => {
+    try {
+      if (UFSelecionada) {
+        const resposta = await fetchMunicipio(UFSelecionada.id);
+        setOpcoesMunicipio(resposta);
+       
       }
-    } else {
-      setErroCEP(false);
+    } catch (error) {
+     
     }
-  } catch (error) {}
-};
+  };
+
+  const [opcoesUf, setOpcoesUf] = useState<FederativeUnit[]>([]);
+  const getUf = async () => {
+    try {
+      const resposta = await fetchFederativeUnit();
+      setOpcoesUf(resposta);
+     
+    } catch (error) { }
+
+  };
+  useEffect(() => {
+    if (opcoesUf.length == 0) getUf();
+  });
+
+  const handleOptionClick = (option: any) => {
+    setUFSelecionada(option);
+
+  };
+
+  const getCEP = async (cep: string) => {
+    try {
+      if (cep.length === 8) {
+        const res = await fetchCEP(cep);
+        if (res.erro) {
+          setErroCEP(false);
+          form.setFields([
+            {
+              name: "cep",
+              errors: ["CEP não encontrado"],
+            },
+          ]);
+          cepEnviado = "0";
+        } else {
+          setErroCEP(true);
+          form.setFieldsValue({
+            endereco: res.logradouro,
+            municipio: res.localidade,
+            uf: res.uf,
+          });
+          cepEnviado = cep;
+        }
+      } else {
+        setErroCEP(false);
+      }
+    } catch (error) { }
+  };
 
 
   const getEtapasDeEnsino = async () => {
@@ -108,41 +148,50 @@ export default function Step2({ onClickBack }: Step2Props) {
       const resposta = await fetchEtapasDeEnsino();
       const etapas = resposta.map((e) => ({ label: e.descricao, value: e.id }));
       setOpcoesEtapasDeEnsino(etapas);
-    } catch (error) {}
+    } catch (error) { }
   };
 
   const [OpcoesEtapasDeEnsino, setOpcoesEtapasDeEnsino] = useState<
     { value: number; label: string }[]
   >([]);
 
+  const limpaMunicipio = () =>{
+    form.setFieldValue('municipio', undefined)
+  };
+
   const navigate = useNavigate();
   const onFinish = async (values: any) => {
     const uf = await fetchFederativeUnit();
     const ufFiltrada = uf.filter((uf) => uf.sigla === values.uf);
-    const municipio = await fetchMunicipio(ufFiltrada[0].id);
-    const municipioFiltrado = municipio.filter(
-      (municipio) => municipio.nome === values.municipio
-    );
 
-    if(!values.latitude){
+    let municipioFiltrado;
+    if (ufFiltrada.length>0) {
+  
+      const municipio = await fetchMunicipio(ufFiltrada[0].id);
+      municipioFiltrado = municipio.filter(
+        (municipio) => municipio.nome === values.municipio
+      );
+    }
+
+    if (!values.latitude) {
       values.latitude = '0'
     }
 
-    if(!values.longitude){
+    if (!values.longitude) {
       values.longitude = '0'
     }
-   
+
     const registerSchoolData = {
       NomeEscola: values.nome,
       IdRede: values.rede,
       CodigoEscola: values.codigo,
-      IdUf: ufFiltrada[0].id,
+      IdUf: ufFiltrada ? (ufFiltrada[0]?.id || values.uf) : values.uf,
       Cep: cepEnviado,
       Telefone: values.telefone,
       IdEtapasDeEnsino: values.ciclos,
       IdPorte: values.porte,
       Endereco: values.endereco,
-      IdMunicipio: municipioFiltrado[0].id,
+      IdMunicipio: municipioFiltrado ? (municipioFiltrado[0]?.id || values.municipio) : values.municipio,
       IdLocalizacao: values.localizacao,
       Longitude: values.longitude,
       Latitude: values.latitude,
@@ -202,8 +251,29 @@ export default function Step2({ onClickBack }: Step2Props) {
               />
             </Form.Item>
 
-            <Form.Item name="uf" rules={rules} label="UF(sigla)">
-              <Input className="inputForm2" disabled={erroCEP}/>
+            <Form.Item name="uf" rules={rules} label="UF">
+              <Select
+                onChange={limpaMunicipio}
+                disabled={erroCEP}
+                onMouseDown={getUf}
+                notFoundContent={<p>Carregando...</p>}
+                placement="bottomRight"
+                optionLabelProp="label"
+                className="uf"
+
+              >
+                {opcoesUf?.map((u) => (
+                  <Option key={u.id} value={u.id} label={<>{u.nome}</>}>
+                    <button
+
+                      onClick={() => handleOptionClick(u)}
+                      className="option-municipio"
+                    >
+                      {u.nome}
+                    </button>
+                  </Option>
+                ))}
+              </Select>
             </Form.Item>
           </div>
           <div className="bloco2">
@@ -253,7 +323,20 @@ export default function Step2({ onClickBack }: Step2Props) {
             </Form.Item>
 
             <Form.Item name="municipio" label="Município" rules={rules}>
-              <Input className="inputForm2" disabled={erroCEP}/>
+              <Select
+                disabled={erroCEP}
+                notFoundContent={<p>Carregando...</p>}
+                placement="bottomRight"
+                optionLabelProp="label"
+                className="uf"
+                onMouseDown={getMunicipio}
+              >
+                {opcoesMunicipio?.map((u) => (
+                  <Option key={u.id} value={u.id} label={<>{u.nome}</>}>
+                    {u.nome}
+                  </Option>
+                ))}
+              </Select>
             </Form.Item>
           </div>
           <div className="bloco3">
