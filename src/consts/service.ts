@@ -8,7 +8,6 @@ const registerURL = `${urlAPIUsuario}/usuario/cadastrarUsuarioDnit`;
 const registerSchoolURL = `${urlAPIEscolas}/escolas/cadastrarEscola`;
 const recoverPasswordURL = `${urlAPIUsuario}/usuario/recuperarSenha`;
 const listarInfoEscolaURL = `${urlAPIEscolas}/escolas/listarInformacoesEscola`;
-const salvarSituacaoURL = `${urlAPIEscolas}/escolas/adicionarSituacao`;
 const resetPasswordURL = `${urlAPIUsuario}/usuario/redefinirSenha`;
 const listSchoolsURL = `${urlAPIEscolas}/escolas/listarEscolas`;
 const excluirEscolaURL = `${urlAPIEscolas}/escolas/excluir`;
@@ -18,12 +17,7 @@ const EtapasDeEnsinoURL = `${urlAPIEscolas}/dominio/etapasDeEnsino`;
 const MunicipioURL = `${urlAPIEscolas}/dominio/municipio`;
 const EscolasFiltradasURL = `${urlAPIEscolas}/escolas/obter`;
 const insertFileURL = `${urlAPIEscolas}/escolas/cadastrarEscolaPlanilha`;
-const adicionarObservacaoURL = `${urlAPIEscolas}/escolas/adicionarObservacao`;
-const alterarTelefoneURL = `${urlAPIEscolas}/escolas/alterarTelefone`;
-const alterarLatitudeURL = `${urlAPIEscolas}/escolas/alterarLatitude`;
-const alterarLongitudeURL = `${urlAPIEscolas}/escolas/alterarLongitude`;
-const alterarNumAlunosURL = `${urlAPIEscolas}/escolas/alterarNumeroDeAlunos`;
-const alterarNumDocentesURL = `${urlAPIEscolas}/escolas/alterarNumeroDeDocentes`;
+const alterarDadosEscolaURL = `${urlAPIEscolas}/escolas/alterarDadosEscola`;
 
 export {
   EscolasFiltradasURL,
@@ -42,11 +36,5 @@ export {
   registerSchoolURL,
   registerURL,
   resetPasswordURL,
-  salvarSituacaoURL,
-  adicionarObservacaoURL,
-  alterarTelefoneURL,
-  alterarLatitudeURL,
-  alterarLongitudeURL,
-  alterarNumAlunosURL,
-  alterarNumDocentesURL,
+  alterarDadosEscolaURL,
 };
