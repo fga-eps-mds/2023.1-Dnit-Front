@@ -1,25 +1,25 @@
 import "../../../styles/form/step3.css";
-import Dragdrop from "../../Upload/DragDrop";
-interface Step1_RodoviasProps{
+import Dragdrop from "../../cadastrarRodovias/UploadPlanilha/DragDrop";
+interface Step1_RodoviasProps {
     onClickBack: () => void;
-    onClickError: () => void;
+    onClickErroTamanho: () => void;
     onClickAceito: () => void;
 }
 
 export default function Step1_Rodovias({
     onClickBack,
-    onClickError,
+    onClickErroTamanho,
     onClickAceito,
 }: Step1_RodoviasProps) {
-    return(
+    return (
         <div className="form3">
             <h2>Inserir rodovias via planilha</h2>
             <div className="secaoInserir">
                 <Dragdrop
                     onClickBack={onClickBack}
-                    onClickError={onClickError}
+                    onClickErrorTamanho={onClickErroTamanho}
                     onClickAceito={onClickAceito}
-                />                   
+                />
             </div>
         </div>
     );

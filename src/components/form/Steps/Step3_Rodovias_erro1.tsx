@@ -1,7 +1,7 @@
 import { Button } from "antd";
 import "../../../styles/form/step3_erro2.css";
 
-interface Step3_Rodovias_erroProps{
+interface Step3_Rodovias_erroProps {
     onClickVoltar: () => void;
 }
 
@@ -10,10 +10,10 @@ export default function Step3_Rodovias_erroProps({ onClickVoltar }: Step3_Rodovi
     return (
         <div className="form3_erro1">
             <div className="secaoTexto">
-                <h2>Erro na inserção das escolas!</h2>
+                <h2>Erro na inserção das rodovias!</h2>
                 <h2>Tamanho do arquivo excedido</h2>
                 <h2>
-                    {"("} Máximo 5000 linhas {")"}
+                    {"("} Máximo 10000 linhas {")"}
                 </h2>
             </div>
             <div className="secaoVoltar">
