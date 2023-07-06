@@ -19,9 +19,10 @@ const MunicipioURL = `${urlAPIEscolas}/dominio/municipio`;
 const EscolasFiltradasURL = `${urlAPIEscolas}/escolas/obter`;
 const insertFileURL = `${urlAPIEscolas}/escolas/cadastrarEscolaPlanilha`;
 
-const inepURLAPI = "http://educacao.dadosabertosbr.com/api"
+const EscolasInepURL = "https://localhost:7083/api/solicitacaoAcao/escolas"
+const SolicitacaoDeAcaoURL = "https://localhost:7083/api/solicitacaoAcao"
 
-const inepSchoolsUrl = `${inepURLAPI}/escolas/buscaavancada`
+
 
 export {
   EscolasFiltradasURL,
@@ -42,7 +43,8 @@ export {
   resetPasswordURL,
   salvarSituacaoURL,
   urlAPIViaCEP,
-  inepSchoolsUrl
+  EscolasInepURL,
+  SolicitacaoDeAcaoURL
 };
 
 

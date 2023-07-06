@@ -4,8 +4,14 @@ import { Button, Form, Input, Space, notification, Select } from "antd";
 import { Link } from "react-router-dom";
 import ButtonComponent from "../Button";
 import "../../styles/form.css";
-import { fetchSchoolByName } from "../../service/inepAPI";
 // import { inepSchoolsUrl } from "../../consts/service";
+import { fetchEscolasInep } from "../../service/inepAPI";
+import fetchMunicipio from "../../service/municipio";
+import fetchFederativeUnit from "../../service/federativeUnit";
+import fetchEtapasDeEnsino from "../../service/etapasDeEnsino";
+import fetchSolicitaAcao from "../../service/solicitaAcao";
+
+import { EtapasDeEnsino, FederativeUnit, Municipio, SolicitacaoDeAcao } from "../../models/service";
 
 const { Option } = Select;
 
@@ -19,32 +25,93 @@ interface EscolaInepData {
 
 
 const SolicitacaoAcaoForm: React.FC = () => {
+
+  const [UFs, setUFs] = useState<FederativeUnit[] | false>(false);
+  const [UFAtual, setUFATual] = useState<FederativeUnit | false>(false);
+
+  const [municipios, setMunicipios] = useState<Municipio[] | false>(false);
+  const [municipioAtual, setMunicipioAtual] = useState<Municipio | false>(false);
+
+  const [escolasInep, setEscolasInep] = useState<EscolaInepData[] | false>(false);
+
+  const [etapasDeEnsino, setEtapasDeEnsino] = useState<EtapasDeEnsino[] | false>(false)
+
+
+  const getEtapasDeEnsino = async () => {
+    try {
+      const result = await fetchEtapasDeEnsino();
+      setEtapasDeEnsino(result)
+    } catch (error) {
+      console.log({ error })
+
+    }
+  }
+  const getUFs = async () => {
+    try {
+      const result = await fetchFederativeUnit();
+      console.log({ result })
+      setUFs(result)
+    } catch (error) {
+      console.log({ error })
+
+    }
+  }
+  const getMunicipios = async () => {
+    if (UFAtual)
+      try {
+        const result = await fetchMunicipio(UFAtual.id);
+        setMunicipios(result)
+      } catch (error) {
+        console.log({ error })
+      }
+  }
+
+  const getEscolasInep = async () => {
+    if (UFAtual && municipioAtual)
+      try {
+        const result = await fetchEscolasInep(UFAtual.sigla, municipioAtual.id)
+        setEscolasInep(result);
+      } catch (error) {
+        console.log({ error })
+      }
+
+  }
+
+  const enviarSolicitacao = async (formData: SolicitacaoDeAcao) => {
+    try {
+      await fetchSolicitaAcao(formData as SolicitacaoDeAcao)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+
+  // Busca as unidades federativas, caso já não as tenha buscado.
+  useEffect(() => { if (!UFs || UFs.length <= 0) getUFs(); getEtapasDeEnsino(); })
+
+  // Quando muda a unidade federativa selecionada:
+  // // - Limpa as opções de municipio
+  // // - Caso exista unidade federativa selecionada, busca os municipios desta.   
+  useEffect(() => {
+    setMunicipioAtual(false);
+    getMunicipios();
+  }, [UFAtual])
+
+
+  // Quando municipio é selecionado, busca as escolas do mesmo.
+  useEffect(() => {
+    setEscolasInep(false);
+    if (UFAtual && municipioAtual)
+      getEscolasInep()
+  }, [municipioAtual])
+
+
   const [form] = Form.useForm();
 
-  // const ordena=(a,b)=>{
-
-  // }
 
 
   const [api, contextHolder] = notification.useNotification();
 
-  const [data, loadingData, setAPIURL] = useApi();
-
-  const getSchools = async (name: string, estado: string = "") => {
-
-    setAPIURL(`https://localhost:7083/api/solicitacaoAcao/escolas/?nome=${name}&estado=${estado}`)
-    // setAPIURL("http://educacao.dadosabertosbr.com/api/escolas/buscaavancada?situacaoFuncionamento=1&energiaInexistente=on&aguaInexistente=on&esgotoInexistente=on&cozinha=on")
-
-
-  }
-  const [escolasInep, setEscolasInep] = useState([{ cod: -1 }] as EscolaInepData[])
-
-
-  useEffect(() => {
-    if (data)
-      setEscolasInep(data);
-
-  }, [data])
 
 
   const rules = [
@@ -55,17 +122,32 @@ const SolicitacaoAcaoForm: React.FC = () => {
   ];
 
   const onFinish = async (values: any) => {
-    console.log("Received values of form: ", values);
-    const cadastroData = {
-      escola: values.escola,
-      nome: values.nome,
-      vinculo: values.vinculo,
-      email: values.email,
-      telefone: values.telefone,
-      ciclos: values.ciclos,
-      quantidade: values.quantidade,
-      observacoes: values.observacoes,
-    };
+
+    const formData = {
+      Escola: JSON.parse(values.escola).nome,
+      UF: (UFAtual && UFAtual.sigla),
+      Municipio: (municipioAtual && municipioAtual.nome),
+      NomeSolicitante: values.nome,
+      VinculoEscola: values.vinculo,
+      Email: values.email,
+      Telefone: values.telefone,
+      CiclosEnsino: values.ciclos.map((vinculo: string) => JSON.parse(vinculo).descricao),
+      QuantidadeAlunos: parseInt(values.quantidade),
+      Observacoes: values.observacoes,
+    }
+    console.log({ formData });
+    enviarSolicitacao(formData as SolicitacaoDeAcao)
+
+    // const cadastroData = {
+    //   escola: values.escola,
+    //   nome: values.nome,
+    //   vinculo: values.vinculo,
+    //   email: values.email,
+    //   telefone: values.telefone,
+    //   ciclos: values.ciclos,
+    //   quantidade: values.quantidade,
+    //   observacoes: values.observacoes,
+    // };
   };
 
 
@@ -82,66 +164,77 @@ const SolicitacaoAcaoForm: React.FC = () => {
           requiredMark="optional"
           className="form-email"
         >
+          <div>
+            <Form.Item name="UF" label="UF" rules={rules}>
+
+              <Select
+                placeholder="Selecione uma UF"
+                className="inputForm form-item-select"
+                onChange={(value) => {
+                  form.resetFields(["Municipios", "escola"])
+                  setUFATual(JSON.parse(value));
+                }}
+                showSearch
+              >
+                {UFs && UFs.map((UF) => {
+                  return (
+                    <Option key={UF.sigla} value={JSON.stringify(UF)}>{UF.sigla}</Option>
+                  )
+                })}
+
+              </Select>
+            </Form.Item>
+
+            <Form.Item name="Municipios" label="Municipios" rules={rules}>
+              <Select
+                placeholder="Selecione um municipio"
+                className="inputForm form-item-select"
+                disabled={!UFAtual}
+                showSearch
+                onChange={(value) => {
+                  form.resetFields(["escola"])
+                  setMunicipioAtual(JSON.parse(value))
+                }}
+              >
+                {municipios && municipios.map((municipio) => {
+                  return (
+                    <Option key={JSON.stringify(municipio)} value={JSON.stringify(municipio)}>{municipio.nome}</Option>
+                  )
+                })}
+              </Select>
+            </Form.Item>
+          </div>
+
           <Form.Item name="escola" label="Escola" rules={rules}>
 
             <Select
               placeholder="Selecione uma escola"
               className="inputForm form-item-select"
-              filterOption={(input, option) => {
-                // console.log(option)
-                // return true;
-                if (option === undefined){
-                    console.log("Option undefined")
-                  return false;
-                }
+              // disabled={!municipioAtual || !escolasInep}
+              loading={!escolasInep && municipioAtual !== false}
 
-                const { label: text = '' } = option
-                if (text === null){
-                  console.log("text null")
-                  return false
-                }
 
-                if (typeof text === 'string') {
-                  console.log(text)
-                  console.log(text.toLowerCase())
-                  return text.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                }
-                return text.toString().indexOf(input.toLowerCase()) >= 0
-
-              }}
-              onSearch={(value) => {
-                // alert({value})
-                if (value.length >= 3)
-                  getSchools(value);
-
-              }}
-              // onChange
               showSearch
 
             >
-              {escolasInep && escolasInep[0].cod !== -1 && escolasInep.map((escola: EscolaInepData) => <Option key={escola.cod} value={escola.nome.toLowerCase()}>{escola.estado + ": " + escola.nome.toLowerCase()}</Option>)}
-              {/* <Option value="escola1">Escola 1</Option>
-              <Option value="escola2">Escola 2 </Option>
-              <Option value="escola3">Escola 3 </Option>
-              <Option value="escola4">Escola 4</Option> */}
-
+              {escolasInep && escolasInep.map((escola: EscolaInepData) => <Option key={escola.cod} value={JSON.stringify(escola).toLowerCase()}>{escola.nome}</Option>)}
 
             </Select>
           </Form.Item>
 
-          <Form.Item name="nome do solicitante" label="Nome do Solicitante" rules={rules}>
+          <Form.Item name="nome" label="Nome do Solicitante" rules={rules}>
             <Input className="inputForm" />
           </Form.Item>
 
-          <Form.Item name="vinculo com a escola" label="Vínculo com a Escola" rules={rules}>
+          <Form.Item name="vinculo" label="Vínculo com a Escola" rules={rules}>
             <Select
-              placeholder="Selecione uma escola"
+              placeholder="Selecione seu vinculo"
               className="inputForm form-item-select"
             >
-              {/* <Option value="escola1">Professor</Option>
-              <Option value="escola2">Gestor escolar</Option>
-              <Option value="escola3">Estudante</Option>
-              <Option value="escola4">Outro</Option> */}
+              <Option value="Professor">Professor</Option>
+              <Option value="Gestor escolar">Gestor escolar</Option>
+              <Option value="Estudante">Estudante</Option>
+              <Option value="Outro">Outro</Option>
 
 
             </Select>
@@ -157,20 +250,19 @@ const SolicitacaoAcaoForm: React.FC = () => {
             <Input className="inputForm" />
           </Form.Item>
 
-          <Form.Item name="ciclos de ensino" label="Ciclos de Ensino" rules={rules}>
+          <Form.Item name="ciclos" label="Ciclos de Ensino" rules={rules}>
             <Select
               mode="multiple"
               placeholder="Selecione os ciclos de ensino"
               className="inputForm form-item-select"
+              loading={!etapasDeEnsino}
             >
-              <Option value="infantil">Ensino Infantil</Option>
-              <Option value="fundamental1">Ensino Fundamental - 1º, 2º e 3º ano</Option>
-              <Option value="fundamental2">Ensino Fundamental - 4º, 5º e 6º ano</Option>
-              <Option value="fundamental3">Ensino Fundamental - 7º, 8º e 9º ano</Option>
+              {etapasDeEnsino && etapasDeEnsino.map((etapa: EtapasDeEnsino) => <Option key={etapa.id} value={JSON.stringify(etapa).toLowerCase()}>{etapa.descricao}</Option>)}
+
             </Select>
           </Form.Item>
 
-          <Form.Item name="quantidade de alunos" label="Quantidade de Alunos" rules={rules}>
+          <Form.Item name="quantidade" label="Quantidade de Alunos" rules={rules}>
             <Input className="inputForm" />
           </Form.Item>
 

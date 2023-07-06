@@ -1,6 +1,6 @@
 export interface FederativeUnit {
   id: number;
-  nome: string;
+  descricao: string;
   sigla: string;
 }
 
@@ -16,6 +16,9 @@ export interface viaCEP {
   ddd: string;
   siafi: string;
   erro?: boolean;
+  sigla: string;
+  descricao: string;
+
 }
 
 export interface Municipio {
@@ -126,21 +129,38 @@ export interface EscolaData {
 export interface ExcluirSituacaoData {
   idEscola: number;
 }
-export interface InepSchoolData     {
-  "anoCenso": number,
-  "cod": number,
-  "nome":string,
-  "codCidade": number,
-  "cidade": string,
-  "estado": string,
-  "regiao": string,
-  "situacaoFuncionamento": number,
-  "dependenciaAdministrativa": number,
-  "idebAI": number,
-  "idebAF": number,
-  "enemMediaGeral": number,
-  "situacaoFuncionamentoTxt": string,
-  "dependenciaAdministrativaTxt": string
+// export interface InepSchoolData     {
+//   "anoCenso": number,
+//   "cod": number,
+//   "nome":string,
+//   "codCidade": number,
+//   "cidade": string,
+//   "estado": string,
+//   "regiao": string,
+//   "situacaoFuncionamento": number,
+//   "dependenciaAdministrativa": number,
+//   "idebAI": number,
+//   "idebAF": number,
+//   "enemMediaGeral": number,
+//   "situacaoFuncionamentoTxt": string,
+//   "dependenciaAdministrativaTxt": string
+// }
+
+export interface InepSchoolData {
+  cod: number;
+  estado: string;
+  nome: string;
 }
 
-
+export interface SolicitacaoDeAcao {
+  Escola: string;
+  UF: string;
+  Municipio: string;
+  NomeSolicitante: string;
+  VinculoEscola: string;
+  Email: string;
+  Telefone: string;
+  CiclosEnsino: string[];
+  QuantidadeAlunos: number;
+  Observacoes: string | undefined;
+}

@@ -58,7 +58,7 @@ export default function TabelaEscolas() {
     try {
       const resposta = await fetchFederativeUnit();
       setOpcoesUf(resposta);
-    } catch (error) {}
+    } catch (error) { }
   };
 
   useEffect(() => {
@@ -69,7 +69,7 @@ export default function TabelaEscolas() {
     try {
       const resposta = await fetchSituacao();
       setOpcoesSituacao(resposta);
-    } catch (error) {}
+    } catch (error) { }
   };
   useEffect(() => {
     if (opcoesSituacao.length == 0) getSituacao();
@@ -81,7 +81,7 @@ export default function TabelaEscolas() {
         const resposta = await fetchMunicipio(UFSelecionada.id);
         setOpcoesMunicipio(resposta);
       }
-    } catch (error) {}
+    } catch (error) { }
   };
 
   useEffect(() => {
@@ -93,7 +93,7 @@ export default function TabelaEscolas() {
       const resposta = await fetchEtapasDeEnsino();
       const etapas = resposta.map((e) => ({ label: e.descricao, value: e.id }));
       setOpcoesEtapasDeEnsino(etapas);
-    } catch (error) {}
+    } catch (error) { }
   };
 
   useEffect(() => {
@@ -160,11 +160,10 @@ export default function TabelaEscolas() {
         <div className="br-input medium input-button">
           <label htmlFor="input-search-medium">Nome</label>
           <input
-            id="input-search-medium"
-            type="search"
-            value={NomePesquisado}
-            onChange={mudarNome}
-            placeholder="Digite o nome da Escola"
+            id="select-multtiple"
+            type="text"
+            placeholder={UFSelecionada ? UFSelecionada.descricao : "Todas"}
+            disabled
           />
           <button
             className="br-button"
@@ -174,6 +173,30 @@ export default function TabelaEscolas() {
           >
             <i className="fas fa-search" aria-hidden="true"></i>
           </button>
+          <div className="br-input">
+            {showOptionsUF && (
+              <div className="select-options dropdown-busca">
+                <div
+                  className="options"
+                  onClick={() => handleOptionClick(false, 1)}
+                >
+                  {" "}
+                  Todas
+                </div>
+                {opcoesUf.map((options, index) => {
+                  return (
+                    <div
+                      key={index}
+                      className="options"
+                      onClick={() => handleOptionClick(options, 1)}
+                    >
+                      {options.descricao}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
         </div>
 
         <div className="br-select">
@@ -185,7 +208,7 @@ export default function TabelaEscolas() {
               value={UfPesquisada}
               onChange={mudarUf}
               onFocus={() => handleButtonClick(1)}
-              placeholder={UFSelecionada ? UFSelecionada.nome : "Todas"}
+              placeholder={UFSelecionada ? UFSelecionada.descricao : "Todas"}
             />
             <button
               className="br-button"
@@ -209,7 +232,7 @@ export default function TabelaEscolas() {
                   </div>
                   {opcoesUf
                     .filter((uf) =>
-                      uf.nome.toLowerCase().includes(UfPesquisada.toLowerCase())
+                      uf.descricao.toLowerCase().includes(UfPesquisada.toLowerCase())
                     )
                     .map((options, index) => {
                       return (
@@ -218,7 +241,7 @@ export default function TabelaEscolas() {
                           className="options"
                           onClick={() => handleOptionClick(options, 1)}
                         >
-                          {options.nome}
+                          {options.descricao}
                         </div>
                       );
                     })}
