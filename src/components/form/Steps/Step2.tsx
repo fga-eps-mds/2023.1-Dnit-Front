@@ -89,10 +89,10 @@ export default function Step2({ onClickBack }: Step2Props) {
       if (UFSelecionada) {
         const resposta = await fetchMunicipio(UFSelecionada.id);
         setOpcoesMunicipio(resposta);
-        //console.log("Municipio: ",resposta)
+       
       }
     } catch (error) {
-      console.log("Erro get municipio");
+     
     }
   };
 
@@ -101,7 +101,7 @@ export default function Step2({ onClickBack }: Step2Props) {
     try {
       const resposta = await fetchFederativeUnit();
       setOpcoesUf(resposta);
-      //console.log("UF: ",resposta)
+     
     } catch (error) { }
 
   };
@@ -111,7 +111,7 @@ export default function Step2({ onClickBack }: Step2Props) {
 
   const handleOptionClick = (option: any) => {
     setUFSelecionada(option);
-    //console.log("UF Selecionada:",UFSelecionada)
+
   };
 
   const getCEP = async (cep: string) => {
@@ -155,15 +155,18 @@ export default function Step2({ onClickBack }: Step2Props) {
     { value: number; label: string }[]
   >([]);
 
+  const limpaMunicipio = () =>{
+    form.setFieldValue('municipio', undefined)
+  };
+
   const navigate = useNavigate();
   const onFinish = async (values: any) => {
-    console.log("UF Selecionada:", UFSelecionada)
     const uf = await fetchFederativeUnit();
     const ufFiltrada = uf.filter((uf) => uf.sigla === values.uf);
-    console.log(ufFiltrada)
+
     let municipioFiltrado;
     if (ufFiltrada.length>0) {
-      console.log("Entrou no if")
+  
       const municipio = await fetchMunicipio(ufFiltrada[0].id);
       municipioFiltrado = municipio.filter(
         (municipio) => municipio.nome === values.municipio
@@ -250,6 +253,7 @@ export default function Step2({ onClickBack }: Step2Props) {
 
             <Form.Item name="uf" rules={rules} label="UF">
               <Select
+                onChange={limpaMunicipio}
                 disabled={erroCEP}
                 onMouseDown={getUf}
                 notFoundContent={<p>Carregando...</p>}
