@@ -2,7 +2,7 @@ import React from 'react'
 import Header from '../components/Header'
 import '../styles/App.css'
 import Footer from '../components/components-escolasCadastradas/Footer';
-import RegistrarRodovias from '../components/CadastrarRodovias/RegistrarRodovias';
+import RegistrarRodovias from '../components/cadastrarRodovias/RegistrarRodovias';
 
 
 function CadastrarRodovias() {
