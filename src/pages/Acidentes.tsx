@@ -3,6 +3,7 @@ import "../styles/App.css";
 import CadAcidentes from "../components/form/CadAcidentes";
 import { useState } from "react";
 import { AcidentesProvider } from "../context/acidentesCadastrados";
+import Acidentes_erro1 from "../components/form/Steps/AcidentesErro1";
 
 
 function CadastrarAcidentes(){
@@ -25,7 +26,10 @@ function CadastrarAcidentes(){
                 onClickErroJaCadastrada={() => setScreen("sc4")}
                 />)}
                 </AcidentesProvider>
-                </div>
+                {screen === "sc2" && (
+                    <Acidentes_erro1 onClickVoltar={() => setScreen("sc1")} />
+                    )}
+            </div>
             </div>
         </div>
     );
