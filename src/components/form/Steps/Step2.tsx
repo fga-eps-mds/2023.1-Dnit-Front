@@ -20,7 +20,7 @@ export default function Step2({ onClickBack }: Step2Props) {
     UFSelecionada,
     setUFSelecionada,
 
-    carregandoEscolas,
+   
   } = useFiltroTabela();
 
   const [form] = Form.useForm();
