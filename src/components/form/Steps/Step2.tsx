@@ -26,7 +26,6 @@ export default function Step2({ onClickBack }: Step2Props) {
   const [form] = Form.useForm();
   const [api, contextHolder] = notification.useNotification();
   const [erroCEP, setErroCEP] = useState(false);
-  const [setMsgCEP] = useState(false);
   let cepEnviado = "0";
   const rules = [
     {
@@ -90,9 +89,10 @@ export default function Step2({ onClickBack }: Step2Props) {
       if (UFSelecionada) {
         const resposta = await fetchMunicipio(UFSelecionada.id);
         setOpcoesMunicipio(resposta);
+        //console.log("Municipio: ",resposta)
       }
     } catch (error) {
-      console.log("Erro get munincipio");
+      console.log("Erro get municipio");
     }
   };
 
@@ -101,7 +101,9 @@ export default function Step2({ onClickBack }: Step2Props) {
     try {
       const resposta = await fetchFederativeUnit();
       setOpcoesUf(resposta);
-    } catch (error) {}
+      //console.log("UF: ",resposta)
+    } catch (error) { }
+
   };
   useEffect(() => {
     if (opcoesUf.length == 0) getUf();
@@ -109,35 +111,36 @@ export default function Step2({ onClickBack }: Step2Props) {
 
   const handleOptionClick = (option: any) => {
     setUFSelecionada(option);
+    //console.log("UF Selecionada:",UFSelecionada)
   };
 
- const getCEP = async (cep: string) => {
-  try {
-    if (cep.length === 8) {
-      const res = await fetchCEP(cep);
-      if (res.erro) {
-        setErroCEP(false);
-        form.setFields([
-          {
-            name: "cep",
-            errors: ["CEP não encontrado"],
-          },
-        ]);
-        cepEnviado = "0";
+  const getCEP = async (cep: string) => {
+    try {
+      if (cep.length === 8) {
+        const res = await fetchCEP(cep);
+        if (res.erro) {
+          setErroCEP(false);
+          form.setFields([
+            {
+              name: "cep",
+              errors: ["CEP não encontrado"],
+            },
+          ]);
+          cepEnviado = "0";
+        } else {
+          setErroCEP(true);
+          form.setFieldsValue({
+            endereco: res.logradouro,
+            municipio: res.localidade,
+            uf: res.uf,
+          });
+          cepEnviado = cep;
+        }
       } else {
-        setErroCEP(true);
-        form.setFieldsValue({
-          endereco: res.logradouro,
-          municipio: res.localidade,
-          uf: res.uf,
-        });
-        cepEnviado = cep; 
+        setErroCEP(false);
       }
-    } else {
-      setErroCEP(false);
-    }
-  } catch (error) {}
-};
+    } catch (error) { }
+  };
 
 
   const getEtapasDeEnsino = async () => {
@@ -145,7 +148,7 @@ export default function Step2({ onClickBack }: Step2Props) {
       const resposta = await fetchEtapasDeEnsino();
       const etapas = resposta.map((e) => ({ label: e.descricao, value: e.id }));
       setOpcoesEtapasDeEnsino(etapas);
-    } catch (error) {}
+    } catch (error) { }
   };
 
   const [OpcoesEtapasDeEnsino, setOpcoesEtapasDeEnsino] = useState<
@@ -154,32 +157,38 @@ export default function Step2({ onClickBack }: Step2Props) {
 
   const navigate = useNavigate();
   const onFinish = async (values: any) => {
+    console.log("UF Selecionada:", UFSelecionada)
     const uf = await fetchFederativeUnit();
     const ufFiltrada = uf.filter((uf) => uf.sigla === values.uf);
-    const municipio = await fetchMunicipio(ufFiltrada[0].id);
-    const municipioFiltrado = municipio.filter(
-      (municipio) => municipio.nome === values.municipio
-    );
+    console.log(ufFiltrada)
+    let municipioFiltrado;
+    if (ufFiltrada.length>0) {
+      console.log("Entrou no if")
+      const municipio = await fetchMunicipio(ufFiltrada[0].id);
+      municipioFiltrado = municipio.filter(
+        (municipio) => municipio.nome === values.municipio
+      );
+    }
 
-    if(!values.latitude){
+    if (!values.latitude) {
       values.latitude = '0'
     }
 
-    if(!values.longitude){
+    if (!values.longitude) {
       values.longitude = '0'
     }
-   
+
     const registerSchoolData = {
       NomeEscola: values.nome,
       IdRede: values.rede,
       CodigoEscola: values.codigo,
-      IdUf: ufFiltrada[0].id,
+      IdUf: ufFiltrada ? (ufFiltrada[0]?.id || values.uf) : values.uf,
       Cep: cepEnviado,
       Telefone: values.telefone,
       IdEtapasDeEnsino: values.ciclos,
       IdPorte: values.porte,
       Endereco: values.endereco,
-      IdMunicipio: municipioFiltrado[0].id,
+      IdMunicipio: municipioFiltrado ? (municipioFiltrado[0]?.id || values.municipio) : values.municipio,
       IdLocalizacao: values.localizacao,
       Longitude: values.longitude,
       Latitude: values.latitude,
@@ -239,20 +248,20 @@ export default function Step2({ onClickBack }: Step2Props) {
               />
             </Form.Item>
 
-            <Form.Item name="uf" rules={rules} label="UF(sigla)">
-            <Select
+            <Form.Item name="uf" rules={rules} label="UF">
+              <Select
                 disabled={erroCEP}
                 onMouseDown={getUf}
                 notFoundContent={<p>Carregando...</p>}
                 placement="bottomRight"
                 optionLabelProp="label"
                 className="uf"
-                
+
               >
                 {opcoesUf?.map((u) => (
                   <Option key={u.id} value={u.id} label={<>{u.nome}</>}>
                     <button
-                    
+
                       onClick={() => handleOptionClick(u)}
                       className="option-municipio"
                     >
@@ -310,14 +319,14 @@ export default function Step2({ onClickBack }: Step2Props) {
             </Form.Item>
 
             <Form.Item name="municipio" label="Município" rules={rules}>
-            <Select
+              <Select
                 disabled={erroCEP}
                 notFoundContent={<p>Carregando...</p>}
                 placement="bottomRight"
                 optionLabelProp="label"
                 className="uf"
                 onMouseDown={getMunicipio}
-                >
+              >
                 {opcoesMunicipio?.map((u) => (
                   <Option key={u.id} value={u.id} label={<>{u.nome}</>}>
                     {u.nome}
