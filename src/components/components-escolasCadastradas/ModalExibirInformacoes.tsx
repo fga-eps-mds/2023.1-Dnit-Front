@@ -7,7 +7,7 @@ import ModalExcluirEscolas from "../components-escolasCadastradas/ModalExcluirEs
 import "../components-escolasCadastradas/style/ModalExibirInformacoes.css";
 import ModalBody from "./ModalBody";
 import fetchSituacao from "../../service/Situacao";
-import { EscolaData } from "../../models/service";
+import { AlterarDadosEscolaData, EscolaData } from "../../models/service";
 import fetchAlterarDadosEscola from "../../service/alterarDadosEscola";
 
 
@@ -130,17 +130,19 @@ useEffect(() => {
       {
       const alterarDadosEscolaData = {
         idEscola: escola.idEscola,
-        idSituacao: escola.idSituacao,
-        observacao: observacao,
+        idSituacao: idSituacao,
+        observacao: observacao || '',
         telefone: telefone,
         longitude: longitude,
         latitude: latitude,
         numeroTotalDeAlunos: numAlunos,
-        numeroTotalDeDocentes: numDocentes
+        numeroTotalDeDocentes: numDocentes,
     };
 
       try {
-        await fetchAlterarDadosEscola(alterarDadosEscolaData);
+      console.log(alterarDadosEscolaData)
+       const alterarDados = await fetchAlterarDadosEscola(alterarDadosEscolaData  as AlterarDadosEscolaData);
+       console.log(alterarDados);
         notification.success({ message: `Dados alterados com sucesso!` });
       fetchEscolasFiltradas();
       } catch (error) {

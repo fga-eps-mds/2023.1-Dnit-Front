@@ -114,6 +114,7 @@ export interface AlterarDadosEscolaData {
   numeroTotalDeAlunos: number;
   numeroTotalDeDocentes: number;
   observacao: string;
+  ultimaAtualizacao: string;
 }
 
 export interface ExcluirSituacaoData {

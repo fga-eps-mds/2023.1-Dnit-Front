@@ -9,6 +9,8 @@ const ModalBody = (props: any) => {
   const { setSelectedValue, selectedValue } = useSelectedValue();
   const[situacoes, setSituacoes]= useState <Situacao[]>();
 
+  const ultimaAtualizacao = new Date()
+
   const chamarSituacao = async() =>{
     const situacoes = await fetchSituacao()
     setSituacoes(situacoes);
@@ -146,7 +148,6 @@ const ModalBody = (props: any) => {
             id="input-default"
             type="text"
             placeholder={''}
-            disabled
           />
         </div>
         </div>
@@ -264,7 +265,7 @@ const ModalBody = (props: any) => {
           <input
             id="input-default"
             type="text"
-            placeholder={''}
+            placeholder={ultimaAtualizacao.toLocaleDateString()}
             disabled
           />
         </div>
