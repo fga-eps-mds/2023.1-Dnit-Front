@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import '../../styles/form.css';
 import { Form } from 'antd';
-import Step1_Rodovias from '../form/Steps/Step1_Rodovias';
-import Step2_Rodovias_Aceito from '../form/Steps/Step2_Rodovias_Aceito';
-import Step3_Rodovias_erro from '../form/Steps/Step3_Rodovias_erro1';
+import Step1_Rodovias from './Steps_Rodovias/Step1_Rodovias';
+import Step2_Rodovias_Aceito from './Steps_Rodovias/Step2_Rodovias_Aceito';
+import Step3_Rodovias_erro from './Steps_Rodovias/Step3_Rodovias_erro1';
 import { Link, useNavigate } from 'react-router-dom';
 
 
