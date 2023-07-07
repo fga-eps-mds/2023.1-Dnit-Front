@@ -21,7 +21,7 @@
     width: 50%;
     z-index: var(--z-index-layer-4);
     position: fixed !important;
-    height: 85vh;
+    height: 93vh;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -76,7 +76,9 @@
   }
 
   .br-modal-body .br-input {
+    display: inline;
     flex-basis: 50%;
+    margin-top: 5px;
     margin-bottom: 5px;
     padding: 10px;
   }

@@ -52,6 +52,7 @@ const ModalBody = (props: any) => {
   return (
     <div className="br-modal-body">
       <div className="br-input">
+        
         <label htmlFor="input-default">Código</label>
         <div className="input-group">
           <div className="input-icon">
@@ -133,6 +134,18 @@ const ModalBody = (props: any) => {
             id="input-default"
             type="text"
             placeholder={props.data.cep}
+            disabled
+          />
+        </div>
+        <label htmlFor="input-default">Etapa de Ensino</label>
+        <div className="input-group">
+          <div className="input-icon">
+            <i className="fas fa-user-graduate" aria-hidden="true"></i>
+          </div>
+          <input
+            id="input-default"
+            type="text"
+            placeholder={''}
             disabled
           />
         </div>
@@ -242,6 +255,18 @@ const ModalBody = (props: any) => {
           type="text" 
           onChange={handleObservacaoChange}
           placeholder={props.data.observacao} />
+        </div>
+        <label htmlFor="input-default">Ultima Atualização</label>
+        <div className="input-group">
+          <div className="input-icon">
+            <i className="fas fa-sync" aria-hidden="true"></i>
+          </div>
+          <input
+            id="input-default"
+            type="text"
+            placeholder={''}
+            disabled
+          />
         </div>
       </div>
       </div>
