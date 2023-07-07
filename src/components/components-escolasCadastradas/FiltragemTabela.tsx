@@ -162,7 +162,7 @@ export default function TabelaEscolas() {
           <input
             id="select-multtiple"
             type="text"
-            placeholder={UFSelecionada ? UFSelecionada.descricao : "Todas"}
+            placeholder={UFSelecionada ? UFSelecionada.nome : "Todas"}
             disabled
           />
           <button
@@ -190,7 +190,7 @@ export default function TabelaEscolas() {
                       className="options"
                       onClick={() => handleOptionClick(options, 1)}
                     >
-                      {options.descricao}
+                      {options.nome}
                     </div>
                   );
                 })}
@@ -208,7 +208,7 @@ export default function TabelaEscolas() {
               value={UfPesquisada}
               onChange={mudarUf}
               onFocus={() => handleButtonClick(1)}
-              placeholder={UFSelecionada ? UFSelecionada.descricao : "Todas"}
+              placeholder={UFSelecionada ? UFSelecionada.nome : "Todas"}
             />
             <button
               className="br-button"
@@ -232,7 +232,7 @@ export default function TabelaEscolas() {
                   </div>
                   {opcoesUf
                     .filter((uf) =>
-                      uf.descricao.toLowerCase().includes(UfPesquisada.toLowerCase())
+                      uf.nome.toLowerCase().includes(UfPesquisada.toLowerCase())
                     )
                     .map((options, index) => {
                       return (
@@ -241,7 +241,7 @@ export default function TabelaEscolas() {
                           className="options"
                           onClick={() => handleOptionClick(options, 1)}
                         >
-                          {options.descricao}
+                          {options.nome}
                         </div>
                       );
                     })}

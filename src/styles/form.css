@@ -1,7 +1,10 @@
+
+
 .logoDnit {
   width: 300px;
   height: 66px;
 }
+
 .form {
   padding: 3.5%;
   margin-top: 0;
@@ -46,7 +49,7 @@
   display: flex;
 }
 
-.ant-input-affix-wrapper > input.ant-input {
+.ant-input-affix-wrapper>input.ant-input {
   background-color: var(--gray1);
 }
 
@@ -87,9 +90,11 @@
   align-items: center;
   justify-content: center;
 }
+
 .loginButton p {
   margin: 0;
 }
+
 .recuperarsenha {
   display: flex;
   justify-content: end;
@@ -155,6 +160,7 @@
 
   color: var(--gray3);
 }
+
 .fas.fa-envelope {
   margin-right: 4%;
   color: var(--blue);
@@ -187,7 +193,7 @@
   padding: 0 0 5px;
 }
 
-.ant-form-vertical .ant-form-item-label > label {
+.ant-form-vertical .ant-form-item-label>label {
   font-size: 1em;
   font-weight: 350;
   font-family: Rawline, sans-serif;
@@ -241,6 +247,7 @@
 .ext2 {
   margin-bottom: 10%;
 }
+
 .radio1 {
   font-family: Rawline, sans-serif;
   font-weight: 500;
@@ -294,6 +301,7 @@
 .proximo {
   float: right;
 }
+
 .voltar {
   float: left;
 }
@@ -303,15 +311,17 @@
   margin-right: 2rem;
   margin-left: 1rem;
 }
+
 .bloco2 {
   width: 18rem;
   margin-left: 2rem;
   margin-right: 2rem;
 }
+
 .bloco3 {
   width: 18rem;
   margin-left: 2rem;
-  margin-right:1rem;
+  margin-right: 1rem;
 }
 
 .inputForm2 {
@@ -332,6 +342,7 @@
   .form {
     padding: 5%;
   }
+
   .formc {
     padding: 5%;
   }
@@ -339,6 +350,7 @@
   .formrs {
     padding: 5%;
   }
+
   .logoDnit {
     width: 180px;
     height: 56px;

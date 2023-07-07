@@ -1,6 +1,6 @@
 export interface FederativeUnit {
   id: number;
-  descricao: string;
+  nome: string;
   sigla: string;
 }
 

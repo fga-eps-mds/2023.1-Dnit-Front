@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from "react";
-import useApi from "../../hooks/useApi";
-import { Button, Form, Input, Space, notification, Select } from "antd";
-import { Link } from "react-router-dom";
+import { Form, Input, Space, notification, Select } from "antd";
 import ButtonComponent from "../Button";
-import "../../styles/form.css";
-// import { inepSchoolsUrl } from "../../consts/service";
 import { fetchEscolasInep } from "../../service/inepAPI";
 import fetchMunicipio from "../../service/municipio";
 import fetchFederativeUnit from "../../service/federativeUnit";
 import fetchEtapasDeEnsino from "../../service/etapasDeEnsino";
 import fetchSolicitaAcao from "../../service/solicitaAcao";
-
 import { EtapasDeEnsino, FederativeUnit, Municipio, SolicitacaoDeAcao } from "../../models/service";
+import "../../styles/form.css";
+
 
 const { Option } = Select;
 
@@ -69,7 +66,7 @@ const SolicitacaoAcaoForm: React.FC = () => {
   const getEscolasInep = async () => {
     if (UFAtual && municipioAtual)
       try {
-        const result = await fetchEscolasInep(UFAtual.sigla, municipioAtual.id)
+        const result = await fetchEscolasInep(municipioAtual.id)
         setEscolasInep(result);
       } catch (error) {
         console.log({ error })
@@ -118,8 +115,29 @@ const SolicitacaoAcaoForm: React.FC = () => {
     {
       required: true,
       message: "Por favor, preencha o campo ${name}!",
+
     },
   ];
+
+  const emailRule = {
+
+    required: true,
+    type: "email",
+    message: "Digite um email valido!",
+  };
+
+
+  const [quantiaDeAlunos, setQuantiaDeAlunos] = useState("")
+  const handleNumeroDeAlunos = (event: React.ChangeEvent<HTMLInputElement>) => {
+    // const regex=^[1-9][0-9]*$
+    const result = event.target.value.replace(/[^1-9][^0-9]*$/gi, '');
+    setQuantiaDeAlunos(result);
+    // console.log(result)
+
+
+
+  }
+
 
   const onFinish = async (values: any) => {
 
@@ -151,6 +169,7 @@ const SolicitacaoAcaoForm: React.FC = () => {
   };
 
 
+
   return (
     <div className="formc">
       <div>
@@ -164,53 +183,60 @@ const SolicitacaoAcaoForm: React.FC = () => {
           requiredMark="optional"
           className="form-email"
         >
-          <div>
-            <Form.Item name="UF" label="UF" rules={rules}>
+          <Form.Item name="UF" label="UF" rules={rules}>
 
-              <Select
-                placeholder="Selecione uma UF"
-                className="inputForm form-item-select"
-                onChange={(value) => {
-                  form.resetFields(["Municipios", "escola"])
-                  setUFATual(JSON.parse(value));
-                }}
-                showSearch
-              >
-                {UFs && UFs.map((UF) => {
-                  return (
-                    <Option key={UF.sigla} value={JSON.stringify(UF)}>{UF.sigla}</Option>
-                  )
-                })}
+            <Select
+              placeholder="Selecione uma UF"
+              className="inputForm form-item-select"
+              onChange={(value) => {
+                form.resetFields(["Municipios", "escola"])
+                setUFATual(JSON.parse(value));
+              }}
+              showSearch
+            >
+              {UFs && UFs.map((UF) => {
+                return (
+                  <Option key={UF.sigla} value={JSON.stringify(UF)}>{UF.nome}</Option>
+                )
+              })}
 
-              </Select>
-            </Form.Item>
+            </Select>
+          </Form.Item>
 
-            <Form.Item name="Municipios" label="Municipios" rules={rules}>
-              <Select
-                placeholder="Selecione um municipio"
-                className="inputForm form-item-select"
-                disabled={!UFAtual}
-                showSearch
-                onChange={(value) => {
-                  form.resetFields(["escola"])
-                  setMunicipioAtual(JSON.parse(value))
-                }}
-              >
-                {municipios && municipios.map((municipio) => {
-                  return (
-                    <Option key={JSON.stringify(municipio)} value={JSON.stringify(municipio)}>{municipio.nome}</Option>
-                  )
-                })}
-              </Select>
-            </Form.Item>
-          </div>
+          <Form.Item name="Municipios" label="Municipios" rules={rules}>
+            <Select
+              placeholder={
+                !UFAtual ?
+                  "Nenhuma UF selecionada" :
+                  !municipios ?
+                    "Carregando municipios..." : "Selecione um municipio"}
+              className="inputForm form-item-select"
+              disabled={!UFAtual}
+              showSearch
+              onChange={(value) => {
+                form.resetFields(["escola"])
+                setMunicipioAtual(JSON.parse(value))
+              }}
+            >
+              {municipios && municipios.map((municipio) => {
+                return (
+                  <Option key={JSON.stringify(municipio)} value={JSON.stringify(municipio)}>{municipio.nome}</Option>
+                )
+              })}
+            </Select>
+          </Form.Item>
 
           <Form.Item name="escola" label="Escola" rules={rules}>
 
             <Select
-              placeholder="Selecione uma escola"
+              placeholder={
+                !municipioAtual ?
+                  "Nenhum municipio selecionado" :
+                  !escolasInep ?
+                    "Carregando escolas..." :
+                    "Selecione uma escola"}
               className="inputForm form-item-select"
-              // disabled={!municipioAtual || !escolasInep}
+              disabled={!municipioAtual || !escolasInep}
               loading={!escolasInep && municipioAtual !== false}
 
 
@@ -240,14 +266,36 @@ const SolicitacaoAcaoForm: React.FC = () => {
             </Select>
           </Form.Item>
 
-          <Form.Item name="email" label="E-mail" rules={rules}>
+          <Form.Item name="email" label="E-mail"
+            rules={
+              [
+                { required: true, message: "Por favor, preencha o campo email!" },
+                {
+                  pattern: new RegExp("^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)*$"),
+                  message: "Escreva um email valido.",
+                },
+              ]}>
             <Input
               className="inputForm"
             />
           </Form.Item>
 
-          <Form.Item name="telefone" label="Telefone" rules={rules}>
-            <Input className="inputForm" />
+          <Form.Item name="telefone" label="Telefone" rules={
+            [
+              { required: true, message: "Por favor, preencha seu telefone!" },
+              {
+                pattern: new RegExp("^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)*$"),
+                message: "Escreva numero de telefone valido.",
+              },
+            ]
+          }>
+            <Input className="inputForm"
+              // type="tel"
+              // min="0"
+              type="text"
+            // min="0"
+            // pattern="^[0-9+]"
+            />
           </Form.Item>
 
           <Form.Item name="ciclos" label="Ciclos de Ensino" rules={rules}>
@@ -262,8 +310,16 @@ const SolicitacaoAcaoForm: React.FC = () => {
             </Select>
           </Form.Item>
 
-          <Form.Item name="quantidade" label="Quantidade de Alunos" rules={rules}>
-            <Input className="inputForm" />
+          <Form.Item
+            name="quantidade"
+            label="Quantidade de Alunos"
+            rules={rules}>
+            <Input
+              className="inputForm"
+              type="number"
+              min="0"
+              pattern="^[1-9][0-9]*"
+            />
           </Form.Item>
 
           <Form.Item name="observacoes" label="Observações">

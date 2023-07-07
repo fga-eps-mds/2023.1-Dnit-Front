@@ -7,6 +7,7 @@ async function fetchFederativeUnit(): Promise<FederativeUnit[]> {
     const response: AxiosResponse<FederativeUnit[]> = await axios.get(
       federativeUnitURL
     );
+    console.log(response.data)
     return response.data;
   } catch (error) {
     throw error;

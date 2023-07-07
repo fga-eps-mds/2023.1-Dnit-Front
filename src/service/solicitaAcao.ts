@@ -8,6 +8,8 @@ interface Response {
 
 async function fetchSolicitaAcao(formData: SolicitacaoDeAcao): Promise<Response> {
     try {
+        if(formData.Observacoes===undefined)
+            formData.Observacoes="*Nenhuma observação foi informada.*"
         console.log(formData)
         const response: AxiosResponse<Response> = await axios.post(
             SolicitacaoDeAcaoURL,

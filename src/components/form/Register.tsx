@@ -53,7 +53,7 @@ const RegisterForm: React.FC = () => {
 
   async function fetchUf(): Promise<void> {
     const uf = await fetchUnidadeFederativa();
-    const newuf = uf.map((u) => ({ value: u.id, label: u.descricao }));
+    const newuf = uf.map((u) => ({ value: u.id, label: u.nome }));
     setUf(newuf);
   }
   // async function fetchUf() {

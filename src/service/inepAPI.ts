@@ -3,11 +3,11 @@ import { EscolasInepURL } from "../consts/service";
 import { InepSchoolData } from "../models/service";
 
 
-async function fetchEscolasInep(estado: string, municipio: number): Promise<InepSchoolData[]> {
+async function fetchEscolasInep( municipio: number): Promise<InepSchoolData[]> {
 
     try {
         const response: AxiosResponse<InepSchoolData[]> = await axios.get(
-            `${EscolasInepURL}?estado=${estado}&municipio=${municipio}`
+            `${EscolasInepURL}?municipio=${municipio}`
         );
         return response.data;
     } catch (error) {

@@ -263,13 +263,13 @@ export default function Step2({ onClickBack }: Step2Props) {
 
               >
                 {opcoesUf?.map((u) => (
-                  <Option key={u.id} value={u.id} label={<>{u.descricao}</>}>
+                  <Option key={u.id} value={u.id} label={<>{u.nome}</>}>
                     <button
 
                       onClick={() => handleOptionClick(u)}
                       className="option-municipio"
                     >
-                      {u.descricao}
+                      {u.nome}
                     </button>
                   </Option>
                 ))}
