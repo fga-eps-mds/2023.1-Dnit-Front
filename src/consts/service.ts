@@ -17,7 +17,7 @@ const EtapasDeEnsinoURL = `${urlAPIEscolas}/dominio/etapasDeEnsino`;
 const MunicipioURL = `${urlAPIEscolas}/dominio/municipio`;
 const EscolasFiltradasURL = `${urlAPIEscolas}/escolas/obter`;
 const insertFileURL = `${urlAPIEscolas}/escolas/cadastrarEscolaPlanilha`;
-const insertFileRodoviasURL = `${urlAPIEscolas}/rodovias/cadastrarPlanilha`;
+const insertFileRodoviasURL = `${urlAPIEscolas}/cadastrarRodoviasPlanilha`;
 
 export {
   EscolasFiltradasURL,

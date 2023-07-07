@@ -24,7 +24,7 @@ const props: UploadProps = {
         const { status, name } = info.file;
 
         if (status === "error") {
-            message.error("${name} falha ao receber arquivo.");
+            message.error(`${name} falha ao receber arquivo.`);
         }
     },
 };
@@ -62,7 +62,7 @@ const App: React.FC<DragDropProps> = ({
                 error.response && error.response.status == 406 && onClickErrorTamanho();
 
                 const mensagem = error.response?.data;
-                message.error("${mensagem}");
+                message.error(`${mensagem}`);
             }
         } else {
             message.warning("Nenhum arquivo carregado.");
