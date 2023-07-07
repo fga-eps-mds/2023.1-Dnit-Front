@@ -415,6 +415,12 @@ const server = setupServer(
     (req, res, ctx) => {
       return res(ctx.json([2, 3]));
     }
+  ),
+  rest.post(
+    "https://api.dnit-eps-mds.com/api/ups/cadastrarRodoviasPlanilha",
+    (req, res, ctx) => {
+      return res(ctx.json([2, 3]));
+    }
   )
 );
 
