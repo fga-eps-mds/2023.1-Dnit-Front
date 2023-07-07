@@ -87,13 +87,13 @@ const FiltroProvider = ({ children }: any) => {
           params: {
             Pagina: paginaAtual,
             TamanhoPagina: escolasPorPagina,
-            Nome: nomeEscola ? nomeEscola : "",
-            IdSituacao: situacaoSelecionada ? situacaoSelecionada.id : "",
+            Nome: nomeEscola ? nomeEscola : undefined,
+            IdSituacao: situacaoSelecionada ? situacaoSelecionada.id : undefined,
             IdEtapaEnsino: etapaDeEnsinoSelecionada
               ? etapaDeEnsinoSelecionada.id
-              : "",
-            IdMunicipio: municipioSelecionado ? municipioSelecionado.id : "",
-            IdUf: UFSelecionada ? UFSelecionada.id : "",
+              : undefined,
+            IdMunicipio: municipioSelecionado ? municipioSelecionado.id : undefined,
+            IdUf: UFSelecionada ? UFSelecionada.id : undefined,
           },
         }
       );
@@ -125,7 +125,7 @@ const FiltroProvider = ({ children }: any) => {
   };
 
   useEffect(() => {
-    if (paginaAtual != 1) setpaginaAtual(1);
+    if (paginaAtual !== 1) setpaginaAtual(1);
     else ativarGatilho();
   }, [
     escolasPorPagina,
