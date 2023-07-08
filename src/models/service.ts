@@ -129,6 +129,7 @@ export interface AlterarDadosEscolaData {
   numeroTotalDeAlunos: number;
   numeroTotalDeDocentes: number;
   observacao: string;
+  idEtapasDeEnsino: [];
   ultimaAtualizacao: string;
 }
 

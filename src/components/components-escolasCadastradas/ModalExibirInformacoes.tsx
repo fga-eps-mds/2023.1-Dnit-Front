@@ -9,6 +9,7 @@ import ModalBody from "./ModalBody";
 import fetchSituacao from "../../service/Situacao";
 import { AlterarDadosEscolaData, EscolaData } from "../../models/service";
 import fetchAlterarDadosEscola from "../../service/alterarDadosEscola";
+import etapasDeEnsino from "../../service/etapasDeEnsino";
 
 
 interface ModalProps {
@@ -28,6 +29,7 @@ const ModalExibirInformacoes = ({ escola, open, close }: ModalProps) => {
   const [longitude, setLongitude] = useState(escola?.longitude);
   const [numAlunos, setNumAlunos] = useState(escola?.numeroTotalDeAlunos);
   const [numDocentes, setNumDocentes] = useState(escola?.numeroTotalDeDocentes);
+  const [etapasEnsino, setEtapasEnsino] = useState(escola?.etapaEnsino);
   
   useEffect(() => {
   if (escola?.observacao)
@@ -59,6 +61,11 @@ useEffect(() => {
     setNumDocentes(escola.numeroTotalDeDocentes);
 }, [escola?.numeroTotalDeDocentes])
 
+useEffect(() => {
+  if (escola?.etapaEnsino)
+    setEtapasEnsino(escola.etapaEnsino);
+}, [escola?.etapaEnsino])
+
   const atualizarObservacao = (novaObservacao: any) => {
     setObservacao(novaObservacao);
   };
@@ -81,6 +88,10 @@ useEffect(() => {
 
   const atualizarNumDocentes = (novoNumDocentes: any) => {
     setNumDocentes(novoNumDocentes);
+  };
+
+  const atualizarEtapaEnsino = (novoEtapaEnsino: any) => {
+    setEtapasEnsino(novoEtapaEnsino);
   };
 
   const openModal = async () => {
@@ -110,6 +121,11 @@ useEffect(() => {
   }
 
   const onFinish = async (values: any) => {
+    console.log(etapasEnsino)
+    let IdEtapas = []
+    if(Array.isArray(etapasEnsino)) IdEtapas = etapasEnsino
+    else  IdEtapas = Object.keys(etapasEnsino).map(Number);
+    console.log(IdEtapas)
     const idSituacao = await chamarSituacao();
 
     if (idSituacao === -1) {
@@ -124,9 +140,10 @@ useEffect(() => {
     } catch (error) {
       notification.error({ message: `Erro ao excluir situação! ` });
     }
+
  }
     if (selectedValue !== escola.descricaoSituacao || observacao !== escola.observacao || telefone !== escola.telefone ||
-      longitude !== escola.longitude || latitude !== escola.latitude || numAlunos !== escola.numeroTotalDeAlunos || numDocentes !== escola.numeroTotalDeDocentes)
+      longitude !== escola.longitude || latitude !== escola.latitude || numAlunos !== escola.numeroTotalDeAlunos || numDocentes !== escola.numeroTotalDeDocentes || etapasEnsino !== escola.etapaEnsino || etapasEnsino)
       {
       const alterarDadosEscolaData = {
         idEscola: escola.idEscola,
@@ -137,6 +154,7 @@ useEffect(() => {
         latitude: latitude,
         numeroTotalDeAlunos: numAlunos,
         numeroTotalDeDocentes: numDocentes,
+        idEtapasDeEnsino: IdEtapas || [] ,
     };
 
       try {
@@ -168,6 +186,7 @@ useEffect(() => {
               onUpdateLongitude={atualizarLongitude}
               onUpdateNumAlunos={atualizarNumAlunos}
               onUpdateNumDocentes={atualizarNumDocentes}
+              onUpdateEtapasEnsino={atualizarEtapaEnsino}
             />
             <ModalExcluirEscolas
               open={isModalExcluirEscolasOpen}

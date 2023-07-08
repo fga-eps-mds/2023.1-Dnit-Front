@@ -3,24 +3,32 @@ import Dropdown from "./Dropdown";
 import fetchSituacao from "../../service/Situacao";
 import { useSelectedValue } from "../../context/Situation";
 import { EscolaData, Situacao } from "../../models/service";
+import fetchEtapasDeEnsino from "../../service/etapasDeEnsino";
+import { Form, Select } from "antd";
 
 interface ModalBodyProps {
   data: EscolaData
   onUpdateObservacao: (novaObservacao: any) => void
-  onUpdateTelefone: (novaObservacao: any) => void
-  onUpdateLatitude: (novaObservacao: any) => void
-  onUpdateLongitude: (novaObservacao: any) => void
-  onUpdateNumAlunos: (novaObservacao: any) => void
-  onUpdateNumDocentes: (novaObservacao: any) => void
+  onUpdateTelefone: (novaTelefone: any) => void
+  onUpdateLatitude: (novaLatitude: any) => void
+  onUpdateLongitude: (novaLongitude: any) => void
+  onUpdateNumAlunos: (novaNumAlunos: any) => void
+  onUpdateNumDocentes: (novaNumDocentes: any) => void
+  onUpdateEtapasEnsino:(novaEtapasEnsino: any) =>void
 }
 
 const ModalBody = ({data, onUpdateObservacao, onUpdateTelefone, onUpdateLatitude, onUpdateLongitude,
-                  onUpdateNumAlunos, onUpdateNumDocentes}: ModalBodyProps) => {
+                  onUpdateNumAlunos, onUpdateNumDocentes, onUpdateEtapasEnsino}: ModalBodyProps) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { setSelectedValue, selectedValue } = useSelectedValue();
   const[situacoes, setSituacoes]= useState <Situacao[]>();
 
   const ultimaAtualizacao = new Date()
+
+  const { Option } = Select;
+  interface Step2Props {
+  onClickBack: () => void;
+}
 
   const chamarSituacao = async() =>{
     const situacoes = await fetchSituacao()
@@ -31,6 +39,12 @@ const ModalBody = ({data, onUpdateObservacao, onUpdateTelefone, onUpdateLatitude
     setIsDropdownOpen(!isDropdownOpen);
     await chamarSituacao();
   };
+  const rules = [
+    {
+      required: false,
+      message: "Preencha o campo ${label}!",
+    },
+  ];
 
   const handleSituacaoChange = (event:ChangeEvent <HTMLInputElement>) => {
     setSelectedValue(event.currentTarget.value)
@@ -60,10 +74,48 @@ const ModalBody = ({data, onUpdateObservacao, onUpdateTelefone, onUpdateLatitude
     onUpdateNumDocentes(Number(event.target.value));
   };
 
+  const handleEtapasDeEnsinoChange = (event:ChangeEvent <HTMLInputElement>) => {
+    console.log(event)
+    onUpdateEtapasEnsino(event);
+  };
+
+  const getEtapasDeEnsino = async () => {
+    try {
+      const resposta = await fetchEtapasDeEnsino();
+      const etapas = resposta.map((e) => ({ label: e.descricao, value: e.id }));
+      setOpcoesEtapasDeEnsino(etapas);
+    } catch (error) { }
+  };
+
+  const [OpcoesEtapasDeEnsino, setOpcoesEtapasDeEnsino] = useState<
+    { value: number; label: string }[]
+  >([]);
+
+
   return (
     <div className="br-modal-body">
       <div className="br-input">
-        
+      <Form.Item name="ciclos" label="Etapas de Ensino" rules={rules}>
+              <Select
+                mode="multiple"
+                onClick={getEtapasDeEnsino}
+                options={OpcoesEtapasDeEnsino}
+                placeholder={Object.values(data.etapaEnsino)}
+                onChange={handleEtapasDeEnsinoChange}
+                onMouseDown={getEtapasDeEnsino}
+                notFoundContent={<p>Carregando...</p>}
+                placement="bottomRight"
+                optionLabelProp="label"
+                className="select-etapas-cadastro"
+                showSearch={false}
+                >
+                {OpcoesEtapasDeEnsino?.map((u) => (
+                  <Option key={u.label} value={u.value} label={<>{u.value}</>}>
+                    {u.value}
+                  </Option>
+                ))}
+              </Select>
+            </Form.Item>
         <label htmlFor="input-default">Código</label>
         <div className="input-group">
           <div className="input-icon">
@@ -148,17 +200,7 @@ const ModalBody = ({data, onUpdateObservacao, onUpdateTelefone, onUpdateLatitude
             disabled
           />
         </div>
-        <label htmlFor="input-default">Etapa de Ensino</label>
-        <div className="input-group">
-          <div className="input-icon">
-            <i className="fas fa-user-graduate" aria-hidden="true"></i>
-          </div>
-          <input
-            id="input-default"
-            type="text"
-            placeholder={''}
-          />
-        </div>
+       
         </div>
           <div className="br-input">
         <div className="input-default">
