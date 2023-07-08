@@ -554,6 +554,12 @@ const server = setupServer(
       ])
     );
   }),
+  rest.post(
+    "https://localhost:7083/api/solicitacaoAcao",
+    (req, res, ctx) => {
+      return res(ctx.json([2, 3]));
+    }
+  ),
 );
 
 export default server;

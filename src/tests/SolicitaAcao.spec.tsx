@@ -27,10 +27,105 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
 });
 
 
+test("Abre duas vezes", async () => {
+
+
+    act(() => {
+
+
+        const screen = render(
+            <MemoryRouter initialEntries={["/solicitacaoAcao"]}>
+                <App />
+            </MemoryRouter>
+        );
+    });
+
+    const ufSelect = screen.getByLabelText("UF");
+    fireEvent.mouseDown(ufSelect);
+    await waitFor(() =>
+        expect(screen.queryByText("Carregando...")).not.toBeInTheDocument()
+    );
+    const UFSelecionada = screen.getByText("Acre");
+    fireEvent.click(UFSelecionada);
+
+    const municipioSelect = screen.getByLabelText("Municipios");
+    fireEvent.mouseDown(municipioSelect);
+    await waitFor(() =>
+        expect(screen.queryByText("Carregando...")).not.toBeInTheDocument()
+    );
+    const municipioSelecionado = screen.getByText("Acrelândia");
+    fireEvent.click(municipioSelecionado);
+
+    const escolaioSelect = screen.getByLabelText("Escola");
+    fireEvent.mouseDown(escolaioSelect);
+    await waitFor(() =>
+        expect(screen.queryByText("Carregando...")).not.toBeInTheDocument()
+    );
+    const escolaSelecionada = screen.getByText("ESC ALTINA MAGALHAES DA SILVA");
+    fireEvent.click(escolaSelecionada);
+
+    fireEvent.mouseDown(ufSelect);
+    await waitFor(() =>
+        expect(screen.queryByText("Carregando...")).not.toBeInTheDocument()
+    );
+    fireEvent.mouseDown(municipioSelect);
+    await waitFor(() =>
+        expect(screen.queryByText("Carregando...")).not.toBeInTheDocument()
+    );
+
+
+});
+
+test("Sem selecionar UF", async () => {
+
+
+    act(() => {
+
+
+        const screen = render(
+            <MemoryRouter initialEntries={["/solicitacaoAcao"]}>
+                <App />
+            </MemoryRouter>
+        );
+    });
+
+    // const ufSelect = screen.getByLabelText("UF");
+    // fireEvent.mouseDown(ufSelect);
+    // await waitFor(() =>
+    //     expect(screen.queryByText("Carregando...")).not.toBeInTheDocument()
+    // );
+    // const UFSelecionada = screen.getByText("Acre");
+    // fireEvent.click(UFSelecionada);
+
+    const municipioSelect = screen.getByLabelText("Municipios");
+    fireEvent.mouseDown(municipioSelect);
+    // await waitFor(() =>
+    //     expect(screen.queryByText("Carregando...")).not.toBeInTheDocument()
+    // );
+    
+    const escolaioSelect = screen.getByLabelText("Escola");
+    fireEvent.mouseDown(escolaioSelect);
+    // await waitFor(() =>
+    //     expect(screen.queryByText("Carregando...")).not.toBeInTheDocument()
+    // );
+
+
+    // fireEvent.mouseDown(ufSelect);
+    // await waitFor(() =>
+    //     expect(screen.queryByText("Carregando...")).not.toBeInTheDocument()
+    // );
+    // fireEvent.mouseDown(municipioSelect);
+    // await waitFor(() =>
+    //     expect(screen.queryByText("Carregando...")).not.toBeInTheDocument()
+    // );
+
+
+});
+
+
 test("Selecionar escola", async () => {
 
 
-    screen.debug(undefined, 100000)
     act(() => {
 
 
@@ -76,7 +171,6 @@ test("Selecionar escola", async () => {
 test("Etapas de ensino", async () => {
 
 
-    screen.debug(undefined, 100000)
     act(() => {
 
 
