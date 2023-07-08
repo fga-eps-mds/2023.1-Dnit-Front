@@ -6,6 +6,7 @@ import RecoverPassword from "./pages/RecoverPassword";
 import Register from "./pages/Register";
 import RegisterSchool from "./pages/RegisterSchool";
 import ResetPassword from "./pages/ResetPassword";
+import TelaUPS from "./pages/TelaUPS";
 import { AuthContext } from "./provider/Authentication";
 import "./styles/App.css";
 
@@ -31,6 +32,7 @@ function App() {
       <Route path="/redefinirSenha" element={<ResetPassword />} />
       <Route path="/cadastro" element={<Register />} />
       <Route path="/esqueciSenha" element={<RecoverPassword />} />
+      <Route path="/telaUPS" element={<TelaUPS />} />
     </Routes>
   );
 }
