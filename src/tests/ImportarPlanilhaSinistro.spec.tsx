@@ -23,6 +23,14 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
 
 
 test("Cadastro CSV", async () => {
+  server.use(
+    rest.post(
+      "https://api.dnit-eps-mds.com.br/api/sinistro/cadastrarSinistroPlanilha",
+      (req, res, ctx) => {
+        return res(ctx.status(200));
+      }
+    )
+  );
     render(
       <MemoryRouter initialEntries={["/cadastrarsinistros"]}>
         <App />
@@ -48,7 +56,7 @@ test("Cadastro CSV", async () => {
   test("Cadastro CSV erro", async () => {
     server.use(
       rest.post(
-        "https://localhost:7083/api/sinistro/cadastrarSinistroPlanilha",
+        "https://api.dnit-eps-mds.com.br/api/sinistro/cadastrarSinistroPlanilha",
         (req, res, ctx) => {
           return res(ctx.status(406));
         }
@@ -79,7 +87,7 @@ test("Cadastro CSV", async () => {
   test("Cadastro CSV vazio", async () => {
     server.use(
       rest.post(
-        "https://localhost:7083/api/sinistro/cadastrarSinistroPlanilha",
+        "https://api.dnit-eps-mds.com.br/api/sinistro/cadastrarSinistroPlanilha",
         (req, res, ctx) => {
           return res(ctx.status(400),ctx.json('Nenhum arquivo enviado.'));
         }
@@ -107,7 +115,7 @@ test("Cadastro CSV", async () => {
   test("Cadastro sem enviar CSV", async () => {
     server.use(
       rest.post(
-        "https://localhost:7083/api/sinistro/cadastrarSinistroPlanilha",
+        "https://api.dnit-eps-mds.com.br/api/sinistro/cadastrarSinistroPlanilha",
         (req, res, ctx) => {
           return res(ctx.json([]));
         }
