@@ -1,11 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { Select } from "antd";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useFiltroTabela } from "../../context/FiltroTabela";
-import {
-  EtapasDeEnsino,
-  FederativeUnit,
-  Municipio,
-  Situacao,
-} from "../../models/service";
+import { FederativeUnit, Municipio, Situacao } from "../../models/service";
 import fetchSituacao from "../../service/Situacao";
 import fetchEtapasDeEnsino from "../../service/etapasDeEnsino";
 import fetchFederativeUnit from "../../service/federativeUnit";
@@ -16,6 +12,9 @@ import "../components-escolasCadastradas/style/FiltragemTabela.css";
 export default function TabelaEscolas() {
   const {
     setNomeEscola,
+
+    NomePesquisado,
+    setNomePesquisado,
 
     UFSelecionada,
     setUFSelecionada,
@@ -31,10 +30,28 @@ export default function TabelaEscolas() {
     carregandoEscolas,
   } = useFiltroTabela();
 
-  const nomeRef = useRef<HTMLInputElement>(null);
+  const [UfPesquisada, setUfPesquisada] = useState("");
+  const [SituacaoPesquisada, setSituacaoPesquisada] = useState("");
+  const [MunicipioPesquisado, setMunicipioPesquisado] = useState("");
 
-  const mudarNome = () => {
-    if (nomeRef.current) setNomeEscola(nomeRef.current.value);
+  const mudarNome = (e: ChangeEvent<HTMLInputElement>) => {
+    setNomePesquisado(e.currentTarget.value);
+  };
+
+  const mudarUf = (e: ChangeEvent<HTMLInputElement>) => {
+    setUfPesquisada(e.currentTarget.value);
+  };
+
+  const mudarSituacao = (e: ChangeEvent<HTMLInputElement>) => {
+    setSituacaoPesquisada(e.currentTarget.value);
+  };
+
+  const mudarEtapa = (e: number[]) => {
+    setEtapaDeEnsinoSelecionada(e);
+  };
+
+  const mudarMunicipio = (e: ChangeEvent<HTMLInputElement>) => {
+    setMunicipioPesquisado(e.currentTarget.value);
   };
 
   const getUf = async () => {
@@ -74,7 +91,8 @@ export default function TabelaEscolas() {
   const getEtapasDeEnsino = async () => {
     try {
       const resposta = await fetchEtapasDeEnsino();
-      setOpcoesEtapasDeEnsino(resposta);
+      const etapas = resposta.map((e) => ({ label: e.descricao, value: e.id }));
+      setOpcoesEtapasDeEnsino(etapas);
     } catch (error) {}
   };
 
@@ -84,7 +102,7 @@ export default function TabelaEscolas() {
   const [showOpcoesEtapasDeEnsino, setShowOpcoesEtapasDeEnsino] =
     useState(false);
   const [OpcoesEtapasDeEnsino, setOpcoesEtapasDeEnsino] = useState<
-    EtapasDeEnsino[]
+    { value: number; label: string }[]
   >([]);
 
   const [showOptionsSituacao, setShowOptionsSituacao] = useState(false);
@@ -137,215 +155,204 @@ export default function TabelaEscolas() {
   };
 
   return (
-    <div className="container inputs">
-      <div className="br-input medium input-button">
-        <label htmlFor="input-search-medium">Nome</label>
-        <input
-          id="input-search-medium"
-          type="search"
-          ref={nomeRef}
-          placeholder="Digite o nome da Escola"
-        />
-        <button
-          className="br-button"
-          type="button"
-          onClick={mudarNome}
-          aria-label="Buscar"
-          data-testid="buscar-nome"
-        >
-          <i className="fas fa-search" aria-hidden="true"></i>
-        </button>
-      </div>
-
-      <div className="br-select">
-        <div className="br-input">
-          <label htmlFor="select-multtiple">UF</label>
+    <>
+      <div className="container inputs">
+        <div className="br-input medium input-button">
+          <label htmlFor="input-search-medium">Nome</label>
           <input
-            id="select-multtiple"
-            type="text"
-            placeholder={UFSelecionada ? UFSelecionada.nome : "Todas"}
-            disabled
+            id="input-search-medium"
+            type="search"
+            value={NomePesquisado}
+            onChange={mudarNome}
+            placeholder="Digite o nome da Escola"
           />
           <button
             className="br-button"
             type="button"
-            aria-label="Exibir lista"
-            tabIndex={-1}
-            data-trigger="data-trigger"
-            onClick={() => handleButtonClick(1)}
-            data-testid="buscar-uf"
+            aria-label="Buscar"
+            data-testid="buscar-nome"
           >
-            <i className="fas fa-angle-down" aria-hidden="true"></i>
+            <i className="fas fa-search" aria-hidden="true"></i>
           </button>
-          <div className="br-input">
-            {showOptionsUF && (
-              <div className="select-options dropdown-busca">
-                <div
-                  className="options"
-                  onClick={() => handleOptionClick(false, 1)}
-                >
-                  {" "}
-                  Todas
-                </div>
-                {opcoesUf.map((options, index) => {
-                  return (
-                    <div
-                      key={index}
-                      className="options"
-                      onClick={() => handleOptionClick(options, 1)}
-                    >
-                      {options.nome}
-                    </div>
-                  );
-                })}
-              </div>
-            )}
-          </div>
         </div>
-      </div>
 
-      <div className="br-select">
-        <div className="br-input">
-          <label htmlFor="select-multtiple">Situação</label>
-          <input
-            id="select-multtiple"
-            type="text"
-            placeholder={
-              situacaoSelecionada ? situacaoSelecionada.descricao : "Todas"
-            }
-            disabled
-          />
-          <button
-            className="br-button"
-            type="button"
-            aria-label="Exibir lista"
-            tabIndex={-1}
-            data-trigger="data-trigger"
-            onClick={() => handleButtonClick(2)}
-            data-testid="buscar-situacao"
-          >
-            <i className="fas fa-angle-down" aria-hidden="true"></i>
-          </button>
+        <div className="br-select">
           <div className="br-input">
-            {showOptionsSituacao && (
-              <div className="select-options dropdown-busca">
-                <div
-                  className="options"
-                  onClick={() => handleOptionClick(false, 2)}
-                >
-                  {" "}
-                  Todas
-                </div>
-                {opcoesSituacao.map((options, index) => (
+            <label htmlFor="select-multtiple">UF</label>
+            <input
+              id="select-multtiple"
+              type="text"
+              value={UfPesquisada}
+              onChange={mudarUf}
+              onFocus={() => handleButtonClick(1)}
+              placeholder={UFSelecionada ? UFSelecionada.nome : "Todas"}
+            />
+            <button
+              className="br-button"
+              type="button"
+              aria-label="Exibir lista"
+              tabIndex={-1}
+              data-trigger="data-trigger"
+              onClick={() => handleButtonClick(1)}
+              data-testid="buscar-uf"
+            >
+              <i className="fas fa-angle-down" aria-hidden="true"></i>
+            </button>
+            <div className="br-input">
+              {showOptionsUF && (
+                <div className="select-options dropdown-busca">
                   <div
-                    key={index}
                     className="options"
-                    onClick={() => handleOptionClick(options, 2)}
+                    onClick={() => handleOptionClick(false, 1)}
                   >
-                    {options.descricao}
+                    {!UfPesquisada && "Todas"}
                   </div>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-
-      <div className="br-select">
-        <div className="br-input">
-          <label htmlFor="select-multtiple">Etapas de Ensino</label>
-          <input
-            id="select-multtiple"
-            type="text"
-            placeholder={
-              etapaDeEnsinoSelecionada
-                ? etapaDeEnsinoSelecionada.descricao
-                : "Todas"
-            }
-            disabled
-          />
-          <button
-            className="br-button"
-            type="button"
-            aria-label="Exibir lista"
-            tabIndex={-1}
-            data-trigger="data-trigger"
-            onClick={() => handleButtonClick(3)}
-            data-testid="buscar-etapas"
-          >
-            <i className="fas fa-angle-down" aria-hidden="true"></i>
-          </button>
-          <div className="br-input">
-            {showOpcoesEtapasDeEnsino && (
-              <div className="select-options dropdown-busca">
-                <div
-                  className="options"
-                  onClick={() => handleOptionClick(false, 3)}
-                >
-                  {" "}
-                  Todas
+                  {opcoesUf
+                    .filter((uf) =>
+                      uf.nome.toLowerCase().includes(UfPesquisada.toLowerCase())
+                    )
+                    .map((options, index) => {
+                      return (
+                        <div
+                          key={index}
+                          className="options"
+                          onClick={() => handleOptionClick(options, 1)}
+                        >
+                          {options.nome}
+                        </div>
+                      );
+                    })}
                 </div>
-                {OpcoesEtapasDeEnsino.map((options, index) => (
-                  <div
-                    key={index}
-                    className="options"
-                    onClick={() => handleOptionClick(options, 3)}
-                  >
-                    {options.descricao}
-                  </div>
-                ))}
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="br-select">
-        <div className="br-input">
-          <label htmlFor="select-multtiple">Município</label>
-          <input
-            id="select-multtiple"
-            type="text"
-            placeholder={
-              municipioSelecionado ? municipioSelecionado.nome : "Todos"
-            }
-            disabled
-          />
-          <button
-            className="br-button"
-            type="button"
-            aria-label="Exibir lista"
-            tabIndex={-1}
-            data-trigger="data-trigger"
-            onClick={() => handleButtonClick(4)}
-            data-testid="buscar-municipio"
-          >
-            <i className="fas fa-angle-down" aria-hidden="true"></i>
-          </button>
+        <div className="br-select">
           <div className="br-input">
-            {showOpcoesMunicipio && (
-              <div className="select-options dropdown-busca">
-                <div
-                  className="options"
-                  onClick={() => handleOptionClick(false, 4)}
-                >
-                  {" "}
-                  Todos
-                </div>
-                {opcoesMunicipio.map((options, index) => (
+            <label htmlFor="select-multtiple">Situação</label>
+            <input
+              id="select-multtiple"
+              type="text"
+              value={SituacaoPesquisada}
+              onChange={mudarSituacao}
+              onFocus={() => handleButtonClick(2)}
+              placeholder={
+                situacaoSelecionada ? situacaoSelecionada.descricao : "Todas"
+              }
+            />
+            <button
+              className="br-button"
+              type="button"
+              aria-label="Exibir lista"
+              tabIndex={-1}
+              data-trigger="data-trigger"
+              onClick={() => handleButtonClick(2)}
+              data-testid="buscar-situacao"
+            >
+              <i className="fas fa-angle-down" aria-hidden="true"></i>
+            </button>
+            <div className="br-input">
+              {showOptionsSituacao && (
+                <div className="select-options dropdown-busca">
                   <div
-                    key={index}
                     className="options"
-                    onClick={() => handleOptionClick(options, 4)}
+                    onClick={() => handleOptionClick(false, 2)}
                   >
-                    {options.nome}
+                    {!SituacaoPesquisada && "Todas"}
                   </div>
-                ))}
-              </div>
-            )}
+                  {opcoesSituacao
+                    .filter((situacao) =>
+                      situacao.descricao
+                        .toLowerCase()
+                        .includes(SituacaoPesquisada.toLowerCase())
+                    )
+                    .map((options, index) => (
+                      <div
+                        key={index}
+                        className="options"
+                        onClick={() => handleOptionClick(options, 2)}
+                      >
+                        {options.descricao}
+                      </div>
+                    ))}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <div className="br-select">
+          <div className="br-input">
+            <label htmlFor="select-multtiple">Município</label>
+            <input
+              id="select-multtiple"
+              type="text"
+              value={MunicipioPesquisado}
+              onChange={mudarMunicipio}
+              onFocus={() => handleButtonClick(4)}
+              placeholder={
+                municipioSelecionado ? municipioSelecionado.nome : "Todos"
+              }
+            />
+            <button
+              className="br-button"
+              type="button"
+              aria-label="Exibir lista"
+              tabIndex={-1}
+              data-trigger="data-trigger"
+              onClick={() => handleButtonClick(4)}
+              data-testid="buscar-municipio"
+            >
+              <i className="fas fa-angle-down" aria-hidden="true"></i>
+            </button>
+            <div className="br-input">
+              {showOpcoesMunicipio && (
+                <div className="select-options dropdown-busca">
+                  <div
+                    className="options"
+                    onClick={() => handleOptionClick(false, 4)}
+                  >
+                    {!MunicipioPesquisado && "Todos"}
+                  </div>
+                  {opcoesMunicipio
+                    .filter((municipio) =>
+                      municipio.nome
+                        .toLowerCase()
+                        .includes(MunicipioPesquisado.toLowerCase())
+                    )
+                    .map((options, index) => (
+                      <div
+                        key={index}
+                        className="options"
+                        onClick={() => handleOptionClick(options, 4)}
+                      >
+                        {options.nome}
+                      </div>
+                    ))}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+        <div className="br-select">
+          <div>
+            <label htmlFor="select-multtiple">Etapas de Ensino</label>
+
+            <Select
+              mode="multiple"
+              placeholder="Todas"
+              onChange={mudarEtapa}
+              onMouseDown={getEtapasDeEnsino}
+              onClick={getEtapasDeEnsino}
+              options={OpcoesEtapasDeEnsino}
+              className="select-etapas"
+              showSearch={false}
+              data-testid="buscar-etapas"
+            />
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
