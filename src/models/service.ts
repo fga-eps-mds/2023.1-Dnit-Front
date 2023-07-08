@@ -1,6 +1,21 @@
 export interface FederativeUnit {
   id: number;
   nome: string;
+  sigla: string;
+}
+
+export interface viaCEP {
+  cep: string;
+  logradouro: string;
+  complemento: string;
+  bairro: string;
+  localidade: string;
+  uf: string;
+  ibge: string;
+  gia: string;
+  ddd: string;
+  siafi: string;
+  erro?: boolean;
 }
 
 export interface Municipio {
@@ -94,7 +109,7 @@ export interface EscolaData {
   longitude: string;
   latitude: string;
   idEtapasDeEnsino: number;
-  descricaoEtapasEnsino: string;
+  etapaEnsino: {};
   numeroTotalDeAlunos: number;
   idSituacao: number;
   descricaoSituacao: string;
