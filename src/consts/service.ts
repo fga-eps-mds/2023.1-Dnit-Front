@@ -1,6 +1,7 @@
 const urlAPIUsuario = "https://api.aprovaunb.com/api";
 const urlAPIEscolas = "https://api.dnit-eps-mds.com/api";
 const urlAPIUps = "https://api.dnit-eps-mds.com.br/api";
+const urlAPIViaCEP = "https://viacep.com.br/ws";
 const federativeUnitURL = `${urlAPIEscolas}/dominio/unidadeFederativa`;
 const loginURL = `${urlAPIUsuario}/usuario/login`;
 const cadastroURL = `${urlAPIUsuario}/usuario/cadastrar`;
@@ -41,4 +42,5 @@ export {
   resetPasswordURL,
   salvarSituacaoURL,
   SinistroUrl,
+  urlAPIViaCEP,
 };

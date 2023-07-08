@@ -61,6 +61,7 @@ export default function TabelaEscola() {
 
     return [rangeStart, rangeEnd];
   };
+
   return (
     <div
       className="br-table"
@@ -139,27 +140,35 @@ export default function TabelaEscola() {
           </tr>
         </thead>
         <tbody>
-          {escolasFiltradas !== false &&
-            escolasFiltradas.map((escola, index) => {
-              return (
-                <tr
-                  key={escola.idEscola}
-                  onClick={() => OpenModal(escola, index)}
-                  data-testid="linha-escola"
-                >
-                  <td data-th="Título coluna 1">{escola.nomeEscola}</td>
-                  <td data-th="Título coluna 2">
-                    {escola.descricaoEtapasEnsino}
-                  </td>
-                  <td data-th="Título coluna 3">
-                    {escola.numeroTotalDeAlunos}
-                  </td>
-                  <td data-th="Título coluna 4">{escola.descricaoSituacao}</td>
-                  <td data-th="Título coluna 5">{escola.nomeMunicipio}</td>
-                  <td data-th="Título coluna 6">{escola.siglaUf}</td>
-                </tr>
-              );
-            })}
+          {escolasFiltradas
+            ? escolasFiltradas?.map((escola, index) => {
+                const etapas = Object.values(escola.etapaEnsino);
+                return (
+                  <tr
+                    key={escola.idEscola}
+                    onClick={() => OpenModal(escola, index)}
+                    data-testid="linha-escola"
+                  >
+                    <td data-th="Título coluna 1">{escola.nomeEscola}</td>
+                    <td data-th="Título coluna 2">
+                      {etapas.map((etapas: any) => (
+                        <span key={etapas}>
+                          {etapas} <br />
+                        </span>
+                      ))}
+                    </td>
+                    <td data-th="Título coluna 3">
+                      {escola.numeroTotalDeAlunos}
+                    </td>
+                    <td data-th="Título coluna 4">
+                      {escola.descricaoSituacao}
+                    </td>
+                    <td data-th="Título coluna 5">{escola.nomeMunicipio}</td>
+                    <td data-th="Título coluna 6">{escola.siglaUf}</td>
+                  </tr>
+                );
+              })
+            : null}
         </tbody>
       </table>
 
@@ -176,8 +185,6 @@ export default function TabelaEscola() {
           className="br-pagination"
           aria-label="Paginação de resultados"
           data-total={escolasFiltradas ? escolasFiltradas.length : 0}
-          data-current="38"
-          data-per-page="20"
         >
           <div className="pagination-per-page">
             <div className="br-select">
@@ -235,6 +242,7 @@ export default function TabelaEscola() {
                   id="go-to-selection-random-15337"
                   type="text"
                   placeholder={paginaAtual.toString()}
+                  disabled
                 />
               </div>
             </div>
