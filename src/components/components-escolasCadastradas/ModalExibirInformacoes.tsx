@@ -157,7 +157,7 @@ useEffect(() => {
     return null;
   }
   return (
-    <div>
+    <div className="overlay-modal">
       {contextHolder}
       <div>
         <div className="container">

@@ -26,12 +26,12 @@ const ModalExcluirEscolas = (props: any) => {
         < >
             <div className='overlay-modal'>
                 <div style={{ zIndex: 10000, position: 'absolute', top: '31%', left: '31%', right: '31%' }}>
-                    <div className="div br-modal large" style={{ width: '100%' }}>
+                    <div className="div br-modal large" style={{ width: '80%', height: '220px' }}>
                         <div className="br-modal-header content-left">Confirmar Exclusão
                         </div>
                         <div className='modal-line'>
                         </div>
-                        <p className='content-left space-p'>
+                        <p className='space-p'>
                             Deseja excluir a escola permanentemende? A ação não pode ser desfeita.
                         </p>
                         <div className="br-modal-footer content-right">
