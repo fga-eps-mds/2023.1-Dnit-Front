@@ -42,6 +42,7 @@ const UPSForm: React.FC = () => {
             setValorUps2022(retorno.ups2022)
 
         } catch (error) {
+            setCarregando(false)
             setValorUpsGeral(undefined)
             setValorUps2018(undefined)
             setValorUps2019(undefined)
