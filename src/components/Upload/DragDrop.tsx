@@ -102,7 +102,7 @@ const App: React.FC<DragDropProps> = ({
           type="primary"
           onClick={handleButtonClick}
         >
-          Enviar arquivo
+          Enviar Arquivo
         </Button>
       </div>
     </>

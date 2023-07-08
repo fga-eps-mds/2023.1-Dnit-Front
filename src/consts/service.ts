@@ -1,5 +1,7 @@
 const urlAPIUsuario = "https://api.aprovaunb.com/api";
 const urlAPIEscolas = "https://api.dnit-eps-mds.com/api";
+const urlAPIUPS = "https://localhost:7083/api";
+
 const federativeUnitURL = `${urlAPIEscolas}/dominio/unidadeFederativa`;
 const loginURL = `${urlAPIUsuario}/usuario/login`;
 const cadastroURL = `${urlAPIUsuario}/usuario/cadastrar`;
@@ -17,7 +19,7 @@ const EtapasDeEnsinoURL = `${urlAPIEscolas}/dominio/etapasDeEnsino`;
 const MunicipioURL = `${urlAPIEscolas}/dominio/municipio`;
 const EscolasFiltradasURL = `${urlAPIEscolas}/escolas/obter`;
 const insertFileURL = `${urlAPIEscolas}/escolas/cadastrarEscolaPlanilha`;
-const insertFileRodoviasURL = `${urlAPIEscolas}/cadastrarRodoviasPlanilha`;
+const insertFileRodoviasURL = `${urlAPIUPS}/rodovia/cadastrarRodoviaPlanilha`;
 
 export {
   EscolasFiltradasURL,

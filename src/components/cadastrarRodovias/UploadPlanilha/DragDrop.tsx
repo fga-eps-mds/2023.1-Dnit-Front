@@ -6,6 +6,7 @@ import axios from "axios";
 import React, { useRef, useState } from "react";
 import { insertFileRodoviasURL } from "../../../consts/service";
 import "../../../styles/form/step3.css";
+import fetchInsertRodoviaFile from "../../../service/insertFileRodovia";
 
 const { Dragger } = Upload;
 
@@ -37,17 +38,16 @@ const App: React.FC<DragDropProps> = ({
     const uploadRef = useRef<any>(null);
     const [fileList, setFileList] = useState<UploadFile<any>[]>([]);
     const handleButtonClick = async () => {
+        console.log(fileList);
         if (fileList.length > 0) {
             const formData = new FormData();
             formData.append("arquivo", fileList[0].originFileObj as File);
 
             try {
-                const response = await axios.post(insertFileRodoviasURL, formData);
+                const resposta = await fetchInsertRodoviaFile(formData);
 
                 if (
-                    response.data &&
-                    Array.isArray(response.data) &&
-                    response.data.length > 0
+                    resposta.status !== 200
                 ) {
                     // A resposta do back-end é uma lista não nula
                     // Faça o que for necessário com a lista
@@ -59,10 +59,10 @@ const App: React.FC<DragDropProps> = ({
                     onClickAceito();
                 }
             } catch (error: any) {
-                error.response && error.response.status == 406 && onClickErrorTamanho();
-
-                const mensagem = error.response?.data;
-                message.error(`${mensagem}`);
+                error.resposta && error.resposta.status == 406 && onClickErrorTamanho();
+                console.log("ola")
+                const mensagem = error.resposta;
+                message.error("erro");
             }
         } else {
             message.warning("Nenhum arquivo carregado.");
@@ -98,7 +98,7 @@ const App: React.FC<DragDropProps> = ({
                     type="primary"
                     onClick={handleButtonClick}
                 >
-                    Enviar arquivo
+                    Enviar
                 </Button>
             </div>
         </>
