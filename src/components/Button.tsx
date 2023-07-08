@@ -5,6 +5,7 @@ interface ButtonComponentProps {
   cor_letra?: string;
   margin?: string;
   largura?: string;
+  disabled?: boolean
 }
 
 export default function ButtonComponent(props: ButtonComponentProps) {
@@ -24,5 +25,6 @@ export default function ButtonComponent(props: ButtonComponentProps) {
     textalign: "center",
     marginTop: "5px",
   };
-  return <button style={buttonStyle}>{props.nome}</button>;
+  const { disabled } = props || true
+  return <button disabled={disabled} style={buttonStyle}>{props.nome}</button>;
 }
