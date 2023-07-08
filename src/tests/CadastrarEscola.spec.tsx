@@ -122,6 +122,14 @@ test("Lista de escolas redireciona pra listagem", async () => {
 });
 
 test("Cadastro CSV", async () => {
+  server.use(
+    rest.post(
+      "https://api.dnit-eps-mds.com/api/escolas/cadastrarEscolaPlanilha",
+      (req, res, ctx) => {
+        return res(ctx.status(200));
+      }
+    )
+  );
   render(
     <MemoryRouter initialEntries={["/cadastrarescola"]}>
       <App />
@@ -139,11 +147,69 @@ test("Cadastro CSV", async () => {
   const enviarButton = screen.getByText("Enviar arquivo");
   fireEvent.click(enviarButton);
 
-  await screen.findByText("não foram cadastradas pois já existem no sistema.");
+  await screen.findByText("Inserção de arquivos concluída com sucesso");
 
   const concluir = screen.getByText("Concluir");
   fireEvent.click(concluir);
 });
+
+test("Cadastro CSV", async () => {
+  
+  render(
+    <MemoryRouter initialEntries={["/cadastrarescola"]}>
+      <App />
+    </MemoryRouter>
+  );
+  const arquivo = screen.getByText("Utilizando Arquivo CSV");
+  fireEvent.click(arquivo);
+
+  const file = new File(["file content"], "file.csv", { type: "text/csv" });
+  const dragDropContainer = screen.getByTestId("drag-drop-container");
+  fireEvent.change(dragDropContainer, { target: { files: [file] } });
+
+  await screen.findByText("file.csv");
+
+  const enviarButton = screen.getByText("Enviar arquivo");
+  fireEvent.click(enviarButton);
+
+  await screen.findByText("Apenas as escolas abaixo foram adicionadas:");
+
+  const concluir = screen.getByText("Concluir");
+  fireEvent.click(concluir);
+});
+
+test("Cadastro CSV", async () => {
+  server.use(
+    rest.post(
+      "https://api.dnit-eps-mds.com/api/escolas/cadastrarEscolaPlanilha",
+      (req, res, ctx) => {
+        return res(ctx.json([1,2,3,4,5,6,7]));
+      }
+    )
+  );
+  render(
+    <MemoryRouter initialEntries={["/cadastrarescola"]}>
+      <App />
+    </MemoryRouter>
+  );
+  const arquivo = screen.getByText("Utilizando Arquivo CSV");
+  fireEvent.click(arquivo);
+
+  const file = new File(["file content"], "file.csv", { type: "text/csv" });
+  const dragDropContainer = screen.getByTestId("drag-drop-container");
+  fireEvent.change(dragDropContainer, { target: { files: [file] } });
+
+  await screen.findByText("file.csv");
+
+  const enviarButton = screen.getByText("Enviar arquivo");
+  fireEvent.click(enviarButton);
+
+  await screen.findByText("Inserção de arquivos concluída com sucesso");
+
+  const concluir = screen.getByText("Concluir");
+  fireEvent.click(concluir);
+});
+
 
 test("Cadastro CSV erro", async () => {
   server.use(
@@ -181,7 +247,7 @@ test("Cadastro CSV vazio", async () => {
     rest.post(
       "https://api.dnit-eps-mds.com/api/escolas/cadastrarEscolaPlanilha",
       (req, res, ctx) => {
-        return res(ctx.json([]));
+        return res(ctx.json("Nenhum arquivo enviado."), ctx.status(400));
       }
     )
   );
@@ -201,10 +267,7 @@ test("Cadastro CSV vazio", async () => {
 
   const enviarButton = screen.getByText("Enviar arquivo");
   fireEvent.click(enviarButton);
-  await screen.findByText("Inserção de arquivos concluída com sucesso");
-
-  const concluir = screen.getByText("Concluir");
-  fireEvent.click(concluir);
+  await screen.findByText("Nenhum arquivo enviado.");
 });
 
 test("Cadastro sem enviar CSV", async () => {
