@@ -37,4 +37,5 @@ module.exports = {
       "<rootDir>/__mocks__/fileMock.js",
     "^axios$": require.resolve("axios"),
   },
+  testTimeout: 20000,
 };
