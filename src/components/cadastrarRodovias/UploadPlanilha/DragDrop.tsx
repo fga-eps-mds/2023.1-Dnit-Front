@@ -60,10 +60,10 @@ const App: React.FC<DragDropProps> = ({
                     onClickAceito();
                 }
             } catch (error: any) {
-                console.log(error.status);
-                error.resposta && error.resposta.status == 406 && onClickErrorTamanho();
+                console.log(error.response);
+                error.response && error.response.status == 406 && onClickErrorTamanho();
 
-                const mensagem = error.resposta;
+                const mensagem = error.response?.data;
 
             }
         } else {
