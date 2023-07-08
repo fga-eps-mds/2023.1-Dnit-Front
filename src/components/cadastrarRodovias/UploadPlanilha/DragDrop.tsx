@@ -38,13 +38,14 @@ const App: React.FC<DragDropProps> = ({
     const uploadRef = useRef<any>(null);
     const [fileList, setFileList] = useState<UploadFile<any>[]>([]);
     const handleButtonClick = async () => {
-        console.log(fileList);
+        //console.log(fileList);
         if (fileList.length > 0) {
             const formData = new FormData();
             formData.append("arquivo", fileList[0].originFileObj as File);
 
             try {
                 const resposta = await fetchInsertRodoviaFile(formData);
+                console.log('resposta',resposta.status)
 
                 if (
                     resposta.status !== 200
@@ -59,10 +60,11 @@ const App: React.FC<DragDropProps> = ({
                     onClickAceito();
                 }
             } catch (error: any) {
+                console.log(error.status);
                 error.resposta && error.resposta.status == 406 && onClickErrorTamanho();
-                console.log("ola")
+
                 const mensagem = error.resposta;
-                message.error("erro");
+
             }
         } else {
             message.warning("Nenhum arquivo carregado.");
@@ -98,7 +100,7 @@ const App: React.FC<DragDropProps> = ({
                     type="primary"
                     onClick={handleButtonClick}
                 >
-                    Enviar
+                    Enviar Arquivo
                 </Button>
             </div>
         </>

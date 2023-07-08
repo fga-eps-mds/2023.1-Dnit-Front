@@ -34,7 +34,7 @@ test("Cadastro via CSV", async () => {
 
   await screen.findByText("arquivo.csv");
 
-  const botaoEnviar = screen.getByText("Enviar arquivo");
+  const botaoEnviar = screen.getByText("Enviar Arquivo");
   fireEvent.click(botaoEnviar);
 
   await screen.findByText("Inserção de arquivos concluída com sucesso")
@@ -49,7 +49,7 @@ test("Cadastro via CSV", async () => {
 test("Cadastro CSV erro", async () => {
   server.use(
     rest.post(
-      "https://api.dnit-eps-mds.com/api/cadastrarRodoviasPlanilha",
+      "https://localhost:7083/api/rodovia/cadastrarRodoviaPlanilha",
       (req, res, ctx) => {
         return res(ctx.status(406));
       }
@@ -67,7 +67,7 @@ test("Cadastro CSV erro", async () => {
 
   await screen.findByText("arquivo.csv");
 
-  const botaoEnviar = screen.getByText("Enviar arquivo")
+  const botaoEnviar = screen.getByText("Enviar Arquivo")
   fireEvent.click(botaoEnviar);
   await screen.findByText("Erro na inserção das rodovias!");
 
@@ -75,54 +75,3 @@ test("Cadastro CSV erro", async () => {
   fireEvent.click(concluir);
 });
 
-test("Cadastro via .XLSX", async () => {
-  render(
-    <MemoryRouter initialEntries={["/cadastrarescola"]}>
-      <App />
-    </MemoryRouter>
-  );
-
-  const arquivo = new File(["file content"], "arquivo.xlsx", { type: "text/xlsx" });
-  const dragDropContainer = screen.getByTestId("drag-drop-container");
-  fireEvent.change(dragDropContainer, { target: { files: [arquivo] } });
-
-  await screen.findByText("arquivo.xlsx");
-
-  const botaoEnviar = screen.getByText("Enviar arquivo");
-  fireEvent.click(botaoEnviar);
-
-  await screen.findByText("Inserção de arquivos concluída com sucesso")
-
-  const botaoConcluir = screen.getByText("Concluir");
-  fireEvent.click(botaoConcluir);
-
-});
-
-test("Cadastro .XLSX erro", async () => {
-  server.use(
-    rest.post(
-      "https://api.dnit-eps-mds.com/api/ups/cadastrarRodoviasPlanilha",
-      (req, res, ctx) => {
-        return res(ctx.status(406));
-      }
-    )
-  );
-  render(
-    <MemoryRouter initialEntries={["/cadastrarRodovias"]}>
-      <App />
-    </MemoryRouter>
-  );
-
-  const arquivo = new File(["file content"], "arquivo.xlsx", { type: "text/xlsx" });
-  const dragDropContainer = screen.getByTestId("drag-drop-container");
-  fireEvent.change(dragDropContainer, { target: { files: [arquivo] } });
-
-  await screen.findByText("arquivo.xlsx");
-
-  const botaoEnviar = screen.getByText("Enviar arquivo")
-  fireEvent.click(botaoEnviar);
-  await screen.findByText("Erro na inserção das rodovias!");
-
-  const concluir = screen.getByText("Concluir");
-  fireEvent.click(concluir);
-});

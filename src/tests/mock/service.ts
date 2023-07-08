@@ -417,9 +417,9 @@ const server = setupServer(
     }
   ),
   rest.post(
-    "https://api.dnit-eps-mds.com/api/cadastrarRodoviasPlanilha",
+    "https://localhost:7083/api/rodovia/cadastrarRodoviaPlanilha",
     (req, res, ctx) => {
-      return res(ctx.json([2, 3]));
+      return res(ctx.status(200));
     }
   )
 );

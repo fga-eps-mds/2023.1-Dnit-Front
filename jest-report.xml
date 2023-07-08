@@ -1,47 +1,243 @@
 <testExecutions version="1">
-<file path="src\tests\Reset.spec.tsx">
-<testCase name=" should render Reset password" duration="548" />
-<testCase name=" should render Reset password" duration="274" />
-</file>
-<file path="src\tests\InfoEscola.spec.tsx">
-<testCase name="Exibir escola selecionada" duration="681" />
-</file>
-<file path="src\tests\Excluir.spec.tsx">
-<testCase name="Modal de excluir escola exibida corretamente" duration="785" />
-<testCase name="Modal de excluir escola exibida erro" duration="339" />
-</file>
-<file path="src\tests\tabelaEscola.spec.tsx">
-<testCase name="Lista de escolas &#xe9; exibida corretamente" duration="537" />
-<testCase name="Clicar em Cadastrar escola" duration="358" />
-<testCase name="Mudar quantidade de escolas por p&#xe1;gina" duration="244" />
-<testCase name="Exibir escola selecionada" duration="315" />
-<testCase name="Filtragem de escolas" duration="570" />
-</file>
-<file path="src\tests\Situacao.spec.tsx">
-<testCase name="Alterar situa&#xe7;&#xe3;o escola" duration="820" />
-<testCase name="Alterar situa&#xe7;&#xe3;o escola erro" duration="414" />
-<testCase name="Remover situa&#xe7;&#xe3;o escola" duration="370" />
-<testCase name="Remover situa&#xe7;&#xe3;o escola erro" duration="280" />
-<testCase name="Erro de Provider de selectedValue" duration="71" />
+<file path="src\tests\Recover.spec.tsx">
+<testCase name=" should render Recover password" duration="720" />
 </file>
 <file path="src\tests\Login.spec.tsx">
-<testCase name=" should render Login" duration="659" />
+<testCase name=" should render Login" duration="1208" />
 </file>
-<file path="src\tests\Recover.spec.tsx">
-<testCase name=" should render Recover password" duration="424" />
+<file path="src\tests\Reset.spec.tsx">
+<testCase name=" should render Reset password" duration="856" />
+<testCase name=" should render Reset password" duration="611" />
+</file>
+<file path="src\tests\InfoEscola.spec.tsx">
+<testCase name="Exibir escola selecionada" duration="556" />
+</file>
+<file path="src\tests\Excluir.spec.tsx">
+<testCase name="Modal de excluir escola exibida corretamente" duration="635" />
+<testCase name="Modal de excluir escola exibida erro" duration="377" />
+</file>
+<file path="src\tests\Situacao.spec.tsx">
+<testCase name="Alterar situa&#xe7;&#xe3;o escola" duration="745" />
+<testCase name="Alterar situa&#xe7;&#xe3;o escola erro" duration="283" />
+<testCase name="Remover situa&#xe7;&#xe3;o escola" duration="369" />
+<testCase name="Remover situa&#xe7;&#xe3;o escola erro" duration="206" />
+<testCase name="Erro de Provider de selectedValue" duration="52" />
+</file>
+<file path="src\tests\tabelaEscola.spec.tsx">
+<testCase name="Lista de escolas &#xe9; exibida corretamente" duration="458" />
+<testCase name="Clicar em Cadastrar escola" duration="406" />
+<testCase name="Mudar quantidade de escolas por p&#xe1;gina" duration="381" />
+<testCase name="Exibir escola selecionada" duration="236" />
+<testCase name="Filtragem de escolas" duration="387" />
+</file>
+<file path="src\tests\CadastrarRodovias.spec.tsx">
+<testCase name="Cadastro via CSV" duration="779" />
+<testCase name="Cadastro CSV erro" duration="1201">
+<failure message="Error"><![CDATA[Error: Unable to find an element with the text: Erro na inser&#xe7;&#xe3;o das rodovias!. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;div
+      class=&quot;App&quot;
+    &gt;
+      &lt;header
+        class=&quot;App-header&quot;
+      &gt;
+        &lt;div
+          class=&quot;HeaderIcon&quot;
+          data-testid=&quot;redirecionar&quot;
+        &gt;
+          &lt;img
+            alt=&quot;&#xed;cone gov&quot;
+            class=&quot;iconGov&quot;
+            src=&quot;test-file-stub&quot;
+          /&gt;
+          &lt;img
+            alt=&quot;&#xed;cone dnit&quot;
+            class=&quot;iconDNIT&quot;
+            src=&quot;test-file-stub&quot;
+          /&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;HeaderContrast&quot;
+        &gt;
+          &lt;img
+            alt=&quot;Button contrast&quot;
+            class=&quot;buttonContrast&quot;
+            src=&quot;test-file-stub&quot;
+          /&gt;
+          &lt;div
+            class=&quot;text-alto-contraste&quot;
+          &gt;
+            Alto contraste
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/header&gt;
+      &lt;div
+        class=&quot;Secao2&quot;
+      &gt;
+        &lt;div
+          class=&quot;form&quot;
+        &gt;
+          &lt;div
+            class=&quot;form3_1&quot;
+          &gt;
+            &lt;div
+              class=&quot;secaoTexto&quot;
+            &gt;
+              &lt;h2&gt;
+                Inser&#xe7;&#xe3;o de arquivos conclu&#xed;da com sucesso
+              &lt;/h2&gt;
+              &lt;span
+                aria-label=&quot;check-circle&quot;
+                class=&quot;anticon anticon-check-circle boaoCheck&quot;
+                role=&quot;img&quot;
+              &gt;
+                &lt;svg
+                  aria-hidden=&quot;true&quot;
+                  data-icon=&quot;check-circle&quot;
+                  fill=&quot;currentColor&quot;
+                  focusable=&quot;false&quot;
+                  height=&quot;1em&quot;
+                  viewBox=&quot;64 64 896 896&quot;
+                  width=&quot;1em&quot;
+                &gt;
+                  &lt;path
+                    d=&quot;M699 353h-46.9c-10.2 0-19.9 4.9-25.9 13.3L469 584.3l-71.2-98.8c-6-8.3-15.6-13.3-25.9-13.3H325c-6.5 0-10.3 7.4-6.5 12.7l124.6 172.8a31.8 31.8 0 0051.7 0l210.6-292c3.9-5.3.1-12.7-6.4-12.7z&quot;
+                  /&gt;
+                  &lt;path
+                    d=&quot;M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z&quot;
+                  /&gt;
+                &lt;/svg&gt;
+              &lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div
+              class=&quot;secaoVoltar&quot;
+            &gt;
+              &lt;button
+                class=&quot;ant-btn css-dev-only-do-not-override-14wwjjs ant-btn-default botaoVoltar&quot;
+                type=&quot;button&quot;
+              &gt;
+                &lt;span&gt;
+                  Concluir
+                &lt;/span&gt;
+              &lt;/button&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;footer
+        class=&quot;br-footer&quot;
+      &gt;
+        &lt;div
+          class=&quot;container-lg&quot;
+        &gt;
+          &lt;div
+            class=&quot;logo text-sm-left&quot;
+          &gt;
+            &lt;img
+              alt=&quot;Imagem&quot;
+              src=&quot;test-file-stub&quot;
+            /&gt;
+          &lt;/div&gt;
+          &lt;div
+            class=&quot;br-list horizontal&quot;
+            data-sub=&quot;data-sub&quot;
+            data-toggle=&quot;data-toggle&quot;
+          &gt;
+            &lt;div
+              class=&quot;col-2&quot;
+            &gt;
+              &lt;a
+                class=&quot;br-item header&quot;
+              &gt;
+                &lt;div
+                  class=&quot;content text-down-01 text-bold text-uppercase&quot;
+                &gt;
+                  Categoria 1
+                &lt;/div&gt;
+                &lt;div
+                  class=&quot;support&quot;
+                &gt;
+                  &lt;i
+                    aria-hidden=&quot;true&quot;
+                    class=&quot;fas fa-angle-down&quot;
+                  /&gt;
+                &lt;/div&gt;
+              &lt;/a&gt;
+              &lt;div
+                class=&quot;br-list&quot;
+              &gt;
+                &lt;span
+                  class=&quot;br-divider d-md-none&quot;
+                /&gt;
+                &lt;a
+                  class=&quot;br-item&quot;
+                &gt;
+                  &lt;div
+                    class=&quot;content&quot;
+                  &gt;
+                    Qui esse
+                  &lt;/div&gt;
+                &lt;/a&gt;
+                &lt;a
+                  class=&quot;br-item&quot;
+                &gt;
+                  &lt;div
+                    class=&quot;content&quot;
+                  &gt;
+                    Nulla occaecat eiusmod
+                  &lt;/div&gt;
+                &lt;/a&gt;
+                &lt;a
+                  class=&quot;br-item&quot;
+                &gt;
+                  &lt;div
+                    class=&quot;content&quot;
+                  &gt;
+                    Est ex deserunt
+                  &lt;/div&gt;
+                &lt;/a&gt;
+                &lt;span
+                  class=&quot;br-divider d-md-none&quot;
+                /&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div
+              class=&quot;col-2&quot;
+            &gt;
+              &lt;a
+                class=&quot;br-item header&quot;
+              &gt;
+                &lt;div
+                  class=&quot;content text-down-01 text-bold text-uppercase&quot;
+           ...
+    at waitForWrapper (C:\Users\mateu\OneDrive\&#xc1;rea de Trabalho\UNB\DNIT-MDS\2023.1-Dnit-Front\node_modules\@testing-library\dom\dist\wait-for.js:166:27)
+    at C:\Users\mateu\OneDrive\&#xc1;rea de Trabalho\UNB\DNIT-MDS\2023.1-Dnit-Front\node_modules\@testing-library\dom\dist\query-helpers.js:86:33
+    at findByText (C:\Users\mateu\OneDrive\&#xc1;rea de Trabalho\UNB\DNIT-MDS\2023.1-Dnit-Front\src\tests\CadastrarRodovias.spec.tsx:72:16)
+    at call (C:\Users\mateu\OneDrive\&#xc1;rea de Trabalho\UNB\DNIT-MDS\2023.1-Dnit-Front\src\tests\CadastrarRodovias.spec.tsx:2:1)
+    at Generator.tryCatch (C:\Users\mateu\OneDrive\&#xc1;rea de Trabalho\UNB\DNIT-MDS\2023.1-Dnit-Front\src\tests\CadastrarRodovias.spec.tsx:2:1)
+    at Generator._invoke [as next] (C:\Users\mateu\OneDrive\&#xc1;rea de Trabalho\UNB\DNIT-MDS\2023.1-Dnit-Front\src\tests\CadastrarRodovias.spec.tsx:2:1)
+    at asyncGeneratorStep (C:\Users\mateu\OneDrive\&#xc1;rea de Trabalho\UNB\DNIT-MDS\2023.1-Dnit-Front\src\tests\CadastrarRodovias.spec.tsx:2:1)
+    at asyncGeneratorStep (C:\Users\mateu\OneDrive\&#xc1;rea de Trabalho\UNB\DNIT-MDS\2023.1-Dnit-Front\src\tests\CadastrarRodovias.spec.tsx:2:1)
+    at runNextTicks (node:internal/process/task_queues:60:5)
+    at listOnTimeout (node:internal/timers:540:9)
+    at processTimers (node:internal/timers:514:7)]]></failure>
+</testCase>
 </file>
 <file path="src\tests\Register.spec.tsx">
-<testCase name="should render Register" duration="3999" />
-<testCase name="should render error in Register form" duration="1512" />
+<testCase name="should render Register" duration="3096" />
+<testCase name="should render error in Register form" duration="1034" />
 </file>
 <file path="src\tests\CadastrarEscola.spec.tsx">
-<testCase name="Lista de escolas &#xe9; exibida corretamente" duration="5675" />
-<testCase name="Lista de escolas &#xe9; exibida corretamente" duration="180" />
-<testCase name="Lista de escolas redireciona pra listagem" duration="115" />
-<testCase name="Cadastro CSV" duration="160" />
-<testCase name="Cadastro CSV erro" duration="106" />
-<testCase name="Cadastro CSV vazio" duration="176" />
-<testCase name="Cadastro sem enviar CSV" duration="80" />
-<testCase name="Sem o provider" duration="22" />
+<testCase name="Lista de escolas &#xe9; exibida corretamente" duration="4396" />
+<testCase name="Lista de escolas &#xe9; exibida corretamente" duration="194" />
+<testCase name="Lista de escolas redireciona pra listagem" duration="103" />
+<testCase name="Cadastro CSV" duration="162" />
+<testCase name="Cadastro CSV erro" duration="114" />
+<testCase name="Cadastro CSV vazio" duration="107" />
+<testCase name="Cadastro sem enviar CSV" duration="83" />
+<testCase name="Sem o provider" duration="39" />
 </file>
 </testExecutions>
