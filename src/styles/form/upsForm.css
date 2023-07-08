@@ -5,7 +5,8 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    height: 70vh;
+    height: 20vh;
+    margin-top: 5%;
 }
 
 .container-inputs{
@@ -35,4 +36,23 @@
     border: 1px solid var(--gray2);
     border-radius: 2px;
     background-color: var(--gray1);
+}
+
+.container-retorno{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    height: 40vh;
+    margin: 0 auto;
+    gap:0px;
+}
+
+.ups-retornoGeral{
+    padding-top: 20px;
+    font-weight: bold;
+}
+
+.ups-retorno{
+    font-weight: bold;
+    font-size: 1.5em;
 }

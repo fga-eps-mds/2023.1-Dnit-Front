@@ -4,15 +4,20 @@ import { CalcularUpsData } from "../models/service";
 
 interface calcularUpsResponse {
   status: number;
+  ups2018: number;
+  ups2019: number;
+  ups2020: number;
+  ups2021: number;
+  ups2022: number;
+  upsGeral: number;
 }
 
 async function fetchCalcularUps(
-  latitude: number,
-  longitude:number
+  coordenadasData: CalcularUpsData
 ): Promise<calcularUpsResponse> {
   try {
     const response: AxiosResponse<calcularUpsResponse> = await axios.get(
-      calcularUpsURL, { params: { Latitude: latitude, Longitude: longitude } }
+      calcularUpsURL, { params: { Latitude: coordenadasData.latitude, Longitude: coordenadasData.longitude } }
     );
     return response.data;
   } catch (error) {
