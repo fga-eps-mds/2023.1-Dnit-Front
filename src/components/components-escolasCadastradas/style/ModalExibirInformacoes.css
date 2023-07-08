@@ -107,7 +107,7 @@
   .br-modal-footer {
     display: flex;
     flex-direction: row;
-    padding: 10px;
+    padding: 10px !important;
     width: 100%;
   }
   .br-modal.is-xsmall, .br-modal.xsmall {
