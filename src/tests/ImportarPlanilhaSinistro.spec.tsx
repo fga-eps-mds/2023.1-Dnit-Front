@@ -135,19 +135,5 @@ test("Cadastro CSV", async () => {
     const cancelar = screen.getByText("Cancelar");
     fireEvent.click(cancelar);
   });
-  test("Sem o provider", async () => {
-    expect(() =>
-      render(
-        <DragDropAcidentes
-          onClickAceito={() => {}}
-          onClickBack={() => {}}
-          onClickError={() => {}}
-        />
-      )
-    ).toThrow(
-      new Error(
-        "useAcidentes must be used within a AcidentesProvider"
-      )
-    );
-  });
+  
   

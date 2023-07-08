@@ -1,49 +1,38 @@
 <testExecutions version="1">
-<file path="src\tests\Login.spec.tsx">
-<testCase name=" should render Login" duration="2287" />
-</file>
-<file path="src\tests\Reset.spec.tsx">
-<testCase name=" should render Reset password" duration="1801" />
-<testCase name=" should render Reset password" duration="1116" />
-</file>
-<file path="src\tests\Excluir.spec.tsx">
-<testCase name="Modal de excluir escola exibida corretamente" duration="2088" />
-<testCase name="Modal de excluir escola exibida erro" duration="751" />
-</file>
-<file path="src\tests\Situacao.spec.tsx">
-<testCase name="Alterar situa&#xe7;&#xe3;o escola" duration="1946" />
-<testCase name="Alterar situa&#xe7;&#xe3;o escola erro" duration="855" />
-<testCase name="Remover situa&#xe7;&#xe3;o escola" duration="788" />
-<testCase name="Remover situa&#xe7;&#xe3;o escola erro" duration="548" />
-<testCase name="Erro de Provider de selectedValue" duration="178" />
-</file>
-<file path="src\tests\tabelaEscola.spec.tsx">
-<testCase name="Lista de escolas &#xe9; exibida corretamente" duration="1522" />
-<testCase name="Filtragem de escolas" duration="3205" />
-<testCase name="Clicar em Cadastrar escola" duration="597" />
-<testCase name="Mudar quantidade de escolas por p&#xe1;gina" duration="441" />
-<testCase name="Exibir escola selecionada" duration="487" />
-</file>
-<file path="src\tests\Recover.spec.tsx">
-<testCase name=" should render Recover password" duration="697" />
-</file>
-<file path="src\tests\InfoEscola.spec.tsx">
-<testCase name="Exibir escola selecionada" duration="721" />
-</file>
-<file path="src\tests\Register.spec.tsx">
-<testCase name="should render Register" duration="7533" />
-<testCase name="should render error in Register form" duration="2464" />
-</file>
-<file path="src\tests\CadastrarEscola.spec.tsx">
-<testCase name="Cadastro feito" duration="9030" />
-<testCase name="Cadastro feito sem latitude e longitude" duration="3039" />
-<testCase name="Erro no cadastro" duration="2510" />
-<testCase name="Erro no cep" duration="3310" />
-<testCase name="Lista de escolas redireciona pra listagem" duration="154" />
-<testCase name="Cadastro CSV" duration="229" />
-<testCase name="Cadastro CSV erro" duration="237" />
-<testCase name="Cadastro CSV vazio" duration="220" />
-<testCase name="Cadastro sem enviar CSV" duration="149" />
-<testCase name="Sem o provider" duration="89" />
+<file path="src\tests\ImportarPlanilhaSinistro.spec.tsx">
+<testCase name="Cadastro CSV" duration="388" />
+<testCase name="Cadastro CSV erro" duration="248" />
+<testCase name="Cadastro CSV vazio" duration="117" />
+<testCase name="Cadastro sem enviar CSV" duration="60" />
+<testCase name="Sem o provider" duration="42">
+<failure message="Error"><![CDATA[Error: expect(received).toThrow(expected)
+
+Expected message: &quot;useAcidentes must be used within a AcidentesProvider&quot;
+
+Received function did not throw
+    at toThrow (C:\Users\migue\Documents\2023.1_Unb\MDS\2023.1-Dnit-Front\src\tests\ImportarPlanilhaSinistro.spec.tsx:147:7)
+    at call (C:\Users\migue\Documents\2023.1_Unb\MDS\2023.1-Dnit-Front\src\tests\ImportarPlanilhaSinistro.spec.tsx:2:1)
+    at Generator.tryCatch (C:\Users\migue\Documents\2023.1_Unb\MDS\2023.1-Dnit-Front\src\tests\ImportarPlanilhaSinistro.spec.tsx:2:1)
+    at Generator._invoke [as next] (C:\Users\migue\Documents\2023.1_Unb\MDS\2023.1-Dnit-Front\src\tests\ImportarPlanilhaSinistro.spec.tsx:2:1)
+    at asyncGeneratorStep (C:\Users\migue\Documents\2023.1_Unb\MDS\2023.1-Dnit-Front\src\tests\ImportarPlanilhaSinistro.spec.tsx:2:1)
+    at asyncGeneratorStep (C:\Users\migue\Documents\2023.1_Unb\MDS\2023.1-Dnit-Front\src\tests\ImportarPlanilhaSinistro.spec.tsx:2:1)
+    at _next (C:\Users\migue\Documents\2023.1_Unb\MDS\2023.1-Dnit-Front\src\tests\ImportarPlanilhaSinistro.spec.tsx:2:1)
+    at new Promise (&lt;anonymous&gt;)
+    at Object.&lt;anonymous&gt; (C:\Users\migue\Documents\2023.1_Unb\MDS\2023.1-Dnit-Front\src\tests\ImportarPlanilhaSinistro.spec.tsx:2:1)
+    at Promise.then.completed (C:\Users\migue\Documents\2023.1_Unb\MDS\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\utils.js:293:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\migue\Documents\2023.1_Unb\MDS\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\utils.js:226:10)
+    at _callCircusTest (C:\Users\migue\Documents\2023.1_Unb\MDS\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:297:40)
+    at runNextTicks (node:internal/process/task_queues:60:5)
+    at listOnTimeout (node:internal/timers:538:9)
+    at processTimers (node:internal/timers:512:7)
+    at _runTest (C:\Users\migue\Documents\2023.1_Unb\MDS\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:233:3)
+    at _runTestsForDescribeBlock (C:\Users\migue\Documents\2023.1_Unb\MDS\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:135:9)
+    at run (C:\Users\migue\Documents\2023.1_Unb\MDS\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\run.js:68:3)
+    at runAndTransformResultsToJestFormat (C:\Users\migue\Documents\2023.1_Unb\MDS\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\migue\Documents\2023.1_Unb\MDS\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\migue\Documents\2023.1_Unb\MDS\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\migue\Documents\2023.1_Unb\MDS\2023.1-Dnit-Front\node_modules\jest-cli\node_modules\jest-runner\build\runTest.js:444:34)]]></failure>
+</testCase>
 </file>
 </testExecutions>

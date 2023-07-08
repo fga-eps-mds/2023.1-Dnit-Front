@@ -18,15 +18,15 @@ function CadastrarAcidentes(){
             <div className="Secao2">
                 <div className="box">
                     <div className="formrs">
-                <AcidentesProvider>
-                {screen === "sc1" &&(
-                <CadAcidentes
-                onClickBack={() => setScreen("sc1")}
-                onClickError={() => setScreen("sc2")}
-                onClickAceito={() => setScreen("sc3")}
+                    
+                    {screen === "sc1" &&(
+                    <CadAcidentes
+                    onClickBack={() => setScreen("sc1")}
+                    onClickError={() => setScreen("sc2")}
+                    onClickAceito={() => setScreen("sc3")}
                 
                 />)}
-                </AcidentesProvider>
+                    
                 {screen === "sc2" && (
                     <Acidentes_erro1 onClickVoltar={() => setScreen("sc1")} />
                     )}
