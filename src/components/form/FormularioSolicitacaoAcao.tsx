@@ -89,11 +89,19 @@ const SolicitacaoAcaoForm: React.FC = () => {
 
   const [form] = Form.useForm();
 
+  const limpaMunicipio = () => {
+    setMunicipioAtual(false)
+    setMunicipios(false)
+    form.setFieldValue('Municipios', undefined)
 
+  };
+  const limpaEscola = () => {
+    setEscolasInep(false)
+    form.setFieldValue('escola', undefined)
+
+  }
 
   const [api, contextHolder] = notification.useNotification();
-
-
 
   const rules = [
     {
@@ -102,8 +110,6 @@ const SolicitacaoAcaoForm: React.FC = () => {
 
     },
   ];
-
-
 
   const onFinish = async (values: any) => {
 
@@ -123,20 +129,6 @@ const SolicitacaoAcaoForm: React.FC = () => {
 
   };
 
-
-  const limpaMunicipio = () => {
-    setMunicipioAtual(false)
-    setMunicipios(false)
-    form.setFieldValue('Municipios', undefined)
-
-  };
-  const limpaEscola = () => {
-    setEscolasInep(false)
-    form.setFieldValue('escola', undefined)
-
-  }
-
-
   return (
     <div className="formc">
       <div>
@@ -153,7 +145,6 @@ const SolicitacaoAcaoForm: React.FC = () => {
           <Form.Item name="UF" label="UF" rules={rules}>
 
             <Select
-              // onMouseDown={}
               optionLabelProp="label"
               notFoundContent={<p>Carregando...</p>}
               onChange={limpaMunicipio}
@@ -168,7 +159,6 @@ const SolicitacaoAcaoForm: React.FC = () => {
                   <Option
                     key={UF.id}
                     label={<>{UF.nome}</>}
-                    // value={UF.nome}
                     data-testid={"uf"}
                   >
                     <button
@@ -272,10 +262,6 @@ const SolicitacaoAcaoForm: React.FC = () => {
           <Form.Item name="telefone" label="Telefone" rules={
             [
               { required: true, message: "Por favor, preencha seu telefone!" },
-              // {
-              //   pattern: new RegExp("^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)*$"),
-              //   message: "Escreva numero de telefone valido.",
-              // },
             ]
           }>
             <Input className="inputForm"
