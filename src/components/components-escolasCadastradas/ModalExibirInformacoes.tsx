@@ -140,14 +140,11 @@ useEffect(() => {
     };
 
       try {
-      console.log(alterarDadosEscolaData)
-       const alterarDados = await fetchAlterarDadosEscola(alterarDadosEscolaData  as AlterarDadosEscolaData);
-       console.log(alterarDados);
+        await fetchAlterarDadosEscola(alterarDadosEscolaData  as AlterarDadosEscolaData);
         notification.success({ message: `Dados alterados com sucesso!` });
-      fetchEscolasFiltradas();
+        fetchEscolasFiltradas();
       } catch (error) {
         notification.error({ message: `Erro ao alterar dados! ` });
-        //api.error({ message: `Erro ao alterar dados` });
       }
     }
     close();
@@ -165,15 +162,12 @@ useEffect(() => {
             <div className="br-modal-header">{escola.nomeEscola}</div>
             <ModalBody
               data={escola}
-              open={isModalExibirInformacoesOpen}
               onUpdateObservacao={atualizarObservacao}
               onUpdateTelefone={atualizarTelefone}
               onUpdateLatitude={atualizarLatitude}
               onUpdateLongitude={atualizarLongitude}
               onUpdateNumAlunos={atualizarNumAlunos}
               onUpdateNumDocentes={atualizarNumDocentes}
-            //onUpdateSituacao={handleAlterarSituacao}
-
             />
             <ModalExcluirEscolas
               open={isModalExcluirEscolasOpen}
@@ -181,6 +175,9 @@ useEffect(() => {
               close={() => {
                 setIsModalExcluirEscolasOpen(false);
                 close();
+              }}
+              closeModalExcluirEscola={() => {
+                setIsModalExcluirEscolasOpen(false);
               }}
               nomeEscola={escola.nomeEscola}
             />

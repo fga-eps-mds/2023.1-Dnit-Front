@@ -1,10 +1,21 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import Dropdown from "./Dropdown";
 import fetchSituacao from "../../service/Situacao";
 import { useSelectedValue } from "../../context/Situation";
-import { Situacao } from "../../models/service";
+import { EscolaData, Situacao } from "../../models/service";
 
-const ModalBody = (props: any) => {
+interface ModalBodyProps {
+  data: EscolaData
+  onUpdateObservacao: (novaObservacao: any) => void
+  onUpdateTelefone: (novaObservacao: any) => void
+  onUpdateLatitude: (novaObservacao: any) => void
+  onUpdateLongitude: (novaObservacao: any) => void
+  onUpdateNumAlunos: (novaObservacao: any) => void
+  onUpdateNumDocentes: (novaObservacao: any) => void
+}
+
+const ModalBody = ({data, onUpdateObservacao, onUpdateTelefone, onUpdateLatitude, onUpdateLongitude,
+                  onUpdateNumAlunos, onUpdateNumDocentes}: ModalBodyProps) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { setSelectedValue, selectedValue } = useSelectedValue();
   const[situacoes, setSituacoes]= useState <Situacao[]>();
@@ -21,34 +32,32 @@ const ModalBody = (props: any) => {
     await chamarSituacao();
   };
 
-  const handleSituacaoChange = (event:any) => {
+  const handleSituacaoChange = (event:ChangeEvent <HTMLInputElement>) => {
     setSelectedValue(event.currentTarget.value)
-    console.log(event.target.value);
-    props.onUpdateSituacao(event.target.value);
   };
 
-  const handleObservacaoChange = (event:any) => {
-    props.onUpdateObservacao(event.target.value);
+  const handleObservacaoChange = (event:ChangeEvent <HTMLInputElement>) => {
+    onUpdateObservacao(event.target.value);
   };
 
-  const handleTelefoneChange = (event:any) => {
-    props.onUpdateTelefone(event.target.value);
+  const handleTelefoneChange = (event:ChangeEvent <HTMLInputElement>) => {
+    onUpdateTelefone(event.target.value);
   };
 
-  const handleLatitudeChange = (event:any) => {
-    props.onUpdateLatitude(event.target.value);
+  const handleLatitudeChange = (event:ChangeEvent <HTMLInputElement>) => {
+    onUpdateLatitude(event.target.value);
   };
 
-  const handleLongitudeChange = (event:any) => {
-    props.onUpdateLongitude(event.target.value);
+  const handleLongitudeChange = (event:ChangeEvent <HTMLInputElement>) => {
+    onUpdateLongitude(event.target.value);
   };
 
-  const handleNumAlunosChange = (event:any) => {
-    props.onUpdateNumAlunos(Number(event.target.value));
+  const handleNumAlunosChange = (event:ChangeEvent <HTMLInputElement>) => {
+    onUpdateNumAlunos(Number(event.target.value));
   };
 
-  const handleNumDocentesChange = (event:any) => {
-    props.onUpdateNumDocentes(Number(event.target.value));
+  const handleNumDocentesChange = (event:ChangeEvent <HTMLInputElement>) => {
+    onUpdateNumDocentes(Number(event.target.value));
   };
 
   return (
@@ -63,7 +72,7 @@ const ModalBody = (props: any) => {
           <input
             id="input-default"
             type="text"
-            value={props.data.codigoEscola}
+            value={data.codigoEscola}
             disabled
           />
         </div>
@@ -75,7 +84,7 @@ const ModalBody = (props: any) => {
           <input
             id="input-default"
             type="text"
-            placeholder={props.data.descricaoRede}
+            placeholder={data.descricaoRede}
             disabled
           />
         </div>
@@ -87,7 +96,7 @@ const ModalBody = (props: any) => {
           <input
             id="input-default"
             type="text"
-            placeholder={props.data.siglaUf}
+            placeholder={data.siglaUf}
             disabled
           />
         </div>
@@ -99,7 +108,7 @@ const ModalBody = (props: any) => {
           <input
             id="input-default"
             type="text"
-            placeholder={props.data.nomeMunicipio}
+            placeholder={data.nomeMunicipio}
             disabled
           />
         </div>
@@ -111,7 +120,7 @@ const ModalBody = (props: any) => {
           <input
             id="input-default"
             type="text"
-            placeholder={props.data.endereco}
+            placeholder={data.endereco}
             disabled
           />
         </div>
@@ -124,7 +133,7 @@ const ModalBody = (props: any) => {
             id="input-default"
             type="text"
             onChange={handleTelefoneChange}
-            placeholder={props.data.telefone}
+            placeholder={data.telefone}
           />
         </div>
         <label htmlFor="input-default">CEP</label>
@@ -135,7 +144,7 @@ const ModalBody = (props: any) => {
           <input
             id="input-default"
             type="text"
-            placeholder={props.data.cep}
+            placeholder={data.cep}
             disabled
           />
         </div>
@@ -160,9 +169,9 @@ const ModalBody = (props: any) => {
           onChange={handleSituacaoChange}
             id="select-simple"
             type="text"
-            placeholder={selectedValue ? selectedValue : props.data.descricaoSituacao}
+            placeholder={selectedValue ? selectedValue : data.descricaoSituacao}
           />
-          <div style={{ display: "flex", flexDirection: "row-reverse" }}>
+          <div className="alinhar-botoes">
             <button
               className="br-button"
               type="button"
@@ -184,7 +193,7 @@ const ModalBody = (props: any) => {
             )}
           </div>
         </div>
-        {isDropdownOpen && situacoes && <Dropdown onClose={openDropdown} onClick={setSelectedValue} situacoes={situacoes} descricao={props.data.descricaoSituacao}/>}
+        {isDropdownOpen && situacoes && <Dropdown onClose={openDropdown} onClick={setSelectedValue} situacoes={situacoes} descricao={data.descricaoSituacao}/>}
         <label htmlFor="input-default">Localização</label>
         <div className="input-group">
           <div className="input-icon">
@@ -193,7 +202,7 @@ const ModalBody = (props: any) => {
           <input
             id="input-default"
             type="text"
-            placeholder={props.data.descricaoLocalizacao}
+            placeholder={data.descricaoLocalizacao}
             disabled
           />
         </div>
@@ -205,7 +214,7 @@ const ModalBody = (props: any) => {
           <input
             id="input-default"
             type="text"
-            placeholder={props.data.latitude}
+            placeholder={data.latitude}
             onChange={handleLatitudeChange}
           />
         </div>
@@ -217,7 +226,7 @@ const ModalBody = (props: any) => {
           <input
             id="input-default"
             type="text"
-            placeholder={props.data.longitude}
+            placeholder={data.longitude}
             onChange={handleLongitudeChange}
           />
         </div>
@@ -229,7 +238,7 @@ const ModalBody = (props: any) => {
           <input
             id="input-default"
             type="text"
-            placeholder={props.data.numeroTotalDeAlunos}
+            placeholder={data.numeroTotalDeAlunos.toString()}
             onChange={handleNumAlunosChange}
           />
         </div>
@@ -241,7 +250,7 @@ const ModalBody = (props: any) => {
           <input
             id="input-default"
             type="text"
-            placeholder={props.data.numeroTotalDeDocentes}
+            placeholder={data.numeroTotalDeDocentes.toString()}
             onChange={handleNumDocentesChange}
           />
         </div>
@@ -255,7 +264,7 @@ const ModalBody = (props: any) => {
           id="input-default" 
           type="text" 
           onChange={handleObservacaoChange}
-          placeholder={props.data.observacao} />
+          placeholder={data.observacao} />
         </div>
         <label htmlFor="input-default">Ultima Atualização</label>
         <div className="input-group">

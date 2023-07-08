@@ -26,6 +26,11 @@
     left: 50%;
     transform: translate(-50%, -50%);
   } 
+
+  .alinhar-botoes {
+    display: flex;
+    flex-direction: row-reverse;
+  }
   
   .br-modal-header {
     font-size: var(--font-size-scale-up-01);

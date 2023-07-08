@@ -4,24 +4,29 @@ import './style/ModalExcluirEscolas.css';
 import { useState } from 'react';
 import { useFiltroTabela } from '../../context/FiltroTabela';
 
+interface ModalExcluirEscolaProps {
+    open: boolean
+    id: number
+    close: () => void 
+    closeModalExcluirEscola: () => void
+    nomeEscola: string
+}
 
-
-const ModalExcluirEscolas = (props: any) => {
+const ModalExcluirEscolas = ({open, id, close, closeModalExcluirEscola, nomeEscola}: ModalExcluirEscolaProps) => {
     const {fetchEscolasFiltradas} = useFiltroTabela()
     const excluirEscola = async () => {
-        const nomeEscola = props.nomeEscola;
         try {
-            await fetchExcluirEscola({ id_escola: props.id });
+            await fetchExcluirEscola({ id_escola: id });
             notification.success({ message: `Escola ${nomeEscola} excluída com sucesso!` });
-            props.close();
+            close();
             fetchEscolasFiltradas();
         } catch (error) {
             notification.error({ message: `Erro ao excluir a escola ${nomeEscola}! ` });
-            props.close();
+            close();
         }
 
     }
-    if (!props.open) { return null }
+    if (!open) { return null }
     return (
         < >
             <div className='overlay-modal'>
@@ -35,7 +40,7 @@ const ModalExcluirEscolas = (props: any) => {
                             Deseja excluir a escola permanentemende? A ação não pode ser desfeita.
                         </p>
                         <div className="br-modal-footer content-right">
-                            <button className="br-button secondary" type="button" onClick={props.close}>Voltar
+                            <button className="br-button secondary" type="button" onClick={closeModalExcluirEscola}>Voltar
                             </button>
                             <button className="br-button cancel-button" type="button" onClick={excluirEscola}>Excluir
                             </button>
