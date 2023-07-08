@@ -24,7 +24,7 @@ function CadastrarAcidentes(){
                 onClickBack={() => setScreen("sc1")}
                 onClickError={() => setScreen("sc2")}
                 onClickAceito={() => setScreen("sc3")}
-                onClickErroJaCadastrada={() => setScreen("sc3")}
+                
                 />)}
                 </AcidentesProvider>
                 {screen === "sc2" && (

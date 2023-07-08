@@ -6,14 +6,12 @@ interface Step1_AcidentesProps {
   onClickBack: () => void;
   onClickError: () => void;
   onClickAceito: () => void;
-  onClickErroJaCadastrada: () => void;
 }
 
 export default function CadAcidentes({
   onClickBack,
   onClickError,
   onClickAceito,
-  onClickErroJaCadastrada,
 }: Step1_AcidentesProps) {
   return (
     <div className="form3">
@@ -23,8 +21,7 @@ export default function CadAcidentes({
           onClickBack={onClickBack}
           onClickError={onClickError}
           onClickAceito={onClickAceito}
-          onClickErroJaCadastrada={onClickErroJaCadastrada}
-        />
+          />
       </div>
     </div>
   );

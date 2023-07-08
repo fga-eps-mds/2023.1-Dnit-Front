@@ -4,7 +4,7 @@ import { Button, Upload, message } from "antd";
 import { UploadChangeParam } from "antd/lib/upload";
 import axios from "axios";
 import React, { useRef, useState } from "react";
-import { insertFileURL } from "../../consts/service";
+import { SinistroUrl } from "../../consts/service";
 import { useAcidentes } from "../../context/acidentesCadastrados";
 import "../../styles/form/step3.css";
 
@@ -14,28 +14,20 @@ interface DragDropProps {
   onClickBack: () => void;
   onClickError: () => void;
   onClickAceito: () => void;
-  onClickErroJaCadastrada: () => void;
 }
 
 const props: UploadProps = {
   name: "arquivo",
   multiple: true,
-  action: insertFileURL,
+  action: SinistroUrl,
   beforeUpload: () => false,
-  onChange(info) {
-    const { status, name } = info.file;
-
-    if (status === "error") {
-      message.error(`${name} falha ao receber arquivo.`);
-    }
-  },
 };
 
 const App: React.FC<DragDropProps> = ({
   onClickBack,
   onClickError,
   onClickAceito,
-  onClickErroJaCadastrada,
+  
 }: DragDropProps) => {
   const uploadRef = useRef<any>(null);
   const [fileList, setFileList] = useState<UploadFile<any>[]>([]);
@@ -46,26 +38,17 @@ const App: React.FC<DragDropProps> = ({
       formData.append("arquivo", fileList[0].originFileObj as File);
 
       try {
-        const response = await axios.post(insertFileURL, formData);
+        const response = await axios.post(SinistroUrl, formData);
 
-        if (
-          response.data &&
-          Array.isArray(response.data) &&
-          response.data.length > 0
-        ) {
-          // A resposta do back-end é uma lista não nula
-          // Faça o que for necessário com a lista
-          onClickErroJaCadastrada();
-          setAcidentes(response.data);
-        } else {
-          // A resposta do back-end é uma lista nula
-          message.success(`Arquivo adicionado com sucesso.`);
+          message.success(`Arquivo adicionado com sucesso.`) 
           onClickAceito();
-        }
+        
       } catch (error: any) {
+
         error.response && error.response.status == 406 && onClickError();
 
         const mensagem = error.response?.data;
+
         message.error(`${mensagem}`);
       }
     } else {

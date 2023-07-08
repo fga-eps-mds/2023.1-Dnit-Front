@@ -17,6 +17,7 @@ const EtapasDeEnsinoURL = `${urlAPIEscolas}/dominio/etapasDeEnsino`;
 const MunicipioURL = `${urlAPIEscolas}/dominio/municipio`;
 const EscolasFiltradasURL = `${urlAPIEscolas}/escolas/obter`;
 const insertFileURL = `${urlAPIEscolas}/escolas/cadastrarEscolaPlanilha`;
+const SinistroUrl = `https://localhost:7083/api/sinistro/cadastrarSinistroPlanilha`;
 
 export {
   EscolasFiltradasURL,
@@ -36,4 +37,5 @@ export {
   registerURL,
   resetPasswordURL,
   salvarSituacaoURL,
+  SinistroUrl,
 };
