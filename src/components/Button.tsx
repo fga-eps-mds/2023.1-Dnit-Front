@@ -25,6 +25,6 @@ export default function ButtonComponent(props: ButtonComponentProps) {
     textalign: "center",
     marginTop: "5px",
   };
-  const { disabled } = props || true
+  const disabled = props?.disabled === true || false
   return <button disabled={disabled} style={buttonStyle}>{props.nome}</button>;
 }

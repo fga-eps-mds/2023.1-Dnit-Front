@@ -1,12 +1,8 @@
 import { fireEvent, render, screen, waitFor, act, getAllByTestId } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
 import server from "./mock/service";
-import fetchEtapasDeEnsino from "../service/etapasDeEnsino";
-import fetchFederativeUnit from "../service/federativeUnit";
-import SolicitacaoAcao from "../pages/SolicitacaoAcao";
-
+import ButtonComponent from "../components/Button";
 
 
 beforeAll(() => server.listen());
@@ -25,6 +21,30 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
         dispatchEvent: jest.fn(),
     };
 });
+
+// test("Button", () => {
+
+//     render(
+//         <MemoryRouter>
+//             <ButtonComponent />
+//         </MemoryRouter>
+//     );
+
+
+//     render(
+//         <MemoryRouter>
+//             <ButtonComponent disabled={true}/>
+//         </MemoryRouter>
+//     );
+
+
+//     render(
+//         <MemoryRouter>
+//             <ButtonComponent disabled={false}/>
+//         </MemoryRouter>
+//     );
+
+// })
 
 
 test("Abre duas vezes", async () => {
@@ -102,7 +122,7 @@ test("Sem selecionar UF", async () => {
     // await waitFor(() =>
     //     expect(screen.queryByText("Carregando...")).not.toBeInTheDocument()
     // );
-    
+
     const escolaioSelect = screen.getByLabelText("Escola");
     fireEvent.mouseDown(escolaioSelect);
     // await waitFor(() =>
