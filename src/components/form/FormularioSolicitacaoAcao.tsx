@@ -142,14 +142,15 @@ const SolicitacaoAcaoForm: React.FC = () => {
           requiredMark="optional"
           className="form-email"
         >
-          <Form.Item name="UF" label="UF" rules={rules}>
+          <div className="uf-municipio-container">
+          <Form.Item name="UF" label="UF" rules={rules} className="dropdown-uf">
 
             <Select
               optionLabelProp="label"
               notFoundContent={<p>Carregando...</p>}
               onChange={limpaMunicipio}
               placeholder="Selecione uma UF"
-              className="inputForm form-item-select"
+              className="inputForm"
               data-testid="select-uf"
               onMouseDown={getUFs}
               showSearch
@@ -204,6 +205,7 @@ const SolicitacaoAcaoForm: React.FC = () => {
               })}
             </Select>
           </Form.Item>
+          </div>
 
           <Form.Item name="escola" label="Escola" rules={rules}>
 
