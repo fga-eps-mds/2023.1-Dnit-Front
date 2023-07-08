@@ -427,7 +427,13 @@ const server = setupServer(
         siafi: "9701",
       })
     );
-  })
+  }),
+  rest.put(
+    "https://api.dnit-eps-mds.com/api/escolas/alterarDadosEscola",
+    (req, res, ctx) => {
+      return res(ctx.status(200));
+    }
+  )
 );
 
 export default server;

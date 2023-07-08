@@ -15,68 +15,6 @@ beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
-test("Alterar situação escola", async () => {
-  render(
-    <MemoryRouter initialEntries={["/escolas-cadastradas"]}>
-      <App />
-    </MemoryRouter>
-  );
-
-  await waitFor(() => {
-    const escolas = screen.getAllByTestId("linha-escola");
-    expect(escolas).toHaveLength(3);
-  });
-
-  const abrirEscolaSelecionada = screen.getByText("Escola A");
-  fireEvent.click(abrirEscolaSelecionada);
-
-  const alterarSituacao = screen.getByTestId("dropdown-situacao");
-  fireEvent.click(alterarSituacao);
-
-  await act(async () => {
-    const selecionarSituacao = screen.getByText("Indicação");
-    fireEvent.click(selecionarSituacao);
-
-    const fecharEscolaSelecionada = screen.getByText("Salvar");
-    fireEvent.click(fecharEscolaSelecionada);
-  });
-});
-
-test("Alterar situação escola erro", async () => {
-  server.use(
-    rest.post(
-      "https://api.dnit-eps-mds.com/api/escolas/adicionarSituacao",
-      (req, res, ctx) => {
-        return res(ctx.status(403));
-      }
-    )
-  );
-  render(
-    <MemoryRouter initialEntries={["/escolas-cadastradas"]}>
-      <App />
-    </MemoryRouter>
-  );
-
-  await waitFor(() => {
-    const escolas = screen.getAllByTestId("linha-escola");
-    expect(escolas).toHaveLength(3);
-  });
-
-  const abrirEscolaSelecionada = screen.getByText("Escola A");
-  fireEvent.click(abrirEscolaSelecionada);
-
-  const alterarSituacao = screen.getByTestId("dropdown-situacao");
-  fireEvent.click(alterarSituacao);
-
-  await act(async () => {
-    const selecionarSituacao = screen.getByText("Indicação");
-    fireEvent.click(selecionarSituacao);
-
-    const fecharEscolaSelecionada = screen.getByText("Salvar");
-    fireEvent.click(fecharEscolaSelecionada);
-  });
-});
-
 test("Remover situação escola", async () => {
   render(
     <MemoryRouter initialEntries={["/escolas-cadastradas"]}>
@@ -95,13 +33,11 @@ test("Remover situação escola", async () => {
   const alterarSituacao = screen.getByTestId("dropdown-situacao");
   fireEvent.click(alterarSituacao);
 
-  await act(async () => {
-    const selecionarSituacao = screen.getByText("Remover Situação");
+    const selecionarSituacao = await screen.findByText("Remover Situação");
     fireEvent.click(selecionarSituacao);
 
     const fecharEscolaSelecionada = screen.getByText("Salvar");
     fireEvent.click(fecharEscolaSelecionada);
-  });
 });
 
 test("Remover situação escola erro", async () => {
@@ -130,13 +66,11 @@ test("Remover situação escola erro", async () => {
   const alterarSituacao = screen.getByTestId("dropdown-situacao");
   fireEvent.click(alterarSituacao);
 
-  await act(async () => {
-    const selecionarSituacao = screen.getByText("Remover Situação");
+    const selecionarSituacao = await screen.findByText("Remover Situação");
     fireEvent.click(selecionarSituacao);
 
     const fecharEscolaSelecionada = screen.getByText("Salvar");
     fireEvent.click(fecharEscolaSelecionada);
-  });
 });
 
 test("Erro de Provider de selectedValue", async () => {

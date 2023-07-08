@@ -1,49 +1,48 @@
 <testExecutions version="1">
 <file path="src\tests\Login.spec.tsx">
-<testCase name=" should render Login" duration="2287" />
+<testCase name=" should render Login" duration="4783" />
 </file>
 <file path="src\tests\Reset.spec.tsx">
-<testCase name=" should render Reset password" duration="1801" />
-<testCase name=" should render Reset password" duration="1116" />
+<testCase name=" should render Reset password" duration="3362" />
+<testCase name=" should render Reset password" duration="2106" />
 </file>
 <file path="src\tests\Excluir.spec.tsx">
-<testCase name="Modal de excluir escola exibida corretamente" duration="2088" />
-<testCase name="Modal de excluir escola exibida erro" duration="751" />
+<testCase name="Modal de excluir escola exibida corretamente" duration="4062" />
+<testCase name="Modal de excluir escola exibida erro" duration="1478" />
 </file>
 <file path="src\tests\Situacao.spec.tsx">
-<testCase name="Alterar situa&#xe7;&#xe3;o escola" duration="1946" />
-<testCase name="Alterar situa&#xe7;&#xe3;o escola erro" duration="855" />
-<testCase name="Remover situa&#xe7;&#xe3;o escola" duration="788" />
-<testCase name="Remover situa&#xe7;&#xe3;o escola erro" duration="548" />
-<testCase name="Erro de Provider de selectedValue" duration="178" />
+<testCase name="Remover situa&#xe7;&#xe3;o escola" duration="3849" />
+<testCase name="Remover situa&#xe7;&#xe3;o escola erro" duration="1582" />
+<testCase name="Erro de Provider de selectedValue" duration="486" />
 </file>
 <file path="src\tests\tabelaEscola.spec.tsx">
-<testCase name="Lista de escolas &#xe9; exibida corretamente" duration="1522" />
-<testCase name="Filtragem de escolas" duration="3205" />
-<testCase name="Clicar em Cadastrar escola" duration="597" />
-<testCase name="Mudar quantidade de escolas por p&#xe1;gina" duration="441" />
-<testCase name="Exibir escola selecionada" duration="487" />
+<testCase name="Lista de escolas &#xe9; exibida corretamente" duration="3024" />
+<testCase name="Filtragem de escolas" duration="5807" />
+<testCase name="Clicar em Cadastrar escola" duration="1684" />
+<testCase name="Mudar quantidade de escolas por p&#xe1;gina" duration="992" />
+<testCase name="Exibir escola selecionada" duration="776" />
 </file>
 <file path="src\tests\Recover.spec.tsx">
-<testCase name=" should render Recover password" duration="697" />
+<testCase name=" should render Recover password" duration="1061" />
 </file>
 <file path="src\tests\InfoEscola.spec.tsx">
-<testCase name="Exibir escola selecionada" duration="721" />
+<testCase name="Exibir escola selecionada" duration="1417" />
+<testCase name="Alterar escola selecionada" duration="939" />
 </file>
 <file path="src\tests\Register.spec.tsx">
-<testCase name="should render Register" duration="7533" />
-<testCase name="should render error in Register form" duration="2464" />
+<testCase name="should render Register" duration="13770" />
+<testCase name="should render error in Register form" duration="3915" />
 </file>
 <file path="src\tests\CadastrarEscola.spec.tsx">
-<testCase name="Cadastro feito" duration="9030" />
-<testCase name="Cadastro feito sem latitude e longitude" duration="3039" />
-<testCase name="Erro no cadastro" duration="2510" />
-<testCase name="Erro no cep" duration="3310" />
-<testCase name="Lista de escolas redireciona pra listagem" duration="154" />
-<testCase name="Cadastro CSV" duration="229" />
-<testCase name="Cadastro CSV erro" duration="237" />
-<testCase name="Cadastro CSV vazio" duration="220" />
-<testCase name="Cadastro sem enviar CSV" duration="149" />
-<testCase name="Sem o provider" duration="89" />
+<testCase name="Cadastro feito" duration="15845" />
+<testCase name="Cadastro feito sem latitude e longitude" duration="4692" />
+<testCase name="Erro no cadastro" duration="2776" />
+<testCase name="Erro no cep" duration="6524" />
+<testCase name="Lista de escolas redireciona pra listagem" duration="358" />
+<testCase name="Cadastro CSV" duration="337" />
+<testCase name="Cadastro CSV erro" duration="275" />
+<testCase name="Cadastro CSV vazio" duration="297" />
+<testCase name="Cadastro sem enviar CSV" duration="215" />
+<testCase name="Sem o provider" duration="93" />
 </file>
 </testExecutions>

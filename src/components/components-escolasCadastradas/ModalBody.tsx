@@ -242,7 +242,7 @@ const ModalBody = ({data, onUpdateObservacao, onUpdateTelefone, onUpdateLatitude
             onChange={handleNumAlunosChange}
           />
         </div>
-        <label htmlFor="input-icon">Número total de docentes</label>
+        <label htmlFor="input-default">Número total de docentes</label>
         <div className="input-group">
           <div className="input-icon">
             <i className="fas fa-users" aria-hidden="true"></i>
