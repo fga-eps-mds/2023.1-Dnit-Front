@@ -1,6 +1,6 @@
 const urlAPIUsuario = "https://api.aprovaunb.com/api";
 const urlAPIEscolas = "https://api.dnit-eps-mds.com/api";
-const urlAPIUPS = "https://localhost:7083/api";
+const urlAPIUPS = "https://api.dnit-eps-mds.br/api";
 
 const federativeUnitURL = `${urlAPIEscolas}/dominio/unidadeFederativa`;
 const loginURL = `${urlAPIUsuario}/usuario/login`;

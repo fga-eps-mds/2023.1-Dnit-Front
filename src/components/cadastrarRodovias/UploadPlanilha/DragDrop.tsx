@@ -21,13 +21,6 @@ const props: UploadProps = {
     multiple: true,
     action: insertFileRodoviasURL,
     beforeUpload: () => false,
-    onChange(info) {
-        const { status, name } = info.file;
-
-        if (status === "error") {
-            message.error(`${name} falha ao receber arquivo.`);
-        }
-    },
 };
 
 const App: React.FC<DragDropProps> = ({
@@ -45,26 +38,19 @@ const App: React.FC<DragDropProps> = ({
 
             try {
                 const resposta = await fetchInsertRodoviaFile(formData);
-                console.log('resposta',resposta.status)
 
-                if (
-                    resposta.status !== 200
-                ) {
-                    // A resposta do back-end é uma lista não nula
-                    // Faça o que for necessário com a lista
-                    onClickErrorTamanho();
 
-                } else {
-                    // A resposta do back-end é uma lista nula
+
                     message.success("Arquivo adicionado com sucesso");
                     onClickAceito();
-                }
+                
             } catch (error: any) {
                 console.log(error.response);
                 error.response && error.response.status == 406 && onClickErrorTamanho();
 
                 const mensagem = error.response?.data;
 
+                message.error(`${mensagem}`);
             }
         } else {
             message.warning("Nenhum arquivo carregado.");
