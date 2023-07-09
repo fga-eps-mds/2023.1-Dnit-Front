@@ -20,9 +20,8 @@ const MunicipioURL = `${urlAPIEscolas}/dominio/municipio`;
 const EscolasFiltradasURL = `${urlAPIEscolas}/escolas/obter`;
 const insertFileURL = `${urlAPIEscolas}/escolas/cadastrarEscolaPlanilha`;
 const calcularUpsURL = `${urlAPIUps}/calcular/ups/escola`;
-
-const EscolasInepURL = "https://localhost:7083/api/solicitacaoAcao/escolas";
-const SolicitacaoDeAcaoURL = "https://localhost:7083/api/solicitacaoAcao";
+const EscolasInepURL = `${urlAPIEscolas}/solicitacaoAcao/escolas`;
+const SolicitacaoDeAcaoURL = `${urlAPIEscolas}/solicitacaoAcao`;
 
 export {
   EscolasFiltradasURL,

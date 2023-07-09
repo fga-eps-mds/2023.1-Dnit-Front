@@ -74,7 +74,7 @@ const SolicitacaoAcaoForm: React.FC = () => {
   const enviarSolicitacao = async (formData: SolicitacaoDeAcao) => {
     try {
       setBotaoEnviarDisponivel(false);
-      await fetchSolicitaAcao(formData as SolicitacaoDeAcao);
+      await fetchSolicitaAcao(formData);
       notification.success({ message: "Solicitação enviada com sucesso!" });
       setBotaoEnviarDisponivel(true);
     } catch (error) {
@@ -94,8 +94,6 @@ const SolicitacaoAcaoForm: React.FC = () => {
     setEscolasInep(false);
     form.setFieldValue("escola", undefined);
   };
-
-  const [api, contextHolder] = notification.useNotification();
 
   const rules = [
     {
@@ -253,7 +251,7 @@ const SolicitacaoAcaoForm: React.FC = () => {
             rules={[
               { required: true, message: "Por favor, preencha o campo email!" },
               {
-                pattern: /^[a-z0-9.]+@[a-z0-9]+.[a-z]+(.[a-z]+)*$/,
+                pattern: /^[a-z0-9.]+@[a-z0-9]+(\.[a-z]+){1,3}$/,
                 message: "Escreva um email valido.",
               },
             ]}
