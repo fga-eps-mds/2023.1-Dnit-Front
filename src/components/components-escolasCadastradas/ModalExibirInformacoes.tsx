@@ -9,7 +9,6 @@ import ModalBody from "./ModalBody";
 import fetchSituacao from "../../service/Situacao";
 import { AlterarDadosEscolaData, EscolaData } from "../../models/service";
 import fetchAlterarDadosEscola from "../../service/alterarDadosEscola";
-import etapasDeEnsino from "../../service/etapasDeEnsino";
 
 
 interface ModalProps {
@@ -110,7 +109,7 @@ useEffect(() => {
   const { fetchEscolasFiltradas } = useFiltroTabela();
 
   const chamarSituacao = async () => {
-    var id = 0;
+    let id = 0;
     const situacoes = await fetchSituacao()
     situacoes && situacoes.forEach(situacao => {
       if (situacao.descricao === selectedValue) id = situacao.id;

@@ -25,10 +25,6 @@ const ModalBody = ({data, onUpdateObservacao, onUpdateTelefone, onUpdateLatitude
 
   const ultimaAtualizacao = new Date()
 
-  const { Option } = Select;
-  interface Step2Props {
-  onClickBack: () => void;
-}
 
   const chamarSituacao = async() =>{
     const situacoes = await fetchSituacao()
@@ -39,12 +35,6 @@ const ModalBody = ({data, onUpdateObservacao, onUpdateTelefone, onUpdateLatitude
     setIsDropdownOpen(!isDropdownOpen);
     await chamarSituacao();
   };
-  const rules = [
-    {
-      required: false,
-      message: "Preencha o campo ${label}!",
-    },
-  ];
 
   const handleSituacaoChange = (event:ChangeEvent <HTMLInputElement>) => {
     setSelectedValue(event.currentTarget.value)
