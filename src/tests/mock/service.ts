@@ -413,7 +413,7 @@ const server = setupServer(
     }
   ),
   rest.post(
-    "https://api.aprovaunb.com.br/api/rodovia/cadastrarRodoviaPlanilha",
+    "https://api.dnit-eps-mds.com.br/api/rodovia/cadastrarRodoviaPlanilha",
     (req, res, ctx) => {
       return res(ctx.status(200));
     }

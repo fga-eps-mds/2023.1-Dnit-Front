@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
+import CadastrarAcidentes from "./pages/Acidentes";
 import CadastrarRodovias from "./pages/CadastrarRodovias";
 import EscolasCadastradas from "./pages/EscolasCadastradas";
 import Home from "./pages/Home";
@@ -31,6 +32,7 @@ function App() {
           <Route path="/cadastro" element={<Register />} />
         </>
       )}
+      <Route path="/cadastrarsinistros" element={<CadastrarAcidentes />} />
       <Route path="/login" element={<Login />} />
       <Route path="/cadastro" element={<Register />} />
 
