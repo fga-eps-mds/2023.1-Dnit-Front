@@ -1,8 +1,8 @@
 import { createContext, useContext, useState } from "react";
 
 interface EscolasCadastradasContextType {
-  escolasCadastradas: number[];
-  setEscolasCadastradas: (value: number[]) => void;
+  escolasCadastradas: string[];
+  setEscolasCadastradas: (value: string[]) => void;
 }
 
 const EscolasCadastradasContext = createContext<
@@ -10,7 +10,7 @@ const EscolasCadastradasContext = createContext<
 >(undefined);
 
 const EscolasCadastradasProvider = ({ children }: any) => {
-  const [escolasCadastradas, setEscolasCadastradas] = useState<number[]>([]);
+  const [escolasCadastradas, setEscolasCadastradas] = useState<string[]>([]);
 
   const contextValue: EscolasCadastradasContextType = {
     escolasCadastradas,

@@ -8,13 +8,10 @@
     margin-bottom: 1em;
     margin-right: 2em;
     margin-left: 2em;
+    font-weight: 700;
 }
 
 .secaoAtencao{
     display: flex;
     justify-content: space-between;
-}
-
-.secaoAtencao h1{
-    margin-right: 10.5em;
 }
