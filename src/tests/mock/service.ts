@@ -412,6 +412,12 @@ const server = setupServer(
       return res(ctx.json([2, 3]));
     }
   ),
+  rest.post(
+    `https://localhost:7083/api/sinistro/cadastrarSinistroPlanilha`,
+    (req, res, ctx) => {
+      return res(ctx.status(200));
+    }
+  ),
   rest.get("https://viacep.com.br/ws/12345678/json", (req, res, ctx) => {
     return res(
       ctx.json({

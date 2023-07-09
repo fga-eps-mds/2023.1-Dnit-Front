@@ -8,6 +8,7 @@ import RegisterSchool from "./pages/RegisterSchool";
 import ResetPassword from "./pages/ResetPassword";
 import { AuthContext } from "./provider/Authentication";
 import "./styles/App.css";
+import CadastrarAcidentes from "./pages/Acidentes";
 
 function App() {
   const { getAuth } = useContext(AuthContext);
@@ -27,6 +28,7 @@ function App() {
       )}
       <Route path="/escolas-cadastradas" element={<EscolasCadastradas />} />
       <Route path="/cadastrarescola" element={<RegisterSchool />} />
+      <Route path="/cadastrarsinistros" element={<CadastrarAcidentes/>} />
       <Route path="/login" element={<Login />} />
       <Route path="/redefinirSenha" element={<ResetPassword />} />
       <Route path="/cadastro" element={<Register />} />
