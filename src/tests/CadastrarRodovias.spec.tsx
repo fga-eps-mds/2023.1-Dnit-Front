@@ -23,7 +23,7 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
 test("Cadastro via CSV", async () => {
   server.use(
     rest.post(
-      "https://api.dnit-eps-mds.br/api/rodovia/cadastrarRodoviaPlanilha",
+      "https://api.aprovaunb.com.br/api/rodovia/cadastrarRodoviaPlanilha",
       (req, res, ctx) => {
         return res(ctx.status(200));
       }
@@ -56,7 +56,7 @@ test("Cadastro via CSV", async () => {
 test("Cadastro CSV erro", async () => {
   server.use(
     rest.post(
-      "https://api.dnit-eps-mds.br/api/rodovia/cadastrarRodoviaPlanilha",
+      "https://api.aprovaunb.com.br/api/rodovia/cadastrarRodoviaPlanilha",
       (req, res, ctx) => {
         return res(ctx.status(406));
       }
@@ -85,7 +85,7 @@ test("Cadastro CSV erro", async () => {
 test("Cadastro CSV vazio", async () => {
   server.use(
     rest.post(
-      "https://api.dnit-eps-mds.br/api/rodovia/cadastrarRodoviaPlanilha",
+      "https://api.aprovaunb.com.br/api/rodovia/cadastrarRodoviaPlanilha",
       (req, res, ctx) => {
         return res(ctx.status(400),ctx.json('Nenhum arquivo enviado.'));
       }
@@ -113,7 +113,7 @@ test("Cadastro CSV vazio", async () => {
 test("Cadastro sem enviar CSV", async () => {
   server.use(
     rest.post(
-      "https://api.dnit-eps-mds.br/api/rodovia/cadastrarRodoviaPlanilha",
+      "https://api.aprovaunb.com.br/api/rodovia/cadastrarRodoviaPlanilha",
       (req, res, ctx) => {
         return res(ctx.json([]));
       }
