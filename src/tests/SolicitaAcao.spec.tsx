@@ -3,6 +3,7 @@ import { MemoryRouter } from "react-router-dom";
 import App from "../App";
 import server from "./mock/service";
 import ButtonComponent from "../components/Button";
+import fetchSolicitaAcao from "../service/solicitaAcao";
 
 
 beforeAll(() => server.listen());
@@ -227,28 +228,26 @@ test("Solicitação", async () => {
 
     const vinculoSelect = screen.getByLabelText("Vínculo com a Escola");
     fireEvent.mouseDown(vinculoSelect);
-    await waitFor(() =>
-        expect(screen.queryByText("Carregando...")).not.toBeInTheDocument()
-    );
-    const vinculoSelecionado = screen.getByText("Professor");
-    fireEvent.click(vinculoSelecionado);
 
-
+    
+    
     const campoEmail = screen.getByLabelText("E-mail");
     fireEvent.change(campoEmail, { target: { value: "fulano@cicrano.com" } });
-
-
+    
+    
     const campoTelefone = screen.getByLabelText("Telefone");
     fireEvent.change(campoTelefone, { target: { value: "61983446661" } });
-
+    
     const campoQuantidadeAlunos = screen.getByLabelText("Quantidade de Alunos");
     fireEvent.change(campoQuantidadeAlunos, { target: { value: 9 } });
 
-    const botaoENviar = screen.getByText("Enviar");
-    act(() => {
-        fireEvent.click(botaoENviar);
-    });
+    const vinculoSelecionado = screen.getByTestId("Professor");
+    fireEvent.mouseDown(vinculoSelecionado);
 
+    const botaoENviar = screen.getByText("Enviar solicitação");
+    act(() => {
+        fireEvent.mouseDown(botaoENviar);
+    });
 
 });
 

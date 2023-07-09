@@ -143,68 +143,68 @@ const SolicitacaoAcaoForm: React.FC = () => {
           className="form-email"
         >
           <div className="uf-municipio-container">
-          <Form.Item name="UF" label="UF" rules={rules} className="dropdown-uf">
+            <Form.Item name="UF" label="UF" rules={rules} className="dropdown-uf">
 
-            <Select
-              optionLabelProp="label"
-              notFoundContent={<p>Carregando...</p>}
-              onChange={limpaMunicipio}
-              placeholder="Selecione uma UF"
-              className="inputForm"
-              data-testid="select-uf"
-              onMouseDown={getUFs}
-              showSearch
-            >
-              {UFs && UFs.map((UF) => {
-                return (
-                  <Option
-                    key={UF.id}
-                    label={<>{UF.nome}</>}
-                    data-testid={"uf"}
-                  >
-                    <button
-                      onClick={() => setUFATual(UF)}
-                      className="option-municipio"
+              <Select
+                optionLabelProp="label"
+                notFoundContent={<p>Carregando...</p>}
+                onChange={limpaMunicipio}
+                placeholder="Selecione uma UF"
+                className="inputForm"
+                data-testid="select-uf"
+                onMouseDown={getUFs}
+                showSearch
+              >
+                {UFs && UFs.map((UF) => {
+                  return (
+                    <Option
+                      key={UF.id}
+                      label={<>{UF.nome}</>}
+                      data-testid={"uf"}
                     >
-                      {UF.nome}
-                    </button>
-                  </Option>
-                )
-              })}
+                      <button
+                        onClick={() => setUFATual(UF)}
+                        className="option-municipio"
+                      >
+                        {UF.nome}
+                      </button>
+                    </Option>
+                  )
+                })}
 
-            </Select>
-          </Form.Item>
+              </Select>
+            </Form.Item>
 
-          <Form.Item name="Municipios" label="Municipios" rules={rules}>
-            <Select
-              notFoundContent={<p>Carregando...</p>}
-              placeholder={
-                !UFAtual ? "Nenhuma UF selecionada" : "Selecione um municipio"}
-              className="inputForm form-item-select"
-              disabled={!UFAtual}
-              optionLabelProp="label"
-              showSearch
-              onChange={limpaEscola}
-              onMouseDown={getMunicipios}
-            >
+            <Form.Item name="Municipios" label="Municipios" rules={rules}>
+              <Select
+                notFoundContent={<p>Carregando...</p>}
+                placeholder={
+                  !UFAtual ? "Nenhuma UF selecionada" : "Selecione um municipio"}
+                className="inputForm form-item-select"
+                disabled={!UFAtual}
+                optionLabelProp="label"
+                showSearch
+                onChange={limpaEscola}
+                onMouseDown={getMunicipios}
+              >
 
-              {municipios && municipios.map((municipio) => {
-                return (
-                  <Option
-                    key={municipio.id}
-                    label={<>{municipio.nome}</>}
-                  >
-                    <button
-                      onClick={() => setMunicipioAtual(municipio)}
-                      className="option-municipio"
+                {municipios && municipios.map((municipio) => {
+                  return (
+                    <Option
+                      key={municipio.id}
+                      label={<>{municipio.nome}</>}
                     >
-                      {municipio.nome}
-                    </button>
-                  </Option>
-                )
-              })}
-            </Select>
-          </Form.Item>
+                      <button
+                        onClick={() => setMunicipioAtual(municipio)}
+                        className="option-municipio"
+                      >
+                        {municipio.nome}
+                      </button>
+                    </Option>
+                  )
+                })}
+              </Select>
+            </Form.Item>
           </div>
 
           <Form.Item name="escola" label="Escola" rules={rules}>
@@ -238,7 +238,7 @@ const SolicitacaoAcaoForm: React.FC = () => {
               placeholder="Selecione seu vinculo"
               className="inputForm form-item-select"
             >
-              <Option value="Professor">Professor</Option>
+              <Option value="Professor" data-testid="Professor">Professor</Option>
               <Option value="Gestor escolar">Gestor escolar</Option>
               <Option value="Estudante">Estudante</Option>
               <Option value="Outro">Outro</Option>
@@ -308,6 +308,7 @@ const SolicitacaoAcaoForm: React.FC = () => {
           <Form.Item>
             <Space>
               <ButtonComponent
+                data-testid="Enviar"
                 nome="Enviar solicitação"
                 cor="#1351B4"
                 cor_letra="#FFFFFF"
