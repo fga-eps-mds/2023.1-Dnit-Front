@@ -1,8 +1,55 @@
 <testExecutions version="1">
+<file path="src\tests\InfoEscola.spec.tsx">
+<testCase name="Exibir escola selecionada" duration="1706" />
+</file>
+<file path="src\tests\Excluir.spec.tsx">
+<testCase name="Modal de excluir escola exibida corretamente" duration="1570" />
+<testCase name="Modal de excluir escola exibida erro" duration="907" />
+</file>
 <file path="src\tests\CadastrarRodovias.spec.tsx">
-<testCase name="Cadastro via CSV" duration="392" />
-<testCase name="Cadastro CSV erro" duration="215" />
-<testCase name="Cadastro CSV vazio" duration="114" />
-<testCase name="Cadastro sem enviar CSV" duration="129" />
+<testCase name="Cadastro via CSV" duration="1889" />
+<testCase name="Cadastro CSV erro" duration="654" />
+<testCase name="Cadastro CSV vazio" duration="317" />
+<testCase name="Cadastro sem enviar CSV" duration="668" />
+</file>
+<file path="src\tests\Situacao.spec.tsx">
+<testCase name="Alterar situa&#xe7;&#xe3;o escola" duration="1588" />
+<testCase name="Alterar situa&#xe7;&#xe3;o escola erro" duration="685" />
+<testCase name="Remover situa&#xe7;&#xe3;o escola" duration="883" />
+<testCase name="Remover situa&#xe7;&#xe3;o escola erro" duration="681" />
+<testCase name="Erro de Provider de selectedValue" duration="114" />
+</file>
+<file path="src\tests\tabelaEscola.spec.tsx">
+<testCase name="Lista de escolas &#xe9; exibida corretamente" duration="1245" />
+<testCase name="Filtragem de escolas" duration="3260" />
+<testCase name="Clicar em Cadastrar escola" duration="887" />
+<testCase name="Mudar quantidade de escolas por p&#xe1;gina" duration="563" />
+<testCase name="Exibir escola selecionada" duration="396" />
+</file>
+<file path="src\tests\Register.spec.tsx">
+<testCase name="should render Register" duration="7137" />
+<testCase name="should render error in Register form" duration="2350" />
+</file>
+<file path="src\tests\Recover.spec.tsx">
+<testCase name=" should render Recover password" duration="710" />
+</file>
+<file path="src\tests\Login.spec.tsx">
+<testCase name=" should render Login" duration="1127" />
+</file>
+<file path="src\tests\Reset.spec.tsx">
+<testCase name=" should render Reset password" duration="845" />
+<testCase name=" should render Reset password" duration="452" />
+</file>
+<file path="src\tests\CadastrarEscola.spec.tsx">
+<testCase name="Cadastro feito" duration="8693" />
+<testCase name="Cadastro feito sem latitude e longitude" duration="3175" />
+<testCase name="Erro no cadastro" duration="2039" />
+<testCase name="Erro no cep" duration="2487" />
+<testCase name="Lista de escolas redireciona pra listagem" duration="149" />
+<testCase name="Cadastro CSV" duration="171" />
+<testCase name="Cadastro CSV erro" duration="138" />
+<testCase name="Cadastro CSV vazio" duration="188" />
+<testCase name="Cadastro sem enviar CSV" duration="124" />
+<testCase name="Sem o provider" duration="40" />
 </file>
 </testExecutions>
