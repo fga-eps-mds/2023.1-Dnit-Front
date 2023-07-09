@@ -2,7 +2,7 @@ name: Push Sonar Metrics
 on:
  push:
    branches:
-     - devel
+     - main
  pull_request:
    types: [opened, synchronize, reopened]
 jobs:
