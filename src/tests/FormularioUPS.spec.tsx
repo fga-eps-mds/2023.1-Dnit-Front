@@ -1,5 +1,6 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { rest } from "msw";
 import { MemoryRouter } from "react-router";
 import App from "../App";
 import server from "./mock/service";
@@ -75,5 +76,30 @@ describe("UPSForm", () => {
       },
       { interval: 1010 }
     );
+  });
+
+  test("Erro ", async () => {
+    server.use(
+      rest.get(
+        "https://api.aprovaunb.com.br/api/calcular/ups/escola",
+        (req, res, ctx) => {
+          return res(ctx.status(403));
+        }
+      )
+    );
+    const { getByLabelText, getByText } = render(
+      <MemoryRouter initialEntries={["/telaUPS"]}>
+        <App />
+      </MemoryRouter>
+    );
+
+    const latitudeInput = getByLabelText("Latitude");
+    const longitudeInput = getByLabelText("Longitude");
+    const submitButton = getByText("Calcular UPS");
+
+    fireEvent.change(latitudeInput, { target: { value: "12.456" } });
+    fireEvent.change(longitudeInput, { target: { value: "89.012" } });
+
+    userEvent.click(submitButton);
   });
 });
