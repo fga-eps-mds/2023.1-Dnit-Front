@@ -1,6 +1,5 @@
 import { Button } from "antd";
-//import IconeErro from "../../../assets/icons/iconeErro.svg";
-import "../../../styles/form/step3_erroTamanho.css";
+import "../../../styles/form/step3ErroTamanho.css";
 
 interface Step3_Erro2Props {
   onClickVoltar: () => void;

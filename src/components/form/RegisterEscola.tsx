@@ -5,9 +5,9 @@ import "../../styles/form.css";
 import Step1 from "./Steps/Step1";
 import Step2 from "./Steps/Step2";
 import Step3 from "./Steps/Step3";
-import Step3_Aceito from "./Steps/Step3_Aceito";
-import Step3_listagem from "./Steps/Step3_Listagem";
-import Step3_erroTamanho from "./Steps/Step3_erroTamanho";
+import Step3Aceito from "./Steps/Step3Aceito";
+import Step3Listagem from "./Steps/Step3Listagem";
+import Step3ErroTamanho from "./Steps/Step3ErroTamanho";
 export default function RegS() {
   const [screen, setScreen] = useState<
     "form1" | "form2" | "form3" | "form3_1" | "form3_listagem" | "form3_erroTamanho"
@@ -32,13 +32,13 @@ export default function RegS() {
             />
           )}
           {screen === "form3_1" && (
-            <Step3_Aceito onClickVoltar={() => setScreen("form1")} />
+            <Step3Aceito onClickVoltar={() => setScreen("form1")} />
           )}
           {screen === "form3_listagem" && (
-            <Step3_listagem onClickVoltar={() => setScreen("form1")} />
+            <Step3Listagem onClickVoltar={() => setScreen("form1")} />
           )}
           {screen === "form3_erroTamanho" && (
-            <Step3_erroTamanho onClickVoltar={() => setScreen("form1")} />
+            <Step3ErroTamanho onClickVoltar={() => setScreen("form1")} />
           )}
         </EscolasCadastradasProvider>
       </Form.Provider>

@@ -1,5 +1,5 @@
 import "../../../styles/form/step3_1.css"
-import { Button, Form, Space } from "antd";
+import { Button } from "antd";
 import { CheckCircleOutlined } from "@ant-design/icons";
 import { useEscolasCadastradas } from "../../../context/escolasCadastradasErro";
 

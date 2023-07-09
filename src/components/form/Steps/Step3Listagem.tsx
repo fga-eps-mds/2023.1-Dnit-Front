@@ -1,7 +1,6 @@
 import { Button } from "antd";
-//import Icone_aviso from "../../../assets/icons/iconeAviso.svg";
 import { useEscolasCadastradas } from "../../../context/escolasCadastradasErro";
-import "../../../styles/form/step3_listagem.css";
+import "../../../styles/form/step3Listagem.css";
 
 interface Step3Erro1Props {
   onClickVoltar: () => void;
