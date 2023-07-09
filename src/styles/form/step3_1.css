@@ -35,6 +35,13 @@
     margin-top: 10em;
 }
 
+.secaoVoltar2{
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 60%;
+    margin-top: 3em;
+}
+
 .botaoVoltar {
     background-color: #1351B4;
     color: white;
