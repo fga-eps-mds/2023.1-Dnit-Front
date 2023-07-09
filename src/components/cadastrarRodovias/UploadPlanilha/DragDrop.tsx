@@ -44,7 +44,7 @@ const App: React.FC<DragDropProps> = ({
 
                 const mensagem = error.response?.data;
 
-                message.error("Erro ao enviar o arquivo");
+                message.error(`${mensagem}`);
             }
         } else {
             message.warning("Nenhum arquivo carregado.");
