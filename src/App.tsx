@@ -9,11 +9,12 @@ import ResetPassword from "./pages/ResetPassword";
 import TelaUPS from "./pages/TelaUPS";
 import { AuthContext } from "./provider/Authentication";
 import "./styles/App.css";
+import CadastrarRodovias from "./pages/CadastrarRodovias";
 
 function App() {
   const { getAuth } = useContext(AuthContext);
   const isAuthenticated = getAuth();
-  document.title="DNIT";
+  document.title = "DNIT";
   return (
     <Routes>
       {isAuthenticated ? (
@@ -32,6 +33,7 @@ function App() {
       <Route path="/redefinirSenha" element={<ResetPassword />} />
       <Route path="/cadastro" element={<Register />} />
       <Route path="/esqueciSenha" element={<RecoverPassword />} />
+      <Route path="/cadastrarRodovias" element={<CadastrarRodovias />} />
       <Route path="/telaUPS" element={<TelaUPS />} />
     </Routes>
   );
