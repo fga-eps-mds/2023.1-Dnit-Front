@@ -19,6 +19,7 @@ const EtapasDeEnsinoURL = `${urlAPIEscolas}/dominio/etapasDeEnsino`;
 const MunicipioURL = `${urlAPIEscolas}/dominio/municipio`;
 const EscolasFiltradasURL = `${urlAPIEscolas}/escolas/obter`;
 const insertFileURL = `${urlAPIEscolas}/escolas/cadastrarEscolaPlanilha`;
+const insertFileRodoviasURL = `${urlAPIUps}/rodovia/cadastrarRodoviaPlanilha`;
 const calcularUpsURL = `${urlAPIUps}/calcular/ups/escola`;
 const EscolasInepURL = `${urlAPIEscolas}/solicitacaoAcao/escolas`;
 const SolicitacaoDeAcaoURL = `${urlAPIEscolas}/solicitacaoAcao`;
@@ -44,5 +45,6 @@ export {
   registerURL,
   resetPasswordURL,
   salvarSituacaoURL,
+  insertFileRodoviasURL,
   urlAPIViaCEP,
 };

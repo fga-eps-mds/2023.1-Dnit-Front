@@ -1,51 +1,522 @@
 <testExecutions version="1">
-<file path="src\tests\Situacao.spec.tsx">
-<testCase name="Alterar situa&#xe7;&#xe3;o escola" duration="657" />
-<testCase name="Alterar situa&#xe7;&#xe3;o escola erro" duration="268" />
-<testCase name="Remover situa&#xe7;&#xe3;o escola" duration="286" />
-<testCase name="Remover situa&#xe7;&#xe3;o escola erro" duration="295" />
-<testCase name="Erro de Provider de selectedValue" duration="70" />
-</file>
-<file path="src\tests\tabelaEscola.spec.tsx">
-<testCase name="Lista de escolas &#xe9; exibida corretamente" duration="491" />
-<testCase name="Filtragem de escolas" duration="1296" />
-<testCase name="Clicar em Cadastrar escola" duration="404" />
-<testCase name="Mudar quantidade de escolas por p&#xe1;gina" duration="219" />
-<testCase name="Exibir escola selecionada" duration="191" />
-</file>
-<file path="src\tests\Reset.spec.tsx">
-<testCase name=" should render Reset password" duration="459" />
-<testCase name=" should render Reset password" duration="336" />
-</file>
-<file path="src\tests\Register.spec.tsx">
-<testCase name="should render Register" duration="3466" />
-<testCase name="should render error in Register form" duration="1721" />
-</file>
-<file path="src\tests\Excluir.spec.tsx">
-<testCase name="Modal de excluir escola exibida corretamente" duration="620" />
-<testCase name="Modal de excluir escola exibida erro" duration="261" />
-</file>
-<file path="src\tests\Login.spec.tsx">
-<testCase name=" should render Login" duration="825" />
-</file>
-<file path="src\tests\CadastrarEscola.spec.tsx">
-<testCase name="Cadastro feito" duration="3867" />
-<testCase name="Cadastro feito sem latitude e longitude" duration="2528" />
-<testCase name="Erro no cadastro" duration="2808" />
-<testCase name="Erro no cep" duration="4436" />
-<testCase name="Lista de escolas redireciona pra listagem" duration="215" />
-<testCase name="Cadastro CSV" duration="195" />
-<testCase name="Cadastro CSV" duration="203" />
-<testCase name="Cadastro CSV" duration="319" />
-<testCase name="Cadastro CSV erro" duration="156" />
-<testCase name="Cadastro CSV vazio" duration="133" />
-<testCase name="Cadastro sem enviar CSV" duration="148" />
-<testCase name="Sem o provider" duration="43" />
-</file>
-<file path="src\tests\InfoEscola.spec.tsx">
-<testCase name="Exibir escola selecionada" duration="439" />
-</file>
-<file path="src\tests\Recover.spec.tsx">
-<testCase name=" should render Recover password" duration="246" />
+<file path="src\tests\CadastrarRodovias.spec.tsx">
+<testCase name="Cadastro via CSV" duration="1275">
+<failure message="Error"><![CDATA[Error: write after end
+    at new NodeError (node:internal/errors:371:5)
+    at write_ (node:_http_outgoing:748:11)
+    at NodeClientRequest.write (node:_http_outgoing:707:15)
+    at C:\Users\Antonio PC\Documents\EPS\novoRepFront\2023.1-Dnit-Front\node_modules\@mswjs\interceptors\src\interceptors\ClientRequest\NodeClientRequest.ts:204:22]]></failure>,<failure message="Error"><![CDATA[Error: write after end
+    at new NodeError (node:internal/errors:371:5)
+    at write_ (node:_http_outgoing:748:11)
+    at NodeClientRequest.write (node:_http_outgoing:707:15)
+    at C:\Users\Antonio PC\Documents\EPS\novoRepFront\2023.1-Dnit-Front\node_modules\@mswjs\interceptors\src\interceptors\ClientRequest\NodeClientRequest.ts:204:22]]></failure>,<failure message="Error"><![CDATA[Error: Unable to find an element with the text: Inser&#xe7;&#xe3;o de arquivos conclu&#xed;da com sucesso. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;div
+      class=&quot;App&quot;
+    &gt;
+      &lt;header
+        class=&quot;App-header&quot;
+      &gt;
+        &lt;div
+          class=&quot;HeaderIcon&quot;
+          data-testid=&quot;redirecionar&quot;
+        &gt;
+          &lt;img
+            alt=&quot;&#xed;cone gov&quot;
+            class=&quot;iconGov&quot;
+            src=&quot;test-file-stub&quot;
+          /&gt;
+          &lt;img
+            alt=&quot;&#xed;cone dnit&quot;
+            class=&quot;iconDNIT&quot;
+            src=&quot;test-file-stub&quot;
+          /&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;HeaderContrast&quot;
+        &gt;
+          &lt;img
+            alt=&quot;Button contrast&quot;
+            class=&quot;buttonContrast&quot;
+            src=&quot;test-file-stub&quot;
+          /&gt;
+          &lt;div
+            class=&quot;text-alto-contraste&quot;
+          &gt;
+            Alto contraste
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/header&gt;
+      &lt;div
+        class=&quot;Secao2&quot;
+      &gt;
+        &lt;div
+          class=&quot;form&quot;
+        &gt;
+          &lt;div
+            class=&quot;form3&quot;
+          &gt;
+            &lt;h2&gt;
+              Inserir rodovias via planilha
+            &lt;/h2&gt;
+            &lt;div
+              class=&quot;secaoInserir&quot;
+            &gt;
+              &lt;span
+                class=&quot;ant-upload-wrapper css-dev-only-do-not-override-14wwjjs&quot;
+              &gt;
+                &lt;div
+                  class=&quot;ant-upload ant-upload-drag css-dev-only-do-not-override-14wwjjs&quot;
+                &gt;
+                  &lt;span
+                    class=&quot;ant-upload ant-upload-btn&quot;
+                    role=&quot;button&quot;
+                    tabindex=&quot;0&quot;
+                  &gt;
+                    &lt;input
+                      accept=&quot;&quot;
+                      data-testid=&quot;drag-drop-container&quot;
+                      multiple=&quot;&quot;
+                      style=&quot;display: none;&quot;
+                      type=&quot;file&quot;
+                    /&gt;
+                    &lt;div
+                      class=&quot;ant-upload-drag-container&quot;
+                    &gt;
+                      &lt;p
+                        class=&quot;ant-upload-drag-icon&quot;
+                      &gt;
+                        &lt;span
+                          aria-label=&quot;file&quot;
+                          class=&quot;anticon anticon-file&quot;
+                          role=&quot;img&quot;
+                        &gt;
+                          &lt;svg
+                            aria-hidden=&quot;true&quot;
+                            data-icon=&quot;file&quot;
+                            fill=&quot;currentColor&quot;
+                            focusable=&quot;false&quot;
+                            height=&quot;1em&quot;
+                            viewBox=&quot;64 64 896 896&quot;
+                            width=&quot;1em&quot;
+                          &gt;
+                            &lt;path
+                              d=&quot;M854.6 288.6L639.4 73.4c-6-6-14.1-9.4-22.6-9.4H192c-17.7 0-32 14.3-32 32v832c0 17.7 14.3 32 32 32h640c17.7 0 32-14.3 32-32V311.3c0-8.5-3.4-16.7-9.4-22.7zM790.2 326H602V137.8L790.2 326zm1.8 562H232V136h302v216a42 42 0 0042 42h216v494z&quot;
+                            /&gt;
+                          &lt;/svg&gt;
+                        &lt;/span&gt;
+                      &lt;/p&gt;
+                      &lt;p
+                        class=&quot;ant-upload-text&quot;
+                      &gt;
+                        Voc&#xea; pode clicar ou arrastar arquivos aqui para adicion&#xe1;-los.
+                      &lt;/p&gt;
+                    &lt;/div&gt;
+                  &lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div
+                  class=&quot;ant-upload-list ant-upload-list-text&quot;
+                &gt;
+                  &lt;div
+                    class=&quot;ant-upload-list-item-container&quot;
+                  &gt;
+                    &lt;div
+                      class=&quot;ant-upload-list-item ant-upload-list-item-undefined&quot;
+                    &gt;
+                      &lt;div
+                        class=&quot;ant-upload-icon&quot;
+                      &gt;
+                        &lt;span
+                          aria-label=&quot;paper-clip&quot;
+                          class=&quot;anticon anticon-paper-clip&quot;
+                          role=&quot;img&quot;
+                        &gt;
+                          &lt;svg
+                            aria-hidden=&quot;true&quot;
+                            data-icon=&quot;paper-clip&quot;
+                            fill=&quot;currentColor&quot;
+                            focusable=&quot;false&quot;
+                            height=&quot;1em&quot;
+                            viewBox=&quot;64 64 896 896&quot;
+                            width=&quot;1em&quot;
+                          &gt;
+                            &lt;path
+                              d=&quot;M779.3 196.6c-94.2-94.2-247.6-94.2-341.7 0l-261 260.8c-1.7 1.7-2.6 4-2.6 6.4s.9 4.7 2.6 6.4l36.9 36.9a9 9 0 0012.7 0l261-260.8c32.4-32.4 75.5-50.2 121.3-50.2s88.9 17.8 121.2 50.2c32.4 32.4 50.2 75.5 50.2 121.2 0 45.8-17.8 88.8-50.2 121.2l-266 265.9-43.1 43.1c-40.3 40.3-105.8 40.3-146.1 0-19.5-19.5-30.2-45.4-30.2-73s10.7-53.5 30.2-73l263.9-263.8c6.7-6.6 15.5-10.3 24.9-10.3h.1c9.4 0 18.1 3.7 24.7 10.3 6.7 6.7 10.3 15.5 10.3 24.9 0 9.3-3.7 18.1-10.3 24.7L372.4 653c-1.7 1.7-2.6 4-2.6 6.4s.9 4.7 2.6 6.4l36.9 36.9a9 9 0 0012.7 0l215.6-215.6c19.9-19.9 30.8-46.3 30.8-74.4s-11-54.6-30.8-74.4c-41.1-41.1-107.9-41-149 0L463 364 224.8 602.1A172.22 172.22 0 00174 724.8c0 46.3 18.1 89.8 50.8 122.5 33.9 33.8 78.3 50.7 122.7 50.7 44.4 0 88.8-16.9 122.6-50.7l309.2-309C824.8 492.7 850 432 850 367.5c.1-64.6-25.1-125.3-70.7-1...
+    at waitForWrapper (C:\Users\Antonio PC\Documents\EPS\novoRepFront\2023.1-Dnit-Front\node_modules\@testing-library\dom\dist\wait-for.js:166:27)
+    at C:\Users\Antonio PC\Documents\EPS\novoRepFront\2023.1-Dnit-Front\node_modules\@testing-library\dom\dist\query-helpers.js:86:33
+    at findByText (C:\Users\Antonio PC\Documents\EPS\novoRepFront\2023.1-Dnit-Front\src\tests\CadastrarRodovias.spec.tsx:47:16)
+    at call (C:\Users\Antonio PC\Documents\EPS\novoRepFront\2023.1-Dnit-Front\src\tests\CadastrarRodovias.spec.tsx:2:1)
+    at Generator.tryCatch (C:\Users\Antonio PC\Documents\EPS\novoRepFront\2023.1-Dnit-Front\src\tests\CadastrarRodovias.spec.tsx:2:1)
+    at Generator._invoke [as next] (C:\Users\Antonio PC\Documents\EPS\novoRepFront\2023.1-Dnit-Front\src\tests\CadastrarRodovias.spec.tsx:2:1)
+    at asyncGeneratorStep (C:\Users\Antonio PC\Documents\EPS\novoRepFront\2023.1-Dnit-Front\src\tests\CadastrarRodovias.spec.tsx:2:1)
+    at asyncGeneratorStep (C:\Users\Antonio PC\Documents\EPS\novoRepFront\2023.1-Dnit-Front\src\tests\CadastrarRodovias.spec.tsx:2:1)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)]]></failure>
+</testCase>
+<testCase name="Cadastro CSV erro" duration="1103">
+<failure message="Error"><![CDATA[Error: write after end
+    at new NodeError (node:internal/errors:371:5)
+    at write_ (node:_http_outgoing:748:11)
+    at NodeClientRequest.write (node:_http_outgoing:707:15)
+    at C:\Users\Antonio PC\Documents\EPS\novoRepFront\2023.1-Dnit-Front\node_modules\@mswjs\interceptors\src\interceptors\ClientRequest\NodeClientRequest.ts:204:22]]></failure>,<failure message="Error"><![CDATA[Error: write after end
+    at new NodeError (node:internal/errors:371:5)
+    at write_ (node:_http_outgoing:748:11)
+    at NodeClientRequest.write (node:_http_outgoing:707:15)
+    at C:\Users\Antonio PC\Documents\EPS\novoRepFront\2023.1-Dnit-Front\node_modules\@mswjs\interceptors\src\interceptors\ClientRequest\NodeClientRequest.ts:204:22]]></failure>,<failure message="Error"><![CDATA[Error: Unable to find an element with the text: Erro na inser&#xe7;&#xe3;o das rodovias!. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+&lt;body&gt;
+  &lt;div
+    class=&quot;ant-message ant-message-top css-dev-only-do-not-override-14wwjjs&quot;
+    style=&quot;left: 50%; transform: translateX(-50%); top: 8px;&quot;
+  &gt;
+    &lt;div
+      class=&quot;ant-message-notice ant-message-notice-error css-dev-only-do-not-override-14wwjjs&quot;
+    &gt;
+      &lt;div
+        class=&quot;ant-message-notice-content&quot;
+      &gt;
+        &lt;div
+          class=&quot;ant-message-custom-content ant-message-error&quot;
+        &gt;
+          &lt;span
+            aria-label=&quot;close-circle&quot;
+            class=&quot;anticon anticon-close-circle&quot;
+            role=&quot;img&quot;
+          &gt;
+            &lt;svg
+              aria-hidden=&quot;true&quot;
+              data-icon=&quot;close-circle&quot;
+              fill=&quot;currentColor&quot;
+              focusable=&quot;false&quot;
+              height=&quot;1em&quot;
+              viewBox=&quot;64 64 896 896&quot;
+              width=&quot;1em&quot;
+            &gt;
+              &lt;path
+                d=&quot;M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm165.4 618.2l-66-.3L512 563.4l-99.3 118.4-66.1.3c-4.4 0-8-3.5-8-8 0-1.9.7-3.7 1.9-5.2l130.1-155L340.5 359a8.32 8.32 0 01-1.9-5.2c0-4.4 3.6-8 8-8l66.1.3L512 464.6l99.3-118.4 66-.3c4.4 0 8 3.5 8 8 0 1.9-.7 3.7-1.9 5.2L553.5 514l130 155c1.2 1.5 1.9 3.3 1.9 5.2 0 4.4-3.6 8-8 8z&quot;
+              /&gt;
+            &lt;/svg&gt;
+          &lt;/span&gt;
+          &lt;span&gt;
+            undefined
+          &lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div
+      class=&quot;ant-message-notice ant-message-notice-error css-dev-only-do-not-override-14wwjjs&quot;
+    &gt;
+      &lt;div
+        class=&quot;ant-message-notice-content&quot;
+      &gt;
+        &lt;div
+          class=&quot;ant-message-custom-content ant-message-error&quot;
+        &gt;
+          &lt;span
+            aria-label=&quot;close-circle&quot;
+            class=&quot;anticon anticon-close-circle&quot;
+            role=&quot;img&quot;
+          &gt;
+            &lt;svg
+              aria-hidden=&quot;true&quot;
+              data-icon=&quot;close-circle&quot;
+              fill=&quot;currentColor&quot;
+              focusable=&quot;false&quot;
+              height=&quot;1em&quot;
+              viewBox=&quot;64 64 896 896&quot;
+              width=&quot;1em&quot;
+            &gt;
+              &lt;path
+                d=&quot;M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm165.4 618.2l-66-.3L512 563.4l-99.3 118.4-66.1.3c-4.4 0-8-3.5-8-8 0-1.9.7-3.7 1.9-5.2l130.1-155L340.5 359a8.32 8.32 0 01-1.9-5.2c0-4.4 3.6-8 8-8l66.1.3L512 464.6l99.3-118.4 66-.3c4.4 0 8 3.5 8 8 0 1.9-.7 3.7-1.9 5.2L553.5 514l130 155c1.2 1.5 1.9 3.3 1.9 5.2 0 4.4-3.6 8-8 8z&quot;
+              /&gt;
+            &lt;/svg&gt;
+          &lt;/span&gt;
+          &lt;span&gt;
+            undefined
+          &lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;div
+      class=&quot;App&quot;
+    &gt;
+      &lt;header
+        class=&quot;App-header&quot;
+      &gt;
+        &lt;div
+          class=&quot;HeaderIcon&quot;
+          data-testid=&quot;redirecionar&quot;
+        &gt;
+          &lt;img
+            alt=&quot;&#xed;cone gov&quot;
+            class=&quot;iconGov&quot;
+            src=&quot;test-file-stub&quot;
+          /&gt;
+          &lt;img
+            alt=&quot;&#xed;cone dnit&quot;
+            class=&quot;iconDNIT&quot;
+            src=&quot;test-file-stub&quot;
+          /&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;HeaderContrast&quot;
+        &gt;
+          &lt;img
+            alt=&quot;Button contrast&quot;
+            class=&quot;buttonContrast&quot;
+            src=&quot;test-file-stub&quot;
+          /&gt;
+          &lt;div
+            class=&quot;text-alto-contraste&quot;
+          &gt;
+            Alto contraste
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/header&gt;
+      &lt;div
+        class=&quot;Secao2&quot;
+      &gt;
+        &lt;div
+          class=&quot;form&quot;
+        &gt;
+          &lt;div
+            class=&quot;form3&quot;
+          &gt;
+            &lt;h2&gt;
+              Inserir rodovias via planilha
+            &lt;/h2&gt;
+            &lt;div
+              class=&quot;secaoInserir&quot;
+            &gt;
+              &lt;span
+                class=&quot;ant-upload-wrapper css-dev-only-do-not-override-14wwjjs&quot;
+              &gt;
+                &lt;div
+                  class=&quot;ant-upload ant-upload-drag css-dev-only-do-not-override-14wwjjs&quot;
+                &gt;
+                  &lt;span
+                    class=&quot;ant-upload ant-upload-btn&quot;
+                    role=&quot;button&quot;
+                    tabindex=&quot;0&quot;
+                  &gt;
+                    &lt;input
+                      accept=&quot;&quot;
+                      data-testid=&quot;drag-drop-container&quot;
+                      multiple=&quot;&quot;
+                      style=&quot;display: none;&quot;
+                      type=&quot;file&quot;
+                    /&gt;
+                    &lt;div
+                      class=&quot;ant-upload-drag-container&quot;
+                    &gt;
+                      &lt;p
+                        class=&quot;ant-upload-drag-icon&quot;
+                      &gt;
+                        &lt;span
+                          aria-label=&quot;file&quot;
+                          class=&quot;anticon anticon-file&quot;
+                          role=&quot;img&quot;
+                        &gt;
+                          &lt;svg
+                            aria-hidden=&quot;true&quot;
+                            [...
+    at waitForWrapper (C:\Users\Antonio PC\Documents\EPS\novoRepFront\2023.1-Dnit-Front\node_modules\@testing-library\dom\dist\wait-for.js:166:27)
+    at C:\Users\Antonio PC\Documents\EPS\novoRepFront\2023.1-Dnit-Front\node_modules\@testing-library\dom\dist\query-helpers.js:86:33
+    at findByText (C:\Users\Antonio PC\Documents\EPS\novoRepFront\2023.1-Dnit-Front\src\tests\CadastrarRodovias.spec.tsx:79:16)
+    at call (C:\Users\Antonio PC\Documents\EPS\novoRepFront\2023.1-Dnit-Front\src\tests\CadastrarRodovias.spec.tsx:2:1)
+    at Generator.tryCatch (C:\Users\Antonio PC\Documents\EPS\novoRepFront\2023.1-Dnit-Front\src\tests\CadastrarRodovias.spec.tsx:2:1)
+    at Generator._invoke [as next] (C:\Users\Antonio PC\Documents\EPS\novoRepFront\2023.1-Dnit-Front\src\tests\CadastrarRodovias.spec.tsx:2:1)
+    at asyncGeneratorStep (C:\Users\Antonio PC\Documents\EPS\novoRepFront\2023.1-Dnit-Front\src\tests\CadastrarRodovias.spec.tsx:2:1)
+    at asyncGeneratorStep (C:\Users\Antonio PC\Documents\EPS\novoRepFront\2023.1-Dnit-Front\src\tests\CadastrarRodovias.spec.tsx:2:1)]]></failure>
+</testCase>
+<testCase name="Cadastro CSV vazio" duration="1089">
+<failure message="Error"><![CDATA[Error: write after end
+    at new NodeError (node:internal/errors:371:5)
+    at write_ (node:_http_outgoing:748:11)
+    at NodeClientRequest.write (node:_http_outgoing:707:15)
+    at C:\Users\Antonio PC\Documents\EPS\novoRepFront\2023.1-Dnit-Front\node_modules\@mswjs\interceptors\src\interceptors\ClientRequest\NodeClientRequest.ts:204:22]]></failure>,<failure message="Error"><![CDATA[Error: write after end
+    at new NodeError (node:internal/errors:371:5)
+    at write_ (node:_http_outgoing:748:11)
+    at NodeClientRequest.write (node:_http_outgoing:707:15)
+    at C:\Users\Antonio PC\Documents\EPS\novoRepFront\2023.1-Dnit-Front\node_modules\@mswjs\interceptors\src\interceptors\ClientRequest\NodeClientRequest.ts:204:22]]></failure>,<failure message="Error"><![CDATA[Error: Unable to find an element with the text: Nenhum arquivo enviado.. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+&lt;body&gt;
+  &lt;div
+    class=&quot;ant-message ant-message-top css-dev-only-do-not-override-14wwjjs&quot;
+    style=&quot;left: 50%; transform: translateX(-50%); top: 8px;&quot;
+  &gt;
+    &lt;div
+      class=&quot;ant-message-notice ant-message-notice-error css-dev-only-do-not-override-14wwjjs&quot;
+    &gt;
+      &lt;div
+        class=&quot;ant-message-notice-content&quot;
+      &gt;
+        &lt;div
+          class=&quot;ant-message-custom-content ant-message-error&quot;
+        &gt;
+          &lt;span
+            aria-label=&quot;close-circle&quot;
+            class=&quot;anticon anticon-close-circle&quot;
+            role=&quot;img&quot;
+          &gt;
+            &lt;svg
+              aria-hidden=&quot;true&quot;
+              data-icon=&quot;close-circle&quot;
+              fill=&quot;currentColor&quot;
+              focusable=&quot;false&quot;
+              height=&quot;1em&quot;
+              viewBox=&quot;64 64 896 896&quot;
+              width=&quot;1em&quot;
+            &gt;
+              &lt;path
+                d=&quot;M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm165.4 618.2l-66-.3L512 563.4l-99.3 118.4-66.1.3c-4.4 0-8-3.5-8-8 0-1.9.7-3.7 1.9-5.2l130.1-155L340.5 359a8.32 8.32 0 01-1.9-5.2c0-4.4 3.6-8 8-8l66.1.3L512 464.6l99.3-118.4 66-.3c4.4 0 8 3.5 8 8 0 1.9-.7 3.7-1.9 5.2L553.5 514l130 155c1.2 1.5 1.9 3.3 1.9 5.2 0 4.4-3.6 8-8 8z&quot;
+              /&gt;
+            &lt;/svg&gt;
+          &lt;/span&gt;
+          &lt;span&gt;
+            undefined
+          &lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div
+      class=&quot;ant-message-notice ant-message-notice-error css-dev-only-do-not-override-14wwjjs&quot;
+    &gt;
+      &lt;div
+        class=&quot;ant-message-notice-content&quot;
+      &gt;
+        &lt;div
+          class=&quot;ant-message-custom-content ant-message-error&quot;
+        &gt;
+          &lt;span
+            aria-label=&quot;close-circle&quot;
+            class=&quot;anticon anticon-close-circle&quot;
+            role=&quot;img&quot;
+          &gt;
+            &lt;svg
+              aria-hidden=&quot;true&quot;
+              data-icon=&quot;close-circle&quot;
+              fill=&quot;currentColor&quot;
+              focusable=&quot;false&quot;
+              height=&quot;1em&quot;
+              viewBox=&quot;64 64 896 896&quot;
+              width=&quot;1em&quot;
+            &gt;
+              &lt;path
+                d=&quot;M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm165.4 618.2l-66-.3L512 563.4l-99.3 118.4-66.1.3c-4.4 0-8-3.5-8-8 0-1.9.7-3.7 1.9-5.2l130.1-155L340.5 359a8.32 8.32 0 01-1.9-5.2c0-4.4 3.6-8 8-8l66.1.3L512 464.6l99.3-118.4 66-.3c4.4 0 8 3.5 8 8 0 1.9-.7 3.7-1.9 5.2L553.5 514l130 155c1.2 1.5 1.9 3.3 1.9 5.2 0 4.4-3.6 8-8 8z&quot;
+              /&gt;
+            &lt;/svg&gt;
+          &lt;/span&gt;
+          &lt;span&gt;
+            undefined
+          &lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div
+      class=&quot;ant-message-notice ant-message-notice-error css-dev-only-do-not-override-14wwjjs&quot;
+    &gt;
+      &lt;div
+        class=&quot;ant-message-notice-content&quot;
+      &gt;
+        &lt;div
+          class=&quot;ant-message-custom-content ant-message-error&quot;
+        &gt;
+          &lt;span
+            aria-label=&quot;close-circle&quot;
+            class=&quot;anticon anticon-close-circle&quot;
+            role=&quot;img&quot;
+          &gt;
+            &lt;svg
+              aria-hidden=&quot;true&quot;
+              data-icon=&quot;close-circle&quot;
+              fill=&quot;currentColor&quot;
+              focusable=&quot;false&quot;
+              height=&quot;1em&quot;
+              viewBox=&quot;64 64 896 896&quot;
+              width=&quot;1em&quot;
+            &gt;
+              &lt;path
+                d=&quot;M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm165.4 618.2l-66-.3L512 563.4l-99.3 118.4-66.1.3c-4.4 0-8-3.5-8-8 0-1.9.7-3.7 1.9-5.2l130.1-155L340.5 359a8.32 8.32 0 01-1.9-5.2c0-4.4 3.6-8 8-8l66.1.3L512 464.6l99.3-118.4 66-.3c4.4 0 8 3.5 8 8 0 1.9-.7 3.7-1.9 5.2L553.5 514l130 155c1.2 1.5 1.9 3.3 1.9 5.2 0 4.4-3.6 8-8 8z&quot;
+              /&gt;
+            &lt;/svg&gt;
+          &lt;/span&gt;
+          &lt;span&gt;
+            undefined
+          &lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;div
+      class=&quot;App&quot;
+    &gt;
+      &lt;header
+        class=&quot;App-header&quot;
+      &gt;
+        &lt;div
+          class=&quot;HeaderIcon&quot;
+          data-testid=&quot;redirecionar&quot;
+        &gt;
+          &lt;img
+            alt=&quot;&#xed;cone gov&quot;
+            class=&quot;iconGov&quot;
+            src=&quot;test-file-stub&quot;
+          /&gt;
+          &lt;img
+            alt=&quot;&#xed;cone dnit&quot;
+            class=&quot;iconDNIT&quot;
+            src=&quot;test-file-stub&quot;
+          /&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;HeaderContrast&quot;
+        &gt;
+          &lt;img
+            alt=&quot;Button contrast&quot;
+            class=&quot;buttonContrast&quot;
+            src=&quot;test-file-stub&quot;
+          /&gt;
+          &lt;div
+            class=&quot;text-alto-contraste&quot;
+          &gt;
+            Alto contraste
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/header&gt;
+      &lt;div
+        class=&quot;Secao2&quot;
+      &gt;
+        &lt;div
+          class=&quot;form&quot;
+        &gt;
+          &lt;div
+            class=&quot;form3&quot;
+          &gt;
+            &lt;h2&gt;
+              Inserir rodovias via planilha
+            &lt;/h2&gt;
+            &lt;div
+              class=...
+    at waitForWrapper (C:\Users\Antonio PC\Documents\EPS\novoRepFront\2023.1-Dnit-Front\node_modules\@testing-library\dom\dist\wait-for.js:166:27)
+    at C:\Users\Antonio PC\Documents\EPS\novoRepFront\2023.1-Dnit-Front\node_modules\@testing-library\dom\dist\query-helpers.js:86:33
+    at findByText (C:\Users\Antonio PC\Documents\EPS\novoRepFront\2023.1-Dnit-Front\src\tests\CadastrarRodovias.spec.tsx:109:16)
+    at call (C:\Users\Antonio PC\Documents\EPS\novoRepFront\2023.1-Dnit-Front\src\tests\CadastrarRodovias.spec.tsx:2:1)
+    at Generator.tryCatch (C:\Users\Antonio PC\Documents\EPS\novoRepFront\2023.1-Dnit-Front\src\tests\CadastrarRodovias.spec.tsx:2:1)
+    at Generator._invoke [as next] (C:\Users\Antonio PC\Documents\EPS\novoRepFront\2023.1-Dnit-Front\src\tests\CadastrarRodovias.spec.tsx:2:1)
+    at asyncGeneratorStep (C:\Users\Antonio PC\Documents\EPS\novoRepFront\2023.1-Dnit-Front\src\tests\CadastrarRodovias.spec.tsx:2:1)
+    at asyncGeneratorStep (C:\Users\Antonio PC\Documents\EPS\novoRepFront\2023.1-Dnit-Front\src\tests\CadastrarRodovias.spec.tsx:2:1)
+    at runNextTicks (node:internal/process/task_queues:61:5)
+    at listOnTimeout (node:internal/timers:528:9)
+    at processTimers (node:internal/timers:502:7)]]></failure>
+</testCase>
+<testCase name="Cadastro sem enviar CSV" duration="259" />
 </file>
 </testExecutions>

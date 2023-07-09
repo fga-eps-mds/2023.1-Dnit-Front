@@ -6,6 +6,9 @@
     height: 30em;
 }
 
+.ant-upload-drag-icon{
+    justify-content: center !important; 
+}
 
 .botaoEscolherArquivo {
     background-color: #1351B4;
