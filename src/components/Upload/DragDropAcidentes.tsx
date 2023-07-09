@@ -59,7 +59,7 @@ const App: React.FC<DragDropProps> = ({
   };
 
   return (
-    <div>
+    <>
       <Dragger
         {...props}
         ref={uploadRef}
@@ -86,7 +86,7 @@ const App: React.FC<DragDropProps> = ({
           Enviar arquivo
         </Button>
       </div>
-    </div>
+    </>
   );
 };
 
