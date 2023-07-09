@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { rest } from "msw";
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
@@ -23,19 +23,21 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
 test("Cadastro via CSV", async () => {
   server.use(
     rest.post(
-      "https://api.aprovaunb.com.br/api/rodovia/cadastrarRodoviaPlanilha",
+      "https://api.dnit-eps-mds.com.br/api/rodovia/cadastrarRodoviaPlanilha",
       (req, res, ctx) => {
         return res(ctx.status(200));
       }
-      )
-    );
+    )
+  );
   render(
     <MemoryRouter initialEntries={["/cadastrarRodovias"]}>
       <App />
     </MemoryRouter>
   );
 
-  const arquivo = new File(["file content"], "arquivo.csv", { type: "text/csv" });
+  const arquivo = new File(["file content"], "arquivo.csv", {
+    type: "text/csv",
+  });
   const dragDropContainer = screen.getByTestId("drag-drop-container");
   fireEvent.change(dragDropContainer, { target: { files: [arquivo] } });
 
@@ -44,19 +46,16 @@ test("Cadastro via CSV", async () => {
   const botaoEnviar = screen.getByText("Enviar Arquivo");
   fireEvent.click(botaoEnviar);
 
-  await screen.findByText("Inserção de arquivos concluída com sucesso")
+  await screen.findByText("Inserção de arquivos concluída com sucesso");
 
   const botaoConcluir = screen.getByText("Concluir");
   fireEvent.click(botaoConcluir);
-
-})
-
-
+});
 
 test("Cadastro CSV erro", async () => {
   server.use(
     rest.post(
-      "https://api.aprovaunb.com.br/api/rodovia/cadastrarRodoviaPlanilha",
+      "https://api.dnit-eps-mds.com.br/api/rodovia/cadastrarRodoviaPlanilha",
       (req, res, ctx) => {
         return res(ctx.status(406));
       }
@@ -68,13 +67,15 @@ test("Cadastro CSV erro", async () => {
     </MemoryRouter>
   );
 
-  const arquivo = new File(["file content"], "arquivo.csv", { type: "text/csv" });
+  const arquivo = new File(["file content"], "arquivo.csv", {
+    type: "text/csv",
+  });
   const dragDropContainer = screen.getByTestId("drag-drop-container");
   fireEvent.change(dragDropContainer, { target: { files: [arquivo] } });
 
   await screen.findByText("arquivo.csv");
 
-  const botaoEnviar = screen.getByText("Enviar Arquivo")
+  const botaoEnviar = screen.getByText("Enviar Arquivo");
   fireEvent.click(botaoEnviar);
   await screen.findByText("Erro na inserção das rodovias!");
 
@@ -85,9 +86,9 @@ test("Cadastro CSV erro", async () => {
 test("Cadastro CSV vazio", async () => {
   server.use(
     rest.post(
-      "https://api.aprovaunb.com.br/api/rodovia/cadastrarRodoviaPlanilha",
+      "https://api.dnit-eps-mds.com.br/api/rodovia/cadastrarRodoviaPlanilha",
       (req, res, ctx) => {
-        return res(ctx.status(400),ctx.json('Nenhum arquivo enviado.'));
+        return res(ctx.status(400), ctx.json("Nenhum arquivo enviado."));
       }
     )
   );
@@ -107,13 +108,12 @@ test("Cadastro CSV vazio", async () => {
   fireEvent.click(enviarButton);
 
   await screen.findByText("Nenhum arquivo enviado.");
-
 });
 
 test("Cadastro sem enviar CSV", async () => {
   server.use(
     rest.post(
-      "https://api.aprovaunb.com.br/api/rodovia/cadastrarRodoviaPlanilha",
+      "https://api.dnit-eps-mds.com.br/api/rodovia/cadastrarRodoviaPlanilha",
       (req, res, ctx) => {
         return res(ctx.json([]));
       }
@@ -133,5 +133,3 @@ test("Cadastro sem enviar CSV", async () => {
   const cancelar = screen.getByText("Cancelar");
   fireEvent.click(cancelar);
 });
-
-
