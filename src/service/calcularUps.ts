@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from "axios";
 import { calcularUpsURL } from "../consts/service";
 import { CalcularUpsData } from "../models/service";
 
-interface calcularUpsResponse {
+interface CalcularUpsResponse {
   status: number;
   ups2018: number;
   ups2019: number;
@@ -14,9 +14,9 @@ interface calcularUpsResponse {
 
 async function fetchCalcularUps(
   coordenadasData: CalcularUpsData
-): Promise<calcularUpsResponse> {
+): Promise<CalcularUpsResponse> {
   try {
-    const response: AxiosResponse<calcularUpsResponse> = await axios.get(
+    const response: AxiosResponse<CalcularUpsResponse> = await axios.get(
       calcularUpsURL, { params: { Latitude: coordenadasData.latitude, Longitude: coordenadasData.longitude } }
     );
     return response.data;

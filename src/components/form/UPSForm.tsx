@@ -1,8 +1,7 @@
 import React from 'react';
-import { Input, Button, Form } from 'antd';
+import { Input, Button, Form, Spin } from 'antd';
 import "../../styles/form/upsForm.css";
 import fetchCalcularUps from '../../service/calcularUps';
-import { Spin } from 'antd';
 
 const UPSForm: React.FC = () => {
     const [form] = Form.useForm();
