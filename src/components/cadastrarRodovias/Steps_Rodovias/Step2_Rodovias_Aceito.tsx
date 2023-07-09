@@ -1,12 +1,12 @@
 import "../../../styles/form/step3_1.css"
-import {Button, Form, Space} from "antd";
+import { Button } from "antd";
 import { CheckCircleOutlined } from "@ant-design/icons"
 
-interface Step2_Rodovias_Aceito {
+interface Step2RodoviasAceito {
     onClickVoltar: () => void;
 }
 
-export default function Step2_Rodovias_Aceito({onClickVoltar}: Step2_Rodovias_Aceito) {
+export default function Step2_Rodovias_Aceito({ onClickVoltar }: Step2RodoviasAceito) {
     return (
         <div className="form3_1">
             <div className="secaoTexto">
@@ -20,5 +20,5 @@ export default function Step2_Rodovias_Aceito({onClickVoltar}: Step2_Rodovias_Ac
             </div>
 
         </div>
-    )    
+    )
 }

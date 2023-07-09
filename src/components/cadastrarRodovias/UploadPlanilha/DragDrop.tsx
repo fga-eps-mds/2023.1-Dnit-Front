@@ -2,7 +2,6 @@ import { FileOutlined } from "@ant-design/icons";
 import type { UploadFile, UploadProps } from "antd";
 import { Button, Upload, message } from "antd";
 import { UploadChangeParam } from "antd/lib/upload";
-import axios from "axios";
 import React, { useRef, useState } from "react";
 import { insertFileRodoviasURL } from "../../../consts/service";
 import "../../../styles/form/step3.css";
@@ -31,26 +30,21 @@ const App: React.FC<DragDropProps> = ({
     const uploadRef = useRef<any>(null);
     const [fileList, setFileList] = useState<UploadFile<any>[]>([]);
     const handleButtonClick = async () => {
-        //console.log(fileList);
         if (fileList.length > 0) {
             const formData = new FormData();
             formData.append("arquivo", fileList[0].originFileObj as File);
-
             try {
-                const resposta = await fetchInsertRodoviaFile(formData);
+                await fetchInsertRodoviaFile(formData);
+                message.success("Arquivo adicionado com sucesso");
+                onClickAceito();
 
-
-
-                    message.success("Arquivo adicionado com sucesso");
-                    onClickAceito();
-                
             } catch (error: any) {
                 console.log(error.response);
                 error.response && error.response.status == 406 && onClickErrorTamanho();
 
                 const mensagem = error.response?.data;
 
-                message.error(`${mensagem}`);
+                message.error("Erro ao enviar o arquivo");
             }
         } else {
             message.warning("Nenhum arquivo carregado.");

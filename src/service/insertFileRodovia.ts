@@ -1,6 +1,5 @@
 import axios, { AxiosResponse } from "axios";
 import { insertFileRodoviasURL } from "../consts/service";
-import { InsertFileData } from "../models/service";
 
 interface InsertFileResponse {
     status: number;

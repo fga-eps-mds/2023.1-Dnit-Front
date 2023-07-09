@@ -1,12 +1,12 @@
 import { Button } from "antd";
 import "../../../styles/form/step3_erro2.css";
 
-interface Step3_Rodovias_erroProps {
+interface Step3RodoviasErroProps {
     onClickVoltar: () => void;
 }
 
 
-export default function Step3_Rodovias_erroProps({ onClickVoltar }: Step3_Rodovias_erroProps) {
+export default function Step3_Rodovias_erroProps({ onClickVoltar }: Step3RodoviasErroProps) {
     return (
         <div className="form3_erro1">
             <div className="secaoTexto">
