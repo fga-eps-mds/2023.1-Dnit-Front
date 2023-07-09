@@ -18,7 +18,6 @@ export interface viaCEP {
   erro?: boolean;
   sigla: string;
   descricao: string;
-
 }
 
 export interface Municipio {
@@ -129,23 +128,6 @@ export interface EscolaData {
 export interface ExcluirSituacaoData {
   idEscola: number;
 }
-// export interface InepSchoolData     {
-//   "anoCenso": number,
-//   "cod": number,
-//   "nome":string,
-//   "codCidade": number,
-//   "cidade": string,
-//   "estado": string,
-//   "regiao": string,
-//   "situacaoFuncionamento": number,
-//   "dependenciaAdministrativa": number,
-//   "idebAI": number,
-//   "idebAF": number,
-//   "enemMediaGeral": number,
-//   "situacaoFuncionamentoTxt": string,
-//   "dependenciaAdministrativaTxt": string
-// }
-
 export interface InepSchoolData {
   cod: number;
   estado: string;
@@ -163,4 +145,9 @@ export interface SolicitacaoDeAcao {
   CiclosEnsino: string[];
   QuantidadeAlunos: number;
   Observacoes: string | undefined;
+}
+
+export interface CalcularUpsData {
+  latitude: number;
+  longitude: number;
 }

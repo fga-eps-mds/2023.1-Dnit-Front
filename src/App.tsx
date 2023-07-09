@@ -4,17 +4,18 @@ import EscolasCadastradas from "./pages/EscolasCadastradas";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import RecoverPassword from "./pages/RecoverPassword";
+import Register from "./pages/Register";
 import RegisterSchool from "./pages/RegisterSchool";
 import ResetPassword from "./pages/ResetPassword";
 import SolicitacaoAcao from "./pages/SolicitacaoAcao";
-import Register from "./pages/Register";
+import TelaUPS from "./pages/TelaUPS";
 import { AuthContext } from "./provider/Authentication";
 import "./styles/App.css";
 
 function App() {
   const { getAuth } = useContext(AuthContext);
   const isAuthenticated = getAuth();
-  document.title="DNIT";
+  document.title = "DNIT";
   return (
     <Routes>
       {isAuthenticated ? (
@@ -39,6 +40,7 @@ function App() {
       <Route path="/escolas-cadastradas" element={<EscolasCadastradas />} />
 
       <Route path="/solicitacaoAcao" element={<SolicitacaoAcao />} />
+      <Route path="/telaUPS" element={<TelaUPS />} />
     </Routes>
   );
 }
