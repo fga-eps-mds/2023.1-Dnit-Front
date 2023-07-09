@@ -80,12 +80,19 @@
     text-align: left;
   }
 
-  .br-modal-body .br-input {
+  .br-modal-body .br-input{
     display: inline;
     flex-basis: 50%;
     margin-top: 5px;
     margin-bottom: 5px;
     padding: 10px;
+  }
+  .br-modal-body .br-select{
+    display: inline;
+    flex-basis: 50%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
   }
   
   .br-modal-body::-webkit-scrollbar {
@@ -181,6 +188,7 @@
     max-width: 400px;
     min-width: 100px;
     position: relative;
+
   }
   .br-select .br-list {
     background: var(--bg-color);

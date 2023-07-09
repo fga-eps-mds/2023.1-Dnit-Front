@@ -4,7 +4,7 @@ import fetchSituacao from "../../service/Situacao";
 import { useSelectedValue } from "../../context/Situation";
 import { EscolaData, Situacao } from "../../models/service";
 import fetchEtapasDeEnsino from "../../service/etapasDeEnsino";
-import { Form, Select } from "antd";
+import { Select } from "antd";
 
 interface ModalBodyProps {
   data: EscolaData
@@ -94,28 +94,7 @@ const ModalBody = ({data, onUpdateObservacao, onUpdateTelefone, onUpdateLatitude
 
   return (
     <div className="br-modal-body">
-      <div className="br-input">
-      <Form.Item name="ciclos" label="Etapas de Ensino" rules={rules}>
-              <Select
-                mode="multiple"
-                onClick={getEtapasDeEnsino}
-                options={OpcoesEtapasDeEnsino}
-                placeholder={Object.values(data.etapaEnsino)}
-                onChange={handleEtapasDeEnsinoChange}
-                onMouseDown={getEtapasDeEnsino}
-                notFoundContent={<p>Carregando...</p>}
-                placement="bottomRight"
-                optionLabelProp="label"
-                className="select-etapas-cadastro"
-                showSearch={false}
-                >
-                {OpcoesEtapasDeEnsino?.map((u) => (
-                  <Option key={u.label} value={u.value} label={<>{u.value}</>}>
-                    {u.value}
-                  </Option>
-                ))}
-              </Select>
-            </Form.Item>
+      <div className="br-input">      
         <label htmlFor="input-default">Código</label>
         <div className="input-group">
           <div className="input-icon">
@@ -199,6 +178,20 @@ const ModalBody = ({data, onUpdateObservacao, onUpdateTelefone, onUpdateLatitude
             placeholder={data.cep}
             disabled
           />
+          <div className="br-select">
+            <label htmlFor="select-multtiple">Etapas de Ensino</label>
+            <Select
+              mode="multiple"
+              placeholder={Object.values(data.etapaEnsino)}
+              onChange={handleEtapasDeEnsinoChange}
+              onMouseDown={getEtapasDeEnsino}
+              onClick={getEtapasDeEnsino}
+              options={OpcoesEtapasDeEnsino}
+              className="select-etapas"
+              showSearch={false}
+              data-testid="buscar-etapas"
+            />
+        </div>
         </div>
        
         </div>
