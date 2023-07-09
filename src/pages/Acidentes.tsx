@@ -2,7 +2,6 @@ import Header from "../components/Header";
 import "../styles/App.css";
 import CadAcidentes from "../components/form/CadAcidentes";
 import { useState } from "react";
-import { AcidentesProvider } from "../context/acidentesCadastrados";
 import Acidentes_erro1 from "../components/form/Steps/AcidentesErro1";
 import AcidentesAceito from "../components/form/Steps/AcidentesAceito";
 
