@@ -555,11 +555,7 @@ const server = setupServer(
     );
   }),
   rest.post(
-    "https://localhost:7083/api/solicitacaoAcao",
-    (req, res, ctx) => {
-      return res(ctx.json([2, 3]));
-    }
-  ),
+    "https://localhost:7083/api/solicitacaoAcao", (req, res, ctx) => { return res(ctx.status(200)); })
 );
 
 export default server;

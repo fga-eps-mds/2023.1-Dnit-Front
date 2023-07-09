@@ -22,29 +22,29 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
     };
 });
 
-// test("Button", () => {
+test("Button", () => {
 
-//     render(
-//         <MemoryRouter>
-//             <ButtonComponent />
-//         </MemoryRouter>
-//     );
-
-
-//     render(
-//         <MemoryRouter>
-//             <ButtonComponent disabled={true}/>
-//         </MemoryRouter>
-//     );
+    render(
+        <MemoryRouter>
+            <ButtonComponent />
+        </MemoryRouter>
+    );
 
 
-//     render(
-//         <MemoryRouter>
-//             <ButtonComponent disabled={false}/>
-//         </MemoryRouter>
-//     );
+    render(
+        <MemoryRouter>
+            <ButtonComponent disabled={true} />
+        </MemoryRouter>
+    );
 
-// })
+
+    render(
+        <MemoryRouter>
+            <ButtonComponent disabled={false} />
+        </MemoryRouter>
+    );
+
+})
 
 
 test("Abre duas vezes", async () => {
@@ -96,49 +96,31 @@ test("Abre duas vezes", async () => {
 
 });
 
+
+
+
+
+
+
 test("Sem selecionar UF", async () => {
 
 
     act(() => {
 
 
-        const screen = render(
+        render(
             <MemoryRouter initialEntries={["/solicitacaoAcao"]}>
                 <App />
             </MemoryRouter>
         );
     });
 
-    // const ufSelect = screen.getByLabelText("UF");
-    // fireEvent.mouseDown(ufSelect);
-    // await waitFor(() =>
-    //     expect(screen.queryByText("Carregando...")).not.toBeInTheDocument()
-    // );
-    // const UFSelecionada = screen.getByText("Acre");
-    // fireEvent.click(UFSelecionada);
 
     const municipioSelect = screen.getByLabelText("Municipios");
     fireEvent.mouseDown(municipioSelect);
-    // await waitFor(() =>
-    //     expect(screen.queryByText("Carregando...")).not.toBeInTheDocument()
-    // );
 
     const escolaioSelect = screen.getByLabelText("Escola");
     fireEvent.mouseDown(escolaioSelect);
-    // await waitFor(() =>
-    //     expect(screen.queryByText("Carregando...")).not.toBeInTheDocument()
-    // );
-
-
-    // fireEvent.mouseDown(ufSelect);
-    // await waitFor(() =>
-    //     expect(screen.queryByText("Carregando...")).not.toBeInTheDocument()
-    // );
-    // fireEvent.mouseDown(municipioSelect);
-    // await waitFor(() =>
-    //     expect(screen.queryByText("Carregando...")).not.toBeInTheDocument()
-    // );
-
 
 });
 
@@ -149,7 +131,7 @@ test("Selecionar escola", async () => {
     act(() => {
 
 
-        const screen = render(
+        render(
             <MemoryRouter initialEntries={["/solicitacaoAcao"]}>
                 <App />
             </MemoryRouter>
@@ -185,6 +167,88 @@ test("Selecionar escola", async () => {
     );
     const escolaSelecionada = screen.getByText("ESC ALTINA MAGALHAES DA SILVA");
     fireEvent.click(escolaSelecionada);
+
+});
+
+test("Solicitação", async () => {
+
+
+    act(() => {
+
+
+        render(
+            <MemoryRouter initialEntries={["/solicitacaoAcao"]}>
+                <App />
+            </MemoryRouter>
+        );
+    });
+
+
+    expect(screen.getByText("Selecione uma UF")).toBeInTheDocument();
+    expect(screen.getByText("Nenhuma UF selecionada")).toBeInTheDocument();
+    expect(screen.getByText("Nenhum municipio selecionado")).toBeInTheDocument();
+    expect(screen.getByText("Selecione os ciclos de ensino da escola")).toBeInTheDocument();
+
+    const ufSelect = screen.getByLabelText("UF");
+    fireEvent.mouseDown(ufSelect);
+    await waitFor(() =>
+        expect(screen.queryByText("Carregando...")).not.toBeInTheDocument()
+    );
+    const UFSelecionada = screen.getByText("Acre");
+    fireEvent.click(UFSelecionada);
+
+    const municipioSelect = screen.getByLabelText("Municipios");
+    fireEvent.mouseDown(municipioSelect);
+    await waitFor(() =>
+        expect(screen.queryByText("Carregando...")).not.toBeInTheDocument()
+    );
+    const municipioSelecionado = screen.getByText("Acrelândia");
+    fireEvent.click(municipioSelecionado);
+
+    const escolaioSelect = screen.getByLabelText("Escola");
+    fireEvent.mouseDown(escolaioSelect);
+    await waitFor(() =>
+        expect(screen.queryByText("Carregando...")).not.toBeInTheDocument()
+    );
+    const escolaSelecionada = screen.getByText("ESC ALTINA MAGALHAES DA SILVA");
+    fireEvent.click(escolaSelecionada);
+
+    const etapaSelect = screen.getByLabelText("Ciclos de Ensino");
+    fireEvent.mouseDown(etapaSelect);
+    await waitFor(() =>
+        expect(screen.queryByText("Carregando...")).not.toBeInTheDocument()
+    );
+    const etapaSelecionada = screen.getByText("Educação de Jovens Adultos");
+    fireEvent.click(etapaSelecionada);
+
+    const campoNome = screen.getByLabelText("Nome do Solicitante");
+    fireEvent.change(campoNome, { target: { value: "Fulano" } });
+
+
+    const vinculoSelect = screen.getByLabelText("Vínculo com a Escola");
+    fireEvent.mouseDown(vinculoSelect);
+    await waitFor(() =>
+        expect(screen.queryByText("Carregando...")).not.toBeInTheDocument()
+    );
+    const vinculoSelecionado = screen.getByText("Professor");
+    fireEvent.click(vinculoSelecionado);
+
+
+    const campoEmail = screen.getByLabelText("E-mail");
+    fireEvent.change(campoEmail, { target: { value: "fulano@cicrano.com" } });
+
+
+    const campoTelefone = screen.getByLabelText("Telefone");
+    fireEvent.change(campoTelefone, { target: { value: "61983446661" } });
+
+    const campoQuantidadeAlunos = screen.getByLabelText("Quantidade de Alunos");
+    fireEvent.change(campoQuantidadeAlunos, { target: { value: 9 } });
+
+    const botaoENviar = screen.getByText("Enviar");
+    act(() => {
+        fireEvent.click(botaoENviar);
+    });
+
 
 });
 
