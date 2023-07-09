@@ -570,7 +570,7 @@ const server = setupServer(
     }
   ),
   rest.get(
-    "https://api.aprovaunb.com.br/api/calcular/ups/escola",
+    "https://api.dnit-eps-mds.com.br/api/calcular/ups/escola",
     (req, res, ctx) => {
       return res(
         ctx.delay(1000),
