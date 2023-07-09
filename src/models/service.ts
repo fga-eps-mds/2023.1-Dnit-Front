@@ -126,3 +126,8 @@ export interface EscolaData {
 export interface ExcluirSituacaoData {
   idEscola: number;
 }
+
+export interface CalcularUpsData {
+  latitude: number;
+  longitude: number;
+}

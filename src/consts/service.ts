@@ -1,7 +1,6 @@
 const urlAPIUsuario = "https://api.aprovaunb.com/api";
 const urlAPIEscolas = "https://api.dnit-eps-mds.com/api";
-const urlAPIUPS = "https://api.dnit-eps-mds.br/api";
-
+const urlAPIUps = "https://api.aprovaunb.com.br/api"
 const urlAPIViaCEP = "https://viacep.com.br/ws";
 const federativeUnitURL = `${urlAPIEscolas}/dominio/unidadeFederativa`;
 const loginURL = `${urlAPIUsuario}/usuario/login`;
@@ -20,7 +19,8 @@ const EtapasDeEnsinoURL = `${urlAPIEscolas}/dominio/etapasDeEnsino`;
 const MunicipioURL = `${urlAPIEscolas}/dominio/municipio`;
 const EscolasFiltradasURL = `${urlAPIEscolas}/escolas/obter`;
 const insertFileURL = `${urlAPIEscolas}/escolas/cadastrarEscolaPlanilha`;
-const insertFileRodoviasURL = `${urlAPIUPS}/rodovia/cadastrarRodoviaPlanilha`;
+const insertFileRodoviasURL = `${urlAPIUps}/rodovia/cadastrarRodoviaPlanilha`;
+const calcularUpsURL = `${urlAPIUps}/calcular/ups/escola`;
 
 export {
   EscolasFiltradasURL,
@@ -42,4 +42,5 @@ export {
   salvarSituacaoURL,
   insertFileRodoviasURL,
   urlAPIViaCEP,
+  calcularUpsURL
 };

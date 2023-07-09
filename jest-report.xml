@@ -51,7 +51,6 @@
 <testCase name="Cadastro CSV vazio" duration="188" />
 <testCase name="Cadastro sem enviar CSV" duration="124" />
 <testCase name="Sem o provider" duration="40" />
-=======
 <file path="src\tests\Situacao.spec.tsx">
 <testCase name="Alterar situa&#xe7;&#xe3;o escola" duration="657" />
 <testCase name="Alterar situa&#xe7;&#xe3;o escola erro" duration="268" />
