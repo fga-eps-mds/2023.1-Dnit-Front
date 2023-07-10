@@ -15,20 +15,18 @@ const EsqueciSenhaForm: React.FC = () => {
   ];
   const [api, contextHolder] = notification.useNotification();
   const onFinish = async (values: any) => {
-    const recoverData = { 
+    const recoverData = {
       email: values.email,
       nome: "",
       senha: "",
     };
 
-    try{
+    try {
       await fetchRecoverPassword(recoverData);
       api.success({ message: "Link de recuperação enviado ao email!" });
     } catch {
       api.error({ message: `Erro ao enviar link de recuperação` });
-
     }
-    console.log("Received values of form: ", values.email);
   };
 
   return (
@@ -36,7 +34,9 @@ const EsqueciSenhaForm: React.FC = () => {
       {contextHolder}
       <img className="logoDnit" src={LogoDNIT} alt="Logo DNIT" />
       <div>
-        <h2><strong>Recuperar Senha</strong></h2>
+        <h2>
+          <strong>Recuperar Senha</strong>
+        </h2>
         <Form
           form={form}
           name="validateOnly"
@@ -52,7 +52,7 @@ const EsqueciSenhaForm: React.FC = () => {
               className="inputForm"
             />
           </Form.Item>
-          <Form.Item className = "esqueci">
+          <Form.Item className="esqueci">
             <Space>
               <ButtonComponent
                 nome="Enviar link de recuperação"

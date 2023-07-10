@@ -26,7 +26,6 @@ const App: React.FC<DragDropProps> = ({
   onClickError,
   onClickBack,
   onClickAceito,
-  
 }: DragDropProps) => {
   const uploadRef = useRef<any>(null);
   const [fileList, setFileList] = useState<UploadFile<any>[]>([]);
@@ -38,11 +37,9 @@ const App: React.FC<DragDropProps> = ({
       try {
         await axios.post(SinistroUrl, formData);
 
-          message.success(`Arquivo adicionado com sucesso.`) 
-          onClickAceito();
-        
+        message.success(`Arquivo adicionado com sucesso.`);
+        onClickAceito();
       } catch (error: any) {
-
         error.response && error.response.status == 406 && onClickError();
 
         const mensagem = error.response?.data;
@@ -75,7 +72,7 @@ const App: React.FC<DragDropProps> = ({
         </p>
       </Dragger>
       <div className="container-botoes">
-        <Button onClick={onClickBack} className="botaoCancelar" >
+        <Button onClick={onClickBack} className="botaoCancelar">
           Cancelar
         </Button>
         <Button
