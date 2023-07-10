@@ -1,0 +1,43 @@
+.image-home-row {
+  padding: 10;
+  padding-left: 60;
+}
+
+.image-home {
+  padding-left: 60px;
+}
+
+.container-home {
+  background-color: #071d41;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.text {
+  color: white;
+  font-size: 19px;
+}
+
+.col-home {
+  width: 100%;
+  text-align: left;
+}
+
+.row-text {
+  padding: 10px;
+  padding-left: 50;
+}
+
+.text-acao {
+  color: white;
+  text-align: center;
+  margin: 0;
+}
+
+.botao-acao {
+  background-color: #071d41;
+  width: 20%;
+  color: white !important;
+  margin: 70px;
+  height: 50px;
+}

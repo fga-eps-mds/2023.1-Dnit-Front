@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import CadastrarAcidentes from "./pages/Acidentes";
 import CadastrarRodovias from "./pages/CadastrarRodovias";
+import Dashboard from "./pages/Dashboard";
 import EscolasCadastradas from "./pages/EscolasCadastradas";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -45,6 +46,8 @@ function App() {
       <Route path="/solicitacaoAcao" element={<SolicitacaoAcao />} />
       <Route path="/cadastrarRodovias" element={<CadastrarRodovias />} />
       <Route path="/telaUPS" element={<TelaUPS />} />
+      <Route path="/" element={<Home />} />
+      <Route path="/dashboard" element={<Dashboard />} />
     </Routes>
   );
 }
