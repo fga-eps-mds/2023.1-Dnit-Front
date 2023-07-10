@@ -81,7 +81,7 @@ describe("UPSForm", () => {
   test("Erro ", async () => {
     server.use(
       rest.get(
-        "https://api.aprovaunb.com.br/api/calcular/ups/escola",
+        "https://api.dnit-eps-mds.com.br/api/calcular/ups/escola",
         (req, res, ctx) => {
           return res(ctx.status(403));
         }
