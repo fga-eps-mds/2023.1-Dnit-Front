@@ -2,19 +2,18 @@ import { notification } from "antd";
 import { useEffect, useState } from "react";
 import { useFiltroTabela } from "../../context/FiltroTabela";
 import { useSelectedValue } from "../../context/Situation";
+import { AlterarDadosEscolaData, EscolaData } from "../../models/service";
+import fetchSituacao from "../../service/Situacao";
+import fetchAlterarDadosEscola from "../../service/alterarDadosEscola";
 import fetchDeleteSituation from "../../service/deleteSituation";
 import ModalExcluirEscolas from "../components-escolasCadastradas/ModalExcluirEscolas";
 import "../components-escolasCadastradas/style/ModalExibirInformacoes.css";
 import ModalBody from "./ModalBody";
-import fetchSituacao from "../../service/Situacao";
-import { AlterarDadosEscolaData, EscolaData } from "../../models/service";
-import fetchAlterarDadosEscola from "../../service/alterarDadosEscola";
-
 
 interface ModalProps {
-  escola: EscolaData
-  open: boolean
-  close: () => void
+  escola: EscolaData;
+  open: boolean;
+  close: () => void;
 }
 
 const ModalExibirInformacoes = ({ escola, open, close }: ModalProps) => {
@@ -22,55 +21,49 @@ const ModalExibirInformacoes = ({ escola, open, close }: ModalProps) => {
     useState(false);
   const [isModalExcluirEscolasOpen, setIsModalExcluirEscolasOpen] =
     useState(false);
-  const [observacao, setObservacao] = useState(escola?.observacao);
   const [telefone, setTelefone] = useState(escola?.telefone);
+  const [observacao, setObservacao] = useState(escola?.observacao);
   const [latitude, setLatitude] = useState(escola?.latitude);
   const [longitude, setLongitude] = useState(escola?.longitude);
   const [numAlunos, setNumAlunos] = useState(escola?.numeroTotalDeAlunos);
   const [numDocentes, setNumDocentes] = useState(escola?.numeroTotalDeDocentes);
   const [etapasEnsino, setEtapasEnsino] = useState(escola?.etapaEnsino);
-  
+
   useEffect(() => {
-  if (escola?.observacao)
-    setObservacao(escola.observacao);
-}, [escola?.observacao])
+    if (escola?.telefone) setTelefone(escola.telefone);
+  }, [escola?.telefone]);
 
-useEffect(() => {
-  if (escola?.telefone)
-    setTelefone(escola.telefone);
-}, [escola?.telefone])
+  useEffect(() => {
+    if (escola?.observacao) setObservacao(escola.observacao);
+  }, [escola?.observacao]);
 
-useEffect(() => {
-  if (escola?.latitude)
-    setLatitude(escola.latitude);
-}, [escola?.latitude])
+  useEffect(() => {
+    if (escola?.latitude) setLatitude(escola.latitude);
+  }, [escola?.latitude]);
 
-useEffect(() => {
-  if (escola?.longitude)
-    setLongitude(escola.longitude);
-}, [escola?.longitude])
+  useEffect(() => {
+    if (escola?.longitude) setLongitude(escola.longitude);
+  }, [escola?.longitude]);
 
-useEffect(() => {
-  if (escola?.numeroTotalDeAlunos)
-    setNumAlunos(escola.numeroTotalDeAlunos);
-}, [escola?.numeroTotalDeAlunos])
+  useEffect(() => {
+    if (escola?.numeroTotalDeAlunos) setNumAlunos(escola.numeroTotalDeAlunos);
+  }, [escola?.numeroTotalDeAlunos]);
 
-useEffect(() => {
-  if (escola?.numeroTotalDeDocentes)
-    setNumDocentes(escola.numeroTotalDeDocentes);
-}, [escola?.numeroTotalDeDocentes])
+  useEffect(() => {
+    if (escola?.numeroTotalDeDocentes)
+      setNumDocentes(escola.numeroTotalDeDocentes);
+  }, [escola?.numeroTotalDeDocentes]);
 
-useEffect(() => {
-  if (escola?.etapaEnsino)
-    setEtapasEnsino(escola.etapaEnsino);
-}, [escola?.etapaEnsino])
-
-  const atualizarObservacao = (novaObservacao: any) => {
-    setObservacao(novaObservacao);
-  };
+  useEffect(() => {
+    if (escola?.etapaEnsino) setEtapasEnsino(escola.etapaEnsino);
+  }, [escola?.etapaEnsino]);
 
   const atualizarTelefone = (novoTelefone: any) => {
     setTelefone(novoTelefone);
+  };
+
+  const atualizarObservacao = (novaObservacao: any) => {
+    setObservacao(novaObservacao);
   };
 
   const atualizarLatitude = (novaLatitude: any) => {
@@ -110,54 +103,62 @@ useEffect(() => {
 
   const chamarSituacao = async () => {
     let id = 0;
-    const situacoes = await fetchSituacao()
-    situacoes && situacoes.forEach(situacao => {
-      if (situacao.descricao === selectedValue) id = situacao.id;
-    }
-    )
-    if (selectedValue === 'Remover Situação') return -1;
+    const situacoes = await fetchSituacao();
+    situacoes &&
+      situacoes.forEach((situacao) => {
+        if (situacao.descricao === selectedValue) id = situacao.id;
+      });
+    if (selectedValue === "Remover Situação") return -1;
     return id;
-  }
+  };
 
   const onFinish = async (values: any) => {
-    console.log(etapasEnsino)
-    let IdEtapas = []
-    if(Array.isArray(etapasEnsino)) IdEtapas = etapasEnsino
-    else  IdEtapas = Object.keys(etapasEnsino).map(Number);
-    console.log(IdEtapas)
+    let IdEtapas = [];
+    if (Array.isArray(etapasEnsino)) IdEtapas = etapasEnsino;
+    else IdEtapas = Object.keys(etapasEnsino).map(Number);
+
     const idSituacao = await chamarSituacao();
 
     if (idSituacao === -1) {
       const excluirSituacaoData = {
-      idEscola: escola.idEscola,
-    };
+        idEscola: escola.idEscola,
+      };
 
-    try {
-      await fetchDeleteSituation(excluirSituacaoData);
-      notification.success({ message: `Situação excluída com sucesso!` });
-      fetchEscolasFiltradas();
-    } catch (error) {
-      notification.error({ message: `Erro ao excluir situação! ` });
+      try {
+        await fetchDeleteSituation(excluirSituacaoData);
+        notification.success({ message: `Situação excluída com sucesso!` });
+        fetchEscolasFiltradas();
+      } catch (error) {
+        notification.error({ message: `Erro ao excluir situação! ` });
+      }
     }
-
- }
-    if (selectedValue !== escola.descricaoSituacao || observacao !== escola.observacao || telefone !== escola.telefone ||
-      longitude !== escola.longitude || latitude !== escola.latitude || numAlunos !== escola.numeroTotalDeAlunos || numDocentes !== escola.numeroTotalDeDocentes || etapasEnsino !== escola.etapaEnsino || etapasEnsino)
-      {
+    if (
+      telefone !== escola.telefone ||
+      latitude !== escola.latitude ||
+      longitude !== escola.longitude ||
+      numAlunos !== escola.numeroTotalDeAlunos ||
+      numDocentes !== escola.numeroTotalDeDocentes ||
+      observacao !== escola.observacao ||
+      etapasEnsino !== escola.etapaEnsino ||
+      etapasEnsino ||
+      selectedValue !== escola.descricaoSituacao
+    ) {
       const alterarDadosEscolaData = {
         idEscola: escola.idEscola,
         idSituacao: idSituacao,
-        observacao: observacao || '',
+        observacao: observacao || "",
         telefone: telefone,
         longitude: longitude,
         latitude: latitude,
         numeroTotalDeAlunos: numAlunos,
         numeroTotalDeDocentes: numDocentes,
-        idEtapasDeEnsino: IdEtapas || [] ,
-    };
+        idEtapasDeEnsino: IdEtapas || [],
+      };
 
       try {
-        await fetchAlterarDadosEscola(alterarDadosEscolaData  as AlterarDadosEscolaData);
+        await fetchAlterarDadosEscola(
+          alterarDadosEscolaData as AlterarDadosEscolaData
+        );
         notification.success({ message: `Dados alterados com sucesso!` });
         fetchEscolasFiltradas();
       } catch (error) {
@@ -213,7 +214,10 @@ useEffect(() => {
                 <button
                   className="br-button secondary"
                   type="button"
-                  onClick={() => { close(); setSelectedValue('') }}
+                  onClick={() => {
+                    close();
+                    setSelectedValue("");
+                  }}
                 >
                   Cancelar
                 </button>
@@ -228,7 +232,6 @@ useEffect(() => {
             </div>
           </div>
         </div>
-
       </div>
     </div>
   );

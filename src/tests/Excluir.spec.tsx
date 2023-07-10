@@ -58,4 +58,7 @@ test("Modal de excluir escola exibida erro", async () => {
 
   const excluir = screen.getByText("Excluir");
   fireEvent.click(excluir);
+
+  const voltar = screen.getByText("Voltar");
+  fireEvent.click(voltar);
 });

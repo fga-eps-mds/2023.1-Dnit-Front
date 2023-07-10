@@ -1,90 +1,95 @@
+import { Select } from "antd";
 import { ChangeEvent, useState } from "react";
-import Dropdown from "./Dropdown";
-import fetchSituacao from "../../service/Situacao";
 import { useSelectedValue } from "../../context/Situation";
 import { EscolaData, Situacao } from "../../models/service";
+import fetchSituacao from "../../service/Situacao";
 import fetchEtapasDeEnsino from "../../service/etapasDeEnsino";
-import { Select } from "antd";
+import Dropdown from "./Dropdown";
 
 interface ModalBodyProps {
-  data: EscolaData
-  onUpdateObservacao: (novaObservacao: any) => void
-  onUpdateTelefone: (novaTelefone: any) => void
-  onUpdateLatitude: (novaLatitude: any) => void
-  onUpdateLongitude: (novaLongitude: any) => void
-  onUpdateNumAlunos: (novaNumAlunos: any) => void
-  onUpdateNumDocentes: (novaNumDocentes: any) => void
-  onUpdateEtapasEnsino:(novaEtapasEnsino: any) =>void
+  data: EscolaData;
+  onUpdateObservacao: (novaObservacao: any) => void;
+  onUpdateTelefone: (novaTelefone: any) => void;
+  onUpdateLatitude: (novaLatitude: any) => void;
+  onUpdateLongitude: (novaLongitude: any) => void;
+  onUpdateNumAlunos: (novaNumAlunos: any) => void;
+  onUpdateNumDocentes: (novaNumDocentes: any) => void;
+  onUpdateEtapasEnsino: (novaEtapasEnsino: any) => void;
 }
 
-const ModalBody = ({data, onUpdateObservacao, onUpdateTelefone, onUpdateLatitude, onUpdateLongitude,
-                  onUpdateNumAlunos, onUpdateNumDocentes, onUpdateEtapasEnsino}: ModalBodyProps) => {
+const ModalBody = ({
+  data,
+  onUpdateTelefone,
+  onUpdateObservacao,
+  onUpdateLatitude,
+  onUpdateLongitude,
+  onUpdateNumAlunos,
+  onUpdateNumDocentes,
+  onUpdateEtapasEnsino,
+}: ModalBodyProps) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { setSelectedValue, selectedValue } = useSelectedValue();
-  const[situacoes, setSituacoes]= useState <Situacao[]>();
-
-  const ultimaAtualizacao = new Date()
-
-
-  const chamarSituacao = async() =>{
-    const situacoes = await fetchSituacao()
-    setSituacoes(situacoes);
-  }
-
-  const openDropdown = async() => {
-    setIsDropdownOpen(!isDropdownOpen);
-    await chamarSituacao();
-  };
-
-  const handleSituacaoChange = (event:ChangeEvent <HTMLInputElement>) => {
-    setSelectedValue(event.currentTarget.value)
-  };
-
-  const handleObservacaoChange = (event:ChangeEvent <HTMLInputElement>) => {
-    onUpdateObservacao(event.target.value);
-  };
-
-  const handleTelefoneChange = (event:ChangeEvent <HTMLInputElement>) => {
-    onUpdateTelefone(event.target.value);
-  };
-
-  const handleLatitudeChange = (event:ChangeEvent <HTMLInputElement>) => {
-    onUpdateLatitude(event.target.value);
-  };
-
-  const handleLongitudeChange = (event:ChangeEvent <HTMLInputElement>) => {
-    onUpdateLongitude(event.target.value);
-  };
-
-  const handleNumAlunosChange = (event:ChangeEvent <HTMLInputElement>) => {
-    onUpdateNumAlunos(Number(event.target.value));
-  };
-
-  const handleNumDocentesChange = (event:ChangeEvent <HTMLInputElement>) => {
-    onUpdateNumDocentes(Number(event.target.value));
-  };
-
-  const handleEtapasDeEnsinoChange = (event:ChangeEvent <HTMLInputElement>) => {
-    console.log(event)
-    onUpdateEtapasEnsino(event);
-  };
-
-  const getEtapasDeEnsino = async () => {
-    try {
-      const resposta = await fetchEtapasDeEnsino();
-      const etapas = resposta.map((e) => ({ label: e.descricao, value: e.id }));
-      setOpcoesEtapasDeEnsino(etapas);
-    } catch (error) { }
-  };
-
+  const [situacoes, setSituacoes] = useState<Situacao[]>();
   const [OpcoesEtapasDeEnsino, setOpcoesEtapasDeEnsino] = useState<
     { value: number; label: string }[]
   >([]);
 
+  const ultimaAtualizacao = new Date();
+
+  const chamarSituacao = async () => {
+    const situacoes = await fetchSituacao();
+    setSituacoes(situacoes);
+  };
+
+  const openDropdown = async () => {
+    setIsDropdownOpen(!isDropdownOpen);
+    await chamarSituacao();
+  };
+
+  const handleTelefoneChange = (event: ChangeEvent<HTMLInputElement>) => {
+    onUpdateTelefone(event.target.value);
+  };
+
+  const handleSituacaoChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setSelectedValue(event.currentTarget.value);
+  };
+
+  const handleObservacaoChange = (event: ChangeEvent<HTMLInputElement>) => {
+    onUpdateObservacao(event.target.value);
+  };
+
+  const handleLatitudeChange = (event: ChangeEvent<HTMLInputElement>) => {
+    onUpdateLatitude(event.target.value);
+  };
+
+  const handleLongitudeChange = (event: ChangeEvent<HTMLInputElement>) => {
+    onUpdateLongitude(event.target.value);
+  };
+
+  const handleNumAlunosChange = (event: ChangeEvent<HTMLInputElement>) => {
+    onUpdateNumAlunos(Number(event.target.value));
+  };
+
+  const handleNumDocentesChange = (event: ChangeEvent<HTMLInputElement>) => {
+    onUpdateNumDocentes(Number(event.target.value));
+  };
+
+  const handleEtapasDeEnsinoChange = (event: ChangeEvent<HTMLInputElement>) => {
+    onUpdateEtapasEnsino(event);
+  };
+
+  const getEtapasDeEnsino = async () => {
+    console.log("error");
+    try {
+      const resposta = await fetchEtapasDeEnsino();
+      const etapas = resposta.map((e) => ({ label: e.descricao, value: e.id }));
+      setOpcoesEtapasDeEnsino(etapas);
+    } catch (error) {}
+  };
 
   return (
     <div className="br-modal-body">
-      <div className="br-input">      
+      <div className="br-input">
         <label htmlFor="input-default">Código</label>
         <div className="input-group">
           <div className="input-icon">
@@ -181,17 +186,16 @@ const ModalBody = ({data, onUpdateObservacao, onUpdateTelefone, onUpdateLatitude
               showSearch={false}
               data-testid="buscar-etapas"
             />
+          </div>
         </div>
-        </div>
-       
-        </div>
-          <div className="br-input">
+      </div>
+      <div className="br-input">
         <div className="input-default">
           <label htmlFor="select-simple">Situação</label>
-          <input 
-          onFocus={openDropdown}
-          value={selectedValue}
-          onChange={handleSituacaoChange}
+          <input
+            onFocus={openDropdown}
+            value={selectedValue}
+            onChange={handleSituacaoChange}
             id="select-simple"
             type="text"
             placeholder={selectedValue ? selectedValue : data.descricaoSituacao}
@@ -218,7 +222,14 @@ const ModalBody = ({data, onUpdateObservacao, onUpdateTelefone, onUpdateLatitude
             )}
           </div>
         </div>
-        {isDropdownOpen && situacoes && <Dropdown onClose={openDropdown} onClick={setSelectedValue} situacoes={situacoes} descricao={data.descricaoSituacao}/>}
+        {isDropdownOpen && situacoes && (
+          <Dropdown
+            onClose={openDropdown}
+            onClick={setSelectedValue}
+            situacoes={situacoes}
+            descricao={data.descricaoSituacao}
+          />
+        )}
         <label htmlFor="input-default">Localização</label>
         <div className="input-group">
           <div className="input-icon">
@@ -280,16 +291,17 @@ const ModalBody = ({data, onUpdateObservacao, onUpdateTelefone, onUpdateLatitude
           />
         </div>
 
-        <label htmlFor="input-icon">Observacao</label>
+        <label htmlFor="input-default">Observação</label>
         <div className="input-group">
           <div className="input-icon">
             <i className="fas fa-info-circle" aria-hidden="true"></i>
           </div>
-          <input 
-          id="input-default" 
-          type="text" 
-          onChange={handleObservacaoChange}
-          placeholder={data.observacao} />
+          <input
+            id="input-default"
+            type="text"
+            onChange={handleObservacaoChange}
+            placeholder={data.observacao}
+          />
         </div>
         <label htmlFor="input-default">Ultima Atualização</label>
         <div className="input-group">
@@ -304,7 +316,7 @@ const ModalBody = ({data, onUpdateObservacao, onUpdateTelefone, onUpdateLatitude
           />
         </div>
       </div>
-      </div>
+    </div>
   );
 };
 
