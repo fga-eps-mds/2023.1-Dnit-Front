@@ -389,12 +389,6 @@ const server = setupServer(
     }
   ),
   rest.post(
-    "https://api.dnit-eps-mds.com/api/escolas/adicionarSituacao",
-    (req, res, ctx) => {
-      return res(ctx.status(200));
-    }
-  ),
-  rest.post(
     "https://api.dnit-eps-mds.com/api/escolas/removerSituacao",
     (req, res, ctx) => {
       return res(ctx.status(200));
@@ -413,7 +407,7 @@ const server = setupServer(
     }
   ),
   rest.post(
-    `https://localhost:7083/api/sinistro/cadastrarSinistroPlanilha`,
+    "https://api.aprovaunb.com.br/api/rodovia/cadastrarRodoviaPlanilha",
     (req, res, ctx) => {
       return res(ctx.status(200));
     }
@@ -433,7 +427,164 @@ const server = setupServer(
         siafi: "9701",
       })
     );
-  })
+  }),
+  rest.put(
+    "https://api.dnit-eps-mds.com/api/escolas/alterarDadosEscola",
+    (req, res, ctx) => {
+      return res(ctx.status(200));
+    }
+  ),
+  rest.get(
+    "https://api.dnit-eps-mds.com/api/solicitacaoAcao/escolas",
+    (req, res, ctx) => {
+      return res(
+        ctx.json([
+          {
+            cod: 12008966,
+            estado: "AC",
+            nome: "ESC ALTINA MAGALHAES DA SILVA",
+          },
+          {
+            cod: 12023582,
+            estado: "AC",
+            nome: "ESC BOM JESUS",
+          },
+          {
+            cod: 12020613,
+            estado: "AC",
+            nome: "ESC BRANCA DE NEVE",
+          },
+          {
+            cod: 12023590,
+            estado: "AC",
+            nome: "ESC CASTRO ALVES",
+          },
+          {
+            cod: 12009067,
+            estado: "AC",
+            nome: "ESC DUQUE DE CAXIAS",
+          },
+          {
+            cod: 12128236,
+            estado: "AC",
+            nome: "ESC FAMILIA AGRICOLA JEAN PIERRE MINGAN",
+          },
+          {
+            cod: 12028061,
+            estado: "AC",
+            nome: "ESC FRANCISCO PEREIRA DE SOUZA",
+          },
+          {
+            cod: 12009091,
+            estado: "AC",
+            nome: "ESC INTEGRACAO",
+          },
+          {
+            cod: 12023574,
+            estado: "AC",
+            nome: "ESC JAIME DE ALENCAR",
+          },
+          {
+            cod: 12009156,
+            estado: "AC",
+            nome: "ESC JOSE PLACIDO DE CASTRO",
+          },
+          {
+            cod: 12028312,
+            estado: "AC",
+            nome: "ESC JOSE RODRIGUES CASSIMIRO",
+          },
+          {
+            cod: 12021768,
+            estado: "AC",
+            nome: "ESC MARCILIO PONTES DOS SANTOS",
+          },
+          {
+            cod: 12018376,
+            estado: "AC",
+            nome: "ESC MARECHAL RONDON",
+          },
+          {
+            cod: 12009164,
+            estado: "AC",
+            nome: "ESC MARIA DE JESUS RIBEIRO",
+          },
+          {
+            cod: 12009172,
+            estado: "AC",
+            nome: "ESC MONTEIRO LOBATO",
+          },
+          {
+            cod: 12023531,
+            estado: "AC",
+            nome: "ESC NOVO HORIZONTE",
+          },
+          {
+            cod: 12018384,
+            estado: "AC",
+            nome: "ESC OLAVO BILAC",
+          },
+          {
+            cod: 12023566,
+            estado: "AC",
+            nome: "ESC PARAISO",
+          },
+          {
+            cod: 12009229,
+            estado: "AC",
+            nome: "ESC PROF PEDRO DE CASTRO MEIRELES",
+          },
+          {
+            cod: 12048224,
+            estado: "AC",
+            nome: "ESC RITA BOCALOM",
+          },
+          {
+            cod: 12018422,
+            estado: "AC",
+            nome: "ESC SANTA LUCIA III",
+          },
+          {
+            cod: 12022810,
+            estado: "AC",
+            nome: "ESC SAO LUCAS",
+          },
+          {
+            cod: 12009296,
+            estado: "AC",
+            nome: "ESC SAO PEDRO",
+          },
+          {
+            cod: 12037621,
+            estado: "AC",
+            nome: "MARIA DE JESUS RIBEIRO",
+          },
+        ])
+      );
+    }
+  ),
+  rest.post(
+    "https://api.dnit-eps-mds.com/api/solicitacaoAcao",
+    (req, res, ctx) => {
+      return res(ctx.status(200));
+    }
+  ),
+  rest.get(
+    "https://api.aprovaunb.com.br/api/calcular/ups/escola",
+    (req, res, ctx) => {
+      return res(
+        ctx.delay(1000),
+        ctx.json({
+          upsGeral: 123,
+          ups2018: 456,
+          ups2019: 789,
+          ups2020: 1011,
+          ups2021: 1213,
+          ups2022: 1415,
+        })
+      );
+    }
+  )
 );
 
 export default server;

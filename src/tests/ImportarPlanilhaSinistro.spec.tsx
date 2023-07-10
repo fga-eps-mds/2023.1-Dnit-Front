@@ -1,8 +1,7 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { rest } from "msw";
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
-import DragDropAcidentes from "../components/Upload/DragDropAcidentes";
 import server from "./mock/service";
 
 beforeAll(() => server.listen());
@@ -18,122 +17,116 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
     addEventListener: jest.fn(),
     removeEventListener: jest.fn(),
     dispatchEvent: jest.fn(),
-};
+  };
 });
-
 
 test("Cadastro CSV", async () => {
   server.use(
     rest.post(
-      "https://api.dnit-eps-mds.com.br/api/sinistro/cadastrarSinistroPlanilha",
+      "https://api.aprovaunb.com.br/api/sinistro/cadastrarSinistroPlanilha",
       (req, res, ctx) => {
         return res(ctx.status(200));
       }
     )
   );
-    render(
-      <MemoryRouter initialEntries={["/cadastrarsinistros"]}>
-        <App />
-      </MemoryRouter>
-    );
-  
-    const file = new File(["file content"], "file.csv", { type: "text/csv" });
-    const dragDropContainer = screen.getByTestId("drag-drop-container");
-    fireEvent.change(dragDropContainer, { target: { files: [file] } });
-  
-    await screen.findByText("file.csv");
-  
-    const enviarButton = screen.getByText("Enviar arquivo");
-    fireEvent.click(enviarButton);
+  render(
+    <MemoryRouter initialEntries={["/cadastrarsinistros"]}>
+      <App />
+    </MemoryRouter>
+  );
 
-    await screen.findByText("Inserção de arquivos concluída com sucesso");
+  const file = new File(["file content"], "file.csv", { type: "text/csv" });
+  const dragDropContainer = screen.getByTestId("drag-drop-container");
+  fireEvent.change(dragDropContainer, { target: { files: [file] } });
 
-    const concluirButton = screen.getByText("Concluir");
-    fireEvent.click(concluirButton);
-  
-  });
-  
-  test("Cadastro CSV erro", async () => {
-    server.use(
-      rest.post(
-        "https://api.dnit-eps-mds.com.br/api/sinistro/cadastrarSinistroPlanilha",
-        (req, res, ctx) => {
-          return res(ctx.status(406));
-        }
-      )
-    );
-    render(
-      <MemoryRouter initialEntries={["/cadastrarsinistros"]}>
-        <App />
-      </MemoryRouter>
-    );
-  
-    const file = new File(["file content"], "file.csv", { type: "text/csv" });
-    const dragDropContainer = screen.getByTestId("drag-drop-container");
-    fireEvent.change(dragDropContainer, { target: { files: [file] } });
-  
-    await screen.findByText("file.csv");
-  
-    const enviarButton = screen.getByText("Enviar arquivo");
-    fireEvent.click(enviarButton);
+  await screen.findByText("file.csv");
 
-    await screen.findByText("Erro na inserção dos Acidentes!");
+  const enviarButton = screen.getByText("Enviar arquivo");
+  fireEvent.click(enviarButton);
 
-    const concluirButton = screen.getByText("Concluir");
-    fireEvent.click(concluirButton);
-    
-  });
-  
-  test("Cadastro CSV vazio", async () => {
-    server.use(
-      rest.post(
-        "https://api.dnit-eps-mds.com.br/api/sinistro/cadastrarSinistroPlanilha",
-        (req, res, ctx) => {
-          return res(ctx.status(400),ctx.json('Nenhum arquivo enviado.'));
-        }
-      )
-    );
-    render(
-      <MemoryRouter initialEntries={["/cadastrarsinistros"]}>
-        <App />
-      </MemoryRouter>
-    );
-  
-    const file = new File(["file content"], "file.csv", { type: "text/csv" });
-    const dragDropContainer = screen.getByTestId("drag-drop-container");
-    fireEvent.change(dragDropContainer, { target: { files: [file] } });
-  
-    await screen.findByText("file.csv");
-  
-    const enviarButton = screen.getByText("Enviar arquivo");
-    fireEvent.click(enviarButton);
+  await screen.findByText("Inserção de arquivos concluída com sucesso");
 
-    await screen.findByText("Nenhum arquivo enviado.");
-  
-  });
-  
-  test("Cadastro sem enviar CSV", async () => {
-    server.use(
-      rest.post(
-        "https://api.dnit-eps-mds.com.br/api/sinistro/cadastrarSinistroPlanilha",
-        (req, res, ctx) => {
-          return res(ctx.json([]));
-        }
-      )
-    );
-    render(
-      <MemoryRouter initialEntries={["/cadastrarsinistros"]}>
-        <App />
-      </MemoryRouter>
-    );
-  
-    const enviarButton = screen.getByText("Enviar arquivo");
-    fireEvent.click(enviarButton);
-  
-    await screen.findByText("Nenhum arquivo carregado.");
-  
-    const cancelar = screen.getByText("Cancelar");
-    fireEvent.click(cancelar);
-  });
-  
-  
+  const concluirButton = screen.getByText("Concluir");
+  fireEvent.click(concluirButton);
+});
+
+test("Cadastro CSV erro", async () => {
+  server.use(
+    rest.post(
+      "https://api.aprovaunb.com.br/api/sinistro/cadastrarSinistroPlanilha",
+      (req, res, ctx) => {
+        return res(ctx.status(406));
+      }
+    )
+  );
+  render(
+    <MemoryRouter initialEntries={["/cadastrarsinistros"]}>
+      <App />
+    </MemoryRouter>
+  );
+
+  const file = new File(["file content"], "file.csv", { type: "text/csv" });
+  const dragDropContainer = screen.getByTestId("drag-drop-container");
+  fireEvent.change(dragDropContainer, { target: { files: [file] } });
+
+  await screen.findByText("file.csv");
+
+  const enviarButton = screen.getByText("Enviar arquivo");
+  fireEvent.click(enviarButton);
+
+  await screen.findByText("Erro na inserção dos Acidentes!");
+
+  const concluirButton = screen.getByText("Concluir");
+  fireEvent.click(concluirButton);
+});
+
+test("Cadastro CSV vazio", async () => {
+  server.use(
+    rest.post(
+      "https://api.aprovaunb.com.br/api/sinistro/cadastrarSinistroPlanilha",
+      (req, res, ctx) => {
+        return res(ctx.status(400), ctx.json("Nenhum arquivo enviado."));
+      }
+    )
+  );
+  render(
+    <MemoryRouter initialEntries={["/cadastrarsinistros"]}>
+      <App />
+    </MemoryRouter>
+  );
+
+  const file = new File(["file content"], "file.csv", { type: "text/csv" });
+  const dragDropContainer = screen.getByTestId("drag-drop-container");
+  fireEvent.change(dragDropContainer, { target: { files: [file] } });
+
+  await screen.findByText("file.csv");
+
+  const enviarButton = screen.getByText("Enviar arquivo");
+  fireEvent.click(enviarButton);
+
+  await screen.findByText("Nenhum arquivo enviado.");
+});
+
+test("Cadastro sem enviar CSV", async () => {
+  server.use(
+    rest.post(
+      "https://api.aprovaunb.com.br/api/sinistro/cadastrarSinistroPlanilha",
+      (req, res, ctx) => {
+        return res(ctx.json([]));
+      }
+    )
+  );
+  render(
+    <MemoryRouter initialEntries={["/cadastrarsinistros"]}>
+      <App />
+    </MemoryRouter>
+  );
+
+  const enviarButton = screen.getByText("Enviar arquivo");
+  fireEvent.click(enviarButton);
+
+  await screen.findByText("Nenhum arquivo carregado.");
+
+  const cancelar = screen.getByText("Cancelar");
+  fireEvent.click(cancelar);
+});

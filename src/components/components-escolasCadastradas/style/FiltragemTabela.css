@@ -452,7 +452,7 @@
 
 .select-etapas .ant-select-selector {
   background-color: #fff !important;
-  width: 300px;
+  width: 250px !important;
   border-color: var(--border-color-alternative) !important;
   border-radius: var(--surface-rounder-sm) !important;
   height: 40px;

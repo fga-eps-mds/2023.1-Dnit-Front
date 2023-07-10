@@ -20,8 +20,18 @@
     max-width: var(--modal-size);
     width: 50%;
     z-index: var(--z-index-layer-4);
-    max-height: 570px;
+    position: fixed !important;
+    height: 93vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  } 
+
+  .alinhar-botoes {
+    display: flex;
+    flex-direction: row-reverse;
   }
+  
   .br-modal-header {
     font-size: var(--font-size-scale-up-01);
     font-weight: var(--font-weight-bold);
@@ -46,7 +56,7 @@
     align-self: flex-start !important;
     justify-self: flex-start !important;
     justify-content: flex-start !important;
-    margin-right: 8%;
+    margin-right: 31%;
      }
 
   .content-right{
@@ -54,13 +64,7 @@
     justify-content: right !important;
   }
   
-  @media (max-width: 1506px) {
-    .content-right{
-      align-self: flex-end !important;
-      justify-content: right !important;
-      padding-top: 8px;
-    }
-  }
+  
   
 .button-space{
   margin-right: 2em !important;
@@ -68,11 +72,29 @@
 
   .br-modal-body {
     flex: 1;
+    height: 100vh;
     margin: var(--spacing-scale-3x) 0 var(--spacing-scale-2x);
-    overflow: auto;
     padding: 0 var(--spacing-scale-2x);
+    display: flex; 
+    justify-content: space-between; 
     text-align: left;
   }
+
+  .br-modal-body .br-input{
+    display: inline;
+    flex-basis: 50%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 10px;
+  }
+  .br-modal-body .br-select{
+    display: inline;
+    flex-basis: 50%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+  }
+  
   .br-modal-body::-webkit-scrollbar {
     height: var(--spacing-scale-base);
     width: var(--spacing-scale-base);
@@ -92,7 +114,7 @@
   .br-modal-footer {
     display: flex;
     flex-direction: row;
-    padding: 10px;
+    padding: 10px !important;
     width: 100%;
   }
   .br-modal.is-xsmall, .br-modal.xsmall {
@@ -166,6 +188,7 @@
     max-width: 400px;
     min-width: 100px;
     position: relative;
+
   }
   .br-select .br-list {
     background: var(--bg-color);

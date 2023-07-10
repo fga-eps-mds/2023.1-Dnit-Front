@@ -36,7 +36,7 @@ describe("", () => {
         </AuthProvider>
       </MemoryRouter>
     );
-  
+
     await act(async () => {
       const emailInput = getByLabelText("E-mail");
       const passwordInput = getByLabelText("Senha");
@@ -49,4 +49,15 @@ describe("", () => {
 
     await waitFor(() => expect(mockedUseLogin).toHaveBeenCalledTimes(1));
   });
+});
+
+test("Home", async () => {
+  const screen = render(
+    <MemoryRouter initialEntries={["/login"]}>
+      <App />
+    </MemoryRouter>
+  );
+
+  const home = screen.getByTestId("redirecionar");
+  fireEvent.click(home);
 });

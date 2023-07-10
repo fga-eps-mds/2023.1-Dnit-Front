@@ -4,10 +4,11 @@ import { InsertFileData } from "../models/service";
 
 interface InsertFileResponse {
   status: number;
+  data: [];
 }
 
 async function fetchInsertFile(
-  fileData: InsertFileData
+  fileData: FormData
 ): Promise<InsertFileResponse> {
   try {
     const response: AxiosResponse<InsertFileResponse> = await axios.post(

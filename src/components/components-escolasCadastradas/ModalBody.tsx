@@ -1,16 +1,92 @@
-import { useState } from "react";
+import { Select } from "antd";
+import { ChangeEvent, useState } from "react";
+import { useSelectedValue } from "../../context/Situation";
+import { EscolaData, Situacao } from "../../models/service";
+import fetchSituacao from "../../service/Situacao";
+import fetchEtapasDeEnsino from "../../service/etapasDeEnsino";
 import Dropdown from "./Dropdown";
 
-const ModalBody = (props: any) => {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+interface ModalBodyProps {
+  data: EscolaData;
+  onUpdateObservacao: (novaObservacao: any) => void;
+  onUpdateTelefone: (novaTelefone: any) => void;
+  onUpdateLatitude: (novaLatitude: any) => void;
+  onUpdateLongitude: (novaLongitude: any) => void;
+  onUpdateNumAlunos: (novaNumAlunos: any) => void;
+  onUpdateNumDocentes: (novaNumDocentes: any) => void;
+  onUpdateEtapasEnsino: (novaEtapasEnsino: any) => void;
+}
 
-  const openDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
+const ModalBody = ({
+  data,
+  onUpdateTelefone,
+  onUpdateObservacao,
+  onUpdateLatitude,
+  onUpdateLongitude,
+  onUpdateNumAlunos,
+  onUpdateNumDocentes,
+  onUpdateEtapasEnsino,
+}: ModalBodyProps) => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const { setSelectedValue, selectedValue } = useSelectedValue();
+  const [situacoes, setSituacoes] = useState<Situacao[]>();
+  const [OpcoesEtapasDeEnsino, setOpcoesEtapasDeEnsino] = useState<
+    { value: number; label: string }[]
+  >([]);
+
+  const ultimaAtualizacao = new Date();
+
+  const chamarSituacao = async () => {
+    const situacoes = await fetchSituacao();
+    setSituacoes(situacoes);
   };
 
-  if (!props.open) {
-    return null;
-  }
+  const openDropdown = async () => {
+    setIsDropdownOpen(!isDropdownOpen);
+    await chamarSituacao();
+  };
+
+  const handleTelefoneChange = (event: ChangeEvent<HTMLInputElement>) => {
+    onUpdateTelefone(event.target.value);
+  };
+
+  const handleSituacaoChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setSelectedValue(event.currentTarget.value);
+  };
+
+  const handleObservacaoChange = (event: ChangeEvent<HTMLInputElement>) => {
+    onUpdateObservacao(event.target.value);
+  };
+
+  const handleLatitudeChange = (event: ChangeEvent<HTMLInputElement>) => {
+    onUpdateLatitude(event.target.value);
+  };
+
+  const handleLongitudeChange = (event: ChangeEvent<HTMLInputElement>) => {
+    onUpdateLongitude(event.target.value);
+  };
+
+  const handleNumAlunosChange = (event: ChangeEvent<HTMLInputElement>) => {
+    onUpdateNumAlunos(Number(event.target.value));
+  };
+
+  const handleNumDocentesChange = (event: ChangeEvent<HTMLInputElement>) => {
+    onUpdateNumDocentes(Number(event.target.value));
+  };
+
+  const handleEtapasDeEnsinoChange = (event: ChangeEvent<HTMLInputElement>) => {
+    onUpdateEtapasEnsino(event);
+  };
+
+  const getEtapasDeEnsino = async () => {
+    console.log("error");
+    try {
+      const resposta = await fetchEtapasDeEnsino();
+      const etapas = resposta.map((e) => ({ label: e.descricao, value: e.id }));
+      setOpcoesEtapasDeEnsino(etapas);
+    } catch (error) {}
+  };
+
   return (
     <div className="br-modal-body">
       <div className="br-input">
@@ -22,7 +98,7 @@ const ModalBody = (props: any) => {
           <input
             id="input-default"
             type="text"
-            value={props.data.codigoEscola}
+            value={data.codigoEscola}
             disabled
           />
         </div>
@@ -34,7 +110,7 @@ const ModalBody = (props: any) => {
           <input
             id="input-default"
             type="text"
-            placeholder={props.data.descricaoRede}
+            placeholder={data.descricaoRede}
             disabled
           />
         </div>
@@ -46,7 +122,7 @@ const ModalBody = (props: any) => {
           <input
             id="input-default"
             type="text"
-            placeholder={props.data.siglaUf}
+            placeholder={data.siglaUf}
             disabled
           />
         </div>
@@ -58,7 +134,7 @@ const ModalBody = (props: any) => {
           <input
             id="input-default"
             type="text"
-            placeholder={props.data.nomeMunicipio}
+            placeholder={data.nomeMunicipio}
             disabled
           />
         </div>
@@ -70,7 +146,7 @@ const ModalBody = (props: any) => {
           <input
             id="input-default"
             type="text"
-            placeholder={props.data.endereco}
+            placeholder={data.endereco}
             disabled
           />
         </div>
@@ -82,8 +158,8 @@ const ModalBody = (props: any) => {
           <input
             id="input-default"
             type="text"
-            placeholder={props.data.telefone}
-            disabled
+            onChange={handleTelefoneChange}
+            placeholder={data.telefone}
           />
         </div>
         <label htmlFor="input-default">CEP</label>
@@ -94,10 +170,66 @@ const ModalBody = (props: any) => {
           <input
             id="input-default"
             type="text"
-            placeholder={props.data.cep}
+            placeholder={data.cep}
             disabled
           />
+          <div className="br-select">
+            <label htmlFor="select-multtiple">Etapas de Ensino</label>
+            <Select
+              mode="multiple"
+              placeholder={Object.values(data.etapaEnsino)}
+              onChange={handleEtapasDeEnsinoChange}
+              onMouseDown={getEtapasDeEnsino}
+              onClick={getEtapasDeEnsino}
+              options={OpcoesEtapasDeEnsino}
+              className="select-etapas"
+              showSearch={false}
+              data-testid="buscar-etapas"
+            />
+          </div>
         </div>
+      </div>
+      <div className="br-input">
+        <div className="input-default">
+          <label htmlFor="select-simple">Situação</label>
+          <input
+            onFocus={openDropdown}
+            value={selectedValue}
+            onChange={handleSituacaoChange}
+            id="select-simple"
+            type="text"
+            placeholder={selectedValue ? selectedValue : data.descricaoSituacao}
+          />
+          <div className="alinhar-botoes">
+            <button
+              className="br-button"
+              type="button"
+              aria-label="Exibir lista"
+              data-trigger="data-trigger"
+              onClick={openDropdown}
+              data-testid="dropdown-situacao"
+            >
+              <i className="fas fa-angle-down" aria-hidden="true"></i>
+            </button>
+            {selectedValue && (
+              <button
+                className="br-button"
+                type="button"
+                onClick={() => setSelectedValue("")}
+              >
+                <i className="fas fa-close" aria-hidden="true"></i>
+              </button>
+            )}
+          </div>
+        </div>
+        {isDropdownOpen && situacoes && (
+          <Dropdown
+            onClose={openDropdown}
+            onClick={setSelectedValue}
+            situacoes={situacoes}
+            descricao={data.descricaoSituacao}
+          />
+        )}
         <label htmlFor="input-default">Localização</label>
         <div className="input-group">
           <div className="input-icon">
@@ -106,7 +238,7 @@ const ModalBody = (props: any) => {
           <input
             id="input-default"
             type="text"
-            placeholder={props.data.descricaoLocalizacao}
+            placeholder={data.descricaoLocalizacao}
             disabled
           />
         </div>
@@ -118,8 +250,8 @@ const ModalBody = (props: any) => {
           <input
             id="input-default"
             type="text"
-            placeholder={props.data.latitude}
-            disabled
+            placeholder={data.latitude}
+            onChange={handleLatitudeChange}
           />
         </div>
         <label htmlFor="input-default">Longitude</label>
@@ -130,8 +262,8 @@ const ModalBody = (props: any) => {
           <input
             id="input-default"
             type="text"
-            placeholder={props.data.longitude}
-            disabled
+            placeholder={data.longitude}
+            onChange={handleLongitudeChange}
           />
         </div>
         <label htmlFor="input-default">Número total de alunos</label>
@@ -142,11 +274,11 @@ const ModalBody = (props: any) => {
           <input
             id="input-default"
             type="text"
-            placeholder={props.data.numeroTotalDeAlunos}
-            disabled
+            placeholder={data.numeroTotalDeAlunos.toString()}
+            onChange={handleNumAlunosChange}
           />
         </div>
-        <label htmlFor="input-icon">Número total de docentes</label>
+        <label htmlFor="input-default">Número total de docentes</label>
         <div className="input-group">
           <div className="input-icon">
             <i className="fas fa-users" aria-hidden="true"></i>
@@ -154,36 +286,34 @@ const ModalBody = (props: any) => {
           <input
             id="input-default"
             type="text"
-            placeholder={props.data.numeroTotalDeDocentes}
-            disabled
+            placeholder={data.numeroTotalDeDocentes.toString()}
+            onChange={handleNumDocentesChange}
           />
         </div>
 
-        <div className="input-default">
-          <label htmlFor="select-simple">Situação</label>
-          <input
-            id="select-simple"
-            type="text"
-            placeholder={props.data.descricaoSituacao}
-          />
-          <button
-            className="br-button"
-            type="button"
-            aria-label="Exibir lista"
-            data-trigger="data-trigger"
-            onClick={openDropdown}
-            data-testid="dropdown-situacao"
-          >
-            <i className="fas fa-angle-down" aria-hidden="true"></i>
-          </button>
-        </div>
-        {isDropdownOpen && <Dropdown />}
-        <label htmlFor="input-icon">Observacao</label>
+        <label htmlFor="input-default">Observação</label>
         <div className="input-group">
           <div className="input-icon">
             <i className="fas fa-info-circle" aria-hidden="true"></i>
           </div>
-          <input id="input-default" type="text" placeholder="Exemplo" />
+          <input
+            id="input-default"
+            type="text"
+            onChange={handleObservacaoChange}
+            placeholder={data.observacao}
+          />
+        </div>
+        <label htmlFor="input-default">Ultima Atualização</label>
+        <div className="input-group">
+          <div className="input-icon">
+            <i className="fas fa-sync" aria-hidden="true"></i>
+          </div>
+          <input
+            id="input-default"
+            type="text"
+            placeholder={ultimaAtualizacao.toLocaleDateString()}
+            disabled
+          />
         </div>
       </div>
     </div>

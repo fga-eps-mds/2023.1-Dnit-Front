@@ -1,5 +1,4 @@
 import { Button } from "antd";
-import "../../../styles/form/step3_erro2.css";
 
 interface Step3_Erro2Props {
   onClickVoltar: () => void;
