@@ -6,15 +6,14 @@ import "../styles/App.css";
 function SolicitacaoAcao() {
   return (
     <div className="App">
-      <Header />
+      <Header login />
       <div className="Secao">
         <div className="Lateral">
           <div className=" Lateral">
-          <img className="imgLateral" src={personagem} alt="personagem" />
+            <img className="imgLateral" src={personagem} alt="personagem" />
           </div>
-
         </div>
-          
+
         <div className="Central">
           <SolicitacaoAcaoForm />
         </div>
