@@ -407,7 +407,7 @@ const server = setupServer(
     }
   ),
   rest.post(
-    "https://api.dnit-eps-mds.com.br/api/rodovia/cadastrarRodoviaPlanilha",
+    "https://api.aprovaunb.com.br/api/rodovia/cadastrarRodoviaPlanilha",
     (req, res, ctx) => {
       return res(ctx.status(200));
     }
@@ -570,7 +570,7 @@ const server = setupServer(
     }
   ),
   rest.get(
-    "https://api.dnit-eps-mds.com.br/api/calcular/ups/escola",
+    "https://api.aprovaunb.com.br/api/calcular/ups/escola",
     (req, res, ctx) => {
       return res(
         ctx.delay(1000),

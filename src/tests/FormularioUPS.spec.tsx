@@ -38,12 +38,12 @@ describe("UPSForm", () => {
     await waitFor(() => {
       expect(
         screen.getByText(
-          "Valores entre -90 e +90, até 7 decimais, utilizando ponto!"
+          "Valores entre -90 e +90, até 15 decimais, utilizando ponto!"
         )
       ).toBeInTheDocument();
       expect(
         screen.getByText(
-          "Valores entre -180 e +180, até 7 decimais, utilizando ponto!"
+          "Valores entre -180 e +180, até 15 decimais, utilizando ponto!"
         )
       ).toBeInTheDocument();
     });
@@ -81,7 +81,7 @@ describe("UPSForm", () => {
   test("Erro ", async () => {
     server.use(
       rest.get(
-        "https://api.dnit-eps-mds.com.br/api/calcular/ups/escola",
+        "https://api.aprovaunb.com.br/api/calcular/ups/escola",
         (req, res, ctx) => {
           return res(ctx.status(403));
         }

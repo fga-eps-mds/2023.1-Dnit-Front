@@ -65,16 +65,16 @@ const UPSForm: React.FC = () => {
   const rulesLatitude = [
     {
       required: true,
-      pattern: /^-?([1-8]?\d|90)(\.\d{1,7})?$/,
-      message: "Valores entre -90 e +90, até 7 decimais, utilizando ponto!",
+      pattern: /^-?([1-8]?\d|90)(\.\d{1,15})?$/,
+      message: "Valores entre -90 e +90, até 15 decimais, utilizando ponto!",
     },
   ];
 
   const rulesLongitude = [
     {
       required: true,
-      pattern: /^-?((1?[0-7]|[0-9])?\d|180)(\.\d{1,7})?$/,
-      message: "Valores entre -180 e +180, até 7 decimais, utilizando ponto!",
+      pattern: /^-?((1?[0-7]|[0-9])?\d|180)(\.\d{1,15})?$/,
+      message: "Valores entre -180 e +180, até 15 decimais, utilizando ponto!",
     },
   ];
 
@@ -124,7 +124,6 @@ const UPSForm: React.FC = () => {
             </div>
           )
         )}
-        ;
       </div>
     </>
   );
