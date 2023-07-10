@@ -3,7 +3,8 @@ import Header from "../components/Header";
 import ResetPassword from "../components/form/ResetPassword";
 import "../styles/App.css";
 
-function RecuperarSenha() {
+
+function Home() {
   return (
     <div className="App">
       <Header />
@@ -19,5 +20,4 @@ function RecuperarSenha() {
   );
 }
 
-export default RecuperarSenha;
-
+export default Home;

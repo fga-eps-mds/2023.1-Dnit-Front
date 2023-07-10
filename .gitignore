@@ -5,6 +5,8 @@
 /.pnp
 .pnp.js
 
+jest-report.xml
+
 # testing
 /coverage
 

@@ -4,69 +4,49 @@ import { Button, Upload, message } from "antd";
 import { UploadChangeParam } from "antd/lib/upload";
 import axios from "axios";
 import React, { useRef, useState } from "react";
-import { insertFileURL } from "../../consts/service";
-import { useEscolasCadastradas } from "../../context/escolasCadastradasErro";
+import { SinistroUrl } from "../../consts/service";
 import "../../styles/form/step3.css";
 
 const { Dragger } = Upload;
 
 interface DragDropProps {
+  onClickAceito: () => void;
   onClickBack: () => void;
   onClickError: () => void;
-  onClickAceito: () => void;
-  onClickErroJaCadastrada: () => void;
 }
 
 const props: UploadProps = {
   name: "arquivo",
+  action: SinistroUrl,
   multiple: true,
-  action: insertFileURL,
   beforeUpload: () => false,
-  onChange(info) {
-    const { status, name } = info.file;
-
-    if (status === "error") {
-      message.error(`${name} falha ao receber arquivo.`);
-    }
-  },
 };
 
 const App: React.FC<DragDropProps> = ({
-  onClickBack,
   onClickError,
+  onClickBack,
   onClickAceito,
-  onClickErroJaCadastrada,
+  
 }: DragDropProps) => {
   const uploadRef = useRef<any>(null);
   const [fileList, setFileList] = useState<UploadFile<any>[]>([]);
-  const { setEscolasCadastradas } = useEscolasCadastradas();
   const handleButtonClick = async () => {
     if (fileList.length > 0) {
       const formData = new FormData();
       formData.append("arquivo", fileList[0].originFileObj as File);
 
       try {
-        const response = await axios.post('https://api.dnit-eps-mds.com/api/escolas/cadastrarEscolaPlanilha', formData);
+        await axios.post(SinistroUrl, formData);
 
-        if (
-          response.data &&
-          Array.isArray(response.data) &&
-          response.data.length > 0 && response.data.length < 6 
-        ) {
-          // A resposta do back-end é uma lista não nula
-          // Faça o que for necessário com a lista
-          onClickErroJaCadastrada();
-          setEscolasCadastradas(response.data);
-        } else {
-          // A resposta do back-end é uma lista nula
-          message.success(`Arquivo adicionado com sucesso.`);
+          message.success(`Arquivo adicionado com sucesso.`) 
           onClickAceito();
-          setEscolasCadastradas(response.data);
-        }
+        
       } catch (error: any) {
+
         error.response && error.response.status == 406 && onClickError();
 
         const mensagem = error.response?.data;
+
         message.error(`${mensagem}`);
       }
     } else {
@@ -81,11 +61,11 @@ const App: React.FC<DragDropProps> = ({
   return (
     <>
       <Dragger
-        ref={uploadRef}
         {...props}
-        fileList={fileList}
-        onChange={handleFileChange}
+        ref={uploadRef}
         data-testid="drag-drop-container"
+        onChange={handleFileChange}
+        fileList={fileList}
       >
         <p className="ant-upload-drag-icon">
           <FileOutlined />
@@ -95,13 +75,13 @@ const App: React.FC<DragDropProps> = ({
         </p>
       </Dragger>
       <div className="container-botoes">
-        <Button className="botaoCancelar" onClick={onClickBack}>
+        <Button onClick={onClickBack} className="botaoCancelar" >
           Cancelar
         </Button>
         <Button
-          className="botaoEnviar"
-          type="primary"
           onClick={handleButtonClick}
+          type="primary"
+          className="botaoEnviar"
         >
           Enviar arquivo
         </Button>

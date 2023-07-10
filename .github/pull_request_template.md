@@ -1,7 +1,7 @@
 ## _Issue :_ Nome da issue
 
 <!-- Substituir "XX" pelo numero da issue -->
-Resolves fga-eps-mds/2023.1-Dnit-DOC#XX
+Resolves fga-eps-mds/2023.1-Dnit-Front#XX
 <!-- Este projeto só aceita pull request de issues abertas -->
 <!--  Se você está propondo um novo recurso ou modificação, primeiro discuta-o com uma issue --> 
 

@@ -16,6 +16,8 @@ export interface viaCEP {
   ddd: string;
   siafi: string;
   erro?: boolean;
+  sigla: string;
+  descricao: string;
 }
 
 export interface Municipio {
@@ -135,4 +137,27 @@ export interface AlterarDadosEscolaData {
 
 export interface ExcluirSituacaoData {
   idEscola: number;
+}
+export interface InepSchoolData {
+  cod: number;
+  estado: string;
+  nome: string;
+}
+
+export interface SolicitacaoDeAcao {
+  Escola: string;
+  UF: string;
+  Municipio: string;
+  NomeSolicitante: string;
+  VinculoEscola: string;
+  Email: string;
+  Telefone: string;
+  CiclosEnsino: string[];
+  QuantidadeAlunos: number;
+  Observacoes: string | undefined;
+}
+
+export interface CalcularUpsData {
+  latitude: number;
+  longitude: number;
 }

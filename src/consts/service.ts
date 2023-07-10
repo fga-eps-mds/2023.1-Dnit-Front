@@ -1,5 +1,6 @@
 const urlAPIUsuario = "https://api.aprovaunb.com/api";
 const urlAPIEscolas = "https://api.dnit-eps-mds.com/api";
+const urlAPIUps = "https://api.dnit-eps-mds.com.br/api";
 const urlAPIViaCEP = "https://viacep.com.br/ws";
 const federativeUnitURL = `${urlAPIEscolas}/dominio/unidadeFederativa`;
 const loginURL = `${urlAPIUsuario}/usuario/login`;
@@ -18,16 +19,27 @@ const MunicipioURL = `${urlAPIEscolas}/dominio/municipio`;
 const EscolasFiltradasURL = `${urlAPIEscolas}/escolas/obter`;
 const insertFileURL = `${urlAPIEscolas}/escolas/cadastrarEscolaPlanilha`;
 const alterarDadosEscolaURL = `${urlAPIEscolas}/escolas/alterarDadosEscola`;
+const insertFileRodoviasURL = `${urlAPIUps}/rodovia/cadastrarRodoviaPlanilha`;
+const calcularUpsURL = `${urlAPIUps}/calcular/ups/escola`;
+const EscolasInepURL = `${urlAPIEscolas}/solicitacaoAcao/escolas`;
+const SolicitacaoDeAcaoURL = `${urlAPIEscolas}/solicitacaoAcao`;
+const SinistroUrl = `${urlAPIUps}/sinistro/cadastrarSinistroPlanilha`;
 
 export {
   EscolasFiltradasURL,
+  EscolasInepURL,
   EtapasDeEnsinoURL,
   MunicipioURL,
+  SinistroUrl,
   SituacaoURL,
+  SolicitacaoDeAcaoURL,
+  alterarDadosEscolaURL,
   cadastroURL,
+  calcularUpsURL,
   excluirEscolaURL,
   excluirSituacaoURL,
   federativeUnitURL,
+  insertFileRodoviasURL,
   insertFileURL,
   listSchoolsURL,
   listarInfoEscolaURL,
@@ -36,6 +48,5 @@ export {
   registerSchoolURL,
   registerURL,
   resetPasswordURL,
-  alterarDadosEscolaURL,
   urlAPIViaCEP,
 };
