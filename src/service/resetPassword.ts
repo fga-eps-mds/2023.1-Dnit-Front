@@ -16,6 +16,7 @@ async function fetchResetPassword(
     );
     return response.data;
   } catch (error) {
+    console.log(error);
     throw error;
   }
 }

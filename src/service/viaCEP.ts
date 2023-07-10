@@ -1,14 +1,15 @@
 import axios, { AxiosResponse } from "axios";
 import { urlAPIViaCEP } from "../consts/service";
-import { viaCEP } from "../models/service";
+import { ViaCEP } from "../models/service";
 
-async function fetchCEP(cep: string): Promise<viaCEP> {
+async function fetchCEP(cep: string): Promise<ViaCEP> {
   try {
-    const response: AxiosResponse<viaCEP> = await axios.get(
-        urlAPIViaCEP + `/${cep}` + '/json'
+    const response: AxiosResponse<ViaCEP> = await axios.get(
+      urlAPIViaCEP + `/${cep}` + "/json"
     );
     return response.data;
   } catch (error) {
+    console.log(error);
     throw error;
   }
 }

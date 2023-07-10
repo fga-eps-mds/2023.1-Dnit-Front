@@ -11,11 +11,12 @@ async function fetchRecoverPassword(
 ): Promise<RecoverPasswordResponse> {
   try {
     const response: AxiosResponse<RecoverPasswordResponse> = await axios.put(
-        recoverPasswordURL,
-        recoverData
+      recoverPasswordURL,
+      recoverData
     );
     return response.data;
   } catch (error) {
+    console.log(error);
     throw error;
   }
 }

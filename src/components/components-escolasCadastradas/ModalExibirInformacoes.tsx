@@ -98,7 +98,7 @@ const ModalExibirInformacoes = ({ escola, open, close }: ModalProps) => {
   });
 
   const { selectedValue, setSelectedValue } = useSelectedValue();
-  const [api, contextHolder] = notification.useNotification();
+  const [, contextHolder] = notification.useNotification();
   const { fetchEscolasFiltradas } = useFiltroTabela();
 
   const chamarSituacao = async () => {

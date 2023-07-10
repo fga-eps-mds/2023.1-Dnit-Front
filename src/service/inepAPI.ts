@@ -9,6 +9,7 @@ async function fetchEscolasInep(municipio: number): Promise<InepSchoolData[]> {
     );
     return response.data;
   } catch (error) {
+    console.log(error);
     throw error;
   }
 }

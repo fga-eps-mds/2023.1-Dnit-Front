@@ -1,182 +1,183 @@
-.container{
+.container {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 70px;
-
 }
 
 .br-modal {
-    --modal-size: var(--modal-medium);
-    --modal-xsmall: 220px;
-    --modal-small: 300px;
-    --modal-medium: 500px;
-    --modal-large: 640px;
-    --modal-auto: auto;
-    background: var(--background);
-    box-shadow: var(--surface-shadow-sm);
-    display: flex;
-    flex-direction: column;
-    max-width: var(--modal-size);
-    width: 50%;
-    z-index: var(--z-index-layer-4);
-    position: fixed !important;
-    height: 93vh;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  } 
+  --modal-size: var(--modal-medium);
+  --modal-xsmall: 220px;
+  --modal-small: 300px;
+  --modal-medium: 500px;
+  --modal-large: 640px;
+  --modal-auto: auto;
+  background: var(--background);
+  box-shadow: var(--surface-shadow-sm);
+  display: flex;
+  flex-direction: column;
+  max-width: var(--modal-size);
+  width: 50%;
+  z-index: var(--z-index-layer-4);
+  position: fixed !important;
+  height: 93vh;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
-  .alinhar-botoes {
-    display: flex;
-    flex-direction: row-reverse;
-  }
-  
-  .br-modal-header {
-    font-size: var(--font-size-scale-up-01);
-    font-weight: var(--font-weight-bold);
-    padding: var(--spacing-scale-2x) var(--spacing-scale-2x) 0;
-    position: relative;
-    text-align: left;
-  }
-  .br-modal-header .close {
-    position: absolute;
-    right: var(--spacing-scale-base);
-    top: var(--spacing-scale-base);
-  }
-  .br-modal .modal-title {
-    font-size: var(--font-size-scale-up-01);
-    font-weight: var(--font-weight-bold);
-    margin-right: 40px;
-    max-height: calc(var(--font-size-scale-up-01) * 3);
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .content-left{
-    align-self: flex-start !important;
-    justify-self: flex-start !important;
-    justify-content: flex-start !important;
-    margin-right: 31%;
-     }
+.alinhar-botoes {
+  display: flex;
+  flex-direction: row-reverse;
+}
 
-  .content-right{
-    align-self: flex-end !important;
-    justify-content: right !important;
-  }
-  
-  
-  
-.button-space{
+.br-modal-header {
+  font-size: var(--font-size-scale-up-01);
+  font-weight: var(--font-weight-bold);
+  padding: var(--spacing-scale-2x) var(--spacing-scale-2x) 0;
+  position: relative;
+  text-align: left;
+}
+.br-modal-header .close {
+  position: absolute;
+  right: var(--spacing-scale-base);
+  top: var(--spacing-scale-base);
+}
+.br-modal .modal-title {
+  font-size: var(--font-size-scale-up-01);
+  font-weight: var(--font-weight-bold);
+  margin-right: 40px;
+  max-height: calc(var(--font-size-scale-up-01) * 3);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.content-left {
+  align-self: flex-start !important;
+  justify-self: flex-start !important;
+  justify-content: flex-start !important;
+  margin-right: 31%;
+}
+
+.content-right {
+  align-self: flex-end !important;
+  justify-content: right !important;
+}
+
+.button-space {
   margin-right: 2em !important;
 }
 
-  .br-modal-body {
-    flex: 1;
-    height: 100vh;
-    margin: var(--spacing-scale-3x) 0 var(--spacing-scale-2x);
-    padding: 0 var(--spacing-scale-2x);
-    display: flex; 
-    justify-content: space-between; 
-    text-align: left;
-  }
+.br-modal-body {
+  flex: 1;
+  height: 100vh;
+  margin: var(--spacing-scale-3x) 0 var(--spacing-scale-2x);
+  padding: 0 var(--spacing-scale-2x);
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
+}
 
-  .br-modal-body .br-input{
-    display: inline;
-    flex-basis: 50%;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    padding: 10px;
-  }
-  .br-modal-body .br-select{
-    display: inline;
-    flex-basis: 50%;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    padding: 5px;
-  }
-  
-  .br-modal-body::-webkit-scrollbar {
-    height: var(--spacing-scale-base);
-    width: var(--spacing-scale-base);
-  }
-  .br-modal-body::-webkit-scrollbar-track {
-    background: var(--gray-10);
-  }
-  .br-modal-body::-webkit-scrollbar-thumb {
-    background: var(--gray-30);
-  }
-  .br-modal-body:hover::-webkit-scrollbar-thumb {
-    background: var(--gray-40);
-  }
-  .br-modal-body *:last-child {
-    margin-bottom: 0;
-  }
-  .br-modal-footer {
-    display: flex;
-    flex-direction: row;
-    padding: 10px !important;
-    width: 100%;
-  }
-  .br-modal.is-xsmall, .br-modal.xsmall {
-    --modal-size: var(--modal-xsmall);
-  }
-  .br-modal.is-small, .br-modal.small {
-    --modal-size: var(--modal-small);
-  }
-  .br-modal.is-medium, .br-modal.medium {
-    --modal-size: var(--modal-medium);
-  }
-  .br-modal.is-large, .br-modal.large {
-    --modal-size: var(--modal-large);
-  }
-  .br-modal.is-auto, .br-modal.auto {
-    --modal-size: var(--modal-auto);
-  }
-  .br-modal .loading.medium {
-    min-height: calc(var(--loading-indetermined-diameter-md) + var(--spacing-scale-2x) * 2);
-  }
+.br-modal-body .br-input {
+  display: inline;
+  flex-basis: 50%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 10px;
+}
+.br-modal-body .br-select {
+  display: inline;
+  flex-basis: 50%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 5px;
+}
+
+.br-modal-body::-webkit-scrollbar {
+  height: var(--spacing-scale-base);
+  width: var(--spacing-scale-base);
+}
+.br-modal-body::-webkit-scrollbar-track {
+  background: var(--gray-10);
+}
+.br-modal-body::-webkit-scrollbar-thumb {
+  background: var(--gray-30);
+}
+.br-modal-body:hover::-webkit-scrollbar-thumb {
+  background: var(--gray-40);
+}
+.br-modal-body *:last-child {
+  margin-bottom: 0;
+}
+.br-modal-footer {
+  display: flex;
+  flex-direction: row;
+  padding: 10px !important;
+  width: 100%;
+}
+.br-modal.is-xsmall,
+.br-modal.xsmall {
+  --modal-size: var(--modal-xsmall);
+}
+.br-modal.is-small,
+.br-modal.small {
+  --modal-size: var(--modal-small);
+}
+.br-modal.is-medium,
+.br-modal.medium {
+  --modal-size: var(--modal-medium);
+}
+.br-modal.is-large,
+.br-modal.large {
+  --modal-size: var(--modal-large);
+}
+.br-modal.is-auto,
+.br-modal.auto {
+  --modal-size: var(--modal-auto);
+}
+.br-modal .loading.medium {
+  min-height: calc(
+    var(--loading-indetermined-diameter-md) + var(--spacing-scale-2x) * 2
+  );
+}
+.br-modal .terms {
+  border: 0;
+  box-shadow: var(--surface-shadow-sm-inset), var(--surface-shadow-sm-inset-up);
+  font-size: var(--font-size-scale-base);
+  height: 216px;
+  margin-bottom: var(--spacing-scale-2x);
+  margin-left: calc(var(--spacing-scale-2x) * -1);
+  margin-right: calc(var(--spacing-scale-2x) * -1);
+  overflow: auto;
+  padding: var(--spacing-scale-2x);
+  resize: none;
+  width: auto;
+}
+.br-modal .terms::-webkit-scrollbar {
+  height: var(--spacing-scale-base);
+  width: var(--spacing-scale-base);
+}
+.br-modal .terms::-webkit-scrollbar-track {
+  background: var(--gray-10);
+}
+.br-modal .terms::-webkit-scrollbar-thumb {
+  background: var(--gray-30);
+}
+.br-modal .terms:hover::-webkit-scrollbar-thumb {
+  background: var(--gray-40);
+}
+.br-modal .terms:active {
+  outline: none;
+}
+@media (max-width: 991px) {
   .br-modal .terms {
-    border: 0;
-    box-shadow: var(--surface-shadow-sm-inset), var(--surface-shadow-sm-inset-up);
-    font-size: var(--font-size-scale-base);
-    height: 216px;
-    margin-bottom: var(--spacing-scale-2x);
-    margin-left: calc(var(--spacing-scale-2x) * -1);
-    margin-right: calc(var(--spacing-scale-2x) * -1);
-    overflow: auto;
-    padding: var(--spacing-scale-2x);
-    resize: none;
-    width: auto;
+    margin-left: unset !important;
+    margin-right: unset !important;
   }
-  .br-modal .terms::-webkit-scrollbar {
-    height: var(--spacing-scale-base);
-    width: var(--spacing-scale-base);
-  }
-  .br-modal .terms::-webkit-scrollbar-track {
-    background: var(--gray-10);
-  }
-  .br-modal .terms::-webkit-scrollbar-thumb {
-    background: var(--gray-30);
-  }
-  .br-modal .terms:hover::-webkit-scrollbar-thumb {
-    background: var(--gray-40);
-  }
-  .br-modal .terms:active {
-    outline: none;
-  }
-  .br-modal .terms:hover::-webkit-scrollbar-thumb {
-    background: var(--color-secondary-07);
-  }
-  @media (max-width: 991px) {
-    .br-modal .terms {
-      margin-left: unset !important;
-      margin-right: unset !important;
-    }
-    .br-modal-header .close {
+  .br-modal-header .close {
     top: 0;
   }
 
-  .br-label{
+  .br-label {
     border: 1px solid #ccc;
     padding: 10px;
     border-radius: 5px;
@@ -188,7 +189,6 @@
     max-width: 400px;
     min-width: 100px;
     position: relative;
-
   }
   .br-select .br-list {
     background: var(--bg-color);
@@ -215,12 +215,10 @@
   .br-select .br-list:hover::-webkit-scrollbar-thumb {
     background: var(--gray-40);
   }
-  .br-select .br-list:focus, .br-select .br-list:active {
+  .br-select .br-list:focus,
+  .br-select .br-list:active {
     color: var(--color-secondary-09);
     outline: none;
-  }
-  .br-select .br-list:hover::-webkit-scrollbar-thumb {
-    background: var(--color-secondary-07);
   }
   .br-select .br-list[expanded] {
     display: block;
@@ -252,7 +250,9 @@
   }
   .br-select .br-item .br-checkbox input + label,
   .br-select .br-item .br-radio input + label {
-    padding-left: calc(var(--checkbox-padding) + var(--checkbox-size) + var(--item-padding-x));
+    padding-left: calc(
+      var(--checkbox-padding) + var(--checkbox-size) + var(--item-padding-x)
+    );
   }
   .br-select .br-item .br-radio input + label {
     color: var(--text-color);
@@ -261,7 +261,8 @@
     min-height: 0;
     padding: var(--item-padding);
   }
-  .br-select .br-item .br-radio input + label::before, .br-select .br-item .br-radio input + label::after {
+  .br-select .br-item .br-radio input + label::before,
+  .br-select .br-item .br-radio input + label::after {
     content: none;
   }
   .br-select .br-item:not(:last-child) {
@@ -273,16 +274,21 @@
   .br-select .br-item:not([disabled]):focus {
     outline: none;
   }
-  .br-select .br-item:not([disabled]).focus-visible, .br-select .br-item:not([disabled]):focus-visible {
+  .br-select .br-item:not([disabled]).focus-visible,
+  .br-select .br-item:not([disabled]):focus-visible {
     outline-color: var(--focus);
     outline-offset: var(--focus-offset);
     outline-style: var(--focus-style);
     outline-width: var(--focus-width);
   }
   .br-select .br-item:not([disabled]):not(:disabled):hover {
-    background-image: linear-gradient(rgba(var(--color-rgb), var(--hover)), rgba(var(--color-rgb), var(--hover)));
+    background-image: linear-gradient(
+      rgba(var(--color-rgb), var(--hover)),
+      rgba(var(--color-rgb), var(--hover))
+    );
   }
-  .br-select .br-item.selected, .br-select .br-item[selected] {
+  .br-select .br-item.selected,
+  .br-select .br-item[selected] {
     --color: var(--color-dark);
     --color-rgb: var(--color-dark-rgb);
     --text-color: var(--color);
@@ -294,50 +300,68 @@
     --focus-color: var(--focus-color-dark);
     --focus: var(--focus-color);
   }
-  .br-select .br-item.selected:focus, .br-select .br-item[selected]:focus {
+  .br-select .br-item.selected:focus,
+  .br-select .br-item[selected]:focus {
     outline: none;
   }
-  .br-select .br-item.selected.focus-visible, .br-select .br-item.selected:focus-visible, .br-select .br-item[selected].focus-visible, .br-select .br-item[selected]:focus-visible {
+  .br-select .br-item.selected.focus-visible,
+  .br-select .br-item.selected:focus-visible,
+  .br-select .br-item[selected].focus-visible,
+  .br-select .br-item[selected]:focus-visible {
     outline-color: var(--focus);
     outline-offset: var(--focus-offset);
     outline-style: var(--focus-style);
     outline-width: var(--focus-width);
   }
-  .br-select .br-item.selected:not(:disabled):hover, .br-select .br-item[selected]:not(:disabled):hover {
-    background-image: linear-gradient(rgba(var(--color-rgb), var(--hover)), rgba(var(--color-rgb), var(--hover)));
+  .br-select .br-item.selected:not(:disabled):hover,
+  .br-select .br-item[selected]:not(:disabled):hover {
+    background-image: linear-gradient(
+      rgba(var(--color-rgb), var(--hover)),
+      rgba(var(--color-rgb), var(--hover))
+    );
   }
   .br-select .br-item.disabled {
     line-height: calc(var(--font-line-height-high) * 2);
     padding-left: calc(var(--item-padding) + var(--spacing-scale-base));
   }
-  .br-select .br-item.highlighted, .br-select .br-item[highlighted] {
+  .br-select .br-item.highlighted,
+  .br-select .br-item[highlighted] {
     background-color: var(--gray-2);
     padding-bottom: var(--spacing-scale-base);
     padding-top: var(--spacing-scale-base);
   }
   .br-select .br-item.highlighted .br-checkbox label,
-  .br-select .br-item.highlighted .br-radio label, .br-select .br-item[highlighted] .br-checkbox label,
+  .br-select .br-item.highlighted .br-radio label,
+  .br-select .br-item[highlighted] .br-checkbox label,
   .br-select .br-item[highlighted] .br-radio label {
     font-weight: var(--font-weight-semi-bold);
   }
   .br-select .br-item.highlighted .br-checkbox:hover,
-  .br-select .br-item.highlighted .br-radio:hover, .br-select .br-item[highlighted] .br-checkbox:hover,
+  .br-select .br-item.highlighted .br-radio:hover,
+  .br-select .br-item[highlighted] .br-checkbox:hover,
   .br-select .br-item[highlighted] .br-radio:hover {
-    background: linear-gradient(rgba(var(--interactive-rgb), var(--hover)), rgba(var(--interactive-rgb), var(--hover)));
+    background: linear-gradient(
+      rgba(var(--interactive-rgb), var(--hover)),
+      rgba(var(--interactive-rgb), var(--hover))
+    );
   }
   .br-select .br-item.highlighted .br-checkbox:hover label,
-  .br-select .br-item.highlighted .br-radio:hover label, .br-select .br-item[highlighted] .br-checkbox:hover label,
+  .br-select .br-item.highlighted .br-radio:hover label,
+  .br-select .br-item[highlighted] .br-checkbox:hover label,
   .br-select .br-item[highlighted] .br-radio:hover label {
     color: var(--text-color);
   }
-  .br-select .br-item.highlighted.selected, .br-select .br-item.highlighted[selected], .br-select .br-item[highlighted].selected, .br-select .br-item[highlighted][selected] {
+  .br-select .br-item.highlighted.selected,
+  .br-select .br-item.highlighted[selected],
+  .br-select .br-item[highlighted].selected,
+  .br-select .br-item[highlighted][selected] {
     background-color: var(--selected);
   }
   .br-select.inverted .br-input,
-  .br-select.inverted .br-input label, .br-select.dark-mode .br-input,
+  .br-select.inverted .br-input label,
+  .br-select.dark-mode .br-input,
   .br-select.dark-mode .br-input label {
     --color: var(--color-dark);
     --focus-color: var(--focus-color-dark);
   }
-  }
-  
+}

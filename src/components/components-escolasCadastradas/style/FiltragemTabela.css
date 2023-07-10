@@ -277,9 +277,6 @@
   color: var(--color-secondary-09);
   outline: none;
 }
-.br-select .br-list:hover::-webkit-scrollbar-thumb {
-  background: var(--color-secondary-07);
-}
 .br-select .br-list[expanded] {
   display: block;
 }

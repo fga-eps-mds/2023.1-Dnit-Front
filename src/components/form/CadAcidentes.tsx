@@ -1,8 +1,7 @@
 import "../../styles/form/step3.css";
 import Dragdrop from "../Upload/DragDropAcidentes";
 
-
-interface Step1_AcidentesProps {
+interface Step1AcidentesProps {
   onClickBack: () => void;
   onClickError: () => void;
   onClickAceito: () => void;
@@ -12,7 +11,7 @@ export default function CadAcidentes({
   onClickBack,
   onClickError,
   onClickAceito,
-}: Step1_AcidentesProps) {
+}: Step1AcidentesProps) {
   return (
     <div className="form3">
       <h2>Inserir Sinistros via planilha</h2>
@@ -21,7 +20,7 @@ export default function CadAcidentes({
           onClickBack={onClickBack}
           onClickError={onClickError}
           onClickAceito={onClickAceito}
-          />
+        />
       </div>
     </div>
   );

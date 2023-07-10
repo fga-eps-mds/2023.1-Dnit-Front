@@ -90,7 +90,7 @@ const FiltroProvider = ({ children }: any) => {
           [`IdEtapaEnsino[${index}]`]: item,
         })
       );
-      const response: AxiosResponse<responseData> = await axios.get(
+      const response: AxiosResponse<ResponseData> = await axios.get(
         EscolasFiltradasURL,
         {
           params: {
@@ -151,7 +151,7 @@ const FiltroProvider = ({ children }: any) => {
     fetchEscolasFiltradas();
   }, [paginaAtual, gatilho]);
 
-  interface responseData {
+  interface ResponseData {
     escolas: EscolaData[];
     escolasPorPagina: number;
     totalEscolas: number;

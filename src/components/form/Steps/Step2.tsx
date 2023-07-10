@@ -1,27 +1,21 @@
-import { Button, Form, Input, Select, Space, notification, message } from "antd";
+import { Button, Form, Input, Select, Space, notification } from "antd";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useFiltroTabela } from "../../../context/FiltroTabela";
+import { FederativeUnit, Municipio } from "../../../models/service";
 import fetchEtapasDeEnsino from "../../../service/etapasDeEnsino";
 import fetchFederativeUnit from "../../../service/federativeUnit";
 import fetchMunicipio from "../../../service/municipio";
 import fetchCadastroEscola from "../../../service/registerSchool";
 import fetchCEP from "../../../service/viaCEP";
 import "../../../styles/form/step2.css";
-import { useFiltroTabela } from "../../../context/FiltroTabela";
-import { FederativeUnit, Municipio } from "../../../models/service";
 
 const { Option } = Select;
 interface Step2Props {
   onClickBack: () => void;
 }
 export default function Step2({ onClickBack }: Step2Props) {
-
-  const {
-    UFSelecionada,
-    setUFSelecionada,
-
-   
-  } = useFiltroTabela();
+  const { UFSelecionada, setUFSelecionada } = useFiltroTabela();
 
   const [form] = Form.useForm();
   const [api, contextHolder] = notification.useNotification();
@@ -36,18 +30,17 @@ export default function Step2({ onClickBack }: Step2Props) {
   const rulesLatitude = [
     {
       required: false,
-      pattern: /^-?([1-8]?\d|90)(,\d{1,7})?$/,
-      message:
-        "Deve estar entre -90 e +90 e até 7 casas decimais, utilizando vírgula!",
+      pattern: /^-?([1-8]?\d|90)(.\d{1,15})?$/,
+      message: "Deve estar entre -90 e +90 e até 15 decimais, utilizando ponto",
     },
   ];
 
   const rulesLongitude = [
     {
       required: false,
-      pattern: /^-?((1?[0-7]|[0-9])?\d|180)(,\d{1,7})?$/,
+      pattern: /^-?((1?[0-7]|[0-9])?\d|180)(.\d{1,15})?$/,
       message:
-        "Deve estar entre -180 e +180 e até 7 casas decimais, utilizando vírgula!",
+        "Deve estar entre -180 e +180 e até 15 decimais, utilizando ponto",
     },
   ];
 
@@ -79,7 +72,7 @@ export default function Step2({ onClickBack }: Step2Props) {
     {
       required: true,
       pattern: /^\d{8}$/,
-      message: "CEP inválido"
+      message: "CEP inválido",
     },
   ];
 
@@ -89,11 +82,8 @@ export default function Step2({ onClickBack }: Step2Props) {
       if (UFSelecionada) {
         const resposta = await fetchMunicipio(UFSelecionada.id);
         setOpcoesMunicipio(resposta);
-       
       }
-    } catch (error) {
-     
-    }
+    } catch (error) {}
   };
 
   const [opcoesUf, setOpcoesUf] = useState<FederativeUnit[]>([]);
@@ -101,9 +91,7 @@ export default function Step2({ onClickBack }: Step2Props) {
     try {
       const resposta = await fetchFederativeUnit();
       setOpcoesUf(resposta);
-     
-    } catch (error) { }
-
+    } catch (error) {}
   };
   useEffect(() => {
     if (opcoesUf.length == 0) getUf();
@@ -111,7 +99,6 @@ export default function Step2({ onClickBack }: Step2Props) {
 
   const handleOptionClick = (option: any) => {
     setUFSelecionada(option);
-
   };
 
   const getCEP = async (cep: string) => {
@@ -139,24 +126,23 @@ export default function Step2({ onClickBack }: Step2Props) {
       } else {
         setErroCEP(false);
       }
-    } catch (error) { }
+    } catch (error) {}
   };
-
 
   const getEtapasDeEnsino = async () => {
     try {
       const resposta = await fetchEtapasDeEnsino();
       const etapas = resposta.map((e) => ({ label: e.descricao, value: e.id }));
       setOpcoesEtapasDeEnsino(etapas);
-    } catch (error) { }
+    } catch (error) {}
   };
 
   const [OpcoesEtapasDeEnsino, setOpcoesEtapasDeEnsino] = useState<
     { value: number; label: string }[]
   >([]);
 
-  const limpaMunicipio = () =>{
-    form.setFieldValue('municipio', undefined)
+  const limpaMunicipio = () => {
+    form.setFieldValue("municipio", undefined);
   };
 
   const navigate = useNavigate();
@@ -165,8 +151,7 @@ export default function Step2({ onClickBack }: Step2Props) {
     const ufFiltrada = uf.filter((uf) => uf.sigla === values.uf);
 
     let municipioFiltrado;
-    if (ufFiltrada.length>0) {
-  
+    if (ufFiltrada.length > 0) {
       const municipio = await fetchMunicipio(ufFiltrada[0].id);
       municipioFiltrado = municipio.filter(
         (municipio) => municipio.nome === values.municipio
@@ -174,24 +159,26 @@ export default function Step2({ onClickBack }: Step2Props) {
     }
 
     if (!values.latitude) {
-      values.latitude = '0'
+      values.latitude = "0";
     }
 
     if (!values.longitude) {
-      values.longitude = '0'
+      values.longitude = "0";
     }
 
     const registerSchoolData = {
       NomeEscola: values.nome,
       IdRede: values.rede,
       CodigoEscola: values.codigo,
-      IdUf: ufFiltrada ? (ufFiltrada[0]?.id || values.uf) : values.uf,
+      IdUf: ufFiltrada ? ufFiltrada[0]?.id || values.uf : values.uf,
       Cep: cepEnviado,
       Telefone: values.telefone,
       IdEtapasDeEnsino: values.ciclos,
       IdPorte: values.porte,
       Endereco: values.endereco,
-      IdMunicipio: municipioFiltrado ? (municipioFiltrado[0]?.id || values.municipio) : values.municipio,
+      IdMunicipio: municipioFiltrado
+        ? municipioFiltrado[0]?.id || values.municipio
+        : values.municipio,
       IdLocalizacao: values.localizacao,
       Longitude: values.longitude,
       Latitude: values.latitude,
@@ -260,12 +247,10 @@ export default function Step2({ onClickBack }: Step2Props) {
                 placement="bottomRight"
                 optionLabelProp="label"
                 className="uf"
-
               >
                 {opcoesUf?.map((u) => (
                   <Option key={u.id} value={u.id} label={<>{u.nome}</>}>
                     <button
-
                       onClick={() => handleOptionClick(u)}
                       className="option-municipio"
                     >
