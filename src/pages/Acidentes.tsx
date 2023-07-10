@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import Header from "../components/Header";
 import CadAcidentes from "../components/form/CadAcidentes";
 import AcidentesAceito from "../components/form/Steps/AcidentesAceito";
@@ -7,6 +8,7 @@ import "../styles/App.css";
 
 function CadastrarAcidentes() {
   const [screen, setScreen] = useState<"sc1" | "sc2" | "sc3">("sc1");
+  const returnPage = useNavigate();
 
   return (
     <div className="App">
@@ -16,7 +18,7 @@ function CadastrarAcidentes() {
           <div className="formrs">
             {screen === "sc1" && (
               <CadAcidentes
-                onClickBack={() => setScreen("sc1")}
+                onClickBack={() => returnPage("/dashboard")}
                 onClickError={() => setScreen("sc2")}
                 onClickAceito={() => setScreen("sc3")}
               />

@@ -48,10 +48,7 @@ export default function Dashboard() {
             <FileAddOutlined className="icon" />
             <p className="text">Adicionar Sinistros</p>
           </Card>
-          <Card
-            className="card"
-            onClick={() => navigate("/cadastrarsinistros")}
-          >
+          <Card className="card" onClick={() => navigate("/cadastrarRodovias")}>
             <FileAddOutlined className="icon" />
             <p className="text">Adicionar Rodovias</p>
           </Card>
