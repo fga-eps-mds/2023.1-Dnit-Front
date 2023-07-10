@@ -7,10 +7,7 @@ import { FiltroProvider } from "../context/FiltroTabela";
 import "../styles/App.css";
 
 export default function EscolasCadastradas() {
-  const paginas = [
-    { nome: "Escolas Cadastradas", link: "/escolas-cadastradas" },
-    { nome: "Logout", link: "/login" },
-  ];
+  const paginas = [{ nome: "Logout", link: "/login" }];
   return (
     <div className="App">
       <Header />
