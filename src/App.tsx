@@ -45,6 +45,7 @@ function App() {
       <Route path="/solicitacaoAcao" element={<SolicitacaoAcao />} />
       <Route path="/cadastrarRodovias" element={<CadastrarRodovias />} />
       <Route path="/telaUPS" element={<TelaUPS />} />
+      <Route path="/" element={<Home />} />
     </Routes>
   );
 }
