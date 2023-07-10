@@ -19,9 +19,9 @@ export default function TabelaEscola() {
   const [, contextHolder] = notification.useNotification();
 
   const [showOptionsPages, setShowOptionsPages] = useState(false);
-  const [showSchoolsPerPage, setShowSchoolsPerPage] = useState(false);
+  const [, setShowSchoolsPerPage] = useState(false);
   const optionsSchoolsPerPage = ["2", "5", "10", "20"];
-  const [schools, setschools] = useState<EscolaData[]>([]);
+  const [schools] = useState<EscolaData[]>([]);
   const [modalStates, setModalStates] = useState(
     Array(schools.length).fill(false)
   );
@@ -214,7 +214,7 @@ export default function TabelaEscola() {
                     <div className="select-options dropdown-pagina">
                       {optionsSchoolsPerPage.map((options, index) => (
                         <div
-                          key={index}
+                          key={options}
                           className="options"
                           onClick={() => handleOptionClick(Number(options))}
                           data-testid={`options-${options}`}

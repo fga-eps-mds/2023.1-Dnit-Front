@@ -1,10 +1,10 @@
 import { Button } from "antd";
 
-interface Step3_Erro2Props {
+interface Step3Erro2Props {
   onClickVoltar: () => void;
 }
 
-export default function Acidentes_erro1({ onClickVoltar }: Step3_Erro2Props) {
+export default function Acidentes_erro1({ onClickVoltar }: Step3Erro2Props) {
   return (
     <div className="form3_erro1">
       <div className="secaoTexto">

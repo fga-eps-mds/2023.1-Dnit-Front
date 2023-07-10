@@ -11,8 +11,6 @@ import "../components-escolasCadastradas/style/FiltragemTabela.css";
 
 export default function TabelaEscolas() {
   const {
-    setNomeEscola,
-
     NomePesquisado,
     setNomePesquisado,
 
@@ -22,7 +20,6 @@ export default function TabelaEscolas() {
     situacaoSelecionada,
     setSituacaoSelecionada,
 
-    etapaDeEnsinoSelecionada,
     setEtapaDeEnsinoSelecionada,
 
     municipioSelecionado,
@@ -99,8 +96,7 @@ export default function TabelaEscolas() {
   useEffect(() => {
     if (opcoesSituacao.length == 0) getEtapasDeEnsino();
   });
-  const [showOpcoesEtapasDeEnsino, setShowOpcoesEtapasDeEnsino] =
-    useState(false);
+  const [, setShowOpcoesEtapasDeEnsino] = useState(false);
   const [OpcoesEtapasDeEnsino, setOpcoesEtapasDeEnsino] = useState<
     { value: number; label: string }[]
   >([]);
@@ -214,7 +210,7 @@ export default function TabelaEscolas() {
                     .map((options, index) => {
                       return (
                         <div
-                          key={index}
+                          key={options.id}
                           className="options"
                           onClick={() => handleOptionClick(options, 1)}
                         >
@@ -269,7 +265,7 @@ export default function TabelaEscolas() {
                     )
                     .map((options, index) => (
                       <div
-                        key={index}
+                        key={options.id}
                         className="options"
                         onClick={() => handleOptionClick(options, 2)}
                       >
@@ -323,7 +319,7 @@ export default function TabelaEscolas() {
                     )
                     .map((options, index) => (
                       <div
-                        key={index}
+                        key={options.id}
                         className="options"
                         onClick={() => handleOptionClick(options, 4)}
                       >

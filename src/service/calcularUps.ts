@@ -17,10 +17,17 @@ async function fetchCalcularUps(
 ): Promise<CalcularUpsResponse> {
   try {
     const response: AxiosResponse<CalcularUpsResponse> = await axios.get(
-      calcularUpsURL, { params: { Latitude: coordenadasData.latitude, Longitude: coordenadasData.longitude } }
+      calcularUpsURL,
+      {
+        params: {
+          Latitude: coordenadasData.latitude,
+          Longitude: coordenadasData.longitude,
+        },
+      }
     );
     return response.data;
   } catch (error) {
+    console.log(error);
     throw error;
   }
 }
