@@ -9,7 +9,6 @@ const registerURL = `${urlAPIUsuario}/usuario/cadastrarUsuarioDnit`;
 const registerSchoolURL = `${urlAPIEscolas}/escolas/cadastrarEscola`;
 const recoverPasswordURL = `${urlAPIUsuario}/usuario/recuperarSenha`;
 const listarInfoEscolaURL = `${urlAPIEscolas}/escolas/listarInformacoesEscola`;
-const salvarSituacaoURL = `${urlAPIEscolas}/escolas/adicionarSituacao`;
 const resetPasswordURL = `${urlAPIUsuario}/usuario/redefinirSenha`;
 const listSchoolsURL = `${urlAPIEscolas}/escolas/listarEscolas`;
 const excluirEscolaURL = `${urlAPIEscolas}/escolas/excluir`;
@@ -19,6 +18,7 @@ const EtapasDeEnsinoURL = `${urlAPIEscolas}/dominio/etapasDeEnsino`;
 const MunicipioURL = `${urlAPIEscolas}/dominio/municipio`;
 const EscolasFiltradasURL = `${urlAPIEscolas}/escolas/obter`;
 const insertFileURL = `${urlAPIEscolas}/escolas/cadastrarEscolaPlanilha`;
+const alterarDadosEscolaURL = `${urlAPIEscolas}/escolas/alterarDadosEscola`;
 const insertFileRodoviasURL = `${urlAPIUps}/rodovia/cadastrarRodoviaPlanilha`;
 const calcularUpsURL = `${urlAPIUps}/calcular/ups/escola`;
 const EscolasInepURL = `${urlAPIEscolas}/solicitacaoAcao/escolas`;
@@ -33,6 +33,7 @@ export {
   SinistroUrl,
   SituacaoURL,
   SolicitacaoDeAcaoURL,
+  alterarDadosEscolaURL,
   cadastroURL,
   calcularUpsURL,
   excluirEscolaURL,
@@ -47,6 +48,5 @@ export {
   registerSchoolURL,
   registerURL,
   resetPasswordURL,
-  salvarSituacaoURL,
   urlAPIViaCEP,
 };

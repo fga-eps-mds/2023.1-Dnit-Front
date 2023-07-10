@@ -80,11 +80,6 @@ export interface InfoEscolaData {
   id: number;
 }
 
-export interface SalvarSituacaoData {
-  idSituacao: number;
-  idEscola: number;
-}
-
 export interface RecoverPasswordData {
   nome: string;
   email: string;
@@ -124,7 +119,22 @@ export interface EscolaData {
   descricaoPorte: string;
   telefone: string;
   numeroTotalDeDocentes: number;
+  observacao: string;
 }
+
+export interface AlterarDadosEscolaData {
+  idEscola: number;
+  idSituacao: number;
+  telefone: string;
+  longitude: string;
+  latitude: string;
+  numeroTotalDeAlunos: number;
+  numeroTotalDeDocentes: number;
+  observacao: string;
+  idEtapasDeEnsino: [];
+  ultimaAtualizacao: string;
+}
+
 export interface ExcluirSituacaoData {
   idEscola: number;
 }

@@ -5,7 +5,7 @@ import { SelectedValueProvider } from "../context/Situation";
 export default function ExibirInformacoesEscola(props: any) {
   const {  escola, open, close } = props;
   return (
-    <div className="App">
+    <div>
       <SelectedValueProvider>
         <ModalExibirInformacoes escola={escola} open={open} close={close} />
       </SelectedValueProvider>

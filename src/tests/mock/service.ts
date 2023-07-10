@@ -389,12 +389,6 @@ const server = setupServer(
     }
   ),
   rest.post(
-    "https://api.dnit-eps-mds.com/api/escolas/adicionarSituacao",
-    (req, res, ctx) => {
-      return res(ctx.status(200));
-    }
-  ),
-  rest.post(
     "https://api.dnit-eps-mds.com/api/escolas/removerSituacao",
     (req, res, ctx) => {
       return res(ctx.status(200));
@@ -434,6 +428,12 @@ const server = setupServer(
       })
     );
   }),
+  rest.put(
+    "https://api.dnit-eps-mds.com/api/escolas/alterarDadosEscola",
+    (req, res, ctx) => {
+      return res(ctx.status(200));
+    }
+  ),
   rest.get(
     "https://api.dnit-eps-mds.com/api/solicitacaoAcao/escolas",
     (req, res, ctx) => {

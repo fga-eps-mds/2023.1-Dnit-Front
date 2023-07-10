@@ -135,7 +135,7 @@ const FiltroProvider = ({ children }: any) => {
   };
 
   useEffect(() => {
-    if (paginaAtual != 1) setpaginaAtual(1);
+    if (paginaAtual !== 1) setpaginaAtual(1);
     else ativarGatilho();
   }, [
     escolasPorPagina,
