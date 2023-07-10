@@ -68,7 +68,7 @@ export default function Dashboard() {
   ];
   return (
     <div className="App">
-      <Header />
+      <Header dashboard />
       <Collapse
         defaultActiveKey={["1", "2"]}
         ghost
