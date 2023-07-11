@@ -41,3 +41,12 @@
   margin: 70px;
   height: 50px;
 }
+
+.container-link{
+  padding-top: 4em;
+}
+.link{
+  font-size: 1.2em;
+  color: #d5e2f7;
+  border-bottom: "1px solid #d5e2f7" 
+}

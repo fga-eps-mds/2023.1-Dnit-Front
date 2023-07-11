@@ -90,11 +90,12 @@ export default function Home() {
             </p>
           </Col>
         </Row>
-        <Row>
-          <Link 
-          to='https://servicos.dnit.gov.br/conexao' 
-          target={"_blank"}
-          style={{fontSize: '1.2em', color: '#d5e2f7'}}>Conheça outros projetos do DNIT!</Link>
+        <Row className="container-link">
+          <Link
+            to='https://servicos.dnit.gov.br/conexao'
+            target={"_blank"}
+            className="link"
+          >Conheça outros projetos do DNIT!</Link>
         </Row>
       </Row>
 
