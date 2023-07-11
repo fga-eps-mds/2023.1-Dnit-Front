@@ -1,6 +1,6 @@
 import { Form, Input, Space, notification } from "antd";
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import LogoDNIT from "../../assets/logoDnitAzul.png";
 import { AuthContext } from "../../provider/Authentication";
 import fetchLogin from "../../service/login";
@@ -8,7 +8,6 @@ import "../../styles/form.css";
 import ButtonComponent from "../Button";
 
 const LoginForm: React.FC = () => {
-  const navigate = useNavigate();
 
   const [form] = Form.useForm();
   const rules = [
@@ -36,6 +35,7 @@ const LoginForm: React.FC = () => {
 
     try {
       await fetchLogin(loginData);
+      notification.success({message: "Login realizado!"})
       login();
     } catch (error) {
       api.error({ message: `Erro ao fazer login` });
@@ -80,7 +80,6 @@ const LoginForm: React.FC = () => {
                 cor_letra="#FFFFFF"
                 cor_borda="#1351B4"
                 largura="10em"
-                click={() => navigate("/dashboard")}
               />
             </Space>
           </Form.Item>

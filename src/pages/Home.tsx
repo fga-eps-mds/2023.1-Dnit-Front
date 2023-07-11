@@ -6,6 +6,7 @@ import Header from "../components/Header";
 import Footer from "../components/components-escolasCadastradas/Footer";
 import "../styles/App.css";
 import "../styles/Home.css";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -88,6 +89,13 @@ export default function Home() {
               </b>
             </p>
           </Col>
+        </Row>
+        <Row className="container-link">
+          <Link
+            to='https://servicos.dnit.gov.br/conexao'
+            target={"_blank"}
+            className="link"
+          >Conheça outros projetos do DNIT!</Link>
         </Row>
       </Row>
 
