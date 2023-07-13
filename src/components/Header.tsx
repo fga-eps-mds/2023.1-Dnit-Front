@@ -1,8 +1,8 @@
 import { Button } from "antd";
 import { useNavigate } from "react-router-dom";
 import IconGov from "../assets/govIcone.png";
-import IconDNIT from "../assets/icons/DNITIcone.svg";
-import ButtonContrast from "../assets/icons/BotaoAltoContraste.svg";
+import IconDNIT from "../assets/icones/DNITIcone.svg";
+import ButtonContrast from "../assets/icones/BotaoAltoContraste.svg";
 import "../styles/App.css";
 interface HeaderProps {
   login?: boolean;
