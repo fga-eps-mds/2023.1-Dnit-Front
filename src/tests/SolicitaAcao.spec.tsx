@@ -8,7 +8,7 @@ import {
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
 import ButtonComponent from "../components/Button";
-import server from "./mock/service";
+import server from "./mock/servicosAPI";
 
 beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());

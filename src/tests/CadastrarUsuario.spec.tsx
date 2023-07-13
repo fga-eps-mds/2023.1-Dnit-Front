@@ -4,7 +4,7 @@ import App from "../App";
 import { AuthProvider } from "../provider/Autenticacao";
 import fetchFederativeUnit from "../service/federativeUnit";
 import fetchRegister from "../service/register";
-import server from "./mock/service";
+import server from "./mock/servicosAPI";
 
 jest.mock("../service/register", () => ({
   __esModule: true,
