@@ -24,6 +24,12 @@ function App() {
       {isAuthenticated ? (
         <>
           <Route path="*" element={<Navigate to="/dashboard" />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/cadastrarsinistros" element={<CadastrarAcidentes />} />
+          <Route path="/cadastrarescola" element={<RegisterSchool />} />
+          <Route path="/escolas-cadastradas" element={<EscolasCadastradas />} />
+          <Route path="/cadastrarRodovias" element={<CadastrarRodovias />} />
+          <Route path="/telaUPS" element={<TelaUPS />} />
         </>
       ) : (
         <>
@@ -31,21 +37,12 @@ function App() {
           <Route path="/cadastro" element={<Register />} />
         </>
       )}
-      <Route path="/cadastrarsinistros" element={<CadastrarAcidentes />} />
       <Route path="/login" element={<Login />} />
       <Route path="/cadastro" element={<Register />} />
-
       <Route path="/esqueciSenha" element={<RecoverPassword />} />
       <Route path="/redefinirSenha" element={<ResetPassword />} />
-
-      <Route path="/cadastrarescola" element={<RegisterSchool />} />
-      <Route path="/escolas-cadastradas" element={<EscolasCadastradas />} />
-
-      <Route path="/solicitacaoAcao" element={<SolicitacaoAcao />} />
-      <Route path="/cadastrarRodovias" element={<CadastrarRodovias />} />
-      <Route path="/telaUPS" element={<TelaUPS />} />
       <Route path="/" element={<Home />} />
-      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/solicitacaoAcao" element={<SolicitacaoAcao />} />
     </Routes>
   );
 }

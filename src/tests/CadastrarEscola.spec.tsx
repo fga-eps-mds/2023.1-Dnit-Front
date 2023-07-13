@@ -3,9 +3,16 @@ import { rest } from "msw";
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
 import DragDrop from "../components/Upload/DragDrop";
+import { AuthProvider } from "../provider/Authentication";
+import localStorageMock from "./mock/localstorage";
 import server from "./mock/service";
 
-beforeAll(() => server.listen());
+beforeAll(() => {
+  server.listen();
+});
+beforeEach(() => {
+  Object.defineProperty(window, "localStorage", { value: localStorageMock });
+});
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 window.matchMedia = jest.fn().mockImplementation((query) => {
@@ -22,9 +29,12 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
 });
 
 test("Cadastro feito", async () => {
+  localStorage.setItem("login", "authenticated");
   render(
     <MemoryRouter initialEntries={["/cadastrarescola"]}>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </MemoryRouter>
   );
   const inserirInformacoes = screen.getByText("Inserindo informações");
@@ -85,9 +95,13 @@ test("Cadastro feito", async () => {
 });
 
 test("Cadastro feito sem latitude e longitude", async () => {
+  localStorage.setItem("login", "authenticated");
+
   render(
     <MemoryRouter initialEntries={["/cadastrarescola"]}>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </MemoryRouter>
   );
   const inserirInformacoes = screen.getByText("Inserindo informações");
@@ -142,6 +156,8 @@ test("Cadastro feito sem latitude e longitude", async () => {
 });
 
 test("Erro no cadastro", async () => {
+  localStorage.setItem("login", "authenticated");
+
   server.use(
     rest.post(
       "https://api.dnit-eps-mds.com/api/escolas/cadastrarEscola",
@@ -153,7 +169,9 @@ test("Erro no cadastro", async () => {
 
   render(
     <MemoryRouter initialEntries={["/cadastrarescola"]}>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </MemoryRouter>
   );
   const inserirInformacoes = screen.getByText("Inserindo informações");
@@ -214,6 +232,8 @@ test("Erro no cadastro", async () => {
 });
 
 test("Erro no cep", async () => {
+  localStorage.setItem("login", "authenticated");
+
   server.use(
     rest.get("https://viacep.com.br/ws/12345678/json", (req, res, ctx) => {
       return res(ctx.json({ erro: true }));
@@ -221,7 +241,9 @@ test("Erro no cep", async () => {
   );
   render(
     <MemoryRouter initialEntries={["/cadastrarescola"]}>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </MemoryRouter>
   );
   const inserirInformacoes = screen.getByText("Inserindo informações");
@@ -303,9 +325,13 @@ test("Erro no cep", async () => {
 });
 
 test("Lista de escolas redireciona pra listagem", async () => {
+  localStorage.setItem("login", "authenticated");
+
   render(
     <MemoryRouter initialEntries={["/cadastrarescola"]}>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </MemoryRouter>
   );
   const inserirInformacoes = screen.getByTestId("redirecionar");
@@ -313,6 +339,8 @@ test("Lista de escolas redireciona pra listagem", async () => {
 });
 
 test("Cadastro CSV", async () => {
+  localStorage.setItem("login", "authenticated");
+
   server.use(
     rest.post(
       "https://api.dnit-eps-mds.com/api/escolas/cadastrarEscolaPlanilha",
@@ -323,7 +351,9 @@ test("Cadastro CSV", async () => {
   );
   render(
     <MemoryRouter initialEntries={["/cadastrarescola"]}>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </MemoryRouter>
   );
   const arquivo = screen.getByText("Utilizando Arquivo CSV");
@@ -345,10 +375,13 @@ test("Cadastro CSV", async () => {
 });
 
 test("Cadastro CSV", async () => {
-  
+  localStorage.setItem("login", "authenticated");
+
   render(
     <MemoryRouter initialEntries={["/cadastrarescola"]}>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </MemoryRouter>
   );
   const arquivo = screen.getByText("Utilizando Arquivo CSV");
@@ -370,17 +403,21 @@ test("Cadastro CSV", async () => {
 });
 
 test("Cadastro CSV", async () => {
+  localStorage.setItem("login", "authenticated");
+
   server.use(
     rest.post(
       "https://api.dnit-eps-mds.com/api/escolas/cadastrarEscolaPlanilha",
       (req, res, ctx) => {
-        return res(ctx.json([1,2,3,4,5,6,7]));
+        return res(ctx.json([1, 2, 3, 4, 5, 6, 7]));
       }
     )
   );
   render(
     <MemoryRouter initialEntries={["/cadastrarescola"]}>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </MemoryRouter>
   );
   const arquivo = screen.getByText("Utilizando Arquivo CSV");
@@ -401,8 +438,9 @@ test("Cadastro CSV", async () => {
   fireEvent.click(concluir);
 });
 
-
 test("Cadastro CSV erro", async () => {
+  localStorage.setItem("login", "authenticated");
+
   server.use(
     rest.post(
       "https://api.dnit-eps-mds.com/api/escolas/cadastrarEscolaPlanilha",
@@ -413,7 +451,9 @@ test("Cadastro CSV erro", async () => {
   );
   render(
     <MemoryRouter initialEntries={["/cadastrarescola"]}>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </MemoryRouter>
   );
   const arquivo = screen.getByText("Utilizando Arquivo CSV");
@@ -434,6 +474,8 @@ test("Cadastro CSV erro", async () => {
 });
 
 test("Cadastro CSV vazio", async () => {
+  localStorage.setItem("login", "authenticated");
+
   server.use(
     rest.post(
       "https://api.dnit-eps-mds.com/api/escolas/cadastrarEscolaPlanilha",
@@ -444,7 +486,9 @@ test("Cadastro CSV vazio", async () => {
   );
   render(
     <MemoryRouter initialEntries={["/cadastrarescola"]}>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </MemoryRouter>
   );
   const arquivo = screen.getByText("Utilizando Arquivo CSV");
@@ -462,6 +506,8 @@ test("Cadastro CSV vazio", async () => {
 });
 
 test("Cadastro sem enviar CSV", async () => {
+  localStorage.setItem("login", "authenticated");
+
   server.use(
     rest.post(
       "https://api.dnit-eps-mds.com/api/escolas/cadastrarescolaPlanilha",
@@ -472,7 +518,9 @@ test("Cadastro sem enviar CSV", async () => {
   );
   render(
     <MemoryRouter initialEntries={["/cadastrarescola"]}>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </MemoryRouter>
   );
   const arquivo = screen.getByText("Utilizando Arquivo CSV");

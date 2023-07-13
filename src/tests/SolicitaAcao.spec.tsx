@@ -49,7 +49,7 @@ test("Button", () => {
 
 test("Abre duas vezes", async () => {
   act(() => {
-    const screen = render(
+    render(
       <MemoryRouter initialEntries={["/solicitacaoAcao"]}>
         <App />
       </MemoryRouter>

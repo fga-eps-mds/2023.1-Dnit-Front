@@ -3,16 +3,25 @@ import { rest } from "msw";
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
 import ModalExibirInformacoes from "../components/components-escolasCadastradas/ModalExibirInformacoes";
+import { AuthProvider } from "../provider/Authentication";
+import localStorageMock from "./mock/localstorage";
 import server from "./mock/service";
 
 beforeAll(() => server.listen());
+beforeEach(() => {
+  Object.defineProperty(window, "localStorage", { value: localStorageMock });
+});
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
 test("Remover situação escola", async () => {
+  localStorage.setItem("login", "authenticated");
+
   render(
     <MemoryRouter initialEntries={["/escolas-cadastradas"]}>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </MemoryRouter>
   );
 
@@ -35,6 +44,8 @@ test("Remover situação escola", async () => {
 });
 
 test("Remover situação escola erro", async () => {
+  localStorage.setItem("login", "authenticated");
+
   server.use(
     rest.post(
       "https://api.dnit-eps-mds.com/api/escolas/removerSituacao",
@@ -45,7 +56,9 @@ test("Remover situação escola erro", async () => {
   );
   render(
     <MemoryRouter initialEntries={["/escolas-cadastradas"]}>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </MemoryRouter>
   );
 
@@ -68,6 +81,8 @@ test("Remover situação escola erro", async () => {
 });
 
 test("Erro de Provider de selectedValue", async () => {
+  localStorage.setItem("login", "authenticated");
+
   const escola = {
     idEscola: 104,
     codigoEscola: 300,
