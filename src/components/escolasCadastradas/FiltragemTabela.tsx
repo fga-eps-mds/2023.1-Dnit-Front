@@ -7,7 +7,7 @@ import fetchEtapasDeEnsino from "../../service/etapasDeEnsino";
 import fetchFederativeUnit from "../../service/federativeUnit";
 import fetchMunicipio from "../../service/municipio";
 import "../../styles/App.css";
-import "../style/FiltragemTabela.css";
+import "../estilo/FiltragemTabela.css";
 
 export default function TabelaEscolas() {
   const {

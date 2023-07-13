@@ -4,7 +4,7 @@ import { useFiltroTabela } from "../../context/FiltroTabela";
 import { EscolaData } from "../../models/service";
 import ExibirInformacoesEscola from "../../pages/ExibirInformacoesEscola";
 import "../../styles/App.css";
-import "../style/TabelaEscola.css";
+import "../estilo/TabelaEscola.css";
 
 export default function TabelaEscola() {
   const {

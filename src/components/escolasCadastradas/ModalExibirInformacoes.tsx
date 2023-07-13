@@ -7,7 +7,7 @@ import fetchSituacao from "../../service/Situacao";
 import fetchAlterarDadosEscola from "../../service/alterarDadosEscola";
 import fetchDeleteSituation from "../../service/deleteSituation";
 import ModalExcluirEscolas from "./ModalExcluirEscolas";
-import "../style/ModalExibirInformacoes.css";
+import "../estilo/ModalExibirInformacoes.css";
 import ModalBody from "./ModalBody";
 
 interface ModalProps {
