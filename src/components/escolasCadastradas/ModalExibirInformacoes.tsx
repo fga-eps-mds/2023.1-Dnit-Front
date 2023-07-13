@@ -8,7 +8,7 @@ import fetchAlterarDadosEscola from "../../service/alterarDadosEscola";
 import fetchDeleteSituation from "../../service/deleteSituation";
 import ModalExcluirEscolas from "./ModalExcluirEscolas";
 import "../estilo/ModalExibirInformacoes.css";
-import ModalBody from "./ModalBody";
+import ModalBody from "./ModalCamposEscola";
 
 interface ModalProps {
   escola: EscolaData;
