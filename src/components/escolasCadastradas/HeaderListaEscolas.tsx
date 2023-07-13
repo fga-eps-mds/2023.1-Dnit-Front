@@ -1,5 +1,5 @@
-import IconGov from "../../assets/govIcon.png";
-import ButtonContrast from "../../assets/icons/contrastButton.svg";
+import IconGov from "../../assets/govIcone.png";
+import ButtonContrast from "../../assets/icons/BotaoAltoContraste.svg";
 import "../../styles/App.css";
 import "../estilo/Header.css";
 
