@@ -1,0 +1,15 @@
+.select-etapas .ant-select-selector {
+  background-color: #fff !important;
+}
+.select-etapas-cadastro .ant-select-selector {
+  background-color: var(--gray1) !important;
+  overflow-y: scroll;
+  height: 32px;
+}
+
+.select-etapas-acao .ant-select-selector {
+  background-color: var(--gray1) !important;
+  overflow-y: scroll;
+  height: 32px;
+  width: 411.05px !important;
+}

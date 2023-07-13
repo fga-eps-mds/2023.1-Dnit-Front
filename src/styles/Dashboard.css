@@ -1,0 +1,30 @@
+.collapse-item {
+  display: flex;
+  gap: 30px;
+}
+
+.card {
+  width: 250px;
+  background-color: #071d41;
+  cursor: pointer;
+}
+
+.text {
+  color: white;
+  margin-bottom: 0;
+  margin-top: 10px;
+}
+
+.icon {
+  color: white;
+  font-size: 70px;
+}
+
+.disabled {
+  width: 250px;
+  background-color: gray;
+}
+
+.collapse {
+  padding: 50px;
+}

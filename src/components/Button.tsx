@@ -5,14 +5,24 @@ interface ButtonComponentProps {
   cor_letra?: string;
   margin?: string;
   largura?: string;
+  disabled?: boolean;
+  click?: () => void;
 }
 
-export default function ButtonComponent(props: ButtonComponentProps) {
+export default function ButtonComponent({
+  click,
+  cor,
+  cor_borda,
+  cor_letra,
+  largura,
+  nome,
+  disabled,
+}: ButtonComponentProps) {
   const buttonStyle = {
-    backgroundColor: props.cor,
-    borderColor: props.cor_borda,
-    color: props.cor_letra,
-    width: props.largura,
+    backgroundColor: cor,
+    borderColor: cor_borda,
+    color: cor_letra,
+    width: largura,
     padding: "4% 13%",
     borderRadius: "20px",
     boxShadow: "1px 2px 4px var(--black1)",
@@ -24,5 +34,9 @@ export default function ButtonComponent(props: ButtonComponentProps) {
     textalign: "center",
     marginTop: "5px",
   };
-  return <button style={buttonStyle}>{props.nome}</button>;
+  return (
+    <button disabled={disabled} style={buttonStyle} onClick={click}>
+      {nome}
+    </button>
+  );
 }

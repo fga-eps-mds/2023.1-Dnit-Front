@@ -8,6 +8,7 @@ import "../../styles/form.css";
 import ButtonComponent from "../Button";
 
 const LoginForm: React.FC = () => {
+
   const [form] = Form.useForm();
   const rules = [
     {
@@ -34,6 +35,7 @@ const LoginForm: React.FC = () => {
 
     try {
       await fetchLogin(loginData);
+      notification.success({message: "Login realizado!"})
       login();
     } catch (error) {
       api.error({ message: `Erro ao fazer login` });

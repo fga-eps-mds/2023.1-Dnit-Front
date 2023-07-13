@@ -88,11 +88,6 @@
   height: inherit;
 }
 
-.logoDnit {
-  width: 380px;
-  height: 96px;
-}
-
 .imgLateral {
   width: 437px;
   height: 291px;
@@ -202,5 +197,10 @@
   .logoDnit {
     width: 180px;
     height: 56px;
+  }
+
+  .imgLateral {
+    width: 237px;
+    height: 131px;
   }
 }

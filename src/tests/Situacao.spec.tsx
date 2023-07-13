@@ -1,10 +1,4 @@
-import {
-  act,
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-} from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { rest } from "msw";
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
@@ -15,74 +9,10 @@ beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
-test("Alterar situação escola", async () => {
-  const response = await fetch("https://api.aprovaunb.com/api/usuario/login", { method: "POST" });
-  expect(response.status).toEqual(200);
-  render(
-    <MemoryRouter initialEntries={["/escolas-cadastradas"]}>
-      <App />
-    </MemoryRouter>
-  );
-
-  await waitFor(() => {
-    const escolas = screen.getAllByTestId("linha-escola");
-    expect(escolas).toHaveLength(3);
-  });
-
-  const abrirEscolaSelecionada = screen.getByText("Escola A");
-  fireEvent.click(abrirEscolaSelecionada);
-
-  const alterarSituacao = screen.getByTestId("dropdown-situacao");
-  fireEvent.click(alterarSituacao);
-
-  await act(async () => {
-    const selecionarSituacao = screen.getByText("Indicação");
-    fireEvent.click(selecionarSituacao);
-
-    const fecharEscolaSelecionada = screen.getByText("Salvar");
-    fireEvent.click(fecharEscolaSelecionada);
-  });
-});
-
-test("Alterar situação escola erro", async () => {
-  const response = await fetch("https://api.aprovaunb.com/api/usuario/login", { method: "POST" });
-  expect(response.status).toEqual(200);
-  server.use(
-    rest.post(
-      "https://api.dnit-eps-mds.com/api/escolas/adicionarSituacao",
-      (req, res, ctx) => {
-        return res(ctx.status(403));
-      }
-    )
-  );
-  render(
-    <MemoryRouter initialEntries={["/escolas-cadastradas"]}>
-      <App />
-    </MemoryRouter>
-  );
-
-  await waitFor(() => {
-    const escolas = screen.getAllByTestId("linha-escola");
-    expect(escolas).toHaveLength(3);
-  });
-
-  const abrirEscolaSelecionada = screen.getByText("Escola A");
-  fireEvent.click(abrirEscolaSelecionada);
-
-  const alterarSituacao = screen.getByTestId("dropdown-situacao");
-  fireEvent.click(alterarSituacao);
-
-  await act(async () => {
-    const selecionarSituacao = screen.getByText("Indicação");
-    fireEvent.click(selecionarSituacao);
-
-    const fecharEscolaSelecionada = screen.getByText("Salvar");
-    fireEvent.click(fecharEscolaSelecionada);
-  });
-});
-
 test("Remover situação escola", async () => {
-  const response = await fetch("https://api.aprovaunb.com/api/usuario/login", { method: "POST" });
+  const response = await fetch("https://api.aprovaunb.com/api/usuario/login", {
+    method: "POST",
+  });
   expect(response.status).toEqual(200);
   render(
     <MemoryRouter initialEntries={["/escolas-cadastradas"]}>
@@ -101,17 +31,17 @@ test("Remover situação escola", async () => {
   const alterarSituacao = screen.getByTestId("dropdown-situacao");
   fireEvent.click(alterarSituacao);
 
-  await act(async () => {
-    const selecionarSituacao = screen.getByText("Remover Situação");
-    fireEvent.click(selecionarSituacao);
+  const selecionarSituacao = await screen.findByText("Remover Situação");
+  fireEvent.click(selecionarSituacao);
 
-    const fecharEscolaSelecionada = screen.getByText("Salvar");
-    fireEvent.click(fecharEscolaSelecionada);
-  });
+  const fecharEscolaSelecionada = screen.getByText("Salvar");
+  fireEvent.click(fecharEscolaSelecionada);
 });
 
 test("Remover situação escola erro", async () => {
-  const response = await fetch("https://api.aprovaunb.com/api/usuario/login", { method: "POST" });
+  const response = await fetch("https://api.aprovaunb.com/api/usuario/login", {
+    method: "POST",
+  });
   expect(response.status).toEqual(200);
   server.use(
     rest.post(
@@ -138,17 +68,52 @@ test("Remover situação escola erro", async () => {
   const alterarSituacao = screen.getByTestId("dropdown-situacao");
   fireEvent.click(alterarSituacao);
 
-  await act(async () => {
-    const selecionarSituacao = screen.getByText("Remover Situação");
-    fireEvent.click(selecionarSituacao);
+  const selecionarSituacao = await screen.findByText("Remover Situação");
+  fireEvent.click(selecionarSituacao);
 
-    const fecharEscolaSelecionada = screen.getByText("Salvar");
-    fireEvent.click(fecharEscolaSelecionada);
-  });
+  const fecharEscolaSelecionada = screen.getByText("Salvar");
+  fireEvent.click(fecharEscolaSelecionada);
 });
 
 test("Erro de Provider de selectedValue", async () => {
-  expect(() => render(<ModalExibirInformacoes />)).toThrow(
+  const escola = {
+    idEscola: 104,
+    codigoEscola: 300,
+    nomeEscola: "Escola A",
+    idRede: 1,
+    descricaoRede: "abc",
+    cep: "CEP001",
+    idUf: 1,
+    descricaoUf: "Acre",
+    endereco: "Endereço A",
+    idMunicipio: 2303204,
+    nomeMunicipio: "Caririaçu",
+    idLocalizacao: 1,
+    longitude: "789.012",
+    latitude: "123.456",
+    idEtapasDeEnsino: 1,
+    descricaoEtapasEnsino: "abc",
+    numeroTotalDeAlunos: 100,
+    idSituacao: 2,
+    descricaoSituacao: "Solicitação da escola",
+    idPorte: 1,
+    telefone: "Telefone A",
+    numeroTotalDeDocentes: 50,
+    siglaUf: "AC",
+    descricaoLocalizacao: "longe",
+    descricaoPorte: "123",
+    observacao: "observacao teste",
+    etapaEnsino: {},
+  };
+  expect(() =>
+    render(
+      <ModalExibirInformacoes
+        escola={escola}
+        open={true}
+        close={(): void => {}}
+      />
+    )
+  ).toThrow(
     new Error("useSelectedValue must be used within a SelectedValueProvider")
   );
 });

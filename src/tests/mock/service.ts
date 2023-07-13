@@ -22,92 +22,88 @@ const server = setupServer(
       }
       // Retorna uma resposta simulando a lista de escolas
       return res(
-        ctx.status(200),
-        ctx.json([
-          ctx.json({
-            pagina: 1,
-            escolasPorPagina: 5,
-            totalEscolas: 13,
-            totalPaginas: 3,
-            escolas: [
-              {
-                idEscola: 104,
-                codigoEscola: 300,
-                nomeEscola: "Escola A",
-                idRede: 1,
-                descricaoRede: null,
-                cep: "CEP001",
-                idUf: 1,
-                descricaoUf: "Acre",
-                endereco: "Endereço A",
-                idMunicipio: 2303204,
-                nomeMunicipio: "Caririaçu",
-                idLocalizacao: 1,
-                longitude: "789.012",
-                latitude: "123.456",
-                idEtapasDeEnsino: 1,
-                descricaoEtapasEnsino: null,
-                numeroTotalDeAlunos: 100,
-                idSituacao: 2,
-                descricaoSituacao: "Solicitação da escola",
-                idPorte: 1,
-                telefone: "Telefone A",
-                numeroTotalDeDocentes: 50,
-                siglaUf: "AC",
+        ctx.json({
+          pagina: 1,
+          escolasPorPagina: 5,
+          totalEscolas: 29,
+          totalPaginas: 6,
+          escolas: [
+            {
+              idEscola: 227,
+              codigoEscola: 41127226,
+              nomeEscola: "Escola A",
+              idRede: 1,
+              cep: "82860130",
+              idUf: 1,
+              descricaoUf: "Acre",
+              endereco:
+                "RUA JOAO BATISTA SCUCATO, 80 ATUBA. 82860-130 Curitiba - PR.",
+              idMunicipio: 5200050,
+              nomeMunicipio: "Abadia de Goiás",
+              idLocalizacao: 1,
+              longitude: "-49,2011",
+              latitude: "-25,38443",
+              etapaEnsino: {},
+              numeroTotalDeAlunos: 200,
+              idSituacao: 1,
+              descricaoSituacao: "Escola Crítica",
+              idPorte: 1,
+              telefone: "32562393",
+              numeroTotalDeDocentes: 200,
+              siglaUf: "AC",
+            },
+            {
+              idEscola: 224,
+              codigoEscola: 41127226,
+              nomeEscola: "ANISIO TEIXEIRA E M EF",
+              idRede: 1,
+              cep: "82860130",
+              idUf: 1,
+              descricaoUf: "Acre",
+              endereco:
+                "RUA JOAO BATISTA SCUCATO, 80 ATUBA. 82860-130 Curitiba - PR.",
+              idMunicipio: 5200050,
+              nomeMunicipio: "Abadia de Goiás",
+              idLocalizacao: 1,
+              longitude: "-49,2011",
+              latitude: "-25,38443",
+              etapaEnsino: {
+                "4": "Educação de Jovens Adultos",
+                "5": "Educação Profissional",
               },
-              {
-                idEscola: 105,
-                codigoEscola: 301,
-                nomeEscola: "Escola B",
-                idRede: 1,
-                descricaoRede: null,
-                cep: "CEP002",
-                idUf: 2,
-                descricaoUf: "Alagoas",
-                endereco: "Endereço B",
-                idMunicipio: 2303303,
-                nomeMunicipio: "Cariús",
-                idLocalizacao: 1,
-                longitude: "890.123",
-                latitude: "234.567",
-                idEtapasDeEnsino: 2,
-                descricaoEtapasEnsino: null,
-                numeroTotalDeAlunos: 200,
-                idSituacao: 3,
-                descricaoSituacao: "Jornada de crescimento do professor",
-                idPorte: 1,
-                telefone: "Telefone B",
-                numeroTotalDeDocentes: 60,
-                siglaUf: "AL",
-              },
-              {
-                idEscola: 110,
-                codigoEscola: 301,
-                nomeEscola: "Escola G",
-                idRede: 1,
-                descricaoRede: null,
-                cep: "CEP002",
-                idUf: 2,
-                descricaoUf: "Alagoas",
-                endereco: "Endereço B",
-                idMunicipio: 1400159,
-                nomeMunicipio: "Bonfim",
-                idLocalizacao: 1,
-                longitude: "890.123",
-                latitude: "234.567",
-                idEtapasDeEnsino: 2,
-                descricaoEtapasEnsino: null,
-                numeroTotalDeAlunos: 200,
-                idSituacao: 3,
-                descricaoSituacao: "Jornada de crescimento do professor",
-                idPorte: 1,
-                telefone: "Telefone B",
-                numeroTotalDeDocentes: 60,
-                siglaUf: "AL",
-              },
-            ],
-          })
-        ])
+              numeroTotalDeAlunos: 200,
+              idSituacao: 1,
+              descricaoSituacao: "Escola Crítica",
+              idPorte: 1,
+              telefone: "32562393",
+              numeroTotalDeDocentes: 200,
+              siglaUf: "AC",
+            },
+            {
+              idEscola: 225,
+              codigoEscola: 11116,
+              nomeEscola: "ANTAO LEANDRO BITU EEF",
+              idRede: 1,
+              cep: "CEP007",
+              idUf: 2,
+              descricaoUf: "Alagoas",
+              endereco: "Endereço E",
+              idMunicipio: 5200050,
+              nomeMunicipio: "Abadia de Goiás",
+              idLocalizacao: 1,
+              longitude: "56",
+              latitude: "-25,38443",
+              etapaEnsino: {},
+              numeroTotalDeAlunos: 140,
+              idSituacao: 4,
+              descricaoSituacao: "Escola Crítica",
+              idPorte: 2,
+              telefone: "40028922",
+              numeroTotalDeDocentes: 16,
+              siglaUf: "AL",
+            },
+          ],
+        })
       );
     }
   ),
@@ -119,110 +115,137 @@ const server = setupServer(
           {
             nome: "Acre",
             id: 1,
+            sigla: "AC",
           },
           {
             nome: "Alagoas",
             id: 2,
+            sigla: "AL",
           },
           {
             nome: "Amapá",
             id: 3,
+            sigla: "AP",
           },
           {
             nome: "Amazonas",
             id: 4,
+            sigla: "AM",
           },
           {
             nome: "Bahia",
             id: 5,
+            sigla: "BA",
           },
           {
             nome: "Ceará",
             id: 6,
+            sigla: "CE",
           },
           {
             nome: "Distrito Federal",
             id: 27,
+            sigla: "DF",
           },
           {
             nome: "Espírito Santo",
             id: 7,
+            sigla: "ES",
           },
           {
             nome: "Goiás",
             id: 8,
+            sigla: "GO",
           },
           {
             nome: "Maranhão",
             id: 9,
+            sigla: "MA",
           },
           {
             nome: "Mato Grosso",
             id: 10,
+            sigla: "MT",
           },
           {
             nome: "Mato Grosso do Sul",
             id: 11,
+            sigla: "MS",
           },
           {
             nome: "Minas Gerais",
             id: 12,
+            sigla: "MG",
           },
           {
             nome: "Pará",
             id: 13,
+            sigla: "PA",
           },
           {
             nome: "Paraíba",
             id: 14,
+            sigla: "PB",
           },
           {
             nome: "Paraná",
             id: 15,
+            sigla: "PR",
           },
           {
             nome: "Pernambuco",
             id: 16,
+            sigla: "PE",
           },
           {
             nome: "Piauí",
             id: 17,
+            sigla: "PI",
           },
           {
             nome: "Rio de Janeiro",
             id: 18,
+            sigla: "RJ",
           },
           {
             nome: "Rio Grande do Norte",
             id: 19,
+            sigla: "RN",
           },
           {
             nome: "Rio Grande do Sul",
             id: 20,
+            sigla: "RS",
           },
           {
             nome: "Rondônia",
             id: 21,
+            sigla: "RO",
           },
           {
             nome: "Roraima",
             id: 22,
+            sigla: "RR",
           },
           {
             nome: "Santa Catarina",
             id: 23,
+            sigla: "SC",
           },
           {
             nome: "São Paulo",
             id: 24,
+            sigla: "SP",
           },
           {
             nome: "Sergipe",
             id: 25,
+            sigla: "SE",
           },
           {
             nome: "Tocantins",
             id: 26,
+            sigla: "TO",
           },
         ])
       );
@@ -277,54 +300,24 @@ const server = setupServer(
         ctx.status(200),
         ctx.json([
           {
-            id: 8,
-            descricao: "Educação Infantil",
+            id: 4,
+            descricao: "Educação de Jovens Adultos",
           },
           {
             id: 1,
-            descricao: "Educação Infantil, Ensino Fundamental",
-          },
-          {
-            id: 2,
-            descricao:
-              "Educação Infantil, Ensino Fundamental, Educação de Jovens Adultos",
-          },
-          {
-            id: 3,
-            descricao: "Ensino Fundamental",
-          },
-          {
-            id: 4,
-            descricao: "Ensino Fundamental, Educação de Jovens Adultos",
+            descricao: "Educação Infantil",
           },
           {
             id: 5,
-            descricao: "Ensino Fundamental, Ensino Médio",
+            descricao: "Educação Profissional",
           },
           {
-            id: 6,
-            descricao:
-              "Ensino Fundamental, Ensino Médio, Educação de Jovens Adultos",
+            id: 2,
+            descricao: "Ensino Fundamental",
           },
           {
-            id: 12,
-            descricao:
-              "Ensino Fundamental, Ensino Médio, Educação Profissional",
-          },
-          {
-            id: 7,
-            descricao:
-              "Ensino Fundamental, Ensino Médio, Educação Profissional, Educação de Jovens Adultos",
-          },
-          {
-            id: 10,
-            descricao:
-              "Ensino Infantil, Ensino Fundamental, Ensino Médio, Educação de Jovens Adultos",
-          },
-          {
-            id: 11,
-            descricao:
-              "Ensino Infantil, Ensino Fundamental, Ensino Médio, Educação de Jovens Adultos, Educação Profissional",
+            id: 3,
+            descricao: "Ensino Médio",
           },
         ])
       );
@@ -447,20 +440,6 @@ const server = setupServer(
     }
   ),
   rest.post(
-    "https://api.dnit-eps-mds.com/api/escolas/adicionarSituacao",
-    (req, res, ctx) => {
-      const token = localStorage.getItem("token");
-      // Verifica se o usuário está autenticado
-      if (!token) {
-        return res(
-          ctx.status(401),
-          ctx.json({ message: "Usuário não autenticado" })
-        );
-      }
-      return res(ctx.status(200));
-    }
-  ),
-  rest.post(
     "https://api.dnit-eps-mds.com/api/escolas/removerSituacao",
     (req, res, ctx) => {
       const token = localStorage.getItem("token");
@@ -502,42 +481,183 @@ const server = setupServer(
       return res(ctx.json([2, 3]));
     }
   ),
-
-  rest.get("https://api.dnit-eps-mds.com/api/escolas/listarInformacoesEscola",
+  rest.post(
+    "https://api.aprovaunb.com.br/api/rodovia/cadastrarRodoviaPlanilha",
     (req, res, ctx) => {
-      const token = localStorage.getItem("token");
-      // Verifica se o usuário está autenticado
-      if (!token) {
-        return res(
-          ctx.status(401),
-          ctx.json({ message: "Usuário não autenticado" })
-        );
-      }
-      return res(ctx.json([{
-        idEscola: 104,
-        codigoEscola: 300,
-        nomeEscola: "Escola A",
-        idRede: 1,
-        descricaoRede: null,
-        cep: "CEP001",
-        idUf: 1,
-        descricaoUf: "Acre",
-        endereco: "Endereço A",
-        idMunicipio: 2303204,
-        nomeMunicipio: "Caririaçu",
-        idLocalizacao: 1,
-        longitude: "789.012",
-        latitude: "123.456",
-        idEtapasDeEnsino: 1,
-        descricaoEtapasEnsino: null,
-        numeroTotalDeAlunos: 100,
-        idSituacao: 2,
-        descricaoSituacao: "Solicitação da escola",
-        idPorte: 1,
-        telefone: "Telefone A",
-        numeroTotalDeDocentes: 50,
-        siglaUf: "AC",
-    }]));
+      return res(ctx.status(200));
+    }
+  ),
+  rest.get("https://viacep.com.br/ws/12345678/json", (req, res, ctx) => {
+    return res(
+      ctx.json({
+        cep: "12345-678",
+        logradouro: "SHA Conjunto Chácara",
+        complemento: "",
+        bairro: "Setor Habitacional Arniqueira (Águas Claras)",
+        localidade: "Acrelândia",
+        uf: "AC",
+        ibge: "5300108",
+        gia: "",
+        ddd: "61",
+        siafi: "9701",
+      })
+    );
+  }),
+  rest.put(
+    "https://api.dnit-eps-mds.com/api/escolas/alterarDadosEscola",
+    (req, res, ctx) => {
+      return res(ctx.status(200));
+    }
+  ),
+  rest.get(
+    "https://api.dnit-eps-mds.com/api/solicitacaoAcao/escolas",
+    (req, res, ctx) => {
+      return res(
+        ctx.json([
+          {
+            cod: 12008966,
+            estado: "AC",
+            nome: "ESC ALTINA MAGALHAES DA SILVA",
+          },
+          {
+            cod: 12023582,
+            estado: "AC",
+            nome: "ESC BOM JESUS",
+          },
+          {
+            cod: 12020613,
+            estado: "AC",
+            nome: "ESC BRANCA DE NEVE",
+          },
+          {
+            cod: 12023590,
+            estado: "AC",
+            nome: "ESC CASTRO ALVES",
+          },
+          {
+            cod: 12009067,
+            estado: "AC",
+            nome: "ESC DUQUE DE CAXIAS",
+          },
+          {
+            cod: 12128236,
+            estado: "AC",
+            nome: "ESC FAMILIA AGRICOLA JEAN PIERRE MINGAN",
+          },
+          {
+            cod: 12028061,
+            estado: "AC",
+            nome: "ESC FRANCISCO PEREIRA DE SOUZA",
+          },
+          {
+            cod: 12009091,
+            estado: "AC",
+            nome: "ESC INTEGRACAO",
+          },
+          {
+            cod: 12023574,
+            estado: "AC",
+            nome: "ESC JAIME DE ALENCAR",
+          },
+          {
+            cod: 12009156,
+            estado: "AC",
+            nome: "ESC JOSE PLACIDO DE CASTRO",
+          },
+          {
+            cod: 12028312,
+            estado: "AC",
+            nome: "ESC JOSE RODRIGUES CASSIMIRO",
+          },
+          {
+            cod: 12021768,
+            estado: "AC",
+            nome: "ESC MARCILIO PONTES DOS SANTOS",
+          },
+          {
+            cod: 12018376,
+            estado: "AC",
+            nome: "ESC MARECHAL RONDON",
+          },
+          {
+            cod: 12009164,
+            estado: "AC",
+            nome: "ESC MARIA DE JESUS RIBEIRO",
+          },
+          {
+            cod: 12009172,
+            estado: "AC",
+            nome: "ESC MONTEIRO LOBATO",
+          },
+          {
+            cod: 12023531,
+            estado: "AC",
+            nome: "ESC NOVO HORIZONTE",
+          },
+          {
+            cod: 12018384,
+            estado: "AC",
+            nome: "ESC OLAVO BILAC",
+          },
+          {
+            cod: 12023566,
+            estado: "AC",
+            nome: "ESC PARAISO",
+          },
+          {
+            cod: 12009229,
+            estado: "AC",
+            nome: "ESC PROF PEDRO DE CASTRO MEIRELES",
+          },
+          {
+            cod: 12048224,
+            estado: "AC",
+            nome: "ESC RITA BOCALOM",
+          },
+          {
+            cod: 12018422,
+            estado: "AC",
+            nome: "ESC SANTA LUCIA III",
+          },
+          {
+            cod: 12022810,
+            estado: "AC",
+            nome: "ESC SAO LUCAS",
+          },
+          {
+            cod: 12009296,
+            estado: "AC",
+            nome: "ESC SAO PEDRO",
+          },
+          {
+            cod: 12037621,
+            estado: "AC",
+            nome: "MARIA DE JESUS RIBEIRO",
+          },
+        ])
+      );
+    }
+  ),
+  rest.post(
+    "https://api.dnit-eps-mds.com/api/solicitacaoAcao",
+    (req, res, ctx) => {
+      return res(ctx.status(200));
+    }
+  ),
+  rest.get(
+    "https://api.aprovaunb.com.br/api/calcular/ups/escola",
+    (req, res, ctx) => {
+      return res(
+        ctx.delay(1000),
+        ctx.json({
+          upsGeral: 123,
+          ups2018: 456,
+          ups2019: 789,
+          ups2020: 1011,
+          ups2021: 1213,
+          ups2022: 1415,
+        })
+      );
     }
   )
 );

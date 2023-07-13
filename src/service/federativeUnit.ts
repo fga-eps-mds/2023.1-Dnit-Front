@@ -9,6 +9,7 @@ async function fetchFederativeUnit(): Promise<FederativeUnit[]> {
     );
     return response.data;
   } catch (error) {
+    console.log(error);
     throw error;
   }
 }

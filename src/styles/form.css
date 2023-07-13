@@ -2,6 +2,7 @@
   width: 300px;
   height: 66px;
 }
+
 .form {
   padding: 3.5%;
   margin-top: 0;
@@ -16,11 +17,6 @@
 
 .form label {
   font-weight: 1000;
-}
-
-.form h2 {
-  justify-content: flex-start;
-  display: flex;
 }
 
 .formc {
@@ -41,20 +37,15 @@
   font-weight: 1000;
 }
 
-.formc h2 {
-  justify-content: flex-start;
-  display: flex;
-}
-
 .ant-input-affix-wrapper > input.ant-input {
   background-color: var(--gray1);
 }
 
 .ant-select-selector {
+  width: 100% !important;
   background-color: var(--gray1) !important;
   border: 1px solid var(--gray2) !important;
   border-radius: 2px !important;
-  width: 21.5em;
 }
 
 .ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
@@ -62,6 +53,7 @@
   border: 1px solid var(--gray2);
   border-radius: 2px;
   background-color: var(--gray1) !important;
+  /* background-color: var(--gray1); */
   text-align: left;
   padding-left: 11px;
 }
@@ -86,9 +78,11 @@
   align-items: center;
   justify-content: center;
 }
+
 .loginButton p {
   margin: 0;
 }
+
 .recuperarsenha {
   display: flex;
   justify-content: end;
@@ -154,6 +148,7 @@
 
   color: var(--gray3);
 }
+
 .fas.fa-envelope {
   margin-right: 4%;
   color: var(--blue);
@@ -186,6 +181,10 @@
   padding: 0 0 5px;
 }
 
+.form-item-select {
+  background-color: red !important;
+}
+
 .ant-form-vertical .ant-form-item-label > label {
   font-size: 1em;
   font-weight: 350;
@@ -207,6 +206,12 @@
   z-index: 1;
   color: var(--blue);
   font-size: 15px;
+}
+
+.uf-municipio-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
 }
 
 .inputForm {
@@ -240,6 +245,7 @@
 .ext2 {
   margin-bottom: 10%;
 }
+
 .radio1 {
   font-family: Rawline, sans-serif;
   font-weight: 500;
@@ -293,6 +299,7 @@
 .proximo {
   float: right;
 }
+
 .voltar {
   float: left;
 }
@@ -302,15 +309,17 @@
   margin-right: 2rem;
   margin-left: 1rem;
 }
+
 .bloco2 {
   width: 18rem;
   margin-left: 2rem;
   margin-right: 2rem;
 }
+
 .bloco3 {
   width: 18rem;
   margin-left: 2rem;
-  margin-right:1rem;
+  margin-right: 1rem;
 }
 
 .inputForm2 {
@@ -331,6 +340,7 @@
   .form {
     padding: 5%;
   }
+
   .formc {
     padding: 5%;
   }
@@ -338,6 +348,7 @@
   .formrs {
     padding: 5%;
   }
+
   .logoDnit {
     width: 180px;
     height: 56px;
