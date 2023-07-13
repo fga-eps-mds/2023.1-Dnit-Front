@@ -5,7 +5,7 @@ import { UploadChangeParam } from "antd/lib/upload";
 import React, { useRef, useState } from "react";
 import { cadastroRodoviasURL } from "../../consts/service";
 import "../../styles/form/step3.css";
-import fetchInsertRodoviaFile from "../../service/insertFileRodovia";
+import fetchInsertRodoviaFile from "../../service/importarRodovias";
 
 const { Dragger } = Upload;
 

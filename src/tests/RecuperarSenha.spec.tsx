@@ -3,7 +3,7 @@ import { act } from "react-dom/test-utils";
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
 import { AuthProvider } from "../provider/Autenticacao";
-import fetchRecoverPassword from "../service/recoverPW";
+import fetchRecoverPassword from "../service/recuperarSenha";
 
 jest.mock("../service/recoverPW", () => ({
   __esModule: true,

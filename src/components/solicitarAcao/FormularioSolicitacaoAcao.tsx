@@ -7,10 +7,10 @@ import {
   SolicitacaoDeAcaoData,
 } from "../../models/service";
 import fetchEtapasDeEnsino from "../../service/etapasDeEnsino";
-import fetchFederativeUnit from "../../service/federativeUnit";
+import fetchFederativeUnit from "../../service/unidadesFederativas";
 import { fetchEscolasInep } from "../../service/inepAPI";
 import fetchMunicipio from "../../service/municipio";
-import fetchSolicitaAcao from "../../service/solicitaAcao";
+import fetchSolicitaAcao from "../../service/solicitarAcao";
 import "../../styles/form.css";
 import ButtonComponent from "../Button";
 

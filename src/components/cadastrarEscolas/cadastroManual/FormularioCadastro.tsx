@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { useFiltroTabela } from "../../../context/FiltroTabela";
 import { UnidadeFederativaData, MunicipioData } from "../../../models/service";
 import fetchEtapasDeEnsino from "../../../service/etapasDeEnsino";
-import fetchFederativeUnit from "../../../service/federativeUnit";
+import fetchFederativeUnit from "../../../service/unidadesFederativas";
 import fetchMunicipio from "../../../service/municipio";
-import fetchCadastroEscola from "../../../service/registerSchool";
+import fetchCadastroEscola from "../../../service/cadastrarEscola";
 import fetchCEP from "../../../service/viaCEP";
 import "../../../styles/form/step2.css";
 

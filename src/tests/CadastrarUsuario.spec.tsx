@@ -2,8 +2,8 @@ import { act, fireEvent, render, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
 import { AuthProvider } from "../provider/Autenticacao";
-import fetchFederativeUnit from "../service/federativeUnit";
-import fetchRegister from "../service/register";
+import fetchFederativeUnit from "../service/unidadesFederativas";
+import fetchRegister from "../service/cadastrarUsuario";
 import server from "./mock/servicosAPI";
 
 jest.mock("../service/register", () => ({
