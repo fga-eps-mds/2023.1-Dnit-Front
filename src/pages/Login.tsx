@@ -1,6 +1,6 @@
 import imgLateral from "../assets/imgLateral.png";
 import Header from "../components/Header";
-import LoginForm from "../components/form/Login";
+import LoginForm from "../components/acessosUsuario/Login";
 import "../styles/App.css";
 
 function Login() {

@@ -1,6 +1,6 @@
 import personagem from "../assets/julia11.png";
 import Header from "../components/Header";
-import SolicitacaoAcaoForm from "../components/form/FormularioSolicitacaoAcao";
+import SolicitacaoAcaoForm from "../components/solicitarAcao/FormularioSolicitacaoAcao";
 import "../styles/App.css";
 
 function SolicitacaoAcao() {

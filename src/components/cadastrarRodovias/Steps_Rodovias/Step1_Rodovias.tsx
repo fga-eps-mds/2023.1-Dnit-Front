@@ -1,5 +1,5 @@
 import "../../../styles/form/step3.css";
-import Dragdrop from "../../cadastrarRodovias/UploadPlanilha/DragDrop";
+import Dragdrop from "../UploadPlanilha/DragDrop";
 interface Step1RodoviasProps {
     onClickBack: () => void;
     onClickErroTamanho: () => void;

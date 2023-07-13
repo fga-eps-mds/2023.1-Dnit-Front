@@ -2,7 +2,7 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { rest } from "msw";
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
-import ModalExibirInformacoes from "../components/components-escolasCadastradas/ModalExibirInformacoes";
+import ModalExibirInformacoes from "../components/escolasCadastradas/ModalExibirInformacoes";
 import { AuthProvider } from "../provider/Authentication";
 import localStorageMock from "./mock/localstorage";
 import server from "./mock/service";

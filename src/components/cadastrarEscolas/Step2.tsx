@@ -1,14 +1,14 @@
 import { Button, Form, Input, Select, Space, notification } from "antd";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useFiltroTabela } from "../../../context/FiltroTabela";
-import { FederativeUnit, Municipio } from "../../../models/service";
-import fetchEtapasDeEnsino from "../../../service/etapasDeEnsino";
-import fetchFederativeUnit from "../../../service/federativeUnit";
-import fetchMunicipio from "../../../service/municipio";
-import fetchCadastroEscola from "../../../service/registerSchool";
-import fetchCEP from "../../../service/viaCEP";
-import "../../../styles/form/step2.css";
+import { useFiltroTabela } from "../../context/FiltroTabela";
+import { FederativeUnit, Municipio } from "../../models/service";
+import fetchEtapasDeEnsino from "../../service/etapasDeEnsino";
+import fetchFederativeUnit from "../../service/federativeUnit";
+import fetchMunicipio from "../../service/municipio";
+import fetchCadastroEscola from "../../service/registerSchool";
+import fetchCEP from "../../service/viaCEP";
+import "../../styles/form/step2.css";
 
 const { Option } = Select;
 interface Step2Props {

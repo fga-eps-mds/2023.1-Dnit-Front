@@ -1,5 +1,5 @@
 import Header from "../components/Header";
-import RegS from "../components/form/RegisterEscola";
+import RegS from "../components/cadastrarEscolas/CadastrarEscola";
 import { FiltroProvider } from "../context/FiltroTabela";
 import "../styles/App.css";
 

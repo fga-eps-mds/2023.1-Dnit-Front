@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import Galera from "../assets/galera.png";
 import Galera2 from "../assets/galera2.png";
 import Header from "../components/Header";
-import Footer from "../components/components-escolasCadastradas/Footer";
+import Footer from "../components/Footer";
 import "../styles/App.css";
 import "../styles/Home.css";
 import { Link } from "react-router-dom";

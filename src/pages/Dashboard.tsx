@@ -6,7 +6,7 @@ import {
 import { Card, Collapse, CollapseProps } from "antd";
 import { useNavigate } from "react-router";
 import Header from "../components/Header";
-import Footer from "../components/components-escolasCadastradas/Footer";
+import Footer from "../components/Footer";
 import "../styles/App.css";
 import "../styles/Dashboard.css";
 

@@ -1,22 +1,23 @@
-import logoDnit from "../assets/logoDnit.png";
+import imgLateral from "../assets/imgLateral.png";
 import Header from "../components/Header";
-import RegisterForm from "../components/form/Register";
+import ResetPassword from "../components/recuperarSenha/RedefinirSenha";
 import "../styles/App.css";
 
-function Register() {
+function RecuperarSenha() {
   return (
     <div className="App">
       <Header />
       <div className="Secao">
         <div className="Lateral">
-          <img className="logoDnit" src={logoDnit} alt="Logo DNIT" />
+          <img className="imgLateral" src={imgLateral} alt="Logo DNIT" />
         </div>
         <div className="Central">
-          <RegisterForm />
+          <ResetPassword />
         </div>
       </div>
     </div>
   );
 }
 
-export default Register;
+export default RecuperarSenha;
+

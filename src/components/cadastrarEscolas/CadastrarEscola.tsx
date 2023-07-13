@@ -2,12 +2,12 @@ import { Form } from "antd";
 import { useState } from "react";
 import { EscolasCadastradasProvider } from "../../context/escolasCadastradasErro";
 import "../../styles/form.css";
-import Step1 from "./Steps/Step1";
-import Step2 from "./Steps/Step2";
-import Step3 from "./Steps/Step3";
-import Step3Aceito from "./Steps/Step3Aceito";
-import Step3Listagem from "./Steps/Step3Listagem";
-import Step3ErroTamanho from "./Steps/Step3ErroTamanho";
+import Step1 from "./Step1";
+import Step2 from "./Step2";
+import Step3 from "./Step3";
+import Step3Aceito from "./Step3Aceito";
+import Step3Listagem from "./Step3Listagem";
+import Step3ErroTamanho from "./Step3ErroTamanho";
 export default function RegS() {
   const [screen, setScreen] = useState<
     "form1" | "form2" | "form3" | "form3_1" | "form3_listagem" | "form3_erroTamanho"

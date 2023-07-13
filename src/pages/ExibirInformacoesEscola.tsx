@@ -1,4 +1,4 @@
-import ModalExibirInformacoes from "../components/components-escolasCadastradas/ModalExibirInformacoes";
+import ModalExibirInformacoes from "../components/escolasCadastradas/ModalExibirInformacoes";
 import "../styles/App.css";
 import { SelectedValueProvider } from "../context/Situation";
 

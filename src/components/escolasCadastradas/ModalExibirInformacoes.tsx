@@ -6,8 +6,8 @@ import { AlterarDadosEscolaData, EscolaData } from "../../models/service";
 import fetchSituacao from "../../service/Situacao";
 import fetchAlterarDadosEscola from "../../service/alterarDadosEscola";
 import fetchDeleteSituation from "../../service/deleteSituation";
-import ModalExcluirEscolas from "../components-escolasCadastradas/ModalExcluirEscolas";
-import "../components-escolasCadastradas/style/ModalExibirInformacoes.css";
+import ModalExcluirEscolas from "./ModalExcluirEscolas";
+import "../style/ModalExibirInformacoes.css";
 import ModalBody from "./ModalBody";
 
 interface ModalProps {

@@ -1,5 +1,5 @@
-import "../../../styles/form/step3.css";
-import Dragdrop from "../../Upload/DragDrop";
+import "../../styles/form/step3.css";
+import Dragdrop from "../importarPlanilhas/DragDrop";
 interface Step1Props {
   onClickBack: () => void;
   onClickError: () => void;

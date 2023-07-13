@@ -1,7 +1,7 @@
 import { CheckCircleOutlined } from "@ant-design/icons";
 import { Button } from "antd";
-import { useEscolasCadastradas } from "../../../context/escolasCadastradasErro";
-import "../../../styles/form/step3_1.css";
+import { useEscolasCadastradas } from "../../context/escolasCadastradasErro";
+import "../../styles/form/step3_1.css";
 
 interface Step31Props {
   onClickVoltar: () => void;

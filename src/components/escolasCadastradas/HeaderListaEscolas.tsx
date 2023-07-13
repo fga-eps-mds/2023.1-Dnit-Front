@@ -1,7 +1,7 @@
 import IconGov from "../../assets/govIcon.png";
 import ButtonContrast from "../../assets/icons/contrastButton.svg";
 import "../../styles/App.css";
-import "../components-escolasCadastradas/style/Header.css";
+import "../style/Header.css";
 
 function Header() {
   return (

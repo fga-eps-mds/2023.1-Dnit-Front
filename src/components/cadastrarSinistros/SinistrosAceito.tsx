@@ -1,6 +1,6 @@
 import { CheckCircleOutlined } from "@ant-design/icons";
 import { Button } from "antd";
-import "../../../styles/form/step3_1.css";
+import "../../styles/form/step3_1.css";
 
 interface Step31Props {
   onClickVoltar: () => void;

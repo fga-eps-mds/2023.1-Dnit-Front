@@ -1,7 +1,7 @@
 import { notification } from "antd";
 import { useFiltroTabela } from "../../context/FiltroTabela";
 import fetchExcluirEscola from "../../service/excluirEscola";
-import "./style/ModalExcluirEscolas.css";
+import "../style/ModalExcluirEscolas.css";
 
 interface ModalExcluirEscolaProps {
   open: boolean;
