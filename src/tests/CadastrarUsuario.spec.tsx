@@ -1,7 +1,7 @@
 import { act, fireEvent, render, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
-import { AuthProvider } from "../provider/Authentication";
+import { AuthProvider } from "../provider/Autenticacao";
 import fetchFederativeUnit from "../service/federativeUnit";
 import fetchRegister from "../service/register";
 import server from "./mock/service";

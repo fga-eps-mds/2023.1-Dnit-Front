@@ -2,7 +2,7 @@ import { Form, Input, Space, notification } from "antd";
 import React from "react";
 import { Link } from "react-router-dom";
 import LogoDNIT from "../../assets/logoDnitAzul.png";
-import { AuthContext } from "../../provider/Authentication";
+import { AuthContext } from "../../provider/Autenticacao";
 import fetchLogin from "../../service/login";
 import "../../styles/form.css";
 import ButtonComponent from "../Button";

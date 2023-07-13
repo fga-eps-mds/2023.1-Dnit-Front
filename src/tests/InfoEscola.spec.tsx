@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { rest } from "msw";
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
-import { AuthProvider } from "../provider/Authentication";
+import { AuthProvider } from "../provider/Autenticacao";
 import localStorageMock from "./mock/localstorage";
 import server from "./mock/service";
 

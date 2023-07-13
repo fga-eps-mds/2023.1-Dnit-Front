@@ -2,7 +2,7 @@ import { fireEvent, render, waitFor } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
-import { AuthProvider } from "../provider/Authentication";
+import { AuthProvider } from "../provider/Autenticacao";
 import fetchResetPassword from "../service/resetPassword";
 
 jest.mock("../service/resetPassword", () => ({

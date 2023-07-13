@@ -1,7 +1,7 @@
 import { fireEvent, render } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
 import App from "../App";
-import { AuthProvider } from "../provider/Authentication";
+import { AuthProvider } from "../provider/Autenticacao";
 import localStorageMock from "./mock/localstorage";
 
 beforeEach(() => {

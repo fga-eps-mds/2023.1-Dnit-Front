@@ -1,7 +1,7 @@
 import { Button } from "antd";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "../../styles/BreadCrumb.css";
+import "../../styles/TrilhaNavegacao.css";
 
 interface Pagina {
   nome: string;

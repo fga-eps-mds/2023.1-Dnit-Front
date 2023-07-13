@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import "./index.css";
-import { AuthProvider } from "./provider/Authentication";
+import { AuthProvider } from "./provider/Autenticacao";
 import "@govbr-ds/core/dist/core.min.css";
 import "@govbr-ds/core/dist/core.min.js";
 
