@@ -1,5 +1,5 @@
 import "../../styles/form/step3.css";
-import Dragdrop from "../importarPlanilhas/DragDropAcidentes";
+import Dragdrop from "./UploadPlanilhaSinistros";
 
 interface Step1AcidentesProps {
   onClickBack: () => void;

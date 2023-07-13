@@ -1,6 +1,6 @@
 import { Button } from "antd";
-import { useEscolasCadastradas } from "../../context/escolasCadastradasErro";
-import "../../styles/form/step3Listagem.css";
+import { useEscolasCadastradas } from "../../../context/escolasCadastradasErro";
+import "../../../styles/form/step3Listagem.css";
 
 interface Step3Erro1Props {
   onClickVoltar: () => void;

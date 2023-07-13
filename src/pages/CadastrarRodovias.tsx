@@ -1,5 +1,5 @@
 import Header from "../components/Header";
-import RegistrarRodovias from "../components/cadastrarRodovias/RegistrarRodovias";
+import RegistrarRodovias from "../components/cadastrarRodovias/CadastrarRodovias";
 import Footer from "../components/Footer";
 import "../styles/App.css";
 

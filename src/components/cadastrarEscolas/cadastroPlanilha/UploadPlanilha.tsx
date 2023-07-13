@@ -4,9 +4,9 @@ import { Button, Upload, message } from "antd";
 import { UploadChangeParam } from "antd/lib/upload";
 import axios from "axios";
 import React, { useRef, useState } from "react";
-import { insertFileURL } from "../../consts/service";
-import { useEscolasCadastradas } from "../../context/escolasCadastradasErro";
-import "../../styles/form/step3.css";
+import { insertFileURL } from "../../../consts/service";
+import { useEscolasCadastradas } from "../../../context/escolasCadastradasErro";
+import "../../../styles/form/step3.css";
 
 const { Dragger } = Upload;
 

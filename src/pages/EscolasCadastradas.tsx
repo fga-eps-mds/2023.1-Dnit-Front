@@ -1,4 +1,4 @@
-import BreadCrumb from "../components/escolasCadastradas/BreadCrumb";
+import BreadCrumb from "../components/escolasCadastradas/TrilhaNavegacao";
 import FiltragemTabela from "../components/escolasCadastradas/FiltragemTabela";
 import Footer from "../components/Footer";
 import Header from "../components/escolasCadastradas/HeaderListaEscolas";

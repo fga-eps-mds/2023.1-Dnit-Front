@@ -2,9 +2,9 @@ import { Form } from "antd";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../styles/form.css";
-import Step1_Rodovias from "./Steps_Rodovias/Step1_Rodovias";
-import Step2_Rodovias_Aceito from "./Steps_Rodovias/Step2_Rodovias_Aceito";
-import Step3_Rodovias_erro from "./Steps_Rodovias/Step3_Rodovias_erro1";
+import Step1_Rodovias from "./ImportarPlanilhaRodovias";
+import Step2_Rodovias_Aceito from "./RodoviasAceito";
+import Step3_Rodovias_erro from "./RodoviasErro";
 
 function RegistrarRodovias() {
   const [screen, setScreen] = useState<"form1" | "form2" | "form3">("form1");
