@@ -2,9 +2,14 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { rest } from "msw";
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
+import { AuthProvider } from "../provider/Authentication";
+import localStorageMock from "./mock/localstorage";
 import server from "./mock/service";
 
 beforeAll(() => server.listen());
+beforeEach(() => {
+  Object.defineProperty(window, "localStorage", { value: localStorageMock });
+});
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 window.matchMedia = jest.fn().mockImplementation((query) => {
@@ -21,6 +26,8 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
 });
 
 test("Cadastro CSV", async () => {
+  localStorage.setItem("login", "authenticated");
+
   server.use(
     rest.post(
       "https://api.aprovaunb.com.br/api/sinistro/cadastrarSinistroPlanilha",
@@ -31,7 +38,9 @@ test("Cadastro CSV", async () => {
   );
   render(
     <MemoryRouter initialEntries={["/cadastrarsinistros"]}>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </MemoryRouter>
   );
 
@@ -51,6 +60,8 @@ test("Cadastro CSV", async () => {
 });
 
 test("Cadastro CSV erro", async () => {
+  localStorage.setItem("login", "authenticated");
+
   server.use(
     rest.post(
       "https://api.aprovaunb.com.br/api/sinistro/cadastrarSinistroPlanilha",
@@ -61,7 +72,9 @@ test("Cadastro CSV erro", async () => {
   );
   render(
     <MemoryRouter initialEntries={["/cadastrarsinistros"]}>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </MemoryRouter>
   );
 
@@ -81,6 +94,8 @@ test("Cadastro CSV erro", async () => {
 });
 
 test("Cadastro CSV vazio", async () => {
+  localStorage.setItem("login", "authenticated");
+
   server.use(
     rest.post(
       "https://api.aprovaunb.com.br/api/sinistro/cadastrarSinistroPlanilha",
@@ -91,7 +106,9 @@ test("Cadastro CSV vazio", async () => {
   );
   render(
     <MemoryRouter initialEntries={["/cadastrarsinistros"]}>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </MemoryRouter>
   );
 
@@ -108,6 +125,8 @@ test("Cadastro CSV vazio", async () => {
 });
 
 test("Cadastro sem enviar CSV", async () => {
+  localStorage.setItem("login", "authenticated");
+
   server.use(
     rest.post(
       "https://api.aprovaunb.com.br/api/sinistro/cadastrarSinistroPlanilha",
@@ -118,7 +137,9 @@ test("Cadastro sem enviar CSV", async () => {
   );
   render(
     <MemoryRouter initialEntries={["/cadastrarsinistros"]}>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </MemoryRouter>
   );
 

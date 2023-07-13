@@ -2,9 +2,14 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
+import { AuthProvider } from "../provider/Authentication";
+import localStorageMock from "./mock/localstorage";
 import server from "./mock/service";
 
 beforeAll(() => server.listen());
+beforeEach(() => {
+  Object.defineProperty(window, "localStorage", { value: localStorageMock });
+});
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
@@ -22,9 +27,13 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
 });
 
 test("Lista de escolas é exibida corretamente", async () => {
+  localStorage.setItem("login", "authenticated");
+
   render(
     <MemoryRouter initialEntries={["/escolas-cadastradas"]}>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </MemoryRouter>
   );
 
@@ -35,9 +44,13 @@ test("Lista de escolas é exibida corretamente", async () => {
 });
 
 test("Filtragem de escolas", async () => {
+  localStorage.setItem("login", "authenticated");
+
   render(
     <MemoryRouter initialEntries={["/escolas-cadastradas"]}>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </MemoryRouter>
   );
 
@@ -87,9 +100,13 @@ test("Filtragem de escolas", async () => {
 });
 
 test("Clicar em Cadastrar escola", async () => {
+  localStorage.setItem("login", "authenticated");
+
   render(
     <MemoryRouter initialEntries={["/escolas-cadastradas"]}>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </MemoryRouter>
   );
 
@@ -98,9 +115,13 @@ test("Clicar em Cadastrar escola", async () => {
 });
 
 test("Mudar quantidade de escolas por página", async () => {
+  localStorage.setItem("login", "authenticated");
+
   render(
     <MemoryRouter initialEntries={["/escolas-cadastradas"]}>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </MemoryRouter>
   );
 
@@ -123,9 +144,13 @@ test("Mudar quantidade de escolas por página", async () => {
 });
 
 test("Exibir escola selecionada", async () => {
+  localStorage.setItem("login", "authenticated");
+
   render(
     <MemoryRouter initialEntries={["/escolas-cadastradas"]}>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </MemoryRouter>
   );
 

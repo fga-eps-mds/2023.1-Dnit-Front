@@ -2,16 +2,25 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { rest } from "msw";
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
+import { AuthProvider } from "../provider/Authentication";
+import localStorageMock from "./mock/localstorage";
 import server from "./mock/service";
 
 beforeAll(() => server.listen());
+beforeEach(() => {
+  Object.defineProperty(window, "localStorage", { value: localStorageMock });
+});
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
 test("Modal de excluir escola exibida corretamente", async () => {
+  localStorage.setItem("login", "authenticated");
+
   render(
     <MemoryRouter initialEntries={["/escolas-cadastradas"]}>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </MemoryRouter>
   );
 
@@ -31,6 +40,8 @@ test("Modal de excluir escola exibida corretamente", async () => {
 });
 
 test("Modal de excluir escola exibida erro", async () => {
+  localStorage.setItem("login", "authenticated");
+
   server.use(
     rest.delete(
       "https://api.dnit-eps-mds.com/api/escolas/excluir",
@@ -41,7 +52,9 @@ test("Modal de excluir escola exibida erro", async () => {
   );
   render(
     <MemoryRouter initialEntries={["/escolas-cadastradas"]}>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </MemoryRouter>
   );
 
