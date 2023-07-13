@@ -1,7 +1,7 @@
 import { Select } from "antd";
 import { ChangeEvent, useState } from "react";
 import { useSelectedValue } from "../../context/Situacao";
-import { EscolaData, Situacao } from "../../models/service";
+import { EscolaData, SituacaoData } from "../../models/service";
 import fetchSituacao from "../../service/Situacao";
 import fetchEtapasDeEnsino from "../../service/etapasDeEnsino";
 import Dropdown from "./Dropdown";
@@ -29,7 +29,7 @@ const ModalBody = ({
 }: ModalBodyProps) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { setSelectedValue, selectedValue } = useSelectedValue();
-  const [situacoes, setSituacoes] = useState<Situacao[]>();
+  const [situacoes, setSituacoes] = useState<SituacaoData[]>();
   const [OpcoesEtapasDeEnsino, setOpcoesEtapasDeEnsino] = useState<
     { value: number; label: string }[]
   >([]);

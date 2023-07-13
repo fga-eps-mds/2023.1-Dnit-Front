@@ -1,10 +1,10 @@
 import { Form, Input, Select, Space, notification } from "antd";
 import React, { useState } from "react";
 import {
-  EtapasDeEnsino,
-  FederativeUnit,
-  Municipio,
-  SolicitacaoDeAcao,
+  EtapasDeEnsinoData,
+  UnidadeFederativaData,
+  MunicipioData,
+  SolicitacaoDeAcaoData,
 } from "../../models/service";
 import fetchEtapasDeEnsino from "../../service/etapasDeEnsino";
 import fetchFederativeUnit from "../../service/federativeUnit";
@@ -25,11 +25,11 @@ interface EscolaInepData {
 const SolicitacaoAcaoForm: React.FC = () => {
   const [botaoEnviarDisponivel, setBotaoEnviarDisponivel] = useState(true);
 
-  const [UFs, setUFs] = useState<FederativeUnit[] | false>(false);
-  const [UFAtual, setUFATual] = useState<FederativeUnit | false>(false);
+  const [UFs, setUFs] = useState<UnidadeFederativaData[] | false>(false);
+  const [UFAtual, setUFATual] = useState<UnidadeFederativaData | false>(false);
 
-  const [municipios, setMunicipios] = useState<Municipio[] | false>(false);
-  const [municipioAtual, setMunicipioAtual] = useState<Municipio | false>(
+  const [municipios, setMunicipios] = useState<MunicipioData[] | false>(false);
+  const [municipioAtual, setMunicipioAtual] = useState<MunicipioData | false>(
     false
   );
 
@@ -38,7 +38,7 @@ const SolicitacaoAcaoForm: React.FC = () => {
   );
 
   const [etapasDeEnsino, setEtapasDeEnsino] = useState<
-    EtapasDeEnsino[] | false
+    EtapasDeEnsinoData[] | false
   >(false);
 
   const getEtapasDeEnsino = async () => {
@@ -71,7 +71,7 @@ const SolicitacaoAcaoForm: React.FC = () => {
       } catch (error) {}
   };
 
-  const enviarSolicitacao = async (formData: SolicitacaoDeAcao) => {
+  const enviarSolicitacao = async (formData: SolicitacaoDeAcaoData) => {
     try {
       setBotaoEnviarDisponivel(false);
       await fetchSolicitaAcao(formData);
@@ -117,7 +117,7 @@ const SolicitacaoAcaoForm: React.FC = () => {
       QuantidadeAlunos: parseInt(values.quantidade),
       Observacoes: values.observacoes,
     };
-    enviarSolicitacao(formData as SolicitacaoDeAcao);
+    enviarSolicitacao(formData as SolicitacaoDeAcaoData);
   };
 
   return (
@@ -279,7 +279,7 @@ const SolicitacaoAcaoForm: React.FC = () => {
               notFoundContent={<p>Carregando...</p>}
             >
               {etapasDeEnsino &&
-                etapasDeEnsino.map((etapa: EtapasDeEnsino) => (
+                etapasDeEnsino.map((etapa: EtapasDeEnsinoData) => (
                   <Option
                     data-testid="etapas-de-ensino"
                     key={etapa.id}

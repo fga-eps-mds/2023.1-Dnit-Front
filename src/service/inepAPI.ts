@@ -1,10 +1,10 @@
 import axios, { AxiosResponse } from "axios";
 import { escolasInepURL } from "../consts/service";
-import { InepSchoolData } from "../models/service";
+import { EscolaInepData } from "../models/service";
 
-async function fetchEscolasInep(municipio: number): Promise<InepSchoolData[]> {
+async function fetchEscolasInep(municipio: number): Promise<EscolaInepData[]> {
   try {
-    const response: AxiosResponse<InepSchoolData[]> = await axios.get(
+    const response: AxiosResponse<EscolaInepData[]> = await axios.get(
       `${escolasInepURL}?municipio=${municipio}`
     );
     return response.data;

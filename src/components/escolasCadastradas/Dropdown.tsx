@@ -1,9 +1,9 @@
 import { ChangeEvent } from "react";
 import { useSelectedValue } from "../../context/Situacao";
-import { Situacao } from "../../models/service";
+import { SituacaoData } from "../../models/service";
 
 interface Dropdownprops {
-  situacoes: Situacao[];
+  situacoes: SituacaoData[];
   onClick: (value: string) => void;
   onClose: () => void;
   descricao: string;

@@ -1,7 +1,7 @@
 import { Select } from "antd";
 import { ChangeEvent, useEffect, useState } from "react";
 import { useFiltroTabela } from "../../context/FiltroTabela";
-import { FederativeUnit, Municipio, Situacao } from "../../models/service";
+import { UnidadeFederativaData, MunicipioData, SituacaoData } from "../../models/service";
 import fetchSituacao from "../../service/Situacao";
 import fetchEtapasDeEnsino from "../../service/etapasDeEnsino";
 import fetchFederativeUnit from "../../service/federativeUnit";
@@ -102,13 +102,13 @@ export default function TabelaEscolas() {
   >([]);
 
   const [showOptionsSituacao, setShowOptionsSituacao] = useState(false);
-  const [opcoesSituacao, setOpcoesSituacao] = useState<Situacao[]>([]);
+  const [opcoesSituacao, setOpcoesSituacao] = useState<SituacaoData[]>([]);
 
   const [showOptionsUF, setShowOptionsUF] = useState(false);
-  const [opcoesUf, setOpcoesUf] = useState<FederativeUnit[]>([]);
+  const [opcoesUf, setOpcoesUf] = useState<UnidadeFederativaData[]>([]);
 
   const [showOpcoesMunicipio, setShowOpcoesMunincipio] = useState(false);
-  const [opcoesMunicipio, setOpcoesMunicipio] = useState<Municipio[]>([]);
+  const [opcoesMunicipio, setOpcoesMunicipio] = useState<MunicipioData[]>([]);
 
   const alternarEstado = (valorAtual: boolean) => !valorAtual;
 

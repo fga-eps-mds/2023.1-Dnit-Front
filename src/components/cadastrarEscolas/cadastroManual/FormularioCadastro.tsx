@@ -2,7 +2,7 @@ import { Button, Form, Input, Select, Space, notification } from "antd";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFiltroTabela } from "../../../context/FiltroTabela";
-import { FederativeUnit, Municipio } from "../../../models/service";
+import { UnidadeFederativaData, MunicipioData } from "../../../models/service";
 import fetchEtapasDeEnsino from "../../../service/etapasDeEnsino";
 import fetchFederativeUnit from "../../../service/federativeUnit";
 import fetchMunicipio from "../../../service/municipio";
@@ -76,7 +76,7 @@ export default function Step2({ onClickBack }: Step2Props) {
     },
   ];
 
-  const [opcoesMunicipio, setOpcoesMunicipio] = useState<Municipio[]>([]);
+  const [opcoesMunicipio, setOpcoesMunicipio] = useState<MunicipioData[]>([]);
   const getMunicipio = async () => {
     try {
       if (UFSelecionada) {
@@ -86,7 +86,7 @@ export default function Step2({ onClickBack }: Step2Props) {
     } catch (error) {}
   };
 
-  const [opcoesUf, setOpcoesUf] = useState<FederativeUnit[]>([]);
+  const [opcoesUf, setOpcoesUf] = useState<UnidadeFederativaData[]>([]);
   const getUf = async () => {
     try {
       const resposta = await fetchFederativeUnit();

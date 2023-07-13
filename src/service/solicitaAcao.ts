@@ -1,20 +1,20 @@
 import axios, { AxiosResponse } from "axios";
 import { solicitacaoDeAcaoURL } from "../consts/service";
-import { SolicitacaoDeAcao } from "../models/service";
+import { SolicitacaoDeAcaoData } from "../models/service";
 
 interface Response {
   status: number;
 }
 
 async function fetchSolicitaAcao(
-  formData: SolicitacaoDeAcao
+  formData: SolicitacaoDeAcaoData
 ): Promise<Response> {
   try {
     if (formData.Observacoes === undefined)
       formData.Observacoes = "*Nenhuma observação foi informada.*";
     const response: AxiosResponse<Response> = await axios.post(
       solicitacaoDeAcaoURL,
-      { ...formData } as SolicitacaoDeAcao
+      { ...formData } as SolicitacaoDeAcaoData
     );
     return response.data;
   } catch (error) {

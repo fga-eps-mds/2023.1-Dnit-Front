@@ -1,13 +1,13 @@
 import axios, { AxiosResponse } from "axios";
 import { redefinirSenhaURL } from "../consts/service";
-import { ResetPasswordData } from "../models/service";
+import { RedefinirSenhaData } from "../models/service";
 
 interface ResetPasswordResponse {
   status: number;
 }
 
 async function fetchResetPassword(
-  resetPassword: ResetPasswordData
+  resetPassword: RedefinirSenhaData
 ): Promise<ResetPasswordResponse> {
   try {
     const response: AxiosResponse<ResetPasswordResponse> = await axios.put(
