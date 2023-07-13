@@ -1,6 +1,6 @@
 import "../styles/App.css";
 import logoDnit from "../assets/logoDnit.png";
-import "./style/Footer.css";
+import "./estilo/Footer.css";
 
 export default function Footer(){
     return (
