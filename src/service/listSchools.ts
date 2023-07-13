@@ -9,6 +9,7 @@ async function fetchlistSchools(): Promise<EscolaData[]> {
     );
     return response.data;
   } catch (error) {
+    console.log(error);
     throw error;
   }
 }

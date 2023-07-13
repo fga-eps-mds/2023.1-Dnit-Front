@@ -273,7 +273,7 @@ const SolicitacaoAcaoForm: React.FC = () => {
             <Select
               mode="multiple"
               placeholder="Selecione os ciclos de ensino da escola"
-              className="inputForm form-item-select"
+              className="select-etapas-acao"
               loading={!etapasDeEnsino}
               onMouseDown={getEtapasDeEnsino}
               notFoundContent={<p>Carregando...</p>}

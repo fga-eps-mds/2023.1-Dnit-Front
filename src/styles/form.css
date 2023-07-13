@@ -19,11 +19,6 @@
   font-weight: 1000;
 }
 
-.form h2 {
-  justify-content: flex-start;
-  display: flex;
-}
-
 .formc {
   padding: 1.5% 3.5%;
   margin-top: 0px;
@@ -40,11 +35,6 @@
 
 .formc label {
   font-weight: 1000;
-}
-
-.formc h2 {
-  justify-content: flex-start;
-  display: flex;
 }
 
 .ant-input-affix-wrapper > input.ant-input {

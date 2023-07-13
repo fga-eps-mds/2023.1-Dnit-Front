@@ -1,13 +1,14 @@
 import axios, { AxiosResponse } from "axios";
-import { RegisterSchoolData } from "../models/service";
 import { registerSchoolURL } from "../consts/service";
+import { RegisterSchoolData } from "../models/service";
 
 interface RegisterSchoolResponse {
   status: number;
 }
 
 async function fetchCadastroEscola(
-  registerSchoolData: RegisterSchoolData): Promise<RegisterSchoolResponse> {
+  registerSchoolData: RegisterSchoolData
+): Promise<RegisterSchoolResponse> {
   try {
     const response: AxiosResponse<RegisterSchoolResponse> = await axios.post(
       registerSchoolURL,
@@ -15,6 +16,7 @@ async function fetchCadastroEscola(
     );
     return response.data;
   } catch (error) {
+    console.log(error);
     throw error;
   }
 }

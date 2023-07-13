@@ -2,7 +2,6 @@ import axios, { AxiosResponse } from "axios";
 import { EtapasDeEnsinoURL } from "../consts/service";
 import { EtapasDeEnsino } from "../models/service";
 
-
 async function fetchEtapasDeEnsino(): Promise<EtapasDeEnsino[]> {
   try {
     const response: AxiosResponse<EtapasDeEnsino[]> = await axios.get(
@@ -10,6 +9,7 @@ async function fetchEtapasDeEnsino(): Promise<EtapasDeEnsino[]> {
     );
     return response.data;
   } catch (error) {
+    console.log(error);
     throw error;
   }
 }

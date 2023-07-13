@@ -4,7 +4,7 @@ export interface FederativeUnit {
   sigla: string;
 }
 
-export interface viaCEP {
+export interface ViaCEP {
   cep: string;
   logradouro: string;
   complemento: string;

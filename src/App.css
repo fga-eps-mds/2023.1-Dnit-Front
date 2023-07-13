@@ -80,18 +80,12 @@
   height: 100%;
 }
 
-
 .Central {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 60%;
   height: inherit;
-}
-
-.logoDnit {
-  width: 380px;
-  height: 96px;
 }
 
 .imgLateral {
@@ -209,5 +203,4 @@
     width: 237px;
     height: 131px;
   }
-
 }

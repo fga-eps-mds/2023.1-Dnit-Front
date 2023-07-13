@@ -149,9 +149,6 @@
 .br-modal .terms:active {
   outline: none;
 }
-.br-modal .terms:hover::-webkit-scrollbar-thumb {
-  background: var(--color-secondary-07);
-}
 @media (max-width: 991px) {
   .br-modal .terms {
     margin-left: unset !important;
@@ -203,9 +200,6 @@
   .br-select .br-list:active {
     color: var(--color-secondary-09);
     outline: none;
-  }
-  .br-select .br-list:hover::-webkit-scrollbar-thumb {
-    background: var(--color-secondary-07);
   }
   .br-select .br-list[expanded] {
     display: block;
