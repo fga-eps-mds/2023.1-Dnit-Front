@@ -10,10 +10,6 @@ afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
 test("Remover situação escola", async () => {
-  const response = await fetch("https://api.aprovaunb.com/api/usuario/login", {
-    method: "POST",
-  });
-  expect(response.status).toEqual(200);
   render(
     <MemoryRouter initialEntries={["/escolas-cadastradas"]}>
       <App />
@@ -39,10 +35,6 @@ test("Remover situação escola", async () => {
 });
 
 test("Remover situação escola erro", async () => {
-  const response = await fetch("https://api.aprovaunb.com/api/usuario/login", {
-    method: "POST",
-  });
-  expect(response.status).toEqual(200);
   server.use(
     rest.post(
       "https://api.dnit-eps-mds.com/api/escolas/removerSituacao",

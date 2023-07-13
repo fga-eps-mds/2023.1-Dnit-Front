@@ -2,25 +2,9 @@ import { rest } from "msw";
 import { setupServer } from "msw/node";
 
 const server = setupServer(
-  rest.post("https://api.aprovaunb.com/api/usuario/login", (req, res, ctx) => {
-    // Armazena um token de autenticação simulado no localStorage
-    localStorage.setItem("token", "autenticado");
-
-    return res(ctx.status(200), ctx.json({ success: true }));
-  }),
-
   rest.get(
     "https://api.dnit-eps-mds.com/api/escolas/obter",
     (req, res, ctx) => {
-      const token = localStorage.getItem("token");
-      // Verifica se o usuário está autenticado
-      if (!token) {
-        return res(
-          ctx.status(401),
-          ctx.json({ message: "Usuário não autenticado" })
-        );
-      }
-      // Retorna uma resposta simulando a lista de escolas
       return res(
         ctx.json({
           pagina: 1,
@@ -254,16 +238,7 @@ const server = setupServer(
   rest.get(
     "https://api.dnit-eps-mds.com/api/dominio/situacao",
     (req, res, ctx) => {
-      const token = localStorage.getItem("token");
-      // Verifica se o usuário está autenticado
-      if (!token) {
-        return res(
-          ctx.status(401),
-          ctx.json({ message: "Usuário não autenticado" })
-        );
-      }
       return res(
-        ctx.status(200),
         ctx.json([
           {
             id: 4,
@@ -288,16 +263,7 @@ const server = setupServer(
   rest.get(
     "https://api.dnit-eps-mds.com/api/dominio/etapasDeEnsino",
     (req, res, ctx) => {
-      const token = localStorage.getItem("token");
-      // Verifica se o usuário está autenticado
-      if (!token) {
-        return res(
-          ctx.status(401),
-          ctx.json({ message: "Usuário não autenticado" })
-        );
-      }
       return res(
-        ctx.status(200),
         ctx.json([
           {
             id: 4,
@@ -326,30 +292,13 @@ const server = setupServer(
   rest.delete(
     "https://api.dnit-eps-mds.com/api/escolas/excluir",
     (req, res, ctx) => {
-      const token = localStorage.getItem("token");
-      // Verifica se o usuário está autenticado
-      if (!token) {
-        return res(
-          ctx.status(401),
-          ctx.json({ message: "Usuário não autenticado" })
-        );
-      }
-      return res(ctx.status(200), ctx.json({}));
+      return res(ctx.json({}));
     }
   ),
   rest.get(
     "https://api.dnit-eps-mds.com/api/dominio/municipio",
     (req, res, ctx) => {
-      const token = localStorage.getItem("token");
-      // Verifica se o usuário está autenticado
-      if (!token) {
-        return res(
-          ctx.status(401),
-          ctx.json({ message: "Usuário não autenticado" })
-        );
-      }
       return res(
-        ctx.status(200),
         ctx.json([
           {
             nome: "Acrelândia",
@@ -442,42 +391,18 @@ const server = setupServer(
   rest.post(
     "https://api.dnit-eps-mds.com/api/escolas/removerSituacao",
     (req, res, ctx) => {
-      const token = localStorage.getItem("token");
-      // Verifica se o usuário está autenticado
-      if (!token) {
-        return res(
-          ctx.status(401),
-          ctx.json({ message: "Usuário não autenticado" })
-        );
-      }
       return res(ctx.status(200));
     }
   ),
   rest.post(
     "https://api.dnit-eps-mds.com/api/escolas/cadastrarEscola",
     (req, res, ctx) => {
-      const token = localStorage.getItem("token");
-      // Verifica se o usuário está autenticado
-      if (!token) {
-        return res(
-          ctx.status(401),
-          ctx.json({ message: "Usuário não autenticado" })
-        );
-      }
       return res(ctx.status(200));
     }
   ),
   rest.post(
     "https://api.dnit-eps-mds.com/api/escolas/cadastrarEscolaPlanilha",
     (req, res, ctx) => {
-      const token = localStorage.getItem("token");
-      // Verifica se o usuário está autenticado
-      if (!token) {
-        return res(
-          ctx.status(401),
-          ctx.json({ message: "Usuário não autenticado" })
-        );
-      }
       return res(ctx.json([2, 3]));
     }
   ),
