@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { registerSchoolURL } from "../consts/service";
+import { cadastroEscolaURL } from "../consts/service";
 import { RegisterSchoolData } from "../models/service";
 
 interface RegisterSchoolResponse {
@@ -11,7 +11,7 @@ async function fetchCadastroEscola(
 ): Promise<RegisterSchoolResponse> {
   try {
     const response: AxiosResponse<RegisterSchoolResponse> = await axios.post(
-      registerSchoolURL,
+      cadastroEscolaURL,
       registerSchoolData
     );
     return response.data;

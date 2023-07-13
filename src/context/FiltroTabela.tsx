@@ -7,7 +7,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import { EscolasFiltradasURL } from "../consts/service";
+import { escolasFiltradasURL } from "../consts/service";
 import {
   EscolaData,
   FederativeUnit,
@@ -91,7 +91,7 @@ const FiltroProvider = ({ children }: any) => {
         })
       );
       const response: AxiosResponse<ResponseData> = await axios.get(
-        EscolasFiltradasURL,
+        escolasFiltradasURL,
         {
           params: {
             Pagina: paginaAtual,

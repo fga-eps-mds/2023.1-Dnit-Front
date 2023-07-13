@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { insertFileRodoviasURL } from "../consts/service";
+import { cadastroRodoviasURL } from "../consts/service";
 
 interface InsertFileResponse {
   status: number;
@@ -10,7 +10,7 @@ async function fetchInsertRodoviaFile(
 ): Promise<InsertFileResponse> {
   try {
     const response: AxiosResponse<InsertFileResponse> = await axios.post(
-      insertFileRodoviasURL,
+      cadastroRodoviasURL,
       fileData
     );
     return response;

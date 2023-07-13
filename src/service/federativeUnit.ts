@@ -1,11 +1,11 @@
 import axios, { AxiosResponse } from "axios";
-import { federativeUnitURL } from "../consts/service";
+import { unidadesFederativasURL } from "../consts/service";
 import { FederativeUnit } from "../models/service";
 
 async function fetchFederativeUnit(): Promise<FederativeUnit[]> {
   try {
     const response: AxiosResponse<FederativeUnit[]> = await axios.get(
-      federativeUnitURL
+      unidadesFederativasURL
     );
     return response.data;
   } catch (error) {

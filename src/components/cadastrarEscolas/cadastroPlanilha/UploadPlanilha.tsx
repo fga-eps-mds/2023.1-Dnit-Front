@@ -4,7 +4,7 @@ import { Button, Upload, message } from "antd";
 import { UploadChangeParam } from "antd/lib/upload";
 import axios from "axios";
 import React, { useRef, useState } from "react";
-import { insertFileURL } from "../../../consts/service";
+import { cadastroEscolaPlanilhaURL } from "../../../consts/service";
 import { useEscolasCadastradas } from "../../../context/escolasCadastradasErro";
 import "../../../styles/form/step3.css";
 
@@ -20,7 +20,7 @@ interface DragDropProps {
 const props: UploadProps = {
   name: "arquivo",
   multiple: true,
-  action: insertFileURL,
+  action: cadastroEscolaPlanilhaURL,
   beforeUpload: () => false,
   onChange(info) {
     const { status, name } = info.file;

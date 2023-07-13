@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { SolicitacaoDeAcaoURL } from "../consts/service";
+import { solicitacaoDeAcaoURL } from "../consts/service";
 import { SolicitacaoDeAcao } from "../models/service";
 
 interface Response {
@@ -13,7 +13,7 @@ async function fetchSolicitaAcao(
     if (formData.Observacoes === undefined)
       formData.Observacoes = "*Nenhuma observação foi informada.*";
     const response: AxiosResponse<Response> = await axios.post(
-      SolicitacaoDeAcaoURL,
+      solicitacaoDeAcaoURL,
       { ...formData } as SolicitacaoDeAcao
     );
     return response.data;

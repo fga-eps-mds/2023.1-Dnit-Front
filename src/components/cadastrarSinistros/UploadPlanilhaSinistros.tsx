@@ -4,7 +4,7 @@ import { Button, Upload, message } from "antd";
 import { UploadChangeParam } from "antd/lib/upload";
 import axios from "axios";
 import React, { useRef, useState } from "react";
-import { SinistroUrl } from "../../consts/service";
+import { cadastroSinistrosURL } from "../../consts/service";
 import "../../styles/form/step3.css";
 
 const { Dragger } = Upload;
@@ -17,7 +17,7 @@ interface DragDropProps {
 
 const props: UploadProps = {
   name: "arquivo",
-  action: SinistroUrl,
+  action: cadastroSinistrosURL,
   multiple: true,
   beforeUpload: () => false,
 };
@@ -35,7 +35,7 @@ const App: React.FC<DragDropProps> = ({
       formData.append("arquivo", fileList[0].originFileObj as File);
 
       try {
-        await axios.post(SinistroUrl, formData);
+        await axios.post(cadastroSinistrosURL, formData);
 
         message.success(`Arquivo adicionado com sucesso.`);
         onClickAceito();

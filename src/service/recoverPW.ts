@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { recoverPasswordURL } from "../consts/service";
+import { recuperarSenhaURL } from "../consts/service";
 import { RecoverPasswordData } from "../models/service";
 
 interface RecoverPasswordResponse {
@@ -11,7 +11,7 @@ async function fetchRecoverPassword(
 ): Promise<RecoverPasswordResponse> {
   try {
     const response: AxiosResponse<RecoverPasswordResponse> = await axios.put(
-      recoverPasswordURL,
+      recuperarSenhaURL,
       recoverData
     );
     return response.data;
