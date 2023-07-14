@@ -42,7 +42,11 @@ const App: React.FC<UploadPlanilhaRodoviaProps> = ({
                 console.log(error.response);
                 error.response && error.response.status == 406 && onClickErrorTamanho();
 
-                const mensagem = error.response?.data;
+                let mensagem = error.response?.data;
+
+                if(mensagem === undefined){
+                    mensagem = 'Erro ao inserir arquivo'
+                }
 
                 message.error(`${mensagem}`);
             }
