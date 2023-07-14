@@ -1,6 +1,6 @@
-import Header from "../components/Header";
+import Header from "../components/Cabecalho";
 import RegistrarRodovias from "../components/cadastrarRodovias/CadastrarRodovias";
-import Footer from "../components/Footer";
+import Footer from "../components/Rodape";
 import "../styles/App.css";
 
 function CadastrarRodovias() {

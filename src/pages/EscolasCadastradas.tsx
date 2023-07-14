@@ -1,6 +1,6 @@
 import BreadCrumb from "../components/escolasCadastradas/TrilhaNavegacao";
 import FiltragemTabela from "../components/escolasCadastradas/FiltragemTabela";
-import Footer from "../components/Footer";
+import Footer from "../components/Rodape";
 import Header from "../components/escolasCadastradas/HeaderListaEscolas";
 import TabelaEscola from "../components/escolasCadastradas/TabelaEscola";
 import { FiltroProvider } from "../context/FiltroTabela";

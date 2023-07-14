@@ -12,7 +12,7 @@ import { fetchEscolasInep } from "../../service/inepAPI";
 import fetchMunicipio from "../../service/municipio";
 import fetchSolicitaAcao from "../../service/solicitarAcao";
 import "../../styles/form.css";
-import ButtonComponent from "../Button";
+import ButtonComponent from "../Botao";
 
 const { Option } = Select;
 

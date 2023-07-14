@@ -1,5 +1,5 @@
 import personagem from "../assets/julia11.png";
-import Header from "../components/Header";
+import Header from "../components/Cabecalho";
 import SolicitacaoAcaoForm from "../components/solicitarAcao/FormularioSolicitacaoAcao";
 import "../styles/App.css";
 

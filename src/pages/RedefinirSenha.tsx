@@ -1,5 +1,5 @@
 import imgLateral from "../assets/imgLateral.png";
-import Header from "../components/Header";
+import Header from "../components/Cabecalho";
 import ResetPassword from "../components/recuperarSenha/RedefinirSenha";
 import "../styles/App.css";
 

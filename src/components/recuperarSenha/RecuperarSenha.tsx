@@ -3,7 +3,7 @@ import React from "react";
 import LogoDNIT from "../../assets/logoDnitAzul.png";
 import fetchRecoverPassword from "../../service/recuperarSenha";
 import "../../styles/form.css";
-import ButtonComponent from "../Button";
+import ButtonComponent from "../Botao";
 
 const EsqueciSenhaForm: React.FC = () => {
   const [form] = Form.useForm();

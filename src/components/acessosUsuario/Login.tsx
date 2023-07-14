@@ -5,7 +5,7 @@ import LogoDNIT from "../../assets/logoDnitAzul.png";
 import { AuthContext } from "../../provider/Autenticacao";
 import fetchLogin from "../../service/login";
 import "../../styles/form.css";
-import ButtonComponent from "../Button";
+import ButtonComponent from "../Botao";
 
 const LoginForm: React.FC = () => {
 

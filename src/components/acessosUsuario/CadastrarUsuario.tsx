@@ -5,7 +5,7 @@ import { AuthContext } from "../../provider/Autenticacao";
 import fetchUnidadeFederativa from "../../service/unidadesFederativas";
 import fetchCadastro from "../../service/cadastrarUsuario";
 import "../../styles/form.css";
-import ButtonComponent from "../Button";
+import ButtonComponent from "../Botao";
 const { Option } = Select;
 
 interface UfProps {

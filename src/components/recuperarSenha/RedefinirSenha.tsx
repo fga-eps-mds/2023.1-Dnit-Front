@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import LogoDNIT from "../../assets/logoDnitAzul.png";
 import fetchResetPassword from "../../service/redefinirSenha";
 import "../../styles/form.css";
-import ButtonComponent from "../Button";
+import ButtonComponent from "../Botao";
 
 const ResetPassword: React.FC = () => {
   const [form] = Form.useForm();
