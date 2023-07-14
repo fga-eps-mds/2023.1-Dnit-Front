@@ -10,7 +10,7 @@ import "../../../styles/form/step3.css";
 
 const { Dragger } = Upload;
 
-interface DragDropProps {
+interface UploadPlanilhaEscolaProps {
   onClickBack: () => void;
   onClickError: () => void;
   onClickAceito: () => void;
@@ -31,22 +31,22 @@ const props: UploadProps = {
   },
 };
 
-const App: React.FC<DragDropProps> = ({
+const App: React.FC<UploadPlanilhaEscolaProps> = ({
   onClickBack,
   onClickError,
   onClickAceito,
   onClickErroJaCadastrada,
-}: DragDropProps) => {
+}: UploadPlanilhaEscolaProps) => {
   const uploadRef = useRef<any>(null);
-  const [fileList, setFileList] = useState<UploadFile<any>[]>([]);
+  const [arquivos, setArquivos] = useState<UploadFile<any>[]>([]);
   const { setEscolasCadastradas } = useEscolasCadastradas();
   const handleButtonClick = async () => {
-    if (fileList.length > 0) {
-      const formData = new FormData();
-      formData.append("arquivo", fileList[0].originFileObj as File);
+    if (arquivos.length > 0) {
+      const arquivoData = new FormData();
+      arquivoData.append("arquivo", arquivos[0].originFileObj as File);
 
       try {
-        const response = await axios.post('https://api.dnit-eps-mds.com/api/escolas/cadastrarEscolaPlanilha', formData);
+        const response = await axios.post('https://api.dnit-eps-mds.com/api/escolas/cadastrarEscolaPlanilha', arquivoData);
 
         if (
           response.data &&
@@ -75,7 +75,7 @@ const App: React.FC<DragDropProps> = ({
   };
 
   const handleFileChange = ({ fileList }: UploadChangeParam) => {
-    setFileList(fileList);
+    setArquivos(fileList);
   };
 
   return (
@@ -83,7 +83,7 @@ const App: React.FC<DragDropProps> = ({
       <Dragger
         ref={uploadRef}
         {...props}
-        fileList={fileList}
+        fileList={arquivos}
         onChange={handleFileChange}
         data-testid="drag-drop-container"
       >

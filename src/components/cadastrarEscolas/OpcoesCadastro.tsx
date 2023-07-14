@@ -1,11 +1,11 @@
 import { Button, Form, Space } from "antd";
-interface Step1Props {
+interface OpcoesCadastroEscolaProps {
     onClick: () => void
     onClickCSV?: () => void
 }
 
 
-export default function Step1({ onClick, onClickCSV }: Step1Props) {
+export default function OpcoesCadastroEscola({ onClick, onClickCSV }: OpcoesCadastroEscolaProps) {
     return (
 
         <div className="form1">

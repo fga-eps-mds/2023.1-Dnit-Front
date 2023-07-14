@@ -2,11 +2,11 @@ import { CheckCircleOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 import "../../styles/form/step3_1.css";
 
-interface Step31Props {
+interface SinistrosAceitoProps {
   onClickVoltar: () => void;
 }
 
-export default function AcidentesAceito({ onClickVoltar }: Step31Props) {
+export default function SinistrosAceito({ onClickVoltar }: SinistrosAceitoProps) {
   return (
     <div className="form3_1">
       <div className="secaoTexto">

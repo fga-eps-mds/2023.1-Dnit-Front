@@ -9,7 +9,7 @@ import fetchCadastroRodovias from "../../service/importarRodovias";
 
 const { Dragger } = Upload;
 
-interface DragDropProps {
+interface UploadPlanilhaRodoviaProps {
     onClickBack: () => void;
     onClickErrorTamanho: () => void;
     onClickAceito: () => void;
@@ -22,17 +22,17 @@ const props: UploadProps = {
     beforeUpload: () => false,
 };
 
-const App: React.FC<DragDropProps> = ({
+const App: React.FC<UploadPlanilhaRodoviaProps> = ({
     onClickBack,
     onClickErrorTamanho,
     onClickAceito,
-}: DragDropProps) => {
+}: UploadPlanilhaRodoviaProps) => {
     const uploadRef = useRef<any>(null);
-    const [fileList, setFileList] = useState<UploadFile<any>[]>([]);
+    const [arquivos, setArquivos] = useState<UploadFile<any>[]>([]);
     const handleButtonClick = async () => {
-        if (fileList.length > 0) {
+        if (arquivos.length > 0) {
             const formData = new FormData();
-            formData.append("arquivo", fileList[0].originFileObj as File);
+            formData.append("arquivo", arquivos[0].originFileObj as File);
             try {
                 await fetchCadastroRodovias(formData);
                 message.success("Arquivo adicionado com sucesso");
@@ -52,7 +52,7 @@ const App: React.FC<DragDropProps> = ({
     };
 
     const handleFileChange = ({ fileList }: UploadChangeParam) => {
-        setFileList(fileList);
+        setArquivos(fileList);
     };
 
     return (
@@ -60,7 +60,7 @@ const App: React.FC<DragDropProps> = ({
             <Dragger
                 ref={uploadRef}
                 {...props}
-                fileList={fileList}
+                fileList={arquivos}
                 onChange={handleFileChange}
                 data-testid="drag-drop-container"
             >

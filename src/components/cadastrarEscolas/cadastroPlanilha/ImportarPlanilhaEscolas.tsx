@@ -1,6 +1,6 @@
 import "../../../styles/form/step3.css";
 import Dragdrop from "./UploadPlanilha";
-interface Step1Props {
+interface ImportarPlanilhaEscolaProps {
   onClickBack: () => void;
   onClickError: () => void;
   onClickAceito: () => void;
@@ -12,7 +12,7 @@ export default function Step3({
   onClickError,
   onClickAceito,
   onClickErroJaCadastrada,
-}: Step1Props) {
+}: ImportarPlanilhaEscolaProps) {
   return (
     <div className="form3">
       <h2>Inserir escolas via planilha</h2>

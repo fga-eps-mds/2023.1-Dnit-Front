@@ -2,11 +2,11 @@ import { Button } from "antd";
 import { useEscolasCadastradas } from "../../../context/escolasCadastradasErro";
 import "../../../styles/form/step3Listagem.css";
 
-interface Step3Erro1Props {
+interface EscolasListagemProps {
   onClickVoltar: () => void;
 }
 
-export default function Step3_listagem({ onClickVoltar }: Step3Erro1Props) {
+export default function Escolas_listagem({ onClickVoltar }: EscolasListagemProps) {
   const { escolasCadastradas } = useEscolasCadastradas();
   return (
     <div className="form3_erro1">

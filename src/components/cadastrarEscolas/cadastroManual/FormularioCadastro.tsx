@@ -21,13 +21,13 @@ export default function Step2({ onClickBack }: Step2Props) {
   const [api, contextHolder] = notification.useNotification();
   const [erroCEP, setErroCEP] = useState(false);
   let cepEnviado = "0";
-  const rules = [
+  const regras = [
     {
       required: true,
       message: "Preencha o campo ${label}!",
     },
   ];
-  const rulesLatitude = [
+  const regrasLatitude = [
     {
       required: false,
       pattern: /^-?([1-8]?\d|90)(.\d{1,15})?$/,
@@ -35,7 +35,7 @@ export default function Step2({ onClickBack }: Step2Props) {
     },
   ];
 
-  const rulesLongitude = [
+  const regrasLongitude = [
     {
       required: false,
       pattern: /^-?((1?[0-7]|[0-9])?\d|180)(.\d{1,15})?$/,
@@ -44,7 +44,7 @@ export default function Step2({ onClickBack }: Step2Props) {
     },
   ];
 
-  const rulesCodigoEscola = [
+  const regrasCodigoEscola = [
     {
       required: true,
       pattern: /^\d{8}$/,
@@ -52,7 +52,7 @@ export default function Step2({ onClickBack }: Step2Props) {
     },
   ];
 
-  const rulesTelefone = [
+  const regrasTelefone = [
     {
       required: true,
       pattern: /^\d{10,11}$/,
@@ -60,7 +60,7 @@ export default function Step2({ onClickBack }: Step2Props) {
     },
   ];
 
-  const rulesNumeroAlunoDocentes = [
+  const regrasNumeroAlunoDocentes = [
     {
       required: true,
       pattern: /^[1-9]\d*$/,
@@ -68,7 +68,7 @@ export default function Step2({ onClickBack }: Step2Props) {
     },
   ];
 
-  const rulesCEP = [
+  const regrasCEP = [
     {
       required: true,
       pattern: /^\d{8}$/,
@@ -77,7 +77,7 @@ export default function Step2({ onClickBack }: Step2Props) {
   ];
 
   const [opcoesMunicipio, setOpcoesMunicipio] = useState<MunicipioData[]>([]);
-  const getMunicipio = async () => {
+  const consultaMunicipio = async () => {
     try {
       if (UFSelecionada) {
         const resposta = await fetchMunicipio(UFSelecionada.id);
@@ -87,21 +87,21 @@ export default function Step2({ onClickBack }: Step2Props) {
   };
 
   const [opcoesUf, setOpcoesUf] = useState<UnidadeFederativaData[]>([]);
-  const getUf = async () => {
+  const consultaUf = async () => {
     try {
       const resposta = await fetchUnidadeFederativa();
       setOpcoesUf(resposta);
     } catch (error) {}
   };
   useEffect(() => {
-    if (opcoesUf.length == 0) getUf();
+    if (opcoesUf.length == 0) consultaUf();
   });
 
   const handleOptionClick = (option: any) => {
     setUFSelecionada(option);
   };
 
-  const getCEP = async (cep: string) => {
+  const consultaCEP = async (cep: string) => {
     try {
       if (cep.length === 8) {
         const res = await fetchCEP(cep);
@@ -129,7 +129,7 @@ export default function Step2({ onClickBack }: Step2Props) {
     } catch (error) {}
   };
 
-  const getEtapasDeEnsino = async () => {
+  const consultaEtapasDeEnsino = async () => {
     try {
       const resposta = await fetchEtapasDeEnsino();
       const etapas = resposta.map((e) => ({ label: e.descricao, value: e.id }));
@@ -209,11 +209,11 @@ export default function Step2({ onClickBack }: Step2Props) {
       >
         <div className="divScroll">
           <div className="bloco">
-            <Form.Item name="nome" label="Nome da Escola" rules={rules}>
+            <Form.Item name="nome" label="Nome da Escola" rules={regras}>
               <Input className="inputForm2" />
             </Form.Item>
 
-            <Form.Item name="rede" label="Rede" rules={rules}>
+            <Form.Item name="rede" label="Rede" rules={regras}>
               <Select>
                 <Option value={1}>Municipal</Option>
                 <Option value={2}>Estadual</Option>
@@ -224,25 +224,25 @@ export default function Step2({ onClickBack }: Step2Props) {
             <Form.Item
               name="codigo"
               label="Codigo da Escola"
-              rules={rulesCodigoEscola}
+              rules={regrasCodigoEscola}
             >
               <Input className="inputForm2" />
             </Form.Item>
 
-            <Form.Item name="cep" label="CEP" rules={rulesCEP}>
+            <Form.Item name="cep" label="CEP" rules={regrasCEP}>
               <Input
                 className="inputForm2"
                 onChange={(event) => {
-                  getCEP(event.target.value);
+                  consultaCEP(event.target.value);
                 }}
               />
             </Form.Item>
 
-            <Form.Item name="uf" rules={rules} label="UF">
+            <Form.Item name="uf" rules={regras} label="UF">
               <Select
                 onChange={limpaMunicipio}
                 disabled={erroCEP}
-                onMouseDown={getUf}
+                onMouseDown={consultaUf}
                 notFoundContent={<p>Carregando...</p>}
                 placement="bottomRight"
                 optionLabelProp="label"
@@ -262,16 +262,16 @@ export default function Step2({ onClickBack }: Step2Props) {
             </Form.Item>
           </div>
           <div className="bloco2">
-            <Form.Item name="telefone" label="Telefone" rules={rulesTelefone}>
+            <Form.Item name="telefone" label="Telefone" rules={regrasTelefone}>
               <Input className="inputForm2" />
             </Form.Item>
 
-            <Form.Item name="ciclos" label="Etapas de Ensino" rules={rules}>
+            <Form.Item name="ciclos" label="Etapas de Ensino" rules={regras}>
               <Select
                 mode="multiple"
-                onClick={getEtapasDeEnsino}
+                onClick={consultaEtapasDeEnsino}
                 options={OpcoesEtapasDeEnsino}
-                onMouseDown={getEtapasDeEnsino}
+                onMouseDown={consultaEtapasDeEnsino}
                 notFoundContent={<p>Carregando...</p>}
                 placement="bottomRight"
                 optionLabelProp="label"
@@ -286,7 +286,7 @@ export default function Step2({ onClickBack }: Step2Props) {
               </Select>
             </Form.Item>
 
-            <Form.Item name="porte" label="Porte" rules={rules}>
+            <Form.Item name="porte" label="Porte" rules={regras}>
               <Select>
                 <Option value={1}>Até 50 matrículas de escolarização</Option>
                 <Option value={2}>
@@ -303,18 +303,18 @@ export default function Step2({ onClickBack }: Step2Props) {
                 </Option>
               </Select>
             </Form.Item>
-            <Form.Item name="endereco" label="Endereço" rules={rules}>
+            <Form.Item name="endereco" label="Endereço" rules={regras}>
               <Input className="inputForm2" />
             </Form.Item>
 
-            <Form.Item name="municipio" label="Município" rules={rules}>
+            <Form.Item name="municipio" label="Município" rules={regras}>
               <Select
                 disabled={erroCEP}
                 notFoundContent={<p>Carregando...</p>}
                 placement="bottomRight"
                 optionLabelProp="label"
                 className="uf"
-                onMouseDown={getMunicipio}
+                onMouseDown={consultaMunicipio}
               >
                 {opcoesMunicipio?.map((u) => (
                   <Option key={u.id} value={u.id} label={<>{u.nome}</>}>
@@ -325,7 +325,7 @@ export default function Step2({ onClickBack }: Step2Props) {
             </Form.Item>
           </div>
           <div className="bloco3">
-            <Form.Item name="localizacao" label="Localização" rules={rules}>
+            <Form.Item name="localizacao" label="Localização" rules={regras}>
               <Select>
                 <Option value={1}>Rural</Option>
                 <Option value={2}>Urbana</Option>
@@ -335,19 +335,19 @@ export default function Step2({ onClickBack }: Step2Props) {
             <Form.Item
               name="longitude"
               label="Longitude"
-              rules={rulesLongitude}
+              rules={regrasLongitude}
             >
               <Input className="inputForm2" />
             </Form.Item>
 
-            <Form.Item name="latitude" label="Latitude" rules={rulesLatitude}>
+            <Form.Item name="latitude" label="Latitude" rules={regrasLatitude}>
               <Input className="inputForm2" />
             </Form.Item>
 
             <Form.Item
               name="numeroAlunos"
               label="Número Total de Alunos"
-              rules={rulesNumeroAlunoDocentes}
+              rules={regrasNumeroAlunoDocentes}
             >
               <Input className="inputForm2" />
             </Form.Item>
@@ -355,7 +355,7 @@ export default function Step2({ onClickBack }: Step2Props) {
             <Form.Item
               name="numeroDocentes"
               label="Número Total de Docentes"
-              rules={rulesNumeroAlunoDocentes}
+              rules={regrasNumeroAlunoDocentes}
             >
               <Input className="inputForm2" />
             </Form.Item>

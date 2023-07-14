@@ -3,11 +3,11 @@ import { Button } from "antd";
 import { useEscolasCadastradas } from "../../../context/escolasCadastradasErro";
 import "../../../styles/form/step3_1.css";
 
-interface Step31Props {
+interface EscolasAceitaProps {
   onClickVoltar: () => void;
 }
 
-export default function Step3_Aceito({ onClickVoltar }: Step31Props) {
+export default function Escolas_Aceito({ onClickVoltar }: EscolasAceitaProps) {
   const { escolasCadastradas } = useEscolasCadastradas();
   if (escolasCadastradas.length > 0) {
     return (

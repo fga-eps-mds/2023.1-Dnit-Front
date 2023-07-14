@@ -1,16 +1,16 @@
 import "../../styles/form/step3.css";
 import Dragdrop from "./UploadPlanilha";
-interface Step1RodoviasProps {
+interface ImportarRodoviasProps {
     onClickBack: () => void;
     onClickErroTamanho: () => void;
     onClickAceito: () => void;
 }
 
-export default function Step1_Rodovias({
+export default function ImportarRodovias({
     onClickBack,
     onClickErroTamanho,
     onClickAceito,
-}: Step1RodoviasProps) {
+}: ImportarRodoviasProps) {
     return (
         <div className="form3">
             <h2>Inserir rodovias via planilha</h2>

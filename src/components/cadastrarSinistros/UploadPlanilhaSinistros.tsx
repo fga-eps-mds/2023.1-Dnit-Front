@@ -9,7 +9,7 @@ import "../../styles/form/step3.css";
 
 const { Dragger } = Upload;
 
-interface DragDropProps {
+interface UploadPlanilhaSinistroProps {
   onClickAceito: () => void;
   onClickBack: () => void;
   onClickError: () => void;
@@ -22,11 +22,11 @@ const props: UploadProps = {
   beforeUpload: () => false,
 };
 
-const App: React.FC<DragDropProps> = ({
+const App: React.FC<UploadPlanilhaSinistroProps> = ({
   onClickError,
   onClickBack,
   onClickAceito,
-}: DragDropProps) => {
+}: UploadPlanilhaSinistroProps) => {
   const uploadRef = useRef<any>(null);
   const [fileList, setFileList] = useState<UploadFile<any>[]>([]);
   const handleButtonClick = async () => {

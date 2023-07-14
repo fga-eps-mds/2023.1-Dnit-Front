@@ -10,7 +10,7 @@ import ButtonComponent from "../Botao";
 const LoginForm: React.FC = () => {
 
   const [form] = Form.useForm();
-  const rules = [
+  const regras = [
     {
       required: true,
       message: "Por favor, preencha o campo ${name}!",
@@ -59,13 +59,13 @@ const LoginForm: React.FC = () => {
           requiredMark="optional"
           className="form-email"
         >
-          <Form.Item name="email" label="E-mail" rules={rules}>
+          <Form.Item name="email" label="E-mail" rules={regras}>
             <Input
               prefix={<i className="fas fa-envelope"></i>}
               className="inputForm"
             />
           </Form.Item>
-          <Form.Item name="senha" label="Senha" rules={rules}>
+          <Form.Item name="senha" label="Senha" rules={regras}>
             <Input.Password
               className="inputForm"
               prefix={<i className="fas fa-lock"></i>}

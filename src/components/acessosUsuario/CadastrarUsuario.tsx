@@ -1,6 +1,6 @@
 import { Form, Input, Radio, Select, Space, notification } from "antd";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/Autenticacao";
 import fetchUnidadeFederativa from "../../service/unidadesFederativas";
 import fetchCadastro from "../../service/cadastrarUsuario";
@@ -12,26 +12,25 @@ interface UfProps {
   value: number;
   label: string;
 }
-const RegisterForm: React.FC = () => {
+const CadastroUsuarioForm: React.FC = () => {
   const [form] = Form.useForm();
 
   const [api, contextHolder] = notification.useNotification();
-  const rules = [
+  const regras = [
     {
       required: true,
       message: "Por favor, preencha o campo ${name}!",
     },
   ];
 
-  const [visibleRadioUF, setVisibleRadioUF] = useState(false);
-  const [visibleRadioCompanies, setVisibleRadioCompanies] = useState(false);
+  const [ufVisiveis, setufVisiveis] = useState(false);
+  const [empresasVisiveis, setEmpresasVisiveis] = useState(false);
   const [uf, setUf] = useState<UfProps[]>();
-  const companies = [{ label: "Instituto Essência do Saber", value: 0 }];
-
-  const { login } = React.useContext(AuthContext);
+  const empresas = [{ label: "Instituto Essência do Saber", value: 0 }];
+  const navigate = useNavigate()
 
   const onFinish = async (values: any) => {
-    const registerData = {
+    const cadastroUsuarioData = {
       email: values.email,
       senha: values.senha,
       nome: values.nome,
@@ -39,9 +38,9 @@ const RegisterForm: React.FC = () => {
     };
 
     try {
-      await fetchCadastro(registerData);
-      api.success({ message: "Cadastro feito!" });
-      login();
+      await fetchCadastro(cadastroUsuarioData);
+      notification.success({ message: "Cadastro feito!" });
+      navigate('/login')
     } catch (error) {
       api.error({ message: `Erro ao fazer cadastro` });
     }
@@ -49,8 +48,8 @@ const RegisterForm: React.FC = () => {
 
   async function fetchUf(): Promise<void> {
     const uf = await fetchUnidadeFederativa();
-    const newuf = uf.map((u) => ({ value: u.id, label: u.nome }));
-    setUf(newuf);
+    const novaUf = uf.map((u) => ({ value: u.id, label: u.nome }));
+    setUf(novaUf);
   }
 
   return (
@@ -69,7 +68,7 @@ const RegisterForm: React.FC = () => {
           requiredMark="optional"
           className="form-email"
         >
-          <Form.Item name="nome" label="Nome Completo" rules={rules}>
+          <Form.Item name="nome" label="Nome Completo" rules={regras}>
             <Input
               className="inputForm"
               prefix={<i className="fas fa-user"></i>}
@@ -96,7 +95,7 @@ const RegisterForm: React.FC = () => {
             />
           </Form.Item>
 
-          <Form.Item name="senha" label="Senha" rules={rules}>
+          <Form.Item name="senha" label="Senha" rules={regras}>
             <Input.Password
               className="inputForm"
               prefix={<i className="fas fa-lock"></i>}
@@ -126,24 +125,24 @@ const RegisterForm: React.FC = () => {
             />
           </Form.Item>
 
-          <Form.Item className="item" name="tipo de usuário" rules={rules}>
+          <Form.Item className="item" name="tipo de usuário" rules={regras}>
             <Radio.Group className="radioButtons" name="tipo de usuário">
               <Radio
                 value={"DNIT"}
-                checked={visibleRadioUF}
+                checked={ufVisiveis}
                 onClick={() => {
-                  setVisibleRadioUF(true);
-                  setVisibleRadioCompanies(false);
+                  setufVisiveis(true);
+                  setEmpresasVisiveis(false);
                 }}
               >
                 <p className="radio1">Usuário DNIT</p>
               </Radio>
               <Radio
                 value={"Terceirizada"}
-                checked={visibleRadioCompanies}
+                checked={empresasVisiveis}
                 onClick={() => {
-                  setVisibleRadioCompanies(true);
-                  setVisibleRadioUF(false);
+                  setEmpresasVisiveis(true);
+                  setufVisiveis(false);
                 }}
               >
                 <p className="radio2">Empresa Executora</p>
@@ -151,11 +150,11 @@ const RegisterForm: React.FC = () => {
             </Radio.Group>
           </Form.Item>
 
-          {visibleRadioUF && (
+          {ufVisiveis && (
             <Form.Item
               className="ext1 "
               name="uf"
-              rules={rules}
+              rules={regras}
               label="UF de Lotação"
             >
               <Select
@@ -189,31 +188,31 @@ const RegisterForm: React.FC = () => {
             </Form.Item>
           )}
 
-          {visibleRadioCompanies && (
+          {empresasVisiveis && (
             <div>
               <Form.Item
                 className="ext2"
                 name="empresa executora"
                 label="Empresa Executora"
-                rules={rules}
+                rules={regras}
               >
                 <Select
                   placement="topLeft"
                   optionLabelProp="label"
                   placeholder={<i className="fas fa-city" />}
                 >
-                  {companies.map((company) => (
+                  {empresas.map((empresa) => (
                     <Option
-                      key={company.value}
-                      value={company.value}
+                      key={empresa.value}
+                      value={empresa.value}
                       label={
                         <>
                           <i className="fas fa-city" />
-                          {company.label}
+                          {empresa.label}
                         </>
                       }
                     >
-                      {company.label}
+                      {empresa.label}
                     </Option>
                   ))}
                 </Select>
@@ -248,4 +247,4 @@ const RegisterForm: React.FC = () => {
   );
 };
 
-export default RegisterForm;
+export default CadastroUsuarioForm;
