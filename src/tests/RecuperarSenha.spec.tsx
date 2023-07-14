@@ -5,7 +5,7 @@ import App from "../App";
 import { AuthProvider } from "../provider/Autenticacao";
 import fetchRecuperarSenha from "../service/recuperarSenha";
 
-jest.mock("../service/recoverPW", () => ({
+jest.mock("../service/recuperarSenha", () => ({
   __esModule: true,
   default: jest.fn(),
 }));

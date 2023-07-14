@@ -5,7 +5,7 @@ import App from "../App";
 import { AuthProvider } from "../provider/Autenticacao";
 import fetchRedefinirSenha from "../service/redefinirSenha";
 
-jest.mock("../service/resetPassword", () => ({
+jest.mock("../service/redefinirSenha", () => ({
   __esModule: true,
   default: jest.fn(),
 }));

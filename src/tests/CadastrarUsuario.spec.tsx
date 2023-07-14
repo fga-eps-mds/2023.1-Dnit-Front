@@ -6,7 +6,7 @@ import fetchUnidadeFederativa from "../service/unidadesFederativas";
 import fetchCadastroUsuario from "../service/cadastrarUsuario";
 import server from "./mock/servicosAPI";
 
-jest.mock("../service/register", () => ({
+jest.mock("../service/cadastrarUsuario", () => ({
   __esModule: true,
   default: jest.fn(),
 }));
