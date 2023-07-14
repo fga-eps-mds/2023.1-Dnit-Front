@@ -2,8 +2,8 @@ import { act, fireEvent, render, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
 import { AuthProvider } from "../provider/Autenticacao";
-import fetchFederativeUnit from "../service/unidadesFederativas";
-import fetchRegister from "../service/cadastrarUsuario";
+import fetchUnidadeFederativa from "../service/unidadesFederativas";
+import fetchCadastroUsuario from "../service/cadastrarUsuario";
 import server from "./mock/servicosAPI";
 
 jest.mock("../service/register", () => ({
@@ -11,7 +11,7 @@ jest.mock("../service/register", () => ({
   default: jest.fn(),
 }));
 
-const mockedUseRegister = fetchRegister as jest.Mock;
+const mockedUseRegister = fetchCadastroUsuario as jest.Mock;
 
 beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());

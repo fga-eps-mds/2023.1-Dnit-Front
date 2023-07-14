@@ -6,7 +6,7 @@ interface Response {
   status: number;
 }
 
-async function fetchSolicitaAcao(
+async function fetchSolicitaoAcao(
   formData: SolicitacaoDeAcaoData
 ): Promise<Response> {
   try {
@@ -23,4 +23,4 @@ async function fetchSolicitaAcao(
   }
 }
 
-export default fetchSolicitaAcao;
+export default fetchSolicitaoAcao;

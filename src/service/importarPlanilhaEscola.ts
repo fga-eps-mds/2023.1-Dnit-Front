@@ -1,16 +1,16 @@
 import axios, { AxiosResponse } from "axios";
 import { cadastroEscolaPlanilhaURL } from "../consts/service";
 
-interface InsertFileResponse {
+interface CadastroEscolaPlanilhaResponse {
   status: number;
   data: [];
 }
 
-async function fetchInsertFile(
+async function fetchCadastroEscolaPlanilha(
   fileData: FormData
-): Promise<InsertFileResponse> {
+): Promise<CadastroEscolaPlanilhaResponse> {
   try {
-    const response: AxiosResponse<InsertFileResponse> = await axios.post(
+    const response: AxiosResponse<CadastroEscolaPlanilhaResponse> = await axios.post(
       cadastroEscolaPlanilhaURL,
       fileData
     );
@@ -21,4 +21,4 @@ async function fetchInsertFile(
   }
 }
 
-export default fetchInsertFile;
+export default fetchCadastroEscolaPlanilha;

@@ -2,15 +2,15 @@ import axios, { AxiosResponse } from "axios";
 import { cadastroUsuarioURL } from "../consts/service";
 import { CadastroUsuarioData } from "../models/service";
 
-interface RegisterResponse {
+interface CadastroUsuarioResponse {
   status: number;
 }
 
-async function fetchRegister(
+async function fetchCadastroUsuario(
   registerData: CadastroUsuarioData
-): Promise<RegisterResponse> {
+): Promise<CadastroUsuarioResponse> {
   try {
-    const response: AxiosResponse<RegisterResponse> = await axios.post(
+    const response: AxiosResponse<CadastroUsuarioResponse> = await axios.post(
       cadastroUsuarioURL,
       registerData
     );
@@ -21,4 +21,4 @@ async function fetchRegister(
   }
 }
 
-export default fetchRegister;
+export default fetchCadastroUsuario;

@@ -1,15 +1,15 @@
 import axios, { AxiosResponse } from "axios";
 import { cadastroRodoviasURL } from "../consts/service";
 
-interface InsertFileResponse {
+interface CadastroRodoviasResponse {
   status: number;
 }
 
-async function fetchInsertRodoviaFile(
+async function fetchCadastroRodovias(
   fileData: FormData
-): Promise<InsertFileResponse> {
+): Promise<CadastroRodoviasResponse> {
   try {
-    const response: AxiosResponse<InsertFileResponse> = await axios.post(
+    const response: AxiosResponse<CadastroRodoviasResponse> = await axios.post(
       cadastroRodoviasURL,
       fileData
     );
@@ -20,4 +20,4 @@ async function fetchInsertRodoviaFile(
   }
 }
 
-export default fetchInsertRodoviaFile;
+export default fetchCadastroRodovias;

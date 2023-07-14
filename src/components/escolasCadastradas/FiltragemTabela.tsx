@@ -4,7 +4,7 @@ import { useFiltroTabela } from "../../context/FiltroTabela";
 import { UnidadeFederativaData, MunicipioData, SituacaoData } from "../../models/service";
 import fetchSituacao from "../../service/consultarSituacao";
 import fetchEtapasDeEnsino from "../../service/etapasDeEnsino";
-import fetchFederativeUnit from "../../service/unidadesFederativas";
+import fetchUnidadeFederativa from "../../service/unidadesFederativas";
 import fetchMunicipio from "../../service/municipio";
 import "../../styles/App.css";
 import "../estilo/FiltragemTabela.css";
@@ -53,7 +53,7 @@ export default function TabelaEscolas() {
 
   const getUf = async () => {
     try {
-      const resposta = await fetchFederativeUnit();
+      const resposta = await fetchUnidadeFederativa();
       setOpcoesUf(resposta);
     } catch (error) {}
   };

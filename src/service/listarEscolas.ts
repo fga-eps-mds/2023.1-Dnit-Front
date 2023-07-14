@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from "axios";
 import { listarEscolasURL } from "../consts/service";
 import { EscolaData } from "../models/service";
 
-async function fetchlistSchools(): Promise<EscolaData[]> {
+async function fetchListarEscolas(): Promise<EscolaData[]> {
   try {
     const response: AxiosResponse<EscolaData[]> = await axios.get(
       listarEscolasURL
@@ -14,4 +14,4 @@ async function fetchlistSchools(): Promise<EscolaData[]> {
   }
 }
 
-export default fetchlistSchools;
+export default fetchListarEscolas;

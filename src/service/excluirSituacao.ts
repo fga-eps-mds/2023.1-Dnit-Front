@@ -2,15 +2,15 @@ import axios, { AxiosResponse } from "axios";
 import { excluirSituacaoURL } from "../consts/service";
 import { ExcluirSituacaoData } from "../models/service";
 
-interface DeleteSituationResponse {
+interface ExcluirSituacaoResponse {
   status: number;
 }
 
-async function fetchDeleteSituation(
+async function fetchExcluirSituacao(
   excluirSituacaoData: ExcluirSituacaoData
-): Promise<DeleteSituationResponse> {
+): Promise<ExcluirSituacaoResponse> {
   try {
-    const response: AxiosResponse<DeleteSituationResponse> = await axios.post(
+    const response: AxiosResponse<ExcluirSituacaoResponse> = await axios.post(
       excluirSituacaoURL,
       null,
       { params: { idEscola: excluirSituacaoData.idEscola } }
@@ -22,4 +22,4 @@ async function fetchDeleteSituation(
   }
 }
 
-export default fetchDeleteSituation;
+export default fetchExcluirSituacao;

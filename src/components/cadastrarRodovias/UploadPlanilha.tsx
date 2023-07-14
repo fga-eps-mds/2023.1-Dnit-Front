@@ -5,7 +5,7 @@ import { UploadChangeParam } from "antd/lib/upload";
 import React, { useRef, useState } from "react";
 import { cadastroRodoviasURL } from "../../consts/service";
 import "../../styles/form/step3.css";
-import fetchInsertRodoviaFile from "../../service/importarRodovias";
+import fetchCadastroRodovias from "../../service/importarRodovias";
 
 const { Dragger } = Upload;
 
@@ -34,7 +34,7 @@ const App: React.FC<DragDropProps> = ({
             const formData = new FormData();
             formData.append("arquivo", fileList[0].originFileObj as File);
             try {
-                await fetchInsertRodoviaFile(formData);
+                await fetchCadastroRodovias(formData);
                 message.success("Arquivo adicionado com sucesso");
                 onClickAceito();
 

@@ -7,7 +7,7 @@ import {
   SolicitacaoDeAcaoData,
 } from "../../models/service";
 import fetchEtapasDeEnsino from "../../service/etapasDeEnsino";
-import fetchFederativeUnit from "../../service/unidadesFederativas";
+import fetchUnidadeFederativa from "../../service/unidadesFederativas";
 import { fetchEscolasInep } from "../../service/inepAPI";
 import fetchMunicipio from "../../service/municipio";
 import fetchSolicitaAcao from "../../service/solicitarAcao";
@@ -51,7 +51,7 @@ const SolicitacaoAcaoForm: React.FC = () => {
   const getUFs = async () => {
     if (!UFs)
       try {
-        const result = await fetchFederativeUnit();
+        const result = await fetchUnidadeFederativa();
         setUFs(result);
       } catch (error) {}
   };

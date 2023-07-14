@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useFiltroTabela } from "../../../context/FiltroTabela";
 import { UnidadeFederativaData, MunicipioData } from "../../../models/service";
 import fetchEtapasDeEnsino from "../../../service/etapasDeEnsino";
-import fetchFederativeUnit from "../../../service/unidadesFederativas";
+import fetchUnidadeFederativa from "../../../service/unidadesFederativas";
 import fetchMunicipio from "../../../service/municipio";
 import fetchCadastroEscola from "../../../service/cadastrarEscola";
 import fetchCEP from "../../../service/viaCEP";
@@ -89,7 +89,7 @@ export default function Step2({ onClickBack }: Step2Props) {
   const [opcoesUf, setOpcoesUf] = useState<UnidadeFederativaData[]>([]);
   const getUf = async () => {
     try {
-      const resposta = await fetchFederativeUnit();
+      const resposta = await fetchUnidadeFederativa();
       setOpcoesUf(resposta);
     } catch (error) {}
   };
@@ -147,7 +147,7 @@ export default function Step2({ onClickBack }: Step2Props) {
 
   const navigate = useNavigate();
   const onFinish = async (values: any) => {
-    const uf = await fetchFederativeUnit();
+    const uf = await fetchUnidadeFederativa();
     const ufFiltrada = uf.filter((uf) => uf.sigla === values.uf);
 
     let municipioFiltrado;

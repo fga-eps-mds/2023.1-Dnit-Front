@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from "axios";
 import { unidadesFederativasURL } from "../consts/service";
 import { UnidadeFederativaData } from "../models/service";
 
-async function fetchFederativeUnit(): Promise<UnidadeFederativaData[]> {
+async function fetchUnidadeFederativa(): Promise<UnidadeFederativaData[]> {
   try {
     const response: AxiosResponse<UnidadeFederativaData[]> = await axios.get(
       unidadesFederativasURL
@@ -14,4 +14,4 @@ async function fetchFederativeUnit(): Promise<UnidadeFederativaData[]> {
   }
 }
 
-export default fetchFederativeUnit;
+export default fetchUnidadeFederativa;

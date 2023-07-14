@@ -2,15 +2,15 @@ import axios, { AxiosResponse } from "axios";
 import { redefinirSenhaURL } from "../consts/service";
 import { RedefinirSenhaData } from "../models/service";
 
-interface ResetPasswordResponse {
+interface RedefinirSenhaResponse {
   status: number;
 }
 
-async function fetchResetPassword(
+async function fetchRedefinirSenha(
   resetPassword: RedefinirSenhaData
-): Promise<ResetPasswordResponse> {
+): Promise<RedefinirSenhaResponse> {
   try {
-    const response: AxiosResponse<ResetPasswordResponse> = await axios.put(
+    const response: AxiosResponse<RedefinirSenhaResponse> = await axios.put(
       redefinirSenhaURL,
       resetPassword
     );
@@ -21,4 +21,4 @@ async function fetchResetPassword(
   }
 }
 
-export default fetchResetPassword;
+export default fetchRedefinirSenha;

@@ -3,14 +3,14 @@ import { act } from "react-dom/test-utils";
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
 import { AuthProvider } from "../provider/Autenticacao";
-import fetchRecoverPassword from "../service/recuperarSenha";
+import fetchRecuperarSenha from "../service/recuperarSenha";
 
 jest.mock("../service/recoverPW", () => ({
   __esModule: true,
   default: jest.fn(),
 }));
 
-const mockedUseRecoverPassword = fetchRecoverPassword as jest.Mock;
+const mockedUseRecoverPassword = fetchRecuperarSenha as jest.Mock;
 
 window.matchMedia = jest.fn().mockImplementation((query) => {
   return {
