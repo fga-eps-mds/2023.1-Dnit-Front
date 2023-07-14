@@ -2,10 +2,10 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { rest } from "msw";
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
-import DragDrop from "../components/Upload/DragDrop";
-import { AuthProvider } from "../provider/Authentication";
-import localStorageMock from "./mock/localstorage";
-import server from "./mock/service";
+import DragDrop from "../components/cadastrarEscolas/cadastroPlanilha/UploadPlanilha";
+import { AuthProvider } from "../provider/Autenticacao";
+import localStorageMock from "./mock/memoriaLocal";
+import server from "./mock/servicosAPI";
 
 beforeAll(() => {
   server.listen();

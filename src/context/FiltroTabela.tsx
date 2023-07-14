@@ -7,12 +7,12 @@ import {
   useEffect,
   useState,
 } from "react";
-import { EscolasFiltradasURL } from "../consts/service";
+import { escolasFiltradasURL } from "../consts/service";
 import {
   EscolaData,
-  FederativeUnit,
-  Municipio,
-  Situacao,
+  UnidadeFederativaData,
+  MunicipioData,
+  SituacaoData,
 } from "../models/service";
 
 interface FiltroContextType {
@@ -22,17 +22,17 @@ interface FiltroContextType {
   NomePesquisado: string;
   setNomePesquisado: Dispatch<SetStateAction<string>>;
 
-  UFSelecionada: FederativeUnit | false;
-  setUFSelecionada: Dispatch<SetStateAction<FederativeUnit | false>>;
+  UFSelecionada: UnidadeFederativaData | false;
+  setUFSelecionada: Dispatch<SetStateAction<UnidadeFederativaData | false>>;
 
-  situacaoSelecionada: Situacao | false;
-  setSituacaoSelecionada: Dispatch<SetStateAction<Situacao | false>>;
+  situacaoSelecionada: SituacaoData | false;
+  setSituacaoSelecionada: Dispatch<SetStateAction<SituacaoData | false>>;
 
   etapaDeEnsinoSelecionada: number[];
   setEtapaDeEnsinoSelecionada: Dispatch<SetStateAction<number[]>>;
 
-  municipioSelecionado: Municipio | false;
-  setMunicipioSelecionado: Dispatch<SetStateAction<Municipio | false>>;
+  municipioSelecionado: MunicipioData | false;
+  setMunicipioSelecionado: Dispatch<SetStateAction<MunicipioData | false>>;
 
   escolasFiltradas: EscolaData[] | false;
   totalEscolas: number;
@@ -52,17 +52,17 @@ const FiltroProvider = ({ children }: any) => {
   const [NomePesquisado, setNomePesquisado] = useState("");
   const [nomeEscola, setNomeEscola] = useState("");
 
-  const [UFSelecionada, setUFSelecionada] = useState<FederativeUnit | false>(
+  const [UFSelecionada, setUFSelecionada] = useState<UnidadeFederativaData | false>(
     false
   );
   const [situacaoSelecionada, setSituacaoSelecionada] = useState<
-    Situacao | false
+    SituacaoData | false
   >(false);
   const [etapaDeEnsinoSelecionada, setEtapaDeEnsinoSelecionada] = useState<
     number[]
   >([]);
   const [municipioSelecionado, setMunicipioSelecionado] = useState<
-    Municipio | false
+    MunicipioData | false
   >(false);
 
   const [carregandoEscolas, setCarregandoEscolas] = useState<boolean>(false);
@@ -91,7 +91,7 @@ const FiltroProvider = ({ children }: any) => {
         })
       );
       const response: AxiosResponse<ResponseData> = await axios.get(
-        EscolasFiltradasURL,
+        escolasFiltradasURL,
         {
           params: {
             Pagina: paginaAtual,

@@ -1,11 +1,11 @@
 import axios, { AxiosResponse } from "axios";
-import { EtapasDeEnsinoURL } from "../consts/service";
-import { EtapasDeEnsino } from "../models/service";
+import { etapasDeEnsinoURL } from "../consts/service";
+import { EtapasDeEnsinoData } from "../models/service";
 
-async function fetchEtapasDeEnsino(): Promise<EtapasDeEnsino[]> {
+async function fetchEtapasDeEnsino(): Promise<EtapasDeEnsinoData[]> {
   try {
-    const response: AxiosResponse<EtapasDeEnsino[]> = await axios.get(
-      EtapasDeEnsinoURL
+    const response: AxiosResponse<EtapasDeEnsinoData[]> = await axios.get(
+      etapasDeEnsinoURL
     );
     return response.data;
   } catch (error) {

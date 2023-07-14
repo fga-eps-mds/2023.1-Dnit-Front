@@ -5,8 +5,8 @@ import {
 } from "@ant-design/icons";
 import { Card, Collapse, CollapseProps } from "antd";
 import { useNavigate } from "react-router";
-import Header from "../components/Header";
-import Footer from "../components/components-escolasCadastradas/Footer";
+import Header from "../components/Cabecalho";
+import Footer from "../components/Rodape";
 import "../styles/App.css";
 import "../styles/Dashboard.css";
 

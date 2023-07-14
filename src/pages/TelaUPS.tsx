@@ -1,5 +1,5 @@
-import Header from "../components/Header";
-import UPSForm from "../components/form/UPSForm";
+import Header from "../components/Cabecalho";
+import UPSForm from "../components/visualizarUps/FormularioUPS";
 import "../styles/App.css";
 
 function TelaUPS() {
