@@ -3,9 +3,9 @@ import userEvent from "@testing-library/user-event";
 import { rest } from "msw";
 import { MemoryRouter } from "react-router";
 import App from "../App";
-import { AuthProvider } from "../provider/Authentication";
-import localStorageMock from "./mock/localstorage";
-import server from "./mock/service";
+import { AuthProvider } from "../provider/Autenticacao";
+import localStorageMock from "./mock/memoriaLocal";
+import server from "./mock/servicosAPI";
 
 beforeAll(() => server.listen());
 beforeEach(() => {

@@ -2,9 +2,9 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
-import { AuthProvider } from "../provider/Authentication";
-import localStorageMock from "./mock/localstorage";
-import server from "./mock/service";
+import { AuthProvider } from "../provider/Autenticacao";
+import localStorageMock from "./mock/memoriaLocal";
+import server from "./mock/servicosAPI";
 
 beforeAll(() => server.listen());
 beforeEach(() => {

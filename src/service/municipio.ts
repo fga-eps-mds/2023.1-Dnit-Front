@@ -1,11 +1,11 @@
 import axios, { AxiosResponse } from "axios";
-import { MunicipioURL } from "../consts/service";
-import { Municipio } from "../models/service";
+import { municipioURL } from "../consts/service";
+import { MunicipioData } from "../models/service";
 
-async function fetchMunicipio(UfId: number): Promise<Municipio[]> {
+async function fetchMunicipio(UfId: number): Promise<MunicipioData[]> {
   try {
-    const response: AxiosResponse<Municipio[]> = await axios.get(
-      `${MunicipioURL}?idUf=${UfId.toString()}`
+    const response: AxiosResponse<MunicipioData[]> = await axios.get(
+      `${municipioURL}?idUf=${UfId.toString()}`
     );
     return response.data;
   } catch (error) {

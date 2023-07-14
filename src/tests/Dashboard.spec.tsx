@@ -1,8 +1,8 @@
 import { fireEvent, render } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
 import App from "../App";
-import { AuthProvider } from "../provider/Authentication";
-import localStorageMock from "./mock/localstorage";
+import { AuthProvider } from "../provider/Autenticacao";
+import localStorageMock from "./mock/memoriaLocal";
 
 beforeEach(() => {
   Object.defineProperty(window, "localStorage", { value: localStorageMock });
