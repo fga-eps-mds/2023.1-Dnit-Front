@@ -234,14 +234,6 @@ const CadastroUsuarioForm: React.FC = () => {
 
           <Link to="/login">Já possui cadastro? Faça o Login</Link>
         </Form>
-        <a href="" className="politica">
-          {" "}
-          Política de privacidade{" "}
-        </a>{" "}
-        <a href="" className="ajuda">
-          {" "}
-          Precisa de ajuda?
-        </a>
       </div>
     </div>
   );

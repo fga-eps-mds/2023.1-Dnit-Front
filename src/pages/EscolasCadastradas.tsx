@@ -1,4 +1,4 @@
-import BreadCrumb from "../components/escolasCadastradas/TrilhaNavegacao";
+import TrilhaNavegacao from "../components/escolasCadastradas/TrilhaNavegacao";
 import FiltragemTabela from "../components/escolasCadastradas/FiltragemTabela";
 import Footer from "../components/Rodape";
 import Header from "../components/escolasCadastradas/CabecalhoListaEscolas";
@@ -11,7 +11,7 @@ export default function EscolasCadastradas() {
   return (
     <div className="App">
       <Header />
-      <BreadCrumb elementosLi={paginas}></BreadCrumb>
+      <TrilhaNavegacao elementosLi={paginas} escolasCadastradas></TrilhaNavegacao>
       <FiltroProvider>
         <FiltragemTabela />
         <TabelaEscola />

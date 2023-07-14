@@ -34,6 +34,13 @@ const ModalCamposEscola = ({
     { value: number; label: string }[]
   >([]);
 
+  const [novaLat, setNovaLat] = useState(data?.latitude);
+  const [novaLong, setNovaLong] = useState(data?.longitude);
+  const [novoNumAlunos, setNovoNumAlunos] = useState(data?.numeroTotalDeAlunos);
+  const [novoNumDoc, setNovoNumDoc] = useState(data?.numeroTotalDeDocentes);
+  const [novoTel, setNovoTel] = useState(data?.telefone);
+  const [novaObs, setNovaObs] = useState(data?.observacao);
+
   const ultimaAtualizacao = new Date();
 
   const chamarSituacao = async () => {
@@ -47,6 +54,7 @@ const ModalCamposEscola = ({
   };
 
   const handleTelefoneChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setNovoTel(event.target.value)
     onUpdateTelefone(event.target.value);
   };
 
@@ -55,22 +63,27 @@ const ModalCamposEscola = ({
   };
 
   const handleObservacaoChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setNovaObs(event.target.value)
     onUpdateObservacao(event.target.value);
   };
 
   const handleLatitudeChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setNovaLat(event.target.value)
     onUpdateLatitude(event.target.value);
   };
 
   const handleLongitudeChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setNovaLong(event.target.value)
     onUpdateLongitude(event.target.value);
   };
 
   const handleNumAlunosChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setNovoNumAlunos(Number(event.target.value))
     onUpdateNumAlunos(Number(event.target.value));
   };
 
   const handleNumDocentesChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setNovoNumDoc(Number(event.target.value))
     onUpdateNumDocentes(Number(event.target.value));
   };
 
@@ -79,7 +92,6 @@ const ModalCamposEscola = ({
   };
 
   const getEtapasDeEnsino = async () => {
-    console.log("error");
     try {
       const resposta = await fetchEtapasDeEnsino();
       const etapas = resposta.map((e) => ({ label: e.descricao, value: e.id }));
@@ -159,7 +171,7 @@ const ModalCamposEscola = ({
             id="input-default"
             type="text"
             onChange={handleTelefoneChange}
-            placeholder={data.telefone}
+            value={novoTel}
           />
         </div>
         <label htmlFor="input-default">CEP</label>
@@ -250,7 +262,7 @@ const ModalCamposEscola = ({
           <input
             id="input-default"
             type="text"
-            placeholder={data.latitude}
+            value={novaLat}
             onChange={handleLatitudeChange}
           />
         </div>
@@ -262,7 +274,7 @@ const ModalCamposEscola = ({
           <input
             id="input-default"
             type="text"
-            placeholder={data.longitude}
+            value={novaLong}
             onChange={handleLongitudeChange}
           />
         </div>
@@ -274,7 +286,7 @@ const ModalCamposEscola = ({
           <input
             id="input-default"
             type="text"
-            placeholder={data.numeroTotalDeAlunos.toString()}
+            value={novoNumAlunos}
             onChange={handleNumAlunosChange}
           />
         </div>
@@ -286,7 +298,7 @@ const ModalCamposEscola = ({
           <input
             id="input-default"
             type="text"
-            placeholder={data.numeroTotalDeDocentes.toString()}
+            value={novoNumDoc}
             onChange={handleNumDocentesChange}
           />
         </div>
@@ -300,7 +312,7 @@ const ModalCamposEscola = ({
             id="input-default"
             type="text"
             onChange={handleObservacaoChange}
-            placeholder={data.observacao}
+            value={novaObs}
           />
         </div>
         <label htmlFor="input-default">Ultima Atualização</label>
