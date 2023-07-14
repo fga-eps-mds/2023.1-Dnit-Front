@@ -92,7 +92,6 @@ const ModalCamposEscola = ({
   };
 
   const getEtapasDeEnsino = async () => {
-    console.log("error");
     try {
       const resposta = await fetchEtapasDeEnsino();
       const etapas = resposta.map((e) => ({ label: e.descricao, value: e.id }));
