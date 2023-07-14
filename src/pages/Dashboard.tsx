@@ -5,13 +5,15 @@ import {
 } from "@ant-design/icons";
 import { Card, Collapse, CollapseProps } from "antd";
 import { useNavigate } from "react-router";
-import Header from "../components/Header";
-import Footer from "../components/components-escolasCadastradas/Footer";
+import Header from "../components/Cabecalho";
+import TrilhaDeNavegacao from "../components/escolasCadastradas/TrilhaNavegacao";
+import Footer from "../components/Rodape";
 import "../styles/App.css";
 import "../styles/Dashboard.css";
 
 export default function Dashboard() {
   const navigate = useNavigate();
+  const paginas = [{ nome: "Logout", link: "/login" }];
   const items: CollapseProps["items"] = [
     {
       key: "1",
@@ -69,6 +71,7 @@ export default function Dashboard() {
   return (
     <div className="App">
       <Header dashboard />
+      <TrilhaDeNavegacao elementosLi={paginas}/>
       <Collapse
         defaultActiveKey={["1", "2"]}
         ghost

@@ -1,10 +1,10 @@
 import axios, { AxiosResponse } from "axios";
 import { urlAPIViaCEP } from "../consts/service";
-import { ViaCEP } from "../models/service";
+import { ViaCEPData } from "../models/service";
 
-async function fetchCEP(cep: string): Promise<ViaCEP> {
+async function fetchCEP(cep: string): Promise<ViaCEPData> {
   try {
-    const response: AxiosResponse<ViaCEP> = await axios.get(
+    const response: AxiosResponse<ViaCEPData> = await axios.get(
       urlAPIViaCEP + `/${cep}` + "/json"
     );
     return response.data;

@@ -3,9 +3,14 @@ import userEvent from "@testing-library/user-event";
 import { rest } from "msw";
 import { MemoryRouter } from "react-router";
 import App from "../App";
-import server from "./mock/service";
+import { AuthProvider } from "../provider/Autenticacao";
+import localStorageMock from "./mock/memoriaLocal";
+import server from "./mock/servicosAPI";
 
 beforeAll(() => server.listen());
+beforeEach(() => {
+  Object.defineProperty(window, "localStorage", { value: localStorageMock });
+});
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 window.matchMedia = jest.fn().mockImplementation((query) => {
@@ -23,9 +28,13 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
 
 describe("UPSForm", () => {
   test("Mostra mensagem de campos inválidos ao inserir valores inválidos", async () => {
-    const { getByLabelText, getByText } = render(
+    localStorage.setItem("login", "authenticated");
+
+    const { getByLabelText } = render(
       <MemoryRouter initialEntries={["/telaUPS"]}>
-        <App />
+        <AuthProvider>
+          <App />
+        </AuthProvider>
       </MemoryRouter>
     );
 
@@ -49,9 +58,13 @@ describe("UPSForm", () => {
     });
   });
   test("Exibe valores de UPS quando a resposta do calcularUps é recebida", async () => {
+    localStorage.setItem("login", "authenticated");
+
     const { getByLabelText, getByText } = render(
       <MemoryRouter initialEntries={["/telaUPS"]}>
-        <App />
+        <AuthProvider>
+          <App />
+        </AuthProvider>
       </MemoryRouter>
     );
 
@@ -79,6 +92,8 @@ describe("UPSForm", () => {
   });
 
   test("Erro ", async () => {
+    localStorage.setItem("login", "authenticated");
+
     server.use(
       rest.get(
         "https://api.aprovaunb.com.br/api/calcular/ups/escola",
@@ -89,7 +104,9 @@ describe("UPSForm", () => {
     );
     const { getByLabelText, getByText } = render(
       <MemoryRouter initialEntries={["/telaUPS"]}>
-        <App />
+        <AuthProvider>
+          <App />
+        </AuthProvider>
       </MemoryRouter>
     );
 

@@ -1,7 +1,12 @@
 import { fireEvent, render } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
 import App from "../App";
+import { AuthProvider } from "../provider/Autenticacao";
+import localStorageMock from "./mock/memoriaLocal";
 
+beforeEach(() => {
+  Object.defineProperty(window, "localStorage", { value: localStorageMock });
+});
 window.matchMedia = jest.fn().mockImplementation((query) => {
   return {
     matches: false,
@@ -16,9 +21,13 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
 });
 
 test("Visualizar Escolas", async () => {
+  localStorage.setItem("login", "authenticated");
+
   const screen = render(
     <MemoryRouter initialEntries={["/dashboard"]}>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </MemoryRouter>
   );
 
@@ -27,9 +36,13 @@ test("Visualizar Escolas", async () => {
 });
 
 test("Visualizar Dados UPS", async () => {
+  localStorage.setItem("login", "authenticated");
+
   const screen = render(
     <MemoryRouter initialEntries={["/dashboard"]}>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </MemoryRouter>
   );
 
@@ -38,9 +51,13 @@ test("Visualizar Dados UPS", async () => {
 });
 
 test("Cadastrar Escolas", async () => {
+  localStorage.setItem("login", "authenticated");
+
   const screen = render(
     <MemoryRouter initialEntries={["/dashboard"]}>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </MemoryRouter>
   );
 
@@ -49,9 +66,13 @@ test("Cadastrar Escolas", async () => {
 });
 
 test("Adicionar Sinistros", async () => {
+  localStorage.setItem("login", "authenticated");
+
   const screen = render(
     <MemoryRouter initialEntries={["/dashboard"]}>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </MemoryRouter>
   );
 
@@ -60,9 +81,13 @@ test("Adicionar Sinistros", async () => {
 });
 
 test("Adicionar Rodovias", async () => {
+  localStorage.setItem("login", "authenticated");
+
   const screen = render(
     <MemoryRouter initialEntries={["/dashboard"]}>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </MemoryRouter>
   );
 

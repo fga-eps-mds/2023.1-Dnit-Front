@@ -3,16 +3,25 @@ import userEvent from "@testing-library/user-event";
 import { rest } from "msw";
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
-import server from "./mock/service";
+import { AuthProvider } from "../provider/Autenticacao";
+import localStorageMock from "./mock/memoriaLocal";
+import server from "./mock/servicosAPI";
 
 beforeAll(() => server.listen());
+beforeEach(() => {
+  Object.defineProperty(window, "localStorage", { value: localStorageMock });
+});
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
 test("Exibir escola selecionada", async () => {
+  localStorage.setItem("login", "authenticated");
+
   render(
     <MemoryRouter initialEntries={["/escolas-cadastradas"]}>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </MemoryRouter>
   );
 
@@ -29,9 +38,13 @@ test("Exibir escola selecionada", async () => {
 });
 
 test("Alterar escola selecionada", async () => {
+  localStorage.setItem("login", "authenticated");
+
   render(
     <MemoryRouter initialEntries={["/escolas-cadastradas"]}>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>{" "}
     </MemoryRouter>
   );
 
@@ -81,6 +94,8 @@ test("Alterar escola selecionada", async () => {
 });
 
 test("Alterar escola selecionada erro", async () => {
+  localStorage.setItem("login", "authenticated");
+
   server.use(
     rest.put(
       "https://api.dnit-eps-mds.com/api/escolas/alterarDadosEscola",
@@ -91,7 +106,9 @@ test("Alterar escola selecionada erro", async () => {
   );
   render(
     <MemoryRouter initialEntries={["/escolas-cadastradas"]}>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>{" "}
     </MemoryRouter>
   );
 

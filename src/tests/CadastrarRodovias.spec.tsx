@@ -1,10 +1,17 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { rest } from "msw";
+localStorage.setItem("login", "authenticated");
+
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
-import server from "./mock/service";
+import { AuthProvider } from "../provider/Autenticacao";
+import localStorageMock from "./mock/memoriaLocal";
+import server from "./mock/servicosAPI";
 
 beforeAll(() => server.listen());
+beforeEach(() => {
+  Object.defineProperty(window, "localStorage", { value: localStorageMock });
+});
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 window.matchMedia = jest.fn().mockImplementation((query) => {
@@ -21,6 +28,8 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
 });
 
 test("Cadastro via CSV", async () => {
+  localStorage.setItem("login", "authenticated");
+
   server.use(
     rest.post(
       "https://api.aprovaunb.com.br/api/rodovia/cadastrarRodoviaPlanilha",
@@ -31,7 +40,9 @@ test("Cadastro via CSV", async () => {
   );
   render(
     <MemoryRouter initialEntries={["/cadastrarRodovias"]}>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </MemoryRouter>
   );
 
@@ -53,6 +64,8 @@ test("Cadastro via CSV", async () => {
 });
 
 test("Cadastro CSV erro", async () => {
+  localStorage.setItem("login", "authenticated");
+
   server.use(
     rest.post(
       "https://api.aprovaunb.com.br/api/rodovia/cadastrarRodoviaPlanilha",
@@ -63,7 +76,9 @@ test("Cadastro CSV erro", async () => {
   );
   render(
     <MemoryRouter initialEntries={["/cadastrarRodovias"]}>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </MemoryRouter>
   );
 
@@ -84,6 +99,8 @@ test("Cadastro CSV erro", async () => {
 });
 
 test("Cadastro CSV vazio", async () => {
+  localStorage.setItem("login", "authenticated");
+
   server.use(
     rest.post(
       "https://api.aprovaunb.com.br/api/rodovia/cadastrarRodoviaPlanilha",
@@ -94,7 +111,9 @@ test("Cadastro CSV vazio", async () => {
   );
   render(
     <MemoryRouter initialEntries={["/cadastrarRodovias"]}>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </MemoryRouter>
   );
 
@@ -111,6 +130,8 @@ test("Cadastro CSV vazio", async () => {
 });
 
 test("Cadastro sem enviar CSV", async () => {
+  localStorage.setItem("login", "authenticated");
+
   server.use(
     rest.post(
       "https://api.aprovaunb.com.br/api/rodovia/cadastrarRodoviaPlanilha",
@@ -121,7 +142,9 @@ test("Cadastro sem enviar CSV", async () => {
   );
   render(
     <MemoryRouter initialEntries={["/cadastrarRodovias"]}>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </MemoryRouter>
   );
 

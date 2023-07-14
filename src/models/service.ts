@@ -1,10 +1,10 @@
-export interface FederativeUnit {
+export interface UnidadeFederativaData {
   id: number;
   nome: string;
   sigla: string;
 }
 
-export interface ViaCEP {
+export interface ViaCEPData {
   cep: string;
   logradouro: string;
   complemento: string;
@@ -20,17 +20,17 @@ export interface ViaCEP {
   descricao: string;
 }
 
-export interface Municipio {
+export interface MunicipioData {
   id: number;
   nome: string;
 }
 
-export interface Situacao {
+export interface SituacaoData {
   id: number;
   descricao: string;
 }
 
-export interface EtapasDeEnsino {
+export interface EtapasDeEnsinoData {
   id: number;
   descricao: string;
 }
@@ -42,14 +42,14 @@ export interface LoginData {
   uf: number;
 }
 
-export interface RegisterData {
+export interface CadastroUsuarioData {
   email: string;
   senha: string;
   nome: string;
   uf: number;
 }
 
-export interface RegisterSchoolData {
+export interface CadastroEscolaData {
   NomeEscola: string;
   IdRede: number;
   CodigoEscola: number;
@@ -67,7 +67,7 @@ export interface RegisterSchoolData {
   NumeroTotalDeDocentes: number;
 }
 
-export interface RecoverPasswordData {
+export interface RecuperarSenhaData {
   nome: string;
   email: string;
   senha: string;
@@ -80,18 +80,12 @@ export interface InfoEscolaData {
   id: number;
 }
 
-export interface RecoverPasswordData {
-  nome: string;
-  email: string;
-  senha: string;
-}
-
-export interface ResetPasswordData {
+export interface RedefinirSenhaData {
   uuidAutenticacao: string;
   senha: string;
 }
 
-export interface InsertFileData {
+export interface InserirArquivoData {
   arquivo: File;
 }
 export interface EscolaData {
@@ -138,13 +132,13 @@ export interface AlterarDadosEscolaData {
 export interface ExcluirSituacaoData {
   idEscola: number;
 }
-export interface InepSchoolData {
+export interface EscolaInepData {
   cod: number;
   estado: string;
   nome: string;
 }
 
-export interface SolicitacaoDeAcao {
+export interface SolicitacaoDeAcaoData {
   Escola: string;
   UF: string;
   Municipio: string;
