@@ -10,9 +10,10 @@ interface Pagina {
 
 interface TrilhaNavegacaoProps {
   elementosLi: Pagina[];
+  escolasCadastradas?: boolean
 }
 
-const TrilhaDeNavegacao: React.FC<TrilhaNavegacaoProps> = ({ elementosLi }) => {
+const TrilhaDeNavegacao: React.FC<TrilhaNavegacaoProps> = ({ elementosLi, escolasCadastradas }) => {
   const navigate = useNavigate();
   return (
     <div className="br-breadcrumb">
@@ -31,9 +32,11 @@ const TrilhaDeNavegacao: React.FC<TrilhaNavegacaoProps> = ({ elementosLi }) => {
         ))}
       </ul>
 
-      <Button className="button1" onClick={() => navigate("/cadastrarescola")}>
+      {escolasCadastradas? (
+        <Button className="button1" onClick={() => navigate("/cadastrarescola")}>
         Cadastrar escolas
       </Button>
+      ): null}
     </div>
   );
 };
