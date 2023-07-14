@@ -6,8 +6,8 @@ import "../../styles/form.css";
 import ButtonComponent from "../Botao";
 
 const EsqueciSenhaForm: React.FC = () => {
-  const [form] = Form.useForm();
-  const rules = [
+  const [formulario] = Form.useForm();
+  const regras = [
     {
       required: true,
       message: "Por favor, preencha o campo ${name}!",
@@ -15,14 +15,14 @@ const EsqueciSenhaForm: React.FC = () => {
   ];
   const [api, contextHolder] = notification.useNotification();
   const onFinish = async (values: any) => {
-    const recoverData = {
+    const recuperarSenhaData = {
       email: values.email,
       nome: "",
       senha: "",
     };
 
     try {
-      await fetchRecuperarSenha(recoverData);
+      await fetchRecuperarSenha(recuperarSenhaData);
       api.success({ message: "Link de recuperação enviado ao email!" });
     } catch {
       api.error({ message: `Erro ao enviar link de recuperação` });
@@ -38,7 +38,7 @@ const EsqueciSenhaForm: React.FC = () => {
           <strong>Recuperar Senha</strong>
         </h2>
         <Form
-          form={form}
+          form={formulario}
           name="validateOnly"
           layout="vertical"
           autoComplete="off"
@@ -46,7 +46,7 @@ const EsqueciSenhaForm: React.FC = () => {
           requiredMark="optional"
           className="form-email"
         >
-          <Form.Item name="email" label="Email" rules={rules}>
+          <Form.Item name="email" label="Email" rules={regras}>
             <Input
               prefix={<i className="fas fa-envelope"></i>}
               className="inputForm"

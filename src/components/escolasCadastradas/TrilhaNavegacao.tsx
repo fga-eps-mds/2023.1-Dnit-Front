@@ -8,11 +8,11 @@ interface Pagina {
   link: string;
 }
 
-interface BreadCrumbProps {
+interface TrilhaNavegacaoProps {
   elementosLi: Pagina[];
 }
 
-const BreadCrumb: React.FC<BreadCrumbProps> = ({ elementosLi }) => {
+const TrilhaDeNavegacao: React.FC<TrilhaNavegacaoProps> = ({ elementosLi }) => {
   const navigate = useNavigate();
   return (
     <div className="br-breadcrumb">
@@ -38,4 +38,4 @@ const BreadCrumb: React.FC<BreadCrumbProps> = ({ elementosLi }) => {
   );
 };
 
-export default BreadCrumb;
+export default TrilhaDeNavegacao;

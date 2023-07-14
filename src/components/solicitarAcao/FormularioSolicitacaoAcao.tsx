@@ -44,30 +44,30 @@ const SolicitacaoAcaoForm: React.FC = () => {
   const getEtapasDeEnsino = async () => {
     if (!etapasDeEnsino)
       try {
-        const result = await fetchEtapasDeEnsino();
-        setEtapasDeEnsino(result);
+        const resultado = await fetchEtapasDeEnsino();
+        setEtapasDeEnsino(resultado);
       } catch (error) {}
   };
   const getUFs = async () => {
     if (!UFs)
       try {
-        const result = await fetchUnidadeFederativa();
-        setUFs(result);
+        const resultado = await fetchUnidadeFederativa();
+        setUFs(resultado);
       } catch (error) {}
   };
   const getMunicipios = async () => {
     if (UFAtual)
       try {
-        const result = await fetchMunicipio(UFAtual.id);
-        setMunicipios(result);
+        const resultado = await fetchMunicipio(UFAtual.id);
+        setMunicipios(resultado);
       } catch (error) {}
   };
 
   const getEscolasInep = async () => {
     if (UFAtual && municipioAtual)
       try {
-        const result = await fetchEscolasInep(municipioAtual.id);
-        setEscolasInep(result);
+        const resultado = await fetchEscolasInep(municipioAtual.id);
+        setEscolasInep(resultado);
       } catch (error) {}
   };
 
@@ -95,7 +95,7 @@ const SolicitacaoAcaoForm: React.FC = () => {
     form.setFieldValue("escola", undefined);
   };
 
-  const rules = [
+  const regras = [
     {
       required: true,
       message: "Por favor, preencha o campo ${name}!",
@@ -137,7 +137,7 @@ const SolicitacaoAcaoForm: React.FC = () => {
             <Form.Item
               name="UF"
               label="UF"
-              rules={rules}
+              rules={regras}
               className="dropdown-uf"
             >
               <Select
@@ -170,7 +170,7 @@ const SolicitacaoAcaoForm: React.FC = () => {
               </Select>
             </Form.Item>
 
-            <Form.Item name="Municipios" label="Municipios" rules={rules}>
+            <Form.Item name="Municipios" label="Municipios" rules={regras}>
               <Select
                 notFoundContent={<p>Carregando...</p>}
                 placeholder={
@@ -200,7 +200,7 @@ const SolicitacaoAcaoForm: React.FC = () => {
             </Form.Item>
           </div>
 
-          <Form.Item name="escola" label="Escola" rules={rules}>
+          <Form.Item name="escola" label="Escola" rules={regras}>
             <Select
               className="inputForm form-item-select"
               placeholder={
@@ -227,11 +227,11 @@ const SolicitacaoAcaoForm: React.FC = () => {
             </Select>
           </Form.Item>
 
-          <Form.Item name="nome" label="Nome do Solicitante" rules={rules}>
+          <Form.Item name="nome" label="Nome do Solicitante" rules={regras}>
             <Input className="inputForm" />
           </Form.Item>
 
-          <Form.Item name="vinculo" label="Vínculo com a Escola" rules={rules}>
+          <Form.Item name="vinculo" label="Vínculo com a Escola" rules={regras}>
             <Select
               placeholder="Selecione seu vinculo"
               className="inputForm form-item-select"
@@ -269,7 +269,7 @@ const SolicitacaoAcaoForm: React.FC = () => {
             <Input className="inputForm" type="text" />
           </Form.Item>
 
-          <Form.Item name="ciclos" label="Ciclos de Ensino" rules={rules}>
+          <Form.Item name="ciclos" label="Ciclos de Ensino" rules={regras}>
             <Select
               mode="multiple"
               placeholder="Selecione os ciclos de ensino da escola"
@@ -294,7 +294,7 @@ const SolicitacaoAcaoForm: React.FC = () => {
           <Form.Item
             name="quantidade"
             label="Quantidade de Alunos"
-            rules={rules}
+            rules={regras}
           >
             <Input
               className="inputForm"

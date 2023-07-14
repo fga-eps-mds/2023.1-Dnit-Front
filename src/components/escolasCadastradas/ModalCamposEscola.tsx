@@ -4,9 +4,9 @@ import { useSelectedValue } from "../../context/Situacao";
 import { EscolaData, SituacaoData } from "../../models/service";
 import fetchSituacao from "../../service/consultarSituacao";
 import fetchEtapasDeEnsino from "../../service/etapasDeEnsino";
-import Dropdown from "./Dropdown";
+import MenuSuspenso from "./MenuSuspenso";
 
-interface ModalBodyProps {
+interface ModalCamposEscolaProps {
   data: EscolaData;
   onUpdateObservacao: (novaObservacao: any) => void;
   onUpdateTelefone: (novaTelefone: any) => void;
@@ -17,7 +17,7 @@ interface ModalBodyProps {
   onUpdateEtapasEnsino: (novaEtapasEnsino: any) => void;
 }
 
-const ModalBody = ({
+const ModalCamposEscola = ({
   data,
   onUpdateTelefone,
   onUpdateObservacao,
@@ -26,8 +26,8 @@ const ModalBody = ({
   onUpdateNumAlunos,
   onUpdateNumDocentes,
   onUpdateEtapasEnsino,
-}: ModalBodyProps) => {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+}: ModalCamposEscolaProps) => {
+  const [menuSuspensoAberto, setMenuSuspensoAberto] = useState(false);
   const { setSelectedValue, selectedValue } = useSelectedValue();
   const [situacoes, setSituacoes] = useState<SituacaoData[]>();
   const [OpcoesEtapasDeEnsino, setOpcoesEtapasDeEnsino] = useState<
@@ -41,8 +41,8 @@ const ModalBody = ({
     setSituacoes(situacoes);
   };
 
-  const openDropdown = async () => {
-    setIsDropdownOpen(!isDropdownOpen);
+  const abrirMenuSuspenso = async () => {
+    setMenuSuspensoAberto(!menuSuspensoAberto);
     await chamarSituacao();
   };
 
@@ -193,7 +193,7 @@ const ModalBody = ({
         <div className="input-default">
           <label htmlFor="select-simple">Situação</label>
           <input
-            onFocus={openDropdown}
+            onFocus={abrirMenuSuspenso}
             value={selectedValue}
             onChange={handleSituacaoChange}
             id="select-simple"
@@ -206,7 +206,7 @@ const ModalBody = ({
               type="button"
               aria-label="Exibir lista"
               data-trigger="data-trigger"
-              onClick={openDropdown}
+              onClick={abrirMenuSuspenso}
               data-testid="dropdown-situacao"
             >
               <i className="fas fa-angle-down" aria-hidden="true"></i>
@@ -222,9 +222,9 @@ const ModalBody = ({
             )}
           </div>
         </div>
-        {isDropdownOpen && situacoes && (
-          <Dropdown
-            onClose={openDropdown}
+        {menuSuspensoAberto && situacoes && (
+          <MenuSuspenso
+            onClose={abrirMenuSuspenso}
             onClick={setSelectedValue}
             situacoes={situacoes}
             descricao={data.descricaoSituacao}
@@ -320,4 +320,4 @@ const ModalBody = ({
   );
 };
 
-export default ModalBody;
+export default ModalCamposEscola;

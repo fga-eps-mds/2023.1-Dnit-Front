@@ -6,9 +6,9 @@ import fetchRedefinirSenha from "../../service/redefinirSenha";
 import "../../styles/form.css";
 import ButtonComponent from "../Botao";
 
-const ResetPassword: React.FC = () => {
-  const [form] = Form.useForm();
-  const rules = [
+const RedefinirSenha: React.FC = () => {
+  const [formulario] = Form.useForm();
+  const regras = [
     {
       required: true,
       message: "Por favor, preencha o campo ${name}!",
@@ -18,10 +18,10 @@ const ResetPassword: React.FC = () => {
   const navigate = useNavigate();
 
   const onFinish = async (values: any) => {
-    const searchParams = new URLSearchParams(document.location.search);
-    const uuid = searchParams.get("token");
+    const parametrosPesquisa = new URLSearchParams(document.location.search);
+    const uuid = parametrosPesquisa.get("token");
 
-    const recoverData = {
+    const redefinirSenhaData = {
       uuidAutenticacao: uuid ?? "",
       senha: values.senha,
       nome: "",
@@ -29,7 +29,7 @@ const ResetPassword: React.FC = () => {
     };
 
     try {
-      await fetchRedefinirSenha(recoverData);
+      await fetchRedefinirSenha(redefinirSenhaData);
       api.success({ message: "Senha alterada!" });
       navigate("/login");
     } catch {
@@ -46,7 +46,7 @@ const ResetPassword: React.FC = () => {
           <strong> Redefinir Senha </strong>
         </h2>
         <Form
-          form={form}
+          form={formulario}
           name="validateOnly"
           layout="vertical"
           autoComplete="off"
@@ -54,7 +54,7 @@ const ResetPassword: React.FC = () => {
           requiredMark="optional"
           className="form-email"
         >
-          <Form.Item name="senha" label="Nova Senha" rules={rules}>
+          <Form.Item name="senha" label="Nova Senha" rules={regras}>
             <Input.Password
               prefix={<i className="fas fa-lock"></i>}
               className="inputForm"
@@ -99,4 +99,4 @@ const ResetPassword: React.FC = () => {
   );
 };
 
-export default ResetPassword;
+export default RedefinirSenha;

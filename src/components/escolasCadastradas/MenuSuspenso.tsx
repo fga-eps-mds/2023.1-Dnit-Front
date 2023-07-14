@@ -2,18 +2,18 @@ import { ChangeEvent } from "react";
 import { useSelectedValue } from "../../context/Situacao";
 import { SituacaoData } from "../../models/service";
 
-interface Dropdownprops {
+interface MenuSuspensoProps {
   situacoes: SituacaoData[];
   onClick: (value: string) => void;
   onClose: () => void;
   descricao: string;
 }
-const Dropdown = ({
+const MenuSuspenso = ({
   situacoes,
   onClick,
   onClose,
   descricao,
-}: Dropdownprops) => {
+}: MenuSuspensoProps) => {
   const { setSelectedValue, selectedValue } = useSelectedValue();
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const selectedValue = event.target.value;
@@ -70,4 +70,4 @@ const Dropdown = ({
   );
 };
 
-export default Dropdown;
+export default MenuSuspenso;

@@ -5,8 +5,8 @@ import "../../styles/form/upsForm.css";
 
 const UPSForm: React.FC = () => {
   const [form] = Form.useForm();
-  const [inputLatitude, setInputLatitude] = React.useState("");
-  const [inputLongitude, setInputLongitude] = React.useState("");
+  const [entradaLatitude, setEntradaLatitude] = React.useState("");
+  const [entradaLongitude, setEntradaLongitude] = React.useState("");
   const [valorUpsGeral, setValorUpsGeral] = React.useState<number | undefined>(
     undefined
   );
@@ -27,19 +27,19 @@ const UPSForm: React.FC = () => {
   );
   const [carregando, setCarregando] = React.useState(false);
 
-  const handleInputLatitude = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputLatitude(event.target.value);
+  const handleEntradaLatitude = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEntradaLatitude(event.target.value);
   };
 
-  const handleInputLongitude = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputLongitude(event.target.value);
+  const handleEntradaLongitude = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEntradaLongitude(event.target.value);
   };
 
   const handleButtonClick = async () => {
     setCarregando(true);
     const upsData = {
-      latitude: Number(inputLatitude),
-      longitude: Number(inputLongitude),
+      latitude: Number(entradaLatitude),
+      longitude: Number(entradaLongitude),
     };
 
     try {
@@ -93,7 +93,7 @@ const UPSForm: React.FC = () => {
               rules={rulesLatitude}
               labelCol={{ span: 24 }}
             >
-              <Input className="inputLatLong" onChange={handleInputLatitude} />
+              <Input className="inputLatLong" onChange={handleEntradaLatitude} />
             </Form.Item>
             <Form.Item
               name="longitude"
@@ -101,7 +101,7 @@ const UPSForm: React.FC = () => {
               rules={rulesLongitude}
               labelCol={{ span: 24 }}
             >
-              <Input className="inputLatLong" onChange={handleInputLongitude} />
+              <Input className="inputLatLong" onChange={handleEntradaLongitude} />
             </Form.Item>
           </div>
           <div className="container-botao">

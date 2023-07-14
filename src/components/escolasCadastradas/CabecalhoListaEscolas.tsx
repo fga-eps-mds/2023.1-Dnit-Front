@@ -3,7 +3,7 @@ import ButtonContrast from "../../assets/icones/BotaoAltoContraste.svg";
 import "../../styles/App.css";
 import "../estilo/Header.css";
 
-function Header() {
+function CabecalhoListaEscolas() {
   return (
     <>
       <header className="br-header">
@@ -38,4 +38,4 @@ function Header() {
     </>
   );
 }
-export default Header;
+export default CabecalhoListaEscolas;

@@ -18,12 +18,12 @@ export default function TabelaEscola() {
 
   const [, contextHolder] = notification.useNotification();
 
-  const [showOptionsPages, setShowOptionsPages] = useState(false);
-  const [, setShowSchoolsPerPage] = useState(false);
-  const optionsSchoolsPerPage = ["2", "5", "10", "20"];
-  const [schools] = useState<EscolaData[]>([]);
-  const [modalStates, setModalStates] = useState(
-    Array(schools.length).fill(false)
+  const [opcoesPaginas, setOpcoesPaginas] = useState(false);
+  const [, setMostrarEscolasPorPagina] = useState(false);
+  const opcoesEscolasPorPaginas = ["2", "5", "10", "20"];
+  const [escolas] = useState<EscolaData[]>([]);
+  const [estadoModal, setEstadoModal] = useState(
+    Array(escolas.length).fill(false)
   );
   const [escolaSelecionada, setEscolaSelecionada] = useState<EscolaData>();
   const [indexescolaSelecionada, setIndexEscolaSelecionada] =
@@ -31,35 +31,35 @@ export default function TabelaEscola() {
 
   const handleButtonClick = (selectNumeber: number) => {
     if (selectNumeber == 1) {
-      setShowOptionsPages(!showOptionsPages);
+      setOpcoesPaginas(!opcoesPaginas);
     }
   };
   const handleOptionClick = (option: number) => {
     mudarQuantidadePorPaginas(option);
-    setShowSchoolsPerPage(false);
+    setMostrarEscolasPorPagina(false);
   };
 
-  const OpenModal = (id: EscolaData, index: number) => {
-    const newModalStates = [...modalStates];
-    newModalStates[index] = true;
-    setModalStates(newModalStates);
+  const abrirModal = (id: EscolaData, index: number) => {
+    const novosEstadosModal = [...estadoModal];
+    novosEstadosModal[index] = true;
+    setEstadoModal(novosEstadosModal);
     setEscolaSelecionada(id);
     setIndexEscolaSelecionada(index);
   };
 
-  const CloseModal = (index: number) => {
-    const newModalStates = [...modalStates];
+  const fecharModal = (index: number) => {
+    const newModalStates = [...estadoModal];
     newModalStates[index] = false;
-    setModalStates(newModalStates);
+    setEstadoModal(newModalStates);
   };
 
-  const getpagerange = () => {
-    const rangeStart = (paginaAtual - 1) * escolasPorPagina + 1;
-    let rangeEnd = paginaAtual * escolasPorPagina;
+  const intervaloPagina = () => {
+    const inicioIntervalo = (paginaAtual - 1) * escolasPorPagina + 1;
+    let finalIntervalo = paginaAtual * escolasPorPagina;
 
-    if (rangeEnd > totalEscolas) rangeEnd = totalEscolas;
+    if (finalIntervalo > totalEscolas) finalIntervalo = totalEscolas;
 
-    return [rangeStart, rangeEnd];
+    return [inicioIntervalo, finalIntervalo];
   };
 
   return (
@@ -146,7 +146,7 @@ export default function TabelaEscola() {
                 return (
                   <tr
                     key={escola.idEscola}
-                    onClick={() => OpenModal(escola, index)}
+                    onClick={() => abrirModal(escola, index)}
                     data-testid="linha-escola"
                   >
                     <td data-th="Título coluna 1">{escola.nomeEscola}</td>
@@ -174,9 +174,9 @@ export default function TabelaEscola() {
 
       <div className="modal-informacoes">
         <ExibirInformacoesEscola
-          open={modalStates[indexescolaSelecionada]}
+          open={estadoModal[indexescolaSelecionada]}
           escola={escolaSelecionada}
-          close={() => CloseModal(indexescolaSelecionada)}
+          close={() => fecharModal(indexescolaSelecionada)}
         />
       </div>
 
@@ -210,16 +210,16 @@ export default function TabelaEscola() {
                   ></i>
                 </button>
                 <div className="br-input">
-                  {showOptionsPages && (
+                  {opcoesPaginas && (
                     <div className="select-options dropdown-pagina">
-                      {optionsSchoolsPerPage.map((options, index) => (
+                      {opcoesEscolasPorPaginas.map((opcoes, index) => (
                         <div
-                          key={options}
+                          key={opcoes}
                           className="options"
-                          onClick={() => handleOptionClick(Number(options))}
-                          data-testid={`options-${options}`}
+                          onClick={() => handleOptionClick(Number(opcoes))}
+                          data-testid={`options-${opcoes}`}
                         >
-                          {options}
+                          {opcoes}
                         </div>
                       ))}
                     </div>
@@ -230,8 +230,8 @@ export default function TabelaEscola() {
           </div>
           <span className="br-divider d-none d-sm-block mx-3"></span>
           <div className="pagination-inhtmlFormation d-none d-sm-flex">
-            <span className="current">{getpagerange()[0]}</span>&ndash;
-            <span className="per-page">{getpagerange()[1]}</span>&nbsp;de&nbsp;
+            <span className="current">{intervaloPagina()[0]}</span>&ndash;
+            <span className="per-page">{intervaloPagina()[1]}</span>&nbsp;de&nbsp;
             <span className="total">{totalEscolas}</span>&nbsp;itens
           </div>
           <div className="pagination-go-to-page d-none d-sm-flex ml-auto">
