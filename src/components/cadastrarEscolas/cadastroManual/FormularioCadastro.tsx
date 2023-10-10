@@ -9,6 +9,8 @@ import fetchMunicipio from "../../../service/municipio";
 import fetchCadastroEscola from "../../../service/cadastrarEscola";
 import fetchCEP from "../../../service/viaCEP";
 import "../../../styles/form/step2.css";
+import fetchCadastro from "../../../service/cadastrar";
+import {cadastroEscolaURL} from "../../../consts/service";
 
 const { Option } = Select;
 interface Step2Props {
@@ -187,7 +189,7 @@ export default function Step2({ onClickBack }: Step2Props) {
     };
 
     try {
-      await fetchCadastroEscola(registerSchoolData);
+      await fetchCadastro(cadastroEscolaURL, registerSchoolData);
       notification.success({ message: "Cadastro feito!" });
       navigate("/escolas-cadastradas");
     } catch (error) {
@@ -197,7 +199,7 @@ export default function Step2({ onClickBack }: Step2Props) {
   return (
     <div>
       {contextHolder}
-      <h2>Cadastrar Escola</h2>
+      <h2>Cadastrar EsAcola</h2>
       <Form
         form={form}
         onFinish={onFinish}

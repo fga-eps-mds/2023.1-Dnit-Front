@@ -3,9 +3,12 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/Autenticacao";
 import fetchUnidadeFederativa from "../../service/unidadesFederativas";
-import fetchCadastro from "../../service/cadastrarUsuario";
 import "../../styles/form.css";
 import ButtonComponent from "../Botao";
+import fetchCadastro from "../../service/cadastrar";
+import {cadastroUsuarioURL} from "../../consts/service";
+
+
 const { Option } = Select;
 
 interface UfProps {
@@ -38,7 +41,7 @@ const CadastroUsuarioForm: React.FC = () => {
     };
 
     try {
-      await fetchCadastro(cadastroUsuarioData);
+      await fetchCadastro(cadastroUsuarioURL, cadastroUsuarioData);
       notification.success({ message: "Cadastro feito!" });
       navigate('/login')
     } catch (error) {
