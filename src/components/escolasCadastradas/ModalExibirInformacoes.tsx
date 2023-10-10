@@ -5,7 +5,7 @@ import { useSelectedValue } from "../../context/Situacao";
 import { AlterarDadosEscolaData, EscolaData } from "../../models/service";
 import fetchSituacao from "../../service/consultarSituacao";
 import fetchAlterarDadosEscola from "../../service/alterarDadosEscola";
-import fetchExcluirSituacao from "../../service/excluirSituacao";
+import {fetchExcluirSituacao} from "../../service/excluir";
 import ModalExcluirEscolas from "./ModalExcluirEscolas";
 import "../estilo/ModalExibirInformacoes.css";
 import ModalBody from "./ModalCamposEscola";
