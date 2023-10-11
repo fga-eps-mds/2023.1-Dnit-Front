@@ -17,6 +17,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
+      - name: Print env
+        run: printenv
       - name: Install dependencies
         run: npm install
       - name: Test and coverage
