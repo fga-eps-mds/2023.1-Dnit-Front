@@ -1,5 +1,5 @@
 import { Button } from "antd";
-import "../../styles/form/step3ErroTamanho.css";
+import "../../../styles/form/step3ErroTamanho.css";
 
 interface RodoviasErroProps {
     onClickVoltar: () => void;

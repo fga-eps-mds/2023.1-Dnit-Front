@@ -1,6 +1,6 @@
 import { Select } from "antd";
 import { ChangeEvent, useState } from "react";
-import { useSelectedValue } from "../../context/Situacao";
+import { useSelectedValue } from "../../../context/Situacao";
 import { EscolaData, SituacaoData } from "../../models/service";
 import {fetchSituacao} from "../../service/receptor";
 import {fetchEtapasDeEnsino} from "../../service/receptor";

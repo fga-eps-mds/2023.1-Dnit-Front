@@ -22,20 +22,20 @@ export default function ButtonComponent({
     backgroundColor: cor,
     borderColor: cor_borda,
     color: cor_letra,
-    width: largura,
-    padding: "4% 13%",
-    borderRadius: "20px",
-    boxShadow: "1px 2px 4px var(--black1)",
-    border: "0",
-    transform: "0.3s",
-    cursor: "pointer",
-    fontSize: "15px",
-    lineHeight: "21px",
-    textalign: "center",
-    marginTop: "5px",
+     width: largura,
+  //   padding: "4% 13%",
+  //   borderRadius: "20px",
+  //   boxShadow: "1px 2px 4px var(--black1)",
+  //   border: "0",
+  //   transform: "0.3s",
+  //   cursor: "pointer",
+  //   fontSize: "15px",
+  //   lineHeight: "21px",
+  //   textalign: "center",
+  //   marginTop: "5px",
   };
   return (
-    <button disabled={disabled} style={buttonStyle} onClick={click}>
+    <button disabled={disabled} className="btn" style={buttonStyle} onClick={click}>
       {nome}
     </button>
   );

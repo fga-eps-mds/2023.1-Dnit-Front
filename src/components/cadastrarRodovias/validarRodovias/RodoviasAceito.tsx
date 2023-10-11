@@ -1,4 +1,4 @@
-import "../../styles/form/step3_1.css"
+import "../../../styles/form/step3_1.css"
 import { Button } from "antd";
 import { CheckCircleOutlined } from "@ant-design/icons"
 
@@ -18,7 +18,6 @@ export default function RodoviasAceito({ onClickVoltar }: RodoviasAceito) {
                     Concluir
                 </Button>
             </div>
-
         </div>
     )
 }

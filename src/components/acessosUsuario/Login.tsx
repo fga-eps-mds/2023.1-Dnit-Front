@@ -4,8 +4,12 @@ import { Link } from "react-router-dom";
 import LogoDNIT from "../../assets/logoDnitAzul.png";
 import { AuthContext } from "../../provider/Autenticacao";
 import "../../styles/form.css";
+<<<<<<< HEAD
 import ButtonComponent from "../Botao";
 import {fetchLogin} from "../../service/autenticador"
+=======
+import ButtonComponent from "../Botao/Botao";
+>>>>>>> feat: refatoração de arquivos da pasta components para melhor organização do front-end
 
 const LoginForm: React.FC = () => {
 

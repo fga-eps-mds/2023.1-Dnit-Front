@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import Header from "../components/Cabecalho";
 import CadAcidentes from "../components/cadastrarSinistros/CadastrarSinistros";
-import AcidentesAceito from "../components/cadastrarSinistros/SinistrosAceito";
-import Acidentes_erro1 from "../components/cadastrarSinistros/SinistrosErro1";
+import AcidentesAceito from "../components/cadastrarSinistros/validarSinistros/SinistrosAceito";
+import Acidentes_erro1 from "../components/cadastrarSinistros/validarSinistros/SinistrosErro1";
 import "../styles/App.css";
 
 function CadastrarAcidentes() {

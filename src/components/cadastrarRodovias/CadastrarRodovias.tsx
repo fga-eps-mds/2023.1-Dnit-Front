@@ -3,8 +3,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../styles/form.css";
 import ImportarRodovias from "./ImportarPlanilhaRodovias";
-import RodoviasAceito from "./RodoviasAceito";
-import RodoviasErro from "./RodoviasErro";
+import RodoviasAceito from "./validarRodovias/RodoviasAceito";
+import RodoviasErro from "./validarRodovias/RodoviasErro";
 
 function RegistrarRodovias() {
   const [screen, setScreen] = useState<"form1" | "form2" | "form3">("form1");
