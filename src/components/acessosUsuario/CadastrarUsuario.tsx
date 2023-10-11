@@ -5,7 +5,7 @@ import { AuthContext } from "../../provider/Autenticacao";
 import fetchUnidadeFederativa from "../../service/unidadesFederativas";
 import "../../styles/form.css";
 import ButtonComponent from "../Botao";
-import fetchCadastro from "../../service/cadastrar";
+import fetchAutenticacao from "../../service/autenticador";
 import {cadastroUsuarioURL} from "../../consts/service";
 
 
@@ -41,7 +41,7 @@ const CadastroUsuarioForm: React.FC = () => {
     };
 
     try {
-      await fetchCadastro(cadastroUsuarioURL, cadastroUsuarioData);
+      await fetchAutenticacao(cadastroUsuarioURL, cadastroUsuarioData);
       notification.success({ message: "Cadastro feito!" });
       navigate('/login')
     } catch (error) {

@@ -1,9 +1,10 @@
 import axios, {AxiosResponse} from "axios";
-import { CadastroUsuarioData, CadastroEscolaData } from "../models/service";
-interface CadastroResponse{ status: number }
-type CadastroData = CadastroUsuarioData | CadastroEscolaData;
+import {CadastroUsuarioData, CadastroEscolaData, LoginData} from "../models/service";
 
-async function fetchCadastro(url: string, data: CadastroData): Promise<CadastroResponse>{
+interface CadastroResponse{ status: number }
+type CadastroData = CadastroUsuarioData | CadastroEscolaData | FormData | LoginData;
+
+async function fetchAutenticacao(url: string, data: CadastroData): Promise<CadastroResponse> {
     try{
         const response: AxiosResponse<CadastroResponse> = await axios.post(
             url, data
@@ -15,4 +16,5 @@ async function fetchCadastro(url: string, data: CadastroData): Promise<CadastroR
         throw error;
     }
 }
-export default fetchCadastro;
+
+export default fetchAutenticacao;
