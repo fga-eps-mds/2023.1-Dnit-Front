@@ -6,10 +6,9 @@ import { UnidadeFederativaData, MunicipioData } from "../../../models/service";
 import fetchEtapasDeEnsino from "../../../service/etapasDeEnsino";
 import fetchUnidadeFederativa from "../../../service/unidadesFederativas";
 import fetchMunicipio from "../../../service/municipio";
-import fetchCadastroEscola from "../../../service/cadastrarEscola";
 import fetchCEP from "../../../service/viaCEP";
 import "../../../styles/form/step2.css";
-import fetchCadastro from "../../../service/cadastrar";
+import fetchAutenticacao from "../../../service/autenticador";
 import {cadastroEscolaURL} from "../../../consts/service";
 
 const { Option } = Select;
@@ -189,7 +188,7 @@ export default function Step2({ onClickBack }: Step2Props) {
     };
 
     try {
-      await fetchCadastro(cadastroEscolaURL, registerSchoolData);
+      await fetchAutenticacao(cadastroEscolaURL, registerSchoolData);
       notification.success({ message: "Cadastro feito!" });
       navigate("/escolas-cadastradas");
     } catch (error) {
