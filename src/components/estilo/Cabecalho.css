@@ -5,12 +5,12 @@
 }
 
 .header {
+    display: flex;
+    flex-flow: column;
     height: 160px;
     border-radius: 2px;
     background-color: var(--purepure);
     box-shadow: 0 1px 6px #00000029;
-    display: flex;
-    flex-flow: column;
 }
 
 .header .top {
@@ -21,23 +21,23 @@
 }
 
 .header .bottom {
-    width: 100%;
     flex: 1 0 auto;
+    width: 100%;
 }
 
 .header .grupo-esquerda {
+    top: 26px;
+    left: 24px;
     display: flex;
     width: 350px;
     height: 54px;
     margin: 17px 0 0 24px;
-    top: 26px;
-    left: 24px;
 }
 
 .header .gov-logo {
-    margin: 9px 0 0 0;
     width: 112px;
     height: 41px;
+    margin: 9px 0 0 0;
     object-fit: cover;
 }
 
@@ -49,16 +49,16 @@
 }
 
 .header .title-header {
-    margin: 13px 0 0 0;
+    font-family: "Roboto-Regular", Helvetica, serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: normal;
     width: 197px;
     height: 28px;
-    font-family: "Roboto-Regular", Helvetica, serif;
-    font-weight: 400;
-    color: #333333;
-    font-size: 14px;
-    letter-spacing: 0;
-    line-height: normal;
+    margin: 13px 0 0 0;
     text-align: left;
+    letter-spacing: 0;
+    color: #333333;
 }
 
 .header .grupo-direita {
@@ -67,14 +67,14 @@
 }
 
 .header .botao-login {
+    position: relative;
     width: 147px;
     height: 36px;
-    background-color: #1351b4;
-    border-radius: 20px;
-    border: 1px solid #ffffff;
-    box-shadow: 0 2px 4px #00000040;
     cursor: pointer;
-    position: relative;
+    border: 1px solid #ffffff;
+    border-radius: 20px;
+    background-color: #1351b4;
+    box-shadow: 0 2px 4px #00000040;
 }
 
 .header .user-icon {
@@ -86,48 +86,48 @@
 }
 
 .header .login-text {
+    font-family: "Roboto-Regular", Helvetica, serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: normal;
     position: absolute;
-    width: 57px;
     top: 7px;
     left: 52px;
-    font-family: "Roboto-Regular", Helvetica, serif;
-    font-weight: 400;
-    color: #ffffff;
-    font-size: 18px;
+    width: 57px;
     text-align: center;
-    letter-spacing: 0;
-    line-height: normal;
     white-space: nowrap;
+    letter-spacing: 0;
+    color: #ffffff;
 }
 
 .header .alto-contraste-area {
-    margin-right: 39px;
-    margin-top: 7px;
-    height: 23px;
-    width: 20px;
     box-sizing: border-box;
+    width: 20px;
+    height: 23px;
+    margin-top: 7px;
+    margin-right: 39px;
     cursor: pointer;
 }
 
 .header .botao-links {
-    margin-right: 36px;
-    margin-top: 9px;
     width: 5px;
     height: 19px;
+    margin-top: 9px;
+    margin-right: 36px;
     cursor: pointer;
 }
 
 .header .bottom-info {
-    margin-left: 24px;
     display: flex;
     height: 100%;
+    margin-left: 24px;
 }
 
 .header .menu {
-    margin-top: 12px;
-    margin-right: 19px;
     width: 22px;
     height: 14px;
+    margin-top: 12px;
+    margin-right: 19px;
     cursor: pointer;
 }
 
@@ -140,10 +140,10 @@
 .header .header-title, .header .header-subtitle {
     font-family: "Inter-Regular", Helvetica, serif;
     font-weight: 400;
-    text-align: left;
     line-height: normal;
-    color: #000000;
+    text-align: left;
     letter-spacing: 0;
+    color: #000000;
 }
 
 .header .header-title {
