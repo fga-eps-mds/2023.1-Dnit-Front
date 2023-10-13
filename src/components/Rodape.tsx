@@ -2,11 +2,18 @@ import "../styles/App.css";
 import logoDnit from "../assets/logoDnit.png";
 import "./estilo/Footer.css";
 
-export default function Footer(){
+interface FooterProps {
+  home?:boolean;
+}
+
+export default function Footer({ home } : FooterProps){
     return (
         <footer className="br-footer">
           <div className="container-lg">
             <div className="logo text-sm-left"><img src={logoDnit} alt="Imagem"/></div>
+            { home ? (
+              null
+            ) : 
             <div className="br-list horizontal" data-toggle="data-toggle" data-sub="data-sub">
               <div className="col-2"><a className="br-item header" >
                   <div className="content text-down-01 text-bold text-uppercase">Início</div>
@@ -37,17 +44,17 @@ export default function Footer(){
                     <div className="content">Cadastro Manual</div></a><a className="br-item">
                     <div className="content">Cadastro por Planilha</div></a><span className="br-divider d-md-none"></span>
                 </div>
-            </div>
-            <div className="col-2"><a className="br-item header" >
-                <div className="content text-down-01 text-bold text-uppercase">Inserção de Dados</div>
-                <div className="support"><i className="fas fa-angle-down" aria-hidden="true"></i>
-                </div></a>
-              <div className="br-list"><span className="br-divider d-md-none"></span><a className="br-item">
-                  <div className="content">Inserir Dados de Acidente</div></a><a className="br-item">
-                  <div className="content">Inserir Dados de Rodovias</div></a><span className="br-divider d-md-none"></span>
               </div>
-            </div>
-          </div>
+              <div className="col-2"><a className="br-item header" >
+                  <div className="content text-down-01 text-bold text-uppercase">Inserção de Dados</div>
+                  <div className="support"><i className="fas fa-angle-down" aria-hidden="true"></i>
+                  </div></a>
+                <div className="br-list"><span className="br-divider d-md-none"></span><a className="br-item">
+                    <div className="content">Inserir Dados de Acidente</div></a><a className="br-item">
+                    <div className="content">Inserir Dados de Rodovias</div></a><span className="br-divider d-md-none"></span>
+                </div>
+              </div>
+            </div> }
           {/* Redes Sociais */}
             {/* <div className="d-none d-sm-block">
               <div className="row align-items-end justify-content-between py-5">

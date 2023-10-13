@@ -105,7 +105,7 @@ export default function Home() {
       >
         <p className="text-acao">SOLICITE UMA AÇÃO</p>
       </Button>
-      <Footer />
+      <Footer home/>
     </div>
   );
 }
