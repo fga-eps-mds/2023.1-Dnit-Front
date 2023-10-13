@@ -1,12 +1,14 @@
 import "../styles/App.css";
 import logoDnit from "../assets/logoDnit.png";
 import "./estilo/Footer.css";
+import { useNavigate } from "react-router-dom";
 
 interface FooterProps {
   home?:boolean;
 }
 
 export default function Footer({ home } : FooterProps){
+    const navigate = useNavigate();
     return (
         <footer className="br-footer">
           <div className="container-lg">
@@ -15,22 +17,22 @@ export default function Footer({ home } : FooterProps){
               null
             ) : 
             <div className="br-list horizontal" data-toggle="data-toggle" data-sub="data-sub">
-              <div className="col-2"><a className="br-item header" >
+              <div className="col-2"><a className="br-item header" onClick={() => navigate("/")}>
                   <div className="content text-down-01 text-bold text-uppercase">Início</div>
                   <div className="support"><i className="fas fa-angle-down" aria-hidden="true"></i>
                   </div></a>
-                <div className="br-list"><span className="br-divider d-md-none"></span><a className="br-item">
-                    <div className="content">Login de Usuário</div></a><a className="br-item">
-                    <div className="content">Cadastro de Usuário</div></a><a className="br-item">
+                <div className="br-list"><span className="br-divider d-md-none"></span><a className="br-item" onClick={() => navigate("/login")}>
+                    <div className="content">Login de Usuário</div></a><a className="br-item" onClick={() => navigate("/cadastro")}>
+                    <div className="content">Cadastro de Usuário</div></a><a className="br-item" onClick={() => navigate("/esqueciSenha")}>
                     <div className="content">Esqueci Minha Senha</div></a><span className="br-divider d-md-none"></span>
                 </div>
               </div>
-              <div className="col-2"><a className="br-item header" >
+              <div className="col-2"><a className="br-item header" onClick={() => navigate("/dashboard")}>
                   <div className="content text-down-01 text-bold text-uppercase">Dashboard</div>
                   <div className="support"><i className="fas fa-angle-down" aria-hidden="true"></i>
                   </div></a>
-                <div className="br-list"><span className="br-divider d-md-none"></span><a className="br-item">
-                    <div className="content">Solicitar Ação</div></a><a className="br-item">
+                <div className="br-list"><span className="br-divider d-md-none"></span><a className="br-item" onClick={() => navigate("/solicitacaoAcao")}>
+                    <div className="content">Solicitar Ação</div></a><a className="br-item" onClick={() => navigate("/TelaUPS")}>
                     <div className="content">Visualizar UPS</div></a><span className="br-divider d-md-none"></span>
                 </div>
               </div>
@@ -38,8 +40,8 @@ export default function Footer({ home } : FooterProps){
                   <div className="content text-down-01 text-bold text-uppercase">Escolas</div>
                   <div className="support"><i className="fas fa-angle-down" aria-hidden="true"></i>
                   </div></a>
-                <div className="br-list"><span className="br-divider d-md-none"></span><a className="br-item">
-                    <div className="content">Visualizar Escolas</div></a><a className="br-item">
+                <div className="br-list"><span className="br-divider d-md-none"></span><a className="br-item" onClick={() => navigate("/escolas-cadastradas")}>
+                    <div className="content">Visualizar Escolas</div></a><a className="br-item" onClick={() => navigate("/cadastrarescola")}>
                     <div className="content">Cadastro de Escolas</div></a><a className="br-item">
                     <div className="content">Cadastro Manual</div></a><a className="br-item">
                     <div className="content">Cadastro por Planilha</div></a><span className="br-divider d-md-none"></span>
@@ -49,13 +51,13 @@ export default function Footer({ home } : FooterProps){
                   <div className="content text-down-01 text-bold text-uppercase">Inserção de Dados</div>
                   <div className="support"><i className="fas fa-angle-down" aria-hidden="true"></i>
                   </div></a>
-                <div className="br-list"><span className="br-divider d-md-none"></span><a className="br-item">
-                    <div className="content">Inserir Dados de Acidente</div></a><a className="br-item">
+                <div className="br-list"><span className="br-divider d-md-none"></span><a className="br-item" onClick={() => navigate("/cadastrarsinistros")}>
+                    <div className="content">Inserir Dados de Acidente</div></a><a className="br-item" onClick={() => navigate("/cadastrarRodovias")}>
                     <div className="content">Inserir Dados de Rodovias</div></a><span className="br-divider d-md-none"></span>
                 </div>
               </div>
             </div> }
-          {/* Redes Sociais */}
+            {/* Redes Sociais */}
             {/* <div className="d-none d-sm-block">
               <div className="row align-items-end justify-content-between py-5">
                 <div className="col">
