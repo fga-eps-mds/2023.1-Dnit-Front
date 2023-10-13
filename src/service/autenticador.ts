@@ -1,10 +1,11 @@
 import axios, {AxiosResponse} from "axios";
 import {CadastroUsuarioData, CadastroEscolaData, LoginData} from "../models/service";
+import * as URL from "../consts/service"
 
 interface CadastroResponse{ status: number }
-type CadastroData = CadastroUsuarioData | CadastroEscolaData | FormData | LoginData;
 
-async function fetchAutenticacao(url: string, data: CadastroData): Promise<CadastroResponse> {
+
+async function fetchAutenticacao<T>(url: string, data: T): Promise<CadastroResponse> {
     try{
         const response: AxiosResponse<CadastroResponse> = await axios.post(
             url, data
@@ -17,4 +18,19 @@ async function fetchAutenticacao(url: string, data: CadastroData): Promise<Cadas
     }
 }
 
-export default fetchAutenticacao;
+export async function fetchCadastroUsuarioData(data:CadastroUsuarioData):Promise<CadastroResponse>{
+    return fetchAutenticacao<CadastroUsuarioData>(URL.cadastroUsuarioURL,data);
+}
+
+export async function fetchCadastroEscolaData(data:CadastroEscolaData):Promise<CadastroResponse>{
+    return fetchAutenticacao<CadastroEscolaData>(URL.cadastroEscolaURL,data);
+}
+
+export async function fetchFormData(data:FormData):Promise<CadastroResponse>{
+    return fetchAutenticacao<FormData>(URL.cadastroRodoviasURL,data);
+}
+
+export async function fetchLoginData(data:LoginData):Promise<CadastroResponse>{
+    return fetchAutenticacao<LoginData>(URL.loginURL,data);
+}
+
