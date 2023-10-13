@@ -2,8 +2,8 @@ import { Select } from "antd";
 import { ChangeEvent, useState } from "react";
 import { useSelectedValue } from "../../context/Situacao";
 import { EscolaData, SituacaoData } from "../../models/service";
-import fetchSituacao from "../../service/consultarSituacao";
-import fetchEtapasDeEnsino from "../../service/etapasDeEnsino";
+import {fetchSituacao} from "../../service/receptor";
+import {fetchEtapasDeEnsino} from "../../service/receptor";
 import MenuSuspenso from "./MenuSuspenso";
 
 interface ModalCamposEscolaProps {

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useFiltroTabela } from "../../context/FiltroTabela";
 import { useSelectedValue } from "../../context/Situacao";
 import { AlterarDadosEscolaData, EscolaData } from "../../models/service";
-import fetchSituacao from "../../service/consultarSituacao";
+import {fetchSituacao} from "../../service/receptor";
 import fetchAlterarDadosEscola from "../../service/alterarDadosEscola";
 import {fetchExcluirSituacao} from "../../service/excluir";
 import ModalExcluirEscolas from "./ModalExcluirEscolas";
