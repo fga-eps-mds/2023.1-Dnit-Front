@@ -9,64 +9,47 @@ export default function Footer(){
             <div className="logo text-sm-left"><img src={logoDnit} alt="Imagem"/></div>
             <div className="br-list horizontal" data-toggle="data-toggle" data-sub="data-sub">
               <div className="col-2"><a className="br-item header" >
-                  <div className="content text-down-01 text-bold text-uppercase">Categoria 1</div>
+                  <div className="content text-down-01 text-bold text-uppercase">Início</div>
                   <div className="support"><i className="fas fa-angle-down" aria-hidden="true"></i>
                   </div></a>
-                <div className="br-list"><span className="br-divider d-md-none"></span><a className="br-item" >
-                    <div className="content">Qui esse</div></a><a className="br-item" >
-                    <div className="content">Nulla occaecat eiusmod</div></a><a className="br-item" >
-                    <div className="content">Est ex deserunt</div></a><span className="br-divider d-md-none"></span>
+                <div className="br-list"><span className="br-divider d-md-none"></span><a className="br-item">
+                    <div className="content">Login de Usuário</div></a><a className="br-item">
+                    <div className="content">Cadastro de Usuário</div></a><a className="br-item">
+                    <div className="content">Esqueci Minha Senha</div></a><span className="br-divider d-md-none"></span>
                 </div>
               </div>
               <div className="col-2"><a className="br-item header" >
-                  <div className="content text-down-01 text-bold text-uppercase">Categoria 2</div>
+                  <div className="content text-down-01 text-bold text-uppercase">Dashboard</div>
                   <div className="support"><i className="fas fa-angle-down" aria-hidden="true"></i>
                   </div></a>
-                <div className="br-list"><span className="br-divider d-md-none"></span><a className="br-item" >
-                    <div className="content">Ad deserunt nostrud</div></a><a className="br-item" >
-                    <div className="content">Nulla occaecat eiusmod</div></a><span className="br-divider d-md-none"></span>
+                <div className="br-list"><span className="br-divider d-md-none"></span><a className="br-item">
+                    <div className="content">Solicitar Ação</div></a><a className="br-item">
+                    <div className="content">Visualizar UPS</div></a><span className="br-divider d-md-none"></span>
                 </div>
               </div>
               <div className="col-2"><a className="br-item header" >
-                  <div className="content text-down-01 text-bold text-uppercase">Categoria 3</div>
+                  <div className="content text-down-01 text-bold text-uppercase">Escolas</div>
                   <div className="support"><i className="fas fa-angle-down" aria-hidden="true"></i>
                   </div></a>
-                <div className="br-list"><span className="br-divider d-md-none"></span><a className="br-item" >
-                    <div className="content">Ex qui laborum consectetur aute commodo</div></a><a className="br-item" >
-                    <div className="content">Ex qui laborum consectetur aute commodo</div></a><span className="br-divider d-md-none"></span>
+                <div className="br-list"><span className="br-divider d-md-none"></span><a className="br-item">
+                    <div className="content">Visualizar Escolas</div></a><a className="br-item">
+                    <div className="content">Cadastro de Escolas</div></a><a className="br-item">
+                    <div className="content">Cadastro Manual</div></a><a className="br-item">
+                    <div className="content">Cadastro por Planilha</div></a><span className="br-divider d-md-none"></span>
                 </div>
-              </div>
-              <div className="col-2"><a className="br-item header" >
-                  <div className="content text-down-01 text-bold text-uppercase">Categoria 4</div>
-                  <div className="support"><i className="fas fa-angle-down" aria-hidden="true"></i>
-                  </div></a>
-                <div className="br-list"><span className="br-divider d-md-none"></span><a className="br-item" >
-                    <div className="content">Est ex deserunt</div></a><a className="br-item" >
-                    <div className="content">Ad deserunt nostrud</div></a><a className="br-item" >
-                    <div className="content">Est ex deserunt</div></a><span className="br-divider d-md-none"></span>
-                </div>
-              </div>
-              <div className="col-2"><a className="br-item header" >
-                  <div className="content text-down-01 text-bold text-uppercase">Categoria 5</div>
-                  <div className="support"><i className="fas fa-angle-down" aria-hidden="true"></i>
-                  </div></a>
-                <div className="br-list"><span className="br-divider d-md-none"></span><a className="br-item" >
-                    <div className="content">Adipisicing culpa et ad consequat</div></a><a className="br-item" >
-                    <div className="content">Deserunt</div></a><span className="br-divider d-md-none"></span>
-                </div>
-              </div>
-              <div className="col-2"><a className="br-item header" >
-                  <div className="content text-down-01 text-bold text-uppercase">Categoria 6</div>
-                  <div className="support"><i className="fas fa-angle-down" aria-hidden="true"></i>
-                  </div></a>
-                <div className="br-list"><span className="br-divider d-md-none"></span><a className="br-item" >
-                    <div className="content">Deserunt</div></a><a className="br-item" >
-                    <div className="content">Est ex deserunt</div></a><a className="br-item" >
-                    <div className="content">Nulla occaecat eiusmod</div></a><span className="br-divider d-md-none"></span>
-                </div>
+            </div>
+            <div className="col-2"><a className="br-item header" >
+                <div className="content text-down-01 text-bold text-uppercase">Inserção de Dados</div>
+                <div className="support"><i className="fas fa-angle-down" aria-hidden="true"></i>
+                </div></a>
+              <div className="br-list"><span className="br-divider d-md-none"></span><a className="br-item">
+                  <div className="content">Inserir Dados de Acidente</div></a><a className="br-item">
+                  <div className="content">Inserir Dados de Rodovias</div></a><span className="br-divider d-md-none"></span>
               </div>
             </div>
-            <div className="d-none d-sm-block">
+          </div>
+          {/* Redes Sociais */}
+            {/* <div className="d-none d-sm-block">
               <div className="row align-items-end justify-content-between py-5">
                 <div className="col">
                   <div className="social-network">
@@ -77,7 +60,7 @@ export default function Footer(){
                 <div className="col assigns text-right"><img className="ml-4" src="https://cdngovbr-ds.estaleiro.serpro.gov.br/design-system/images/logo-assign-positive.png" alt="Imagem"/><img className="ml-4" src="https://cdngovbr-ds.estaleiro.serpro.gov.br/design-system/images/logo-assign-positive.png" alt="Imagem"/>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div><span className="br-divider my-3"></span>
           <div className="container-lg">
             <div className="info">
