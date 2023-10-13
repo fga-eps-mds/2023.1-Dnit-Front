@@ -4,7 +4,7 @@ import { useFiltroTabela } from "../../context/FiltroTabela";
 import { useSelectedValue } from "../../context/Situacao";
 import { AlterarDadosEscolaData, EscolaData } from "../../models/service";
 import {fetchSituacao} from "../../service/receptor";
-import fetchAlterarDadosEscola from "../../service/alterarDadosEscola";
+import {fetchAlterarDadosEscola} from "../../service/modificador";
 import {fetchExcluirSituacao} from "../../service/excluir";
 import ModalExcluirEscolas from "./ModalExcluirEscolas";
 import "../estilo/ModalExibirInformacoes.css";

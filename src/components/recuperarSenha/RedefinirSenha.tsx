@@ -2,7 +2,7 @@ import { Form, Input, Space, notification } from "antd";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import LogoDNIT from "../../assets/logoDnitAzul.png";
-import fetchRedefinirSenha from "../../service/redefinirSenha";
+import {fetchRedefinirSenha} from "../../service/modificador";
 import "../../styles/form.css";
 import ButtonComponent from "../Botao";
 
