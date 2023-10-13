@@ -1,7 +1,7 @@
 import { Form, Input, notification, Space } from "antd";
 import React from "react";
 import LogoDNIT from "../../assets/logoDnitAzul.png";
-import fetchRecuperarSenha from "../../service/recuperarSenha";
+import {fetchRecuperarSenha} from "../../service/modificador";
 import "../../styles/form.css";
 import ButtonComponent from "../Botao";
 
