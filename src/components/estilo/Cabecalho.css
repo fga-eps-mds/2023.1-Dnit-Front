@@ -7,63 +7,52 @@
 .header {
     height: 160px;
     border-radius: 2px;
-    position: relative;
     background-color: var(--purepure);
-    box-shadow: 0px 1px 6px #00000029;
+    box-shadow: 0 1px 6px #00000029;
+    display: flex;
+    flex-flow: column;
 }
 
-.header .alto-contraste-area {
-    position: absolute;
-    height: 23px;
-    width: 20px;
-    top: 37px;
-    right: 223px;
-    box-sizing: border-box;
-    cursor: pointer;
+.header .top {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 90px;
 }
 
-.header .alto-contraste-area button {
-    all: unset;
-}
-
-.header .icon {
-    position: relative;
-    top: -5px;
-    left: -3px;
-    width: 20px;
-    height: 23px;
-}
-
-.header .text-wrapper {
-    position: absolute;
-    top: -1px;
-    left: 0;
-    font-family: "Font Awesome 5 Free-Solid", Helvetica;
-    font-weight: 400;
-    color: var(--blue-warm-vividblue-warm-vivid-70);
-    font-size: 16px;
-    text-align: center;
-    letter-spacing: 0;
-    line-height: normal;
-    width: 20px;
-    height: 23px;
+.header .bottom {
+    width: 100%;
+    flex: 1 0 auto;
 }
 
 .header .grupo-esquerda {
-    position: absolute;
+    display: flex;
     width: 350px;
-    height: 41px;
+    height: 54px;
+    margin: 17px 0 0 24px;
     top: 26px;
     left: 24px;
 }
 
+.header .gov-logo {
+    margin: 9px 0 0 0;
+    width: 112px;
+    height: 41px;
+    object-fit: cover;
+}
+
+.header .rectangle {
+    width: 1px;
+    height: 54px;
+    margin: 0 20px 0 20px;
+    background-color: #d9d9d9;
+}
+
 .header .title-header {
-    position: absolute;
+    margin: 13px 0 0 0;
     width: 197px;
     height: 28px;
-    top: 6px;
-    left: 152px;
-    font-family: "Roboto-Regular", Helvetica;
+    font-family: "Roboto-Regular", Helvetica, serif;
     font-weight: 400;
     color: #333333;
     font-size: 14px;
@@ -72,90 +61,28 @@
     text-align: left;
 }
 
-.header .gov-logo {
-    position: absolute;
-    width: 112px;
-    height: 41px;
-    top: 0;
-    left: 0;
-    object-fit: cover;
-}
-
-.header .rectangle {
-    position: absolute;
-    width: 1px;
-    height: 54px;
-    top: 17px;
-    left: 155px;
-    background-color: #d9d9d9;
-}
-/* Não sei se essas posições absolutas são a melhor forma de montar esse cabeçalho*/
-.header .header-title {
-    position: absolute;
-    width: 308px;
-    top: 93px;
-    left: 65px;
-    font-family: "Inter-Regular", Helvetica;
-    font-weight: 400;
-    color: #000000;
-    font-size: 24px;
-    letter-spacing: 0;
-    line-height: normal;
-    text-align: left;
-}
-
-.header .header-subtitle {
-    position: absolute;
-    width: 411px;
-    top: 128px;
-    left: 67px;
-    font-family: "Inter-Regular", Helvetica;
-    text-align: left;
-    font-weight: 400;
-    color: #000000;
-    font-size: 16px;
-    letter-spacing: 0;
-    line-height: normal;
-    white-space: nowrap;
-}
-
-.header .botao-links {
-    position: absolute;
-    width: 5px;
-    height: 19px;
-    top: 39px;
-    right: 266px;
-    cursor: pointer;
-}
-
-.header .menu {
-    position: absolute;
-    width: 22px;
-    height: 14px;
-    top: 102px;
-    left: 24px;
-    cursor: pointer;
-}
-
-.header .menu button {
-    all: unset;
+.header .grupo-direita {
+    display: flex;
+    margin: 30px 36px 0 0;
 }
 
 .header .botao-login {
-    position: absolute;
     width: 147px;
     height: 36px;
-    top: 30px;
-    right: 37px;
     background-color: #1351b4;
     border-radius: 20px;
     border: 1px solid #ffffff;
     box-shadow: 0 2px 4px #00000040;
     cursor: pointer;
+    position: relative;
 }
 
-.header .botao-login button {
-    all: unset;
+.header .user-icon {
+    position: absolute;
+    top: 8px;
+    left: 30px;
+    width: 15px;
+    height: 17px;
 }
 
 .header .login-text {
@@ -163,7 +90,7 @@
     width: 57px;
     top: 7px;
     left: 52px;
-    font-family: "Roboto-Regular", Helvetica;
+    font-family: "Roboto-Regular", Helvetica, serif;
     font-weight: 400;
     color: #ffffff;
     font-size: 18px;
@@ -173,14 +100,59 @@
     white-space: nowrap;
 }
 
-.header .user-icon {
-    position: absolute;
-    width: 15px;
-    height: 17px;
-    top: 8px;
-    left: 30px;
+.header .alto-contraste-area {
+    margin-right: 39px;
+    margin-top: 7px;
+    height: 23px;
+    width: 20px;
+    box-sizing: border-box;
+    cursor: pointer;
 }
 
-.header .page-info h1 h2 {
-    all: unset;
+.header .botao-links {
+    margin-right: 36px;
+    margin-top: 9px;
+    width: 5px;
+    height: 19px;
+    cursor: pointer;
 }
+
+.header .bottom-info {
+    margin-left: 24px;
+    display: flex;
+    height: 100%;
+}
+
+.header .menu {
+    margin-top: 12px;
+    margin-right: 19px;
+    width: 22px;
+    height: 14px;
+    cursor: pointer;
+}
+
+.header .bottom-text {
+    display: flex;
+    flex-direction: column;
+    margin-top: 4px;
+}
+
+.header .header-title, .header .header-subtitle {
+    font-family: "Inter-Regular", Helvetica, serif;
+    font-weight: 400;
+    text-align: left;
+    line-height: normal;
+    color: #000000;
+    letter-spacing: 0;
+}
+
+.header .header-title {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.header .header-subtitle {
+    font-size: 16px;
+    white-space: nowrap;
+}
+
