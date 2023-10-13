@@ -8,8 +8,7 @@ import {fetchUnidadeFederativa} from "../../../service/receptor";
 import {fetchMunicipio} from "../../../service/receptor";
 import {fetchCEP} from "../../../service/receptor";
 import "../../../styles/form/step2.css";
-import fetchAutenticacao from "../../../service/autenticador";
-import {cadastroEscolaURL} from "../../../consts/service";
+import { fetchCadastroEscolaData } from "../../../service/autenticador";
 
 const { Option } = Select;
 interface Step2Props {
@@ -188,7 +187,7 @@ export default function Step2({ onClickBack }: Step2Props) {
     };
 
     try {
-      await fetchAutenticacao(cadastroEscolaURL, registerSchoolData);
+      await fetchCadastroEscolaData(registerSchoolData);
       notification.success({ message: "Cadastro feito!" });
       navigate("/escolas-cadastradas");
     } catch (error) {

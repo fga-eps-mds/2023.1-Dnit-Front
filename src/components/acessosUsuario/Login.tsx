@@ -5,8 +5,7 @@ import LogoDNIT from "../../assets/logoDnitAzul.png";
 import { AuthContext } from "../../provider/Autenticacao";
 import "../../styles/form.css";
 import ButtonComponent from "../Botao";
-import fetchAutenticacao from "../../service/autenticador";
-import {loginURL} from "../../consts/service";
+import {fetchLoginData} from "../../service/autenticador"
 
 const LoginForm: React.FC = () => {
 
@@ -35,7 +34,7 @@ const LoginForm: React.FC = () => {
     };
 
     try {
-      await fetchAutenticacao(loginURL, loginData);
+      await fetchLoginData(loginData);
       notification.success({message: "Login realizado!"})
       login();
     } catch (error) {
