@@ -2,12 +2,11 @@ import { Form, Input, Radio, Select, Space, notification } from "antd";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/Autenticacao";
-import fetchUnidadeFederativa from "../../service/unidadesFederativas";
 import "../../styles/form.css";
 import ButtonComponent from "../Botao";
 import fetchAutenticacao from "../../service/autenticador";
 import {cadastroUsuarioURL} from "../../consts/service";
-
+import {fetchUnidadeFederativa} from "../../service/receptor";
 
 const { Option } = Select;
 
