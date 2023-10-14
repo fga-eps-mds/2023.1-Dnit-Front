@@ -116,6 +116,17 @@ export interface EscolaData {
   observacao: string;
 }
 
+export interface FiltroEscolaData {
+  params: {
+    Pagina: number;
+    TamanhoPagina: number;
+    Nome: string;
+    IdSituacao: string | number;
+    IdMunicipio: string | number;
+    IdUf: string | number;
+  };
+}
+
 export interface AlterarDadosEscolaData {
   idEscola: number;
   idSituacao: number;

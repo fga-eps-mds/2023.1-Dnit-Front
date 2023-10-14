@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
-import { listarInfoEscolaURL, listarEscolasURL } from "../consts/service";
-import { InfoEscolaData, EscolaData } from "../models/service";
+import { listarInfoEscolaURL, listarEscolasURL, escolasFiltradasURL } from "../consts/service";
+import { InfoEscolaData, EscolaData, FiltroEscolaData } from "../models/service";
 
 interface ListarInfoEscolaResponse {
   status: number;
@@ -33,3 +33,22 @@ export async function fetchListarEscolas(): Promise<EscolaData[]> {
   }
 }
 
+interface EscolasFiltradasResponse {
+  escolas: EscolaData[];
+  escolasPorPagina: number;
+  totalEscolas: number;
+  totalPaginas: number;
+}
+
+export async function fetchListarEscolasFiltradas(filtroTabelaData: FiltroEscolaData): Promise<EscolasFiltradasResponse> {
+  try {
+    const response: AxiosResponse<EscolasFiltradasResponse> = await axios.get(
+      escolasFiltradasURL,
+      filtroTabelaData
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}

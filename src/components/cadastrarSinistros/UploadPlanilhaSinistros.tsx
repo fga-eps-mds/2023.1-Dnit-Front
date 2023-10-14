@@ -2,7 +2,7 @@ import { FileOutlined } from "@ant-design/icons";
 import type { UploadFile, UploadProps } from "antd";
 import { Button, Upload, message } from "antd";
 import { UploadChangeParam } from "antd/lib/upload";
-import axios from "axios";
+import fetchImportaPlanilha  from "../../service/importarPlanilha"
 import React, { useRef, useState } from "react";
 import { cadastroSinistrosURL } from "../../consts/service";
 import "../../styles/form/step3.css";
@@ -35,7 +35,7 @@ const App: React.FC<UploadPlanilhaSinistroProps> = ({
       formData.append("arquivo", fileList[0].originFileObj as File);
 
       try {
-        await axios.post(cadastroSinistrosURL, formData);
+        const response = await fetchImportaPlanilha(cadastroSinistrosURL, formData);
 
         message.success(`Arquivo adicionado com sucesso.`);
         onClickAceito();
