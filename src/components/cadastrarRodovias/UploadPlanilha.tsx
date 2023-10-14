@@ -5,7 +5,7 @@ import { UploadChangeParam } from "antd/lib/upload";
 import React, { useRef, useState } from "react";
 import { cadastroRodoviasURL } from "../../consts/service";
 import "../../styles/form/step3.css";
-import { fetchFormData } from "../../service/autenticador";
+import { fetchForm } from "../../service/autenticador";
 
 const { Dragger } = Upload;
 
@@ -34,7 +34,7 @@ const App: React.FC<UploadPlanilhaRodoviaProps> = ({
             const formData = new FormData();
             formData.append("arquivo", arquivos[0].originFileObj as File);
             try {
-                await fetchFormData(formData);
+                await fetchForm(formData);
                 message.success("Arquivo adicionado com sucesso");
                 onClickAceito();
 

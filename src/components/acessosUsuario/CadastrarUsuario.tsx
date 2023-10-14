@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "../../styles/form.css";
 import ButtonComponent from "../Botao";
 
-import { fetchCadastroUsuarioData } from "../../service/autenticador";
+import { fetchCadastroUsuario } from "../../service/autenticador";
 import {fetchUnidadeFederativa} from "../../service/receptor";
 
 const { Option } = Select;
@@ -39,7 +39,7 @@ const CadastroUsuarioForm: React.FC = () => {
     };
 
     try {
-      await fetchCadastroUsuarioData(cadastroUsuarioData);
+      await fetchCadastroUsuario(cadastroUsuarioData);
       notification.success({ message: "Cadastro feito!" });
       navigate('/login')
     } catch (error) {

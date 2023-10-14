@@ -18,19 +18,19 @@ async function fetchAutenticacao<T>(url: string, data: T): Promise<CadastroRespo
     }
 }
 
-export async function fetchCadastroUsuarioData(data:CadastroUsuarioData):Promise<CadastroResponse>{
+export async function fetchCadastroUsuario(data:CadastroUsuarioData):Promise<CadastroResponse>{
     return fetchAutenticacao<CadastroUsuarioData>(URL.cadastroUsuarioURL,data);
 }
 
-export async function fetchCadastroEscolaData(data:CadastroEscolaData):Promise<CadastroResponse>{
+export async function fetchCadastroEscola(data:CadastroEscolaData):Promise<CadastroResponse>{
     return fetchAutenticacao<CadastroEscolaData>(URL.cadastroEscolaURL,data);
 }
 
-export async function fetchFormData(data:FormData):Promise<CadastroResponse>{
+export async function fetchForm(data:FormData):Promise<CadastroResponse>{
     return fetchAutenticacao<FormData>(URL.cadastroRodoviasURL,data);
 }
 
-export async function fetchLoginData(data:LoginData):Promise<CadastroResponse>{
+export async function fetchLogin(data:LoginData):Promise<CadastroResponse>{
     return fetchAutenticacao<LoginData>(URL.loginURL,data);
 }
 

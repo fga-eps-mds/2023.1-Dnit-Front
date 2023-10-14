@@ -5,11 +5,11 @@ import { act } from "react-dom/test-utils";
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
 import { AuthProvider } from "../provider/Autenticacao";
-import fetchRecuperarSenha from "../service/recuperarSenha";
+import {fetchRecuperarSenha} from "../service/modificador";
 
-jest.mock("../service/recuperarSenha", () => ({
-  __esModule: true,
-  default: jest.fn(),
+jest.mock("../service/modificador", () => ({
+  ...jest.requireActual("../service/modificador"),
+  fetchRecuperarSenha: jest.fn(),
 }));
 
 const mockedUseRecoverPassword = fetchRecuperarSenha as jest.Mock;

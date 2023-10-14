@@ -4,12 +4,12 @@ import { act, fireEvent, render, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
 import { AuthProvider } from "../provider/Autenticacao";
-import fetchCadastroUsuario from "../service/cadastrarUsuario";
+import {fetchCadastroUsuario} from "../service/autenticador";
 import server from "./mock/servicosAPI";
 
-jest.mock("../service/cadastrarUsuario", () => ({
-  __esModule: true,
-  default: jest.fn(),
+jest.mock("../service/autenticador", () => ({
+  ...jest.requireActual("../service/autenticador"),
+  fetchCadastroUsuario: jest.fn(),
 }));
 
 const mockedUseRegister = fetchCadastroUsuario as jest.Mock;

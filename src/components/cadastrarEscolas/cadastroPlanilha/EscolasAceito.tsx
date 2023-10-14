@@ -9,7 +9,7 @@ interface EscolasAceitaProps {
 
 export default function Escolas_Aceito({ onClickVoltar }: EscolasAceitaProps) {
   const { escolasCadastradas } = useEscolasCadastradas();
-  if (escolasCadastradas.length > 0) {
+  if (escolasCadastradas?.length > 0) {
     return (
       <div className="form3_1">
         <div className="secaoTexto">
