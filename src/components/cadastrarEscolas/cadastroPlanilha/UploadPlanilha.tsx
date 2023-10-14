@@ -2,7 +2,7 @@ import { FileOutlined } from "@ant-design/icons";
 import type { UploadFile, UploadProps } from "antd";
 import { Button, Upload, message } from "antd";
 import { UploadChangeParam } from "antd/lib/upload";
-import axios from "axios";
+import fetchImportaPlanilha  from "../../../service/importarPlanilha"
 import React, { useRef, useState } from "react";
 import { cadastroEscolaPlanilhaURL } from "../../../consts/service";
 import { useEscolasCadastradas } from "../../../context/escolasCadastradasErro";
@@ -46,17 +46,17 @@ const App: React.FC<UploadPlanilhaEscolaProps> = ({
       arquivoData.append("arquivo", arquivos[0].originFileObj as File);
 
       try {
-        const response = await axios.post(cadastroEscolaPlanilhaURL, arquivoData);
+        const response = await fetchImportaPlanilha(cadastroEscolaPlanilhaURL, arquivoData);
 
         if (
-          response.data &&
-          Array.isArray(response.data) &&
-          response.data.length > 0 && response.data.length < 6 
+          response &&
+          Array.isArray(response) &&
+          response.length > 0 && response.length < 6 
         ) {
           // A resposta do back-end é uma lista não nula
           // Faça o que for necessário com a lista
           onClickErroJaCadastrada();
-          setEscolasCadastradas(response.data);
+          setEscolasCadastradas(response);
         } else {
           // A resposta do back-end é uma lista nula
           message.success(`Arquivo adicionado com sucesso.`);
