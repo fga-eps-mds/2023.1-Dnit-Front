@@ -5,11 +5,12 @@ import { act } from "react-dom/test-utils";
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
 import { AuthProvider } from "../provider/Autenticacao";
-import fetchLogin from "../service/login";
+import {fetchLogin} from "../service/autenticador";
 
-jest.mock("../service/login", () => ({
-  __esModule: true,
-  default: jest.fn(),
+
+jest.mock("../service/autenticador", () => ({
+  ...jest.requireActual("../service/autenticador"),
+  fetchLogin: jest.fn(),
 }));
 
 const mockedUseLogin = fetchLogin as jest.Mock;

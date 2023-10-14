@@ -2,7 +2,7 @@ import { FileOutlined } from "@ant-design/icons";
 import type { UploadFile, UploadProps } from "antd";
 import { Button, Upload, message } from "antd";
 import { UploadChangeParam } from "antd/lib/upload";
-import fetchImportaPlanilha  from "../../../service/importarPlanilha"
+import fetchImportaPlanilha from "../../../service/importarPlanilha";
 import React, { useRef, useState } from "react";
 import { cadastroEscolaPlanilhaURL } from "../../../consts/service";
 import { useEscolasCadastradas } from "../../../context/escolasCadastradasErro";
