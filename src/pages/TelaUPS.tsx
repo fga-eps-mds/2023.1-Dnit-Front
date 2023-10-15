@@ -5,7 +5,7 @@ import "../styles/App.css";
 function TelaUPS() {
   return (
     <div className="App">
-      <Header dashboard />
+      <Header hasLogged={true} />
       <UPSForm />
     </div>
   );

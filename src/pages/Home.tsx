@@ -13,7 +13,7 @@ export default function Home() {
 
   return (
     <div className="App">
-      <Header login={true} />
+      <Header hasLogged={false}/>
 
       <Row justify={"start"} className="image-home-row">
         <Image src={Galera} preview={false} className="image-home" />

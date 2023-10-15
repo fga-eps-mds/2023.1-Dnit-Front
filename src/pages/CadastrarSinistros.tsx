@@ -12,7 +12,7 @@ function CadastrarAcidentes() {
 
   return (
     <div className="App">
-      <Header dashboard />
+      <Header />
       <div className="Secao2">
         <div className="box">
           <div className="formrs">

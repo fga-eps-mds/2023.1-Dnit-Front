@@ -6,7 +6,7 @@ import "../styles/App.css";
 function Register() {
   return (
     <div className="App">
-      <Header />
+      <Header title="Início" subtitle="Cadastro" hasLogged={false}/>
       <div className="Secao">
         <div className="Lateral">
           <img className="logoDnit" src={logoDnit} alt="Logo DNIT" />

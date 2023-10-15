@@ -6,7 +6,7 @@ import "../styles/App.css";
 function CadastrarRodovias() {
   return (
     <div className="App">
-      <Header dashboard />
+      <Header />
       <div className="Secao2">
         <RegistrarRodovias />
       </div>

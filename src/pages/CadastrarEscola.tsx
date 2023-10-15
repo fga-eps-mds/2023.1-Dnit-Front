@@ -6,7 +6,7 @@ import "../styles/App.css";
 function RegisterSchool() {
   return (
     <div className="App">
-      <Header dashboard />
+      <Header  />
       <div className="Secao2">
         <div className="box">
           <FiltroProvider>

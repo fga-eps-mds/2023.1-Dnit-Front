@@ -6,7 +6,7 @@ import "../styles/App.css";
 function SolicitacaoAcao() {
   return (
     <div className="App">
-      <Header login />
+      <Header hasLogged={false} />
       <div className="Secao">
         <div className="Lateral">
           <div className=" Lateral">
