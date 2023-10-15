@@ -11,49 +11,49 @@ export default function Footer({ home } : FooterProps){
     const navigate = useNavigate();
     return (
         <footer className="br-footer">
-          <div className="container-lg">
-            <div className="logo text-sm-left"><img src={logoDnit} alt="Imagem"/></div>
+          <div className={home ? "logo center-align" : "logo left-align"}><img src={logoDnit} alt="Imagem"/></div>
+          <div >
             { home ? (
               null
             ) : 
             <div className="br-list horizontal" data-toggle="data-toggle" data-sub="data-sub">
-              <div className="col-2"><a className="br-item header" onClick={() => navigate("/")}>
-                  <div className="content text-down-01 text-bold text-uppercase">Início</div>
-                  <div className="support"><i className="fas fa-angle-down" aria-hidden="true"></i>
-                  </div></a>
+              <div className="col-2">
+                <span className="br-item" onClick={() => navigate("/")}>
+                  <div className="category-text">INÍCIO</div>
+                 </span>
                 <div className="br-list"><span className="br-divider d-md-none"></span><a className="br-item" onClick={() => navigate("/login")}>
-                    <div className="content">Login de Usuário</div></a><a className="br-item" onClick={() => navigate("/cadastro")}>
-                    <div className="content">Cadastro de Usuário</div></a><a className="br-item" onClick={() => navigate("/esqueciSenha")}>
-                    <div className="content">Esqueci Minha Senha</div></a><span className="br-divider d-md-none"></span>
+                    <div className="category-content">Login de Usuário</div></a><a className="br-item" onClick={() => navigate("/cadastro")}>
+                    <div className="category-content">Cadastro de Usuário</div></a><a className="br-item" onClick={() => navigate("/esqueciSenha")}>
+                    <div className="category-content">Esqueci Minha Senha</div></a><span className="br-divider d-md-none"></span>
                 </div>
               </div>
-              <div className="col-2"><a className="br-item header" onClick={() => navigate("/dashboard")}>
-                  <div className="content text-down-01 text-bold text-uppercase">Dashboard</div>
-                  <div className="support"><i className="fas fa-angle-down" aria-hidden="true"></i>
-                  </div></a>
+              <div className="col-2">
+                <span className="br-item" onClick={() => navigate("/dashboard")}>
+                  <div className="category-text">DASHBOARD</div>
+                  </span>
                 <div className="br-list"><span className="br-divider d-md-none"></span><a className="br-item" onClick={() => navigate("/solicitacaoAcao")}>
-                    <div className="content">Solicitar Ação</div></a><a className="br-item" onClick={() => navigate("/TelaUPS")}>
-                    <div className="content">Visualizar UPS</div></a><span className="br-divider d-md-none"></span>
+                    <div className="category-content">Solicitar Ação</div></a><a className="br-item" onClick={() => navigate("/TelaUPS")}>
+                    <div className="category-content">Visualizar UPS</div></a><span className="br-divider d-md-none"></span>
                 </div>
               </div>
-              <div className="col-2"><a className="br-item header" >
-                  <div className="content text-down-01 text-bold text-uppercase">Escolas</div>
-                  <div className="support"><i className="fas fa-angle-down" aria-hidden="true"></i>
-                  </div></a>
+              <div className="col-2">
+                <span className="br-item" >
+                  <div className=" category-text">ESCOLAS</div>
+                  </span>
                 <div className="br-list"><span className="br-divider d-md-none"></span><a className="br-item" onClick={() => navigate("/escolas-cadastradas")}>
-                    <div className="content">Visualizar Escolas</div></a><a className="br-item" onClick={() => navigate("/cadastrarescola")}>
-                    <div className="content">Cadastro de Escolas</div></a><a className="br-item">
-                    <div className="content">Cadastro Manual</div></a><a className="br-item">
-                    <div className="content">Cadastro por Planilha</div></a><span className="br-divider d-md-none"></span>
+                    <div className="category-content">Visualizar Escolas</div></a><a className="br-item" onClick={() => navigate("/cadastrarescola")}>
+                    <div className="category-content">Cadastro de Escolas</div></a><a className="br-item">
+                    <div className="category-content">Cadastro Manual</div></a><a className="br-item">
+                    <div className="category-content">Cadastro por Planilha</div></a><span className="br-divider d-md-none"></span>
                 </div>
               </div>
-              <div className="col-2"><a className="br-item header" >
-                  <div className="content text-down-01 text-bold text-uppercase">Inserção de Dados</div>
-                  <div className="support"><i className="fas fa-angle-down" aria-hidden="true"></i>
-                  </div></a>
+              <div className="col-2">
+                <span className="br-item " >
+                  <div className=" category-text">INSERÇÃO DE DADOS</div>
+                  </span>
                 <div className="br-list"><span className="br-divider d-md-none"></span><a className="br-item" onClick={() => navigate("/cadastrarsinistros")}>
-                    <div className="content">Inserir Dados de Acidente</div></a><a className="br-item" onClick={() => navigate("/cadastrarRodovias")}>
-                    <div className="content">Inserir Dados de Rodovias</div></a><span className="br-divider d-md-none"></span>
+                    <div className="category-content">Inserir Dados de Acidente</div></a><a className="br-item" onClick={() => navigate("/cadastrarRodovias")}>
+                    <div className="category-content">Inserir Dados de Rodovias</div></a><span className="br-divider d-md-none"></span>
                 </div>
               </div>
             </div> }
@@ -70,12 +70,13 @@ export default function Footer({ home } : FooterProps){
                 </div>
               </div>
             </div> */}
-          </div><span className="br-divider my-3"></span>
+          </div>
+          {/* <span className="br-divider my-3"></span>
           <div className="container-lg">
             <div className="info">
               <div className="text-down-01 text-medium pb-3">Texto destinado a exibição de informações relacionadas à&nbsp;<strong>licença de uso.</strong></div>
             </div>
-          </div>
+          </div> */}
         </footer>
         );
 }
