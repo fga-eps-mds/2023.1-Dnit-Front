@@ -5,19 +5,21 @@ import BotaoMenu from "../assets/icones/BotaoMenu.svg"
 import LogoDNITAzul from "../assets/logoDnitAzul.png"
 import "./estilo/Cabecalho.css";
 import IconUsuario from "../assets/icones/usuario.svg";
+import { useNavigate } from "react-router-dom";
 
 interface HeaderProps {
-  login?: boolean;
-  dashboard?: boolean;
+  hasLogged?: boolean;
   title?: string;
   subtitle?: string;
 }
 
-const Header = ({ login, dashboard, title, subtitle }: HeaderProps) => {
+const Header = ({ hasLogged = true, title, subtitle }: HeaderProps) => {
+    const navigate = useNavigate();
     return (
         <header className="header">
             <div className = "top">
-                <div className="grupo-esquerda">
+                <div className="grupo-esquerda" data-testid="redirecionar"
+        onClick={() => (hasLogged ? navigate("/dashboard") : navigate("/"))}>
                     <img className="gov-logo" src={IconGov}  alt='Logo gov.br'/>
                     <div className="rectangle"></div>
                     <img className="gov-logo" src={LogoDNITAzul}  alt='Logo gov.br'/>
@@ -30,11 +32,14 @@ const Header = ({ login, dashboard, title, subtitle }: HeaderProps) => {
                     <div className="alto-contraste-area">
                         <img src={BotaoAltoContraste} alt='Botão de alto contraste'/>
                     </div>
-
-                    <div className="botao-login">
+                
+                   {hasLogged ? 
+                   <div className="profile">
+                    <span className="letter">L</span>
+                   </div> : <div className="botao-login" onClick={() => navigate("/login")}>
                         <div className="login-text">Entrar</div>
                         <img className="user-icon" src={IconUsuario} alt='Ícone representando usuário'/>
-                    </div>
+                    </div>}
                 </div>
             </div>
             {title && <div className="bottom">
