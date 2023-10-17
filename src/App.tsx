@@ -1,17 +1,17 @@
 import { useContext } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import CadastrarAcidentes from "./pages/cadastro/CadastrarSinistros";
+import CadastrarAcidentes from "./pages/cadastro/CadastrarSinistros/";
 import CadastrarRodovias from "./pages/cadastro/CadastrarRodovias";
-import Dashboard from "./pages/info/dashboard/Dashboard";
-import EscolasCadastradas from "./pages/info/escola/EscolasCadastradas";
-import Home from "./pages/home/Home";
-import Login from "./pages/Login";
-import RecoverPassword from "./pages/senha/recuperarSenha/RecuperarSenha";
+import Dashboard from "./pages/info/Dashboard/";
+import EscolasCadastradas from "./pages/info/escola/EscolasCadastradas/";
+import Home from "./pages/Home/";
+import Login from "./pages/Login/";
+import RecoverPassword from "./pages/senha/Recuperar/";
 import Register from "./pages/cadastro/CadastrarUsuario";
 import RegisterSchool from "./pages/cadastro/CadastrarEscola";
-import ResetPassword from "./pages/senha/redefinirSenha/RedefinirSenha";
-import SolicitacaoAcao from "./pages/solicitacao/SolicitacaoAcao";
-import TelaUPS from "./pages/ups/TelaUPS";
+import ResetPassword from "./pages/senha/Redefinir/";
+import SolicitacaoAcao from "./pages/SolicitacaoAcao/";
+import TelaUPS from "./pages/UPS/";
 import { AuthContext } from "./provider/Autenticacao";
 import "./styles/App.css";
 
