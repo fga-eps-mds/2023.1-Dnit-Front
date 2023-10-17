@@ -1,7 +1,7 @@
-import Header from "../components/Cabecalho";
-import RegistrarRodovias from "../components/cadastrarRodovias/CadastrarRodovias";
-import Footer from "../components/Rodape";
-import "../styles/App.css";
+import Header from "../../components/Cabecalho";
+import RegistrarRodovias from "../../components/cadastrarRodovias/CadastrarRodovias";
+import Footer from "../../components/Rodape";
+import "../../styles/App.css";
 
 function CadastrarRodovias() {
   return (

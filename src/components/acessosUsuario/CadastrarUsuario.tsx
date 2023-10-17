@@ -1,16 +1,11 @@
 import { Form, Input, Radio, Select, Space, notification } from "antd";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "../../styles/form.css";
-<<<<<<< HEAD
-import ButtonComponent from "../Botao";
-
+import "../estilo/form/form.css";
 import { fetchCadastroUsuario } from "../../service/autenticador";
 import {fetchUnidadeFederativa} from "../../service/receptor";
+import ButtonComponent from "../botao/Botao";
 
-=======
-import ButtonComponent from "../Botao/Botao";
->>>>>>> feat: refatoração de arquivos da pasta components para melhor organização do front-end
 const { Option } = Select;
 
 interface UfProps {

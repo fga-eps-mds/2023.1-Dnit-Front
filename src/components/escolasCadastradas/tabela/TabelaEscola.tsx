@@ -1,10 +1,10 @@
 import { notification } from "antd";
 import { useState } from "react";
-import { useFiltroTabela } from "../../context/FiltroTabela";
-import { EscolaData } from "../../models/service";
-import ExibirInformacoesEscola from "../../pages/ExibirInformacoesEscola";
-import "../../styles/App.css";
-import "../estilo/TabelaEscola.css";
+import { useFiltroTabela } from "../../../context/FiltroTabela";
+import { EscolaData } from "../../../models/service";
+import ExibirInformacoesEscola from "../../../pages/info/escola/ExibirInformacoesEscola";
+import "../../../styles/App.css";
+import "../../estilo/tabela/TabelaEscola.css";
 
 export default function TabelaEscola() {
   const {

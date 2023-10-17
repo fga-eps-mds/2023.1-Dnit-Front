@@ -1,13 +1,7 @@
 import { notification } from "antd";
-<<<<<<< HEAD:src/components/escolasCadastradas/ModalExcluirEscolas.tsx
-import { useFiltroTabela } from "../../context/FiltroTabela";
-import {fetchExcluirEscola} from "../../service/excluir";
-import "../estilo/ModalExcluirEscolas.css";
-=======
 import { useFiltroTabela } from "../../../context/FiltroTabela";
-import fetchExcluirEscola from "../../../service/excluirEscola";
-import "../../estilo/ModalExcluirEscolas.css";
->>>>>>> feat: refatoração de arquivos da pasta components para melhor organização do front-end:src/components/escolasCadastradas/escolasCadastradasModal/ModalExcluirEscolas.tsx
+import {fetchExcluirEscola} from "../../../service/excluir";
+import "../../estilo/modal/ModalExcluirEscolas.css";
 
 interface ModalExcluirEscolaProps {
   open: boolean;

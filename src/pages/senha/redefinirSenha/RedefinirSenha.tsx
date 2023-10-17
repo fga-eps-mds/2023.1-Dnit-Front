@@ -1,7 +1,7 @@
-import imgLateral from "../assets/imgLateral.png";
-import Header from "../components/Cabecalho";
-import ResetPassword from "../components/recuperarSenha/RedefinirSenha";
-import "../styles/App.css";
+import imgLateral from "../../../assets/imgLateral.png";
+import Header from "../../../components/Cabecalho";
+import ResetPassword from "../../../components/recuperarSenha/RedefinirSenha";
+import "../../../styles/App.css";
 
 function RecuperarSenha() {
   return (

@@ -5,11 +5,11 @@ import {
 } from "@ant-design/icons";
 import { Card, Collapse, CollapseProps } from "antd";
 import { useNavigate } from "react-router";
-import Header from "../components/Cabecalho";
-import TrilhaDeNavegacao from "../components/escolasCadastradas/TrilhaNavegacao";
-import Footer from "../components/Rodape";
-import "../styles/App.css";
-import "../styles/Dashboard.css";
+import Header from "../../../components/Cabecalho";
+import TrilhaDeNavegacao from "../../../components/escolasCadastradas/navegacao/TrilhaNavegacao";
+import Footer from "../../../components/Rodape";
+import "../../../styles/App.css";
+import "./Dashboard.css";
 
 export default function Dashboard() {
   const navigate = useNavigate();

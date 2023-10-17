@@ -11,8 +11,8 @@ import {fetchUnidadeFederativa} from "../../service/receptor";
 import {fetchEscolasInep} from "../../service/receptor";
 import {fetchMunicipio} from "../../service/receptor";
 import fetchSolicitaAcao from "../../service/solicitarAcao";
-import "../../styles/form.css";
-import ButtonComponent from "../Botao/Botao";
+import "../estilo/form/form.css";
+import ButtonComponent from "../botao/Botao";
 
 const { Option } = Select;
 

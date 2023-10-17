@@ -3,8 +3,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import LogoDNIT from "../../assets/logoDnitAzul.png";
 import {fetchRedefinirSenha} from "../../service/modificador";
-import "../../styles/form.css";
-import ButtonComponent from "../Botao/Botao";
+import "../estilo/form/form.css";
+import ButtonComponent from "../botao/Botao";
 
 const RedefinirSenha: React.FC = () => {
   const [formulario] = Form.useForm();

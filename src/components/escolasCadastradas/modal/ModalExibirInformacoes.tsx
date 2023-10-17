@@ -1,22 +1,13 @@
 import { notification } from "antd";
 import { useEffect, useState } from "react";
-<<<<<<< HEAD:src/components/escolasCadastradas/ModalExibirInformacoes.tsx
-import { useFiltroTabela } from "../../context/FiltroTabela";
-import { useSelectedValue } from "../../context/Situacao";
-import { AlterarDadosEscolaData, EscolaData } from "../../models/service";
-import {fetchSituacao} from "../../service/receptor";
-import {fetchAlterarDadosEscola} from "../../service/modificador";
-import {fetchExcluirSituacao} from "../../service/excluir";
-=======
 import { useFiltroTabela } from "../../../context/FiltroTabela";
 import { useSelectedValue } from "../../../context/Situacao";
 import { AlterarDadosEscolaData, EscolaData } from "../../../models/service";
-import fetchSituacao from "../../../service/consultarSituacao";
-import fetchAlterarDadosEscola from "../../../service/alterarDadosEscola";
-import fetchExcluirSituacao from "../../../service/excluirSituacao";
->>>>>>> feat: refatoração de arquivos da pasta components para melhor organização do front-end:src/components/escolasCadastradas/escolasCadastradasModal/ModalExibirInformacoes.tsx
+import {fetchSituacao} from "../../../service/receptor";
+import {fetchAlterarDadosEscola} from "../../../service/modificador";
+import {fetchExcluirSituacao} from "../../../service/excluir";
 import ModalExcluirEscolas from "./ModalExcluirEscolas";
-import "../../estilo/ModalExibirInformacoes.css";
+import "../../estilo/modal/ModalExibirInformacoes.css";
 import ModalBody from "./ModalCamposEscola";
 
 interface ModalProps {

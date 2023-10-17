@@ -1,7 +1,7 @@
 import { Form } from "antd";
 import { useState } from "react";
 import { EscolasCadastradasProvider } from "../../context/escolasCadastradasErro";
-import "../../styles/form.css";
+import "../estilo/form/form.css";
 import OpcoesCadastro from "./OpcoesCadastro";
 import FormularioCadastro from "./cadastroManual/FormularioCadastro";
 import PlanilhaEscola from "./cadastroPlanilha/ImportarPlanilhaEscolas";

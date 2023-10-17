@@ -1,7 +1,7 @@
-import imgLateral from "../assets/imgLateral.png";
-import Header from "../components/Cabecalho";
-import RecoverPasswordForm from "../components/recuperarSenha/RecuperarSenha";
-import "../styles/App.css";
+import imgLateral from "../../../assets/imgLateral.png";
+import Header from "../../../components/Cabecalho";
+import RecoverPasswordForm from "../../../components/recuperarSenha/RecuperarSenha";
+import "../../../styles/App.css";
 
 function EsqueciSenha() {
   return (

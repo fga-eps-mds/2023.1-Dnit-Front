@@ -1,7 +1,7 @@
-import personagem from "../assets/julia11.png";
-import Header from "../components/Cabecalho";
-import SolicitacaoAcaoForm from "../components/solicitarAcao/FormularioSolicitacaoAcao";
-import "../styles/App.css";
+import personagem from "../../assets/julia11.png";
+import Header from "../../components/Cabecalho";
+import SolicitacaoAcaoForm from "../../components/solicitarAcao/FormularioSolicitacaoAcao";
+import "../../styles/App.css";
 
 function SolicitacaoAcao() {
   return (

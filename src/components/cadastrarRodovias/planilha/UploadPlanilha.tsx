@@ -3,9 +3,9 @@ import type { UploadFile, UploadProps } from "antd";
 import { Button, Upload, message } from "antd";
 import { UploadChangeParam } from "antd/lib/upload";
 import React, { useRef, useState } from "react";
-import { cadastroRodoviasURL } from "../../consts/service";
-import "../../styles/form/step3.css";
-import { fetchForm } from "../../service/autenticador";
+import { cadastroRodoviasURL } from "../../../consts/service";
+import "../../../styles/form/step3.css";
+import { fetchForm } from "../../../service/autenticador";
 
 const { Dragger } = Upload;
 

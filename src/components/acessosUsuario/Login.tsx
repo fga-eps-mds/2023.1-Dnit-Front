@@ -3,13 +3,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import LogoDNIT from "../../assets/logoDnitAzul.png";
 import { AuthContext } from "../../provider/Autenticacao";
-import "../../styles/form.css";
-<<<<<<< HEAD
-import ButtonComponent from "../Botao";
+import "../estilo/form/form.css";
 import {fetchLogin} from "../../service/autenticador"
-=======
-import ButtonComponent from "../Botao/Botao";
->>>>>>> feat: refatoração de arquivos da pasta components para melhor organização do front-end
+import ButtonComponent from "../botao/Botao";
 
 const LoginForm: React.FC = () => {
 

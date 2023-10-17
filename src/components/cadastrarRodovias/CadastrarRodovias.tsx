@@ -1,8 +1,8 @@
 import { Form } from "antd";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../../styles/form.css";
-import ImportarRodovias from "./ImportarPlanilhaRodovias";
+import "../estilo/form/form.css";
+import ImportarRodovias from "./planilha/ImportarPlanilhaRodovias";
 import RodoviasAceito from "./validarRodovias/RodoviasAceito";
 import RodoviasErro from "./validarRodovias/RodoviasErro";
 

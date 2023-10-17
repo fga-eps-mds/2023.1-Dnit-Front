@@ -1,4 +1,4 @@
-import "../../styles/form/step3.css";
+import "../../../styles/form/step3.css";
 import Dragdrop from "./UploadPlanilha";
 interface ImportarRodoviasProps {
     onClickBack: () => void;

@@ -1,11 +1,11 @@
 import { Button, Col, Image, Row } from "antd";
 import { useNavigate } from "react-router";
-import Galera from "../assets/galera.png";
-import Galera2 from "../assets/galera2.png";
-import Header from "../components/Cabecalho";
-import Footer from "../components/Rodape";
-import "../styles/App.css";
-import "../styles/Home.css";
+import Galera from "../../assets/galera.png";
+import Galera2 from "../../assets/galera2.png";
+import Header from "../../components/Cabecalho";
+import Footer from "../../components/Rodape";
+import "../../styles/App.css";
+import "./Home.css";
 import { Link } from "react-router-dom";
 
 export default function Home() {
