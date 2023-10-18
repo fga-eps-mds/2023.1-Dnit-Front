@@ -1,9 +1,12 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 
+const escolasService = "https://escola.dnit.eps-fga.live/api"
+const upsService = "https://up.dnit.eps-fga.live/api"
+
 const server = setupServer(
   rest.get(
-    "https://api.dnit-eps-mds.com/api/escolas/obter",
+   `${escolasService}/escolas/obter`,
     (req, res, ctx) => {
       return res(
         ctx.json({
@@ -92,7 +95,7 @@ const server = setupServer(
     }
   ),
   rest.get(
-    "https://api.dnit-eps-mds.com/api/dominio/unidadeFederativa",
+    `${escolasService}/dominio/unidadeFederativa`,
     (req, res, ctx) => {
       return res(
         ctx.json([
@@ -236,7 +239,7 @@ const server = setupServer(
     }
   ),
   rest.get(
-    "https://api.dnit-eps-mds.com/api/dominio/situacao",
+    `${escolasService}/dominio/situacao`,
     (req, res, ctx) => {
       return res(
         ctx.json([
@@ -261,7 +264,7 @@ const server = setupServer(
     }
   ),
   rest.get(
-    "https://api.dnit-eps-mds.com/api/dominio/etapasDeEnsino",
+    `${escolasService}/dominio/etapasDeEnsino`,
     (req, res, ctx) => {
       return res(
         ctx.json([
@@ -290,13 +293,13 @@ const server = setupServer(
     }
   ),
   rest.delete(
-    "https://api.dnit-eps-mds.com/api/escolas/excluir",
+    `${escolasService}/escolas/excluir`,
     (req, res, ctx) => {
       return res(ctx.json({}));
     }
   ),
   rest.get(
-    "https://api.dnit-eps-mds.com/api/dominio/municipio",
+    `${escolasService}/dominio/municipio`,
     (req, res, ctx) => {
       return res(
         ctx.json([
@@ -389,25 +392,25 @@ const server = setupServer(
     }
   ),
   rest.post(
-    "https://api.dnit-eps-mds.com/api/escolas/removerSituacao",
+    `${escolasService}/escolas/removerSituacao`,
     (req, res, ctx) => {
       return res(ctx.status(200));
     }
   ),
   rest.post(
-    "https://api.dnit-eps-mds.com/api/escolas/cadastrarEscola",
+    `${escolasService}/escolas/cadastrarEscola`,
     (req, res, ctx) => {
       return res(ctx.status(200));
     }
   ),
   rest.post(
-    "https://api.dnit-eps-mds.com/api/escolas/cadastrarEscolaPlanilha",
+    `${escolasService}/escolas/cadastrarEscolaPlanilha`,
     (req, res, ctx) => {
       return res(ctx.json([2, 3]));
     }
   ),
   rest.post(
-    "https://api.aprovaunb.com.br/api/rodovia/cadastrarRodoviaPlanilha",
+    `${upsService}/rodovia/cadastrarRodoviaPlanilha`,
     (req, res, ctx) => {
       return res(ctx.status(200));
     }
@@ -429,13 +432,13 @@ const server = setupServer(
     );
   }),
   rest.put(
-    "https://api.dnit-eps-mds.com/api/escolas/alterarDadosEscola",
+    `${escolasService}/escolas/alterarDadosEscola`,
     (req, res, ctx) => {
       return res(ctx.status(200));
     }
   ),
   rest.get(
-    "https://api.dnit-eps-mds.com/api/solicitacaoAcao/escolas",
+    `${escolasService}/solicitacaoAcao/escolas`,
     (req, res, ctx) => {
       return res(
         ctx.json([
@@ -564,13 +567,13 @@ const server = setupServer(
     }
   ),
   rest.post(
-    "https://api.dnit-eps-mds.com/api/solicitacaoAcao",
+    `${escolasService}/solicitacaoAcao`,
     (req, res, ctx) => {
       return res(ctx.status(200));
     }
   ),
   rest.get(
-    "https://api.aprovaunb.com.br/api/calcular/ups/escola",
+    `${upsService}/calcular/ups/escola`,
     (req, res, ctx) => {
       return res(
         ctx.delay(1000),

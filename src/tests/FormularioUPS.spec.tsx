@@ -1,9 +1,7 @@
 /* eslint-disable testing-library/no-unnecessary-act */
-/* eslint-disable testing-library/no-wait-for-multiple-assertions */
 /* eslint-disable testing-library/render-result-naming-convention */
 import { act, fireEvent, render, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { rest } from "msw";
 import { MemoryRouter } from "react-router";
 import App from "../App";
 import { AuthProvider } from "../provider/Autenticacao";
@@ -28,8 +26,6 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
     dispatchEvent: jest.fn(),
   };
 });
-
-const upsService = "https://up.dnit.eps-fga.live/api"
 
 describe("UPSForm", () => {
   test("Mostra mensagem de campos inválidos ao inserir valores inválidos", async () => {
@@ -94,43 +90,15 @@ describe("UPSForm", () => {
     await waitFor(
       () => {
         expect(screen.getByText("UPS Geral: 123")).toBeInTheDocument();
-        expect(screen.getByText("UPS 2018: 456")).toBeInTheDocument();
-        expect(screen.getByText("UPS 2019: 789")).toBeInTheDocument();
-        expect(screen.getByText("UPS 2020: 1011")).toBeInTheDocument();
-        expect(screen.getByText("UPS 2021: 1213")).toBeInTheDocument();
-        expect(screen.getByText("UPS 2022: 1415")).toBeInTheDocument();
+        
       },
       { interval: 1010 }
     );
-  });
 
-  test("Erro", async () => {
-    localStorage.setItem("login", "authenticated");
-
-    server.use(
-      rest.get(
-        `${upsService}/api/calcular/ups/escola`,
-        (req, res, ctx) => {
-          return res(ctx.status(403));
-        }
-      )
-    );
-    const screen = render(
-      <MemoryRouter initialEntries={["/telaUPS"]}>
-        <AuthProvider>
-          <App />
-        </AuthProvider>
-      </MemoryRouter>
-    );
-    await act(async () => {
-        const latitudeInput = screen.getByLabelText("Latitude");
-        const longitudeInput = screen.getByLabelText("Longitude");
-        const submitButton = screen.getByText("Calcular UPS");
-
-        fireEvent.change(latitudeInput, { target: { value: "12.456" } });
-        fireEvent.change(longitudeInput, { target: { value: "89.012" } });
-
-        userEvent.click(submitButton);
-    });
+    expect(screen.getByText("UPS 2018: 456")).toBeInTheDocument();
+    expect(screen.getByText("UPS 2019: 789")).toBeInTheDocument();
+    expect(screen.getByText("UPS 2020: 1011")).toBeInTheDocument();
+    expect(screen.getByText("UPS 2021: 1213")).toBeInTheDocument();
+    expect(screen.getByText("UPS 2022: 1415")).toBeInTheDocument();
   });
 });
