@@ -28,6 +28,8 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
   };
 });
 
+const escolasService = "https://escola.dnit.eps-fga.live/api"
+
 test("Cadastro feito", async () => {
   localStorage.setItem("login", "authenticated");
   render(
@@ -160,7 +162,7 @@ test("Erro no cadastro", async () => {
 
   server.use(
     rest.post(
-      "https://api.dnit-eps-mds.com/api/escolas/cadastrarEscola",
+      `${escolasService}/escolas/cadastrarEscola`,
       (req, res, ctx) => {
         return res(ctx.status(400));
       }
@@ -343,7 +345,7 @@ test("Cadastro CSV", async () => {
 
   server.use(
     rest.post(
-      "https://api.dnit-eps-mds.com/api/escolas/cadastrarEscolaPlanilha",
+      `${escolasService}/escolas/cadastrarEscolaPlanilha`,
       (req, res, ctx) => {
         return res(ctx.status(200));
       }
@@ -374,7 +376,7 @@ test("Cadastro CSV", async () => {
   fireEvent.click(concluir);
 });
 
-test("Cadastro CSV", async () => {
+test("Cadastro CSV 2", async () => {
   localStorage.setItem("login", "authenticated");
 
   render(
@@ -402,12 +404,12 @@ test("Cadastro CSV", async () => {
   fireEvent.click(concluir);
 });
 
-test("Cadastro CSV", async () => {
+test("Cadastro CSV 3", async () => {
   localStorage.setItem("login", "authenticated");
 
   server.use(
     rest.post(
-      "https://api.dnit-eps-mds.com/api/escolas/cadastrarEscolaPlanilha",
+      `${escolasService}/escolas/cadastrarEscolaPlanilha`,
       (req, res, ctx) => {
         return res(ctx.json([1, 2, 3, 4, 5, 6, 7]));
       }
@@ -443,7 +445,7 @@ test("Cadastro CSV erro", async () => {
 
   server.use(
     rest.post(
-      "https://api.dnit-eps-mds.com/api/escolas/cadastrarEscolaPlanilha",
+      `${escolasService}/escolas/cadastrarEscolaPlanilha`,
       (req, res, ctx) => {
         return res(ctx.status(406));
       }
@@ -478,7 +480,7 @@ test("Cadastro CSV vazio", async () => {
 
   server.use(
     rest.post(
-      "https://api.dnit-eps-mds.com/api/escolas/cadastrarEscolaPlanilha",
+      `${escolasService}/escolas/cadastrarEscolaPlanilha`,
       (req, res, ctx) => {
         return res(ctx.json("Nenhum arquivo enviado."), ctx.status(400));
       }
@@ -510,7 +512,7 @@ test("Cadastro sem enviar CSV", async () => {
 
   server.use(
     rest.post(
-      "https://api.dnit-eps-mds.com/api/escolas/cadastrarescolaPlanilha",
+      `${escolasService}/escolas/cadastrarescolaPlanilha`,
       (req, res, ctx) => {
         return res(ctx.json([]));
       }

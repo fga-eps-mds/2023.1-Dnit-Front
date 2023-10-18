@@ -25,12 +25,14 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
   };
 });
 
+const upsService = "https://up.dnit.eps-fga.live/api"
+
 test("Cadastro CSV", async () => {
   localStorage.setItem("login", "authenticated");
 
   server.use(
     rest.post(
-      "https://api.aprovaunb.com.br/api/sinistro/cadastrarSinistroPlanilha",
+      `${upsService}/sinistro/cadastrarSinistroPlanilha`,
       (req, res, ctx) => {
         return res(ctx.status(200));
       }
@@ -64,7 +66,7 @@ test("Cadastro CSV erro", async () => {
 
   server.use(
     rest.post(
-      "https://api.aprovaunb.com.br/api/sinistro/cadastrarSinistroPlanilha",
+      `${upsService}/sinistro/cadastrarSinistroPlanilha`,
       (req, res, ctx) => {
         return res(ctx.status(406));
       }
@@ -98,7 +100,7 @@ test("Cadastro CSV vazio", async () => {
 
   server.use(
     rest.post(
-      "https://api.aprovaunb.com.br/api/sinistro/cadastrarSinistroPlanilha",
+      `${upsService}/sinistro/cadastrarSinistroPlanilha`,
       (req, res, ctx) => {
         return res(ctx.status(400), ctx.json("Nenhum arquivo enviado."));
       }
@@ -129,7 +131,7 @@ test("Cadastro sem enviar CSV", async () => {
 
   server.use(
     rest.post(
-      "https://api.aprovaunb.com.br/api/sinistro/cadastrarSinistroPlanilha",
+      `${upsService}/sinistro/cadastrarSinistroPlanilha`,
       (req, res, ctx) => {
         return res(ctx.json([]));
       }

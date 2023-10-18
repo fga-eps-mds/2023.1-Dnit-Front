@@ -1,12 +1,11 @@
-import { fireEvent, render, screen } from "@testing-library/react";
-import { rest } from "msw";
-localStorage.setItem("login", "authenticated");
-
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
 import { AuthProvider } from "../provider/Autenticacao";
 import localStorageMock from "./mock/memoriaLocal";
 import server from "./mock/servicosAPI";
+import { fireEvent, render, screen } from "@testing-library/react";
+import { rest } from "msw";
+localStorage.setItem("login", "authenticated");
 
 beforeAll(() => server.listen());
 beforeEach(() => {
@@ -27,12 +26,14 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
   };
 });
 
+const upsService = "https://up.dnit.eps-fga.live/api"
+
 test("Cadastro via CSV", async () => {
   localStorage.setItem("login", "authenticated");
 
   server.use(
     rest.post(
-      "https://api.aprovaunb.com.br/api/rodovia/cadastrarRodoviaPlanilha",
+      `${upsService}/rodovia/cadastrarRodoviaPlanilha`,
       (req, res, ctx) => {
         return res(ctx.status(200));
       }
@@ -68,7 +69,7 @@ test("Cadastro CSV erro", async () => {
 
   server.use(
     rest.post(
-      "https://api.aprovaunb.com.br/api/rodovia/cadastrarRodoviaPlanilha",
+       `${upsService}/rodovia/cadastrarRodoviaPlanilha`,
       (req, res, ctx) => {
         return res(ctx.status(406));
       }
@@ -103,7 +104,7 @@ test("Cadastro CSV vazio", async () => {
 
   server.use(
     rest.post(
-      "https://api.aprovaunb.com.br/api/rodovia/cadastrarRodoviaPlanilha",
+      `${upsService}/rodovia/cadastrarRodoviaPlanilha`,
       (req, res, ctx) => {
         return res(ctx.status(400), ctx.json("Nenhum arquivo enviado."));
       }
@@ -134,7 +135,7 @@ test("Cadastro sem enviar CSV", async () => {
 
   server.use(
     rest.post(
-      "https://api.aprovaunb.com.br/api/rodovia/cadastrarRodoviaPlanilha",
+      `${upsService}/rodovia/cadastrarRodoviaPlanilha`,
       (req, res, ctx) => {
         return res(ctx.json([]));
       }

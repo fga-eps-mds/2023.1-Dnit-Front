@@ -14,6 +14,8 @@ beforeEach(() => {
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
+const escolasService = "https://escola.dnit.eps-fga.live/api"
+
 test("Remover situação escola", async () => {
   localStorage.setItem("login", "authenticated");
 
@@ -48,7 +50,7 @@ test("Remover situação escola erro", async () => {
 
   server.use(
     rest.post(
-      "https://api.dnit-eps-mds.com/api/escolas/removerSituacao",
+      `${escolasService}/escolas/removerSituacao`,
       (req, res, ctx) => {
         return res(ctx.status(403));
       }
