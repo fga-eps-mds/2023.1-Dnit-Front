@@ -1,8 +1,8 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 
-const escolasService = "https://escola.dnit.eps-fga.live/api"
-const upsService = "https://up.dnit.eps-fga.live/api"
+const escolasService = `${process.env.REACT_APP_API_ESCOLAS}/api`
+const upsService = `${process.env.REACT_APP_API_UPS}/api`
 
 const server = setupServer(
   rest.get(
