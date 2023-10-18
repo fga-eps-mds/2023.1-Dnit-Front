@@ -1,6 +1,9 @@
-const urlAPIUsuario = "https://api.aprovaunb.com/api";
-const urlAPIEscolas = "https://api.dnit-eps-mds.com/api";
-const urlAPIUps = "https://api.aprovaunb.com.br/api";
+// const urlAPIUsuario = "https://api.aprovaunb.com/api";
+// const urlAPIEscolas = "https://api.dnit-eps-mds.com/api";
+// const urlAPIUps = "https://api.aprovaunb.com.br/api";
+const urlAPIUsuario = "https://usuario.dnit.eps-fga.live/api";
+const urlAPIEscolas = "https://escola.dnit.eps-fga.live/api";
+const urlAPIUps = "https://up.dnit.eps-fga.live/api";
 const urlAPIViaCEP = "https://viacep.com.br/ws";
 const etapasDeEnsinoURL = `${urlAPIEscolas}/dominio/etapasDeEnsino`;
 const municipioURL = `${urlAPIEscolas}/dominio/municipio`;
