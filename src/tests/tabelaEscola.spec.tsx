@@ -94,6 +94,7 @@ test("Filtragem de escolas", async () => {
     expect(screen.queryByText("Carregando...")).not.toBeInTheDocument()
   );
 
+  // eslint-disable-next-line testing-library/no-debugging-utils
   screen.debug(etapas);
   const etapasSelecionada = screen.getByText("Educação Infantil");
   fireEvent.click(etapasSelecionada);

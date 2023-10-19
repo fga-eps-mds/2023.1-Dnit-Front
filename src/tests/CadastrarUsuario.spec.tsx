@@ -1,8 +1,9 @@
+/* eslint-disable testing-library/no-unnecessary-act */
+/* eslint-disable testing-library/render-result-naming-convention */
 import { act, fireEvent, render, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
 import { AuthProvider } from "../provider/Autenticacao";
-import fetchUnidadeFederativa from "../service/unidadesFederativas";
 import fetchCadastroUsuario from "../service/cadastrarUsuario";
 import server from "./mock/servicosAPI";
 
@@ -33,8 +34,8 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
 test("should render Register", async () => {
   mockedUseRegister.mockResolvedValueOnce({ success: true });
   
-  const { getByLabelText, getByText, getByRole, queryByText, getByTestId } =
-    render(
+    // eslint-disable-next-line testing-library/render-result-naming-convention
+    const screen = render(
       <MemoryRouter initialEntries={["/cadastro"]}>
         <AuthProvider>
           <App />
@@ -42,12 +43,12 @@ test("should render Register", async () => {
       </MemoryRouter>
     );
 
-  const emailInput = getByLabelText("E-mail Institucional");
-  const passwordInput = getByLabelText("Senha");
-  const confirmPasswordInput = getByLabelText("Confirmar Senha");
-  const nomeInput = getByLabelText("Nome Completo");
-  const usuarioDnitRadioButton = getByRole("radio", { name: "Usuário DNIT" });
-  const button = getByText("Cadastrar-se");
+  const emailInput = screen.getByLabelText("E-mail Institucional");
+  const passwordInput = screen.getByLabelText("Senha");
+  const confirmPasswordInput = screen.getByLabelText("Confirmar Senha");
+  const nomeInput = screen.getByLabelText("Nome Completo");
+  const usuarioDnitRadioButton = screen.getByRole("radio", { name: "Usuário DNIT" });
+  const button = screen.getByText("Cadastrar-se");
 
   fireEvent.change(emailInput, { target: { value: "example@example.com" } });
   fireEvent.change(passwordInput, { target: { value: "password123" } });
@@ -57,17 +58,17 @@ test("should render Register", async () => {
   fireEvent.change(nomeInput, { target: { value: "Example" } });
   fireEvent.click(usuarioDnitRadioButton);
 
-  const ufSelect = getByRole("combobox");
+  const ufSelect = screen.getByRole("combobox");
   fireEvent.mouseDown(ufSelect);
 
   await waitFor(() =>
-    expect(queryByText("Carregando...")).not.toBeInTheDocument()
+    expect(screen.queryByText("Carregando...")).not.toBeInTheDocument()
   );
 
-  const ufSelectValue = getByText("Acre");
+  const ufSelectValue = screen.getByText("Acre");
   fireEvent.click(ufSelectValue);
 
-  const options = getByTestId("option-1");
+  const options = screen.getByTestId("option-1");
   fireEvent.click(options);
 
   fireEvent.click(button);
@@ -75,22 +76,22 @@ test("should render Register", async () => {
 });
 
 test("should render error in Register form", async () => {
-  const { getByLabelText, getByRole } = render(
+  const screen = render(
     <MemoryRouter initialEntries={["/cadastro"]}>
       <App />
     </MemoryRouter>
   );
 
   await act(async () => {
-    const passwordInput = getByLabelText("Senha");
-    const confirmPasswordInput = getByLabelText("Confirmar Senha");
+    const passwordInput = screen.getByLabelText("Senha");
+    const confirmPasswordInput = screen.getByLabelText("Confirmar Senha");
 
     fireEvent.change(passwordInput, { target: { value: "password123" } });
     fireEvent.change(confirmPasswordInput, {
       target: { value: "password12" },
     });
 
-    const usuarioDnitRadioButton = getByRole("radio", {
+    const usuarioDnitRadioButton = screen.getByRole("radio", {
       name: "Empresa Executora",
     });
     fireEvent.click(usuarioDnitRadioButton);
