@@ -28,7 +28,7 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
   };
 });
 
-const escolasService = "https://escola.dnit.eps-fga.live/api"
+const escolasService = `${process.env.REACT_APP_API_ESCOLAS}/api`
 
 test("Cadastro feito", async () => {
   localStorage.setItem("login", "authenticated");

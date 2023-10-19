@@ -25,7 +25,7 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
   };
 });
 
-const upsService = "https://up.dnit.eps-fga.live/api"
+const upsService =  `${process.env.REACT_APP_API_UPS}/data`
 
 test("Cadastro CSV", async () => {
   localStorage.setItem("login", "authenticated");
