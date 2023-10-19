@@ -25,7 +25,7 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
   };
 });
 
-const upsService =  `${process.env.REACT_APP_API_UPS}/data`
+const upsService =  `${process.env.REACT_APP_API_UPS}/api`
 
 test("Cadastro CSV", async () => {
   localStorage.setItem("login", "authenticated");
