@@ -1,3 +1,5 @@
+/* eslint-disable testing-library/no-unnecessary-act */
+/* eslint-disable testing-library/render-result-naming-convention */
 import { fireEvent, render, waitFor } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import { MemoryRouter } from "react-router-dom";
@@ -25,11 +27,11 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
   };
 });
 
-describe("", () => {
+describe("Recover Password Tests", () => {
   it("should render Recover password", async () => {
     mockedUseRecoverPassword.mockResolvedValueOnce({ success: true });
 
-    const { getByLabelText, getByText } = render(
+    const screen = render(
       <MemoryRouter initialEntries={["/esqueciSenha"]}>
         <AuthProvider>
           <App />
@@ -37,8 +39,8 @@ describe("", () => {
       </MemoryRouter>
     );
     await act(async () => {
-      const passwordInput = getByLabelText("Email");
-      const sendButton = getByText("Enviar link de recuperação");
+      const passwordInput = screen.getByLabelText("Email");
+      const sendButton = screen.getByText("Enviar link de recuperação");
 
       fireEvent.change(passwordInput, { target: { value: "teste@gmail.com" } });
       fireEvent.click(sendButton);

@@ -1,3 +1,5 @@
+/* eslint-disable testing-library/no-unnecessary-act */
+/* eslint-disable testing-library/render-result-naming-convention */
 import { fireEvent, render, waitFor } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import { MemoryRouter } from "react-router-dom";
@@ -25,11 +27,11 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
   };
 });
 
-describe("", () => {
+describe("Login tests", () => {
   it("should render Login", async () => {
     mockedUseLogin.mockResolvedValueOnce({ success: true });
 
-    const { getByLabelText, getByText } = render(
+    const screen = render(
       <MemoryRouter initialEntries={["/login"]}>
         <AuthProvider>
           <App />
@@ -38,9 +40,9 @@ describe("", () => {
     );
 
     await act(async () => {
-      const emailInput = getByLabelText("E-mail");
-      const passwordInput = getByLabelText("Senha");
-      const entrarButton = getByText("Entrar");
+      const emailInput = screen.getByLabelText("E-mail");
+      const passwordInput = screen.getByLabelText("Senha");
+      const entrarButton = screen.getByText("Entrar");
 
       fireEvent.change(emailInput, { target: { value: "dora@gmail.com" } });
       fireEvent.change(passwordInput, { target: { value: "123456" } });
