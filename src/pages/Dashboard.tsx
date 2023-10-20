@@ -10,6 +10,7 @@ import TrilhaDeNavegacao from "../components/escolasCadastradas/TrilhaNavegacao"
 import Footer from "../components/Rodape";
 import "../styles/App.css";
 import "../styles/Dashboard.css";
+import "../components/Collapse/index"
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -61,10 +62,19 @@ export default function Dashboard() {
       key: "3",
       label: "Ferramentas Administrativas",
       children: (
-        <Card className="disabled">
+        <div>
+          <Card className="disabled">
           <FileTextOutlined className="icon" />
           <p className="text">Cadastrar empresas</p>
         </Card>
+        
+        
+        <Collapse/>
+        </div>
+        
+        
+        
+        
       ),
     },
   ];
