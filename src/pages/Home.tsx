@@ -1,4 +1,4 @@
-import { Button, Col, Collapse, Image, Row } from "antd";
+import { Button, Col, Image, Row } from "antd";
 import { useNavigate } from "react-router";
 import Galera from "../assets/galera.png";
 import Galera2 from "../assets/galera2.png";
@@ -105,8 +105,6 @@ export default function Home() {
       >
         <p className="text-acao">SOLICITE UMA AÇÃO</p>
       </Button>
-      <Collapse>
-      </Collapse>
       <Footer />
     </div>
   );

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import "./style.css"
-const Collapse = () => {
+const CustomCollapse = () => {
   const [isCollapsed, setIsCollapsed] = useState(true);
 
   const toggleCollapse = () => {
@@ -40,4 +40,4 @@ const Collapse = () => {
   );
 };
 
-export default Collapse;
+export default CustomCollapse;
