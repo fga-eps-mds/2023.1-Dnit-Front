@@ -32,8 +32,8 @@ test("Visualizar Escolas", async () => {
     </MemoryRouter>
   );
 
-  const escolas = screen.getByText("Visualizar Escolas");
-  fireEvent.click(escolas);
+  const escolas = screen.getAllByText("Visualizar Escolas");
+  fireEvent.click(escolas[0]);
 });
 
 test("Visualizar Dados UPS", async () => {
