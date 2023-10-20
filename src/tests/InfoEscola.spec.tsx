@@ -14,6 +14,8 @@ beforeEach(() => {
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
+const escolasService = "https://escola.dnit.eps-fga.live/api"
+
 test("Exibir escola selecionada", async () => {
   localStorage.setItem("login", "authenticated");
 
@@ -98,7 +100,7 @@ test("Alterar escola selecionada erro", async () => {
 
   server.use(
     rest.put(
-      "https://api.dnit-eps-mds.com/api/escolas/alterarDadosEscola",
+      `${escolasService}/escolas/alterarDadosEscola`,
       (req, res, ctx) => {
         return res(ctx.status(400));
       }

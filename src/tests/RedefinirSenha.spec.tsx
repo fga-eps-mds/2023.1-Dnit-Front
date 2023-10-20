@@ -1,3 +1,5 @@
+/* eslint-disable testing-library/no-unnecessary-act */
+/* eslint-disable testing-library/render-result-naming-convention */
 import { fireEvent, render, waitFor } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import { MemoryRouter } from "react-router-dom";
@@ -25,11 +27,11 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
   };
 });
 
-describe("", () => {
+describe("Reset Password Test", () => {
   it("should render Reset password", async () => {
     mockedUseResetPassword.mockResolvedValueOnce({ success: true });
 
-    const { getByLabelText, getByText } = render(
+    const screen = render(
       <MemoryRouter initialEntries={["/redefinirSenha?token=aa$$"]}>
         <AuthProvider>
           <App />
@@ -37,9 +39,9 @@ describe("", () => {
       </MemoryRouter>
     );
     await act(async () => {
-      const passwordInput = getByLabelText("Nova Senha");
-      const passwordConfirmInput = getByLabelText("Confirmar Senha");
-      const entrarButton = getByText("Confirmar");
+      const passwordInput = screen.getByLabelText("Nova Senha");
+      const passwordConfirmInput = screen.getByLabelText("Confirmar Senha");
+      const entrarButton = screen.getByText("Confirmar");
 
       fireEvent.change(passwordInput, { target: { value: "123456" } });
       fireEvent.change(passwordConfirmInput, { target: { value: "123456" } });
@@ -51,8 +53,8 @@ describe("", () => {
     );
   });
 
-  it("should render Reset password", async () => {
-    const { getByLabelText, getByText } = render(
+  it("should render Reset password 2", async () => {
+    const screen = render(
       <MemoryRouter initialEntries={["/redefinirSenha"]}>
         <AuthProvider>
           <App />
@@ -60,8 +62,8 @@ describe("", () => {
       </MemoryRouter>
     );
     await act(async () => {
-      const passwordInput = getByLabelText("Nova Senha");
-      const passwordConfirmInput = getByLabelText("Confirmar Senha");
+      const passwordInput = screen.getByLabelText("Nova Senha");
+      const passwordConfirmInput = screen.getByLabelText("Confirmar Senha");
 
       fireEvent.change(passwordInput, { target: { value: "123456" } });
       fireEvent.change(passwordConfirmInput, { target: { value: "123" } });

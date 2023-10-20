@@ -1,3 +1,5 @@
+/* eslint-disable testing-library/render-result-naming-convention */
+/* eslint-disable testing-library/no-unnecessary-act */
 import {
   act,
   fireEvent,
