@@ -13,6 +13,8 @@ beforeEach(() => {
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
+const escolasService = "https://escola.dnit.eps-fga.live/api"
+
 test("Modal de excluir escola exibida corretamente", async () => {
   localStorage.setItem("login", "authenticated");
 
@@ -44,7 +46,7 @@ test("Modal de excluir escola exibida erro", async () => {
 
   server.use(
     rest.delete(
-      "https://api.dnit-eps-mds.com/api/escolas/excluir",
+      `${escolasService}/escolas/excluir`,
       (req, res, ctx) => {
         return res(ctx.status(403));
       }

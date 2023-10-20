@@ -13,7 +13,7 @@ module.exports = {
   ],
   collectCoverage: true,
   testEnvironment: "jest-environment-jsdom",
-  setupFilesAfterEnv: ["<rootDir>/.jest/setup-tests.js"],
+  setupFilesAfterEnv: ["<rootDir>/.jest/setup-tests.js", "dotenv/config"],
   preset: "ts-jest",
   transform: {
     ".*\\.[jt]sx?$": "babel-jest",
