@@ -18,7 +18,7 @@ interface AuthContextType {
 }
 
 function setApiToken(token?: string | null) {
-  axios.defaults.headers.common.Authorization = token ? `Bearer ${token}` : null;
+  axios.defaults.headers.common.Authorization = token;
 }
 
 function salvarLogin(dados: LoginResponse) {
@@ -51,7 +51,7 @@ export function configuraAutenticacaoAxios() {
       originalRequest._retry = true;
       try {
         const token = await atualizarToken();
-        originalRequest.headers.Authorization = 'Bearer ' + token;
+        originalRequest.headers.Authorization = token;
         return axios(originalRequest);
       } catch {
         removerLogin();
