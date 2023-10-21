@@ -16,3 +16,8 @@ export interface LoginResponse {
   expiraEm: string;
   permissoes: Permissao[];
 }
+
+export interface AtualizarTokenDto {
+  token: string;
+  tokenAtualizacao: string;
+}

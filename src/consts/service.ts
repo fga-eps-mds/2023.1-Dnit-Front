@@ -11,6 +11,7 @@ const cadastroURL = `${urlAPIUsuario}/usuario/cadastrar`;
 const cadastroUsuarioURL = `${urlAPIUsuario}/usuario/cadastrarUsuarioDnit`;
 const recuperarSenhaURL = `${urlAPIUsuario}/usuario/recuperarSenha`;
 const redefinirSenhaURL = `${urlAPIUsuario}/usuario/redefinirSenha`;
+const atualizarTokenUrl = `${urlAPIUsuario}/usuario/atualizarToken`;
 const excluirSituacaoURL = `${urlAPIEscolas}/escolas/removerSituacao`;
 const cadastroEscolaURL = `${urlAPIEscolas}/escolas/cadastrarEscola`;
 const listarInfoEscolaURL = `${urlAPIEscolas}/escolas/listarInformacoesEscola`;
@@ -26,6 +27,7 @@ const calcularUpsURL = `${urlAPIUps}/calcular/ups/escola`;
 const cadastroSinistrosURL = `${urlAPIUps}/sinistro/cadastrarSinistroPlanilha`;
 
 export {
+  atualizarTokenUrl,
   escolasFiltradasURL,
   escolasInepURL,
   etapasDeEnsinoURL,

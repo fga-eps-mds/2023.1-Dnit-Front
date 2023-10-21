@@ -1,7 +1,8 @@
 import React, { createContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { LoginResponse } from "../models/auth";
-import axios from "axios";
+import { AtualizarTokenDto, LoginResponse } from "../models/auth";
+import axios, { AxiosResponse } from "axios";
+import { atualizarTokenUrl } from "../consts/service";
 
 export enum AuthLocalStorage {
   Token = "Token",
@@ -28,9 +29,42 @@ function salvarLogin(dados: LoginResponse) {
   setApiToken(dados.token);
 }
 
+function removerLogin() {
+  Object.values(AuthLocalStorage).forEach(a => localStorage.removeItem(a));
+  setApiToken(null);
+}
+
+async function atualizarToken() {
+  const dados: AtualizarTokenDto = {
+    token: localStorage.getItem(AuthLocalStorage.Token) ?? "",
+    tokenAtualizacao: localStorage.getItem(AuthLocalStorage.TokenAtualizacao) ?? "",
+  }
+  const autenticacao: AxiosResponse<LoginResponse> = await axios.post(atualizarTokenUrl, dados);
+  salvarLogin(autenticacao.data);
+  return autenticacao.data.token;
+}
+
+export function configuraAutenticacaoAxios() {
+  axios.interceptors.response.use((response) => response, async function (error) {
+    const originalRequest = error.config;
+    if (error.response.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true;
+      try {
+        const token = await atualizarToken();
+        originalRequest.headers.Authorization = 'Bearer ' + token;
+        return axios(originalRequest);
+      } catch {
+        removerLogin();
+        useNavigate()('/');
+      }
+    }
+    return Promise.reject(error);
+  });
+}
+
 export const AuthContext = createContext<AuthContextType>({
-  login: () => {},
-  logout: () => {},
+  login: () => { },
+  logout: () => { },
   getAuth: () => false,
 });
 
@@ -55,8 +89,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   };
 
   const logout = () => {
-    setApiToken(null);
-    Object.values(AuthLocalStorage).forEach(a => localStorage.removeItem(a));
+    removerLogin();
   };
 
   return (
