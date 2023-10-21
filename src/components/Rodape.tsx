@@ -10,7 +10,7 @@ interface FooterProps {
 export default function Footer(props: FooterProps) {
   const navigate = useNavigate();
   return (
-    <footer className="br-footer">
+    <footer className="br-footer" data-testid="footer">
       <div className={props.home ? "logo center-align" : "logo left-align"}>
         <img src={logoDnit} alt="Imagem" />
       </div>
@@ -22,7 +22,11 @@ export default function Footer(props: FooterProps) {
             data-sub="data-sub"
           >
             <div className="col-2">
-              <span className="br-item" onClick={() => navigate("/")}>
+              <span
+                className="br-item"
+                data-testid="init-button"
+                onClick={() => navigate("/")}
+              >
                 <div className="category-text">INÍCIO</div>
               </span>
               <div className="br-list">
