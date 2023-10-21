@@ -1,4 +1,33 @@
 .collapse-example{
-    height: 100px;
-    width: 300px;
+    font-family: 'Rawline', serif;
+    height: 10%;
+    width: 100%;
+}
+
+.conteudo{
+    padding-left: 60px;
+}
+
+.flex-fill{
+    padding-right: 60%;
+}
+
+.FILHO0{
+    background-color: #2670E8;
+}
+.FILHO0 #filho0{
+    background-color: #2670E8;
+}
+.FILHO0 .nome-0{
+    color: white;
+}
+
+.FILHO1{
+    background-color: #F8F8F8;
+}
+.FILHO1 #filho1{
+    background-color: #F8F8F8;
+}
+.FILHO1 .nome-1{
+    color: black;
 }
