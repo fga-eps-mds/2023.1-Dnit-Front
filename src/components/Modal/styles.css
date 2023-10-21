@@ -12,18 +12,15 @@
 }
 
 .br-modal {
-  --modal-size: var(--modal-medium);
-  --modal-xsmall: 220px;
-  --modal-small: 300px;
-  --modal-medium: 500px;
-  --modal-large: 640px;
   --modal-auto: auto;
-  --modal-width: 800px;
+  --modal-width: 500px;
+  --modal-height: 300px;
   background: var(--background);
   box-shadow: var(--surface-shadow-sm);
   display: flex;
   flex-direction: column;
   width: var(--modal-width);
+  height: var(--modal-height);
 }
 .br-modal-header {
   font-size: var(--font-size-scale-up-01);
@@ -49,45 +46,6 @@
   margin: var(--spacing-scale-3x) 0 var(--spacing-scale-2x);
   overflow: auto;
   padding: 0 var(--spacing-scale-2x);
-}
-.br-modal-body::-webkit-scrollbar {
-  height: var(--spacing-scale-base);
-  width: var(--modal-width);
-}
-.br-modal-body::-webkit-scrollbar-track {
-  background: var(--gray-10);
-}
-.br-modal-body::-webkit-scrollbar-thumb {
-  background: var(--gray-30);
-}
-.br-modal-body:hover::-webkit-scrollbar-thumb {
-  background: var(--gray-40);
-}
-.br-modal-body *:last-child {
-  margin-bottom: 0;
-}
-.br-modal-footer {
-  display: flex;
-  flex-wrap: wrap;
-  padding: var(--spacing-scale-2x);
-}
-.br-modal.is-xsmall, .br-modal.xsmall {
-  --modal-size: var(--modal-xsmall);
-}
-.br-modal.is-small, .br-modal.small {
-  --modal-size: var(--modal-small);
-}
-.br-modal.is-medium, .br-modal.medium {
-  --modal-size: var(--modal-medium);
-}
-.br-modal.is-large, .br-modal.large {
-  --modal-size: var(--modal-large);
-}
-.br-modal.is-auto, .br-modal.auto {
-  --modal-size: var(--modal-auto);
-}
-.br-modal .loading.medium {
-  min-height: calc(var(--loading-indetermined-diameter-md) + var(--spacing-scale-2x) * 2);
 }
 .br-modal .terms {
   border: 0;
