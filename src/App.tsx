@@ -12,13 +12,14 @@ import RegisterSchool from "./pages/CadastrarEscola";
 import ResetPassword from "./pages/RedefinirSenha";
 import SolicitacaoAcao from "./pages/SolicitacaoAcao";
 import TelaUPS from "./pages/TelaUPS";
-import { AuthContext } from "./provider/Autenticacao";
+import { AuthContext, configuraAutenticacaoAxios } from "./provider/Autenticacao";
 import "./styles/App.css";
 
 function App() {
   const { getAuth } = useContext(AuthContext);
   const isAuthenticated = getAuth();
   document.title = "DNIT";
+  configuraAutenticacaoAxios();
   return (
     <Routes>
       {isAuthenticated ? (
