@@ -3,11 +3,19 @@ export enum Permissao {
   EscolaEditar = "EscolaEditar",
   EscolaRemover = "EscolaRemover",
   EscolaVisualizar = "EscolaVisualizar",
-  EmpresaCadastrar = "EmpresaCadastrar",
-  EmpresaEditar = "EmpresaEditar",
-  EmpresaRemover = "EmpresaRemover",
+  
   PerfilCadastrar = "PerfilCadastrar",
   PerfilEditar = "PerfilEditar",
+  PerfilRemover = "PerfilRemover",
+  PerfilVisualizar = "PerfilVisualizar",
+  
+  UpsCalcularSinistro = "UpsCalcularSinistro",
+  UpsCalcularEscola = "UpsCalcularEscola",
+  UpsVisualizar = "UpsVisualizar",
+
+  RodoviaCadastrar = "RodoviaCadastrar",
+
+  SinistroCadastrar = "SinistroCadastrar",
 }
 
 export interface LoginResponse {
