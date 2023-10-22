@@ -4,6 +4,8 @@ import { MemoryRouter } from "react-router";
 import App from "../App";
 import { AuthProvider } from "../provider/Autenticacao";
 import localStorageMock from "./mock/memoriaLocal";
+import { autenticar } from "./mock/autenticacao";
+import { Permissao } from "../models/auth";
 
 beforeEach(() => {
   Object.defineProperty(window, "localStorage", { value: localStorageMock });
@@ -22,7 +24,7 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
 });
 
 test("Visualizar Escolas", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.EscolaVisualizar);
 
   const screen = render(
     <MemoryRouter initialEntries={["/dashboard"]}>
@@ -37,7 +39,7 @@ test("Visualizar Escolas", async () => {
 });
 
 test("Visualizar Dados UPS", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.UpsVisualizar);
 
   const screen = render(
     <MemoryRouter initialEntries={["/dashboard"]}>
@@ -52,7 +54,7 @@ test("Visualizar Dados UPS", async () => {
 });
 
 test("Cadastrar Escolas", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.EscolaCadastrar);
 
   const screen = render(
     <MemoryRouter initialEntries={["/dashboard"]}>
@@ -67,7 +69,7 @@ test("Cadastrar Escolas", async () => {
 });
 
 test("Adicionar Sinistros", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.SinistroCadastrar);
 
   const screen = render(
     <MemoryRouter initialEntries={["/dashboard"]}>
@@ -82,7 +84,7 @@ test("Adicionar Sinistros", async () => {
 });
 
 test("Adicionar Rodovias", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.RodoviaCadastrar);
 
   const screen = render(
     <MemoryRouter initialEntries={["/dashboard"]}>

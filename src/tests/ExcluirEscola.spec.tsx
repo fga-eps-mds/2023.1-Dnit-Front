@@ -5,6 +5,8 @@ import App from "../App";
 import { AuthProvider } from "../provider/Autenticacao";
 import localStorageMock from "./mock/memoriaLocal";
 import server from "./mock/servicosAPI";
+import { Permissao } from "../models/auth";
+import { autenticar } from "./mock/autenticacao";
 
 beforeAll(() => server.listen());
 beforeEach(() => {
@@ -16,7 +18,7 @@ afterAll(() => server.close());
 const escolasService = "https://escola.dnit.eps-fga.live/api"
 
 test("Modal de excluir escola exibida corretamente", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.EscolaRemover);
 
   render(
     <MemoryRouter initialEntries={["/escolas-cadastradas"]}>
@@ -42,7 +44,7 @@ test("Modal de excluir escola exibida corretamente", async () => {
 });
 
 test("Modal de excluir escola exibida erro", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.EscolaRemover);
 
   server.use(
     rest.delete(

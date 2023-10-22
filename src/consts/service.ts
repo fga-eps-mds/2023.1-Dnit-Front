@@ -1,6 +1,6 @@
-const urlAPIUsuario = `${process.env.REACT_APP_API_USUARIOS}/api`;
-const urlAPIEscolas = `${process.env.REACT_APP_API_ESCOLAS}/api`;
-const urlAPIUps = `${process.env.REACT_APP_API_UPS}/api`;
+export const urlAPIUsuario = `${process.env.REACT_APP_API_USUARIOS}/api`;
+export const urlAPIEscolas = `${process.env.REACT_APP_API_ESCOLAS}/api`;
+export const urlAPIUps = `${process.env.REACT_APP_API_UPS}/api`;
 const urlAPIViaCEP = "https://viacep.com.br/ws";
 const etapasDeEnsinoURL = `${urlAPIEscolas}/dominio/etapasDeEnsino`;
 const municipioURL = `${urlAPIEscolas}/dominio/municipio`;
