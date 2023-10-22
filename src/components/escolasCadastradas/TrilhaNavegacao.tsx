@@ -2,6 +2,8 @@ import { Button } from "antd";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/TrilhaNavegacao.css";
+import ModalEditarPerfil from "../gerenciarPerfis/ModalEditarPerfil";
+
 
 interface Pagina {
   nome: string;
@@ -10,11 +12,19 @@ interface Pagina {
 
 interface TrilhaNavegacaoProps {
   elementosLi: Pagina[];
-  escolasCadastradas?: boolean
+  escolasCadastradas?: boolean;
+  registrarPerfis?: boolean
+  mostrarModal?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const TrilhaDeNavegacao: React.FC<TrilhaNavegacaoProps> = ({ elementosLi, escolasCadastradas }) => {
+const TrilhaDeNavegacao: React.FC<TrilhaNavegacaoProps> = ({ elementosLi, escolasCadastradas, registrarPerfis, mostrarModal }) => {
   const navigate = useNavigate();
+
+  const atualizaMostrarModal = () => {
+    if(mostrarModal)
+      mostrarModal(true);
+  };
+
   return (
     <div className="br-breadcrumb">
       <ul className="crumb-list">
@@ -35,6 +45,10 @@ const TrilhaDeNavegacao: React.FC<TrilhaNavegacaoProps> = ({ elementosLi, escola
       {escolasCadastradas? (
         <Button className="button1" onClick={() => navigate("/cadastrarescola")}>
         Cadastrar escolas
+      </Button>
+      ): registrarPerfis? (
+        <Button className="button1" onClick={() => atualizaMostrarModal()}>
+        Criar Perfil
       </Button>
       ): null}
     </div>

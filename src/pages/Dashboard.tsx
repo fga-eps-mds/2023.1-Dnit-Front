@@ -3,6 +3,7 @@ import {
   FileTextOutlined,
   FormOutlined,
 } from "@ant-design/icons";
+import IconGerenciarPerfis from "../assets/icones/GerenciarPerfis.svg"
 import { Card, Collapse, CollapseProps } from "antd";
 import { useNavigate } from "react-router";
 import Header from "../components/Cabecalho";
@@ -91,14 +92,12 @@ export default function Dashboard() {
           <FileTextOutlined className="icon" />
           <p className="text">Cadastrar empresas</p>
         </Card>
-        
-        
+          <Card className="card" onClick={() => navigate("/gerenciarPerfis")}>
+            <img className="iconPerfis" src={IconGerenciarPerfis} alt="ícone gerenciar perfis" />
+            <p className="text">Gerenciar Perfis</p>
+          </Card>
         <Collapse/>
         </div>
-        
-        
-        
-        
       ),
     },
   ];
@@ -107,7 +106,7 @@ export default function Dashboard() {
       <Header dashboard />
       <TrilhaDeNavegacao elementosLi={paginas}/>
       <Collapse
-        defaultActiveKey={["1", "2"]}
+        defaultActiveKey={["1", "2", "3"]}
         ghost
         items={items}
         className="collapse"

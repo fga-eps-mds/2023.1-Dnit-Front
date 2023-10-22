@@ -6,6 +6,7 @@ import Dashboard from "./pages/Dashboard";
 import EscolasCadastradas from "./pages/EscolasCadastradas";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import GerenciarPerfis from "./pages/GerenciarPerfis";
 import RecoverPassword from "./pages/RecuperarSenha";
 import Register from "./pages/CadastrarUsuario";
 import RegisterSchool from "./pages/CadastrarEscola";
@@ -14,6 +15,8 @@ import SolicitacaoAcao from "./pages/SolicitacaoAcao";
 import TelaUPS from "./pages/TelaUPS";
 import { AuthContext, configuraAutenticacaoAxios } from "./provider/Autenticacao";
 import "./styles/App.css";
+import ModalCamposEscola from "./components/escolasCadastradas/ModalCamposEscola";
+import ModalEditarPerfil from "./components/gerenciarPerfis/ModalEditarPerfil";
 
 function App() {
   const { getAuth } = useContext(AuthContext);
@@ -31,6 +34,7 @@ function App() {
           <Route path="/escolas-cadastradas" element={<EscolasCadastradas />} />
           <Route path="/cadastrarRodovias" element={<CadastrarRodovias />} />
           <Route path="/telaUPS" element={<TelaUPS />} />
+          <Route path="/gerenciarPerfis" element={<GerenciarPerfis />} />
         </>
       ) : (
         <>
