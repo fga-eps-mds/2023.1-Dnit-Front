@@ -1,10 +1,16 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
+import { listarUsuarioPermissoes, urlAPIEscolas, urlAPIUps } from "../../consts/service";
+import { Permissao } from "../../models/auth";
 
-const escolasService = `${process.env.REACT_APP_API_ESCOLAS}/api`
-const upsService = `${process.env.REACT_APP_API_UPS}/api`
+const escolasService = urlAPIEscolas;
+const upsService = urlAPIUps;
 
 const server = setupServer(
+  rest.get(
+    listarUsuarioPermissoes,
+    (_, res, ctx) => res(ctx.json(Object.values(Permissao))),
+  ),
   rest.get(
    `${escolasService}/escolas/obter`,
     (req, res, ctx) => {

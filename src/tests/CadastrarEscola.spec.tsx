@@ -6,6 +6,8 @@ import DragDrop from "../components/cadastrarEscolas/cadastroPlanilha/UploadPlan
 import { AuthProvider } from "../provider/Autenticacao";
 import localStorageMock from "./mock/memoriaLocal";
 import server from "./mock/servicosAPI";
+import { Permissao } from "../models/auth";
+import { autenticar } from "./mock/autenticacao";
 
 beforeAll(() => {
   server.listen();
@@ -31,7 +33,7 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
 const escolasService = `${process.env.REACT_APP_API_ESCOLAS}/api`
 
 test("Cadastro feito", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.EscolaCadastrar);
   render(
     <MemoryRouter initialEntries={["/cadastrarescola"]}>
       <AuthProvider>
@@ -97,7 +99,7 @@ test("Cadastro feito", async () => {
 });
 
 test("Cadastro feito sem latitude e longitude", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.EscolaCadastrar);
 
   render(
     <MemoryRouter initialEntries={["/cadastrarescola"]}>
@@ -158,7 +160,7 @@ test("Cadastro feito sem latitude e longitude", async () => {
 });
 
 test("Erro no cadastro", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.EscolaCadastrar);
 
   server.use(
     rest.post(
@@ -234,7 +236,7 @@ test("Erro no cadastro", async () => {
 });
 
 test("Erro no cep", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.EscolaCadastrar);
 
   server.use(
     rest.get("https://viacep.com.br/ws/12345678/json", (req, res, ctx) => {
@@ -327,7 +329,7 @@ test("Erro no cep", async () => {
 });
 
 test("Lista de escolas redireciona pra listagem", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.EscolaCadastrar);
 
   render(
     <MemoryRouter initialEntries={["/cadastrarescola"]}>
@@ -341,7 +343,7 @@ test("Lista de escolas redireciona pra listagem", async () => {
 });
 
 test("Cadastro CSV", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.EscolaCadastrar);
 
   server.use(
     rest.post(
@@ -377,7 +379,7 @@ test("Cadastro CSV", async () => {
 });
 
 test("Cadastro CSV 2", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.EscolaCadastrar);
 
   render(
     <MemoryRouter initialEntries={["/cadastrarescola"]}>
@@ -405,7 +407,7 @@ test("Cadastro CSV 2", async () => {
 });
 
 test("Cadastro CSV 3", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.EscolaCadastrar);
 
   server.use(
     rest.post(
@@ -441,7 +443,7 @@ test("Cadastro CSV 3", async () => {
 });
 
 test("Cadastro CSV erro", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.EscolaCadastrar);
 
   server.use(
     rest.post(
@@ -476,7 +478,7 @@ test("Cadastro CSV erro", async () => {
 });
 
 test("Cadastro CSV vazio", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.EscolaCadastrar);
 
   server.use(
     rest.post(
@@ -508,7 +510,7 @@ test("Cadastro CSV vazio", async () => {
 });
 
 test("Cadastro sem enviar CSV", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.EscolaCadastrar);
 
   server.use(
     rest.post(
@@ -538,6 +540,8 @@ test("Cadastro sem enviar CSV", async () => {
 });
 
 test("Sem o provider", async () => {
+  autenticar(Permissao.EscolaCadastrar);
+
   expect(() =>
     render(
       <DragDrop

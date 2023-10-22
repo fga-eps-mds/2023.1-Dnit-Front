@@ -5,7 +5,11 @@ import localStorageMock from "./mock/memoriaLocal";
 import server from "./mock/servicosAPI";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { rest } from "msw";
-localStorage.setItem("login", "authenticated");
+import { Permissao } from "../models/auth";
+import { autenticar } from "./mock/autenticacao";
+
+autenticar(Permissao.RodoviaCadastrar);
+
 
 beforeAll(() => server.listen());
 beforeEach(() => {
@@ -29,7 +33,8 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
 const upsService = `${process.env.REACT_APP_API_UPS}/api`
 
 test("Cadastro via CSV", async () => {
-  localStorage.setItem("login", "authenticated");
+    autenticar(Permissao.RodoviaCadastrar);
+
 
   server.use(
     rest.post(
@@ -65,7 +70,8 @@ test("Cadastro via CSV", async () => {
 });
 
 test("Cadastro CSV erro", async () => {
-  localStorage.setItem("login", "authenticated");
+    autenticar(Permissao.RodoviaCadastrar);
+
 
   server.use(
     rest.post(
@@ -100,7 +106,8 @@ test("Cadastro CSV erro", async () => {
 });
 
 test("Cadastro CSV vazio", async () => {
-  localStorage.setItem("login", "authenticated");
+    autenticar(Permissao.RodoviaCadastrar);
+
 
   server.use(
     rest.post(
@@ -131,7 +138,8 @@ test("Cadastro CSV vazio", async () => {
 });
 
 test("Cadastro sem enviar CSV", async () => {
-  localStorage.setItem("login", "authenticated");
+    autenticar(Permissao.RodoviaCadastrar);
+
 
   server.use(
     rest.post(

@@ -35,7 +35,7 @@ function setApiToken(token?: string | null) {
   axios.defaults.headers.common.Authorization = token;
 }
 
-function setPermissoes(permissoes: Permissao[]) {
+export function setPermissoes(permissoes: Permissao[]) {
   localStorage.setItem(AuthLocalStorage.Permissoes, permissoes?.join(PERMISSOES_SEPARATOR) ?? "");
 }
 
@@ -109,6 +109,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }
 
   const temPermissao = (permissao: Permissao) => {
+    console.error("aaaaa", getPermissoes().includes(permissao), permissao, getPermissoes());
     return getPermissoes().includes(permissao);
   };
 
