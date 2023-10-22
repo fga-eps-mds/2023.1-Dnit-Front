@@ -1,8 +1,10 @@
+import { useState } from "react";
 import "./styles.css";
 
 interface CustomTableProps {
   title: string;
   data: Record<string, string>[];
+  initialItemsPerPage: number;
   onDeleteRow: (rowIndex: number) => void;
   onEditRow?: (rowIndex: number) => void;
   onDetailRow?: (rowIndex: number) => void;
@@ -14,6 +16,7 @@ interface CustomTableProps {
 export default function CustomTable({
   title,
   data,
+  initialItemsPerPage,
   onDeleteRow = () => {},
   onEditRow = () => {},
   onDetailRow = () => {},
@@ -21,8 +24,45 @@ export default function CustomTable({
   hideEyeIcon = false,
   hideTrashIcon = false,
 }: CustomTableProps) {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(initialItemsPerPage);
+  const [isPageItemsOpen, setPageItemsOpen] = useState(false);
+  const [isPageIndexOpen, setPageIndexOpen] = useState(false);
+
+  const indexOfLastItem =
+    currentPage * itemsPerPage > data.length
+      ? data.length
+      : currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(data.length / itemsPerPage); i++) {
+    pageNumbers.push(i);
+  }
   if (data.length === 0) return null;
+
   const columns = Object.keys(data[0]);
+  const dataSize = data.length;
+
+  const changeItemsPerPage = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setItemsPerPage(parseInt(event.target.value));
+    setPageItemsOpen(false);
+  };
+
+  function previousPage() {
+    if (currentPage !== 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  }
+
+  function nextPage() {
+    if (currentPage !== pageNumbers.length) {
+      setCurrentPage(currentPage + 1);
+    }
+  }
+
+  const pageOptions = [1, 2, 5, 10, 25, 100, 150, 200, 500, 1000, 2000];
 
   return (
     <div
@@ -61,7 +101,7 @@ export default function CustomTable({
           </tr>
         </thead>
         <tbody>
-          {data.map((item, rowIndex) => (
+          {currentItems.map((item, rowIndex) => (
             <tr>
               <td>
                 <div className="br-checkbox hidden-label">
@@ -111,136 +151,95 @@ export default function CustomTable({
         <nav
           className="br-pagination"
           aria-label="Paginação de resultados"
-          data-total="50"
-          data-current="1"
-          data-per-page="20"
+          data-total={dataSize}
+          data-current={currentPage}
+          data-per-page={itemsPerPage}
         >
           <div className="pagination-per-page">
             <div className="br-select">
-              <div className="br-input">
+              <div
+                className="br-input select-div"
+                onClick={() => console.log("teste")}
+              >
                 <label htmlFor="per-page-selection-random-94892">Exibir</label>
-                <input
-                  id="per-page-selection-random-94892"
-                  type="text"
-                  placeholder=" "
-                />
-                <button
-                  className="br-button"
-                  type="button"
+                <select
+                  className="select-expand"
                   aria-label="Exibir lista"
                   tabIndex={-1}
                   data-trigger="data-trigger"
+                  onChange={(value) => changeItemsPerPage(value)}
+                  onFocus={() => setPageItemsOpen(true)}
+                  onBlur={() => setPageItemsOpen(false)}
                 >
-                  <i className="fas fa-angle-down" aria-hidden="true"></i>
-                </button>
-              </div>
-              <div className="br-list" tabIndex={0}>
-                <div className="br-item" tabIndex={-1}>
-                  <div className="br-radio">
-                    <input
-                      id="per-page-10-random-94892"
-                      type="radio"
-                      name="per-page-random-94892"
-                      value="per-page-10-random-94892"
-                      checked={true}
-                    />
-                    <label htmlFor="per-page-10-random-94892">10</label>
-                  </div>
-                </div>
-                <div className="br-item" tabIndex={-1}>
-                  <div className="br-radio">
-                    <input
-                      id="per-page-20-random-94892"
-                      type="radio"
-                      name="per-page-random-94892"
-                      value="per-page-20-random-94892"
-                    />
-                    <label htmlFor="per-page-20-random-94892">20</label>
-                  </div>
-                </div>
-                <div className="br-item" tabIndex={-1}>
-                  <div className="br-radio">
-                    <input
-                      id="per-page-30-random-94892"
-                      type="radio"
-                      name="per-page-random-94892"
-                      value="per-page-30-random-94892"
-                    />
-                    <label htmlFor="per-page-30-random-94892">30</label>
-                  </div>
-                </div>
+                  {pageOptions.map((element) => {
+                    return element <= dataSize ? (
+                      <option
+                        value={element}
+                        selected={itemsPerPage === element}
+                      >
+                        {element}
+                      </option>
+                    ) : null;
+                  })}
+                </select>
+                <i
+                  className={
+                    isPageItemsOpen
+                      ? "fas fa-angle-down select-icon"
+                      : "fas fa-angle-up select-icon"
+                  }
+                  aria-hidden="true"
+                />
               </div>
             </div>
           </div>
           <span className="br-divider d-none d-sm-block mx-3"></span>
           <div className="pagination-inhtmlFormation d-none d-sm-flex">
-            <span className="current">1</span>&ndash;
-            <span className="per-page">20</span>&nbsp;de&nbsp;
-            <span className="total">50</span>&nbsp;itens
+            <span className="current">{indexOfFirstItem + 1}</span>&ndash;
+            <span className="per-page">{indexOfLastItem}</span>&nbsp;de&nbsp;
+            <span className="total">{dataSize}</span>&nbsp;itens
           </div>
           <div className="pagination-go-to-page d-none d-sm-flex ml-auto">
             <div className="br-select">
-              <div className="br-input">
-                <label htmlFor="go-to-selection-random-18328">Página</label>
-                <input
-                  id="go-to-selection-random-18328"
-                  type="text"
-                  placeholder=" "
-                />
-                <button
-                  className="br-button"
-                  type="button"
+              <div className="br-input select-div">
+                <label htmlFor="per-page-selection-random-94892">Página</label>
+                <select
+                  className="select-expand"
                   aria-label="Exibir lista"
                   tabIndex={-1}
                   data-trigger="data-trigger"
+                  onChange={(value) => {
+                    setCurrentPage(Number(value.target.value));
+                    setPageIndexOpen(false);
+                  }}
+                  onFocus={() => setPageIndexOpen(true)}
+                  onBlur={() => setPageIndexOpen(false)}
                 >
-                  <i className="fas fa-angle-down" aria-hidden="true"></i>
-                </button>
-              </div>
-              <div className="br-list" tabIndex={0}>
-                <div className="br-item" tabIndex={-1}>
-                  <div className="br-radio">
-                    <input
-                      id="go-to-1-random-18328"
-                      type="radio"
-                      name="go-to-random-18328"
-                      value="go-to-1-random-18328"
-                      checked={true}
-                    />
-                    <label htmlFor="go-to-1-random-18328">1</label>
-                  </div>
-                </div>
-                <div className="br-item" tabIndex={-1}>
-                  <div className="br-radio">
-                    <input
-                      id="go-to-2-random-18328"
-                      type="radio"
-                      name="go-to-random-18328"
-                      value="go-to-2-random-18328"
-                    />
-                    <label htmlFor="go-to-2-random-18328">2</label>
-                  </div>
-                </div>
-                <div className="br-item" tabIndex={-1}>
-                  <div className="br-radio">
-                    <input
-                      id="go-to-3-random-18328"
-                      type="radio"
-                      name="go-to-random-18328"
-                      value="go-to-3-random-18328"
-                    />
-                    <label htmlFor="go-to-3-random-18328">3</label>
-                  </div>
-                </div>
+                  {pageNumbers.map((element) => (
+                    <option value={element} selected={currentPage === element}>
+                      {element}
+                    </option>
+                  ))}
+                </select>
+                <i
+                  className={
+                    isPageIndexOpen
+                      ? "fas fa-angle-down select-icon"
+                      : "fas fa-angle-up select-icon"
+                  }
+                  aria-hidden="true"
+                />
               </div>
             </div>
           </div>
+
           <span className="br-divider d-none d-sm-block mx-3"></span>
           <div className="pagination-arrows ml-auto ml-sm-0">
             <button
               className="br-button circle"
               type="button"
               aria-label="Voltar página"
+              onClick={previousPage}
             >
               <i className="fas fa-angle-left" aria-hidden="true"></i>
             </button>
@@ -248,6 +247,7 @@ export default function CustomTable({
               className="br-button circle"
               type="button"
               aria-label="Avançar página"
+              onClick={nextPage}
             >
               <i className="fas fa-angle-right" aria-hidden="true"></i>
             </button>
