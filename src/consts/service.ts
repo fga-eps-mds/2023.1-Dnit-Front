@@ -25,6 +25,7 @@ const solicitacaoDeAcaoURL = `${urlAPIEscolas}/solicitacaoAcao`;
 const cadastroRodoviasURL = `${urlAPIUps}/rodovia/cadastrarRodoviaPlanilha`;
 const calcularUpsURL = `${urlAPIUps}/calcular/ups/escola`;
 const cadastroSinistrosURL = `${urlAPIUps}/sinistro/cadastrarSinistroPlanilha`;
+const listarUsuarioPermissoes = `${urlAPIUsuario}/usuario/permissoes`;
 
 export {
   atualizarTokenUrl,
@@ -51,4 +52,5 @@ export {
   cadastroUsuarioURL,
   redefinirSenhaURL,
   urlAPIViaCEP,
+  listarUsuarioPermissoes,
 };

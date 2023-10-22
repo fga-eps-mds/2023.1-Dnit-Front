@@ -1,7 +1,6 @@
 import { Form, Input, Radio, Select, Space, notification } from "antd";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../provider/Autenticacao";
 import fetchUnidadeFederativa from "../../service/unidadesFederativas";
 import fetchCadastro from "../../service/cadastrarUsuario";
 import "../../styles/form.css";
