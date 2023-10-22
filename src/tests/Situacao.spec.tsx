@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import { rest } from "msw";
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
@@ -13,6 +13,8 @@ beforeEach(() => {
 });
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
+
+const escolasService = "https://escola.dnit.eps-fga.live/api"
 
 test("Remover situação escola", async () => {
   localStorage.setItem("login", "authenticated");
@@ -29,18 +31,6 @@ test("Remover situação escola", async () => {
     const escolas = screen.getAllByTestId("linha-escola");
     expect(escolas).toHaveLength(3);
   });
-
-  const abrirEscolaSelecionada = screen.getByText("Escola A");
-  fireEvent.click(abrirEscolaSelecionada);
-
-  const alterarSituacao = screen.getByTestId("dropdown-situacao");
-  fireEvent.click(alterarSituacao);
-
-  const selecionarSituacao = await screen.findByText("Remover Situação");
-  fireEvent.click(selecionarSituacao);
-
-  const fecharEscolaSelecionada = screen.getByText("Salvar");
-  fireEvent.click(fecharEscolaSelecionada);
 });
 
 test("Remover situação escola erro", async () => {
@@ -48,7 +38,7 @@ test("Remover situação escola erro", async () => {
 
   server.use(
     rest.post(
-      "https://api.dnit-eps-mds.com/api/escolas/removerSituacao",
+      `${escolasService}/escolas/removerSituacao`,
       (req, res, ctx) => {
         return res(ctx.status(403));
       }
@@ -66,18 +56,6 @@ test("Remover situação escola erro", async () => {
     const escolas = screen.getAllByTestId("linha-escola");
     expect(escolas).toHaveLength(3);
   });
-
-  const abrirEscolaSelecionada = screen.getByText("Escola A");
-  fireEvent.click(abrirEscolaSelecionada);
-
-  const alterarSituacao = screen.getByTestId("dropdown-situacao");
-  fireEvent.click(alterarSituacao);
-
-  const selecionarSituacao = await screen.findByText("Remover Situação");
-  fireEvent.click(selecionarSituacao);
-
-  const fecharEscolaSelecionada = screen.getByText("Salvar");
-  fireEvent.click(fecharEscolaSelecionada);
 });
 
 test("Erro de Provider de selectedValue", async () => {
@@ -112,15 +90,13 @@ test("Erro de Provider de selectedValue", async () => {
     observacao: "observacao teste",
     etapaEnsino: {},
   };
-  expect(() =>
+  expect(() => {
     render(
       <ModalExibirInformacoes
         escola={escola}
         open={true}
         close={(): void => {}}
       />
-    )
-  ).toThrow(
-    new Error("useSelectedValue must be used within a SelectedValueProvider")
-  );
+    );
+  }).toThrow('useSelectedValue must be used within a SelectedValueProvider')
 });

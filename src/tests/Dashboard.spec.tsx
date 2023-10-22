@@ -1,3 +1,4 @@
+/* eslint-disable testing-library/render-result-naming-convention */
 import { fireEvent, render } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
 import App from "../App";
