@@ -5,6 +5,7 @@ services:
             CHOKIDAR_USEPOLLING: "true"
         volumes: 
             - ./src:/app/src
+            - .env:/app/.env
         container_name: frontend_dnit
         build:
             context: ./
