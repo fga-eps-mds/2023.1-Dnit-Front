@@ -2,7 +2,7 @@ FROM node:lts
 
 WORKDIR /app
 
-COPY package.json yarn.lock .env ./ 
+COPY package.json .env ./ 
 
 RUN yarn --ignore-scripts
 
