@@ -5,6 +5,8 @@ import App from "../App";
 import { AuthProvider } from "../provider/Autenticacao";
 import localStorageMock from "./mock/memoriaLocal";
 import server from "./mock/servicosAPI";
+import { Permissao } from "../models/auth";
+import { autenticar } from "./mock/autenticacao";
 
 beforeAll(() => server.listen());
 beforeEach(() => {
@@ -27,7 +29,7 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
 });
 
 test("Lista de escolas é exibida corretamente", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.EscolaVisualizar);
 
   render(
     <MemoryRouter initialEntries={["/escolas-cadastradas"]}>
@@ -44,7 +46,7 @@ test("Lista de escolas é exibida corretamente", async () => {
 });
 
 test("Filtragem de escolas", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.EscolaVisualizar);
 
   render(
     <MemoryRouter initialEntries={["/escolas-cadastradas"]}>
@@ -94,13 +96,14 @@ test("Filtragem de escolas", async () => {
     expect(screen.queryByText("Carregando...")).not.toBeInTheDocument()
   );
 
+  // eslint-disable-next-line testing-library/no-debugging-utils
   screen.debug(etapas);
   const etapasSelecionada = screen.getByText("Educação Infantil");
   fireEvent.click(etapasSelecionada);
 });
 
 test("Clicar em Cadastrar escola", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.EscolaCadastrar, Permissao.EscolaVisualizar);
 
   render(
     <MemoryRouter initialEntries={["/escolas-cadastradas"]}>
@@ -115,7 +118,7 @@ test("Clicar em Cadastrar escola", async () => {
 });
 
 test("Mudar quantidade de escolas por página", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.EscolaVisualizar);
 
   render(
     <MemoryRouter initialEntries={["/escolas-cadastradas"]}>
@@ -144,7 +147,7 @@ test("Mudar quantidade de escolas por página", async () => {
 });
 
 test("Exibir escola selecionada", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.EscolaVisualizar);
 
   render(
     <MemoryRouter initialEntries={["/escolas-cadastradas"]}>

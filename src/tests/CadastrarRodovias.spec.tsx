@@ -1,12 +1,15 @@
-import { fireEvent, render, screen } from "@testing-library/react";
-import { rest } from "msw";
-localStorage.setItem("login", "authenticated");
-
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
 import { AuthProvider } from "../provider/Autenticacao";
 import localStorageMock from "./mock/memoriaLocal";
 import server from "./mock/servicosAPI";
+import { fireEvent, render, screen } from "@testing-library/react";
+import { rest } from "msw";
+import { Permissao } from "../models/auth";
+import { autenticar } from "./mock/autenticacao";
+
+autenticar(Permissao.RodoviaCadastrar);
+
 
 beforeAll(() => server.listen());
 beforeEach(() => {
@@ -27,12 +30,14 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
   };
 });
 
+const upsService = `${process.env.REACT_APP_API_UPS}/api`
+
 test("Cadastro via CSV", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.RodoviaCadastrar);
 
   server.use(
     rest.post(
-      "https://api.aprovaunb.com.br/api/rodovia/cadastrarRodoviaPlanilha",
+      `${upsService}/rodovia/cadastrarRodoviaPlanilha`,
       (req, res, ctx) => {
         return res(ctx.status(200));
       }
@@ -63,12 +68,27 @@ test("Cadastro via CSV", async () => {
   fireEvent.click(botaoConcluir);
 });
 
+test("Cadastro Sem Permissão", async () => {
+  autenticar();
+
+  render(
+    <MemoryRouter initialEntries={["/cadastrarRodovias"]}>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </MemoryRouter>
+  );
+  const botao = await screen.queryByText("Concluir");
+  expect(botao).toBeNull();
+});
+
 test("Cadastro CSV erro", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.RodoviaCadastrar);
+
 
   server.use(
     rest.post(
-      "https://api.aprovaunb.com.br/api/rodovia/cadastrarRodoviaPlanilha",
+      `${upsService}/rodovia/cadastrarRodoviaPlanilha`,
       (req, res, ctx) => {
         return res(ctx.status(406));
       }
@@ -99,11 +119,12 @@ test("Cadastro CSV erro", async () => {
 });
 
 test("Cadastro CSV vazio", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.RodoviaCadastrar);
+
 
   server.use(
     rest.post(
-      "https://api.aprovaunb.com.br/api/rodovia/cadastrarRodoviaPlanilha",
+      `${upsService}/rodovia/cadastrarRodoviaPlanilha`,
       (req, res, ctx) => {
         return res(ctx.status(400), ctx.json("Nenhum arquivo enviado."));
       }
@@ -130,11 +151,12 @@ test("Cadastro CSV vazio", async () => {
 });
 
 test("Cadastro sem enviar CSV", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.RodoviaCadastrar);
+
 
   server.use(
     rest.post(
-      "https://api.aprovaunb.com.br/api/rodovia/cadastrarRodoviaPlanilha",
+      `${upsService}/rodovia/cadastrarRodoviaPlanilha`,
       (req, res, ctx) => {
         return res(ctx.json([]));
       }

@@ -1,6 +1,6 @@
-const urlAPIUsuario = "https://api.aprovaunb.com/api";
-const urlAPIEscolas = "https://api.dnit-eps-mds.com/api";
-const urlAPIUps = "https://api.aprovaunb.com.br/api";
+export const urlAPIUsuario = `${process.env.REACT_APP_API_USUARIOS}/api`;
+export const urlAPIEscolas = `${process.env.REACT_APP_API_ESCOLAS}/api`;
+export const urlAPIUps = `${process.env.REACT_APP_API_UPS}/api`;
 const urlAPIViaCEP = "https://viacep.com.br/ws";
 const etapasDeEnsinoURL = `${urlAPIEscolas}/dominio/etapasDeEnsino`;
 const municipioURL = `${urlAPIEscolas}/dominio/municipio`;
@@ -11,6 +11,7 @@ const cadastroURL = `${urlAPIUsuario}/usuario/cadastrar`;
 const cadastroUsuarioURL = `${urlAPIUsuario}/usuario/cadastrarUsuarioDnit`;
 const recuperarSenhaURL = `${urlAPIUsuario}/usuario/recuperarSenha`;
 const redefinirSenhaURL = `${urlAPIUsuario}/usuario/redefinirSenha`;
+const atualizarTokenUrl = `${urlAPIUsuario}/usuario/atualizarToken`;
 const excluirSituacaoURL = `${urlAPIEscolas}/escolas/removerSituacao`;
 const cadastroEscolaURL = `${urlAPIEscolas}/escolas/cadastrarEscola`;
 const listarInfoEscolaURL = `${urlAPIEscolas}/escolas/listarInformacoesEscola`;
@@ -24,8 +25,10 @@ const solicitacaoDeAcaoURL = `${urlAPIEscolas}/solicitacaoAcao`;
 const cadastroRodoviasURL = `${urlAPIUps}/rodovia/cadastrarRodoviaPlanilha`;
 const calcularUpsURL = `${urlAPIUps}/calcular/ups/escola`;
 const cadastroSinistrosURL = `${urlAPIUps}/sinistro/cadastrarSinistroPlanilha`;
+const listarUsuarioPermissoes = `${urlAPIUsuario}/usuario/permissoes`;
 
 export {
+  atualizarTokenUrl,
   escolasFiltradasURL,
   escolasInepURL,
   etapasDeEnsinoURL,
@@ -49,4 +52,5 @@ export {
   cadastroUsuarioURL,
   redefinirSenhaURL,
   urlAPIViaCEP,
+  listarUsuarioPermissoes,
 };

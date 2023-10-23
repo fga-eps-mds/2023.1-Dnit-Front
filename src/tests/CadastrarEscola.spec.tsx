@@ -6,6 +6,8 @@ import DragDrop from "../components/cadastrarEscolas/cadastroPlanilha/UploadPlan
 import { AuthProvider } from "../provider/Autenticacao";
 import localStorageMock from "./mock/memoriaLocal";
 import server from "./mock/servicosAPI";
+import { Permissao } from "../models/auth";
+import { autenticar } from "./mock/autenticacao";
 
 beforeAll(() => {
   server.listen();
@@ -28,8 +30,10 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
   };
 });
 
+const escolasService = `${process.env.REACT_APP_API_ESCOLAS}/api`
+
 test("Cadastro feito", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.EscolaCadastrar);
   render(
     <MemoryRouter initialEntries={["/cadastrarescola"]}>
       <AuthProvider>
@@ -94,8 +98,22 @@ test("Cadastro feito", async () => {
   fireEvent.click(cadastrar);
 });
 
+test("Cadastro Sem Permissão", async () => {
+  autenticar();
+
+  render(
+    <MemoryRouter initialEntries={["/cadastrarescola"]}>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </MemoryRouter>
+  );
+  const cadastrar = await screen.queryByText("Cadastrar");
+  expect(cadastrar).toBeNull();
+});
+
 test("Cadastro feito sem latitude e longitude", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.EscolaCadastrar);
 
   render(
     <MemoryRouter initialEntries={["/cadastrarescola"]}>
@@ -156,11 +174,11 @@ test("Cadastro feito sem latitude e longitude", async () => {
 });
 
 test("Erro no cadastro", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.EscolaCadastrar);
 
   server.use(
     rest.post(
-      "https://api.dnit-eps-mds.com/api/escolas/cadastrarEscola",
+      `${escolasService}/escolas/cadastrarEscola`,
       (req, res, ctx) => {
         return res(ctx.status(400));
       }
@@ -232,7 +250,7 @@ test("Erro no cadastro", async () => {
 });
 
 test("Erro no cep", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.EscolaCadastrar);
 
   server.use(
     rest.get("https://viacep.com.br/ws/12345678/json", (req, res, ctx) => {
@@ -325,7 +343,7 @@ test("Erro no cep", async () => {
 });
 
 test("Lista de escolas redireciona pra listagem", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.EscolaCadastrar);
 
   render(
     <MemoryRouter initialEntries={["/cadastrarescola"]}>
@@ -339,11 +357,11 @@ test("Lista de escolas redireciona pra listagem", async () => {
 });
 
 test("Cadastro CSV", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.EscolaCadastrar);
 
   server.use(
     rest.post(
-      "https://api.dnit-eps-mds.com/api/escolas/cadastrarEscolaPlanilha",
+      `${escolasService}/escolas/cadastrarEscolaPlanilha`,
       (req, res, ctx) => {
         return res(ctx.status(200));
       }
@@ -374,8 +392,8 @@ test("Cadastro CSV", async () => {
   fireEvent.click(concluir);
 });
 
-test("Cadastro CSV", async () => {
-  localStorage.setItem("login", "authenticated");
+test("Cadastro CSV 2", async () => {
+  autenticar(Permissao.EscolaCadastrar);
 
   render(
     <MemoryRouter initialEntries={["/cadastrarescola"]}>
@@ -402,12 +420,12 @@ test("Cadastro CSV", async () => {
   fireEvent.click(concluir);
 });
 
-test("Cadastro CSV", async () => {
-  localStorage.setItem("login", "authenticated");
+test("Cadastro CSV 3", async () => {
+  autenticar(Permissao.EscolaCadastrar);
 
   server.use(
     rest.post(
-      "https://api.dnit-eps-mds.com/api/escolas/cadastrarEscolaPlanilha",
+      `${escolasService}/escolas/cadastrarEscolaPlanilha`,
       (req, res, ctx) => {
         return res(ctx.json([1, 2, 3, 4, 5, 6, 7]));
       }
@@ -439,11 +457,11 @@ test("Cadastro CSV", async () => {
 });
 
 test("Cadastro CSV erro", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.EscolaCadastrar);
 
   server.use(
     rest.post(
-      "https://api.dnit-eps-mds.com/api/escolas/cadastrarEscolaPlanilha",
+      `${escolasService}/escolas/cadastrarEscolaPlanilha`,
       (req, res, ctx) => {
         return res(ctx.status(406));
       }
@@ -474,11 +492,11 @@ test("Cadastro CSV erro", async () => {
 });
 
 test("Cadastro CSV vazio", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.EscolaCadastrar);
 
   server.use(
     rest.post(
-      "https://api.dnit-eps-mds.com/api/escolas/cadastrarEscolaPlanilha",
+      `${escolasService}/escolas/cadastrarEscolaPlanilha`,
       (req, res, ctx) => {
         return res(ctx.json("Nenhum arquivo enviado."), ctx.status(400));
       }
@@ -506,11 +524,11 @@ test("Cadastro CSV vazio", async () => {
 });
 
 test("Cadastro sem enviar CSV", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.EscolaCadastrar);
 
   server.use(
     rest.post(
-      "https://api.dnit-eps-mds.com/api/escolas/cadastrarescolaPlanilha",
+      `${escolasService}/escolas/cadastrarescolaPlanilha`,
       (req, res, ctx) => {
         return res(ctx.json([]));
       }
@@ -536,6 +554,8 @@ test("Cadastro sem enviar CSV", async () => {
 });
 
 test("Sem o provider", async () => {
+  autenticar(Permissao.EscolaCadastrar);
+
   expect(() =>
     render(
       <DragDrop

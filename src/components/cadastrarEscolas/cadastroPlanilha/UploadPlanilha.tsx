@@ -46,7 +46,7 @@ const App: React.FC<UploadPlanilhaEscolaProps> = ({
       arquivoData.append("arquivo", arquivos[0].originFileObj as File);
 
       try {
-        const response = await axios.post('https://api.dnit-eps-mds.com/api/escolas/cadastrarEscolaPlanilha', arquivoData);
+        const response = await axios.post(cadastroEscolaPlanilhaURL, arquivoData);
 
         if (
           response.data &&

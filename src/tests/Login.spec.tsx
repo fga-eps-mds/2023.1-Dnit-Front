@@ -1,9 +1,12 @@
+/* eslint-disable testing-library/no-unnecessary-act */
+/* eslint-disable testing-library/render-result-naming-convention */
 import { fireEvent, render, waitFor } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
-import { AuthProvider } from "../provider/Autenticacao";
+import { AuthLocalStorage, AuthProvider, atualizarToken, getPermissoes, removerLogin, salvarLogin, setPermissoes, temPermissao } from "../provider/Autenticacao";
 import fetchLogin from "../service/login";
+import { LoginResponse, Permissao } from "../models/auth";
 
 jest.mock("../service/login", () => ({
   __esModule: true,
@@ -25,11 +28,11 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
   };
 });
 
-describe("", () => {
+describe("Login tests", () => {
   it("should render Login", async () => {
     mockedUseLogin.mockResolvedValueOnce({ success: true });
 
-    const { getByLabelText, getByText } = render(
+    const screen = render(
       <MemoryRouter initialEntries={["/login"]}>
         <AuthProvider>
           <App />
@@ -38,9 +41,9 @@ describe("", () => {
     );
 
     await act(async () => {
-      const emailInput = getByLabelText("E-mail");
-      const passwordInput = getByLabelText("Senha");
-      const entrarButton = getByText("Entrar");
+      const emailInput = screen.getByLabelText("E-mail");
+      const passwordInput = screen.getByLabelText("Senha");
+      const entrarButton = screen.getByText("Entrar");
 
       fireEvent.change(emailInput, { target: { value: "dora@gmail.com" } });
       fireEvent.change(passwordInput, { target: { value: "123456" } });
@@ -61,3 +64,46 @@ test("Home", async () => {
   const home = screen.getByTestId("redirecionar");
   fireEvent.click(home);
 });
+
+test("O login deve ser salvo", () => {
+  const login: LoginResponse = {
+    token: 'token',
+    tokenAtualizacao: 'token atualizacao',
+    expiraEm: new Date().toISOString(),
+    permissoes: [Permissao.EscolaCadastrar, Permissao.EscolaVisualizar]
+  };
+  salvarLogin(login);
+
+  expect(getPermissoes().length).toBeGreaterThan(0);
+  expect(temPermissao(Permissao.EscolaCadastrar)).toBeTruthy();
+  expect(temPermissao(Permissao.RodoviaCadastrar)).not.toBeTruthy();
+});
+
+test("A permissão deve existir", () => {
+  setPermissoes([Permissao.EscolaCadastrar]);
+  expect(temPermissao(Permissao.EscolaCadastrar)).toBeTruthy();
+});
+
+test("A permissão não deve existir", () => {
+  setPermissoes([Permissao.EscolaCadastrar]);
+  expect(temPermissao(Permissao.EscolaEditar)).not.toBeTruthy();
+});
+
+test("O login deve ser removido", () => {
+  removerLogin();
+  expect(localStorage.getItem(AuthLocalStorage.Token)).toBeNull();
+});
+
+test("Atualiza o token", () => {
+  const login: LoginResponse = {
+    token: 'token',
+    tokenAtualizacao: 'token atualizacao',
+    expiraEm: new Date().toISOString(),
+    permissoes: [Permissao.EscolaCadastrar, Permissao.EscolaVisualizar]
+  };
+  salvarLogin(login);
+  atualizarToken();
+
+  expect(localStorage.getItem(AuthLocalStorage.Token)).not.toBeNull();
+  expect(temPermissao(Permissao.EscolaCadastrar)).toBeTruthy();
+})

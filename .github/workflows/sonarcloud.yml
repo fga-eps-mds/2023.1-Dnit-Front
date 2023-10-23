@@ -3,6 +3,7 @@ on:
  push:
    branches:
      - main
+     - develop
  pull_request:
    types: [opened, synchronize, reopened]
 jobs:
@@ -13,10 +14,19 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0 
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Print env
+        run: printenv
       - name: Install dependencies
         run: npm install
       - name: Test and coverage
-        run: npm run test:cov --maxWorkers=2 --runInBand
+        env:
+          REACT_APP_API_USUARIOS: https://usuario.dnit.eps-fga.live
+          REACT_APP_API_ESCOLAS: https://escola.dnit.eps-fga.live
+          REACT_APP_API_UPS: https://up.dnit.eps-fga.live
+        run: npm run test:cov -- --silent
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:

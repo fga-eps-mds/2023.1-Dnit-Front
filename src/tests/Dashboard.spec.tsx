@@ -1,8 +1,11 @@
+/* eslint-disable testing-library/render-result-naming-convention */
 import { fireEvent, render } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
 import App from "../App";
 import { AuthProvider } from "../provider/Autenticacao";
 import localStorageMock from "./mock/memoriaLocal";
+import { autenticar } from "./mock/autenticacao";
+import { Permissao } from "../models/auth";
 
 beforeEach(() => {
   Object.defineProperty(window, "localStorage", { value: localStorageMock });
@@ -21,7 +24,7 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
 });
 
 test("Visualizar Escolas", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.EscolaVisualizar);
 
   const screen = render(
     <MemoryRouter initialEntries={["/dashboard"]}>
@@ -35,8 +38,23 @@ test("Visualizar Escolas", async () => {
   fireEvent.click(escolas);
 });
 
+test("Visualizar Escolas Sem Permissão", async () => {
+  autenticar();
+
+  const screen = render(
+    <MemoryRouter initialEntries={["/dashboard"]}>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </MemoryRouter>
+  );
+
+  const botao = await screen.queryByText("Visualizar Escolas");
+  expect(botao).toBeNull();
+});
+
 test("Visualizar Dados UPS", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.UpsVisualizar);
 
   const screen = render(
     <MemoryRouter initialEntries={["/dashboard"]}>
@@ -50,8 +68,23 @@ test("Visualizar Dados UPS", async () => {
   fireEvent.click(ups);
 });
 
+test("Visualizar Dados UPS Sem Permissão", async () => {
+  autenticar();
+
+  const screen = render(
+    <MemoryRouter initialEntries={["/dashboard"]}>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </MemoryRouter>
+  );
+
+  const botao = await screen.queryByText("Visualizar Dados UPS");
+  expect(botao).toBeNull();
+});
+
 test("Cadastrar Escolas", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.EscolaCadastrar);
 
   const screen = render(
     <MemoryRouter initialEntries={["/dashboard"]}>
@@ -65,8 +98,23 @@ test("Cadastrar Escolas", async () => {
   fireEvent.click(escolas);
 });
 
+test("Cadastrar Escolas Sem Permissão", async () => {
+  autenticar();
+
+  const screen = render(
+    <MemoryRouter initialEntries={["/dashboard"]}>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </MemoryRouter>
+  );
+
+  const botao = await screen.queryByText("Cadastrar Escolas");
+  expect(botao).toBeNull();
+});
+
 test("Adicionar Sinistros", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.SinistroCadastrar);
 
   const screen = render(
     <MemoryRouter initialEntries={["/dashboard"]}>
@@ -80,8 +128,23 @@ test("Adicionar Sinistros", async () => {
   fireEvent.click(sinistros);
 });
 
+test("Adicionar Sinistros Sem Permissão", async () => {
+  autenticar();
+
+  const screen = render(
+    <MemoryRouter initialEntries={["/dashboard"]}>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </MemoryRouter>
+  );
+
+  const botao = await screen.queryByText("Adicionar Sinistros");
+  expect(botao).toBeNull();
+});
+
 test("Adicionar Rodovias", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.RodoviaCadastrar);
 
   const screen = render(
     <MemoryRouter initialEntries={["/dashboard"]}>
@@ -93,4 +156,19 @@ test("Adicionar Rodovias", async () => {
 
   const rodovias = screen.getByText("Adicionar Rodovias");
   fireEvent.click(rodovias);
+});
+
+test("Adicionar Rodovias Sem Permissão", async () => {
+  autenticar();
+
+  const screen = render(
+    <MemoryRouter initialEntries={["/dashboard"]}>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </MemoryRouter>
+  );
+
+  const botao = await screen.queryByText("Adicionar Rodovias");
+  expect(botao).toBeNull();
 });
