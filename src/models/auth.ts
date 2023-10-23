@@ -18,6 +18,12 @@ export enum Permissao {
   SinistroCadastrar = "SinistroCadastrar",
 }
 
+export enum TipoPerfil {
+  Basico = "Basico",
+  Administrador = "Administrador",
+  Customizavel = "Customizavel",
+}
+
 export interface LoginResponse {
   token: string;
   tokenAtualizacao: string;
@@ -28,4 +34,26 @@ export interface LoginResponse {
 export interface AtualizarTokenDto {
   token: string;
   tokenAtualizacao: string;
+}
+
+export interface PermissaoCategoria{
+  categoria: string;
+  permissoes: PermissaoModel[];
+}
+
+export interface PermissaoModel {
+  codigo: Permissao;
+  descricao: string;
+}
+
+export interface PerfisTabela {
+  id: string;
+  nome: string;
+  tipo: TipoPerfil;
+  permissoes: PermissaoModel[];
+}
+
+export interface TabelaGerenciarPerfil {
+  'Tipo de perfil': string;
+  'Permissões': PermissaoModel[];
 }

@@ -2,16 +2,17 @@ import  { ReactNode } from 'react'
 import './styles.css'
 
 interface ModalProps {
-  title: string;
+  title: string | ReactNode;
   isOpen: boolean;
   children: ReactNode;
   button1Text: string;
   button2Text: string;
+  mostrarConfirmacao: boolean;
   confirmAction: () => void;
   closeModal: () => void;
 }
 
-export default function Modal({title, isOpen, children, button1Text, button2Text, confirmAction, closeModal } : ModalProps) {
+export default function Modal({title, isOpen, children, button1Text, button2Text, mostrarConfirmacao, confirmAction, closeModal } : ModalProps) {
   if (!isOpen) return null;
 
   return (
@@ -30,7 +31,7 @@ export default function Modal({title, isOpen, children, button1Text, button2Text
           <button className="br-button secondary" type="button" onClick={closeModal}>
             <span>{button1Text}</span>
           </button>
-          <button className="br-button primary ml-2" type="button" onClick={confirmAction}>
+          <button className="br-button primary ml-2" type="button" onClick={confirmAction} disabled={!mostrarConfirmacao}>
             <span>{button2Text}</span>
           </button>
         </div>

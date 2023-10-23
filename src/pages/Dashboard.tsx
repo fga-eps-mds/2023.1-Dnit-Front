@@ -87,7 +87,7 @@ export default function Dashboard() {
       key: "3",
       label: "Ferramentas Administrativas",
       children: (
-        <div>
+        <div className="collapse-item">
           <Card className="disabled">
           <FileTextOutlined className="icon" />
           <p className="text">Cadastrar empresas</p>

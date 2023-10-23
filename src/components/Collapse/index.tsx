@@ -1,76 +1,64 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './style.css';
+import { Permissao } from '../../models/auth';
 
-interface CollapseInterface {
+export interface CollapseOpcao {
+    id: string;
+    nome: string;
+}
+
+
+export interface CollapseInterface {
     titulo: string;
-    opcoes: string[];
+    opcoes: CollapseOpcao[];
+    onSelectionChange: (titulo: string, estados: boolean[]) => void,
 }
 
 const CollapseCustom = (props: CollapseInterface) => {
-    const { titulo, opcoes } = props;
-
+    const { titulo, opcoes, onSelectionChange } = props;
     const [isCollapsed, setIsCollapsed] = useState(true);
-    const toggleCollapse = () => { setIsCollapsed(!isCollapsed) };
-
     const [checkboxStates, setCheckboxStates] = useState(opcoes.map(() => false));
 
-    const handleParentCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const isChecked = event.target.checked;
-        const newCheckboxStates = opcoes.map(() => isChecked);
-        setCheckboxStates(newCheckboxStates);
+    const toggleCollapse = () => { setIsCollapsed(c => !c) };
 
-        const celula = document.getElementById("CollapsePai");
-        const label = document.getElementById("labelCollapsePai");
 
-        if (celula && label) {
-            const novaCorFundo = celula.style.backgroundColor === "rgb(38, 112, 232)" ? "#FFFFFF" : "#2670E8";
-            const novaCorTexto = celula.style.backgroundColor === "rgb(38, 112, 232)" ? "#000000" : "#FFFFFF";
-
-            celula.style.backgroundColor = novaCorFundo;
-            label.style.color = novaCorTexto;
-        }
-                                   
+    const handleParentCheckboxChange = () => {
+        setCheckboxStates(states => {
+            const checked = !states.every(s => s);
+            onSelectionChange(titulo, states.map(() => checked));
+            return states.map(() => checked);
+        });
     };
 
     const handleChildCheckboxChange = (index: number) => {
-        const newCheckboxStates = [...checkboxStates];
-        newCheckboxStates[index] = !newCheckboxStates[index];
-        setCheckboxStates(newCheckboxStates);
-
-        const celula = document.getElementById(`conteudo-${index}`);
-        const conteudo = document.getElementById(`filho-${index}`);
-        const label = document.getElementById(`label-${index}`);
-        
-        if (celula && conteudo && label) {
-            const novaCorFundo = !newCheckboxStates[index] ? "#F8F8F8" : "#2670E8";
-            const novaCorTexto = !newCheckboxStates[index] ? "#000000" : "#FFFFFF";
-            
-            celula.style.backgroundColor = novaCorFundo;
-            conteudo.style.backgroundColor = novaCorFundo;
-            label.style.color = novaCorTexto;
-        }
+        setCheckboxStates(states => {
+            const newStates = [...states];
+            newStates[index] = !newStates[index];
+            onSelectionChange(titulo, newStates);
+            return newStates;
+        });
     };
 
     const elementosFilhos = opcoes.map((item, index) => (
-        <div className="CollapseOpcoes" key={index}>
-            <div className="conteudo" id={`conteudo-${index}`}>
-                <div className="align-items-center br-item" role="listitem" id={`filho-${index}`}>
+        <div className="CollapseOpcoes" key={`${titulo}-${item.id}`}>
+            <div className="conteudo" style={{
+                    backgroundColor: checkboxStates[index] ? "#2670E8" : "#ffffff"
+                }}>
+                <div className="align-items-center br-item" role="listitem" style={{
+                    backgroundColor: 'transparent'
+                }}>
                     <div className="row align-items-center">
                         <div className="mb-1">
-                            <div className="br-checkbox">
+                            <div className="br-checkbox" onClick={() => handleChildCheckboxChange(index)}>
                                 <input
-                                    id={`checkbox${index}`}
-                                    name={`checkbox${index}`}
+                                    id={`checkbox${item.id}`}
+                                    name={`checkbox${item.id}`}
                                     type="checkbox"
                                     data-child={titulo}
                                     checked={checkboxStates[index]}
-                                    onChange={() => {
-                                        handleChildCheckboxChange(index);
-                                    }}
+                                    onChange={() => {}}
                                 />
-                                <label id={`label-${index}`} htmlFor={`checkbox${index}`} style={{ fontFamily: 'Rawline' }}>
-                                    {item}
-                                </label>
+                                <label htmlFor={`checkbox-${index}`} style={{fontFamily: 'Rawline', color: checkboxStates[index] ? "#FFFFFF" : "#000000"}}>{item.nome}</label>
                             </div>
                         </div>
                     </div>
@@ -81,18 +69,25 @@ const CollapseCustom = (props: CollapseInterface) => {
     ));
 
     return (
-        <div className="collapse-example">
-            <div className="align-items-center br-item" role="listitem" onClick={toggleCollapse} id={"CollapsePai"}>
-                <div className="content"  onClick={() => console.log("teste")}>
+        <div style={{
+            display: "flex",
+            flexDirection: "column",
+            width: "100%"
+          }}>
+            <div className="align-items-center br-item" role="listitem" onClick={toggleCollapse} id={`CollapsePai-${titulo}`} style={{
+                backgroundColor: checkboxStates.every(s => s) ? "#2670E8" : "#ffffff"
+            }}>
+                <div className="content">
                     <div className="flex-fill">
-                        <div className="br-checkbox" >
-                            <input id="checkbox-ind1" 
+                        <div className="br-checkbox" onClick={() => {handleParentCheckboxChange();}}>
+                            <input
                                    name="checkbox-ind1" 
                                    type="checkbox" 
                                    data-parent={titulo}
-                                   onChange={handleParentCheckboxChange}
+                                   checked={checkboxStates.every(s => s)}
+                                   onChange={() => {}}
                             />
-                            <label htmlFor="checkbox-ind1" id={"labelCollapsePai"} style={{ fontFamily: 'Rawline, sans-serif'}}>
+                            <label htmlFor="checkbox-ind1" id={`labelCollapsePai-${titulo}`} style={{ fontFamily: 'Rawline, sans-serif'}}>
                                 {titulo}
                             </label>
                         </div>
@@ -104,7 +99,7 @@ const CollapseCustom = (props: CollapseInterface) => {
             <span className="br-divider"></span>
 
             {isCollapsed && (
-                <div className="br-list" role="list" data-sub="data-sub">
+                <div className="d-flex flex-column w-100" role="list" data-sub="data-sub">
                     {elementosFilhos}
                 </div>
             )}

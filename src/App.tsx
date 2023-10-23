@@ -16,7 +16,6 @@ import TelaUPS from "./pages/TelaUPS";
 import { AuthContext, configuraAutenticacaoAxios } from "./provider/Autenticacao";
 import "./styles/App.css";
 import ModalCamposEscola from "./components/escolasCadastradas/ModalCamposEscola";
-import ModalEditarPerfil from "./components/gerenciarPerfis/ModalEditarPerfil";
 
 function App() {
   const { getAuth } = useContext(AuthContext);

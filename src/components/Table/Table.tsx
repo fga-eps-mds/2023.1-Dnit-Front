@@ -5,7 +5,7 @@ interface CustomTableProps {
   title: string;
   data: Record<string, string>[];
   initialItemsPerPage: number;
-  onDeleteRow: (rowIndex: number) => void;
+  onDeleteRow: React.Dispatch<React.SetStateAction<number>>;
   onEditRow?: (rowIndex: number) => void;
   onDetailRow?: (rowIndex: number) => void;
   hideEditIcon?: boolean;
@@ -17,7 +17,7 @@ export default function CustomTable({
   title,
   data,
   initialItemsPerPage,
-  onDeleteRow = () => {},
+  onDeleteRow,
   onEditRow = () => {},
   onDetailRow = () => {},
   hideEditIcon = false,
@@ -138,7 +138,7 @@ export default function CustomTable({
                     <i
                       className="fas fa-trash-alt"
                       aria-hidden="true"
-                      onClick={() => onDeleteRow(rowIndex)}
+                      onClick={() => {onDeleteRow(rowIndex); console.log(rowIndex)}}
                     />
                   )}
                 </div>

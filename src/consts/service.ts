@@ -26,6 +26,10 @@ const cadastroRodoviasURL = `${urlAPIUps}/rodovia/cadastrarRodoviaPlanilha`;
 const calcularUpsURL = `${urlAPIUps}/calcular/ups/escola`;
 const cadastroSinistrosURL = `${urlAPIUps}/sinistro/cadastrarSinistroPlanilha`;
 const listarUsuarioPermissoes = `${urlAPIUsuario}/usuario/permissoes`;
+const listarPermissoesCategoria = `${urlAPIUsuario}/dominio/permissoes`;
+const listarTabelaPerfis = `${urlAPIUsuario}/perfil`;
+export const cadastrarPerfilUrl = `${urlAPIUsuario}/perfil`;
+const excluiPerfil = `${urlAPIUsuario}/perfil`;
 
 export {
   atualizarTokenUrl,
@@ -53,4 +57,7 @@ export {
   redefinirSenhaURL,
   urlAPIViaCEP,
   listarUsuarioPermissoes,
+  listarPermissoesCategoria,
+  listarTabelaPerfis,
+  excluiPerfil,
 };
