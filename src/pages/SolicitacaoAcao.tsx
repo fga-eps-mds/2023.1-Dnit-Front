@@ -7,7 +7,7 @@ import "../styles/App.css";
 function SolicitacaoAcao() {
   return (
     <div className="App">
-      <Header hasLogged={true} />
+      <Header hasLogged={false} />
       <div className="Secao">
         <div className="Lateral">
           <div className=" Lateral">
@@ -19,7 +19,7 @@ function SolicitacaoAcao() {
           <SolicitacaoAcaoForm />
         </div>
       </div>
-      <Footer />
+      <Footer home />
     </div>
   );
 }
