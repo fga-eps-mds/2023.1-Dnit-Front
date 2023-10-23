@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import Header from "../components/Cabecalho";
 import CadAcidentes from "../components/cadastrarSinistros/CadastrarSinistros";
@@ -6,10 +6,20 @@ import AcidentesAceito from "../components/cadastrarSinistros/SinistrosAceito";
 import Acidentes_erro1 from "../components/cadastrarSinistros/SinistrosErro1";
 import "../styles/App.css";
 import Footer from "../components/Footer";
+import { Permissao } from "../models/auth";
+import { AuthContext } from "../provider/Autenticacao";
 
 function CadastrarAcidentes() {
   const [screen, setScreen] = useState<"sc1" | "sc2" | "sc3">("sc1");
   const returnPage = useNavigate();
+
+  const { temPermissao } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (!temPermissao(Permissao.SinistroCadastrar)) {
+      returnPage("/");
+    }
+  }, []);
 
   return (
     <div className="App">

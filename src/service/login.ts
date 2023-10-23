@@ -1,10 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { loginURL } from "../consts/service";
 import { LoginData } from "../models/service";
-
-interface LoginResponse {
-  status: number;
-}
+import { LoginResponse } from "../models/auth";
 
 async function fetchLogin(loginData: LoginData): Promise<LoginResponse> {
   try {
