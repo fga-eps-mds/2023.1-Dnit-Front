@@ -4,7 +4,7 @@ import { fireEvent, render } from "@testing-library/react";
 import { MemoryRouter, BrowserRouter as Router } from "react-router-dom";
 import App from "../App";
 import { AuthProvider } from "../provider/Autenticacao";
-import Footer from "../components/Rodape";
+import Footer from "../components/Footer";
 
 window.matchMedia = jest.fn().mockImplementation((query) => {
   return {

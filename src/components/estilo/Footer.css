@@ -20,6 +20,7 @@
   --focus-color: var(--focus-color-dark);
   --focus: var(--focus-color);
   padding-inline: 40px;
+  width: 100%;
 }
 
 .br-footer .left-align {

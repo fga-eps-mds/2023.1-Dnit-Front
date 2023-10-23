@@ -82,12 +82,6 @@ export default function Footer(props: FooterProps) {
                 >
                   <div className="category-content">Cadastro de Escolas</div>
                 </span>
-                <span className="br-item">
-                  <div className="category-content">Cadastro Manual</div>
-                </span>
-                <span className="br-item">
-                  <div className="category-content">Cadastro por Planilha</div>
-                </span>
                 <span className="br-divider d-md-none"></span>
               </div>
             </div>

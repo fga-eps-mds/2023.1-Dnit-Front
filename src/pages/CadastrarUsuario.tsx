@@ -1,12 +1,13 @@
 import logoDnit from "../assets/logoDnit.png";
 import Header from "../components/Cabecalho";
+import Footer from "../components/Footer";
 import RegisterForm from "../components/acessosUsuario/CadastrarUsuario";
 import "../styles/App.css";
 
 function Register() {
   return (
     <div className="App">
-      <Header title="Início" subtitle="Cadastro" hasLogged={false}/>
+      <Header title="Início" subtitle="Cadastro" hasLogged={false} />
       <div className="Secao">
         <div className="Lateral">
           <img className="logoDnit" src={logoDnit} alt="Logo DNIT" />
@@ -15,6 +16,7 @@ function Register() {
           <RegisterForm />
         </div>
       </div>
+      <Footer home />
     </div>
   );
 }

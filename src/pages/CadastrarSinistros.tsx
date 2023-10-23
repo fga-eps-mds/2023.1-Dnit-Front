@@ -5,6 +5,7 @@ import CadAcidentes from "../components/cadastrarSinistros/CadastrarSinistros";
 import AcidentesAceito from "../components/cadastrarSinistros/SinistrosAceito";
 import Acidentes_erro1 from "../components/cadastrarSinistros/SinistrosErro1";
 import "../styles/App.css";
+import Footer from "../components/Footer";
 
 function CadastrarAcidentes() {
   const [screen, setScreen] = useState<"sc1" | "sc2" | "sc3">("sc1");
@@ -33,6 +34,7 @@ function CadastrarAcidentes() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

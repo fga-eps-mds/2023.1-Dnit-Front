@@ -1,4 +1,5 @@
 import Header from "../components/Cabecalho";
+import Footer from "../components/Footer";
 import RegS from "../components/cadastrarEscolas/CadastrarEscola";
 import { FiltroProvider } from "../context/FiltroTabela";
 import "../styles/App.css";
@@ -6,7 +7,7 @@ import "../styles/App.css";
 function RegisterSchool() {
   return (
     <div className="App">
-      <Header  />
+      <Header />
       <div className="Secao2">
         <div className="box">
           <FiltroProvider>
@@ -14,6 +15,7 @@ function RegisterSchool() {
           </FiltroProvider>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
