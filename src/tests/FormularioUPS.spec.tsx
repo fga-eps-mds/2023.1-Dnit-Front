@@ -7,6 +7,8 @@ import App from "../App";
 import { AuthProvider } from "../provider/Autenticacao";
 import localStorageMock from "./mock/memoriaLocal";
 import server from "./mock/servicosAPI";
+import { autenticar } from "./mock/autenticacao";
+import { Permissao } from "../models/auth";
 
 beforeAll(() => server.listen());
 beforeEach(() => {
@@ -29,7 +31,7 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
 
 describe("UPSForm", () => {
   test("Mostra mensagem de campos inválidos ao inserir valores inválidos", async () => {
-    localStorage.setItem("login", "authenticated");
+    autenticar(Permissao.UpsVisualizar, Permissao.UpsCalcularEscola, Permissao.UpsCalcularSinistro);
 
     const screen = render(
       <MemoryRouter initialEntries={["/telaUPS"]}>
@@ -64,7 +66,7 @@ describe("UPSForm", () => {
   });
 
   test("Exibe valores de UPS quando a resposta do calcularUps é recebida", async () => {
-    localStorage.setItem("login", "authenticated");
+    autenticar(Permissao.UpsVisualizar, Permissao.UpsCalcularEscola, Permissao.UpsCalcularSinistro);
 
     const screen = render(
       <MemoryRouter initialEntries={["/telaUPS"]}>
