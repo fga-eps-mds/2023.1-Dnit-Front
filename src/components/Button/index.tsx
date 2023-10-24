@@ -1,121 +1,78 @@
-import React, { ButtonHTMLAttributes, ReactElement, ReactNode, useState } from "react";
-import "./Style.css"
+import "./Style.css";
 
-interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  children?: ReactNode
-  icone?: string; 
-  rotulo: string; //nao usado
-  superficie?: string; //nao usado
-  background?: 'p-3' | 'p-3 bg-gray-60'; //usado
-  tipo?: 'primary' | 'secondary' | 'none' //usado
-  variante?: 'default' | 'circular' | 'block'; //usado
-  densidade?: 'large' | 'normal' | 'small'; //nao usado
+interface IButtonProps {
+  label?: string;
+  icon?: string;
+  buttonStyle?: "primary" | "outlined" | "none"; //usado
+  buttonType?: "default" | "circular" | "block"; //usado
   disabled?: boolean;
-  click?: () => void;
+  padding?: string;
+  onClick?: () => void;
 }
 
 export const ButtonComponent = (props: IButtonProps) => {
-  const { variante } = props;
-  switch (variante) {
-    case 'default':
-      return <DefaultButton {...props} />
-    case 'circular':
-      return <CircularButton {...props} />
-    case 'block':
-      return <BlockButton {...props} />
+  const { buttonType } = props;
+  switch (buttonType) {
+    case "default":
+      return <DefaultButton {...props} />;
+    case "circular":
+      return <CircularButton {...props} />;
+    case "block":
+      return <BlockButton {...props} />;
     default:
-      return <DefaultButton {...props} />
+      return <DefaultButton {...props} />;
   }
-}
+};
 
 const DefaultButton = (props: IButtonProps) => {
-
-  const [disabled, setDisabled] = useState(true);
-
-  const toggleButton = () => {
-    setDisabled(!disabled);
-  };
-
-  let { children, icone, rotulo, superficie, background, tipo, densidade, variante, click } = props;
-
-  const esquemaCores = (background === "p-3 bg-gray-60" ? "dark-mode" : "") + (tipo !== "none" ? ` ${tipo} mb-3` : ""); //define se o fundo será cinza ou branco, e se o tipo do botão é primário, secundário ou nenhum (none)
-
-  const cor_icone: boolean = background === 'p-3 bg-gray-60' && tipo === 'primary' || background === 'p-3' && tipo === 'primary'; //verifica por meio de expressão lógica qual deve ser a cor do ícone
+  let { icon, buttonStyle, onClick, label, padding } = props;
 
   return (
     <button
       {...props}
-      className={`br-button ${background} ${esquemaCores}`}
+      className={`br-button ${buttonStyle}-button`}
       type="button"
       aria-label="Ícone ilustrativo"
-      onClick={toggleButton}
+      onClick={onClick}
+      style={{ paddingInline: padding }}
     >
-      {disabled ?
-        <i className={icone} style={{ color: cor_icone === true ? "white" : "" }} aria-hidden="true" color="white" ></i>
-        :
-        <button className="br-button primary loading" type="button" 
-          style={{color: cor_icone === true ? "white" : ""  ,background: "0%" }}
-        >Carregando
-        </button>
-      }
+      <div className="button-row">
+        {icon && <i className={`${icon} ${buttonStyle}-text`} />}
+        <span className={`${buttonStyle}-text`}>{label}</span>
+      </div>
     </button>
-
-  )
+  );
 };
 
 const CircularButton = (props: IButtonProps) => {
-  const [disabled, setDisabled] = useState(true);
-  const toggleButton = () => {
-    setDisabled(!disabled);
-  };
-
-  let { icone, rotulo, superficie, background, tipo, densidade, variante, click } = props;
-
-  const esquemaCores = (background === "p-3 bg-gray-60" ? "dark-mode" : "") + (tipo !== "none" ? ` ${tipo} mb-3` : "");
-
-  const cor_icone: boolean = background === 'p-3 bg-gray-60' && tipo === 'primary' || background === 'p-3' && tipo === 'primary';
+  let { icon, buttonStyle, onClick } = props;
 
   return (
     <button
       {...props}
-      className={`br-button circle ${background} ${esquemaCores}`}
+      className={`br-button ${buttonStyle}-button circle-button`}
       type="button"
-      onClick={toggleButton}
+      onClick={onClick}
       aria-label="Ícone ilustrativo"
-      style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-      {disabled ?
-        <i className={icone} style={{ color: cor_icone === true ? "white" : "" }} aria-hidden="true"></i>
-        :
-        <button className="br-button primary loading" type="button"
-          style={{color: cor_icone === true ? "white" : "", background: "0%" }}></button>
-      }
-
+    >
+      {icon && <i className={`${icon} ${buttonStyle}-text circle-icon`} />}
     </button>
-  )
-}
+  );
+};
 
 const BlockButton = (props: IButtonProps) => {
-  const [disabled, setDisabled] = useState(true);
-  const toggleButton = () => {
-    setDisabled(!disabled);
-  };
-  let { children, icone, rotulo, superficie, background, tipo, densidade, variante, click } = props;
-
-  const esquemaCores = (background === "p-3 bg-gray-60" ? "dark-mode" : "") + (tipo !== "none" ? ` ${tipo} mb-3` : "");
+  let { icon, buttonStyle, onClick, label } = props;
 
   return (
     <button
-      className={`br-button block ${esquemaCores}`}
+      className={`br-button block ${buttonStyle}-button`}
       type="button"
-      onClick={toggleButton}
-      style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-      {disabled ? children :
-        <button className="br-button primary loading" type="button"
-          style={{ background: "0%" }}
-        >Carregando
-        </button>
-      }
+      onClick={onClick}
+    >
+      <div className="button-row">
+        {icon && <i className={`${icon} ${buttonStyle}-text`} />}
+        <span className={`${buttonStyle}-text`}>{label}</span>
+      </div>
     </button>
-  )
-
-}
+  );
+};
