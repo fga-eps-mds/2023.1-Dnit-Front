@@ -96,7 +96,6 @@ export default function Dashboard() {
             <img className="iconPerfis" src={IconGerenciarPerfis} alt="ícone gerenciar perfis" />
             <p className="text">Gerenciar Perfis</p>
           </Card>
-        <Collapse/>
         </div>
       ),
     },
