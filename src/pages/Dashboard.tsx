@@ -26,6 +26,7 @@ export default function Dashboard() {
   const [podeCadastrarEscola, setPodeCadastrarEscola] = useState(temPermissao(Permissao.EscolaCadastrar));
   const [podeCadastrarSinistro, setPodeCadastrarSinistro] = useState(temPermissao(Permissao.SinistroCadastrar));
   const [podeCadastrarRodovias, setPodeCadastrarRodovias] = useState(temPermissao(Permissao.RodoviaCadastrar));
+  const [podeEditarPerfil, setPodeEditarPerfil] = useState(temPermissao(Permissao.PerfilEditar));
 
   useEffect(() => {
     fetchPermissoesDoUsuario().then(permissoes => {
@@ -36,6 +37,7 @@ export default function Dashboard() {
       setPodeCadastrarEscola(temPermissao(Permissao.EscolaCadastrar));
       setPodeCadastrarSinistro(temPermissao(Permissao.SinistroCadastrar));
       setPodeCadastrarRodovias(temPermissao(Permissao.RodoviaCadastrar));
+      setPodeEditarPerfil(temPermissao(Permissao.PerfilEditar));
     });
   }, []);
 
@@ -85,10 +87,17 @@ export default function Dashboard() {
       key: "3",
       label: "Ferramentas Administrativas",
       children: (
-        <Card className="disabled">
-          <FileTextOutlined className="icon" />
-          <p className="text">Cadastrar empresas</p>
-        </Card>
+        <div className="collapse-item">
+          {<Card className="disabled">
+            <FileTextOutlined className="icon" />
+            <p className="text">Cadastrar empresas</p>
+          </Card>}
+          {podeEditarPerfil &&
+            <Card className="card" onClick={() => navigate("/editarPerfil")}>
+              <FileAddOutlined className="icon" />
+              <p className="text">Editar Perfil</p>
+            </Card>}
+        </div>
       ),
     },
   ];
