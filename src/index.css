@@ -8,3 +8,14 @@ body {
 code {
   font-family: Rawline, sans-serif;
 }
+
+.dialog-create-perfil {
+  .br-modal {
+    height: fit-content;
+    max-height: 80svh;
+  }
+}
+
+.w-100 {
+  width: 100%;
+} 
