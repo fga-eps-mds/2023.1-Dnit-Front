@@ -46,7 +46,7 @@ export function getPermissoes() {
 export function temPermissao(permissao: Permissao) {
   const temPermissaoSolicitada = getPermissoes().includes(permissao);
   if (!temPermissaoSolicitada) {
-    console.error(`O usuário não tem a permissao ${permissao}. Permissões do usuário: ${getPermissoes()}`);
+    console.warn(`O usuário não tem a permissao ${permissao}. Permissões do usuário: ${getPermissoes()}`);
   }
   return temPermissaoSolicitada;
 };
