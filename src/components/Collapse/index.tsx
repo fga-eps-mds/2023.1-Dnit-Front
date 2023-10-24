@@ -1,110 +1,52 @@
-import React, { useEffect, useState } from 'react';
-import './style.css';
-import { Permissao } from '../../models/auth';
+import { ReactNode, useState } from "react";
 
-export interface CollapseOpcao {
-    id: string;
-    nome: string;
+interface CollapseCheckboxProps {
+    selected: boolean;
+    onSelect: () => void;
 }
 
-
-export interface CollapseInterface {
+interface CollapseProps extends CollapseCheckboxProps {
     titulo: string;
-    opcoes: CollapseOpcao[];
-    onSelectionChange: (titulo: string, estados: boolean[]) => void,
+    children: ReactNode;
 }
 
-const CollapseCustom = (props: CollapseInterface) => {
-    const { titulo, opcoes, onSelectionChange } = props;
-    const [isCollapsed, setIsCollapsed] = useState(true);
-    const [checkboxStates, setCheckboxStates] = useState(opcoes.map(() => false));
+interface CollapseItemProps extends CollapseCheckboxProps {
+    children: ReactNode;
+}
 
-    const toggleCollapse = () => { setIsCollapsed(c => !c) };
-
-
-    const handleParentCheckboxChange = () => {
-        setCheckboxStates(states => {
-            const checked = !states.every(s => s);
-            onSelectionChange(titulo, states.map(() => checked));
-            return states.map(() => checked);
-        });
-    };
-
-    const handleChildCheckboxChange = (index: number) => {
-        setCheckboxStates(states => {
-            const newStates = [...states];
-            newStates[index] = !newStates[index];
-            onSelectionChange(titulo, newStates);
-            return newStates;
-        });
-    };
-
-    const elementosFilhos = opcoes.map((item, index) => (
-        <div className="CollapseOpcoes" key={`${titulo}-${item.id}`}>
-            <div className="conteudo" style={{
-                    backgroundColor: checkboxStates[index] ? "#2670E8" : "#ffffff"
-                }}>
-                <div className="align-items-center br-item" role="listitem" style={{
-                    backgroundColor: 'transparent'
-                }}>
-                    <div className="row align-items-center">
-                        <div className="mb-1">
-                            <div className="br-checkbox" onClick={() => handleChildCheckboxChange(index)}>
-                                <input
-                                    id={`checkbox${item.id}`}
-                                    name={`checkbox${item.id}`}
-                                    type="checkbox"
-                                    data-child={titulo}
-                                    checked={checkboxStates[index]}
-                                    onChange={() => {}}
-                                />
-                                <label htmlFor={`checkbox-${index}`} style={{fontFamily: 'Rawline', color: checkboxStates[index] ? "#FFFFFF" : "#000000"}}>{item.nome}</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <span className="br-divider"></span>
-        </div>
-    ));
-
+export function CollapseCheckBox({ selected, onSelect }: CollapseCheckboxProps) {
     return (
-        <div style={{
-            display: "flex",
-            flexDirection: "column",
-            width: "100%"
-          }}>
-            <div className="align-items-center br-item" role="listitem" onClick={toggleCollapse} id={`CollapsePai-${titulo}`} style={{
-                backgroundColor: checkboxStates.every(s => s) ? "#2670E8" : "#ffffff"
-            }}>
-                <div className="content">
-                    <div className="flex-fill">
-                        <div className="br-checkbox" onClick={() => {handleParentCheckboxChange();}}>
-                            <input
-                                   name="checkbox-ind1" 
-                                   type="checkbox" 
-                                   data-parent={titulo}
-                                   checked={checkboxStates.every(s => s)}
-                                   onChange={() => {}}
-                            />
-                            <label htmlFor="checkbox-ind1" id={`labelCollapsePai-${titulo}`} style={{ fontFamily: 'Rawline, sans-serif'}}>
-                                {titulo}
-                            </label>
-                        </div>
-                    </div>
-                    <i className={`fas ${isCollapsed ? 'fa-angle-down' : 'fa-angle-up'}`} aria-hidden="true"></i>
-                </div>
-            </div>
+        <button className="p-2 btn-none" onClick={() => onSelect()} type="button">
+            <input readOnly={true} className="br-checkbox" type="checkbox" checked={selected}
+                style={{ width: '24px', height: '24px' }} />
+        </button>
+    );
+}
 
-            <span className="br-divider"></span>
-
-            {isCollapsed && (
-                <div className="d-flex flex-column w-100" role="list" data-sub="data-sub">
-                    {elementosFilhos}
-                </div>
-            )}
+export function CollapseItem({ children, selected, ...props }: CollapseItemProps) {
+    return (
+        <div className="d-flex w-100 align-items-center pl-5"
+            style={{ height: '64px', backgroundColor: selected ? '#2670E8' : '#F8F8F8', color: selected ? '#ffffff' : '#000000' }}>
+            <CollapseCheckBox selected={selected} {...props} />
+            {children}
         </div>
     );
-};
+}
 
-export default CollapseCustom;
+export function Collapse({ titulo, children, selected, ...props }: CollapseProps) {
+    const [isCollapsed, setIsCollapsed] = useState(false);
+    return (
+        <div className="d-flex flex-column w-100">
+            <div className="d-flex align-items-center" style={{ height: '64px' }}>
+                <CollapseCheckBox selected={selected} {...props} />
+                <button className="d-flex align-items-center justify-content-between btn-none w-100 ml-2" onClick={() => setIsCollapsed(c => !c)} type="button">
+                    <span>{titulo}</span>
+                    <i className={`fas ${isCollapsed ? 'fa-angle-down' : 'fa-angle-up'}`} aria-hidden="true"></i>
+                </button>
+            </div>
+            {
+                isCollapsed && <div className="d-flex flex-column">{children}</div>
+            }
+        </div>
+    );
+}

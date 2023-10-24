@@ -147,3 +147,12 @@
     height: 85%;
   }
 }
+
+.text-center {
+  text-align: center;
+}
+
+.btn-none {
+  background: transparent;
+  border: none;
+}
