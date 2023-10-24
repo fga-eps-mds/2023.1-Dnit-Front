@@ -25,7 +25,7 @@ export const ButtonComponent = (props: IButtonProps) => {
 };
 
 const DefaultButton = (props: IButtonProps) => {
-  let { icon, buttonStyle, onClick, label, padding } = props;
+  let { icon, buttonStyle, onClick, label, padding, disabled } = props;
 
   return (
     <button
@@ -35,6 +35,7 @@ const DefaultButton = (props: IButtonProps) => {
       aria-label="Ícone ilustrativo"
       onClick={onClick}
       style={{ paddingInline: padding }}
+      disabled={disabled}
     >
       <div className="button-row">
         {icon && <i className={`${icon} ${buttonStyle}-text`} />}
@@ -45,7 +46,7 @@ const DefaultButton = (props: IButtonProps) => {
 };
 
 const CircularButton = (props: IButtonProps) => {
-  let { icon, buttonStyle, onClick } = props;
+  let { icon, buttonStyle, onClick, disabled } = props;
 
   return (
     <button
@@ -54,6 +55,7 @@ const CircularButton = (props: IButtonProps) => {
       type="button"
       onClick={onClick}
       aria-label="Ícone ilustrativo"
+      disabled={disabled}
     >
       {icon && <i className={`${icon} ${buttonStyle}-text circle-icon`} />}
     </button>
@@ -61,13 +63,14 @@ const CircularButton = (props: IButtonProps) => {
 };
 
 const BlockButton = (props: IButtonProps) => {
-  let { icon, buttonStyle, onClick, label } = props;
+  let { icon, buttonStyle, onClick, label, disabled } = props;
 
   return (
     <button
       className={`br-button block ${buttonStyle}-button`}
       type="button"
       onClick={onClick}
+      disabled={disabled}
     >
       <div className="button-row">
         {icon && <i className={`${icon} ${buttonStyle}-text`} />}

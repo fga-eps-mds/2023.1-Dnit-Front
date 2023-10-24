@@ -9,7 +9,6 @@ import {
 } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
-import ButtonComponent from "../components/Botao";
 import server from "./mock/servicosAPI";
 
 beforeAll(() => server.listen());
@@ -27,26 +26,6 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
     removeEventListener: jest.fn(),
     dispatchEvent: jest.fn(),
   };
-});
-
-test("Button", () => {
-  render(
-    <MemoryRouter>
-      <ButtonComponent />
-    </MemoryRouter>
-  );
-
-  render(
-    <MemoryRouter>
-      <ButtonComponent disabled={true} />
-    </MemoryRouter>
-  );
-
-  render(
-    <MemoryRouter>
-      <ButtonComponent disabled={false} />
-    </MemoryRouter>
-  );
 });
 
 test("Abre duas vezes", async () => {

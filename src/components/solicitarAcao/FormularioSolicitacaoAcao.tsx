@@ -12,7 +12,7 @@ import { fetchEscolasInep } from "../../service/inepAPI";
 import fetchMunicipio from "../../service/municipio";
 import fetchSolicitaAcao from "../../service/solicitarAcao";
 import "../../styles/form.css";
-import ButtonComponent from "../Botao";
+import { ButtonComponent } from "../Button";
 
 const { Option } = Select;
 
@@ -311,12 +311,9 @@ const SolicitacaoAcaoForm: React.FC = () => {
           <Form.Item>
             <Space>
               <ButtonComponent
-                data-testid="Enviar"
-                nome="Enviar solicitação"
-                cor="#1351B4"
-                cor_letra="#FFFFFF"
-                cor_borda="#1351B4"
-                largura="25em"
+                label="Enviar"
+                buttonStyle="primary"
+                padding="100px"
                 disabled={!botaoEnviarDisponivel}
               />
             </Space>
