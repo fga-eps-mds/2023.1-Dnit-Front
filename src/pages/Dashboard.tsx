@@ -7,7 +7,7 @@ import { Card, Collapse, CollapseProps } from "antd";
 import { useNavigate } from "react-router";
 import Header from "../components/Cabecalho";
 import TrilhaDeNavegacao from "../components/escolasCadastradas/TrilhaNavegacao";
-import Footer from "../components/Rodape";
+import Footer from "../components/Footer";
 import "../styles/App.css";
 import "../styles/Dashboard.css";
 import { useContext, useEffect, useState } from "react";
@@ -94,8 +94,8 @@ export default function Dashboard() {
   ];
   return (
     <div className="App">
-      <Header dashboard />
-      <TrilhaDeNavegacao elementosLi={paginas}/>
+      <Header />
+      <TrilhaDeNavegacao elementosLi={paginas} />
       <Collapse
         defaultActiveKey={["1", "2"]}
         ghost

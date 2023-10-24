@@ -5,6 +5,7 @@ import CadAcidentes from "../components/cadastrarSinistros/CadastrarSinistros";
 import AcidentesAceito from "../components/cadastrarSinistros/SinistrosAceito";
 import Acidentes_erro1 from "../components/cadastrarSinistros/SinistrosErro1";
 import "../styles/App.css";
+import Footer from "../components/Footer";
 import { Permissao } from "../models/auth";
 import { AuthContext } from "../provider/Autenticacao";
 
@@ -22,7 +23,7 @@ function CadastrarAcidentes() {
 
   return (
     <div className="App">
-      <Header dashboard />
+      <Header />
       <div className="Secao2">
         <div className="box">
           <div className="formrs">
@@ -43,6 +44,7 @@ function CadastrarAcidentes() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

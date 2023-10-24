@@ -43,11 +43,11 @@ describe("Login tests", () => {
     await act(async () => {
       const emailInput = screen.getByLabelText("E-mail");
       const passwordInput = screen.getByLabelText("Senha");
-      const entrarButton = screen.getByText("Entrar");
+      const entrarButton = screen.getAllByText("Entrar");
 
       fireEvent.change(emailInput, { target: { value: "dora@gmail.com" } });
       fireEvent.change(passwordInput, { target: { value: "123456" } });
-      fireEvent.click(entrarButton);
+      fireEvent.click(entrarButton[1]);
     });
 
     await waitFor(() => expect(mockedUseLogin).toHaveBeenCalledTimes(1));
