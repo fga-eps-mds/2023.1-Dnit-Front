@@ -1,6 +1,5 @@
 import axios, { AxiosResponse } from "axios";
 import { cadastrarPerfilUrl } from "../consts/service";
-import { CadastroUsuarioData } from "../models/service";
 import { PerfilDto } from "../models/perfil";
 import { PerfisTabela } from "../models/auth";
 
