@@ -49,11 +49,13 @@ export interface PermissaoModel {
 export interface PerfisTabela {
   id: string;
   nome: string;
+  quantidadeUsuarios: number;
   tipo: TipoPerfil;
   permissoes: PermissaoModel[];
 }
 
 export interface TabelaGerenciarPerfil {
-  'Tipo de perfil': string;
-  'Permissões': PermissaoModel[];
+  "Tipo de perfil": string;
+  "Número de Usuários": number;
+  "Permissões": PermissaoModel[];
 }

@@ -9,8 +9,7 @@ async function fetchExcluirPerfil(
   id: string): Promise<ExcluirPerfilResponse> {
   try {
     const response: AxiosResponse<ExcluirPerfilResponse> = await axios.delete(
-        excluiPerfil,
-      { params: { id: id } }
+        excluiPerfil + "/" + id
     );
     return response.data;
   } catch (error) {

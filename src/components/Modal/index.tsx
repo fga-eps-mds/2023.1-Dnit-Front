@@ -1,8 +1,9 @@
-import  { ReactNode } from 'react'
+import { ReactNode } from 'react'
 import './styles.css'
+import { ChangeEvent } from "react";
 
 interface ModalProps {
-  title: string | ReactNode;
+  setNomePerfil: React.Dispatch<React.SetStateAction<string>>;
   isOpen: boolean;
   children: ReactNode;
   button1Text: string;
@@ -12,14 +13,21 @@ interface ModalProps {
   closeModal: () => void;
 }
 
-export default function Modal({title, isOpen, children, button1Text, button2Text, mostrarConfirmacao, confirmAction, closeModal } : ModalProps) {
+export default function Modal({ setNomePerfil, isOpen, children, button1Text, button2Text, mostrarConfirmacao, confirmAction, closeModal }: ModalProps) {
   if (!isOpen) return null;
+
+  const handleNomePerfil = (event: ChangeEvent<HTMLInputElement>) => {
+    console.log(event.target.value)
+    setNomePerfil(event.target.value);
+  };
 
   return (
     <div className="overlay" >
       <div className="br-modal medium">
         <div className="br-modal-header">
-          <span>{title}</span>
+          <span><div>Perfil:
+            <input id="input-default" type="text" placeholder="Digite o nome" onChange={handleNomePerfil} />
+          </div></span>
           <button className="br-button close circle" type="button" data-dismiss="br-modal" aria-label="Close" onClick={closeModal}>
             <i className="fas fa-times" aria-hidden="true"></i>
           </button>

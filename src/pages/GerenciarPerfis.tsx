@@ -48,7 +48,7 @@ export default function GerenciarPerfis() {
       navigate("/");
     }
 
-    if(tabelaPermissoes){
+    if(tabelaPermissoes && linhaDelete!=-1){
       console.log(tabelaPermissoes[linhaDelete].id);
       fetchExcluirPerfil(tabelaPermissoes[linhaDelete].id);
     }
@@ -62,14 +62,6 @@ export default function GerenciarPerfis() {
       setNovoPerfil({nome: "", permissoes: data.flatMap(p => p.permissoes.map(pp => {return {permissao: pp.codigo, ativa: false}}))});
     });
   }, [linhaDelete]);
-
-  //useEffect(() => {
-  // fetchExcluirPerfil(linhaDelete)
-  //}, [linhaDelete]);
-
-  const handleNomePerfil = (event: ChangeEvent<HTMLInputElement>) => {
-    setNomePerfil((event.target.value))
-  };
 
   const handleNomeFiltro = (event: ChangeEvent<HTMLInputElement>) => {
     setNomeFiltro((event.target.value))
@@ -101,12 +93,6 @@ export default function GerenciarPerfis() {
     </div>)
   };
 
-  const TituloEditarPerfil = () => {
-    return (<div>Perfil:
-      <input id="input-default" type="text" placeholder="Digite o nome" onChange={handleNomePerfil} value={nomePerfil} />
-    </div>)
-  };
-
   const atualizarPerfilPermissoes = (categoria: string, estados: boolean[]) => {
     localStorage.setItem(`perfil-${categoria}`, estados.join(','));
   }
@@ -128,10 +114,11 @@ export default function GerenciarPerfis() {
   }
 
   const criarPerfil = () => {
-    const perfilPermissoes = permissoes?.flatMap(pp => {
-      const ps = localStorage.getItem(`perfil-${pp.categoria}`)?.split(',');
-      return pp.permissoes.map((perm, index) => [perm, ps != null && ps[index] == "true"]).filter(([_, ativa]) => ativa).map(([perm, _]) => (perm as PermissaoModel)?.codigo);
-    })
+    const perfilPermissoes = [""]
+    // permissoes?.flatMap(pp => {
+    //   const ps = localStorage.getItem(`perfil-${pp.categoria}`)?.split(',');
+    //   return pp.permissoes.map((perm, index) => [perm, ps != null && ps[index] == "true"]).filter(([_, ativa]) => ativa).map(([perm, _]) => (perm as PermissaoModel)?.codigo);
+    // })
     setCarregando(true);
     fetchCadastroPerfil({
       nome: nomePerfil,
@@ -150,7 +137,7 @@ export default function GerenciarPerfis() {
       <TrilhaNavegacao elementosLi={paginas} registrarPerfis mostrarModal={setIsVisible}></TrilhaNavegacao>
       {isVisible &&
         <Modal
-          title={<TituloEditarPerfil />}
+          setNomePerfil={setNomePerfil}
           isOpen={isVisible}
           children={permissoes && <CollapsePerfis />}
           button1Text="Cancelar"
@@ -165,6 +152,7 @@ export default function GerenciarPerfis() {
         // data={[{'Tipo de perfil': 'alo', 'Permissões': 'Cadastrar'}]}
         data={tabelaPermissoes.map(p => {return {
           'Tipo de perfil': p.nome,
+          'Número de Usuários': p.quantidadeUsuarios.toString(),
           'Permissões': p.permissoes.splice(0, 10).map(pp => pp.descricao).join(', ') + (p.permissoes.length >= 10 ? ' ...' : ''),
         }})}
         initialItemsPerPage={10}
