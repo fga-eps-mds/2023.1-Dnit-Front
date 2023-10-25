@@ -23,21 +23,21 @@ interface NomeFilterProps {
   onNomeChange: (nome: string) => void;
 }
 
-export function NomeFilter({onNomeChange}: NomeFilterProps) {
+export function NomeFilter({ onNomeChange }: NomeFilterProps) {
   const [nome, setNome] = useState('');
 
   return (
     <div className="d-flex flex-column ml-3 mt-5 mb-5">
-      <label className="ml-2" style={{textAlign: 'start', fontSize: '16px'}}>Nome:</label>
-      <div className="d-flex" style={{fontSize: '16px'}}>
+      <label className="ml-2" style={{ textAlign: 'start', fontSize: '16px' }}>Nome:</label>
+      <div className="d-flex" style={{ fontSize: '16px' }}>
         <div className="br-input large input-button">
           <input className="br-input-search-large" type="search" placeholder="Nome" value={nome}
             onChange={e => setNome(e.target.value)}
-            onKeyDown={e => e.key == 'Enter' && onNomeChange(nome)}/>
-            <button className="br-button" type="button" aria-label="Buscar" onClick={() => onNomeChange(nome)}>
-              <i className="fas fa-search" aria-hidden="true"></i>
-            </button>
-          </div>
+            onKeyDown={e => e.key == 'Enter' && onNomeChange(nome)} />
+          <button className="br-button" type="button" aria-label="Buscar" onClick={() => onNomeChange(nome)}>
+            <i className="fas fa-search" aria-hidden="true"></i>
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -60,7 +60,8 @@ export default function GerenciarPerfis() {
     cadastrar: temPermissao(Permissao.PerfilCadastrar),
     editar: temPermissao(Permissao.PerfilEditar),
     visualizar: temPermissao(Permissao.PerfilVisualizar),
-    remover: temPermissao(Permissao.PerfilRemover)});
+    remover: temPermissao(Permissao.PerfilRemover)
+  });
 
   const onPerfilChange = (perfil: PerfilModel | null) => {
     if (!perfil) {
@@ -99,7 +100,7 @@ export default function GerenciarPerfis() {
       <TrilhaDeNavegacao elementosLi={paginas} />
       <div className="d-flex flex-column m-5">
         <div className="d-flex justify-content-between align-items-center mr-5">
-          <NomeFilter onNomeChange={setNome}/>
+          <NomeFilter onNomeChange={setNome} />
           {temPermissaoGerenciar.cadastrar && <ButtonComponent label="Criar Perfil" buttonStyle="primary" onClick={() => setShowPerfil({ id: null, readOnly: false })}></ButtonComponent>}
         </div>
         {perfis.length == 0 && <Table columsTitle={['Nome', 'Número de Usuários', 'Permissões']} initialItemsPerPage={10} title="Perfis de usuário cadastrados"><></><></></Table>}
@@ -109,11 +110,11 @@ export default function GerenciarPerfis() {
             perfis.map((p, index) =>
               <CustomTableRow key={`${p.id}-${index}`} id={index}
                 data={{ '0': p.nome, '1': `${p.quantidadeUsuarios}`, '2': p.permissoes.map(pp => pp.descricao).splice(0, 3).join(', ') + (p.permissoes.length > 3 ? ', ...' : '') }}
-                onDeleteRow={() => setDeletarPerfil({ id: p.id, nome: p.nome, quantidade: p.quantidadeUsuarios})}
+                onDeleteRow={() => setDeletarPerfil({ id: p.id, nome: p.nome, quantidade: p.quantidadeUsuarios })}
                 onEditRow={() => setShowPerfil({ id: p.id, readOnly: false })}
                 onDetailRow={() => setShowPerfil({ id: p.id, readOnly: true })}
                 hideEditIcon={p.tipo == TipoPerfil.Administrador || !temPermissaoGerenciar.editar}
-                hideTrashIcon={p.tipo != TipoPerfil.Customizavel || !temPermissaoGerenciar.remover} 
+                hideTrashIcon={p.tipo != TipoPerfil.Customizavel || !temPermissaoGerenciar.remover}
                 hideEyeIcon={!temPermissaoGerenciar.visualizar} />
             )
           }
