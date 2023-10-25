@@ -52,6 +52,7 @@ export interface PerfisTabela {
   quantidadeUsuarios: number;
   tipo: TipoPerfil;
   permissoes: PermissaoModel[];
+  categoriasPermissao?: PermissaoCategoria[];
 }
 
 export interface TabelaGerenciarPerfil {

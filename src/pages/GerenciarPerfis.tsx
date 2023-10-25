@@ -5,9 +5,14 @@ import Footer from "../components/Rodape";
 import PerfilDialog from "../components/PerfilDialog";
 import { PerfisTabela } from "../models/auth";
 
+interface PerfilDialogArgs {
+  id: string | null;
+  readOnly: boolean;
+}
+
 export default function GerenciarPerfis() {
   const paginas = [{ nome: "Logout", link: "/login" }];
-  const [showPerfil, setShowPerfil] = useState<string | null>(null);
+  const [showPerfil, setShowPerfil] = useState<PerfilDialogArgs | null>(null);
 
   const onPerfilChange = (perfil: PerfisTabela | null) => {
     if (!perfil) {
@@ -20,8 +25,8 @@ export default function GerenciarPerfis() {
   return (
     <div className="App">
       <Header />
-      <TrilhaDeNavegacao elementosLi={paginas} registrarPerfis mostrarModal={() => setShowPerfil('')}></TrilhaDeNavegacao>
-      {showPerfil != null && <PerfilDialog id={showPerfil} closeDialog={(perfil) => {setShowPerfil(null); onPerfilChange(perfil)}}/>}
+      <TrilhaDeNavegacao elementosLi={paginas} registrarPerfis mostrarModal={() => setShowPerfil({id: 'd1be3697-2dd9-4d8e-847c-3527f410712f', readOnly: false})}></TrilhaDeNavegacao>
+      {showPerfil != null && <PerfilDialog id={showPerfil.id} readOnly={showPerfil.readOnly} closeDialog={(perfil) => {setShowPerfil(null); onPerfilChange(perfil)}}/>}
       <Footer />
     </div>
   )

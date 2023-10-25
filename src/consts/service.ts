@@ -29,7 +29,9 @@ const listarUsuarioPermissoes = `${urlAPIUsuario}/usuario/permissoes`;
 const listarPermissoesCategoria = `${urlAPIUsuario}/dominio/permissoes`;
 const listarTabelaPerfis = `${urlAPIUsuario}/perfil`;
 export const cadastrarPerfilUrl = `${urlAPIUsuario}/perfil`;
-const excluiPerfil = `${urlAPIUsuario}/perfil`;
+export const obterPerfil = `${urlAPIUsuario}/perfil`
+export const atualizarPerfil = `${urlAPIUsuario}/perfil`
+export const excluiPerfil = `${urlAPIUsuario}/perfil`;
 
 export {
   atualizarTokenUrl,
@@ -59,5 +61,4 @@ export {
   listarUsuarioPermissoes,
   listarPermissoesCategoria,
   listarTabelaPerfis,
-  excluiPerfil,
 };
