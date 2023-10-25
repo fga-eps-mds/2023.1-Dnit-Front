@@ -33,9 +33,9 @@ const LoginForm: React.FC = () => {
     };
 
     try {
-      await fetchLogin(loginData);
+      const dados = await fetchLogin(loginData);
       notification.success({ message: "Login realizado!" });
-      login();
+      login(dados);
     } catch (error) {
       api.error({ message: `Erro ao fazer login` });
     }

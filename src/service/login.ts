@@ -1,10 +1,8 @@
 import axios, { AxiosResponse } from "axios";
 import { loginURL } from "../consts/service";
 import { LoginData } from "../models/service";
-
-interface LoginResponse {
-  status: number;
-}
+import { LoginResponse } from "../models/auth";
+import { AuthLocalStorage } from "../provider/Autenticacao";
 
 async function fetchLogin(loginData: LoginData): Promise<LoginResponse> {
   try {
@@ -12,6 +10,7 @@ async function fetchLogin(loginData: LoginData): Promise<LoginResponse> {
       loginURL,
       loginData
     );
+    localStorage.setItem(AuthLocalStorage.Nome, loginData.nome);
     return response.data;
   } catch (error) {
     console.log(error);

@@ -1,79 +1,33 @@
-/* eslint-disable testing-library/render-result-naming-convention */
 import React from "react";
-import { render, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import Modal from "../../components/Modal/index";
 
-test("Renders the modal when isOpen is true", () => {
-  const screen = render(
-    <Modal
-      title="Test Modal"
-      isOpen={true}
-      button1Text="Close"
-      button2Text="Confirm"
-      confirmAction={() => {}}
-      closeModal={() => {}}
-    >
-      <p>Modal content</p>
-    </Modal>
-  );
+describe("Modal Component", () => {
+  test("Renders Modal component with default class and children", () => {
+    render(
+      <Modal className="modal-container">
+        <div>Modal Content</div>
+      </Modal>
+    );
 
-  expect(screen.getByText("Test Modal")).toBeInTheDocument();
-  expect(screen.getByText("Modal content")).toBeInTheDocument();
-  expect(screen.getByText("Close")).toBeInTheDocument();
-  expect(screen.getByText("Confirm")).toBeInTheDocument();
-});
+    // Check if the default class is applied
+    const modalOverlay = screen.getByTestId("modal-overlay");
+    expect(modalOverlay).toHaveClass("overlay default");
 
-test("Does not render the modal when isOpen is false", () => {
-  const screen = render(
-    <Modal
-      title="Test Modal"
-      isOpen={false}
-      button1Text="Close"
-      button2Text="Confirm"
-      confirmAction={() => {}}
-      closeModal={() => {}}
-    >
-      <p>Modal content</p>
-    </Modal>
-  );
+    // Check if the children are rendered
+    const modalContent = screen.getByText("Modal Content");
+    expect(modalContent).toBeInTheDocument();
+  });
 
-  // Use data-testid attribute to identify the overlay element
-  const overlay = screen.queryByTestId("modal-overlay");
+  test("Renders Modal component with a custom class", () => {
+    render(
+      <Modal className="custom">
+        <div>Custom Modal Content</div>
+      </Modal>
+    );
 
-  // Ensure that the modal is not in the document when isOpen is false
-  expect(overlay).toBeNull();
-
-  // Check that other elements are not present as well
-  expect(screen.queryByTestId("modal-title")).toBeNull();
-  expect(screen.queryByTestId("modal-content")).toBeNull();
-  expect(screen.queryByTestId("modal-confirm-button")).toBeNull();
-  expect(screen.queryByTestId("modal-close-button")).toBeNull();
-});
-
-test("Calls confirmAction and closeModal when respective buttons are clicked", () => {
-  const confirmAction = jest.fn();
-  const closeModal = jest.fn();
-
-  const screen = render(
-    <Modal
-      title="Test Modal"
-      isOpen={true}
-      button1Text="Close"
-      button2Text="Confirm"
-      confirmAction={confirmAction}
-      closeModal={closeModal}
-    >
-      <p>Modal content</p>
-    </Modal>
-  );
-
-  const confirmButton = screen.getByText("Confirm");
-  const closeButton = screen.getByText("Close");
-
-  fireEvent.click(confirmButton);
-  fireEvent.click(closeButton);
-
-  // Verify that confirmAction and closeModal were called
-  expect(confirmAction).toHaveBeenCalledTimes(1);
-  expect(closeModal).toHaveBeenCalledTimes(1);
+    // Check if the custom class is applied
+    const modalOverlay = screen.getByTestId("modal-overlay");
+    expect(modalOverlay).toHaveClass("overlay custom");
+  });
 });

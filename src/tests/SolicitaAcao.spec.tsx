@@ -194,7 +194,7 @@ test("Solicitação", async () => {
   const vinculoSelecionado = screen.getByTestId("Professor");
   fireEvent.mouseDown(vinculoSelecionado);
 
-  const botaoENviar = screen.getByText("Enviar solicitação");
+  const botaoENviar = screen.getByText("Enviar");
   act(() => {
     fireEvent.mouseDown(botaoENviar);
   });

@@ -100,7 +100,7 @@ describe("CustomTable Component", () => {
     fireEvent.click(nextPageButton);
 
     // Check if the next page is displayed
-    const pageRange = screen.getByText(" 3-4 de 4 itens");
+    const pageRange = screen.getByText("3-4 de 4 itens");
     expect(pageRange).toBeInTheDocument();
 
     // Go to the previous page
