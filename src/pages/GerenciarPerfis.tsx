@@ -10,6 +10,7 @@ import { notification } from "antd";
 import fetchPerfis from "../service/listarPerfis";
 import { DeletarPerfilArgs, DeletarPerfilDialog } from "../components/DeletarPerfilDialog";
 import { AuthContext } from "../provider/Autenticacao";
+import { ButtonComponent } from "../components/Button";
 
 
 interface PerfilDialogArgs {
@@ -51,7 +52,11 @@ export default function GerenciarPerfis() {
   const tamanhoPagina = 500;
   const [nome, setNome] = useState('');
 
-  const { temPermissao } = useContext(AuthContext);
+  const [temPermissao, setTemPermissao] = useState({
+    cadastrar: useContext(AuthContext).temPermissao(Permissao.PerfilCadastrar),
+    editar: useContext(AuthContext).temPermissao(Permissao.PerfilEditar),
+    visualizar: useContext(AuthContext).temPermissao(Permissao.PerfilVisualizar),
+    remover: useContext(AuthContext).temPermissao(Permissao.PerfilRemover)});
 
   const onPerfilChange = (perfil: PerfisTabela | null) => {
     if (!perfil) {
@@ -81,12 +86,12 @@ export default function GerenciarPerfis() {
       {showPerfil != null && <PerfilDialog id={showPerfil.id} readOnly={showPerfil.readOnly} closeDialog={(perfil) => { setShowPerfil(null); onPerfilChange(perfil) }} />}
       {showDeletarPerfil != null && <DeletarPerfilDialog perfil={showDeletarPerfil} onClose={(deletou) => { setDeletarPerfil(null); deletou && buscarPerfis() }} />}
       <Header />
-      {temPermissao(Permissao.PerfilCadastrar)?
-        <TrilhaDeNavegacao elementosLi={paginas} registrarPerfis mostrarModal={() => setShowPerfil({ id: null, readOnly: false })}></TrilhaDeNavegacao>:
-        <TrilhaDeNavegacao elementosLi={paginas} />}
+      <TrilhaDeNavegacao elementosLi={paginas} />
       <div className="d-flex flex-column m-5">
-        <NomeFilter onNomeChange={setNome}/>
-
+        <div className="d-flex justify-content-between align-items-center mr-5">
+          <NomeFilter onNomeChange={setNome}/>
+          {temPermissao.cadastrar && <ButtonComponent label="Criar Perfil" buttonStyle="primary" onClick={() => setShowPerfil({ id: null, readOnly: false })}></ButtonComponent>}
+        </div>
         {perfis.length == 0 && <Table columsTitle={['Nome', 'Número de Usuários', 'Permissões']} initialItemsPerPage={10} title="Perfis de usuário cadastrados"><></><></></Table>}
 
         <Table columsTitle={['Nome', 'Número de Usuários', 'Permissões']} initialItemsPerPage={10} title="Perfis de usuário cadastrados">
@@ -97,9 +102,9 @@ export default function GerenciarPerfis() {
                 onDeleteRow={() => setDeletarPerfil({ id: p.id, nome: p.nome, quantidade: p.quantidadeUsuarios})}
                 onEditRow={() => setShowPerfil({ id: p.id, readOnly: false })}
                 onDetailRow={() => setShowPerfil({ id: p.id, readOnly: true })}
-                hideEditIcon={p.tipo == TipoPerfil.Administrador || !temPermissao(Permissao.PerfilEditar)}
-                hideTrashIcon={p.tipo != TipoPerfil.Customizavel || !temPermissao(Permissao.PerfilRemover)} 
-                hideEyeIcon={!temPermissao(Permissao.PerfilVisualizar)} />
+                hideEditIcon={p.tipo == TipoPerfil.Administrador || !temPermissao.editar}
+                hideTrashIcon={p.tipo != TipoPerfil.Customizavel || !temPermissao.remover} 
+                hideEyeIcon={!temPermissao.visualizar} />
             )
           }
         </Table>
