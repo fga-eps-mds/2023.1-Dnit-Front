@@ -207,7 +207,7 @@ describe('PerfilDialog Edição', () => {
     await waitFor(() => expect(screen.getByText('Ups')).toBeInTheDocument());
     await waitFor(() => expect(screen.getByTestId('perfil-nome')).toHaveAttribute('value', 'perfil-teste'));
     await waitFor(() => expect(screen.getByTestId('collapse-Escola-true')).toBeInTheDocument());
-    screen.getByTestId('collapse-Escola-true').getElementsByClassName('app-collapse-checkbox')[0].click();
+    (screen.getByTestId('collapse-Escola-true').getElementsByClassName('app-collapse-checkbox')[0] as HTMLElement).click();
     await waitFor(() => expect(screen.getByTestId('collapse-Escola-false')).toBeInTheDocument());
   });
 });

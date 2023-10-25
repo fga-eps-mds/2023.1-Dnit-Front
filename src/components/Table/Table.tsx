@@ -113,7 +113,7 @@ export default function CustomTable({
 
   return (
     <div
-      className="br-table"
+      className="br-table ml-3 mr-3"
       data-search="data-search"
       data-selection="data-selection"
       data-collapse="data-collapse"
@@ -121,14 +121,14 @@ export default function CustomTable({
     >
       <div className="table-header">
         <div className="top-bar">
-          <div className="table-title">{title}</div>
+          <div className="table-title mb-1">{title}</div>
         </div>
       </div>
       <table>
         <thead>
           <tr>
             {columsTitle.map((element) => (
-              <th scope="col">{element}</th>
+              <th scope="col" style={{color: "#1351B4", fontWeight: "bold"}}>{element}</th>
             ))}
             <th scope="col"></th>
           </tr>
@@ -186,47 +186,6 @@ export default function CustomTable({
               }-${indexOfLastItem} de ${dataSize} itens`}
             </span>
           </div>
-          <div className="pagination-go-to-page d-none d-sm-flex ml-auto">
-            <div className="br-select">
-              <div className="br-input select-div">
-                <label htmlFor="per-page-selection-random-94892">Página</label>
-                <select
-                  className="select-expand"
-                  aria-label="Exibir página"
-                  tabIndex={-1}
-                  data-trigger="data-trigger"
-                  onChange={(value) => {
-                    setCurrentPage(Number(value.target.value));
-                    setPageIndexOpen(false);
-                  }}
-                  onFocus={() => setPageIndexOpen(true)}
-                  onBlur={() => setPageIndexOpen(false)}
-                >
-                  {pageNumbers.map((element) =>
-                    <option value={element} selected={currentPage === element}>
-                      {element}
-                    </option>
-                  )}
-              </select>
-              <i
-                className={
-                  isPageItemsOpen
-                    ? "fas fa-angle-down select-icon"
-                    : "fas fa-angle-up select-icon"
-                }
-                aria-hidden="true"
-              />
-            </div>
-          </div>
-        </div>
-        <span className="br-divider d-none d-sm-block mx-3"></span>
-        <div className="pagination-inhtmlFormation d-none d-sm-flex">
-          <span className="current">
-            {`${
-              indexOfFirstItem + 1
-            }-${indexOfLastItem} de ${dataSize} itens`}
-          </span>
-        </div>
         <div className="pagination-go-to-page d-none d-sm-flex ml-auto">
           <div className="br-select">
             <div className="br-input select-div">

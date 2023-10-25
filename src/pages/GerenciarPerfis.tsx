@@ -1,14 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Header from "../components/Cabecalho"
 import TrilhaDeNavegacao from "../components/escolasCadastradas/TrilhaNavegacao";
 import PerfilDialog from "../components/PerfilDialog";
-import { PerfisTabela, TipoPerfil } from "../models/auth";
+import { PerfisTabela, Permissao, TipoPerfil } from "../models/auth";
 import Footer from "../components/Footer";
 import Table, { CustomTableRow } from "../components/Table/Table";
 import ReactLoading from "react-loading";
 import { notification } from "antd";
 import fetchPerfis from "../service/listarPerfis";
 import { DeletarPerfilArgs, DeletarPerfilDialog } from "../components/DeletarPerfilDialog";
+import { AuthContext } from "../provider/Autenticacao";
 
 
 interface PerfilDialogArgs {
@@ -27,9 +28,14 @@ export function NomeFilter({onNomeChange}: NomeFilterProps) {
     <div className="d-flex flex-column ml-3 mt-5 mb-5">
       <label className="ml-2" style={{textAlign: 'start', fontSize: '16px'}}>Nome:</label>
       <div className="d-flex" style={{fontSize: '16px'}}>
-        <input className="br-input" type="search" placeholder="Nome" value={nome}
-          onChange={e => setNome(e.target.value)}
-          onKeyDown={e => e.key == 'Enter' && onNomeChange(nome)}/>
+        <div className="br-input large input-button">
+          <input className="br-input-search-large" type="search" placeholder="Nome" value={nome}
+            onChange={e => setNome(e.target.value)}
+            onKeyDown={e => e.key == 'Enter' && onNomeChange(nome)}/>
+            <button className="br-button" type="button" aria-label="Buscar" onClick={() => onNomeChange(nome)}>
+              <i className="fas fa-search" aria-hidden="true"></i>
+            </button>
+          </div>
       </div>
     </div>
   );
@@ -44,6 +50,8 @@ export default function GerenciarPerfis() {
   const [notificationApi, notificationContextHandler] = notification.useNotification();
   const tamanhoPagina = 500;
   const [nome, setNome] = useState('');
+
+  const { temPermissao } = useContext(AuthContext);
 
   const onPerfilChange = (perfil: PerfisTabela | null) => {
     if (!perfil) {
@@ -73,7 +81,9 @@ export default function GerenciarPerfis() {
       {showPerfil != null && <PerfilDialog id={showPerfil.id} readOnly={showPerfil.readOnly} closeDialog={(perfil) => { setShowPerfil(null); onPerfilChange(perfil) }} />}
       {showDeletarPerfil != null && <DeletarPerfilDialog perfil={showDeletarPerfil} onClose={(deletou) => { setDeletarPerfil(null); deletou && buscarPerfis() }} />}
       <Header />
-      <TrilhaDeNavegacao elementosLi={paginas} registrarPerfis mostrarModal={() => setShowPerfil({ id: null, readOnly: false })}></TrilhaDeNavegacao>
+      {temPermissao(Permissao.PerfilCadastrar)?
+        <TrilhaDeNavegacao elementosLi={paginas} registrarPerfis mostrarModal={() => setShowPerfil({ id: null, readOnly: false })}></TrilhaDeNavegacao>:
+        <TrilhaDeNavegacao elementosLi={paginas} />}
       <div className="d-flex flex-column m-5">
         <NomeFilter onNomeChange={setNome}/>
 
@@ -87,8 +97,9 @@ export default function GerenciarPerfis() {
                 onDeleteRow={() => setDeletarPerfil({ id: p.id, nome: p.nome, quantidade: p.quantidadeUsuarios})}
                 onEditRow={() => setShowPerfil({ id: p.id, readOnly: false })}
                 onDetailRow={() => setShowPerfil({ id: p.id, readOnly: true })}
-                hideEditIcon={p.tipo == TipoPerfil.Administrador}
-                hideTrashIcon={p.tipo != TipoPerfil.Customizavel} />
+                hideEditIcon={p.tipo == TipoPerfil.Administrador || !temPermissao(Permissao.PerfilEditar)}
+                hideTrashIcon={p.tipo != TipoPerfil.Customizavel || !temPermissao(Permissao.PerfilRemover)} 
+                hideEyeIcon={!temPermissao(Permissao.PerfilVisualizar)} />
             )
           }
         </Table>
