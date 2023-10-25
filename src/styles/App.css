@@ -16,6 +16,9 @@
 .App {
   text-align: center;
   font-family: Rawline, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .App-logo {
@@ -30,6 +33,10 @@
   border-bottom: 1px solid var(--gray1);
   padding: 0 25px;
   height: 85px;
+}
+
+.Main-content {
+  flex: 1;
 }
 
 .iconGov {

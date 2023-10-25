@@ -3,7 +3,7 @@ import {
   FileTextOutlined,
   FormOutlined,
 } from "@ant-design/icons";
-import IconGerenciarPerfis from "../assets/icones/GerenciarPerfis.svg"
+import IconGerenciarPerfis from "../assets/icones/GerenciarPerfis.svg";
 import { Card, Collapse, CollapseProps } from "antd";
 import { useNavigate } from "react-router";
 import Header from "../components/Cabecalho";
@@ -11,7 +11,7 @@ import TrilhaDeNavegacao from "../components/escolasCadastradas/TrilhaNavegacao"
 import Footer from "../components/Footer";
 import "../styles/App.css";
 import "../styles/Dashboard.css";
-import "../components/Collapse/index"
+import "../components/Collapse/index";
 import "../components/Collapse/index";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/Autenticacao";
@@ -118,7 +118,11 @@ export default function Dashboard() {
             <p className="text">Cadastrar empresas</p>
           </Card>
           <Card className="card" onClick={() => navigate("/gerenciarPerfis")}>
-            <img className="iconPerfis" src={IconGerenciarPerfis} alt="ícone gerenciar perfis" />
+            <img
+              className="iconPerfis"
+              src={IconGerenciarPerfis}
+              alt="ícone gerenciar perfis"
+            />
             <p className="text">Gerenciar Perfis</p>
           </Card>
         </div>
@@ -128,13 +132,15 @@ export default function Dashboard() {
   return (
     <div className="App">
       <Header />
-      <TrilhaDeNavegacao elementosLi={paginas} />
-      <Collapse
-        defaultActiveKey={["1", "2", "3"]}
-        ghost
-        items={items}
-        className="collapse"
-      />
+      <div className="Main-content">
+        <TrilhaDeNavegacao elementosLi={paginas} />
+        <Collapse
+          defaultActiveKey={["1", "2", "3"]}
+          ghost
+          items={items}
+          className="collapse"
+        />
+      </div>
       <Footer />
     </div>
   );
