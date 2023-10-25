@@ -2,7 +2,7 @@ import { notification } from "antd";
 import { useState } from "react";
 import { useFiltroTabela } from "../../context/FiltroTabela";
 import { EscolaData } from "../../models/service";
-import ExibirInformacoesEscola from "../../pages/ExibirInformacoesEscola";
+import ExibirInformacoesEscola from "./ExibirInformacoesEscola";
 import "../../styles/App.css";
 import "../estilo/TabelaEscola.css";
 

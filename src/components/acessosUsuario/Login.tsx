@@ -5,10 +5,9 @@ import LogoDNIT from "../../assets/logoDnitAzul.png";
 import { AuthContext } from "../../provider/Autenticacao";
 import fetchLogin from "../../service/login";
 import "../../styles/form.css";
-import ButtonComponent from "../Botao";
+import { ButtonComponent } from "../Button";
 
 const LoginForm: React.FC = () => {
-
   const [form] = Form.useForm();
   const regras = [
     {
@@ -25,6 +24,10 @@ const LoginForm: React.FC = () => {
 
   const [api, contextHolder] = notification.useNotification();
 
+  const handleCustomSubmit = () => {
+    form.submit();
+  };
+
   const onFinish = async (values: any) => {
     const loginData = {
       email: values.email,
@@ -35,7 +38,7 @@ const LoginForm: React.FC = () => {
 
     try {
       const dados = await fetchLogin(loginData);
-      notification.success({message: "Login realizado!"})
+      notification.success({ message: "Login realizado!" });
       login(dados);
     } catch (error) {
       api.error({ message: `Erro ao fazer login` });
@@ -75,11 +78,10 @@ const LoginForm: React.FC = () => {
           <Form.Item>
             <Space>
               <ButtonComponent
-                nome="Entrar"
-                cor="#1351B4"
-                cor_letra="#FFFFFF"
-                cor_borda="#1351B4"
-                largura="10em"
+                label="Entrar"
+                buttonStyle="primary"
+                padding="40px"
+                onClick={handleCustomSubmit}
               />
             </Space>
           </Form.Item>

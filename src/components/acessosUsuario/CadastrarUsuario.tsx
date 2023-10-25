@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import fetchUnidadeFederativa from "../../service/unidadesFederativas";
 import fetchCadastro from "../../service/cadastrarUsuario";
 import "../../styles/form.css";
-import ButtonComponent from "../Botao";
+import { ButtonComponent } from "../Button";
 const { Option } = Select;
 
 interface UfProps {
@@ -26,7 +26,7 @@ const CadastroUsuarioForm: React.FC = () => {
   const [empresasVisiveis, setEmpresasVisiveis] = useState(false);
   const [uf, setUf] = useState<UfProps[]>();
   const empresas = [{ label: "Instituto Essência do Saber", value: 0 }];
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const onFinish = async (values: any) => {
     const cadastroUsuarioData = {
@@ -39,7 +39,7 @@ const CadastroUsuarioForm: React.FC = () => {
     try {
       await fetchCadastro(cadastroUsuarioData);
       notification.success({ message: "Cadastro feito!" });
-      navigate('/login')
+      navigate("/login");
     } catch (error) {
       api.error({ message: `Erro ao fazer cadastro` });
     }
@@ -50,6 +50,10 @@ const CadastroUsuarioForm: React.FC = () => {
     const novaUf = uf.map((u) => ({ value: u.id, label: u.nome }));
     setUf(novaUf);
   }
+
+  const handleCustomSubmit = () => {
+    form.submit();
+  };
 
   return (
     <div className="formc">
@@ -222,11 +226,10 @@ const CadastroUsuarioForm: React.FC = () => {
           <Form.Item>
             <Space>
               <ButtonComponent
-                nome="Cadastrar-se"
-                cor="#1351B4"
-                cor_letra="#FFFFFF"
-                cor_borda="#1351B4"
-                largura="10em"
+                label="Cadastrar-se"
+                buttonStyle="primary"
+                padding="40px"
+                onClick={handleCustomSubmit}
               />
             </Space>
           </Form.Item>
