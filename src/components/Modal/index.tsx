@@ -8,7 +8,7 @@ interface ModalProps {
 
 export default function Modal({ className = 'default', children }: ModalProps) {
   return (
-    <div className={"overlay " + className} >
+    <div className={"overlay " + className} data-testid="overlay">
       <div className="br-modal medium">
         <div className="br-modal-body d-flex flex-column w-100">
           {children}
