@@ -9,6 +9,7 @@ import { useContext, useEffect } from "react";
 import { AuthContext } from "../provider/Autenticacao";
 import { Permissao } from "../models/auth";
 import { useNavigate } from "react-router-dom";
+import TabelaUsuario from "../components/gerenciaUsuario/TabelaUsuario";
 
 export default function GerenciarUsuario() {
   const paginas = [{ nome: "Logout", link: "/login" }];
@@ -25,7 +26,11 @@ export default function GerenciarUsuario() {
   return (
     <div className="App">
       <Header />
+      <TrilhaNavegacao
+        elementosLi={paginas}
+      ></TrilhaNavegacao>
       <p>Texto teste</p>
+      <TabelaUsuario/>
       <Footer />
     </div>
   );
