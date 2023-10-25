@@ -37,13 +37,14 @@ export default function GerenciarPerfis() {
 
     fetchPerfis(pagina, tamanhoPagina)
       .then(perfis => setPerfis(perfis))
-      .catch(error => notificationApi.error({ message: error?.response?.data }))
+      .catch(error => notificationApi.error({ message: 'Falha na listagem de perfis. ' + error?.response?.data ?? '' }))
       .finally(() => setLoading(false));
   }
 
   useEffect(() => {
     buscarPerfis(pagina, tamanhoPagina);
   }, [tamanhoPagina, pagina]);
+
 
   return (
     <div className="App">
