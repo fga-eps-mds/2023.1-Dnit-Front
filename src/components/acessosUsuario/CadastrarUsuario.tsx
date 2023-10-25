@@ -51,6 +51,10 @@ const CadastroUsuarioForm: React.FC = () => {
     setUf(novaUf);
   }
 
+  const handleCustomSubmit = () => {
+    form.submit();
+  };
+
   return (
     <div className="formc">
       {contextHolder}
@@ -225,6 +229,7 @@ const CadastroUsuarioForm: React.FC = () => {
                 label="Cadastrar-se"
                 buttonStyle="primary"
                 padding="40px"
+                onClick={handleCustomSubmit}
               />
             </Space>
           </Form.Item>

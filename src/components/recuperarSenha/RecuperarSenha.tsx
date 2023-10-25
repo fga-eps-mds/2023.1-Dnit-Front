@@ -29,6 +29,10 @@ const EsqueciSenhaForm: React.FC = () => {
     }
   };
 
+  const handleCustomSubmit = () => {
+    formulario.submit();
+  };
+
   return (
     <div className="form">
       {contextHolder}
@@ -58,6 +62,7 @@ const EsqueciSenhaForm: React.FC = () => {
                 label="Enviar Link de Recuperação"
                 buttonStyle="primary"
                 padding="40px"
+                onClick={handleCustomSubmit}
               />
             </Space>
           </Form.Item>

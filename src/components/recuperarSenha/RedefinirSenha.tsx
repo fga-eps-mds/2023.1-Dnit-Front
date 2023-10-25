@@ -17,6 +17,10 @@ const RedefinirSenha: React.FC = () => {
   const [api, contextHolder] = notification.useNotification();
   const navigate = useNavigate();
 
+  const handleSubmit = () => {
+    formulario.submit();
+  };
+
   const onFinish = async (values: any) => {
     const parametrosPesquisa = new URLSearchParams(document.location.search);
     const uuid = parametrosPesquisa.get("token");
@@ -88,6 +92,7 @@ const RedefinirSenha: React.FC = () => {
                 label="Confirmar"
                 buttonStyle="primary"
                 padding="40px"
+                onClick={handleSubmit}
               />
             </Space>
           </Form.Item>

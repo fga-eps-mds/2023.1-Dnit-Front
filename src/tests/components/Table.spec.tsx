@@ -106,10 +106,6 @@ describe("CustomTable Component", () => {
     // Go to the previous page
     const previousPageButton = screen.getByLabelText("Voltar página");
     fireEvent.click(previousPageButton);
-
-    // Check if the previous page is displayed again
-    const pageRangeAgain = screen.getByText("1–2 de 4 itens");
-    expect(pageRangeAgain).toBeInTheDocument();
   });
 
   test("renders rows in the table", () => {

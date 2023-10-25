@@ -24,6 +24,10 @@ const LoginForm: React.FC = () => {
 
   const [api, contextHolder] = notification.useNotification();
 
+  const handleCustomSubmit = () => {
+    form.submit();
+  };
+
   const onFinish = async (values: any) => {
     const loginData = {
       email: values.email,
@@ -77,6 +81,7 @@ const LoginForm: React.FC = () => {
                 label="Entrar"
                 buttonStyle="primary"
                 padding="40px"
+                onClick={handleCustomSubmit}
               />
             </Space>
           </Form.Item>
