@@ -8,8 +8,10 @@ import "../estilo/TabelaUsuario.css";
 
 interface TabelaUsuarioProps {
   nome?: string;
-  idade?: number;
-  endereco?: object;
+  empresa?: string;
+  tipoPerfil?: string;
+  uf?: string;
+  email?: string;
   checked?: boolean;
 }
 
@@ -19,23 +21,7 @@ export default function TabelaUsuario(props: TabelaUsuarioProps){
     <div className="br-table" data-search="data-search" data-selection="data-selection" data-collapse="data-collapse" data-random="data-random">
       <div className="table-header">
         <div className="top-bar">
-          <div className="table-title">Título da Tabela</div>
-          <div className="actions-trigger text-nowrap">
-            <button className="br-button circle" type="button" title="Ver mais opções" data-toggle="dropdown" data-target="target01-33252" aria-label="Ver mais opções"><i className="fas fa-ellipsis-v" aria-hidden="true"></i>
-            </button>
-            <div className="br-list" id="target01-33252">
-              <button className="br-item" type="button" data-density="small">Densidade alta
-              </button><span className="br-divider"></span>
-              <button className="br-item" type="button" data-density="medium">Densidade média
-              </button><span className="br-divider"></span>
-              <button className="br-item" type="button" data-density="large">Densidade baixa
-              </button>
-            </div>
-          </div>
-          <div className="search-trigger">
-            <button className="br-button circle" type="button" data-toggle="search" aria-label="Abrir busca"><i className="fas fa-search" aria-hidden="true"></i>
-            </button>
-          </div>
+          <div className="table-title">Usuários Cadastrados</div>
         </div>
         <div className="search-bar">
           <div className="br-input">
@@ -62,7 +48,7 @@ export default function TabelaUsuario(props: TabelaUsuarioProps){
         </div>
       </div>
       <table>
-        <caption>Título da Tabela</caption>
+        <caption>Usuários Cadastrados</caption>
         <thead>
           <tr>
             <th className="column-collapse" scope="col"></th>
@@ -72,15 +58,16 @@ export default function TabelaUsuario(props: TabelaUsuarioProps){
                 <label>Selecionar todas as linhas</label>
               </div>
             </th>
-            <th scope="col">Título coluna 1</th>
-            <th scope="col">Título coluna 2</th>
-            <th scope="col">Título coluna 3</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Empresa</th>
+            <th scope="col">Tipo Perfil</th>
+            <th scope="col">UF</th>
+            <th scope="col">email</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>
-              
+            <td>    
             </td>
             <td>
               <div className="br-checkbox hidden-label">
@@ -91,14 +78,11 @@ export default function TabelaUsuario(props: TabelaUsuarioProps){
             <td data-th="Título coluna 1">Linha 1 coluna 1</td>
             <td data-th="Título coluna 2">Linha 1 coluna 2</td>
             <td data-th="Título coluna 3">Linha 1 coluna 3</td>
-          </tr>
-          <tr className="collapse">
-            <td id="collapse-1-4-33252" aria-hidden="true" colSpan={6}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultricies aliquet lacinia. Vestibulum in interdum eros. Donec vel tempus diam. Aenean pulvinar mattis nisi in laoreet. Integer felis mi, vehicula sed pretium sit amet, pellentesque vel nisl. Curabitur metus ante, pellentesque in lectus a, sagittis imperdiet mi.</td>
+            <td data-th="Título coluna 4">Linha 1 coluna 4</td>
+            <td data-th="Título coluna 5">Linha 1 coluna 5</td>
           </tr>
           <tr>
             <td>
-              <button className="br-button circle small" type="button" aria-label="Expandir/Retrair Rótulo 01" data-toggle="collapse" data-target="collapse-2-4-33252"><i className="fas fa-chevron-down" aria-hidden="true"></i>
-              </button>
             </td>
             <td>
               <div className="br-checkbox hidden-label">
@@ -109,14 +93,11 @@ export default function TabelaUsuario(props: TabelaUsuarioProps){
             <td data-th="Título coluna 1">Linha 2 coluna 1</td>
             <td data-th="Título coluna 2">Linha 2 coluna 2</td>
             <td data-th="Título coluna 3">Linha 2 coluna 3</td>
-          </tr>
-          <tr className="collapse">
-            <td id="collapse-2-4-33252" aria-hidden="true" colSpan={6}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultricies aliquet lacinia. Vestibulum in interdum eros. Donec vel tempus diam. Aenean pulvinar mattis nisi in laoreet. Integer felis mi, vehicula sed pretium sit amet, pellentesque vel nisl. Curabitur metus ante, pellentesque in lectus a, sagittis imperdiet mi.</td>
+            <td data-th="Título coluna 4">Linha 2 coluna 4</td>
+            <td data-th="Título coluna 5">Linha 2 coluna 5</td>
           </tr>
           <tr>
             <td>
-              <button className="br-button circle small" type="button" aria-label="Expandir/Retrair Rótulo 01" data-toggle="collapse" data-target="collapse-3-4-33252"><i className="fas fa-chevron-down" aria-hidden="true"></i>
-              </button>
             </td>
             <td>
               <div className="br-checkbox hidden-label">
@@ -127,9 +108,8 @@ export default function TabelaUsuario(props: TabelaUsuarioProps){
             <td data-th="Título coluna 1">Linha 3 coluna 1</td>
             <td data-th="Título coluna 2">Linha 3 coluna 2</td>
             <td data-th="Título coluna 3">Linha 3 coluna 3</td>
-          </tr>
-          <tr className="collapse">
-            <td id="collapse-3-4-33252" aria-hidden="true" colSpan={6}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultricies aliquet lacinia. Vestibulum in interdum eros. Donec vel tempus diam. Aenean pulvinar mattis nisi in laoreet. Integer felis mi, vehicula sed pretium sit amet, pellentesque vel nisl. Curabitur metus ante, pellentesque in lectus a, sagittis imperdiet mi.</td>
+            <td data-th="Título coluna 4">Linha 3 coluna 4</td>
+            <td data-th="Título coluna 5">Linha 3 coluna 5</td>
           </tr>
         </tbody>
       </table>
