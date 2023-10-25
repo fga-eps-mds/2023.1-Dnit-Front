@@ -14,10 +14,10 @@ const server = setupServer(
   rest.post(
     atualizarTokenUrl,
     (_, res, ctx) => res(
-      ctx.json({token: "token", tokenAtualizacao: "token atualizacao", expiraEm: new Date().toISOString(), permissoes: [Permissao.EscolaCadastrar]})),
+      ctx.json({ token: "token", tokenAtualizacao: "token atualizacao", expiraEm: new Date().toISOString(), permissoes: [Permissao.EscolaCadastrar] })),
   ),
   rest.get(
-   `${escolasService}/escolas/obter`,
+    `${escolasService}/escolas/obter`,
     (req, res, ctx) => {
       return res(
         ctx.json({
@@ -632,12 +632,12 @@ const server = setupServer(
   rest.post(
     `${cadastrarPerfilUrl}`,
     (req, res, ctx) => {
-      return res(ctx.status(200), ctx.json({'id': '1'}));
+      return res(ctx.status(200), ctx.json({ 'id': '1' }));
     }
   ),
   rest.get(
     `${obterPerfil}/erro`,
-    (req, res, ctx) => {return res(ctx.status(404))}
+    (req, res, ctx) => { return res(ctx.status(404)) }
   ),
   rest.get(
     `${obterPerfil}/1`,
@@ -658,7 +658,8 @@ const server = setupServer(
               categoria: 'Ups',
               permissoes: [],
             }
-          ]}));
+          ]
+        }));
     }
   ),
   rest.put(
@@ -680,9 +681,12 @@ const server = setupServer(
               categoria: 'Ups',
               permissoes: [],
             }
-          ]}));
+          ]
+        }));
     }
   ),
+  rest.get(listarUsuarioPermissoes,
+    (req, res, ctx) => res(ctx.status(200), ctx.json([]))),
 );
 
 export default server;

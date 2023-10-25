@@ -6,10 +6,14 @@ import { AuthProvider } from "../provider/Autenticacao";
 import localStorageMock from "./mock/memoriaLocal";
 import { autenticar } from "./mock/autenticacao";
 import { Permissao } from "../models/auth";
+import server from "./mock/servicosAPI";
+
+beforeAll(() => server.listen());
 
 beforeEach(() => {
   Object.defineProperty(window, "localStorage", { value: localStorageMock });
 });
+
 window.matchMedia = jest.fn().mockImplementation((query) => {
   return {
     matches: false,
@@ -49,22 +53,7 @@ test("Visualizar Escolas Sem Permissão", async () => {
     </MemoryRouter>
   );
 
-  const botao = screen.queryAllByText("Visualizar Escolas");
-  expect(botao).toHaveLength(1);
-});
-
-test("Visualizar Escolas Sem Permissão", async () => {
-  autenticar();
-
-  const screen = render(
-    <MemoryRouter initialEntries={["/dashboard"]}>
-      <AuthProvider>
-        <App />
-      </AuthProvider>
-    </MemoryRouter>
-  );
-
-  const botao = await screen.queryByText("Visualizar Escolas");
+  const botao = await screen.queryByTestId("visualizar-escola-option");
   expect(botao).toBeNull();
 });
 

@@ -64,7 +64,7 @@ export default function Dashboard() {
               onClick={() => navigate("/escolas-cadastradas")}
             >
               <FileTextOutlined className="icon" />
-              <p className="text">Visualizar Escolas</p>
+              <p data-testid='visualizar-escola-option' className="text">Visualizar Escolas</p>
             </Card>
           )}
           {podeVisualizarUps && (
