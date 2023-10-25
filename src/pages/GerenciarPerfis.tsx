@@ -43,7 +43,7 @@ export default function GerenciarPerfis() {
   }
 
   useEffect(() => {
-    buscarPerfis(pagina, tamanhoPagina);
+    buscarPerfis(pagina, 500);
   }, [tamanhoPagina, pagina]);
 
 
@@ -55,23 +55,18 @@ export default function GerenciarPerfis() {
       <Header />
       <TrilhaDeNavegacao elementosLi={paginas} registrarPerfis mostrarModal={() => setShowPerfil({ id: null, readOnly: false })}></TrilhaDeNavegacao>
       <div className="d-flex flex-column m-5">
-        <Table columsTitle={['Nome', 'Número de Usuários', 'Permissões']} initialItemsPerPage={10} title="Perfis de usuário cadastrados" showPagination={!loading}>
+        <Table columsTitle={['Nome', 'Número de Usuários', 'Permissões']} initialItemsPerPage={10} title="Perfis de usuário cadastrados">
           {
-            !loading && <>
-              {
-                perfis.map((p, index) =>
-                  <CustomTableRow key={p.id} id={index}
-                    data={{ '0': p.nome, '1': `${p.quantidadeUsuarios}`, '2': p.permissoes.map(pp => pp.descricao).splice(0, 3).join(', ') + (p.permissoes.length > 3 ? ', ...' : '') }}
-                    onDeleteRow={() => setDeletarPerfil({ id: p.id, nome: p.nome })}
-                    onEditRow={() => setShowPerfil({ id: p.id, readOnly: false })}
-                    onDetailRow={() => setShowPerfil({ id: p.id, readOnly: true })}
-                    hideEditIcon={p.tipo == TipoPerfil.Administrador}
-                    hideTrashIcon={p.tipo != TipoPerfil.Customizavel} />
-                )
-              }
-            </>
+            perfis.map((p, index) =>
+              <CustomTableRow key={p.id} id={index}
+                data={{ '0': p.nome, '1': `${p.quantidadeUsuarios}`, '2': p.permissoes.map(pp => pp.descricao).splice(0, 3).join(', ') + (p.permissoes.length > 3 ? ', ...' : '') }}
+                onDeleteRow={() => setDeletarPerfil({ id: p.id, nome: p.nome })}
+                onEditRow={() => setShowPerfil({ id: p.id, readOnly: false })}
+                onDetailRow={() => setShowPerfil({ id: p.id, readOnly: true })}
+                hideEditIcon={p.tipo == TipoPerfil.Administrador}
+                hideTrashIcon={p.tipo != TipoPerfil.Customizavel} />
+            )
           }
-          <></>
         </Table>
         {loading && <div className="d-flex justify-content-center w-100 m-5"><ReactLoading type="spinningBubbles" color="#000000" /></div>}
       </div>
