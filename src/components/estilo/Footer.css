@@ -24,6 +24,7 @@
   position: relative;
   text-align: center;
   bottom: 0;
+  z-index: -3;
 }
 
 .br-footer .left-align {
