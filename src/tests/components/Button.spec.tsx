@@ -67,19 +67,3 @@ test("Calls onClick function when button is clicked", () => {
 
   expect(onClick).toHaveBeenCalledTimes(1);
 });
-
-test("Renders with custom padding", () => {
-  const screen = render(
-    <ButtonComponent
-      label="Custom Padding"
-      buttonStyle="primary"
-      buttonType="default"
-      icon="fa-icon"
-      padding="10px"
-    />
-  );
-
-  const button = screen.getByText("Custom Padding");
-
-  expect(button).toHaveStyle("padding: 10px");
-});

@@ -1,28 +1,75 @@
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import "./styles.css";
 
 interface CustomTableProps {
   title: string;
-  data: Record<string, string>[];
   initialItemsPerPage: number;
-  onDeleteRow: (rowIndex: number) => void;
-  onEditRow?: (rowIndex: number) => void;
-  onDetailRow?: (rowIndex: number) => void;
+  columsTitle: string[];
+  children: ReactNode[];
+}
+
+interface CustomTableRowsProps {
+  data: Record<string, string>;
+  id: number;
   hideEditIcon?: boolean;
   hideEyeIcon?: boolean;
   hideTrashIcon?: boolean;
+  onDeleteRow?: (rowIndex: number) => void;
+  onEditRow?: (rowIndex: number) => void;
+  onDetailRow?: (rowIndex: number) => void;
 }
 
-export default function CustomTable({
-  title,
+export function CustomTableRow({
   data,
-  initialItemsPerPage,
+  id,
   onDeleteRow = () => {},
   onEditRow = () => {},
   onDetailRow = () => {},
   hideEditIcon = false,
   hideEyeIcon = false,
   hideTrashIcon = false,
+}: CustomTableRowsProps) {
+  const columns = Object.keys(data);
+
+  return (
+    <tr>
+      {columns.map((column, colIndex) => (
+        <td data-th={colIndex}>{data[column]}</td>
+      ))}
+      <td>
+        <div className="icon-row">
+          {!hideEditIcon && (
+            <i
+              className="fas fa-edit"
+              aria-hidden="true"
+              onClick={() => onEditRow(id)}
+            />
+          )}
+          {!hideEyeIcon && (
+            <i
+              className="fas fa-eye"
+              aria-hidden="true"
+              onClick={() => onDetailRow(id)}
+            />
+          )}
+          {!hideTrashIcon && (
+            <i
+              className="fas fa-trash-alt"
+              aria-hidden="true"
+              onClick={() => onDeleteRow(id)}
+            />
+          )}
+        </div>
+      </td>
+    </tr>
+  );
+}
+
+export default function CustomTable({
+  title,
+  children,
+  columsTitle,
+  initialItemsPerPage,
 }: CustomTableProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(initialItemsPerPage);
@@ -30,20 +77,20 @@ export default function CustomTable({
   const [isPageIndexOpen, setPageIndexOpen] = useState(false);
 
   const indexOfLastItem =
-    currentPage * itemsPerPage > data.length
-      ? data.length
+    currentPage * itemsPerPage > children.length
+      ? children.length
       : currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+
+  const currentItems = children.slice(indexOfFirstItem, indexOfLastItem);
 
   const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(data.length / itemsPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(children.length / itemsPerPage); i++) {
     pageNumbers.push(i);
   }
-  if (data.length === 0) return null;
+  if (children.length === 0) return null;
 
-  const columns = Object.keys(data[0]);
-  const dataSize = data.length;
+  const dataSize = children.length;
 
   const changeItemsPerPage = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setItemsPerPage(parseInt(event.target.value));
@@ -80,72 +127,13 @@ export default function CustomTable({
       <table>
         <thead>
           <tr>
-            <th className="column-checkbox" scope="col">
-              <div className="br-checkbox hidden-label">
-                <input
-                  id="check-all-29127"
-                  name="check-all-29127"
-                  type="checkbox"
-                  aria-label="Selecionar tudo"
-                  data-parent="check-01-29127"
-                />
-                <label htmlFor="check-all-29127">
-                  Selecionar todas as linhas
-                </label>
-              </div>
-            </th>
-            {columns.map((element) => (
+            {columsTitle.map((element) => (
               <th scope="col">{element}</th>
             ))}
             <th scope="col"></th>
           </tr>
         </thead>
-        <tbody>
-          {currentItems.map((item, rowIndex) => (
-            <tr>
-              <td>
-                <div className="br-checkbox hidden-label">
-                  <input
-                    id={rowIndex.toString()}
-                    name={rowIndex.toString()}
-                    type="checkbox"
-                    aria-label="Selecionar linha 1"
-                    data-child={rowIndex.toString()}
-                  />
-                  <label htmlFor={rowIndex.toString()}>Selecionar linha</label>
-                </div>
-              </td>
-              {columns.map((column, colIndex) => (
-                <td data-th={colIndex}>{item[column]}</td>
-              ))}
-              <td>
-                <div className="icon-row">
-                  {!hideEditIcon && (
-                    <i
-                      className="fas fa-edit"
-                      aria-hidden="true"
-                      onClick={() => onEditRow(rowIndex)}
-                    />
-                  )}
-                  {!hideEyeIcon && (
-                    <i
-                      className="fas fa-eye"
-                      aria-hidden="true"
-                      onClick={() => onDetailRow(rowIndex)}
-                    />
-                  )}
-                  {!hideTrashIcon && (
-                    <i
-                      className="fas fa-trash-alt"
-                      aria-hidden="true"
-                      onClick={() => onDeleteRow(rowIndex)}
-                    />
-                  )}
-                </div>
-              </td>
-            </tr>
-          ))}
-        </tbody>
+        <tbody>{currentItems.map((item, _) => item)}</tbody>
       </table>
       <div className="table-footer">
         <nav
@@ -157,10 +145,7 @@ export default function CustomTable({
         >
           <div className="pagination-per-page">
             <div className="br-select">
-              <div
-                className="br-input select-div"
-                onClick={() => console.log("teste")}
-              >
+              <div className="br-input select-div">
                 <label htmlFor="per-page-selection-random-94892">Exibir</label>
                 <select
                   className="select-expand"
@@ -195,9 +180,11 @@ export default function CustomTable({
           </div>
           <span className="br-divider d-none d-sm-block mx-3"></span>
           <div className="pagination-inhtmlFormation d-none d-sm-flex">
-            <span className="current">{indexOfFirstItem + 1}</span>&ndash;
-            <span className="per-page">{indexOfLastItem}</span>&nbsp;de&nbsp;
-            <span className="total">{dataSize}</span>&nbsp;itens
+            <span className="current">
+              {`${
+                indexOfFirstItem + 1
+              }-${indexOfLastItem} de ${dataSize} itens`}
+            </span>
           </div>
           <div className="pagination-go-to-page d-none d-sm-flex ml-auto">
             <div className="br-select">
@@ -205,7 +192,7 @@ export default function CustomTable({
                 <label htmlFor="per-page-selection-random-94892">Página</label>
                 <select
                   className="select-expand"
-                  aria-label="Exibir lista"
+                  aria-label="Exibir página"
                   tabIndex={-1}
                   data-trigger="data-trigger"
                   onChange={(value) => {
