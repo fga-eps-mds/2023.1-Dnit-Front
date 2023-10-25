@@ -9,7 +9,7 @@ export enum AuthLocalStorage {
   TokenAtualizacao = "TokenAtualizacao",
   ExpiraEm = "ExpiraEm",
   Permissoes = "Permissoes",
-  Email = "Nome",
+  Email = "Email",
 }
 
 const PERMISSOES_SEPARATOR = ",";
