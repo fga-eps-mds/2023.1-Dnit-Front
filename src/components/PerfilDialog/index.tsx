@@ -137,7 +137,8 @@ export default function PerfilDialog({ id, readOnly, closeDialog }: PerfilDialog
   return (
     <Modal className="dialog-create-perfil">
       {contextHolder}
-      <h4 className="text-center mt-1">{!id ? 'Criação de Perfil' : 'Edição de Perfil'}</h4>
+      {id && <h4 className="text-center mt-1">{readOnly ? 'Detalhes do Perfil' : 'Edição de Perfil'}</h4>}
+      {!id && <h4 className="text-center mt-1">Criação de Perfil</h4>}
       {loading && <div className="d-flex justify-content-center m-3"><ReactLoading type="spinningBubbles" color="#000000" /></div>}
       {
         !loading &&
