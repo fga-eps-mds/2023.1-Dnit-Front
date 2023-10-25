@@ -41,7 +41,7 @@ export function Collapse({ titulo, children, selected, readOnly, ...props }: Col
             <div className="app-collapse-header d-flex align-items-center" style={{ height: '64px' }}>
                 <CollapseCheckBox selected={selected} readOnly={readOnly} {...props} />
                 <button className="app-collapse-button d-flex align-items-center justify-content-between btn-none w-100 ml-2"
-                    onClick={() => !readOnly && setIsCollapsed(c => !c)} type="button">
+                    onClick={() => setIsCollapsed(c => !c)} type="button">
                     <span>{titulo}</span>
                     <i className={`fas ${isCollapsed ? 'fa-angle-down' : 'fa-angle-up'}`} aria-hidden="true"></i>
                 </button>
