@@ -6,10 +6,10 @@ import { ButtonComponent } from "../../components/Button/index";
 test("Renders a default button", () => {
   const screen = render(
     <ButtonComponent
-      rotulo="Default Button"
-      tipo="primary"
-      variante="default"
-      icone="fa-icon"
+      label="Default Button"
+      buttonStyle="primary"
+      buttonType="default"
+      icon="fa-icon"
     />
   );
 
@@ -21,10 +21,10 @@ test("Renders a default button", () => {
 test("Renders a circular button", () => {
   const screen = render(
     <ButtonComponent
-      rotulo="Circular Button"
-      tipo="none"
-      variante="circular"
-      icone="fa-icon"
+      label="Circular Button"
+      buttonStyle="outlined"
+      buttonType="circular"
+      icon="fa-icon"
     />
   );
 
@@ -36,10 +36,10 @@ test("Renders a circular button", () => {
 test("Renders a block button", () => {
   const screen = render(
     <ButtonComponent
-      rotulo="Block Button"
-      tipo="primary"
-      variante="block"
-      icone="fa-icon"
+      label="Block Button"
+      buttonStyle="primary"
+      buttonType="block"
+      icon="fa-icon"
     />
   );
 
@@ -53,10 +53,10 @@ test("Calls onClick function when button is clicked", () => {
 
   const screen = render(
     <ButtonComponent
-      rotulo="Click Me"
-      tipo="primary"
-      variante="default"
-      icone="fa-icon"
+      label="Click Me"
+      buttonStyle="primary"
+      buttonType="default"
+      icon="fa-icon"
       onClick={onClick}
     />
   );

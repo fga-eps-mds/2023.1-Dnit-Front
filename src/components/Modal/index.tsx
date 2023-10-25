@@ -1,5 +1,5 @@
-import { ReactNode } from 'react';
-import './styles.css'
+import { ReactNode } from "react";
+import "./styles.css";
 
 interface ModalProps {
   className: string;

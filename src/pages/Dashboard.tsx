@@ -12,6 +12,7 @@ import Footer from "../components/Footer";
 import "../styles/App.css";
 import "../styles/Dashboard.css";
 import "../components/Collapse/index"
+import "../components/Collapse/index";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/Autenticacao";
 import { Permissao } from "../models/auth";
@@ -23,14 +24,24 @@ export default function Dashboard() {
 
   const { temPermissao, setPermissoes } = useContext(AuthContext);
 
-  const [podeVisualizarEscola, setPodeVisualizarEscola] = useState(temPermissao(Permissao.EscolaVisualizar));
-  const [podeVisualizarUps, setPodeVisualizarUps] = useState(temPermissao(Permissao.UpsVisualizar));
-  const [podeCadastrarEscola, setPodeCadastrarEscola] = useState(temPermissao(Permissao.EscolaCadastrar));
-  const [podeCadastrarSinistro, setPodeCadastrarSinistro] = useState(temPermissao(Permissao.SinistroCadastrar));
-  const [podeCadastrarRodovias, setPodeCadastrarRodovias] = useState(temPermissao(Permissao.RodoviaCadastrar));
+  const [podeVisualizarEscola, setPodeVisualizarEscola] = useState(
+    temPermissao(Permissao.EscolaVisualizar)
+  );
+  const [podeVisualizarUps, setPodeVisualizarUps] = useState(
+    temPermissao(Permissao.UpsVisualizar)
+  );
+  const [podeCadastrarEscola, setPodeCadastrarEscola] = useState(
+    temPermissao(Permissao.EscolaCadastrar)
+  );
+  const [podeCadastrarSinistro, setPodeCadastrarSinistro] = useState(
+    temPermissao(Permissao.SinistroCadastrar)
+  );
+  const [podeCadastrarRodovias, setPodeCadastrarRodovias] = useState(
+    temPermissao(Permissao.RodoviaCadastrar)
+  );
 
   useEffect(() => {
-    fetchPermissoesDoUsuario().then(permissoes => {
+    fetchPermissoesDoUsuario().then((permissoes) => {
       setPermissoes(permissoes);
 
       setPodeVisualizarEscola(temPermissao(Permissao.EscolaVisualizar));
@@ -47,16 +58,21 @@ export default function Dashboard() {
       label: "Visualizações",
       children: (
         <div className="collapse-item">
-          {podeVisualizarEscola &&
-            <Card className="card" onClick={() => navigate("/escolas-cadastradas")}>
+          {podeVisualizarEscola && (
+            <Card
+              className="card"
+              onClick={() => navigate("/escolas-cadastradas")}
+            >
               <FileTextOutlined className="icon" />
               <p className="text">Visualizar Escolas</p>
-            </Card>}
-          {podeVisualizarUps &&
+            </Card>
+          )}
+          {podeVisualizarUps && (
             <Card className="card" onClick={() => navigate("/telaUPS")}>
               <FileTextOutlined className="icon" />
               <p className="text">Visualizar Dados UPS</p>
-            </Card>}
+            </Card>
+          )}
         </div>
       ),
     },
@@ -65,21 +81,30 @@ export default function Dashboard() {
       label: "Adição de dados",
       children: (
         <div className="collapse-item">
-          {podeCadastrarEscola &&
+          {podeCadastrarEscola && (
             <Card className="card" onClick={() => navigate("/cadastrarescola")}>
               <FormOutlined className="icon" />
               <p className="text">Cadastrar Escolas</p>
-            </Card>}
-          {podeCadastrarSinistro &&
-            <Card className="card" onClick={() => navigate("/cadastrarsinistros")}>
+            </Card>
+          )}
+          {podeCadastrarSinistro && (
+            <Card
+              className="card"
+              onClick={() => navigate("/cadastrarsinistros")}
+            >
               <FileAddOutlined className="icon" />
               <p className="text">Adicionar Sinistros</p>
-            </Card>}
-          {podeCadastrarRodovias &&
-            <Card className="card" onClick={() => navigate("/cadastrarRodovias")}>
+            </Card>
+          )}
+          {podeCadastrarRodovias && (
+            <Card
+              className="card"
+              onClick={() => navigate("/cadastrarRodovias")}
+            >
               <FileAddOutlined className="icon" />
               <p className="text">Adicionar Rodovias</p>
-            </Card>}
+            </Card>
+          )}
         </div>
       ),
     },
@@ -89,9 +114,9 @@ export default function Dashboard() {
       children: (
         <div className="collapse-item">
           <Card className="disabled">
-          <FileTextOutlined className="icon" />
-          <p className="text">Cadastrar empresas</p>
-        </Card>
+            <FileTextOutlined className="icon" />
+            <p className="text">Cadastrar empresas</p>
+          </Card>
           <Card className="card" onClick={() => navigate("/gerenciarPerfis")}>
             <img className="iconPerfis" src={IconGerenciarPerfis} alt="ícone gerenciar perfis" />
             <p className="text">Gerenciar Perfis</p>
