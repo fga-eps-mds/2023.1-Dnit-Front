@@ -6,64 +6,13 @@ import { PerfisTabela, TipoPerfil } from "../models/auth";
 import Footer from "../components/Footer";
 import Table, { CustomTableRow } from "../components/Table/Table";
 import ReactLoading from "react-loading";
-import { listarPerfis } from "../consts/service";
 import { notification } from "antd";
 import fetchPerfis from "../service/listarPerfis";
-import Modal from "../components/Modal";
-import fetchExcluirPerfil from "../service/excluiPerfil";
+import { DeletarPerfilArgs, DeletarPerfilDialog } from "../components/DeletarPerfilDialog";
 
 interface PerfilDialogArgs {
   id: string | null;
   readOnly: boolean;
-}
-
-interface DeletarPerfilArgs {
-  id: string;
-  nome: string;
-}
-
-interface DeletarPerfilDialogProps {
-  perfil: DeletarPerfilArgs,
-  onClose: (deletou: boolean) => void;
-}
-
-function DeletarPerfilDialog({perfil, onClose}: DeletarPerfilDialogProps) {
-  const [loading, setLoading] = useState(false);
-
-  const deletar = () => {
-    setLoading(true);
-    fetchExcluirPerfil(perfil.id)
-      .then(() => {
-        notification.success({ message: 'Perfil deletado com sucesso' });
-        onClose(true);
-      })
-      .catch(error => {
-        notification.error({ message: 'Falha na exclusão do perfil. ' + (error?.response?.data || '')});
-        onClose(false);
-      })
-      .finally(() => setLoading(false));
-  }
-
-  if (loading) {
-    return (
-      <Modal className="delete-perfil">
-        <h4 className="text-center mt-2">Deletando perfil {perfil.nome}...</h4>
-        <div className="d-flex justify-content-center m-4">
-          <ReactLoading type="spinningBubbles" color="#000000"/>
-        </div>
-      </Modal>
-    );
-  }
-
-  return (
-    <Modal className="delete-perfil">
-      <h4 className="text-center mt-2">Tem certeza que deseja remover o perfil {perfil.nome}?</h4>
-      <div className="d-flex w-100 justify-content-center">
-        <button className="br-button secondary" type="button" onClick={() => onClose(false)}>Cancelar</button>
-        <button className="br-button primary" type="button" onClick={() => deletar()}>Confirmar</button>
-      </div>
-    </Modal>
-  );
 }
 
 export default function GerenciarPerfis() {
@@ -102,7 +51,7 @@ export default function GerenciarPerfis() {
     <div className="App">
       {notificationContextHandler}
       {showPerfil != null && <PerfilDialog id={showPerfil.id} readOnly={showPerfil.readOnly} closeDialog={(perfil) => { setShowPerfil(null); onPerfilChange(perfil) }} />}
-      {showDeletarPerfil != null && <DeletarPerfilDialog perfil={showDeletarPerfil} onClose={(deletou) => {setDeletarPerfil(null); deletou && buscarPerfis(pagina, tamanhoPagina)}}/>}
+      {showDeletarPerfil != null && <DeletarPerfilDialog perfil={showDeletarPerfil} onClose={(deletou) => { setDeletarPerfil(null); deletou && buscarPerfis(pagina, tamanhoPagina) }} />}
       <Header />
       <TrilhaDeNavegacao elementosLi={paginas} registrarPerfis mostrarModal={() => setShowPerfil({ id: null, readOnly: false })}></TrilhaDeNavegacao>
       <div className="d-flex flex-column m-5">
@@ -114,8 +63,8 @@ export default function GerenciarPerfis() {
                   <CustomTableRow key={p.id} id={index}
                     data={{ '0': p.nome, '1': `${p.quantidadeUsuarios}`, '2': p.permissoes.map(pp => pp.descricao).splice(0, 3).join(', ') + (p.permissoes.length > 3 ? ', ...' : '') }}
                     onDeleteRow={() => setDeletarPerfil({ id: p.id, nome: p.nome })}
-                    onEditRow={() => setShowPerfil({ id: p.id, readOnly: false})}
-                    onDetailRow={() => setShowPerfil({ id: p.id, readOnly: true})}
+                    onEditRow={() => setShowPerfil({ id: p.id, readOnly: false })}
+                    onDetailRow={() => setShowPerfil({ id: p.id, readOnly: true })}
                     hideEditIcon={p.tipo == TipoPerfil.Administrador}
                     hideTrashIcon={p.tipo != TipoPerfil.Customizavel} />
                 )
