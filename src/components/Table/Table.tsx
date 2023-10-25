@@ -6,6 +6,7 @@ interface CustomTableProps {
   initialItemsPerPage: number;
   columsTitle: string[];
   children: ReactNode[];
+  showPagination?: boolean;
 }
 
 interface CustomTableRowsProps {
@@ -70,6 +71,7 @@ export default function CustomTable({
   children,
   columsTitle,
   initialItemsPerPage,
+  showPagination,
 }: CustomTableProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(initialItemsPerPage);
@@ -136,110 +138,112 @@ export default function CustomTable({
         <tbody>{currentItems.map((item, _) => item)}</tbody>
       </table>
       <div className="table-footer">
-        <nav
-          className="br-pagination"
-          aria-label="Paginação de resultados"
-          data-total={dataSize}
-          data-current={currentPage}
-          data-per-page={itemsPerPage}
-        >
-          <div className="pagination-per-page">
-            <div className="br-select">
-              <div className="br-input select-div">
-                <label htmlFor="per-page-selection-random-94892">Exibir</label>
-                <select
-                  className="select-expand"
-                  aria-label="Exibir lista"
-                  tabIndex={-1}
-                  data-trigger="data-trigger"
-                  onChange={(value) => changeItemsPerPage(value)}
-                  onFocus={() => setPageItemsOpen(true)}
-                  onBlur={() => setPageItemsOpen(false)}
-                >
-                  {pageOptions.map((element) => {
-                    return element <= dataSize ? (
-                      <option
-                        value={element}
-                        selected={itemsPerPage === element}
-                      >
+        { showPagination &&
+          <nav
+            className="br-pagination"
+            aria-label="Paginação de resultados"
+            data-total={dataSize}
+            data-current={currentPage}
+            data-per-page={itemsPerPage}
+          >
+            <div className="pagination-per-page">
+              <div className="br-select">
+                <div className="br-input select-div">
+                  <label htmlFor="per-page-selection-random-94892">Exibir</label>
+                  <select
+                    className="select-expand"
+                    aria-label="Exibir lista"
+                    tabIndex={-1}
+                    data-trigger="data-trigger"
+                    onChange={(value) => changeItemsPerPage(value)}
+                    onFocus={() => setPageItemsOpen(true)}
+                    onBlur={() => setPageItemsOpen(false)}
+                  >
+                    {pageOptions.map((element) => {
+                      return element <= dataSize ? (
+                        <option
+                          value={element}
+                          selected={itemsPerPage === element}
+                        >
+                          {element}
+                        </option>
+                      ) : null;
+                    })}
+                  </select>
+                  <i
+                    className={
+                      isPageItemsOpen
+                        ? "fas fa-angle-down select-icon"
+                        : "fas fa-angle-up select-icon"
+                    }
+                    aria-hidden="true"
+                  />
+                </div>
+              </div>
+            </div>
+            <span className="br-divider d-none d-sm-block mx-3"></span>
+            <div className="pagination-inhtmlFormation d-none d-sm-flex">
+              <span className="current">
+                {`${
+                  indexOfFirstItem + 1
+                }-${indexOfLastItem} de ${dataSize} itens`}
+              </span>
+            </div>
+            <div className="pagination-go-to-page d-none d-sm-flex ml-auto">
+              <div className="br-select">
+                <div className="br-input select-div">
+                  <label htmlFor="per-page-selection-random-94892">Página</label>
+                  <select
+                    className="select-expand"
+                    aria-label="Exibir página"
+                    tabIndex={-1}
+                    data-trigger="data-trigger"
+                    onChange={(value) => {
+                      setCurrentPage(Number(value.target.value));
+                      setPageIndexOpen(false);
+                    }}
+                    onFocus={() => setPageIndexOpen(true)}
+                    onBlur={() => setPageIndexOpen(false)}
+                  >
+                    {pageNumbers.map((element) => (
+                      <option value={element} selected={currentPage === element}>
                         {element}
                       </option>
-                    ) : null;
-                  })}
-                </select>
-                <i
-                  className={
-                    isPageItemsOpen
-                      ? "fas fa-angle-down select-icon"
-                      : "fas fa-angle-up select-icon"
-                  }
-                  aria-hidden="true"
-                />
+                    ))}
+                  </select>
+                  <i
+                    className={
+                      isPageIndexOpen
+                        ? "fas fa-angle-down select-icon"
+                        : "fas fa-angle-up select-icon"
+                    }
+                    aria-hidden="true"
+                  />
+                </div>
               </div>
             </div>
-          </div>
-          <span className="br-divider d-none d-sm-block mx-3"></span>
-          <div className="pagination-inhtmlFormation d-none d-sm-flex">
-            <span className="current">
-              {`${
-                indexOfFirstItem + 1
-              }-${indexOfLastItem} de ${dataSize} itens`}
-            </span>
-          </div>
-          <div className="pagination-go-to-page d-none d-sm-flex ml-auto">
-            <div className="br-select">
-              <div className="br-input select-div">
-                <label htmlFor="per-page-selection-random-94892">Página</label>
-                <select
-                  className="select-expand"
-                  aria-label="Exibir página"
-                  tabIndex={-1}
-                  data-trigger="data-trigger"
-                  onChange={(value) => {
-                    setCurrentPage(Number(value.target.value));
-                    setPageIndexOpen(false);
-                  }}
-                  onFocus={() => setPageIndexOpen(true)}
-                  onBlur={() => setPageIndexOpen(false)}
-                >
-                  {pageNumbers.map((element) => (
-                    <option value={element} selected={currentPage === element}>
-                      {element}
-                    </option>
-                  ))}
-                </select>
-                <i
-                  className={
-                    isPageIndexOpen
-                      ? "fas fa-angle-down select-icon"
-                      : "fas fa-angle-up select-icon"
-                  }
-                  aria-hidden="true"
-                />
-              </div>
-            </div>
-          </div>
 
-          <span className="br-divider d-none d-sm-block mx-3"></span>
-          <div className="pagination-arrows ml-auto ml-sm-0">
-            <button
-              className="br-button circle"
-              type="button"
-              aria-label="Voltar página"
-              onClick={previousPage}
-            >
-              <i className="fas fa-angle-left" aria-hidden="true"></i>
-            </button>
-            <button
-              className="br-button circle"
-              type="button"
-              aria-label="Avançar página"
-              onClick={nextPage}
-            >
-              <i className="fas fa-angle-right" aria-hidden="true"></i>
-            </button>
-          </div>
-        </nav>
+            <span className="br-divider d-none d-sm-block mx-3"></span>
+            <div className="pagination-arrows ml-auto ml-sm-0">
+              <button
+                className="br-button circle"
+                type="button"
+                aria-label="Voltar página"
+                onClick={previousPage}
+              >
+                <i className="fas fa-angle-left" aria-hidden="true"></i>
+              </button>
+              <button
+                className="br-button circle"
+                type="button"
+                aria-label="Avançar página"
+                onClick={nextPage}
+              >
+                <i className="fas fa-angle-right" aria-hidden="true"></i>
+              </button>
+            </div>
+          </nav>
+      }
       </div>
     </div>
   );

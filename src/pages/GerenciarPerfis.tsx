@@ -1,9 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "../components/Cabecalho"
 import TrilhaDeNavegacao from "../components/escolasCadastradas/TrilhaNavegacao";
 import PerfilDialog from "../components/PerfilDialog";
-import { PerfisTabela } from "../models/auth";
+import { PerfisTabela, TipoPerfil } from "../models/auth";
 import Footer from "../components/Footer";
+import Table, { CustomTableRow } from "../components/Table/Table";
+import ReactLoading from "react-loading";
+import { listarPerfis } from "../consts/service";
+import { notification } from "antd";
+import fetchPerfis from "../service/listarPerfis";
 
 interface PerfilDialogArgs {
   id: string | null;
@@ -13,20 +18,60 @@ interface PerfilDialogArgs {
 export default function GerenciarPerfis() {
   const paginas = [{ nome: "Logout", link: "/login" }];
   const [showPerfil, setShowPerfil] = useState<PerfilDialogArgs | null>(null);
+  const [perfis, setPerfis] = useState<PerfisTabela[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [notificationApi, notificationContextHandler] = notification.useNotification();
+  const [tamanhoPagina, setTamanhoPagina] = useState(10);
+  const [pagina, setPagina] = useState(1);
 
   const onPerfilChange = (perfil: PerfisTabela | null) => {
     if (!perfil) {
       return;
     }
 
-    // perfil criado ou editado
+    buscarPerfis(pagina, tamanhoPagina);
   }
+
+  const buscarPerfis = (pagina: number, tamanhoPagina: number) => {
+    setLoading(true);
+
+    fetchPerfis(pagina, tamanhoPagina)
+      .then(perfis => setPerfis(perfis))
+      .catch(error => notificationApi.error({ message: error?.response?.data }))
+      .finally(() => setLoading(false));
+  }
+
+  useEffect(() => {
+    buscarPerfis(pagina, tamanhoPagina);
+  }, [tamanhoPagina, pagina]);
 
   return (
     <div className="App">
+      {notificationContextHandler}
       <Header />
-      <TrilhaDeNavegacao elementosLi={paginas} registrarPerfis mostrarModal={() => setShowPerfil({id: null, readOnly: false})}></TrilhaDeNavegacao>
-      {showPerfil != null && <PerfilDialog id={showPerfil.id} readOnly={showPerfil.readOnly} closeDialog={(perfil) => {setShowPerfil(null); onPerfilChange(perfil)}}/>}
+      <TrilhaDeNavegacao elementosLi={paginas} registrarPerfis mostrarModal={() => setShowPerfil({ id: null, readOnly: false })}></TrilhaDeNavegacao>
+      {showPerfil != null && <PerfilDialog id={showPerfil.id} readOnly={showPerfil.readOnly} closeDialog={(perfil) => { setShowPerfil(null); onPerfilChange(perfil) }} />}
+      <div className="d-flex flex-column m-5">
+        <Table columsTitle={['Nome', 'Número de Usuários', 'Permissões']} initialItemsPerPage={10} title="Perfis de usuário cadastrados" showPagination={!loading}>
+          {
+            !loading && <>
+              {
+                perfis.map((p, index) =>
+                  <CustomTableRow key={p.id} id={index}
+                    data={{ '0': p.nome, '1': `${p.quantidadeUsuarios}`, '2': p.permissoes.map(pp => pp.descricao).splice(0, 3).join(', ') + (p.permissoes.length > 3 ? '...' : '') }}
+                    onDeleteRow={() => { }}
+                    onEditRow={() => setShowPerfil({ id: p.id, readOnly: false})}
+                    onDetailRow={() => setShowPerfil({ id: p.id, readOnly: true})}
+                    hideEditIcon={p.tipo == TipoPerfil.Administrador}
+                    hideTrashIcon={p.tipo != TipoPerfil.Customizavel} />
+                )
+              }
+            </>
+          }
+          <></>
+        </Table>
+        {loading && <div className="d-flex justify-content-center w-100 m-5"><ReactLoading type="spinningBubbles" color="#000000" /></div>}
+      </div>
       <Footer />
     </div>
   )
