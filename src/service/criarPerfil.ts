@@ -1,13 +1,12 @@
 import axios, { AxiosResponse } from "axios";
 import { cadastrarPerfilUrl } from "../consts/service";
-import { PerfilDto } from "../models/perfil";
-import { PerfisTabela } from "../models/auth";
+import { PerfilDto, PerfilModel } from "../models/perfil";
 
 async function fetchCadastroPerfil(
   perfil: PerfilDto
-): Promise<PerfisTabela> {
+): Promise<PerfilModel> {
   try {
-    const response: AxiosResponse<PerfisTabela> = await axios.post(
+    const response: AxiosResponse<PerfilModel> = await axios.post(
       cadastrarPerfilUrl,
       perfil
     );

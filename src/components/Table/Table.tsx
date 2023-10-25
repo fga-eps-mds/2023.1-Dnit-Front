@@ -39,21 +39,21 @@ export function CustomTableRow({
       <td>
         <div className="icon-row">
           {!hideEditIcon && (
-            <i
+            <i data-testId={`table-row-edit-${id}`}
               className="fas fa-edit"
               aria-hidden="true"
               onClick={() => onEditRow(id)}
             />
           )}
           {!hideEyeIcon && (
-            <i
+            <i data-testId={`table-row-eye-${id}`}
               className="fas fa-eye"
               aria-hidden="true"
               onClick={() => onDetailRow(id)}
             />
           )}
           {!hideTrashIcon && (
-            <i
+            <i data-testId={`table-row-delete-${id}`}
               className="fas fa-trash-alt"
               aria-hidden="true"
               onClick={() => onDeleteRow(id)}

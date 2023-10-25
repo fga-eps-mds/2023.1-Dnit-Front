@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "../components/Cabecalho"
 import TrilhaDeNavegacao from "../components/escolasCadastradas/TrilhaNavegacao";
 import PerfilDialog from "../components/PerfilDialog";
-import { PerfisTabela, Permissao, TipoPerfil } from "../models/auth";
+import { Permissao, TipoPerfil } from "../models/auth";
 import Footer from "../components/Footer";
 import Table, { CustomTableRow } from "../components/Table/Table";
 import ReactLoading from "react-loading";
@@ -12,7 +12,7 @@ import fetchPerfis from "../service/listarPerfis";
 import { DeletarPerfilArgs, DeletarPerfilDialog } from "../components/DeletarPerfilDialog";
 import { AuthContext } from "../provider/Autenticacao";
 import { ButtonComponent } from "../components/Button";
-
+import { PerfilModel } from "../models/perfil";
 
 interface PerfilDialogArgs {
   id: string | null;
@@ -47,7 +47,7 @@ export default function GerenciarPerfis() {
   const paginas = [{ nome: "Logout", link: "/login" }];
   const [showPerfil, setShowPerfil] = useState<PerfilDialogArgs | null>(null);
   const [showDeletarPerfil, setDeletarPerfil] = useState<DeletarPerfilArgs | null>(null);
-  const [perfis, setPerfis] = useState<PerfisTabela[]>([]);
+  const [perfis, setPerfis] = useState<PerfilModel[]>([]);
   const [loading, setLoading] = useState(true);
   const [notificationApi, notificationContextHandler] = notification.useNotification();
   const tamanhoPagina = 500;
@@ -62,7 +62,7 @@ export default function GerenciarPerfis() {
     visualizar: temPermissao(Permissao.PerfilVisualizar),
     remover: temPermissao(Permissao.PerfilRemover)});
 
-  const onPerfilChange = (perfil: PerfisTabela | null) => {
+  const onPerfilChange = (perfil: PerfilModel | null) => {
     if (!perfil) {
       return;
     }

@@ -1,11 +1,10 @@
 import axios, { AxiosResponse } from "axios";
-import { PerfisTabela } from "../models/auth";
 import { atualizarPerfil } from "../consts/service";
-import { PerfilDto } from "../models/perfil";
+import { PerfilDto, PerfilModel } from "../models/perfil";
 
-export default async function fetchAtualizarPerfil(id: string, perfil: PerfilDto): Promise<PerfisTabela> {
+export default async function fetchAtualizarPerfil(id: string, perfil: PerfilDto): Promise<PerfilModel> {
   try {
-    const response: AxiosResponse<PerfisTabela> = await axios.put(`${atualizarPerfil}/${id}`, perfil);
+    const response: AxiosResponse<PerfilModel> = await axios.put(`${atualizarPerfil}/${id}`, perfil);
     return response.data;
   } catch (error) {
     console.log(error);

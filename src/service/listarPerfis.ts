@@ -1,10 +1,10 @@
 import axios, { AxiosResponse } from "axios";
-import { PerfisTabela } from "../models/auth";
 import { listarPerfis } from "../consts/service";
+import { PerfilModel } from "../models/perfil";
 
-async function fetchPerfis(pagina: number, tamanhoPagina: number, nome: string): Promise<PerfisTabela[]> {
+async function fetchPerfis(pagina: number, tamanhoPagina: number, nome: string): Promise<PerfilModel[]> {
   try {
-    const response: AxiosResponse<PerfisTabela[]> = await axios.get(listarPerfis,{
+    const response: AxiosResponse<PerfilModel[]> = await axios.get(listarPerfis,{
         params: {
             pageIndex: pagina,
             pageSize: tamanhoPagina,

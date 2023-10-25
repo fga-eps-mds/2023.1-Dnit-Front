@@ -1,6 +1,6 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
-import { atualizarTokenUrl, cadastrarPerfilUrl, excluiPerfil, listarPermissoesCategoria, listarUsuarioPermissoes, obterPerfil, urlAPIEscolas, urlAPIUps } from "../../consts/service";
+import { atualizarTokenUrl, cadastrarPerfilUrl, excluiPerfil, listarPerfis, listarPermissoesCategoria, listarUsuarioPermissoes, obterPerfil, urlAPIEscolas, urlAPIUps } from "../../consts/service";
 import { Permissao, TipoPerfil } from "../../models/auth";
 
 const escolasService = urlAPIEscolas;
@@ -687,6 +687,65 @@ const server = setupServer(
   ),
   rest.get(listarUsuarioPermissoes,
     (req, res, ctx) => res(ctx.status(200), ctx.json([]))),
+  rest.get(listarPerfis,
+    (req, res, ctx) =>
+      res(
+        ctx.status(200),
+        ctx.json([
+          {
+            id: '1',
+            nome: 'Administrador',
+            quantidadeUsuarios: 1,
+            tipo: TipoPerfil.Administrador,
+            permissoes: [Permissao.EscolaCadastrar, Permissao.EscolaEditar, Permissao.EscolaRemover, Permissao.UpsCalcularEscola, Permissao.UpsCalcularSinistro],
+            categoriasPermissao: [
+              {
+                categoria: 'Escola',
+                permissoes: [Permissao.EscolaCadastrar, Permissao.EscolaEditar, Permissao.EscolaRemover],
+              },
+              {
+                categoria: 'Ups',
+                permissoes: [Permissao.UpsCalcularEscola, Permissao.UpsCalcularSinistro],
+              }
+            ]
+          },
+          {
+            id: '2',
+            nome: 'Básico',
+            quantidadeUsuarios: 1,
+            tipo: TipoPerfil.Basico,
+            permissoes: [Permissao.EscolaCadastrar],
+            categoriasPermissao: [
+              {
+                categoria: 'Escola',
+                permissoes: [Permissao.EscolaCadastrar],
+              },
+              {
+                categoria: 'Ups',
+                permissoes: [],
+              }
+            ]
+          },
+          {
+            id: '3',
+            nome: 'Custom',
+            quantidadeUsuarios: 1,
+            tipo: TipoPerfil.Customizavel,
+            permissoes: [Permissao.EscolaCadastrar],
+            categoriasPermissao: [
+              {
+                categoria: 'Escola',
+                permissoes: [Permissao.EscolaCadastrar],
+              },
+              {
+                categoria: 'Ups',
+                permissoes: [],
+              }
+            ]
+          }
+        ]),
+      )
+  )
 );
 
 export default server;

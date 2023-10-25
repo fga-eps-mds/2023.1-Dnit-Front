@@ -1,5 +1,5 @@
 import fetchPermissoesCategoria from "../../service/listarPermissoesCategoria";
-import { PerfisTabela, Permissao, PermissaoCategoria, TipoPerfil } from "../../models/auth";
+import { Permissao, PermissaoCategoria, TipoPerfil } from "../../models/auth";
 import Modal from "../Modal";
 import ReactLoading from "react-loading";
 import { Collapse, CollapseItem } from "../Collapse";
@@ -8,6 +8,7 @@ import fetchObterPerfil from "../../service/obterPerfil";
 import fetchAtualizarPerfil from "../../service/atualizarPerfil";
 import { useEffect, useState } from "react";
 import { notification } from "antd";
+import { PerfilModel } from "../../models/perfil";
 
 interface PermissaoDto {
   codigo: Permissao;
@@ -24,7 +25,7 @@ interface PermissaoCategoriaDto {
 export interface PerfilDialogProps {
   id: string | null;
   readOnly: boolean;
-  closeDialog: (perfil: PerfisTabela | null) => void;
+  closeDialog: (perfil: PerfilModel | null) => void;
 }
 
 export default function PerfilDialog({ id, readOnly, closeDialog }: PerfilDialogProps) {
@@ -34,7 +35,7 @@ export default function PerfilDialog({ id, readOnly, closeDialog }: PerfilDialog
   const [canEdit, setCanEdit] = useState(!readOnly);
   const [notificationApi, contextHolder] = notification.useNotification();
 
-  const preencherPerfil = (perfil: PerfisTabela) => {
+  const preencherPerfil = (perfil: PerfilModel) => {
     if (perfil.tipo == TipoPerfil.Administrador) {
       setCanEdit(false);
     }

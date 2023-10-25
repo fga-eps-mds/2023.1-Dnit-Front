@@ -1,3 +1,5 @@
+/* eslint-disable testing-library/no-unnecessary-act */
+/* eslint-disable testing-library/render-result-naming-convention */
 import { cleanup, render, waitFor } from "@testing-library/react";
 import { DeletarPerfilDialog } from "../../components/DeletarPerfilDialog";
 import { MemoryRouter } from "react-router-dom";
@@ -15,8 +17,6 @@ afterEach(() => {
 
 describe('DeletarPerfilDialog', () => {
     test('deve renderizar', () => {
-      let deletou = null;
-  
       const screen = render(
         <MemoryRouter>
             <DeletarPerfilDialog onClose={() => { }} perfil={{ id: '1', nome: 'perfil', quantidade: 1 }} />

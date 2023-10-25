@@ -1,3 +1,5 @@
+/* eslint-disable testing-library/no-unnecessary-act */
+/* eslint-disable testing-library/render-result-naming-convention */
 import { MemoryRouter } from "react-router-dom";
 import server from "../mock/servicosAPI";
 import PerfilDialog from "../../components/PerfilDialog";
