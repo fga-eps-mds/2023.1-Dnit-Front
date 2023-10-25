@@ -8,10 +8,11 @@ export enum AuthLocalStorage {
   Token = "Token",
   TokenAtualizacao = "TokenAtualizacao",
   ExpiraEm = "ExpiraEm",
-  Permissoes = "Permissoes"
+  Permissoes = "Permissoes",
+  Nome = "Nome",
 }
 
-const PERMISSOES_SEPARATOR = ','
+const PERMISSOES_SEPARATOR = ",";
 
 interface AuthContextType {
   login: (dados: LoginResponse) => void;
@@ -19,7 +20,7 @@ interface AuthContextType {
   getAuth: () => boolean;
   getPermissoes: () => Permissao[];
   temPermissao: (permissao: Permissao) => boolean;
-  setPermissoes: (permissoes: Permissao[]) => void,
+  setPermissoes: (permissoes: Permissao[]) => void;
 }
 
 export const AuthContext = createContext<AuthContextType>({
@@ -28,7 +29,7 @@ export const AuthContext = createContext<AuthContextType>({
   getAuth: () => false,
   getPermissoes: () => [],
   temPermissao: (_: Permissao) => false,
-  setPermissoes: (_: Permissao[]) => {},
+  setPermissoes: (_: Permissao[]) => { },
 });
 
 function setApiToken(token?: string | null) {
@@ -36,11 +37,16 @@ function setApiToken(token?: string | null) {
 }
 
 export function setPermissoes(permissoes: Permissao[]) {
-  localStorage.setItem(AuthLocalStorage.Permissoes, permissoes?.join(PERMISSOES_SEPARATOR) ?? "");
+  localStorage.setItem(
+    AuthLocalStorage.Permissoes,
+    permissoes?.join(PERMISSOES_SEPARATOR) ?? ""
+  );
 }
 
 export function getPermissoes() {
-  return (localStorage.getItem(AuthLocalStorage.Permissoes)?.split(PERMISSOES_SEPARATOR) ?? []) as Permissao[];
+  return (localStorage
+    .getItem(AuthLocalStorage.Permissoes)
+    ?.split(PERMISSOES_SEPARATOR) ?? []) as Permissao[];
 }
 
 export function temPermissao(permissao: Permissao) {

@@ -1,64 +1,34 @@
 export const urlAPIUsuario = `${process.env.REACT_APP_API_USUARIOS}/api`;
 export const urlAPIEscolas = `${process.env.REACT_APP_API_ESCOLAS}/api`;
 export const urlAPIUps = `${process.env.REACT_APP_API_UPS}/api`;
-const urlAPIViaCEP = "https://viacep.com.br/ws";
-const etapasDeEnsinoURL = `${urlAPIEscolas}/dominio/etapasDeEnsino`;
-const municipioURL = `${urlAPIEscolas}/dominio/municipio`;
-const unidadesFederativasURL = `${urlAPIEscolas}/dominio/unidadeFederativa`;
-const situacaoURL = `${urlAPIEscolas}/dominio/situacao`;
-const loginURL = `${urlAPIUsuario}/usuario/login`;
-const cadastroURL = `${urlAPIUsuario}/usuario/cadastrar`;
-const cadastroUsuarioURL = `${urlAPIUsuario}/usuario/cadastrarUsuarioDnit`;
-const recuperarSenhaURL = `${urlAPIUsuario}/usuario/recuperarSenha`;
-const redefinirSenhaURL = `${urlAPIUsuario}/usuario/redefinirSenha`;
-const atualizarTokenUrl = `${urlAPIUsuario}/usuario/atualizarToken`;
-const excluirSituacaoURL = `${urlAPIEscolas}/escolas/removerSituacao`;
-const cadastroEscolaURL = `${urlAPIEscolas}/escolas/cadastrarEscola`;
-const listarInfoEscolaURL = `${urlAPIEscolas}/escolas/listarInformacoesEscola`;
-const listarEscolasURL = `${urlAPIEscolas}/escolas/listarEscolas`;
-const excluirEscolaURL = `${urlAPIEscolas}/escolas/excluir`;
-const escolasFiltradasURL = `${urlAPIEscolas}/escolas/obter`;
-const cadastroEscolaPlanilhaURL = `${urlAPIEscolas}/escolas/cadastrarEscolaPlanilha`;
-const alterarDadosEscolaURL = `${urlAPIEscolas}/escolas/alterarDadosEscola`;
-const escolasInepURL = `${urlAPIEscolas}/solicitacaoAcao/escolas`;
-const solicitacaoDeAcaoURL = `${urlAPIEscolas}/solicitacaoAcao`;
-const cadastroRodoviasURL = `${urlAPIUps}/rodovia/cadastrarRodoviaPlanilha`;
-const calcularUpsURL = `${urlAPIUps}/calcular/ups/escola`;
-const cadastroSinistrosURL = `${urlAPIUps}/sinistro/cadastrarSinistroPlanilha`;
-const listarUsuarioPermissoes = `${urlAPIUsuario}/usuario/permissoes`;
-const listarPermissoesCategoria = `${urlAPIUsuario}/dominio/permissoes`;
-const listarTabelaPerfis = `${urlAPIUsuario}/perfil`;
+export const urlAPIViaCEP = "https://viacep.com.br/ws";
+export const etapasDeEnsinoURL = `${urlAPIEscolas}/dominio/etapasDeEnsino`;
+export const municipioURL = `${urlAPIEscolas}/dominio/municipio`;
+export const unidadesFederativasURL = `${urlAPIEscolas}/dominio/unidadeFederativa`;
+export const situacaoURL = `${urlAPIEscolas}/dominio/situacao`;
+export const loginURL = `${urlAPIUsuario}/usuario/login`;
+export const cadastroURL = `${urlAPIUsuario}/usuario/cadastrar`;
+export const cadastroUsuarioURL = `${urlAPIUsuario}/usuario/cadastrarUsuarioDnit`;
+export const recuperarSenhaURL = `${urlAPIUsuario}/usuario/recuperarSenha`;
+export const redefinirSenhaURL = `${urlAPIUsuario}/usuario/redefinirSenha`;
+export const atualizarTokenUrl = `${urlAPIUsuario}/usuario/atualizarToken`;
+export const excluirSituacaoURL = `${urlAPIEscolas}/escolas/removerSituacao`;
+export const cadastroEscolaURL = `${urlAPIEscolas}/escolas/cadastrarEscola`;
+export const listarInfoEscolaURL = `${urlAPIEscolas}/escolas/listarInformacoesEscola`;
+export const listarEscolasURL = `${urlAPIEscolas}/escolas/listarEscolas`;
+export const excluirEscolaURL = `${urlAPIEscolas}/escolas/excluir`;
+export const escolasFiltradasURL = `${urlAPIEscolas}/escolas/obter`;
+export const cadastroEscolaPlanilhaURL = `${urlAPIEscolas}/escolas/cadastrarEscolaPlanilha`;
+export const alterarDadosEscolaURL = `${urlAPIEscolas}/escolas/alterarDadosEscola`;
+export const escolasInepURL = `${urlAPIEscolas}/solicitacaoAcao/escolas`;
+export const solicitacaoDeAcaoURL = `${urlAPIEscolas}/solicitacaoAcao`;
+export const cadastroRodoviasURL = `${urlAPIUps}/rodovia/cadastrarRodoviaPlanilha`;
+export const calcularUpsURL = `${urlAPIUps}/calcular/ups/escola`;
+export const cadastroSinistrosURL = `${urlAPIUps}/sinistro/cadastrarSinistroPlanilha`;
+export const listarUsuarioPermissoes = `${urlAPIUsuario}/usuario/permissoes`;
+export const listarPermissoesCategoria = `${urlAPIUsuario}/dominio/permissoes`;
+export const listarTabelaPerfis = `${urlAPIUsuario}/perfil`;
 export const cadastrarPerfilUrl = `${urlAPIUsuario}/perfil`;
 export const obterPerfil = `${urlAPIUsuario}/perfil`
 export const atualizarPerfil = `${urlAPIUsuario}/perfil`
 export const excluiPerfil = `${urlAPIUsuario}/perfil`;
-
-export {
-  atualizarTokenUrl,
-  escolasFiltradasURL,
-  escolasInepURL,
-  etapasDeEnsinoURL,
-  municipioURL,
-  cadastroSinistrosURL,
-  situacaoURL,
-  solicitacaoDeAcaoURL,
-  alterarDadosEscolaURL,
-  cadastroURL,
-  calcularUpsURL,
-  excluirEscolaURL,
-  excluirSituacaoURL,
-  unidadesFederativasURL,
-  cadastroRodoviasURL,
-  cadastroEscolaPlanilhaURL,
-  listarEscolasURL,
-  listarInfoEscolaURL,
-  loginURL,
-  recuperarSenhaURL,
-  cadastroEscolaURL,
-  cadastroUsuarioURL,
-  redefinirSenhaURL,
-  urlAPIViaCEP,
-  listarUsuarioPermissoes,
-  listarPermissoesCategoria,
-  listarTabelaPerfis,
-};

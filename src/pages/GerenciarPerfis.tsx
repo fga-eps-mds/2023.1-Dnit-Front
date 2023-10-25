@@ -1,9 +1,9 @@
 import { useState } from "react";
 import Header from "../components/Cabecalho"
 import TrilhaDeNavegacao from "../components/escolasCadastradas/TrilhaNavegacao";
-import Footer from "../components/Rodape";
 import PerfilDialog from "../components/PerfilDialog";
 import { PerfisTabela } from "../models/auth";
+import Footer from "../components/Footer";
 
 interface PerfilDialogArgs {
   id: string | null;

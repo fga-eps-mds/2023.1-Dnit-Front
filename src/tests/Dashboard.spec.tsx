@@ -34,8 +34,23 @@ test("Visualizar Escolas", async () => {
     </MemoryRouter>
   );
 
-  const escolas = screen.getByText("Visualizar Escolas");
-  fireEvent.click(escolas);
+  const escolas = screen.getAllByText("Visualizar Escolas");
+  fireEvent.click(escolas[0]);
+});
+
+test("Visualizar Escolas Sem Permissão", async () => {
+  autenticar();
+
+  const screen = render(
+    <MemoryRouter initialEntries={["/dashboard"]}>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </MemoryRouter>
+  );
+
+  const botao = screen.queryAllByText("Visualizar Escolas");
+  expect(botao).toHaveLength(1);
 });
 
 test("Visualizar Escolas Sem Permissão", async () => {
@@ -79,7 +94,7 @@ test("Visualizar Dados UPS Sem Permissão", async () => {
     </MemoryRouter>
   );
 
-  const botao = await screen.queryByText("Visualizar Dados UPS");
+  const botao = screen.queryByText("Visualizar Dados UPS");
   expect(botao).toBeNull();
 });
 
@@ -109,7 +124,7 @@ test("Cadastrar Escolas Sem Permissão", async () => {
     </MemoryRouter>
   );
 
-  const botao = await screen.queryByText("Cadastrar Escolas");
+  const botao = screen.queryByText("Cadastrar Escolas");
   expect(botao).toBeNull();
 });
 
@@ -139,7 +154,7 @@ test("Adicionar Sinistros Sem Permissão", async () => {
     </MemoryRouter>
   );
 
-  const botao = await screen.queryByText("Adicionar Sinistros");
+  const botao = screen.queryByText("Adicionar Sinistros");
   expect(botao).toBeNull();
 });
 
@@ -169,6 +184,6 @@ test("Adicionar Rodovias Sem Permissão", async () => {
     </MemoryRouter>
   );
 
-  const botao = await screen.queryByText("Adicionar Rodovias");
+  const botao = screen.queryByText("Adicionar Rodovias");
   expect(botao).toBeNull();
 });
