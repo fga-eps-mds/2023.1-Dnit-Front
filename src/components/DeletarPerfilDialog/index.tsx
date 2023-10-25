@@ -27,7 +27,7 @@ export function DeletarPerfilDialog({ perfil, onClose }: DeletarPerfilDialogProp
                 onClose(true);
             })
             .catch(error => {
-                notification.error({ message: 'Falha na exclusão do perfil. ' + (error?.response?.data || '') });
+                notification.error({ message: 'Falha na exclusão do perfil. ' + (error?.response?.data ?? '') });
                 onClose(false);
             })
             .finally(() => setLoading(false));

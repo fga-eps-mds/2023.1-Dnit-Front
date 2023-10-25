@@ -139,13 +139,13 @@ export default function PerfilDialog({ id, readOnly, closeDialog }: PerfilDialog
       {contextHolder}
       {id && <h4 className="text-center mt-1">{readOnly ? 'Detalhes do Perfil' : 'Edição de Perfil'}</h4>}
       {!id && <h4 className="text-center mt-1">Criação de Perfil</h4>}
-      {loading && <div className="d-flex justify-content-center m-3"><ReactLoading type="spinningBubbles" color="#000000" /></div>}
+      {loading && <div data-testid="loading" className="d-flex justify-content-center m-3"><ReactLoading type="spinningBubbles" color="#000000" /></div>}
       {
         !loading &&
         <form className="d-flex flex-column" onSubmit={e => { e.preventDefault(); }}>
           <section className="d-flex align-items-center w-100">
             <label className="mr-3">Nome:</label>
-            <input className="w-100" value={nome} onChange={e => setNome(e.target.value)} type="text" readOnly={!canEdit} style={{border: !canEdit? "none": ""}} />
+            <input data-testid='perfil-nome' className="w-100" value={nome} onChange={e => setNome(e.target.value)} type="text" readOnly={!canEdit} style={{border: !canEdit? "none": ""}} />
           </section>
           <section className="mt-4">
             <label>Permissões</label>

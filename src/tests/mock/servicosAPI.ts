@@ -1,7 +1,7 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
-import { atualizarTokenUrl, listarUsuarioPermissoes, urlAPIEscolas, urlAPIUps } from "../../consts/service";
-import { Permissao } from "../../models/auth";
+import { atualizarTokenUrl, cadastrarPerfilUrl, excluiPerfil, listarPermissoesCategoria, listarUsuarioPermissoes, obterPerfil, urlAPIEscolas, urlAPIUps } from "../../consts/service";
+import { Permissao, TipoPerfil } from "../../models/auth";
 
 const escolasService = urlAPIEscolas;
 const upsService = urlAPIUps;
@@ -598,7 +598,91 @@ const server = setupServer(
         })
       );
     }
-  )
+  ),
+  rest.delete(
+    `${excluiPerfil}/1`,
+    (req, res, ctx) => {
+      return res(
+        ctx.delay(100),
+        ctx.json('Perfil excluido')
+      );
+    }
+  ),
+  rest.delete(
+    `${excluiPerfil}/erro`,
+    (req, res, ctx) => {
+      return res(ctx.status(400));
+    }
+  ),
+  rest.get(
+    `${listarPermissoesCategoria}`,
+    (req, res, ctx) => {
+      return res(ctx.status(200), ctx.json([
+        {
+          categoria: 'Escola',
+          permissoes: [Permissao.EscolaCadastrar, Permissao.EscolaEditar, Permissao.EscolaRemover],
+        },
+        {
+          categoria: 'Ups',
+          permissoes: [Permissao.UpsCalcularEscola, Permissao.UpsCalcularSinistro],
+        }
+      ]));
+    }
+  ),
+  rest.post(
+    `${cadastrarPerfilUrl}`,
+    (req, res, ctx) => {
+      return res(ctx.status(200), ctx.json({'id': '1'}));
+    }
+  ),
+  rest.get(
+    `${obterPerfil}/erro`,
+    (req, res, ctx) => {return res(ctx.status(404))}
+  ),
+  rest.get(
+    `${obterPerfil}/1`,
+    (req, res, ctx) => {
+      return res(ctx.status(200),
+        ctx.json({
+          id: '1',
+          nome: 'perfil-teste',
+          quantidadeUsuarios: 1,
+          tipo: TipoPerfil.Customizavel,
+          permissoes: [Permissao.EscolaCadastrar],
+          categoriasPermissao: [
+            {
+              categoria: 'Escola',
+              permissoes: [Permissao.EscolaCadastrar],
+            },
+            {
+              categoria: 'Ups',
+              permissoes: [],
+            }
+          ]}));
+    }
+  ),
+  rest.put(
+    `${obterPerfil}/1`,
+    (req, res, ctx) => {
+      return res(ctx.status(200),
+        ctx.json({
+          id: '1',
+          nome: 'perfil-teste',
+          quantidadeUsuarios: 1,
+          tipo: TipoPerfil.Customizavel,
+          permissoes: [Permissao.EscolaCadastrar],
+          categoriasPermissao: [
+            {
+              categoria: 'Escola',
+              permissoes: [Permissao.EscolaCadastrar],
+            },
+            {
+              categoria: 'Ups',
+              permissoes: [],
+            }
+          ]}));
+    }
+  ),
 );
 
 export default server;

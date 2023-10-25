@@ -58,7 +58,7 @@ export default function GerenciarPerfis() {
 
     fetchPerfis(1, tamanhoPagina, nome)
       .then(perfis => setPerfis(perfis))
-      .catch(error => notificationApi.error({ message: 'Falha na listagem de perfis. ' + (error?.response?.data ?? '') }))
+      .catch(error => notificationApi.error({ message: 'Falha na listagem de perfis. ' + (error?.response?.data || '') }))
       .finally(() => setLoading(false));
   }
 
