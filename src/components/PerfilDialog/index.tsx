@@ -80,9 +80,9 @@ export default function PerfilDialog({ id, readOnly, closeDialog }: PerfilDialog
         }
         return fetchObterPerfil(id)
           .then(perfil => preencherPerfil(perfil))
-          .catch(error => notificationApi.error({message: 'Falha na busca pelo perfil. ' + error?.response?.data ?? ''}));
+          .catch(error => notificationApi.error({message: 'Falha na busca pelo perfil. ' + (error?.response?.data ?? '')}));
       })
-      .catch(error => notificationApi.error({message: 'Falha na listagem de permissoes. ' + error?.response?.data ?? ''}))
+      .catch(error => notificationApi.error({message: 'Falha na listagem de permissoes. ' + (error?.response?.data ?? '')}))
       .finally(() => setLoading(false));
   }, []);
 
@@ -105,7 +105,7 @@ export default function PerfilDialog({ id, readOnly, closeDialog }: PerfilDialog
           closeDialog(p);
         })
         .catch(error => {
-          notificationApi.error({message: 'Falha no cadastro de perfil. ' + error?.response?.data ?? ''});
+          notificationApi.error({message: 'Falha no cadastro de perfil. ' + (error?.response?.data ?? '')});
         })
         .finally(() => setLoading(false));
       return;
@@ -115,7 +115,7 @@ export default function PerfilDialog({ id, readOnly, closeDialog }: PerfilDialog
         notification.success({message: 'Perfil atualizado com sucesso'});
         closeDialog(p);
       })
-      .catch(error => notificationApi.error({message: 'Falha na edição do perfil. ' + error?.response?.data ?? ''}))
+      .catch(error => notificationApi.error({message: 'Falha na edição do perfil. ' + (error?.response?.data ?? '')}))
       .finally(() => setLoading(false));
   }
 

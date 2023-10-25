@@ -162,3 +162,9 @@
   background: transparent;
   border: none;
 }
+
+.delete-perfil {
+  .br-modal {
+    height: fit-content;
+  }
+}
