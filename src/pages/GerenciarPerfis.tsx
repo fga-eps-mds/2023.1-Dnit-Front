@@ -84,7 +84,7 @@ export default function GerenciarPerfis() {
             perfis.map((p, index) =>
               <CustomTableRow key={`${p.id}-${index}`} id={index}
                 data={{ '0': p.nome, '1': `${p.quantidadeUsuarios}`, '2': p.permissoes.map(pp => pp.descricao).splice(0, 3).join(', ') + (p.permissoes.length > 3 ? ', ...' : '') }}
-                onDeleteRow={() => setDeletarPerfil({ id: p.id, nome: p.nome })}
+                onDeleteRow={() => setDeletarPerfil({ id: p.id, nome: p.nome, quantidade: p.quantidadeUsuarios})}
                 onEditRow={() => setShowPerfil({ id: p.id, readOnly: false })}
                 onDetailRow={() => setShowPerfil({ id: p.id, readOnly: true })}
                 hideEditIcon={p.tipo == TipoPerfil.Administrador}

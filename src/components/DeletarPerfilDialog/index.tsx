@@ -8,6 +8,7 @@ import ReactLoading from "react-loading";
 export interface DeletarPerfilArgs {
     id: string;
     nome: string;
+    quantidade: number;
 }
 
 interface DeletarPerfilDialogProps {
@@ -45,7 +46,8 @@ export function DeletarPerfilDialog({ perfil, onClose }: DeletarPerfilDialogProp
 
     return (
         <Modal className="delete-perfil">
-            <h4 className="text-center mt-2">Tem certeza que deseja remover o perfil {perfil.nome}?</h4>
+            <p><strong>Tem certeza que deseja excluir esse perfil?</strong></p>
+            <p>O perfil {perfil.nome} é usado por {perfil.quantidade} usuários.</p>
             <div className="d-flex w-100 justify-content-center">
                 <button className="br-button secondary" type="button" onClick={() => onClose(false)}>Cancelar</button>
                 <button className="br-button primary" type="button" onClick={() => deletar()}>Confirmar</button>

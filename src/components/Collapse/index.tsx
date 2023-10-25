@@ -17,10 +17,10 @@ interface CollapseItemProps extends CollapseCheckboxProps {
 
 export function CollapseCheckBox({ selected, onSelect, readOnly }: CollapseCheckboxProps) {
     return (
-        <button className="app-collapse-checkbox p-2 btn-none" onClick={() => !readOnly && onSelect()} type="button">
+       !readOnly? <button className="app-collapse-checkbox p-2 btn-none" onClick={() => !readOnly && onSelect()} type="button">
             <input readOnly={true} className="br-checkbox" type="checkbox" checked={selected}
                 style={{ width: '24px', height: '24px' }} />
-        </button>
+        </button>: null
     );
 }
 
@@ -43,7 +43,7 @@ export function Collapse({ titulo, children, selected, readOnly, ...props }: Col
                 <button className="app-collapse-button d-flex align-items-center justify-content-between btn-none w-100 ml-2"
                     onClick={() => setIsCollapsed(c => !c)} type="button">
                     <span>{titulo}</span>
-                    <i className={`fas ${isCollapsed ? 'fa-angle-down' : 'fa-angle-up'}`} aria-hidden="true"></i>
+                    <i className={`fas ${isCollapsed ? 'fa-solid fa-caret-up' : 'fa-solid fa-caret-down'}`} aria-hidden="true"></i>
                 </button>
             </div>
             {

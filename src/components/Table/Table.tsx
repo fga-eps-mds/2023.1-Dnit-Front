@@ -157,7 +157,7 @@ export default function CustomTable({
                   onBlur={() => setPageItemsOpen(false)}
                 >
                   {pageOptions.map((element) => {
-                    return element <= dataSize ? (
+                    return element <= dataSize * 2 ? (
                       <option
                         value={element}
                         selected={itemsPerPage === element}

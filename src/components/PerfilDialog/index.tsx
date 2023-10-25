@@ -101,7 +101,7 @@ export default function PerfilDialog({ id, readOnly, closeDialog }: PerfilDialog
     if (!id) {
       fetchCadastroPerfil(perfil)
         .then(p => {
-          notification.success({message: 'Perfil atualizado com sucesso'});
+          notification.success({message: 'O perfil foi cadastrado com sucesso!'});
           closeDialog(p);
         })
         .catch(error => {
@@ -112,7 +112,7 @@ export default function PerfilDialog({ id, readOnly, closeDialog }: PerfilDialog
     }
     fetchAtualizarPerfil(id, perfil)
       .then(p => {
-        notification.success({message: 'Perfil atualizado com sucesso'});
+        notification.success({message: 'O perfil foi alterado com sucesso!'});
         closeDialog(p);
       })
       .catch(error => notificationApi.error({message: 'Falha na edição do perfil. ' + (error?.response?.data ?? ''), duration: 30}))
@@ -145,7 +145,7 @@ export default function PerfilDialog({ id, readOnly, closeDialog }: PerfilDialog
         <form className="d-flex flex-column" onSubmit={e => { e.preventDefault(); }}>
           <section className="d-flex align-items-center w-100">
             <label className="mr-3">Nome:</label>
-            <input className="w-100" value={nome} onChange={e => setNome(e.target.value)} type="text" readOnly={!canEdit} />
+            <input className="w-100" value={nome} onChange={e => setNome(e.target.value)} type="text" readOnly={!canEdit} style={{border: !canEdit? "none": ""}} />
           </section>
           <section className="mt-4">
             <label>Permissões</label>
