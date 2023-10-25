@@ -80,10 +80,10 @@ export default function CustomTable({
     currentPage * itemsPerPage > children.length
       ? children.length
       : currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const indexOfFirstItem = Math.max(indexOfLastItem - itemsPerPage, 0);
 
   const currentItems = children.slice(indexOfFirstItem, indexOfLastItem);
-
+  
   const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(children.length / itemsPerPage); i++) {
     pageNumbers.push(i);
