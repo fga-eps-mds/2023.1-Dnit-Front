@@ -120,6 +120,10 @@ const SolicitacaoAcaoForm: React.FC = () => {
     enviarSolicitacao(formData as SolicitacaoDeAcaoData);
   };
 
+  const handleCustomSubmit = () => {
+    form.submit();
+  };
+
   return (
     <div className="formc">
       <div>
@@ -315,6 +319,7 @@ const SolicitacaoAcaoForm: React.FC = () => {
                 buttonStyle="primary"
                 padding="100px"
                 disabled={!botaoEnviarDisponivel}
+                onClick={handleCustomSubmit}
               />
             </Space>
           </Form.Item>
