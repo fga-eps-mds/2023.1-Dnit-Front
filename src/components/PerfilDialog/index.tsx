@@ -7,6 +7,7 @@ import fetchCadastroPerfil from "../../service/criarPerfil";
 import fetchObterPerfil from "../../service/obterPerfil";
 import fetchAtualizarPerfil from "../../service/atualizarPerfil";
 import { useEffect, useState } from "react";
+import { notification } from "antd";
 
 interface PermissaoDto {
   codigo: Permissao;
@@ -31,6 +32,7 @@ export default function PerfilDialog({ id, readOnly, closeDialog }: PerfilDialog
   const [loading, setLoading] = useState(false);
   const [categorias, setCategorias] = useState<PermissaoCategoriaDto[]>([]);
   const [canEdit, setCanEdit] = useState(!readOnly);
+  const [notificationApi, contextHolder] = notification.useNotification();
 
   const preencherPerfil = (perfil: PerfisTabela) => {
     if (perfil.tipo == TipoPerfil.Administrador) {
@@ -44,10 +46,10 @@ export default function PerfilDialog({ id, readOnly, closeDialog }: PerfilDialog
           ?.find(pc => pc.categoria == categoria.categoria)
           ?.permissoes
           ?.map(p => p.codigo) ?? [];
-        novaCategoria.permissoes = novaCategoria.permissoes.map((p, i) => { return { ...p, selecionada: p.selecionada = permissoes.includes(p.codigo) } });
+        novaCategoria.permissoes = novaCategoria.permissoes.map(p => { return { ...p, selecionada: p.selecionada = permissoes.includes(p.codigo) } });
         novaCategoria.selecionada = novaCategoria.permissoes.every(p => p.selecionada);
         return novaCategoria;
-      })
+      });
     });
     setNome(perfil.nome);
   }
@@ -77,8 +79,10 @@ export default function PerfilDialog({ id, readOnly, closeDialog }: PerfilDialog
           return;
         }
         return fetchObterPerfil(id)
-          .then(perfil => preencherPerfil(perfil));
+          .then(perfil => preencherPerfil(perfil))
+          .catch(error => notificationApi.error({message: error?.response?.data}));
       })
+      .catch(error => notificationApi.error({message: error?.response?.data}))
       .finally(() => setLoading(false));
   }, []);
 
@@ -96,14 +100,22 @@ export default function PerfilDialog({ id, readOnly, closeDialog }: PerfilDialog
 
     if (!id) {
       fetchCadastroPerfil(perfil)
-        .then(p => closeDialog(p))
-        .catch(() => { }) // TODO: mostrar mensagem de erro
+        .then(p => {
+          notification.success({message: 'Perfil atualizado com sucesso'});
+          closeDialog(p);
+        })
+        .catch(error => {
+          notificationApi.error({message: error?.response?.data});
+        })
         .finally(() => setLoading(false));
       return;
     }
     fetchAtualizarPerfil(id, perfil)
-      .then(p => closeDialog(p))
-      .catch(() => { }) // TODO: mostrar mensagem de erro
+      .then(p => {
+        notification.success({message: 'Perfil atualizado com sucesso'});
+        closeDialog(p);
+      })
+      .catch(error => notificationApi.error({message: error}))
       .finally(() => setLoading(false));
   }
 
@@ -124,6 +136,7 @@ export default function PerfilDialog({ id, readOnly, closeDialog }: PerfilDialog
 
   return (
     <Modal className="dialog-create-perfil">
+      {contextHolder}
       <h4 className="text-center mt-1">{!id ? 'Criação de Perfil' : 'Edição de Perfil'}</h4>
       {loading && <div className="d-flex justify-content-center m-3"><ReactLoading type="spinningBubbles" color="#000000" /></div>}
       {

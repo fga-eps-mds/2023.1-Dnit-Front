@@ -25,7 +25,7 @@ export default function GerenciarPerfis() {
   return (
     <div className="App">
       <Header />
-      <TrilhaDeNavegacao elementosLi={paginas} registrarPerfis mostrarModal={() => setShowPerfil({id: 'd1be3697-2dd9-4d8e-847c-3527f410712f', readOnly: false})}></TrilhaDeNavegacao>
+      <TrilhaDeNavegacao elementosLi={paginas} registrarPerfis mostrarModal={() => setShowPerfil({id: null, readOnly: false})}></TrilhaDeNavegacao>
       {showPerfil != null && <PerfilDialog id={showPerfil.id} readOnly={showPerfil.readOnly} closeDialog={(perfil) => {setShowPerfil(null); onPerfilChange(perfil)}}/>}
       <Footer />
     </div>
