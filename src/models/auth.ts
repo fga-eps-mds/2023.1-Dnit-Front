@@ -16,6 +16,14 @@ export enum Permissao {
   RodoviaCadastrar = "RodoviaCadastrar",
 
   SinistroCadastrar = "SinistroCadastrar",
+
+  EmpresaCadastrar = "EmpresaCadastrar",
+}
+
+export enum TipoPerfil {
+  Basico = "Basico",
+  Administrador = "Administrador",
+  Customizavel = "Customizavel",
 }
 
 export interface LoginResponse {
@@ -28,4 +36,14 @@ export interface LoginResponse {
 export interface AtualizarTokenDto {
   token: string;
   tokenAtualizacao: string;
+}
+
+export interface PermissaoCategoria{
+  categoria: string;
+  permissoes: PermissaoModel[];
+}
+
+export interface PermissaoModel {
+  codigo: Permissao;
+  descricao: string;
 }

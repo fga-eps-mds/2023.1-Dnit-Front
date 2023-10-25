@@ -14,7 +14,7 @@
 .br-modal {
   --modal-auto: auto;
   --modal-width: 500px;
-  --modal-height: 300px;
+  --modal-height: 600px;
   background: var(--background);
   box-shadow: var(--surface-shadow-sm);
   display: flex;

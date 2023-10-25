@@ -3,6 +3,7 @@ import {
   FileTextOutlined,
   FormOutlined,
 } from "@ant-design/icons";
+import IconGerenciarPerfis from "../assets/icones/GerenciarPerfis.svg";
 import { Card, Collapse, CollapseProps } from "antd";
 import { useNavigate } from "react-router";
 import Header from "../components/Cabecalho";
@@ -10,6 +11,7 @@ import TrilhaDeNavegacao from "../components/escolasCadastradas/TrilhaNavegacao"
 import Footer from "../components/Footer";
 import "../styles/App.css";
 import "../styles/Dashboard.css";
+import "../components/Collapse/index";
 import "../components/Collapse/index";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/Autenticacao";
@@ -37,6 +39,12 @@ export default function Dashboard() {
   const [podeCadastrarRodovias, setPodeCadastrarRodovias] = useState(
     temPermissao(Permissao.RodoviaCadastrar)
   );
+  const [podeGerenciarPerfis, setPodeGerenciarPerfis] = useState(
+    temPermissao(Permissao.PerfilVisualizar)
+  );
+  const [podeCadastrarEmpresa, setPodeCadastrarEmpresa] = useState(
+    temPermissao(Permissao.EmpresaCadastrar)
+  );
 
   useEffect(() => {
     fetchPermissoesDoUsuario().then((permissoes) => {
@@ -47,6 +55,8 @@ export default function Dashboard() {
       setPodeCadastrarEscola(temPermissao(Permissao.EscolaCadastrar));
       setPodeCadastrarSinistro(temPermissao(Permissao.SinistroCadastrar));
       setPodeCadastrarRodovias(temPermissao(Permissao.RodoviaCadastrar));
+      setPodeGerenciarPerfis(temPermissao(Permissao.PerfilVisualizar));
+      setPodeCadastrarEmpresa(temPermissao(Permissao.EmpresaCadastrar));
     });
   }, []);
 
@@ -62,7 +72,7 @@ export default function Dashboard() {
               onClick={() => navigate("/escolas-cadastradas")}
             >
               <FileTextOutlined className="icon" />
-              <p className="text">Visualizar Escolas</p>
+              <p data-testid='visualizar-escola-option' className="text">Visualizar Escolas</p>
             </Card>
           )}
           {podeVisualizarUps && (
@@ -110,13 +120,23 @@ export default function Dashboard() {
       key: "3",
       label: "Ferramentas Administrativas",
       children: (
-        <div>
-          <Card className="disabled">
-            <FileTextOutlined className="icon" />
-            <p className="text">Cadastrar empresas</p>
-          </Card>
-
-          <Collapse />
+        <div className="collapse-item">
+          {podeCadastrarEmpresa && (
+            <Card className="disabled">
+              <FileTextOutlined className="icon" />
+              <p className="text">Cadastrar empresas</p>
+            </Card>
+          )}
+          {podeGerenciarPerfis && (
+            <Card className="card" onClick={() => navigate("/gerenciarPerfis")}>
+              <img
+                className="iconPerfis"
+                src={IconGerenciarPerfis}
+                alt="ícone gerenciar perfis"
+              />
+              <p className="text">Gerenciar Perfis</p>
+            </Card>
+          )}
         </div>
       ),
     },
@@ -124,13 +144,15 @@ export default function Dashboard() {
   return (
     <div className="App">
       <Header />
-      <TrilhaDeNavegacao elementosLi={paginas} />
-      <Collapse
-        defaultActiveKey={["1", "2"]}
-        ghost
-        items={items}
-        className="collapse"
-      />
+      <div className="Main-content">
+        <TrilhaDeNavegacao elementosLi={paginas} />
+        <Collapse
+          defaultActiveKey={["1", "2", "3"]}
+          ghost
+          items={items}
+          className="collapse"
+        />
+      </div>
       <Footer />
     </div>
   );

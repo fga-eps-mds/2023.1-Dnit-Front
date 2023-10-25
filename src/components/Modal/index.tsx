@@ -6,11 +6,13 @@ interface ModalProps {
   children: ReactNode;
 }
 
-export default function Modal({ className = "default", children }: ModalProps) {
+export default function Modal({ className = 'default', children }: ModalProps) {
   return (
     <div className={"overlay " + className} data-testid="overlay">
       <div className="br-modal medium">
-        <div className="br-modal-body d-flex flex-column w-100">{children}</div>
+        <div className="br-modal-body d-flex flex-column w-100">
+          {children}
+        </div>
       </div>
     </div>
   );

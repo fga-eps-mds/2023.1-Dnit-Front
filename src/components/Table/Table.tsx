@@ -39,21 +39,21 @@ export function CustomTableRow({
       <td>
         <div className="icon-row">
           {!hideEditIcon && (
-            <i
+            <i data-testId={`table-row-edit-${id}`}
               className="fas fa-edit"
               aria-hidden="true"
               onClick={() => onEditRow(id)}
             />
           )}
           {!hideEyeIcon && (
-            <i
+            <i data-testId={`table-row-eye-${id}`}
               className="fas fa-eye"
               aria-hidden="true"
               onClick={() => onDetailRow(id)}
             />
           )}
           {!hideTrashIcon && (
-            <i
+            <i data-testId={`table-row-delete-${id}`}
               className="fas fa-trash-alt"
               aria-hidden="true"
               onClick={() => onDeleteRow(id)}
@@ -80,11 +80,11 @@ export default function CustomTable({
     currentPage * itemsPerPage > children.length
       ? children.length
       : currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 
+  const indexOfFirstItem = Math.max(indexOfLastItem - itemsPerPage, 0);
   const currentItems = children.slice(indexOfFirstItem, indexOfLastItem);
-
-  const pageNumbers = [];
+  
+  const pageNumbers: number[] = [];
   for (let i = 1; i <= Math.ceil(children.length / itemsPerPage); i++) {
     pageNumbers.push(i);
   }
@@ -113,7 +113,7 @@ export default function CustomTable({
 
   return (
     <div
-      className="br-table"
+      className="br-table ml-3 mr-3"
       data-search="data-search"
       data-selection="data-selection"
       data-collapse="data-collapse"
@@ -121,14 +121,14 @@ export default function CustomTable({
     >
       <div className="table-header">
         <div className="top-bar">
-          <div className="table-title">{title}</div>
+          <div className="table-title mb-1">{title}</div>
         </div>
       </div>
       <table>
         <thead>
           <tr>
             {columsTitle.map((element) => (
-              <th scope="col">{element}</th>
+              <th scope="col" style={{color: "#1351B4", fontWeight: "bold"}}>{element}</th>
             ))}
             <th scope="col"></th>
           </tr>
@@ -157,7 +157,7 @@ export default function CustomTable({
                   onBlur={() => setPageItemsOpen(false)}
                 >
                   {pageOptions.map((element) => {
-                    return element <= dataSize ? (
+                    return element <= dataSize * 2 ? (
                       <option
                         value={element}
                         selected={itemsPerPage === element}
@@ -186,60 +186,60 @@ export default function CustomTable({
               }-${indexOfLastItem} de ${dataSize} itens`}
             </span>
           </div>
-          <div className="pagination-go-to-page d-none d-sm-flex ml-auto">
-            <div className="br-select">
-              <div className="br-input select-div">
-                <label htmlFor="per-page-selection-random-94892">Página</label>
-                <select
-                  className="select-expand"
-                  aria-label="Exibir página"
-                  tabIndex={-1}
-                  data-trigger="data-trigger"
-                  onChange={(value) => {
-                    setCurrentPage(Number(value.target.value));
-                    setPageIndexOpen(false);
-                  }}
-                  onFocus={() => setPageIndexOpen(true)}
-                  onBlur={() => setPageIndexOpen(false)}
-                >
-                  {pageNumbers.map((element) => (
-                    <option value={element} selected={currentPage === element}>
-                      {element}
-                    </option>
-                  ))}
-                </select>
-                <i
-                  className={
-                    isPageIndexOpen
-                      ? "fas fa-angle-down select-icon"
-                      : "fas fa-angle-up select-icon"
-                  }
-                  aria-hidden="true"
-                />
-              </div>
+        <div className="pagination-go-to-page d-none d-sm-flex ml-auto">
+          <div className="br-select">
+            <div className="br-input select-div">
+              <label htmlFor="per-page-selection-random-94892">Página</label>
+              <select
+                className="select-expand"
+                aria-label="Exibir página"
+                tabIndex={-1}
+                data-trigger="data-trigger"
+                onChange={(value) => {
+                  setCurrentPage(Number(value.target.value));
+                  setPageIndexOpen(false);
+                }}
+                onFocus={() => setPageIndexOpen(true)}
+                onBlur={() => setPageIndexOpen(false)}
+              >
+                {pageNumbers.map((element) => (
+                  <option value={element} selected={currentPage === element}>
+                    {element}
+                  </option>
+                ))}
+              </select>
+              <i
+                className={
+                  isPageIndexOpen
+                    ? "fas fa-angle-down select-icon"
+                    : "fas fa-angle-up select-icon"
+                }
+                aria-hidden="true"
+              />
             </div>
           </div>
+        </div>
 
-          <span className="br-divider d-none d-sm-block mx-3"></span>
-          <div className="pagination-arrows ml-auto ml-sm-0">
-            <button
-              className="br-button circle"
-              type="button"
-              aria-label="Voltar página"
-              onClick={previousPage}
-            >
-              <i className="fas fa-angle-left" aria-hidden="true"></i>
-            </button>
-            <button
-              className="br-button circle"
-              type="button"
-              aria-label="Avançar página"
-              onClick={nextPage}
-            >
-              <i className="fas fa-angle-right" aria-hidden="true"></i>
-            </button>
-          </div>
-        </nav>
+        <span className="br-divider d-none d-sm-block mx-3"></span>
+        <div className="pagination-arrows ml-auto ml-sm-0">
+          <button
+            className="br-button circle"
+            type="button"
+            aria-label="Voltar página"
+            onClick={previousPage}
+          >
+            <i className="fas fa-angle-left" aria-hidden="true"></i>
+          </button>
+          <button
+            className="br-button circle"
+            type="button"
+            aria-label="Avançar página"
+            onClick={nextPage}
+          >
+            <i className="fas fa-angle-right" aria-hidden="true"></i>
+          </button>
+        </div>
+      </nav>
       </div>
     </div>
   );

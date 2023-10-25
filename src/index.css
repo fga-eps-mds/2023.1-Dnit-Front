@@ -1,5 +1,16 @@
-body {
+html, body {
+  height: 100%;
   margin: 0;
+  padding: 0;
+}
+
+#root {
+ display: flex;
+ flex-direction: column;
+ min-height: 100vh;
+}
+
+body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -7,3 +18,14 @@ body {
 code {
   font-family: Rawline, sans-serif;
 }
+
+.dialog-create-perfil {
+  .br-modal {
+    height: fit-content;
+    max-height: 80svh;
+  }
+}
+
+.w-100 {
+  width: 100%;
+} 
