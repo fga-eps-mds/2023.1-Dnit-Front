@@ -16,6 +16,8 @@ export enum Permissao {
   RodoviaCadastrar = "RodoviaCadastrar",
 
   SinistroCadastrar = "SinistroCadastrar",
+
+  EmpresaCadastrar = "EmpresaCadastrar",
 }
 
 export enum TipoPerfil {

@@ -39,6 +39,12 @@ export default function Dashboard() {
   const [podeCadastrarRodovias, setPodeCadastrarRodovias] = useState(
     temPermissao(Permissao.RodoviaCadastrar)
   );
+  const [podeGerenciarPerfis, setPodeGerenciarPerfis] = useState(
+    temPermissao(Permissao.PerfilVisualizar)
+  );
+  const [podeCadastrarEmpresa, setPodeCadastrarEmpresa] = useState(
+    temPermissao(Permissao.EmpresaCadastrar)
+  );
 
   useEffect(() => {
     fetchPermissoesDoUsuario().then((permissoes) => {
@@ -49,6 +55,8 @@ export default function Dashboard() {
       setPodeCadastrarEscola(temPermissao(Permissao.EscolaCadastrar));
       setPodeCadastrarSinistro(temPermissao(Permissao.SinistroCadastrar));
       setPodeCadastrarRodovias(temPermissao(Permissao.RodoviaCadastrar));
+      setPodeGerenciarPerfis(temPermissao(Permissao.PerfilVisualizar));
+      setPodeCadastrarEmpresa(temPermissao(Permissao.EmpresaCadastrar));
     });
   }, []);
 
@@ -113,18 +121,22 @@ export default function Dashboard() {
       label: "Ferramentas Administrativas",
       children: (
         <div className="collapse-item">
-          <Card className="disabled">
-            <FileTextOutlined className="icon" />
-            <p className="text">Cadastrar empresas</p>
-          </Card>
-          <Card className="card" onClick={() => navigate("/gerenciarPerfis")}>
-            <img
-              className="iconPerfis"
-              src={IconGerenciarPerfis}
-              alt="ícone gerenciar perfis"
-            />
-            <p className="text">Gerenciar Perfis</p>
-          </Card>
+          {podeCadastrarEmpresa && (
+            <Card className="disabled">
+              <FileTextOutlined className="icon" />
+              <p className="text">Cadastrar empresas</p>
+            </Card>
+          )}
+          {podeGerenciarPerfis && (
+            <Card className="card" onClick={() => navigate("/gerenciarPerfis")}>
+              <img
+                className="iconPerfis"
+                src={IconGerenciarPerfis}
+                alt="ícone gerenciar perfis"
+              />
+              <p className="text">Gerenciar Perfis</p>
+            </Card>
+          )}
         </div>
       ),
     },
