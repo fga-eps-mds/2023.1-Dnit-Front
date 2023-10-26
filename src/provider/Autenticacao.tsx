@@ -24,8 +24,8 @@ interface AuthContextType {
 }
 
 export const AuthContext = createContext<AuthContextType>({
-  login: () => {},
-  logout: () => {},
+  login: () => { },
+  logout: () => { },
   getAuth: () => false,
   getPermissoes: () => [],
   temPermissao: (_: Permissao) => false,

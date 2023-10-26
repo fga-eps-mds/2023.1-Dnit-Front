@@ -57,6 +57,21 @@ test("Visualizar Escolas Sem Permissão", async () => {
   expect(botao).toBeNull();
 });
 
+test("Visualizar Escolas Sem Permissão", async () => {
+  autenticar();
+
+  const screen = render(
+    <MemoryRouter initialEntries={["/dashboard"]}>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </MemoryRouter>
+  );
+
+  const botao = await screen.queryByText("Visualizar Escolas");
+  expect(botao).toBeNull();
+});
+
 test("Visualizar Dados UPS", async () => {
   autenticar(Permissao.UpsVisualizar);
 
