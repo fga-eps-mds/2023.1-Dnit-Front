@@ -4,6 +4,7 @@ import { notification } from "antd";
 import Modal from "../Modal";
 import ReactLoading from "react-loading";
 import Select from "../Select";
+import "./styles.css";
 
 
 export interface EditarTipoPerfilArgs {
@@ -13,6 +14,7 @@ export interface EditarTipoPerfilArgs {
 
 interface EditarTipoPerfilDialogProps {
   id: string | null,
+  
   closeDialog: (edicao: boolean) => void,
 }
 
@@ -38,7 +40,7 @@ export function EditarTipoPerfilDialog({ closeDialog }: EditarTipoPerfilDialogPr
 
     if (loading) {
       return (
-        <Modal className="editar-perfil-type">
+        <Modal className="modal-title">
           <h4 className="text-center mt-2">Carregando Edição de Perfil... </h4>
           <div className="d-flex justify-content-center m-4">
             <ReactLoading type="spinningBubbles" color="#000000" />
@@ -48,17 +50,18 @@ export function EditarTipoPerfilDialog({ closeDialog }: EditarTipoPerfilDialogPr
     }
 
   return (
-    <Modal className="editar-perfil-type">
+    <Modal className="modal-title ">
       <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center"}}>
-        <h4>Tipo Perfil</h4> 
+        <h4 className="text-center mt-1">Tipo Perfil</h4> 
         <button className="br-button close circle" type="button" aria-label="Close" onClick={() => closeDialog(false)}>
           <i className="fas fa-times" aria-hidden="true"></i>
         </button>
       </div>
-      <Select items={items} value={selectedValue} label ={"Perfil"} onChange={setSelectedValue}/>
+      <Select items={items} value={selectedValue} label={"Perfil"} onChange={setSelectedValue} inputStyle={{width: "450px"}} dropdownStyle={{width: "450px"}} buttonStyle={{left: "150px"}}
+      />
       <div className="d-flex w-100 justify-content-end">
         <button className="br-button secondary" type="button" onClick={() => closeDialog(false)}>Cancelar</button>
-        <button className="br-button primary" type="button" onClick={() => {}}>Salvar</button>
+        <button className="br-button primary" type="button" onClick={() => {}}>Confirmar</button>
       </div>
     </Modal>
   );
