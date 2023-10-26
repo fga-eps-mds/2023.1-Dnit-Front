@@ -3,6 +3,7 @@ import { notification } from "antd";
 // import fetchExcluirPerfil from "../../service/excluiPerfil";
 import Modal from "../Modal";
 import ReactLoading from "react-loading";
+import Select from "../Select";
 
 
 export interface EditarTipoPerfilArgs {
@@ -17,7 +18,9 @@ interface EditarTipoPerfilDialogProps {
 
 export function EditarTipoPerfilDialog({ closeDialog }: EditarTipoPerfilDialogProps) {
   const [loading, setLoading] = useState(false);
-    
+  
+  const [selectedValue, setSelectedValue] = useState<string>('');
+  const items = ['Basico', 'Administrador', 'Perfil 1', 'Perfil 2', 'Perfil 3', 'Perfil 4']; 
 
     // const deletar = () => {
     //     setLoading(true);
@@ -52,11 +55,10 @@ export function EditarTipoPerfilDialog({ closeDialog }: EditarTipoPerfilDialogPr
           <i className="fas fa-times" aria-hidden="true"></i>
         </button>
       </div>
-      <p><strong>Perfil</strong></p>
-      {/* inserir dropdown aqui */}
-      <div className="d-flex w-100 justify-content-center">
+      <Select items={items} value={selectedValue} label ={"Perfil"} onChange={setSelectedValue}/>
+      <div className="d-flex w-100 justify-content-end">
         <button className="br-button secondary" type="button" onClick={() => closeDialog(false)}>Cancelar</button>
-        <button className="br-button primary" type="button" onClick={() => {}}>Confirmar</button>
+        <button className="br-button primary" type="button" onClick={() => {}}>Salvar</button>
       </div>
     </Modal>
   );
