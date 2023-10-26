@@ -9,7 +9,7 @@ export enum AuthLocalStorage {
   TokenAtualizacao = "TokenAtualizacao",
   ExpiraEm = "ExpiraEm",
   Permissoes = "Permissoes",
-  Nome = "Nome",
+  Email = "Email",
 }
 
 const PERMISSOES_SEPARATOR = ",";
@@ -24,8 +24,8 @@ interface AuthContextType {
 }
 
 export const AuthContext = createContext<AuthContextType>({
-  login: () => {},
-  logout: () => {},
+  login: () => { },
+  logout: () => { },
   getAuth: () => false,
   getPermissoes: () => [],
   temPermissao: (_: Permissao) => false,
@@ -52,7 +52,7 @@ export function getPermissoes() {
 export function temPermissao(permissao: Permissao) {
   const temPermissaoSolicitada = getPermissoes().includes(permissao);
   if (!temPermissaoSolicitada) {
-    console.error(
+    console.warn(
       `O usuário não tem a permissao ${permissao}. Permissões do usuário: ${getPermissoes()}`
     );
   }

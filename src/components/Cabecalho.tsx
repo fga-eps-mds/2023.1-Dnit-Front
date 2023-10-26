@@ -14,7 +14,7 @@ interface HeaderProps {
   subtitle?: string;
 }
 
-const userName = localStorage.getItem(AuthLocalStorage.Nome);
+const userEmail = localStorage.getItem(AuthLocalStorage.Email);
 
 const Header = ({ hasLogged = true, title, subtitle }: HeaderProps) => {
   const navigate = useNavigate();
@@ -41,7 +41,9 @@ const Header = ({ hasLogged = true, title, subtitle }: HeaderProps) => {
 
           {hasLogged ? (
             <div className="profile">
-              <span className="letter">{userName?.charAt(0) ?? "U"}</span>
+              <span className="letter">
+                {userEmail?.charAt(0).toUpperCase() ?? "U"}
+              </span>
             </div>
           ) : (
             <div className="botao-login" onClick={() => navigate("/login")}>

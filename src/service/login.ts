@@ -10,7 +10,7 @@ async function fetchLogin(loginData: LoginData): Promise<LoginResponse> {
       loginURL,
       loginData
     );
-    localStorage.setItem(AuthLocalStorage.Nome, loginData.nome);
+    localStorage.setItem(AuthLocalStorage.Email, loginData.email);
     return response.data;
   } catch (error) {
     console.log(error);

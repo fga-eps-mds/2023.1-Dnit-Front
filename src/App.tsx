@@ -6,6 +6,7 @@ import Dashboard from "./pages/Dashboard";
 import EscolasCadastradas from "./pages/EscolasCadastradas";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import GerenciarPerfis from "./pages/GerenciarPerfis";
 import RecoverPassword from "./pages/RecuperarSenha";
 import Register from "./pages/CadastrarUsuario";
 import RegisterSchool from "./pages/CadastrarEscola";
@@ -33,6 +34,7 @@ function App() {
           <Route path="/cadastrarRodovias" element={<CadastrarRodovias />} />
           <Route path="/telaUPS" element={<TelaUPS />} />
           <Route path="/gerenciarUsuario" element={<GerenciarUsuario />}/>
+          <Route path="/gerenciarPerfis" element={<GerenciarPerfis />} />
         </>
       ) : (
         <>

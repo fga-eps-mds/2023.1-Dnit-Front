@@ -21,6 +21,10 @@
   --focus: var(--focus-color);
   padding-inline: 40px;
   width: 100%;
+  position: relative;
+  text-align: center;
+  bottom: 0;
+  z-index: -3;
 }
 
 .br-footer .left-align {

@@ -33,21 +33,23 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
 
 test("should render Register", async () => {
   mockedUseRegister.mockResolvedValueOnce({ success: true });
-  
-    // eslint-disable-next-line testing-library/render-result-naming-convention
-    const screen = render(
-      <MemoryRouter initialEntries={["/cadastro"]}>
-        <AuthProvider>
-          <App />
-        </AuthProvider>
-      </MemoryRouter>
-    );
+
+  // eslint-disable-next-line testing-library/render-result-naming-convention
+  const screen = render(
+    <MemoryRouter initialEntries={["/cadastro"]}>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </MemoryRouter>
+  );
 
   const emailInput = screen.getByLabelText("E-mail Institucional");
   const passwordInput = screen.getByLabelText("Senha");
   const confirmPasswordInput = screen.getByLabelText("Confirmar Senha");
   const nomeInput = screen.getByLabelText("Nome Completo");
-  const usuarioDnitRadioButton = screen.getByRole("radio", { name: "Usuário DNIT" });
+  const usuarioDnitRadioButton = screen.getByRole("radio", {
+    name: "Usuário DNIT",
+  });
   const button = screen.getByText("Cadastrar-se");
 
   fireEvent.change(emailInput, { target: { value: "example@example.com" } });
