@@ -6,10 +6,14 @@ import { AuthProvider } from "../provider/Autenticacao";
 import localStorageMock from "./mock/memoriaLocal";
 import { autenticar } from "./mock/autenticacao";
 import { Permissao } from "../models/auth";
+import server from "./mock/servicosAPI";
+
+beforeAll(() => server.listen());
 
 beforeEach(() => {
   Object.defineProperty(window, "localStorage", { value: localStorageMock });
 });
+
 window.matchMedia = jest.fn().mockImplementation((query) => {
   return {
     matches: false,
@@ -34,8 +38,8 @@ test("Visualizar Escolas", async () => {
     </MemoryRouter>
   );
 
-  const escolas = screen.getByText("Visualizar Escolas");
-  fireEvent.click(escolas);
+  const escolas = screen.getAllByText("Visualizar Escolas");
+  fireEvent.click(escolas[0]);
 });
 
 test("Visualizar Escolas Sem Permissão", async () => {
@@ -49,9 +53,10 @@ test("Visualizar Escolas Sem Permissão", async () => {
     </MemoryRouter>
   );
 
-  const botao = await screen.queryByText("Visualizar Escolas");
+  const botao = await screen.queryByTestId("visualizar-escola-option");
   expect(botao).toBeNull();
 });
+
 
 test("Visualizar Dados UPS", async () => {
   autenticar(Permissao.UpsVisualizar);
@@ -79,7 +84,7 @@ test("Visualizar Dados UPS Sem Permissão", async () => {
     </MemoryRouter>
   );
 
-  const botao = await screen.queryByText("Visualizar Dados UPS");
+  const botao = screen.queryByText("Visualizar Dados UPS");
   expect(botao).toBeNull();
 });
 
@@ -109,7 +114,7 @@ test("Cadastrar Escolas Sem Permissão", async () => {
     </MemoryRouter>
   );
 
-  const botao = await screen.queryByText("Cadastrar Escolas");
+  const botao = screen.queryByText("Cadastrar Escolas");
   expect(botao).toBeNull();
 });
 
@@ -139,7 +144,7 @@ test("Adicionar Sinistros Sem Permissão", async () => {
     </MemoryRouter>
   );
 
-  const botao = await screen.queryByText("Adicionar Sinistros");
+  const botao = screen.queryByText("Adicionar Sinistros");
   expect(botao).toBeNull();
 });
 
@@ -169,6 +174,6 @@ test("Adicionar Rodovias Sem Permissão", async () => {
     </MemoryRouter>
   );
 
-  const botao = await screen.queryByText("Adicionar Rodovias");
+  const botao = screen.queryByText("Adicionar Rodovias");
   expect(botao).toBeNull();
 });

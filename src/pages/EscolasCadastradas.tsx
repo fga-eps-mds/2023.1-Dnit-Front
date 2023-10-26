@@ -1,10 +1,10 @@
 import TrilhaNavegacao from "../components/escolasCadastradas/TrilhaNavegacao";
 import FiltragemTabela from "../components/escolasCadastradas/FiltragemTabela";
-import Footer from "../components/Rodape";
-import Header from "../components/escolasCadastradas/CabecalhoListaEscolas";
+import Footer from "../components/Footer";
 import TabelaEscola from "../components/escolasCadastradas/TabelaEscola";
 import { FiltroProvider } from "../context/FiltroTabela";
 import "../styles/App.css";
+import Header from "../components/Cabecalho";
 import { useContext, useEffect } from "react";
 import { AuthContext } from "../provider/Autenticacao";
 import { Permissao } from "../models/auth";
@@ -25,7 +25,10 @@ export default function EscolasCadastradas() {
   return (
     <div className="App">
       <Header />
-      <TrilhaNavegacao elementosLi={paginas} escolasCadastradas></TrilhaNavegacao>
+      <TrilhaNavegacao
+        elementosLi={paginas}
+        escolasCadastradas
+      ></TrilhaNavegacao>
       <FiltroProvider>
         <FiltragemTabela />
         <TabelaEscola />
