@@ -14,6 +14,7 @@ import { profile } from "console";
 import fetchUsuarios from "../service/listarUsuarios";
 import { notification } from "antd";
 import { UsuarioModel } from "../models/usuario";
+import fetchUnidadeFederativa from "../service/unidadesFederativas";
 
 interface EditarTipoPerfilArgs {
   id: string | null;
@@ -33,27 +34,20 @@ interface FiltroNomeProps {
   onNomeChange: (nome: string) => void;
 }
 
-interface FiltroUFProps {
-  uf?: number;
-  onUFChange: (id: number) => void;
+interface FilterOptions {
+  id: number;
+  rotulo: string;
 }
+
 
 interface FiltroPerfilProps {
   perfil?: number;
   onPerfilChange: (id: number) => void;
 }
 
-export function FiltroUF({ onUFChange, uf}: FiltroUFProps) {
-  const items = [{id: 0, rotulo: 'Todos'},{id: 1, rotulo: 'DF'}, {id: 2, rotulo: 'MG'}, {id: 3, rotulo: 'GO'}];
 
-  return (                                                             
-    <Select items={items} value={uf} label={"UF:"} onChange={onUFChange} dropdownStyle={{ marginLeft: "20px", width: "260px" }} />
-    );
-    
-}
-
-export function FiltroPerfil({ onPerfilChange, perfil}: FiltroPerfilProps) {
-  const items = [{id: 0, rotulo: 'Todos'},{id: 1, rotulo: 'Administrador'}, {id: 2, rotulo: 'Basico'}, {id: 3, rotulo: 'Customizado'}];
+export function FiltroPerfil({ onPerfilChange, perfil }: FiltroPerfilProps) {
+  const items = [{ id: 0, rotulo: 'Todos' }, { id: 1, rotulo: 'Administrador' }, { id: 2, rotulo: 'Basico' }, { id: 3, rotulo: 'Customizado' }];
   const [selectedValue, setSelectedValue] = useState<string>('');
 
   return (
@@ -94,24 +88,28 @@ export default function GerenciarUsuario() {
   const [backupListaUsuarios, setBackupListaUsuarios] = useState<UsuarioModel[]>([]);
   const [notificationApi, notificationContextHandler] = notification.useNotification();
   const [tamanhoPagina, setTamanhoPagina] = useState(10);
+  const [listaUfs, setListaUfs] = useState<FilterOptions[]>([]);
 
   const navigate = useNavigate();
-  // const { temPermissao } = useContext(AuthContext);
 
 
   const buscarUsuarios = () => {
     setLoading(true);
 
-    fetchUsuarios<ListaPaginada>(1, tamanhoPagina, nome, uf, perfil)
+    fetchUsuarios<ListaPaginada>({pagina:1, itemsPorPagina:tamanhoPagina, nome:nome, ufLotacao:uf, perfilId:perfil})
       .then(lista => {
         // setBackupListaUsuarios(lista.items)
-        if(lista.items.length > 0)
-          setListaUsuarios(lista.items)
-        //setTotal
-      console.log(lista.items);
+        setListaUsuarios(lista.items)
       })
       .catch(error => notificationApi.error({ message: 'Falha na listagem de usuários. ' + (error?.response?.data || '') }))
       .finally(() => setLoading(false));
+  }
+
+  //retirado de: ../components/acessosUsuario/CadastrarUsuario.tsx
+  async function fetchUf(): Promise<void> {
+    const listaUfs = await fetchUnidadeFederativa();
+    const novaUf = listaUfs.map((u) => ({ id: u.id, rotulo: u.sigla }));
+    setListaUfs(novaUf);
   }
 
   useEffect(() => {
@@ -119,10 +117,8 @@ export default function GerenciarUsuario() {
   }, [nome, uf, perfil]);
 
   useEffect(() => {
-    setBackupListaUsuarios([
-    ]);
+    fetchUf();
 
-    setListaUsuarios(backupListaUsuarios);
   }, []);
 
   // useEffect(() => {
@@ -139,21 +135,22 @@ export default function GerenciarUsuario() {
       <div className="d-flex flex-column m-5">
         <div className="d-flex justify-content-left align-items-center mr-5">
           <FiltroNome onNomeChange={setNome} />
-          <FiltroUF onUFChange={setUF} uf={uf}/>
+          <Select items={listaUfs} value={uf} label={"UF:"} onChange={setUF} dropdownStyle={{ marginLeft: "20px", width: "260px" }} />
+          {/* <FiltroUF onUFChange={setUF} uf={uf} ufsLista={listaUfs}/> */}
           {/* <FiltroPerfil onPerfilChange={setPerfil} perfil={perfil} /> */}
         </div>
-        {listaUsuarios.length == 0 && <Table columsTitle={['Nome', 'UF', 'Tipo de Perfil', 'Email', '']} initialItemsPerPage={10} title="Perfis de usuário cadastrados"><></><></></Table>}
+        {listaUsuarios.length == 0 && <Table columsTitle={['Nome', 'Tipo de Perfil', 'UF', 'Email', '']} initialItemsPerPage={10} title="Perfis de usuário cadastrados"><></><></></Table>}
 
-        <Table columsTitle={['Nome', 'UF', 'Tipo de Perfil', 'Email', '']} initialItemsPerPage={10} title="Perfis de usuário cadastrados">
+        <Table columsTitle={['Nome', 'Tipo de Perfil', 'UF', 'Email', '']} initialItemsPerPage={10} title="Perfis de usuário cadastrados">
           {
             listaUsuarios.map((p, index) =>
-              <CustomTableRow key={`${p.id}-${index}`} id={index}
-                data={{ '0': p.nome, '1': `${p.ufLotação}`, '2': "p.perfil.nome", '3': p.email, ', ...': '' }}
-                onEditRow={() => setMostrarPerfil({ id: null, readOnly: true })}
-                hideTrashIcon={true}
-                hideEyeIcon={true}
-              />
-            )
+            (<CustomTableRow key={`${p.id}-${index}`} id={index}
+              data={{ '0': p.nome, '1': p.perfilId, '2': `${listaUfs.find((uf) => uf.id === p.ufLotacao)?.rotulo}`, '3': p.email, ', ...': '' }}
+              onEditRow={() => setMostrarPerfil({ id: null, readOnly: true })}
+              hideTrashIcon={true}
+              hideEyeIcon={true}
+            />
+            ))
           }
         </Table>
         {loading && <div className="d-flex justify-content-center w-100 m-5"><ReactLoading type="spinningBubbles" color="#000000" /></div>}

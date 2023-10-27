@@ -32,3 +32,4 @@ export const cadastrarPerfilUrl = `${urlAPIUsuario}/perfil`;
 export const obterPerfil = `${urlAPIUsuario}/perfil`
 export const atualizarPerfil = `${urlAPIUsuario}/perfil`
 export const excluiPerfil = `${urlAPIUsuario}/perfil`;
+export const listarUsuarios = `${urlAPIUsuario}/usuario`;
