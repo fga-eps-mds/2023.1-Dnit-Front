@@ -4,6 +4,7 @@ import {
   FormOutlined,
 } from "@ant-design/icons";
 import IconGerenciarPerfis from "../assets/icones/GerenciarPerfis.svg";
+import IconGerenciarUsuarios from "../assets/icones/GerenciarUsuarios.svg";
 import { Card, Collapse, CollapseProps } from "antd";
 import { useNavigate } from "react-router";
 import Header from "../components/Cabecalho";
@@ -137,7 +138,11 @@ export default function Dashboard() {
           )}
           {podeGerenciarUsuario &&
             <Card className="card" onClick={() => navigate("/gerenciarUsuario")}>
-              <FileAddOutlined className="icon" />
+              <img
+                className="iconGenciaUsuarios"
+                src={IconGerenciarUsuarios}
+                alt="ícone gerenciar usuarios"
+              />
               <p className="text">Gerenciar Usuário</p>
             </Card>}
           {podeGerenciarPerfis && (
