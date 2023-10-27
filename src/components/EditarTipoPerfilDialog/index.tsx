@@ -57,8 +57,8 @@ export function EditarTipoPerfilDialog({ closeDialog }: EditarTipoPerfilDialogPr
           <i className="fas fa-times" aria-hidden="true"></i>
         </button>
       </div>
-      <Select items={items} value={selectedValue} label={"Perfil"} onChange={setSelectedValue} inputStyle={{width: "450px"}} dropdownStyle={{width: "450px"}} buttonStyle={{left: "150px"}}
-      />
+      {/* <Select items={items} value={selectedValue} label={"Perfil"} onChange={setSelectedValue} inputStyle={{width: "450px"}} dropdownStyle={{width: "450px"}} buttonStyle={{left: "150px"}}
+      /> */}
       <div className="d-flex w-100 justify-content-end">
         <button className="br-button secondary" type="button" onClick={() => closeDialog(false)}>Cancelar</button>
         <button className="br-button primary" type="button" onClick={() => {}}>Confirmar</button>

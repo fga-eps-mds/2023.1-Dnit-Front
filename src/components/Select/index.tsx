@@ -4,13 +4,13 @@ import "./Styles.css";
 
 
 export interface SelectProps {
-  items: string[];
-  value?: string; //Valor selecionado atualmente
+  items: {id: number, rotulo: string}[];
+  value?: number; //Valor selecionado atualmente
   label?: string; //Titulo do dropdown
   inputStyle?: object;
   dropdownStyle?: object;
   buttonStyle?: object
-  onChange: (value: string) => void;
+  onChange: (id: number) => void;
 }
 
 export default function Select({ items, value, label, onChange, inputStyle, dropdownStyle, buttonStyle }: SelectProps) {
@@ -21,7 +21,7 @@ export default function Select({ items, value, label, onChange, inputStyle, drop
     setIsOpen(!isOpen);
   };
 
-  const handleItemClick = (item: string) => {
+  const handleItemClick = (item: number) => {
     onChange(item);
     setIsOpen(false);
   };
@@ -31,7 +31,7 @@ export default function Select({ items, value, label, onChange, inputStyle, drop
       <div className="br-input ">
         <label className="profile-type-label ml-2" htmlFor="select-simple" ><p style={{marginBottom:"4px"}}><strong>{label}</strong></p></label>
         <div className="br-input large input-button">
-          <input id="select-simple" type="text" placeholder="Selecione o item" value={value} readOnly style={inputStyle}/>
+          <input id="select-simple" type="text" placeholder="Todos" value={value} readOnly style={inputStyle}/>
           <button className="br-button" type="button" aria-label="Exibir lista" tabIndex={-1} data-trigger="data-trigger" onClick={toggleDropdown} style={buttonStyle}>
             <i className="fas fa-angle-down" aria-hidden="true"></i>
           </button>
@@ -40,10 +40,10 @@ export default function Select({ items, value, label, onChange, inputStyle, drop
       {isOpen && 
       <div className="br-list2" style={dropdownStyle} tabIndex={0}>
         {items.map((item, index) => (
-          <div key={index} className="br-item" tabIndex={-1} onClick={() => handleItemClick(item)}>
+          <div key={index} className="br-item" tabIndex={-1} onClick={() => handleItemClick(item.id)}>
             <div className="br-radio">
-              <input id={`rb${index}`} type="radio" name="estados-simples" value={item} checked={value === item} onChange={() => {}}/>
-              <label htmlFor={`rb${index}`}>{item}</label>
+              <input id={`rb${index}`} type="radio" name="estados-simples" value={item.rotulo} checked={value === item.id} onChange={() => {}}/>
+              <label htmlFor={`rb${index}`}>{item.rotulo}</label>
             </div>
           </div>
         ))}
