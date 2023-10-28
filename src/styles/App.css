@@ -134,9 +134,13 @@
 }
 
 .footer-small-page {
-  position: absolute;
+  position: relative;
   bottom: 0;
   width: 100%;
+}
+
+.page-content {
+  min-height: calc(100vh - 90px);
 }
 
 @media (max-width: 1250px) {
