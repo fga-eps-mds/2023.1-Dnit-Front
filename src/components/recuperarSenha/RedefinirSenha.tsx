@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import LogoDNIT from "../../assets/logoDnitAzul.png";
 import {fetchRedefinirSenha} from "../../service/modificador";
 import "../../styles/form.css";
-import ButtonComponent from "../Botao";
+import { ButtonComponent } from "../Button";
 
 const RedefinirSenha: React.FC = () => {
   const [formulario] = Form.useForm();
@@ -16,6 +16,10 @@ const RedefinirSenha: React.FC = () => {
   ];
   const [api, contextHolder] = notification.useNotification();
   const navigate = useNavigate();
+
+  const handleSubmit = () => {
+    formulario.submit();
+  };
 
   const onFinish = async (values: any) => {
     const parametrosPesquisa = new URLSearchParams(document.location.search);
@@ -85,11 +89,10 @@ const RedefinirSenha: React.FC = () => {
           <Form.Item className="recuperarsenha">
             <Space>
               <ButtonComponent
-                nome="Confirmar"
-                cor="#1351B4"
-                cor_letra="#FFFFFF"
-                cor_borda="#1351B4"
-                largura="10em"
+                label="Confirmar"
+                buttonStyle="primary"
+                padding="40px"
+                onClick={handleSubmit}
               />
             </Space>
           </Form.Item>

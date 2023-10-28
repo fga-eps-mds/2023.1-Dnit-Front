@@ -6,19 +6,21 @@ import Dashboard from "./pages/Dashboard";
 import EscolasCadastradas from "./pages/EscolasCadastradas";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import GerenciarPerfis from "./pages/GerenciarPerfis";
 import RecoverPassword from "./pages/RecuperarSenha";
 import Register from "./pages/CadastrarUsuario";
 import RegisterSchool from "./pages/CadastrarEscola";
 import ResetPassword from "./pages/RedefinirSenha";
 import SolicitacaoAcao from "./pages/SolicitacaoAcao";
 import TelaUPS from "./pages/TelaUPS";
-import { AuthContext } from "./provider/Autenticacao";
+import { AuthContext, configuraAutenticacaoAxios } from "./provider/Autenticacao";
 import "./styles/App.css";
 
 function App() {
   const { getAuth } = useContext(AuthContext);
   const isAuthenticated = getAuth();
   document.title = "DNIT";
+  configuraAutenticacaoAxios();
   return (
     <Routes>
       {isAuthenticated ? (
@@ -30,6 +32,7 @@ function App() {
           <Route path="/escolas-cadastradas" element={<EscolasCadastradas />} />
           <Route path="/cadastrarRodovias" element={<CadastrarRodovias />} />
           <Route path="/telaUPS" element={<TelaUPS />} />
+          <Route path="/gerenciarPerfis" element={<GerenciarPerfis />} />
         </>
       ) : (
         <>

@@ -6,6 +6,9 @@ import App from "../App";
 import { AuthProvider } from "../provider/Autenticacao";
 import localStorageMock from "./mock/memoriaLocal";
 import server from "./mock/servicosAPI";
+import { autenticar } from "./mock/autenticacao";
+import { Permissao } from "../models/auth";
+import { alterarDadosEscolaURL } from "../consts/service";
 
 beforeAll(() => server.listen());
 beforeEach(() => {
@@ -14,10 +17,8 @@ beforeEach(() => {
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
-const escolasService = "https://escola.dnit.eps-fga.live/api"
-
 test("Exibir escola selecionada", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.EscolaVisualizar);
 
   render(
     <MemoryRouter initialEntries={["/escolas-cadastradas"]}>
@@ -40,7 +41,7 @@ test("Exibir escola selecionada", async () => {
 });
 
 test("Alterar escola selecionada", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.EscolaEditar, Permissao.EscolaVisualizar);
 
   render(
     <MemoryRouter initialEntries={["/escolas-cadastradas"]}>
@@ -96,11 +97,11 @@ test("Alterar escola selecionada", async () => {
 });
 
 test("Alterar escola selecionada erro", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.EscolaEditar, Permissao.EscolaVisualizar);
 
   server.use(
     rest.put(
-      `${escolasService}/escolas/alterarDadosEscola`,
+      alterarDadosEscolaURL,
       (req, res, ctx) => {
         return res(ctx.status(400));
       }

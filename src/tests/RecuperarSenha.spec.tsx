@@ -40,7 +40,7 @@ describe("Recover Password Tests", () => {
     );
     await act(async () => {
       const passwordInput = screen.getByLabelText("Email");
-      const sendButton = screen.getByText("Enviar link de recuperação");
+      const sendButton = screen.getByText("Enviar Link de Recuperação");
 
       fireEvent.change(passwordInput, { target: { value: "teste@gmail.com" } });
       fireEvent.click(sendButton);
