@@ -129,7 +129,6 @@ export default function GerenciarUsuario() {
   return (
     <div className="App">
       {mostrarPerfil != null && <EditarTipoPerfilDialog
-        id={mostrarPerfil.id}
         listaOpcoes={listaPerfis}
         listaUsuarios={listaUsuarios}
         usuarioId={usuarioSelecionado}

@@ -2,9 +2,6 @@
 /* eslint-disable testing-library/render-result-naming-convention */
 import { render, fireEvent } from "@testing-library/react";
 import Select from "../../components/Select";
-import { useState } from "react";
-import React from 'react'
-
 
 describe("Testes para o componente Select", () => {
   it("Deve renderizar o Select Corretamente", () => {
@@ -21,14 +18,11 @@ describe("Testes para o componente Select", () => {
       />
     )
 
-    // const buttom = screen.getByText("Todos");
-    // fireEvent.click(buttom);
-
     expect(screen.getByPlaceholderText("Todos")).toBeInTheDocument();
     expect(screen.getByText("Título do Select")).toBeInTheDocument();
   });
 
-  it("Deve abrir o dropdown do Select com as opções", () => {
+  it("Deve selecionar opção do dropdown do Select", () => {
     const estadoInicial = '';
     const itemsTest = [{ id: "0", rotulo: "test0" }, { id: "1", rotulo: "test1" }, { id: "2", rotulo: "test2" }]
 
@@ -42,12 +36,15 @@ describe("Testes para o componente Select", () => {
       />
     )
 
-    const buttom = screen.getByTestId("customSelect");
-    fireEvent.click(buttom);
+    const botao = screen.getByTestId("customSelect");
+    fireEvent.click(botao);
 
     expect(screen.getByText("test0")).toBeInTheDocument();
     expect(screen.getByText("test1")).toBeInTheDocument();
     expect(screen.getByText("test2")).toBeInTheDocument();
+
+    const opcao = screen.getByText("test0");
+    fireEvent.click(opcao);
 
   });
 });

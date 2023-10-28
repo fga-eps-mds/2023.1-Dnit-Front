@@ -1,6 +1,6 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
-import { atualizarTokenUrl, cadastrarPerfilUrl, excluiPerfil, listarPerfis, listarPermissoesCategoria, listarUsuarioPermissoes, obterPerfil, urlAPIEscolas, urlAPIUps } from "../../consts/service";
+import { atualizarTipoPerfil, atualizarTokenUrl, cadastrarPerfilUrl, excluiPerfil, listarPerfis, listarPermissoesCategoria, listarUsuarioPermissoes, obterPerfil, urlAPIEscolas, urlAPIUps } from "../../consts/service";
 import { Permissao, TipoPerfil } from "../../models/auth";
 
 const escolasService = urlAPIEscolas;
@@ -745,7 +745,11 @@ const server = setupServer(
           }
         ]),
       )
-  )
+  ),
+  rest.patch(`${atualizarTipoPerfil}/0/perfil`,
+    (req, res, ctx) => res(ctx.status(200), ctx.json([]))),
+  rest.patch(`${atualizarTipoPerfil}/1/perfil`,
+    (req, res, ctx) => res(ctx.status(400), ctx.body("erro"))),
 );
 
 export default server;

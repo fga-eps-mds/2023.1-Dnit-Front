@@ -21,10 +21,9 @@ interface FilterOptions {
 interface EditarTipoPerfilDialogProps {
   listaOpcoes: FilterOptions[];
   listaUsuarios: UsuarioModel[];
-  usuarioId: string
-  id: string | null,
-  closeDialog: (edicao: boolean) => void,
-  atualizaTabela: (atualizou: UsuarioModel[] ) => void,
+  usuarioId: string;
+  closeDialog: (edicao: boolean) => void;
+  atualizaTabela: (atualizou: UsuarioModel[] ) => void;
 }
 
 
@@ -47,6 +46,7 @@ export function EditarTipoPerfilDialog({ closeDialog, listaOpcoes, usuarioId, li
 
   const salvarPerfil = (usuarioId: string, perfilId: string) => {
     if (!tipoPerfilId.trim()) {
+      notification.error({ message: 'Selecione um tipo de perfil' });
       return;
     }
     setLoading(true);
@@ -85,15 +85,15 @@ export function EditarTipoPerfilDialog({ closeDialog, listaOpcoes, usuarioId, li
       {contextHolder}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         <h4 className="text-center mt-1">Tipo Perfil</h4>
-        <button className="br-button close circle" type="button" aria-label="Close" onClick={() => closeDialog(false)}>
+        <button data-testid="botaoFechar" className="br-button close circle" type="button" aria-label="Close" onClick={() => closeDialog(false)}>
           <i className="fas fa-times" aria-hidden="true"></i>
         </button>
       </div>
       <Select items={listaOpcoes} value={tipoPerfilId} label={"Perfil"} onChange={(id) => setTipoPerfilId(id)} inputStyle={{ width: "450px" }} dropdownStyle={{ width: "450px" }} buttonStyle={{ left: "150px" }}
       />
       <div className="d-flex w-100 justify-content-end">
-        <button className="br-button secondary" type="button" onClick={() => closeDialog(false)}>Cancelar</button>
-        <button className="br-button primary" type="button" onClick={() => {
+        <button data-testid="botaoCancelar" className="br-button secondary" type="button" onClick={() => closeDialog(false)}>Cancelar</button>
+        <button data-testid="botaoConfirmar" className="br-button primary" type="button" onClick={() => {
           salvarPerfil(usuarioId, tipoPerfilId)
         }}>Confirmar</button>
       </div>
