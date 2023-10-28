@@ -59,7 +59,7 @@ export default function Dashboard() {
       setPodeCadastrarEscola(temPermissao(Permissao.EscolaCadastrar));
       setPodeCadastrarSinistro(temPermissao(Permissao.SinistroCadastrar));
       setPodeCadastrarRodovias(temPermissao(Permissao.RodoviaCadastrar));
-      setPodeGerenciarUsuario(true);
+      setPodeGerenciarUsuario(temPermissao(Permissao.UsuarioVisualizar));
       setPodeGerenciarPerfis(temPermissao(Permissao.PerfilVisualizar));
       setPodeCadastrarEmpresa(temPermissao(Permissao.EmpresaCadastrar));
     });

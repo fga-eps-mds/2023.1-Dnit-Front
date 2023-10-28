@@ -12,7 +12,7 @@ export interface UsuarioModel {
     nome: string;
     cnpj: string;
     perfilId: string;
-    perfil: PerfilModel[];
+    perfil: PerfilModel;
     ufLotacao: number;
   }
   

@@ -1,7 +1,7 @@
 import Footer from "../components/Footer";
 import "../styles/App.css";
 import Header from "../components/Cabecalho";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import TrilhaDeNavegacao from "../components/escolasCadastradas/TrilhaNavegacao";
 import Table, { CustomTableRow } from "../components/Table/Table";
@@ -13,6 +13,8 @@ import { notification } from "antd";
 import { UsuarioModel } from "../models/usuario";
 import fetchUnidadeFederativa from "../service/unidadesFederativas";
 import fetchPerfis from "../service/listarPerfis";
+import { Permissao, TipoPerfil } from "../models/auth";
+import { AuthContext } from "../provider/Autenticacao";
 
 interface EditarTipoPerfilArgs {
   id: string | null;
@@ -62,6 +64,12 @@ export function FiltroNome({ onNomeChange, nome }: FiltroNomeProps) {
 }
 
 export default function GerenciarUsuario() {
+  const { temPermissao } = useContext(AuthContext);
+
+  const [podeEditarPerfilUsuario, setPodeEditarPerfilUsuario] = useState(
+    temPermissao(Permissao.UsuarioPerfilEditar)
+  );
+
   const paginas = [{ nome: "Logout", link: "/login" }];
   const [loading, setLoading] = useState(false);
   const [mostrarPerfil, setMostrarPerfil] = useState<EditarTipoPerfilArgs | null>(null);
@@ -155,6 +163,7 @@ export default function GerenciarUsuario() {
                 setMostrarPerfil({ id: null, readOnly: true })
               }
               }
+              hideEditIcon={!podeEditarPerfilUsuario}
               hideTrashIcon={true}
               hideEyeIcon={true}
             />

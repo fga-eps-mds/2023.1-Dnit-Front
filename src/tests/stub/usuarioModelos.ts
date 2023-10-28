@@ -31,7 +31,7 @@ export const usuarios: UsuarioModel[] = [
     nome: "usuario0",
     ufLotacao: 1,
     perfilId: "id0",
-    perfil: [perfil]
+    perfil: perfil
   },
   {
     id: "1",
@@ -40,6 +40,6 @@ export const usuarios: UsuarioModel[] = [
     nome: "usuario1",
     ufLotacao: 7,
     perfilId: "id1",
-    perfil: [perfil]
+    perfil: perfil
   }
 ]
