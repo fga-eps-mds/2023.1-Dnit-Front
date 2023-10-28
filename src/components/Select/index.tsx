@@ -3,17 +3,17 @@ import { notification } from "antd";
 import "./Styles.css";
 
 interface SelectOptions {
-  id: number;
+  id: string;
   rotulo: string;
 }
 export interface SelectProps {
-  items: {id: number, rotulo: string}[];
-  value?: number; //Valor selecionado atualmente
+  items: {id: string, rotulo: string}[];
+  value: string; //Valor selecionado atualmente
   label?: string; //Titulo do dropdown
   inputStyle?: object;
   dropdownStyle?: object;
   buttonStyle?: object
-  onChange: (id: number) => void;
+  onChange: (id: string) => void;
 }
 
 export default function Select({ items, value, label, onChange, inputStyle, dropdownStyle, buttonStyle }: SelectProps) {
@@ -25,18 +25,18 @@ export default function Select({ items, value, label, onChange, inputStyle, drop
     setIsOpen(!isOpen);
   };
 
-  const handleItemClick = (item: number) => {
+  const handleItemClick = (item: string) => {
     onChange(item);
     setIsOpen(false);
   };
 
-  const getRotuloById = (id: number | undefined, items: { id: number, rotulo: string }[]): string => {
+  const getRotuloById = (id: string, items: { id: string, rotulo: string }[]): string => {
     const item = items.find(item => item.id === id);
     return item ? item.rotulo : '';
   };
 
   useEffect(() => {
-    const concatLista = [{id: 0, rotulo: "Todos"}].concat(items);
+    const concatLista = [{id: "" , rotulo: "Todos"}].concat(items);
     //console.log({novaLista});
     
     setNovaLista(concatLista);

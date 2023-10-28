@@ -7,23 +7,18 @@ interface ListarUsuariosQueryParams {
   pagina: number;
   itemsPorPagina: number;
   nome?: string;
-  ufLotacao?: number; 
+  ufLotacao?: string;
   perfilId?: string;
 }
 
 async function fetchUsuarios<T>(params: ListarUsuariosQueryParams): Promise<T> {
-  console.log({params});
-  if(params.nome === '') params.nome = undefined
-  if(params.perfilId === '') params.perfilId = undefined
-  if(params.ufLotacao != undefined && params.ufLotacao <= 0) params.ufLotacao = undefined
+  console.log({ params });
+  if (params.nome === '') params.nome = undefined
+  if (params.perfilId === '') params.perfilId = undefined
+  if (params.ufLotacao  === '') params.ufLotacao = undefined
   try {
-    // const params: ListarUsuariosQueryParams = {pagina, itemsPorPagina};
-    // if(nome !== '') params.nome = nome;
-    // if(ufLotacao !== undefined && ufLotacao > 0) params.ufLotacao = ufLotacao;
-    // if(perfilId !== '') params.perfilId = perfilId;
-
-    const response: AxiosResponse<T> = await axios.get(listarUsuarios,{
-        params
+    const response: AxiosResponse<T> = await axios.get(listarUsuarios, {
+      params
     });
     return response.data;
   } catch (error) {
