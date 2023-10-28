@@ -50,7 +50,7 @@ export default function Select({ items, value, label, onChange, inputStyle, drop
         <label className="profile-type-label ml-2" htmlFor="select-simple" ><p style={{marginBottom:"4px"}}><strong>{label}</strong></p></label>
         <div className="br-input large input-button">
           <input id="select-simple" type="text" placeholder="Todos" value={getRotuloById(value, novaLista)} readOnly style={inputStyle}/>
-          <button className="br-button" type="button" aria-label="Exibir lista" tabIndex={-1} data-trigger="data-trigger" onClick={toggleDropdown} style={buttonStyle}>
+          <button data-testid="customSelect" className="br-button" type="button" aria-label="Exibir lista" tabIndex={-1} data-trigger="data-trigger" onClick={toggleDropdown} style={buttonStyle}>
             <i className="fas fa-angle-down" aria-hidden="true"></i>
           </button>
         </div>
