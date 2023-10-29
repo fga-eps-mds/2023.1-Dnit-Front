@@ -19,12 +19,12 @@ function TelaUPS() {
 
   return (
     <div className="App">
+      <Header hasLogged={true} />
       <div className="page-content">
-        <Header hasLogged={true} />
         <UPSForm />
-        <div className="footer-small-page">
+      </div>
+      <div className="footer-small-page">
           <Footer />
-        </div>
       </div>
     </div>
   );
