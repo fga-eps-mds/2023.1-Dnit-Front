@@ -1,23 +1,24 @@
 /* eslint-disable testing-library/no-unnecessary-act */
 /* eslint-disable testing-library/render-result-naming-convention */
-import { render, fireEvent, waitFor, cleanup } from "@testing-library/react";
-import { EditarTipoPerfilDialog } from "../components/EditarTipoPerfilDialog";
+import { render, fireEvent, waitFor, cleanup, prettyDOM } from "@testing-library/react";
 import server from "./mock/servicosAPI";
 import { MemoryRouter } from "react-router-dom";
-import { usuarios } from "./stub/usuarioModelos";
-import { equal } from "assert";
 import GerenciarUsuario from "../pages/GerenciarUsuario";
+import { AuthProvider } from "../provider/Autenticacao";
+import { autenticar } from "./mock/autenticacao";
+import { Permissao } from "../models/auth";
 
 beforeAll(() => server.listen());
-afterEach(() => server.resetHandlers());
-afterAll(() => server.close());
 
 describe("Testes para a pagina de Gerenciar Usuarios", () => {
-	it("Deve renderizar a pagina de Gerenciar Usuarios", async () => {
+	autenticar(Permissao.UsuarioVisualizar, Permissao.UsuarioEditar);
 
+	it("Deve renderizar a pagina de Gerenciar Usuarios", async () => {
 		const screen = render(
 			<MemoryRouter>
-				<GerenciarUsuario />
+				<AuthProvider>
+					<GerenciarUsuario />
+				</AuthProvider>
 			</MemoryRouter>
 		);
 
@@ -27,20 +28,19 @@ describe("Testes para a pagina de Gerenciar Usuarios", () => {
 		expect(screen.getByText("Perfis de usuário cadastrados")).toBeInTheDocument();
 	});
 
-	it.skip("Deve Filtrar pelo Nome", async () => {
+
+	it("Deve filtrar por nome", () => {
+		autenticar(Permissao.UsuarioVisualizar, Permissao.UsuarioEditar);
+
 		const screen = render(
 			<MemoryRouter>
-				<GerenciarUsuario />
+				<AuthProvider>
+					<GerenciarUsuario />
+				</AuthProvider>
 			</MemoryRouter>
 		);
 
-		const input = screen.getByPlaceholderText("Nome")
-		fireEvent.click(input);
-
-    fireEvent.change(input, { target: { value: 'usuario0' }})
-
-		screen.getByTestId("table-row-eye-2").click;
-		
-
+		fireEvent.change(screen.getByTestId("filtroNome"), { target: { value: "usuario0" } });
+		expect(screen.getByTestId("filtroNome")).toHaveValue("usuario0");
 	});
 }); 
