@@ -126,10 +126,6 @@ export default function Dashboard() {
       label: "Ferramentas Administrativas",
       children: (
         <div className="collapse-item">
-          {<Card className="disabled">
-            <FileTextOutlined className="icon" />
-            <p className="text">Cadastrar empresas</p>
-          </Card>}
           {podeCadastrarEmpresa && (
             <Card className="disabled">
               <FileTextOutlined className="icon" />
