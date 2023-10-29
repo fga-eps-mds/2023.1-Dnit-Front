@@ -752,16 +752,15 @@ const server = setupServer(
   rest.patch(`${atualizarTipoPerfil}/1/perfil`,
     (req, res, ctx) => res(ctx.status(400), ctx.body("erro"))),
   // rest.get('https://localhost:7083/api/usuario?pagina=1&itemsPorPagina=10',
-  rest.get(`${listarUsuarios}/*`,
-    (req, res, ctx) => res(ctx.status(200), ctx.json(
-      {
-        "pagina": 1,
-        "itemsPorPagina": 100,
-        "total": 0,
-        "totalPaginas": 10,
-        "items": usuarios,
-      }
-    ))),
+  rest.get(`${listarUsuarios}*`, (req, res, ctx) => res(ctx.status(200), ctx.json(
+    {
+      "pagina": 1,
+      "itemsPorPagina": 10,
+      "total": 10,
+      "totalPaginas": 10,
+      "items": usuarios
+    }
+  ))),
 );
 
 export default server;

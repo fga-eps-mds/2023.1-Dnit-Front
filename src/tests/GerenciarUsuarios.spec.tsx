@@ -9,38 +9,35 @@ import { autenticar } from "./mock/autenticacao";
 import { Permissao } from "../models/auth";
 
 beforeAll(() => server.listen());
+beforeEach(() => autenticar(Permissao.UsuarioVisualizar, Permissao.UsuarioPerfilEditar))
 
 describe("Testes para a pagina de Gerenciar Usuarios", () => {
-	autenticar(Permissao.UsuarioVisualizar, Permissao.UsuarioEditar);
+  it("Deve renderizar a pagina de Gerenciar Usuarios", async () => {
+    const screen = render(
+      <MemoryRouter>
+        <AuthProvider>
+          <GerenciarUsuario />
+        </AuthProvider>
+      </MemoryRouter>
+    );
 
-	it("Deve renderizar a pagina de Gerenciar Usuarios", async () => {
-		const screen = render(
-			<MemoryRouter>
-				<AuthProvider>
-					<GerenciarUsuario />
-				</AuthProvider>
-			</MemoryRouter>
-		);
-
-		expect(screen.getByText("Nome:")).toBeInTheDocument();
-		expect(screen.getByText("UF:")).toBeInTheDocument();
-		expect(screen.getByText("Perfil:")).toBeInTheDocument();
-		expect(screen.getByText("Perfis de usuário cadastrados")).toBeInTheDocument();
-	});
+    expect(screen.getByText("Nome:")).toBeInTheDocument();
+    expect(screen.getByText("UF:")).toBeInTheDocument();
+    expect(screen.getByText("Perfil:")).toBeInTheDocument();
+    expect(screen.getByText("Perfis de usuário cadastrados")).toBeInTheDocument();
+  });
 
 
-	it("Deve filtrar por nome", () => {
-		autenticar(Permissao.UsuarioVisualizar, Permissao.UsuarioEditar);
+  it("Deve filtrar por nome", () => {
+    const screen = render(
+      <MemoryRouter>
+        <AuthProvider>
+          <GerenciarUsuario />
+        </AuthProvider>
+      </MemoryRouter>
+    );
 
-		const screen = render(
-			<MemoryRouter>
-				<AuthProvider>
-					<GerenciarUsuario />
-				</AuthProvider>
-			</MemoryRouter>
-		);
-
-		fireEvent.change(screen.getByTestId("filtroNome"), { target: { value: "usuario0" } });
-		expect(screen.getByTestId("filtroNome")).toHaveValue("usuario0");
-	});
+    fireEvent.change(screen.getByTestId("filtroNome"), { target: { value: "usuario0" } });
+    expect(screen.getByTestId("filtroNome")).toHaveValue("usuario0");
+  });
 }); 

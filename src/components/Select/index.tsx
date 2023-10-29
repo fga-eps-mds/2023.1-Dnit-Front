@@ -58,7 +58,7 @@ export default function Select({ items, value, label, onChange, inputStyle, drop
       {isOpen && 
       <div className="br-list2" style={dropdownStyle} tabIndex={0}>
         {novaLista.map((item, index) => (
-          <div key={index} className="br-item" tabIndex={-1} onClick={() => handleItemClick(item.id)}>
+          <div key={index} className="br-item" tabIndex={-1} onClick={() => handleItemClick(item.id)} onKeyDown={() => {}}>
             <div className="br-radio">
               <input id={`rb${index}`} type="radio" name="estados-simples" value={item.rotulo} checked={value === item.id} onChange={() => {}}/>
               <label htmlFor={`rb${index}`}>{item.rotulo}</label>

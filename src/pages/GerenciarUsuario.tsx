@@ -142,15 +142,15 @@ export default function GerenciarUsuario() {
   }, [uf]);
 
   useEffect(() => {
-    if (!temPermissao(Permissao.UsuarioVisualizar)) {
-      navigate("/");
-      return;
-    }
-
     fetchUf();
     fetchPerfil(1, 100, '');
   }, []);
 
+  useEffect(() => {
+    if (!temPermissao(Permissao.UsuarioVisualizar)) {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <div className="App">
