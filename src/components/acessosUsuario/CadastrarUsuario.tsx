@@ -33,7 +33,7 @@ const CadastroUsuarioForm: React.FC = () => {
       email: values.email,
       senha: values.senha,
       nome: values.nome,
-      uf: 27,
+      ufLotacao: values.uf,
     };
 
     try {

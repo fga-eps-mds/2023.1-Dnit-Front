@@ -4,6 +4,7 @@ import {
   FormOutlined,
 } from "@ant-design/icons";
 import IconGerenciarPerfis from "../assets/icones/GerenciarPerfis.svg";
+import IconGerenciarUsuarios from "../assets/icones/GerenciarUsuarios.svg";
 import { Card, Collapse, CollapseProps } from "antd";
 import { useNavigate } from "react-router";
 import Header from "../components/Cabecalho";
@@ -45,6 +46,9 @@ export default function Dashboard() {
   const [podeCadastrarEmpresa, setPodeCadastrarEmpresa] = useState(
     temPermissao(Permissao.EmpresaCadastrar)
   );
+  const [podeGerenciarUsuario, setPodeGerenciarUsuario] = useState(
+    temPermissao(Permissao.UsuarioVisualizar)
+  );
 
   useEffect(() => {
     fetchPermissoesDoUsuario().then((permissoes) => {
@@ -55,6 +59,7 @@ export default function Dashboard() {
       setPodeCadastrarEscola(temPermissao(Permissao.EscolaCadastrar));
       setPodeCadastrarSinistro(temPermissao(Permissao.SinistroCadastrar));
       setPodeCadastrarRodovias(temPermissao(Permissao.RodoviaCadastrar));
+      setPodeGerenciarUsuario(temPermissao(Permissao.UsuarioVisualizar));
       setPodeGerenciarPerfis(temPermissao(Permissao.PerfilVisualizar));
       setPodeCadastrarEmpresa(temPermissao(Permissao.EmpresaCadastrar));
     });
@@ -121,12 +126,25 @@ export default function Dashboard() {
       label: "Ferramentas Administrativas",
       children: (
         <div className="collapse-item">
+          {<Card className="disabled">
+            <FileTextOutlined className="icon" />
+            <p className="text">Cadastrar empresas</p>
+          </Card>}
           {podeCadastrarEmpresa && (
             <Card className="disabled">
               <FileTextOutlined className="icon" />
               <p className="text">Cadastrar empresas</p>
             </Card>
           )}
+          {podeGerenciarUsuario &&
+            <Card className="card" onClick={() => navigate("/gerenciarUsuario")}>
+              <img
+                className="iconGenciaUsuarios"
+                src={IconGerenciarUsuarios}
+                alt="ícone gerenciar usuarios"
+              />
+              <p className="text">Gerenciar Usuário</p>
+            </Card>}
           {podeGerenciarPerfis && (
             <Card className="card" onClick={() => navigate("/gerenciarPerfis")}>
               <img
