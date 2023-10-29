@@ -58,7 +58,6 @@ export function FiltroNome({ onNomeChange, nome }: FiltroNomeProps) {
         <div className="br-input large input-button">
           <input data-testid="filtroNome" className="br-input-search-large" type="search" placeholder="Nome" value={nome}
             onChange={e => onNomeChange(e.target.value)}
-          // onKeyDown={e => e.key == 'Enter' && onNomeChange(nome!)} 
           />
           <button className="br-button" type="button" aria-label="Buscar" onClick={() => { }}>
             <i className="fas fa-search" aria-hidden="true"></i>
@@ -81,7 +80,7 @@ export default function GerenciarUsuario() {
   const [mostrarPerfil, setMostrarPerfil] = useState<EditarTipoPerfilArgs | null>(null);
   const [nome, setNome] = useState('');
   const [uf, setUF] = useState('');
-  const [perfil, setPerfil] = useState(''); //Tipo do perfil (Administrador, Supervisor tecnico)
+  const [perfil, setPerfil] = useState('');
   const [municipio, setMunicipio] = useState('');
   const [listaUsuarios, setListaUsuarios] = useState<UsuarioModel[]>([]);
   const [notificationApi, notificationContextHandler] = notification.useNotification();
@@ -154,6 +153,7 @@ export default function GerenciarUsuario() {
 
   return (
     <div className="App">
+      {notificationContextHandler}
       {mostrarPerfil != null && <EditarTipoPerfilDialog
         listaOpcoes={listaPerfis}
         listaUsuarios={listaUsuarios}
@@ -170,13 +170,13 @@ export default function GerenciarUsuario() {
           <Select items={listaPerfis} value={perfil} label={"Perfil:"} onChange={setPerfil} dropdownStyle={{ marginLeft: "20px", width: "260px" }} />
           <Select items={listaMunicipios} value={municipio} label={"Municipios:"} onChange={setMunicipio} dropdownStyle={{ marginLeft: "20px", width: "260px" }} />
         </div>
-        {listaUsuarios.length == 0 && <Table columsTitle={['Nome', 'Tipo de Perfil', 'UF', 'Municipio', 'Email']} initialItemsPerPage={10} title="Perfis de usuário cadastrados"><></><></></Table>}
+        {listaUsuarios.length == 0 && <Table columsTitle={['Nome', 'Tipo de Perfil', 'UF', 'Município', 'Email']} initialItemsPerPage={10} title="Perfis de usuário cadastrados"><></><></></Table>}
 
-        <Table columsTitle={['Nome', 'Tipo de Perfil', 'UF', 'Municipio', 'Email']} initialItemsPerPage={10} title="Perfis de usuário cadastrados">
+        <Table columsTitle={['Nome', 'Tipo de Perfil', 'UF', 'Município', 'Email']} initialItemsPerPage={10} title="Perfis de usuário cadastrados">
           {
             listaUsuarios.map((usuario, index) =>
             (<CustomTableRow key={`${usuario.id}-${index}`} id={index}
-              data={{ '0': usuario.nome, '1': `${procuraNomePerfil(usuario)}`, '2': `${procuraRotuloUf(usuario)}`, '3': "Não Cadastrado"/*`${usuario.municipio}`*/, '4': usuario.email }}
+              data={{ '0': usuario.nome, '1': `${procuraNomePerfil(usuario)}`, '2': `${procuraRotuloUf(usuario) ?? ""}`, '3': "Não Cadastrado"/*`${usuario.municipio}`*/, '4': usuario.email }}
               onEditRow={() => {
                 setUsuarioSelecionado(usuario.id)
                 setMostrarPerfil({ id: null, readOnly: true })
