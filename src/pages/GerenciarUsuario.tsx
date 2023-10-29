@@ -15,6 +15,7 @@ import fetchUnidadeFederativa from "../service/unidadesFederativas";
 import fetchPerfis from "../service/listarPerfis";
 import { Permissao, TipoPerfil } from "../models/auth";
 import { AuthContext } from "../provider/Autenticacao";
+import fetchMunicipio from "../service/municipio";
 
 interface EditarTipoPerfilArgs {
   id: string | null;
@@ -40,6 +41,11 @@ interface FilterOptions {
 }
 
 interface FilterProfileOptions {
+  id: string;
+  rotulo: string;
+}
+
+interface FilterMunicipioOptions {
   id: string;
   rotulo: string;
 }
@@ -76,11 +82,13 @@ export default function GerenciarUsuario() {
   const [nome, setNome] = useState('');
   const [uf, setUF] = useState('');
   const [perfil, setPerfil] = useState(''); //Tipo do perfil (Administrador, Supervisor tecnico)
+  const [municipio, setMunicipio] = useState('');
   const [listaUsuarios, setListaUsuarios] = useState<UsuarioModel[]>([]);
   const [notificationApi, notificationContextHandler] = notification.useNotification();
   const [tamanhoPagina, setTamanhoPagina] = useState(10);
   const [listaUfs, setListaUfs] = useState<FilterOptions[]>([]);
   const [listaPerfis, setListaPerfis] = useState<FilterProfileOptions[]>([]);
+  const [listaMunicipios, setListaMunicipios] = useState<FilterMunicipioOptions[]>([]);
   const [usuarioSelecionado, setUsuarioSelecionado] = useState('');
 
   const navigate = useNavigate();
@@ -110,6 +118,13 @@ export default function GerenciarUsuario() {
     setListaPerfis(novoPerfil);
   }
 
+  async function fetchMunicipios(): Promise<void> {
+    console.log(Number(uf))
+    const listaMunicipios = await fetchMunicipio(Number(uf));
+    const novoMunicipio = listaMunicipios.map((u) => ({ id:''+ u.id, rotulo: u.nome }));
+    setListaMunicipios(novoMunicipio);
+  }
+
   function procuraRotuloUf(usuario: UsuarioModel) {
     return listaUfs.find((uf) => uf.id === '' + usuario.ufLotacao)?.rotulo;
   }
@@ -121,6 +136,10 @@ export default function GerenciarUsuario() {
   useEffect(() => {
     buscarUsuarios();
   }, [nome, uf, perfil]);
+
+  useEffect(() => {
+    fetchMunicipios();
+  }, [uf]);
 
   useEffect(() => {
     fetchUf();
@@ -150,14 +169,15 @@ export default function GerenciarUsuario() {
           <FiltroNome onNomeChange={setNome} />
           <Select items={listaUfs} value={uf} label={"UF:"} onChange={setUF} dropdownStyle={{ marginLeft: "20px", width: "260px" }} />
           <Select items={listaPerfis} value={perfil} label={"Perfil:"} onChange={setPerfil} dropdownStyle={{ marginLeft: "20px", width: "260px" }} />
+          <Select items={listaMunicipios} value={municipio} label={"Municipios:"} onChange={setMunicipio} dropdownStyle={{ marginLeft: "20px", width: "260px" }} />
         </div>
-        {listaUsuarios.length == 0 && <Table columsTitle={['Nome', 'Tipo de Perfil', 'UF', 'Email', '']} initialItemsPerPage={10} title="Perfis de usuário cadastrados"><></><></></Table>}
+        {listaUsuarios.length == 0 && <Table columsTitle={['Nome', 'Tipo de Perfil', 'UF', 'Municipio', 'Email']} initialItemsPerPage={10} title="Perfis de usuário cadastrados"><></><></></Table>}
 
-        <Table columsTitle={['Nome', 'Tipo de Perfil', 'UF', 'Email', '']} initialItemsPerPage={10} title="Perfis de usuário cadastrados">
+        <Table columsTitle={['Nome', 'Tipo de Perfil', 'UF', 'Municipio', 'Email']} initialItemsPerPage={10} title="Perfis de usuário cadastrados">
           {
             listaUsuarios.map((usuario, index) =>
             (<CustomTableRow key={`${usuario.id}-${index}`} id={index}
-              data={{ '0': usuario.nome, '1': `${procuraNomePerfil(usuario)}`, '2': `${procuraRotuloUf(usuario)}`, '3': usuario.email, ', ...': '' }}
+              data={{ '0': usuario.nome, '1': `${procuraNomePerfil(usuario)}`, '2': `${procuraRotuloUf(usuario)}`, '3': "municipio", '4': usuario.email }}
               onEditRow={() => {
                 setUsuarioSelecionado(usuario.id)
                 setMostrarPerfil({ id: null, readOnly: true })
