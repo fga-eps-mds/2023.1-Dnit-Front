@@ -7,12 +7,15 @@ import GerenciarUsuario from "../pages/GerenciarUsuario";
 import { AuthProvider } from "../provider/Autenticacao";
 import { autenticar } from "./mock/autenticacao";
 import { Permissao } from "../models/auth";
+import { usuarios } from "./stub/usuarioModelos";
 
 beforeAll(() => server.listen());
-beforeEach(() => autenticar(Permissao.UsuarioVisualizar, Permissao.UsuarioPerfilEditar))
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());
 
 describe("Testes para a pagina de Gerenciar Usuarios", () => {
   it("Deve renderizar a pagina de Gerenciar Usuarios", async () => {
+    autenticar(Permissao.UsuarioVisualizar, Permissao.UsuarioPerfilEditar)
     const screen = render(
       <MemoryRouter>
         <AuthProvider>
@@ -28,7 +31,8 @@ describe("Testes para a pagina de Gerenciar Usuarios", () => {
   });
 
 
-  it("Deve filtrar por nome", () => {
+  it("Deve filtrar por nome", async () => {
+    autenticar(Permissao.UsuarioVisualizar, Permissao.UsuarioPerfilEditar)
     const screen = render(
       <MemoryRouter>
         <AuthProvider>
@@ -39,5 +43,6 @@ describe("Testes para a pagina de Gerenciar Usuarios", () => {
 
     fireEvent.change(screen.getByTestId("filtroNome"), { target: { value: "usuario0" } });
     expect(screen.getByTestId("filtroNome")).toHaveValue("usuario0");
+		expect((await screen.findAllByText("usuario0")).length).toBe(1);
   });
 }); 
