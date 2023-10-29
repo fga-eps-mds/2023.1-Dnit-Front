@@ -14,5 +14,6 @@ export interface UsuarioModel {
     perfilId: string;
     perfil: PerfilModel;
     ufLotacao: number;
+    municipio: number;
   }
   

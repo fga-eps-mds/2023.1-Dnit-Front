@@ -30,15 +30,17 @@ export const usuarios: UsuarioModel[] = [
     nome: "usuario0",
     ufLotacao: 1,
     perfilId: "id0",
-    perfil: perfil
+    perfil: perfil,
+    municipio: 10
   },
   {
     id: "1",
     cnpj: "cnpj1",
     email: "Teste1@email.com",
     nome: "usuario1",
-    ufLotacao: 7,
+    ufLotacao: 27,
     perfilId: "id1",
-    perfil: perfil
+    perfil: perfil,
+    municipio: 1
   }
 ]

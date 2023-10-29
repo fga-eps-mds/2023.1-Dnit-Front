@@ -135,7 +135,7 @@ export default function GerenciarUsuario() {
 
   useEffect(() => {
     buscarUsuarios();
-  }, [nome, uf, perfil]);
+  }, [nome, uf, perfil, municipio]);
 
   useEffect(() => {
     fetchMunicipios();
@@ -176,7 +176,7 @@ export default function GerenciarUsuario() {
           {
             listaUsuarios.map((usuario, index) =>
             (<CustomTableRow key={`${usuario.id}-${index}`} id={index}
-              data={{ '0': usuario.nome, '1': `${procuraNomePerfil(usuario)}`, '2': `${procuraRotuloUf(usuario)}`, '3': "municipio", '4': usuario.email }}
+              data={{ '0': usuario.nome, '1': `${procuraNomePerfil(usuario)}`, '2': `${procuraRotuloUf(usuario)}`, '3': "Não Cadastrado"/*`${usuario.municipio}`*/, '4': usuario.email }}
               onEditRow={() => {
                 setUsuarioSelecionado(usuario.id)
                 setMostrarPerfil({ id: null, readOnly: true })
