@@ -33,7 +33,7 @@ const CadastroUsuarioForm: React.FC = () => {
       email: values.email,
       senha: values.senha,
       nome: values.nome,
-      uf: 27,
+      ufLotacao: values.uf,
     };
 
     try {
@@ -156,7 +156,7 @@ const CadastroUsuarioForm: React.FC = () => {
           {ufVisiveis && (
             <Form.Item
               className="ext1 "
-              name="ufLotacao"
+              name="uf"
               rules={regras}
               label="UF de Lotação"
             >
