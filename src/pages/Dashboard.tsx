@@ -47,7 +47,7 @@ export default function Dashboard() {
     temPermissao(Permissao.EmpresaCadastrar)
   );
   const [podeGerenciarUsuario, setPodeGerenciarUsuario] = useState(
-    temPermissao(Permissao.EmpresaCadastrar)
+    temPermissao(Permissao.UsuarioVisualizar)
   );
 
   useEffect(() => {
