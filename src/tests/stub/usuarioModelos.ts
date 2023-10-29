@@ -20,7 +20,6 @@ const perfil: PerfilModel = {
   quantidadeUsuarios: 5,
   tipo: TipoPerfil.Basico,
   categoriasPermissao: [categoria]
-
 };
 
 export const usuarios: UsuarioModel[] = [

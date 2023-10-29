@@ -1,7 +1,8 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
-import { atualizarTipoPerfil, atualizarTokenUrl, cadastrarPerfilUrl, excluiPerfil, listarPerfis, listarPermissoesCategoria, listarUsuarioPermissoes, obterPerfil, urlAPIEscolas, urlAPIUps } from "../../consts/service";
+import { atualizarTipoPerfil, atualizarTokenUrl, cadastrarPerfilUrl, excluiPerfil, listarPerfis, listarPermissoesCategoria, listarUsuarioPermissoes, listarUsuarios, obterPerfil, urlAPIEscolas, urlAPIUps } from "../../consts/service";
 import { Permissao, TipoPerfil } from "../../models/auth";
+import { usuarios } from "../stub/usuarioModelos";
 
 const escolasService = urlAPIEscolas;
 const upsService = urlAPIUps;
@@ -750,6 +751,17 @@ const server = setupServer(
     (req, res, ctx) => res(ctx.status(200), ctx.json([]))),
   rest.patch(`${atualizarTipoPerfil}/1/perfil`,
     (req, res, ctx) => res(ctx.status(400), ctx.body("erro"))),
+  // rest.get('https://localhost:7083/api/usuario?pagina=1&itemsPorPagina=10',
+  rest.get(`${listarUsuarios}/*`,
+    (req, res, ctx) => res(ctx.status(200), ctx.json(
+      {
+        "pagina": 1,
+        "itemsPorPagina": 100,
+        "total": 0,
+        "totalPaginas": 10,
+        "items": usuarios,
+      }
+    ))),
 );
 
 export default server;

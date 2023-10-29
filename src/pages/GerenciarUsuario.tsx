@@ -56,7 +56,7 @@ export function FiltroNome({ onNomeChange, nome }: FiltroNomeProps) {
       <label className="ml-2" style={{ textAlign: 'start', fontSize: '16px' }}>Nome:</label>
       <div className="d-flex" style={{ fontSize: '16px' }}>
         <div className="br-input large input-button">
-          <input className="br-input-search-large" type="search" placeholder="Nome" value={nome}
+          <input data-testid="filtroNome" className="br-input-search-large" type="search" placeholder="Nome" value={nome}
             onChange={e => onNomeChange(e.target.value)}
           // onKeyDown={e => e.key == 'Enter' && onNomeChange(nome!)} 
           />
@@ -142,16 +142,15 @@ export default function GerenciarUsuario() {
   }, [uf]);
 
   useEffect(() => {
+    if (!temPermissao(Permissao.UsuarioVisualizar)) {
+      navigate("/");
+      return;
+    }
+
     fetchUf();
     fetchPerfil(1, 100, '');
-
   }, []);
 
-  // useEffect(() => {
-  //   if (!temPermissao(Permissao.PerfilVisualizar)) {
-  //     navigate("/");
-  //   }
-  // }, []);
 
   return (
     <div className="App">

@@ -156,7 +156,7 @@ const CadastroUsuarioForm: React.FC = () => {
           {ufVisiveis && (
             <Form.Item
               className="ext1 "
-              name="uf"
+              name="ufLotacao"
               rules={regras}
               label="UF de Lotação"
             >
