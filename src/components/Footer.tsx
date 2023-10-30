@@ -26,20 +26,22 @@ export default function Footer(props: FooterProps) {
                 className="br-item"
                 data-testid="init-button"
                 onClick={() => navigate("/")}
+                onKeyDown={() => {}}
               >
                 <div className="category-text">INÍCIO</div>
               </span>
               <div className="br-list">
                 <span className="br-divider d-md-none"></span>
-                <span className="br-item" onClick={() => navigate("/login")}>
+                <span className="br-item" onClick={() => navigate("/login")} onKeyDown={() => {}}>
                   <div className="category-content">Login de Usuário</div>
                 </span>
-                <span className="br-item" onClick={() => navigate("/cadastro")}>
+                <span className="br-item" onClick={() => navigate("/cadastro")} onKeyDown={() => {}}>
                   <div className="category-content">Cadastro de Usuário</div>
                 </span>
                 <span
                   className="br-item"
                   onClick={() => navigate("/esqueciSenha")}
+                  onKeyDown={() => {}}
                 >
                   <div className="category-content">Esqueci Minha Senha</div>
                 </span>
@@ -47,7 +49,7 @@ export default function Footer(props: FooterProps) {
               </div>
             </div>
             <div className="col-2">
-              <span className="br-item" onClick={() => navigate("/dashboard")}>
+              <span className="br-item" onClick={() => navigate("/dashboard")} onKeyDown={() => {}}>
                 <div className="category-text">DASHBOARD</div>
               </span>
               <div className="br-list">
@@ -55,10 +57,11 @@ export default function Footer(props: FooterProps) {
                 <span
                   className="br-item"
                   onClick={() => navigate("/solicitacaoAcao")}
+                  onKeyDown={() => {}}
                 >
                   <div className="category-content">Solicitar Ação</div>
                 </span>
-                <span className="br-item" onClick={() => navigate("/TelaUPS")}>
+                <span className="br-item" onClick={() => navigate("/TelaUPS")} onKeyDown={() => {}}>
                   <div className="category-content">Visualizar UPS</div>
                 </span>
                 <span className="br-divider d-md-none"></span>
@@ -73,12 +76,14 @@ export default function Footer(props: FooterProps) {
                 <span
                   className="br-item"
                   onClick={() => navigate("/escolas-cadastradas")}
+                  onKeyDown={() => {}}
                 >
                   <div className="category-content">Visualizar Escolas</div>
                 </span>
                 <span
                   className="br-item"
                   onClick={() => navigate("/cadastrarescola")}
+                  onKeyDown={() => {}}
                 >
                   <div className="category-content">Cadastro de Escolas</div>
                 </span>
@@ -94,6 +99,7 @@ export default function Footer(props: FooterProps) {
                 <span
                   className="br-item"
                   onClick={() => navigate("/cadastrarsinistros")}
+                  onKeyDown={() => {}}
                 >
                   <div className="category-content">
                     Inserir Dados de Acidente
@@ -102,6 +108,7 @@ export default function Footer(props: FooterProps) {
                 <span
                   className="br-item"
                   onClick={() => navigate("/cadastrarRodovias")}
+                  onKeyDown={() => {}}
                 >
                   <div className="category-content">
                     Inserir Dados de Rodovias
