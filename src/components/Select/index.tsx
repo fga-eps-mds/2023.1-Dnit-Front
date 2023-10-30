@@ -39,7 +39,7 @@ export default function Select({ items, value, label, onChange, inputStyle, drop
     const concatLista = [{id: "" , rotulo: "Todos"}].concat(items);
     //console.log({novaLista});
     
-    setNovaLista(items);
+    setNovaLista(concatLista);
   }, [items])
 
   //getRotuloById(value, novaLista)
