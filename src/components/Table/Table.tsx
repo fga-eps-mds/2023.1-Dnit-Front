@@ -5,7 +5,10 @@ interface CustomTableProps {
   title: string;
   initialItemsPerPage: number;
   columsTitle: string[];
+  totalPages?: number;
   children: ReactNode[];
+  onNextPage?: () => void
+  onPreviousPage?: () => void
 }
 
 interface CustomTableRowsProps {
@@ -70,6 +73,9 @@ export default function CustomTable({
   children,
   columsTitle,
   initialItemsPerPage,
+  onNextPage,
+  onPreviousPage,
+  totalPages
 }: CustomTableProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(initialItemsPerPage);
@@ -88,6 +94,7 @@ export default function CustomTable({
   for (let i = 1; i <= Math.ceil(children.length / itemsPerPage); i++) {
     pageNumbers.push(i);
   }
+
   if (children.length === 0) return null;
 
   const dataSize = children.length;
@@ -98,15 +105,19 @@ export default function CustomTable({
   };
 
   function previousPage() {
-    if (currentPage !== 1) {
-      setCurrentPage(currentPage - 1);
-    }
+    if (currentPage === 1)
+      return
+    console.log('Table:previousPage()')
+    onPreviousPage && onPreviousPage();
+    setCurrentPage(currentPage - 1);
   }
 
   function nextPage() {
-    if (currentPage !== pageNumbers.length) {
-      setCurrentPage(currentPage + 1);
-    }
+    console.log('Table:nextPage()')
+    if (currentPage === totalPages) 
+      return
+    onNextPage && onNextPage();
+    setCurrentPage(currentPage + 1);
   }
 
   const pageOptions = [1, 2, 5, 10, 25, 100, 150, 200, 500, 1000, 2000];
@@ -199,11 +210,13 @@ export default function CustomTable({
                   setCurrentPage(Number(value.target.value));
                   setPageIndexOpen(false);
                 }}
+                defaultValue={currentPage}
                 onFocus={() => setPageIndexOpen(true)}
                 onBlur={() => setPageIndexOpen(false)}
               >
                 {pageNumbers.map((element) => (
-                  <option value={element} selected={currentPage === element}>
+                  // <option value={element} selected={currentPage === element}>
+                  <option value={element}>
                     {element}
                   </option>
                 ))}
@@ -216,6 +229,7 @@ export default function CustomTable({
                 }
                 aria-hidden="true"
               />
+              <p>{currentPage}</p>
             </div>
           </div>
         </div>
