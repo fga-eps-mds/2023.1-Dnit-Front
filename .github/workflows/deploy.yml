@@ -5,7 +5,7 @@ on:
     branches: [ "develop", "deploy_continuo" ]
 
 jobs:
-  build:
+  deploy:
 
     runs-on: ubuntu-latest
 
@@ -37,6 +37,8 @@ jobs:
       run: npm run test -- --silent --ci --testLocationInResults  --maxWorkers=100%
 
     - name: Build
+      env:
+        CI: false
       run: npm run build
 
     - name: Deploy
