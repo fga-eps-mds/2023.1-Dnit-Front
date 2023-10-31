@@ -1,0 +1,67 @@
+.br-select .br-list2 {
+  background: var(--bg-color);
+  box-shadow: var(--select-shadow);
+  display: none;
+  margin-top: -2px;
+  max-height: 200px;
+  overflow: auto;
+  position: absolute;
+  resize: none;
+  width: 100%;
+  z-index: 1;
+}
+
+.br-select .br-list2::-webkit-scrollbar {
+  height: var(--spacing-scale-base);
+  width: var(--spacing-scale-base);
+}
+
+.br-select .br-list2::-webkit-scrollbar-track {
+  background: var(--gray-10);
+}
+
+.br-select .br-list2::-webkit-scrollbar-thumb {
+  background: var(--gray-30);
+}
+
+.br-select .br-list2:hover::-webkit-scrollbar-thumb {
+  background: var(--gray-40);
+}
+
+.br-select .br-list2:focus,
+.br-select .br-list2:active {
+  color: var(--color-secondary-09);
+  outline: none;
+}
+
+.br-select .br-list2:hover::-webkit-scrollbar-thumb {
+  background: var(--color-secondary-07);
+}
+
+.br-select .br-list2 {
+  display: block;
+}
+
+.profile-type-select {
+  flex-basis: 100%;
+  padding-top: 0;
+  margin-top: 0;
+
+}
+
+.profile-type-label {
+  text-align: start;
+  font-size: 16px;
+  display: block;
+  height: fit-content;
+}
+
+.button-config {
+  left: 150px;
+}
+
+.dropdown-config {
+  width: 450px;
+}
+
+/*# sourceMappingURL=select.css.map*/

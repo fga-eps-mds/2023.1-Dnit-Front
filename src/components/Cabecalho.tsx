@@ -25,6 +25,7 @@ const Header = ({ hasLogged = true, title, subtitle }: HeaderProps) => {
           className="grupo-esquerda"
           data-testid="redirecionar"
           onClick={() => (hasLogged ? navigate("/dashboard") : navigate("/"))}
+          onKeyDown={() => {}}
         >
           <img className="gov-logo" src={IconGov} alt="Logo gov.br" />
           <div className="rectangle"></div>
@@ -46,7 +47,7 @@ const Header = ({ hasLogged = true, title, subtitle }: HeaderProps) => {
               </span>
             </div>
           ) : (
-            <div className="botao-login" onClick={() => navigate("/login")}>
+            <div className="botao-login" onClick={() => navigate("/login")} onKeyDown={() => {}}>
               <div className="login-text">Entrar</div>
               <img
                 className="user-icon"

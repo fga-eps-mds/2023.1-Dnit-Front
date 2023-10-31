@@ -77,7 +77,7 @@ export function removerLogin() {
 
 export async function atualizarToken() {
   const dados: AtualizarTokenDto = {
-    token: localStorage.getItem(AuthLocalStorage.Token) ?? "",
+    token: (localStorage.getItem(AuthLocalStorage.Token) ?? "")?.replace("Bearer ", ""),
     tokenAtualizacao:
       localStorage.getItem(AuthLocalStorage.TokenAtualizacao) ?? "",
   };

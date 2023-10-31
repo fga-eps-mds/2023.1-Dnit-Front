@@ -218,6 +218,7 @@ export default function TabelaEscola() {
                           className="options"
                           onClick={() => handleOptionClick(Number(opcoes))}
                           data-testid={`options-${opcoes}`}
+                          onKeyDown={() => {}}
                         >
                           {opcoes}
                         </div>
