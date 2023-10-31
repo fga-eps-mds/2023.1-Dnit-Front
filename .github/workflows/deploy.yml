@@ -34,7 +34,7 @@ jobs:
       run: echo "$DEPLOY_ENV" | tr "$DEPLOY_ENV_SEPARATOR" '\n' > .env
 
     - name: Tests
-      run: npm run test -- --silent
+      run: npm run test -- --silent --ci --testLocationInResults  --maxWorkers=100%
 
     - name: Build
       run: npm run build
