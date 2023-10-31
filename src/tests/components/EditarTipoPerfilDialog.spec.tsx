@@ -16,7 +16,8 @@ afterEach(() => {
 });
 
 const itemsPerfisTest = [{ id: "0", rotulo: "perfil0" }, { id: "1", rotulo: "perfil1" }, { id: "2", rotulo: "perfil2" }];
-const usuarioSelecionado = '0';
+const usuarioSelecionado = "0";
+const tipoPerfilSelecionado = "perfil0"
 
 describe("Testes para o componente EditarTipoPerfilDialog", () => {
 
@@ -26,6 +27,7 @@ describe("Testes para o componente EditarTipoPerfilDialog", () => {
         listaOpcoes={itemsPerfisTest}
         listaUsuarios={usuarios}
         usuarioId={usuarioSelecionado}
+        perfilAntesAlteracao={tipoPerfilSelecionado}
         closeDialog={() => { }}
         atualizaTabela={() => { }}
       />
@@ -46,6 +48,7 @@ describe("Testes para o componente EditarTipoPerfilDialog", () => {
           listaOpcoes={itemsPerfisTest}
           listaUsuarios={usuarios}
           usuarioId={usuarioSelecionado}
+          perfilAntesAlteracao={tipoPerfilSelecionado}
           closeDialog={d => deletou = d}
           atualizaTabela={() => { }}
         />
@@ -66,6 +69,7 @@ describe("Testes para o componente EditarTipoPerfilDialog", () => {
           listaOpcoes={itemsPerfisTest}
           listaUsuarios={usuarios}
           usuarioId={usuarioSelecionado}
+          perfilAntesAlteracao={tipoPerfilSelecionado}
           closeDialog={() => {}}
           atualizaTabela={() => { }}
         />
@@ -92,6 +96,7 @@ describe("Testes para o componente EditarTipoPerfilDialog", () => {
           listaOpcoes={itemsPerfisTest}
           listaUsuarios={usuarios}
           usuarioId={usuarioSelecionado}
+          perfilAntesAlteracao={tipoPerfilSelecionado}
           closeDialog={() => {}}
           atualizaTabela={() => { }}
         />
@@ -114,6 +119,7 @@ describe("Testes para o componente EditarTipoPerfilDialog", () => {
           listaOpcoes={itemsPerfisTest}
           listaUsuarios={usuarios}
           usuarioId={usuarioSelecionado}
+          perfilAntesAlteracao={tipoPerfilSelecionado}
           closeDialog={d => deletou = d}
           atualizaTabela={() => { }}
         />
