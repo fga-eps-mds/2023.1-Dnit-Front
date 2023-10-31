@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { notification } from "antd";
 // import fetchExcluirPerfil from "../../service/excluiPerfil";
 import Modal from "../Modal";
@@ -21,6 +21,7 @@ interface FilterOptions {
 interface EditarTipoPerfilDialogProps {
   listaOpcoes: FilterOptions[];
   listaUsuarios: UsuarioModel[];
+  perfilAntesAlteracao: string;
   usuarioId: string;
   closeDialog: (edicao: boolean) => void;
   atualizaTabela: (atualizou: UsuarioModel[] ) => void;
@@ -28,21 +29,10 @@ interface EditarTipoPerfilDialogProps {
 
 
 
-export function EditarTipoPerfilDialog({ closeDialog, listaOpcoes, usuarioId, listaUsuarios, atualizaTabela }: EditarTipoPerfilDialogProps) {
+export function EditarTipoPerfilDialog({ closeDialog, listaOpcoes, usuarioId, listaUsuarios, atualizaTabela, perfilAntesAlteracao }: EditarTipoPerfilDialogProps) {
   const [loading, setLoading] = useState(false);
   const [tipoPerfilId, setTipoPerfilId] = useState('');
   const [notificationApi, contextHolder] = notification.useNotification();
-
-
-  function atualizarListagemUsuarios() {
-    const listaUsuariosAtualizada = listaUsuarios.map((usuario) => {
-      if(usuario.id === usuarioId) return { ...usuario,  perfilId: tipoPerfilId }
-      return usuario;
-    });
-
-    atualizaTabela(listaUsuariosAtualizada);
-     
-  }
 
   const salvarPerfil = (usuarioId: string, perfilId: string) => {
     if (!tipoPerfilId.trim()) {
@@ -50,12 +40,6 @@ export function EditarTipoPerfilDialog({ closeDialog, listaOpcoes, usuarioId, li
       return;
     }
     setLoading(true);
-
-    // const permissoes = categorias.flatMap(c => c.permissoes.filter(p => p.selecionada).map(p => p.codigo));
-    // const perfil = {
-    //   tipoPerfil: tipoPerfil.trim(),
-    //   permissoes
-    // };
 
     fetchAtualizarTipoPerfil(usuarioId, perfilId)
       .then(() => {
@@ -69,7 +53,18 @@ export function EditarTipoPerfilDialog({ closeDialog, listaOpcoes, usuarioId, li
       });
   }
 
+  function atualizarListagemUsuarios() {
+    const listaUsuariosAtualizada = listaUsuarios.map((usuario) => {
+      if(usuario.id === usuarioId) return { ...usuario,  perfilId: tipoPerfilId }
+      return usuario;
+    });
+
+    atualizaTabela(listaUsuariosAtualizada);
+     
+  }
+
   if (loading) {
+    
     return (
       <Modal className="modal-title">
         <h4 className="text-center mt-2">Carregando Edição de Perfil... </h4>
@@ -77,6 +72,7 @@ export function EditarTipoPerfilDialog({ closeDialog, listaOpcoes, usuarioId, li
           <ReactLoading type="spinningBubbles" color="#000000" />
         </div>
       </Modal>
+      
     );
   }
 
@@ -89,7 +85,16 @@ export function EditarTipoPerfilDialog({ closeDialog, listaOpcoes, usuarioId, li
           <i className="fas fa-times" aria-hidden="true"></i>
         </button>
       </div>
-      <Select items={listaOpcoes} value={tipoPerfilId} label={"Perfil"} onChange={(id) => setTipoPerfilId(id)} inputStyle={{ width: "450px" }} dropdownStyle={{ width: "450px" }} buttonStyle={{ left: "150px" }}
+      <Select 
+        items={listaOpcoes} 
+        value={tipoPerfilId} 
+        label={"Perfil"} 
+        onChange={(id) => setTipoPerfilId(id)} 
+        inputStyle={{ width: "450px" }} 
+        dropdownStyle={{ width: "450px" }} 
+        buttonStyle={{ left: "150px" } } 
+        filtrarTodos={false}
+        definePlaceholder={perfilAntesAlteracao}
       />
       <div className="d-flex w-100 justify-content-end">
         <button data-testid="botaoCancelar" className="br-button secondary" type="button" onClick={() => closeDialog(false)}>Cancelar</button>
