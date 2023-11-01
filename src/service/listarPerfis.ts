@@ -4,12 +4,12 @@ import { PerfilModel } from "../models/perfil";
 
 async function fetchPerfis(pagina: number, tamanhoPagina: number, nome: string): Promise<PerfilModel[]> {
   try {
-    const response: AxiosResponse<PerfilModel[]> = await axios.get(listarPerfis,{
-        params: {
-            pageIndex: pagina,
-            pageSize: tamanhoPagina,
-            nome
-        }
+    const response: AxiosResponse<PerfilModel[]> = await axios.get(listarPerfis, {
+      params: {
+        pageIndex: pagina,
+        pageSize: tamanhoPagina,
+        nome
+      }
     });
     return response.data;
   } catch (error) {

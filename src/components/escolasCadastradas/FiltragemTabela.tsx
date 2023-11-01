@@ -200,6 +200,7 @@ export default function TabelaEscolas() {
                   <div
                     className="options"
                     onClick={() => handleOptionClick(false, 1)}
+                    onKeyDown={() => {}}
                   >
                     {!UfPesquisada && "Todas"}
                   </div>
@@ -213,6 +214,7 @@ export default function TabelaEscolas() {
                           key={options.id}
                           className="options"
                           onClick={() => handleOptionClick(options, 1)}
+                          onKeyDown={() => {}}
                         >
                           {options.nome}
                         </div>
@@ -254,6 +256,7 @@ export default function TabelaEscolas() {
                   <div
                     className="options"
                     onClick={() => handleOptionClick(false, 2)}
+                    onKeyDown={() => {}}
                   >
                     {!SituacaoPesquisada && "Todas"}
                   </div>
@@ -268,6 +271,7 @@ export default function TabelaEscolas() {
                         key={options.id}
                         className="options"
                         onClick={() => handleOptionClick(options, 2)}
+                        onKeyDown={() => {}}
                       >
                         {options.descricao}
                       </div>
@@ -308,6 +312,7 @@ export default function TabelaEscolas() {
                   <div
                     className="options"
                     onClick={() => handleOptionClick(false, 4)}
+                    onKeyDown={() => {}}
                   >
                     {!MunicipioPesquisado && "Todos"}
                   </div>
@@ -322,6 +327,7 @@ export default function TabelaEscolas() {
                         key={options.id}
                         className="options"
                         onClick={() => handleOptionClick(options, 4)}
+                        onKeyDown={() => {}}
                       >
                         {options.nome}
                       </div>

@@ -13,6 +13,7 @@ import RegisterSchool from "./pages/CadastrarEscola";
 import ResetPassword from "./pages/RedefinirSenha";
 import SolicitacaoAcao from "./pages/SolicitacaoAcao";
 import TelaUPS from "./pages/TelaUPS";
+import GerenciarUsuario from "./pages/GerenciarUsuario";
 import { AuthContext, configuraAutenticacaoAxios } from "./provider/Autenticacao";
 import "./styles/App.css";
 
@@ -32,6 +33,7 @@ function App() {
           <Route path="/escolas-cadastradas" element={<EscolasCadastradas />} />
           <Route path="/cadastrarRodovias" element={<CadastrarRodovias />} />
           <Route path="/telaUPS" element={<TelaUPS />} />
+          <Route path="/gerenciarUsuario" element={<GerenciarUsuario />}/>
           <Route path="/gerenciarPerfis" element={<GerenciarPerfis />} />
         </>
       ) : (

@@ -177,3 +177,63 @@ test("Adicionar Rodovias Sem Permissão", async () => {
   const botao = screen.queryByText("Adicionar Rodovias");
   expect(botao).toBeNull();
 });
+
+test("Gerenciar Usuarios", async () => {
+  autenticar(Permissao.UsuarioVisualizar);
+
+  const screen = render(
+    <MemoryRouter initialEntries={["/dashboard"]}>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </MemoryRouter>
+  );
+
+  const rodovias = screen.getByText("Gerenciar Usuário");
+  fireEvent.click(rodovias);
+});
+
+test("Gerenciar Usuarios Sem Permissão", async () => {
+  autenticar();
+
+  const screen = render(
+    <MemoryRouter initialEntries={["/dashboard"]}>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </MemoryRouter>
+  );
+
+  const botao = screen.queryByText("Gerenciar Usuário");
+  expect(botao).toBeNull();
+});
+
+test("Gerenciar Perfis", async () => {
+  autenticar(Permissao.PerfilVisualizar);
+
+  const screen = render(
+    <MemoryRouter initialEntries={["/dashboard"]}>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </MemoryRouter>
+  );
+
+  const rodovias = screen.getByText("Gerenciar Perfis");
+  fireEvent.click(rodovias);
+});
+
+test("Gerenciar Perfis Sem Permissão", async () => {
+  autenticar();
+
+  const screen = render(
+    <MemoryRouter initialEntries={["/dashboard"]}>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </MemoryRouter>
+  );
+
+  const botao = screen.queryByText("Gerenciar Perfis");
+  expect(botao).toBeNull();
+});

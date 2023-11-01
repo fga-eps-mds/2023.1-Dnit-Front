@@ -46,7 +46,7 @@ export interface CadastroUsuarioData {
   email: string;
   senha: string;
   nome: string;
-  uf: number;
+  ufLotacao: number;
 }
 
 export interface CadastroEscolaData {
