@@ -205,6 +205,10 @@ export default function GerenciarUsuario() {
             //setTamanhoPagina(newItensPerPage)
             buscarUsuarios(pagina, newItensPerPage)
           }}
+          onPageSelect={(newSelectedPage) => {
+
+            buscarUsuarios(newSelectedPage, tamanhoPagina)
+          }}
         >
           {listaUsuarios.map((usuario, index) =>
             (<CustomTableRow key={`${usuario.id}-${index}`} id={index}

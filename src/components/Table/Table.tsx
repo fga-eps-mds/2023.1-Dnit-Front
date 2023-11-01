@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import "./styles.css";
 
 interface CustomTableProps {
@@ -11,6 +11,7 @@ interface CustomTableProps {
   onNextPage?: () => void
   onPreviousPage?: () => void
   onPageResize?: (newItemsPerPage: number) => void;
+  onPageSelect?: (newSelectedPage: number) => void;
 }
 
 interface CustomTableRowsProps {
@@ -78,6 +79,7 @@ export default function CustomTable({
   onNextPage,
   onPreviousPage,
   onPageResize,
+  onPageSelect,
   totalPages,
   totalItems,
 }: CustomTableProps) {
@@ -100,6 +102,11 @@ export default function CustomTable({
     pageNumbers.push(i);
   }
 
+  useEffect(() => {
+  
+  }, [currentPage, itemsPerPage, children])
+  
+
   if (children.length === 0) return null;
 
   
@@ -110,6 +117,13 @@ export default function CustomTable({
     setItemsPerPage(valorPagina);
     pageResize(valorPagina)
     setPageItemsOpen(false);
+  };
+
+  const changeSelectedPage = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const valorPaginaSelecionada = parseInt(event.target.value)
+    setCurrentPage(valorPaginaSelecionada);
+    pageSelect(valorPaginaSelecionada);
+    setPageIndexOpen(false);
   };
 
   function previousPage() {
@@ -133,7 +147,12 @@ export default function CustomTable({
     setItemsPerPage(newItensPerPage);
   }
 
-  const pageOptions = [1, 2, 5, 10, 25, 100, 150, 200, 500, 1000, 2000];
+  function pageSelect(newSelectedPage: number) {
+    console.log("pagina Depois :", currentPage);
+    onPageSelect && onPageSelect(newSelectedPage);
+  }
+
+  const pageOptions = [1, 2, 5, 10, 25, 50, 100, 150, 200, 500, 1000, 2000];
 
   return (
     <div
@@ -223,8 +242,7 @@ export default function CustomTable({
                 tabIndex={-1}
                 data-trigger="data-trigger"
                 onChange={(value) => {
-                  setCurrentPage(Number(value.target.value));
-                  setPageIndexOpen(true);
+                  changeSelectedPage(value);
                 }}
                 defaultValue={currentPage}
                 onFocus={() => setPageIndexOpen(true)}
@@ -232,8 +250,9 @@ export default function CustomTable({
               >
                 {pageNumbers.map((element) => (
                   // <option value={element} selected={currentPage === element}>
-                  <option value={element} selected={currentPage === element}>
+                  <option value={element} selected={currentPage === element} >
                     {element}
+                    
                   </option>
                 ))}
               </select>
