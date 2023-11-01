@@ -14,11 +14,12 @@ describe("Testes para o componente Select", () => {
         items={itemsTest}
         value={estadoInicial}
         label={"Título do Select"}
+        definePlaceholder="perfilAtual"
         onChange={() => {}}
       />
     )
 
-    expect(screen.getByPlaceholderText("Todos")).toBeInTheDocument();
+    expect(screen.getByPlaceholderText("perfilAtual")).toBeInTheDocument();
     expect(screen.getByText("Título do Select")).toBeInTheDocument();
   });
 

@@ -89,6 +89,7 @@ export default function GerenciarUsuario() {
   const [listaPerfis, setListaPerfis] = useState<FilterProfileOptions[]>([]);
   const [listaMunicipios, setListaMunicipios] = useState<FilterMunicipioOptions[]>([]);
   const [usuarioSelecionado, setUsuarioSelecionado] = useState('');
+  const [atualizaPerfilSelecionado, setAtualizaPerfilSelecionado] = useState('');
 
   const navigate = useNavigate();
 
@@ -160,15 +161,16 @@ export default function GerenciarUsuario() {
         usuarioId={usuarioSelecionado}
         closeDialog={() => setMostrarPerfil(null)}
         atualizaTabela={setListaUsuarios}
+        perfilAntesAlteracao={atualizaPerfilSelecionado}
       />}
       <Header /> 
       <TrilhaDeNavegacao elementosLi={paginas} />
       <div className="d-flex flex-column m-5">
         <div className="d-flex justify-content-left align-items-center mr-5">
           <FiltroNome onNomeChange={setNome} />
-          <Select items={listaUfs} value={uf} label={"UF:"} onChange={setUF} dropdownStyle={{ marginLeft: "20px", width: "260px" }} />
-          <Select items={listaPerfis} value={perfil} label={"Perfil:"} onChange={setPerfil} dropdownStyle={{ marginLeft: "20px", width: "260px" }} />
-          <Select items={listaMunicipios} value={municipio} label={"Municipios:"} onChange={setMunicipio} dropdownStyle={{ marginLeft: "20px", width: "260px" }} />
+          <Select items={listaUfs} value={uf} label={"UF:"} onChange={setUF} dropdownStyle={{ marginLeft: "20px", width: "260px" }} filtrarTodos={true}/>
+          <Select items={listaPerfis} value={perfil} label={"Perfil:"} onChange={setPerfil} dropdownStyle={{ marginLeft: "20px", width: "260px" }} filtrarTodos={true}/>
+          <Select items={listaMunicipios} value={municipio} label={"Municipios:"} onChange={setMunicipio} dropdownStyle={{ marginLeft: "20px", width: "260px" }} filtrarTodos={true}/>
         </div>
         {listaUsuarios.length == 0 && <Table columsTitle={['Nome', 'Tipo de Perfil', 'UF', 'Município', 'Email']} initialItemsPerPage={10} title="Perfis de usuário cadastrados"><></><></></Table>}
 
@@ -180,6 +182,7 @@ export default function GerenciarUsuario() {
               onEditRow={() => {
                 setUsuarioSelecionado(usuario.id)
                 setMostrarPerfil({ id: null, readOnly: true })
+                setAtualizaPerfilSelecionado(`${procuraNomePerfil(usuario)}`)
               }
               }
               hideEditIcon={!podeEditarPerfilUsuario}
