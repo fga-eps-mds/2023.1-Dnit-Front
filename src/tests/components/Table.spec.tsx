@@ -1,6 +1,7 @@
 /* eslint-disable testing-library/render-result-naming-convention */
-import { render, fireEvent } from "@testing-library/react";
+import { render, fireEvent, waitFor } from "@testing-library/react";
 import CustomTable, { CustomTableRow } from "../../components/Table/Table";
+import { assert } from "console";
 
 describe("CustomTable Component", () => {
   const rowsData = [
@@ -132,5 +133,33 @@ describe("CustomTable Component", () => {
     expect(ageRow).toBeInTheDocument();
   });
 
-  test("page buttons", () => {});
+  test("set items per page", () => {
+    const onPageResizeMock = jest.fn();
+
+    const screen = render(
+      <CustomTable
+        title="Test Table"
+        initialItemsPerPage={2}
+        columsTitle={["Name", "Age"]}
+        onPageResize={onPageResizeMock}
+      >
+        {rowsData.map((element, index) => (
+          <CustomTableRow
+            data={element}
+            id={2}
+            hideEditIcon={index === 2 ? true : false}
+          />
+        ))}
+      </CustomTable>
+    );
+
+    const selectOptions = screen.getByTestId("items-per-page");
+    fireEvent.change(selectOptions, { target: { value: '1' } });
+
+    const pageRange = screen.getByText("1-1 de 4 itens");
+    expect(pageRange).toBeInTheDocument();
+
+    expect(onPageResizeMock).toHaveBeenCalled();
+
+  });
 });

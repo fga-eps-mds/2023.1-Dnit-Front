@@ -200,6 +200,7 @@ export default function CustomTable({
               <div className="br-input select-div">
                 <label htmlFor="per-page-selection-random-94892">Exibir</label>
                 <select
+                  data-testId="items-per-page"
                   className="select-expand"
                   aria-label="Exibir lista"
                   tabIndex={-1}
@@ -237,7 +238,7 @@ export default function CustomTable({
           <div className="pagination-inhtmlFormation d-none d-sm-flex">
             <span className="current">
               {`${indexOfFirstItem + 1
-                }-${indexOfLastItem} de ${dataSize} itens`}
+                }-${indexOfLastItem} de ${dataSize <= 10 ? children.length : dataSize} itens`}
             </span>
           </div>
           <div className="pagination-go-to-page d-none d-sm-flex ml-auto">
