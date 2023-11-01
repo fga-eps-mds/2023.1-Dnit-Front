@@ -6,6 +6,7 @@ import { PerfilModel } from "../models/perfil";
 interface ListarUsuariosQueryParams {
   pagina: number;
   itemsPorPagina: number;
+  total?: number;
   nome?: string;
   ufLotacao?: string;
   perfilId?: string;

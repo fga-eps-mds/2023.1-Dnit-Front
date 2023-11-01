@@ -88,21 +88,23 @@ export default function GerenciarUsuario() {
   const [pagina, setPagina] = useState(1);
   const [totalPaginas, setTotalPaginas] = useState(1);
   const [tamanhoPagina, setTamanhoPagina] = useState(10);
+  const [totalItens, setTotalItens] = useState(10);
   const [listaUfs, setListaUfs] = useState<FilterOptions[]>([]);
   const [listaPerfis, setListaPerfis] = useState<FilterProfileOptions[]>([]);
   const [listaMunicipios, setListaMunicipios] = useState<FilterMunicipioOptions[]>([]);
   const [usuarioSelecionado, setUsuarioSelecionado] = useState('');
 
-  const buscarUsuarios = (pagina: number) => {
+  const buscarUsuarios = (pagina: number, itemsPorPagina: number) => {
     setLoading(true);
 
-    fetchUsuarios<ListaPaginada>({ pagina, itemsPorPagina: tamanhoPagina, nome: nome, ufLotacao: uf, perfilId: perfil })
+    fetchUsuarios<ListaPaginada>({ pagina, itemsPorPagina, total: totalItens, nome: nome, ufLotacao: uf, perfilId: perfil })
       .then(lista => {
         // setBackupListaUsuarios(lista.items)
         setPagina(lista.pagina)
         setListaUsuarios(lista.items)
         setTotalPaginas(lista.totalPaginas)
         setTamanhoPagina(lista.itemsPorPagina)
+        setTotalItens(lista.total)
       })
       .catch(error => notificationApi.error({ message: 'Falha na listagem de usuários. ' + (error?.response?.data || '') }))
       .finally(() => setLoading(false));
@@ -136,8 +138,8 @@ export default function GerenciarUsuario() {
   }
 
   useEffect(() => {
-    buscarUsuarios(pagina);
-  }, [nome, uf, perfil, municipio]);
+    buscarUsuarios(pagina, tamanhoPagina);
+  }, [nome, uf, perfil, municipio, tamanhoPagina, pagina]);
 
   useEffect(() => {
     fetchMunicipios();
@@ -160,7 +162,7 @@ export default function GerenciarUsuario() {
       {mostrarPerfil != null && <EditarTipoPerfilDialog
         listaOpcoes={listaPerfis}
         listaUsuarios={listaUsuarios}
-        usuarioId={usuarioSelecionado}
+        usuarioId={usuarioSelecionado} 
         closeDialog={() => setMostrarPerfil(null)}
         atualizaTabela={setListaUsuarios}
       />}
@@ -188,15 +190,20 @@ export default function GerenciarUsuario() {
           columsTitle={['Nome', 'Tipo de Perfil', 'UF', 'Município', 'Email']} 
           initialItemsPerPage={tamanhoPagina} 
           totalPages={totalPaginas}
+          totalItems={totalItens}
           onNextPage={() => {
             if (pagina === totalPaginas) return;
             console.log('Gerenciarusuarios:onNextPage()')
-            buscarUsuarios(pagina + 1)
+            buscarUsuarios(pagina + 1, tamanhoPagina)
           }}
           onPreviousPage={() => {
             if (pagina === 1) return;
             console.log('Gerenciarusuarios:onPreviousPage()')
-            buscarUsuarios(pagina - 1)
+            buscarUsuarios(pagina - 1, tamanhoPagina)
+          }}
+          onPageResize={(newItensPerPage) => {
+            //setTamanhoPagina(newItensPerPage)
+            buscarUsuarios(pagina, newItensPerPage)
           }}
         >
           {listaUsuarios.map((usuario, index) =>

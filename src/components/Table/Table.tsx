@@ -6,9 +6,11 @@ interface CustomTableProps {
   initialItemsPerPage: number;
   columsTitle: string[];
   totalPages?: number;
+  totalItems?: number;
   children: ReactNode[];
   onNextPage?: () => void
   onPreviousPage?: () => void
+  onPageResize?: (newItemsPerPage: number) => void;
 }
 
 interface CustomTableRowsProps {
@@ -75,12 +77,15 @@ export default function CustomTable({
   initialItemsPerPage,
   onNextPage,
   onPreviousPage,
-  totalPages
+  onPageResize,
+  totalPages,
+  totalItems,
 }: CustomTableProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(initialItemsPerPage);
   const [isPageItemsOpen, setPageItemsOpen] = useState(false);
   const [isPageIndexOpen, setPageIndexOpen] = useState(false);
+  
 
   const indexOfLastItem =
     currentPage * itemsPerPage > children.length
@@ -91,16 +96,19 @@ export default function CustomTable({
   const currentItems = children.slice(indexOfFirstItem, indexOfLastItem);
   
   const pageNumbers: number[] = [];
-  for (let i = 1; i <= Math.ceil(children.length / itemsPerPage); i++) {
+  for (let i = 1; i <= Number(totalPages); i++) {
     pageNumbers.push(i);
   }
 
   if (children.length === 0) return null;
 
-  const dataSize = children.length;
+  
+  const dataSize = totalItems ? totalItems : 10;
 
   const changeItemsPerPage = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setItemsPerPage(parseInt(event.target.value));
+    const valorPagina = parseInt(event.target.value)
+    setItemsPerPage(valorPagina);
+    pageResize(valorPagina)
     setPageItemsOpen(false);
   };
 
@@ -118,6 +126,11 @@ export default function CustomTable({
       return
     onNextPage && onNextPage();
     setCurrentPage(currentPage + 1);
+  }
+
+  function pageResize(newItensPerPage: number) {
+    onPageResize && onPageResize(newItensPerPage);
+    setItemsPerPage(newItensPerPage);
   }
 
   const pageOptions = [1, 2, 5, 10, 25, 100, 150, 200, 500, 1000, 2000];
@@ -163,12 +176,15 @@ export default function CustomTable({
                   aria-label="Exibir lista"
                   tabIndex={-1}
                   data-trigger="data-trigger"
-                  onChange={(value) => changeItemsPerPage(value)}
+                  onChange={(value) => {
+                    changeItemsPerPage(value)
+                  }}
                   onFocus={() => setPageItemsOpen(true)}
-                  onBlur={() => setPageItemsOpen(false)}
+                  onBlur={() => setPageItemsOpen(false)}   
+                              
                 >
                   {pageOptions.map((element) => {
-                    return element <= dataSize * 2 ? (
+                    return element <= dataSize * 3 ? (
                       <option
                         value={element}
                         selected={itemsPerPage === element}
@@ -208,7 +224,7 @@ export default function CustomTable({
                 data-trigger="data-trigger"
                 onChange={(value) => {
                   setCurrentPage(Number(value.target.value));
-                  setPageIndexOpen(false);
+                  setPageIndexOpen(true);
                 }}
                 defaultValue={currentPage}
                 onFocus={() => setPageIndexOpen(true)}
@@ -216,7 +232,7 @@ export default function CustomTable({
               >
                 {pageNumbers.map((element) => (
                   // <option value={element} selected={currentPage === element}>
-                  <option value={element}>
+                  <option value={element} selected={currentPage === element}>
                     {element}
                   </option>
                 ))}
@@ -229,7 +245,6 @@ export default function CustomTable({
                 }
                 aria-hidden="true"
               />
-              <p>{currentPage}</p>
             </div>
           </div>
         </div>
