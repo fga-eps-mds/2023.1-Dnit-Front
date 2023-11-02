@@ -32,6 +32,8 @@ describe("CustomTable Component", () => {
       <CustomTable
         title="Test Table"
         initialItemsPerPage={2}
+        totalPages={2}
+        totalItems={4}
         columsTitle={["Name", "Age"]}
       >
         {rowsData.map((element, index) => (
@@ -60,6 +62,7 @@ describe("CustomTable Component", () => {
       <CustomTable
         title="Test Table"
         initialItemsPerPage={2}
+        totalItems={4}
         columsTitle={["Name", "Age"]}
       >
         {rowsData.map((element, index) => (
@@ -84,6 +87,8 @@ describe("CustomTable Component", () => {
       <CustomTable
         title="Test Table"
         initialItemsPerPage={2}
+        totalPages={2}
+        totalItems={4}
         columsTitle={["Name", "Age"]}
       >
         {rowsData.map((element, index) => (
@@ -114,6 +119,8 @@ describe("CustomTable Component", () => {
       <CustomTable
         title="Test Table"
         initialItemsPerPage={2}
+        totalPages={2}
+        totalItems={4}
         columsTitle={["Name", "Age"]}
       >
         {rowsData.map((element, index) => (
@@ -141,6 +148,8 @@ describe("CustomTable Component", () => {
         title="Test Table"
         initialItemsPerPage={2}
         columsTitle={["Name", "Age"]}
+        totalPages={2}
+        totalItems={4}
         onPageResize={onPageResizeMock}
       >
         {rowsData.map((element, index) => (
@@ -160,6 +169,44 @@ describe("CustomTable Component", () => {
     expect(pageRange).toBeInTheDocument();
 
     expect(onPageResizeMock).toHaveBeenCalled();
+
+  });
+
+  test("change page via arows button", () => {
+    const onNextPageMock = jest.fn();
+    const onPreviousPageMock = jest.fn();
+
+    const screen = render(
+      <CustomTable
+        title="Test Table"
+        initialItemsPerPage={1}
+        totalPages={4}
+        totalItems={4}
+        columsTitle={["Name", "Age"]}
+        onNextPage={onNextPageMock}
+        onPreviousPage={onPreviousPageMock}
+      >
+        {rowsData.map((element, index) => (
+          <CustomTableRow
+            data={element}
+            id={2}
+            hideEditIcon={index === 2 ? true : false}
+          />
+        ))}
+      </CustomTable>
+    );
+
+    const buttonNext = screen.getByTestId("proxima-pagina");
+    fireEvent.click(buttonNext);
+
+    const nextPageRange = screen.getByText("2-2 de 4 itens");
+    expect(nextPageRange).toBeInTheDocument();
+
+    const buttonPrevious = screen.getByTestId("volta-pagina");
+    fireEvent.click(buttonPrevious);
+
+    const previousPageRange = screen.getByText("1-1 de 4 itens");
+    expect(previousPageRange).toBeInTheDocument();
 
   });
 });

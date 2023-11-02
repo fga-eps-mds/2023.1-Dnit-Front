@@ -52,14 +52,14 @@ export function CustomTableRow({
             />
           )}
           {!hideEyeIcon && (
-            <i data-testId={`table-row-eye-${id}`}
+            <i data-testid={`table-row-eye-${id}`}
               className="fas fa-eye"
               aria-hidden="true"
               onClick={() => onDetailRow(id)}
             />
           )}
           {!hideTrashIcon && (
-            <i data-testId={`table-row-delete-${id}`}
+            <i data-testid={`table-row-delete-${id}`}
               className="fas fa-trash-alt"
               aria-hidden="true"
               onClick={() => onDeleteRow(id)}
@@ -91,12 +91,14 @@ export default function CustomTable({
   const [indexOfLastItem, setIndexOfLastItem] = useState(itemsPerPage);
   const [currentItems, setCurrentItems] = useState<ReactNode[]>([]);
 
+  const dataSize = totalItems ? totalItems : 1;
+  
   const pageNumbers: number[] = [];
-  for (let i = 1; i <= Number(totalPages); i++) {
+  for (let i = 1; i <= Math.max(1, Math.ceil(dataSize / itemsPerPage)); i++) {
     pageNumbers.push(i);
   }
 
-  const dataSize = totalItems ? totalItems : 10;
+  
 
   useEffect(() => {
     const lastItem = currentPage * itemsPerPage > children.length
@@ -105,8 +107,8 @@ export default function CustomTable({
 
     const firstItem = Math.max(lastItem - itemsPerPage, 0);
 
-    
-    const screenLastItem  = currentPage * itemsPerPage > dataSize
+
+    const screenLastItem = currentPage * itemsPerPage > dataSize
       ? dataSize
       : currentPage * itemsPerPage;
 
@@ -200,7 +202,7 @@ export default function CustomTable({
               <div className="br-input select-div">
                 <label htmlFor="per-page-selection-random-94892">Exibir</label>
                 <select
-                  data-testId="items-per-page"
+                  data-testid="items-per-page"
                   className="select-expand"
                   aria-label="Exibir lista"
                   tabIndex={-1}
@@ -279,6 +281,7 @@ export default function CustomTable({
           <span className="br-divider d-none d-sm-block mx-3"></span>
           <div className="pagination-arrows ml-auto ml-sm-0">
             <button
+              data-testid="volta-pagina"
               className="br-button circle"
               type="button"
               aria-label="Voltar página"
@@ -287,6 +290,7 @@ export default function CustomTable({
               <i className="fas fa-angle-left" aria-hidden="true"></i>
             </button>
             <button
+              data-testid="proxima-pagina"
               className="br-button circle"
               type="button"
               aria-label="Avançar página"
