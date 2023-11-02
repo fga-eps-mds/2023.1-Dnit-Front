@@ -5,6 +5,7 @@ import fetchUnidadeFederativa from "../../service/unidadesFederativas";
 import fetchCadastro from "../../service/cadastrarUsuario";
 import "../../styles/form.css";
 import { ButtonComponent } from "../Button";
+import { ExcessoesApi } from "../../service/excessoes";
 const { Option } = Select;
 
 interface UfProps {
@@ -41,7 +42,13 @@ const CadastroUsuarioForm: React.FC = () => {
       notification.success({ message: "Cadastro feito!" });
       navigate("/login");
     } catch (error) {
-      api.error({ message: `Erro ao fazer cadastro` });
+      if(error instanceof ExcessoesApi){
+        console.log(error);
+        api.error({ message: error.message });
+        
+      }
+      else
+        api.error({ message: "error.response.data" });
     }
   };
 
