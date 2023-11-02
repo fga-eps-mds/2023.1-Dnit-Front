@@ -40,12 +40,12 @@ export function CustomTableRow({
   return (
     <tr>
       {columns.map((column, colIndex) => (
-        <td data-th={colIndex}>{data[column]}</td>
+        <td key={column} data-th={colIndex}>{data[column]}</td>
       ))}
       <td>
         <div className="icon-row">
           {!hideEditIcon && (
-            <i data-testId={`table-row-edit-${id}`}
+            <i data-testid={`table-row-edit-${id}`}
               className="fas fa-edit"
               aria-hidden="true"
               onClick={() => onEditRow(id)}
@@ -140,13 +140,11 @@ export default function CustomTable({
   function previousPage() {
     if (currentPage === 1)
       return
-    console.log('Table:previousPage()')
     onPreviousPage && onPreviousPage();
     setCurrentPage(currentPage - 1);
   }
 
   function nextPage() {
-    console.log('Table:nextPage()')
     if (currentPage === totalPages)
       return
     onNextPage && onNextPage();
@@ -159,7 +157,6 @@ export default function CustomTable({
   }
 
   function pageSelect(newSelectedPage: number) {
-    console.log("pagina Depois :", currentPage);
     onPageSelect && onPageSelect(newSelectedPage);
   }
 
@@ -248,6 +245,7 @@ export default function CustomTable({
               <div className="br-input select-div">
                 <label htmlFor="per-page-selection-random-94892">Página</label>
                 <select
+                  data-testid="drop-select-page"
                   className="select-expand"
                   aria-label="Exibir página"
                   tabIndex={-1}

@@ -35,6 +35,10 @@ describe("CustomTable Component", () => {
         totalPages={2}
         totalItems={4}
         columsTitle={["Name", "Age"]}
+        onPageResize={() => { }}
+        onPageSelect={() => { }}
+        onNextPage={() => { }}
+        onPreviousPage={() => { }}
       >
         {rowsData.map((element, index) => (
           <CustomTableRow
@@ -64,6 +68,10 @@ describe("CustomTable Component", () => {
         initialItemsPerPage={2}
         totalItems={4}
         columsTitle={["Name", "Age"]}
+        onPageResize={() => { }}
+        onPageSelect={() => { }}
+        onNextPage={() => { }}
+        onPreviousPage={() => { }}
       >
         {rowsData.map((element, index) => (
           <CustomTableRow data={element} id={2} />
@@ -90,6 +98,10 @@ describe("CustomTable Component", () => {
         totalPages={2}
         totalItems={4}
         columsTitle={["Name", "Age"]}
+        onPageResize={() => { }}
+        onPageSelect={() => { }}
+        onNextPage={() => { }}
+        onPreviousPage={() => { }}
       >
         {rowsData.map((element, index) => (
           <CustomTableRow
@@ -122,6 +134,10 @@ describe("CustomTable Component", () => {
         totalPages={2}
         totalItems={4}
         columsTitle={["Name", "Age"]}
+        onPageResize={() => { }}
+        onPageSelect={() => { }}
+        onNextPage={() => { }}
+        onPreviousPage={() => { }}
       >
         {rowsData.map((element, index) => (
           <CustomTableRow
@@ -151,6 +167,9 @@ describe("CustomTable Component", () => {
         totalPages={2}
         totalItems={4}
         onPageResize={onPageResizeMock}
+        onPageSelect={() => { }}
+        onNextPage={() => { }}
+        onPreviousPage={() => { }}
       >
         {rowsData.map((element, index) => (
           <CustomTableRow
@@ -185,6 +204,8 @@ describe("CustomTable Component", () => {
         columsTitle={["Name", "Age"]}
         onNextPage={onNextPageMock}
         onPreviousPage={onPreviousPageMock}
+        onPageResize={() => { }}
+        onPageSelect={() => { }}
       >
         {rowsData.map((element, index) => (
           <CustomTableRow
@@ -201,12 +222,48 @@ describe("CustomTable Component", () => {
 
     const nextPageRange = screen.getByText("2-2 de 4 itens");
     expect(nextPageRange).toBeInTheDocument();
+    expect(onNextPageMock).toHaveBeenCalled();
 
     const buttonPrevious = screen.getByTestId("volta-pagina");
     fireEvent.click(buttonPrevious);
 
     const previousPageRange = screen.getByText("1-1 de 4 itens");
     expect(previousPageRange).toBeInTheDocument();
+    expect(onPreviousPageMock).toHaveBeenCalled();
+
+  });
+
+  test.skip("chage page via page select dropdown", () => {
+    const onPageSelectMock = jest.fn();
+
+    const screen = render(
+      <CustomTable
+        title="Test Table"
+        initialItemsPerPage={1}
+        totalPages={4}
+        totalItems={4}
+        columsTitle={["Name", "Age"]}
+        onNextPage={() => { }}
+        onPreviousPage={() => { }}
+        onPageResize={() => { }}
+        onPageSelect={onPageSelectMock}
+      >
+        {rowsData.map((element, index) => (
+          <CustomTableRow
+            data={element}
+            id={2}
+            hideEditIcon={index === 2 ? true : false}
+          />
+        ))}
+      </CustomTable>
+    );
+
+    const pageSelect = screen.getByTestId("drop-select-page-pagina");
+    fireEvent.change(pageSelect, { target: { value: '1' } });
+
+    const pageRange = screen.getByText("4-4 de 4 itens");
+    expect(pageRange).toBeInTheDocument();
+    expect(onPageSelectMock).toHaveBeenCalled();
 
   });
 });
