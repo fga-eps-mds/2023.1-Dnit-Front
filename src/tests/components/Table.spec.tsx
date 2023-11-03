@@ -241,7 +241,7 @@ describe("CustomTable Component", () => {
 
   });
 
-  test.skip("chage page via page select dropdown", () => {
+  test("chage page via page select dropdown", () => {
     const onPageSelectMock = jest.fn();
 
     const screen = render(
@@ -260,7 +260,7 @@ describe("CustomTable Component", () => {
           <CustomTableRow
             data={element}
             id={2}
-            hideEditIcon={index === 2 ? true : false}
+            hideEditIcon={true}
             hideEyeIcon={true}
             hideTrashIcon={true}
           />
@@ -268,10 +268,10 @@ describe("CustomTable Component", () => {
       </CustomTable>
     );
 
-    const pageSelect = screen.getByTestId("drop-select-page-pagina");
+    const pageSelect = screen.getByTestId("drop-select-page");
     fireEvent.blur(pageSelect);
     fireEvent.focus(pageSelect);
-    fireEvent.change(pageSelect, { target: { value: '1' } });
+    fireEvent.change(pageSelect, { target: { value: '4' } });
 
 
     const pageRange = screen.getByText("4-4 de 4 itens");
@@ -325,7 +325,54 @@ describe("CustomTable Component", () => {
     const buttonTrash = screen.getByTestId(`table-row-delete-${id}`)
     fireEvent.click(buttonTrash);
     expect(onTrashButtonMock).toHaveBeenCalledWith(id);
+  });
 
+  test("Não passar pagina", () => {
+    const onNextPageMock = jest.fn();
+    const onPreviousPageMock = jest.fn();
+
+    const screen = render(
+      <CustomTable
+        title="Test Table"
+        initialItemsPerPage={4}
+        totalPages={1}
+        totalItems={4}
+        columsTitle={["Name", "Age"]}
+        onNextPage={onNextPageMock}
+        onPreviousPage={onPreviousPageMock}
+        onPageResize={() => { }}
+        onPageSelect={() => { }}
+      >
+        {rowsData.map((element, index) => (
+          <CustomTableRow
+            data={element}
+            id={2}
+            hideEditIcon={index === 2 ? true : false}
+            hideEyeIcon={true}
+            hideTrashIcon={true}
+          />
+        ))}
+      </CustomTable>
+    );
+
+    const buttonNext = screen.getByTestId("proxima-pagina");
+    fireEvent.blur(buttonNext);
+    fireEvent.focus(buttonNext);
+    fireEvent.click(buttonNext);
+
+    const nextPageRange = screen.getByText("1-4 de 4 itens");
+    expect(nextPageRange).toBeInTheDocument();
+    expect(onNextPageMock).not.toHaveBeenCalled();
+
+    const buttonPrevious = screen.getByTestId("volta-pagina");
+    fireEvent.blur(buttonPrevious);
+    fireEvent.focus(buttonPrevious);
+    fireEvent.click(buttonPrevious);
+
+    const previousPageRange = screen.getByText("1-4 de 4 itens");
+    expect(previousPageRange).toBeInTheDocument();
+    expect(onPreviousPageMock).not.toHaveBeenCalled();
 
   });
+
 });
