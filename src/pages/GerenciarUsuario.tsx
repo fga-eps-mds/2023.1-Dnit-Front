@@ -195,12 +195,10 @@ export default function GerenciarUsuario() {
           totalItems={totalItens}
           onNextPage={() => {
             if (pagina === totalPaginas) return;
-            console.log('Gerenciarusuarios:onNextPage()')
             buscarUsuarios(pagina + 1, tamanhoPagina)
           }}
           onPreviousPage={() => {
             if (pagina === 1) return;
-            console.log('Gerenciarusuarios:onPreviousPage()')
             buscarUsuarios(pagina - 1, tamanhoPagina)
           }}
           onPageResize={(newItensPerPage) => {
