@@ -30,7 +30,6 @@ describe("Testes para a pagina de Gerenciar Usuarios", () => {
     expect(screen.getByText("Perfis de usuário cadastrados")).toBeInTheDocument();
   });
 
-
   it("Deve filtrar por nome", async () => {
     autenticar(Permissao.UsuarioVisualizar, Permissao.UsuarioPerfilEditar)
     const screen = render(
@@ -44,5 +43,20 @@ describe("Testes para a pagina de Gerenciar Usuarios", () => {
     fireEvent.change(screen.getByTestId("filtroNome"), { target: { value: "usuario0" } });
     expect(screen.getByTestId("filtroNome")).toHaveValue("usuario0");
 		expect((await screen.findAllByText("usuario0")).length).toBe(1);
+  });
+
+  it.skip("Deve filtrar por perfil", async () => {
+    autenticar(Permissao.UsuarioVisualizar, Permissao.UsuarioPerfilEditar)
+    const screen = render(
+      <MemoryRouter>
+        <AuthProvider>
+          <GerenciarUsuario />
+        </AuthProvider>
+      </MemoryRouter>
+    );
+
+    fireEvent.click(screen.getByTestId("Perfil:customSelect"));
+    //expect(screen.getByTestId("Perfil:customSelect")).toHaveValue("perfil0");
+		expect((await screen.findAllByText("perfil0")).length).toBe(1);
   });
 }); 

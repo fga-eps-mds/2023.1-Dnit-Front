@@ -3,6 +3,8 @@ import { render, fireEvent, waitFor } from "@testing-library/react";
 import CustomTable, { CustomTableRow } from "../../components/Table/Table";
 import { assert } from "console";
 
+afterEach(jest.clearAllMocks)
+
 describe("CustomTable Component", () => {
   const rowsData = [
     {
@@ -212,12 +214,16 @@ describe("CustomTable Component", () => {
             data={element}
             id={2}
             hideEditIcon={index === 2 ? true : false}
+            hideEyeIcon={true}
+            hideTrashIcon={true}
           />
         ))}
       </CustomTable>
     );
 
     const buttonNext = screen.getByTestId("proxima-pagina");
+    fireEvent.blur(buttonNext);
+    fireEvent.focus(buttonNext);
     fireEvent.click(buttonNext);
 
     const nextPageRange = screen.getByText("2-2 de 4 itens");
@@ -225,6 +231,8 @@ describe("CustomTable Component", () => {
     expect(onNextPageMock).toHaveBeenCalled();
 
     const buttonPrevious = screen.getByTestId("volta-pagina");
+    fireEvent.blur(buttonPrevious);
+    fireEvent.focus(buttonPrevious);
     fireEvent.click(buttonPrevious);
 
     const previousPageRange = screen.getByText("1-1 de 4 itens");
@@ -253,17 +261,71 @@ describe("CustomTable Component", () => {
             data={element}
             id={2}
             hideEditIcon={index === 2 ? true : false}
+            hideEyeIcon={true}
+            hideTrashIcon={true}
           />
         ))}
       </CustomTable>
     );
 
     const pageSelect = screen.getByTestId("drop-select-page-pagina");
+    fireEvent.blur(pageSelect);
+    fireEvent.focus(pageSelect);
     fireEvent.change(pageSelect, { target: { value: '1' } });
+
 
     const pageRange = screen.getByText("4-4 de 4 itens");
     expect(pageRange).toBeInTheDocument();
     expect(onPageSelectMock).toHaveBeenCalled();
+
+  });
+
+  test("click on table buttons", () => {
+    const onEditButtonMock = jest.fn();
+    const onViewButtonMock = jest.fn();
+    const onTrashButtonMock = jest.fn();
+    const id = 1;
+    
+
+    const screen = render(
+      <CustomTable
+        title="Test Table"
+        initialItemsPerPage={id}
+        totalPages={4}
+        totalItems={4}
+        columsTitle={["Name", "Age"]}
+        onPageResize={() => { }}
+        onPageSelect={() => { }}
+        onNextPage={() => { }}
+        onPreviousPage={() => { }}
+      >
+        {rowsData.map((element, index) => (
+          <CustomTableRow
+            data={element}
+            id={1}
+            hideEditIcon={false}
+            hideEyeIcon={false}
+            hideTrashIcon={false}
+            onDeleteRow={onTrashButtonMock}
+            onEditRow={onEditButtonMock}
+            onDetailRow={onViewButtonMock}
+          />
+        ))}
+      </CustomTable>
+    )
+
+    const buttonEdit = screen.getByTestId(`table-row-edit-${id}`)
+    fireEvent.click(buttonEdit);
+    expect(onEditButtonMock).toHaveBeenCalledWith(id);
+
+    const buttonView = screen.getByTestId(`table-row-eye-${id}`)
+    fireEvent.click(buttonView);
+    expect(onViewButtonMock).toHaveBeenCalledWith(id);
+
+    const buttonTrash = screen.getByTestId(`table-row-delete-${id}`)
+    fireEvent.click(buttonTrash);
+    expect(onTrashButtonMock).toHaveBeenCalledWith(id);
+
 
   });
 });
