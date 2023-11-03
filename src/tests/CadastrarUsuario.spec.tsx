@@ -7,8 +7,8 @@ import { AuthProvider } from "../provider/Autenticacao";
 import {fetchCadastroUsuarioDnit} from "../service/usuarioApi";
 import server from "./mock/servicosAPI";
 
-jest.mock("../service/autenticador", () => ({
-  ...jest.requireActual("../service/autenticador"),
+jest.mock("../service/usuarioApi", () => ({
+  ...jest.requireActual("../service/usuarioApi"),
   fetchCadastroUsuarioDnit: jest.fn(),
 }));
 

@@ -9,8 +9,8 @@ import {fetchLogin} from "../service/usuarioApi";
 import { LoginResponse, Permissao } from "../models/auth";
 
 
-jest.mock("../service/autenticador", () => ({
-  ...jest.requireActual("../service/autenticador"),
+jest.mock("../service/usuarioApi", () => ({
+  ...jest.requireActual("../service/usuarioApi"),
   fetchLogin: jest.fn(),
 }));
 

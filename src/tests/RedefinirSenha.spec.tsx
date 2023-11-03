@@ -7,8 +7,8 @@ import App from "../App";
 import { AuthProvider } from "../provider/Autenticacao";
 import {fetchRedefineSenha} from "../service/usuarioApi";
 
-jest.mock("../service/modificador", () => ({
-  ...jest.requireActual("../service/modificador"),
+jest.mock("../service/usuarioApi", () => ({
+  ...jest.requireActual("../service/usuarioApi"),
   fetchRedefineSenha: jest.fn(),
 }));
 
