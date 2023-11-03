@@ -41,6 +41,9 @@ jobs:
         CI: false
       run: npm run build
 
+    - name: Copy Configuration
+      run: cp staticwebapp.config.json build/
+
     - name: Deploy
       env:
         TOKEN:  ${{ secrets.SWA_TOKEN }}
