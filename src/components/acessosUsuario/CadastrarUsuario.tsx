@@ -1,8 +1,8 @@
 import { Form, Input, Radio, Select, Space, notification } from "antd";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { fetchCadastroUsuario } from "../../service/autenticador";
-import {fetchUnidadeFederativa} from "../../service/receptor";
+import { fetchCadastroUsuarioDnit } from "../../service/usuarioApi";
+import {fetchUnidadeFederativa} from "../../service/escolaApi";
 import "../../styles/form.css";
 import { ButtonComponent } from "../Button";
 
@@ -38,7 +38,7 @@ const CadastroUsuarioForm: React.FC = () => {
     };
 
     try {
-      await fetchCadastroUsuario(cadastroUsuarioData);
+      await fetchCadastroUsuarioDnit(cadastroUsuarioData);
       notification.success({ message: "Cadastro feito!" });
       navigate("/login");
     } catch (error) {

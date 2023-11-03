@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { notification } from "antd";
-import fetchExcluirPerfil from "../../service/excluiPerfil";
+import {fetchExcluiPerfil} from "../../service/usuarioApi";
 import Modal from "../Modal";
 import ReactLoading from "react-loading";
 
@@ -21,7 +21,7 @@ export function DeletarPerfilDialog({ perfil, onClose }: DeletarPerfilDialogProp
 
     const deletar = () => {
         setLoading(true);
-        fetchExcluirPerfil(perfil.id)
+        fetchExcluiPerfil(perfil.id)
             .then(() => {
                 notification.success({ message: 'Perfil deletado com sucesso' });
                 onClose(true);

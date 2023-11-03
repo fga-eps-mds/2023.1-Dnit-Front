@@ -5,7 +5,7 @@ import { act } from "react-dom/test-utils";
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
 import { AuthLocalStorage, AuthProvider, atualizarToken, getPermissoes, removerLogin, salvarLogin, setPermissoes, temPermissao } from "../provider/Autenticacao";
-import {fetchLogin} from "../service/autenticador";
+import {fetchLogin} from "../service/usuarioApi";
 import { LoginResponse, Permissao } from "../models/auth";
 
 

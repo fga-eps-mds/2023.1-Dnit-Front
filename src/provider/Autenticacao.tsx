@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { AtualizarTokenDto, LoginResponse, Permissao } from "../models/auth";
 import axios, { AxiosResponse } from "axios";
 import { atualizarTokenUrl } from "../consts/service";
+import { fetchAtualizaToken } from "../service/usuarioApi";
 
 export enum AuthLocalStorage {
   Token = "Token",
@@ -81,12 +82,10 @@ export async function atualizarToken() {
     tokenAtualizacao:
       localStorage.getItem(AuthLocalStorage.TokenAtualizacao) ?? "",
   };
-  const autenticacao: AxiosResponse<LoginResponse> = await axios.post(
-    atualizarTokenUrl,
-    dados
-  );
-  salvarLogin(autenticacao.data);
-  return autenticacao.data.token;
+  const autenticacao = await fetchAtualizaToken(dados);
+  
+  salvarLogin(autenticacao);
+  return autenticacao.token;
 }
 
 export function configuraAutenticacaoAxios() {

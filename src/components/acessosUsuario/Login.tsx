@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import LogoDNIT from "../../assets/logoDnitAzul.png";
 import { AuthContext } from "../../provider/Autenticacao";
 import "../../styles/form.css";
-import {fetchLogin} from "../../service/autenticador"
+import {fetchLogin} from "../../service/usuarioApi"
 import { ButtonComponent } from "../Button";
 
 const LoginForm: React.FC = () => {

@@ -12,7 +12,7 @@ import {
   MunicipioData,
   SituacaoData,
 } from "../models/service";
-import {fetchListarEscolasFiltradas} from "../service/listar";
+import {fetchListarEscolasFiltradas} from "../service/escolaApi";
 
 interface FiltroContextType {
   nomeEscola: string;

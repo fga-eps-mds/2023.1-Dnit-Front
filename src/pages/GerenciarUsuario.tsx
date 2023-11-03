@@ -8,14 +8,14 @@ import Table, { CustomTableRow } from "../components/Table/Table";
 import ReactLoading from "react-loading";
 import { EditarTipoPerfilDialog } from "../components/EditarTipoPerfilDialog";
 import Select from "../components/Select";
-import fetchUsuarios from "../service/listarUsuarios";
+import {fetchUsuarios} from "../service/usuarioApi";
 import { notification } from "antd";
 import { UsuarioModel } from "../models/usuario";
-import fetchUnidadeFederativa from "../service/unidadesFederativas";
-import fetchPerfis from "../service/listarPerfis";
+import {fetchUnidadeFederativa} from "../service/escolaApi";
+import {fetchPerfis} from "../service/usuarioApi";
 import { Permissao, TipoPerfil } from "../models/auth";
 import { AuthContext } from "../provider/Autenticacao";
-import fetchMunicipio from "../service/municipio";
+import {fetchMunicipio} from "../service/escolaApi";
 
 interface EditarTipoPerfilArgs {
   id: string | null;

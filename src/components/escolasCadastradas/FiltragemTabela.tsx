@@ -2,10 +2,10 @@ import { Select } from "antd";
 import { ChangeEvent, useEffect, useState } from "react";
 import { useFiltroTabela } from "../../context/FiltroTabela";
 import { UnidadeFederativaData, MunicipioData, SituacaoData } from "../../models/service";
-import {fetchSituacao} from "../../service/receptor";
-import {fetchEtapasDeEnsino} from "../../service/receptor";
-import {fetchUnidadeFederativa} from "../../service/receptor";
-import {fetchMunicipio} from "../../service/receptor";
+import {fetchSituacao} from "../../service/escolaApi";
+import {fetchEtapasDeEnsino} from "../../service/escolaApi";
+import {fetchUnidadeFederativa} from "../../service/escolaApi";
+import {fetchMunicipio} from "../../service/escolaApi";
 import "../../styles/App.css";
 import "../estilo/FiltragemTabela.css";
 

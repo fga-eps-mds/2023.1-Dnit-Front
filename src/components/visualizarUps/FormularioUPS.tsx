@@ -1,6 +1,6 @@
 import { Button, Form, Input, Spin } from "antd";
 import React from "react";
-import fetchCalcularUps from "../../service/calcularUps";
+import {fetchCalculaUps} from "../../service/upsApi";
 import "../../styles/form/upsForm.css";
 
 const UPSForm: React.FC = () => {
@@ -43,7 +43,7 @@ const UPSForm: React.FC = () => {
     };
 
     try {
-      const retorno = await fetchCalcularUps(upsData);
+      const retorno = await fetchCalculaUps(upsData);
       setCarregando(false);
       setValorUpsGeral(retorno.upsGeral);
       setValorUps2018(retorno.ups2018);

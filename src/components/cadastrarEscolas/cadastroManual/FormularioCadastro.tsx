@@ -3,12 +3,12 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFiltroTabela } from "../../../context/FiltroTabela";
 import { UnidadeFederativaData, MunicipioData } from "../../../models/service";
-import {fetchEtapasDeEnsino} from "../../../service/receptor";
-import {fetchUnidadeFederativa} from "../../../service/receptor";
-import {fetchMunicipio} from "../../../service/receptor";
-import {fetchCEP} from "../../../service/receptor";
+import { fetchEtapasDeEnsino } from "../../../service/escolaApi";
+import {fetchUnidadeFederativa} from "../../../service/escolaApi";
+import {fetchMunicipio} from "../../../service/escolaApi";
+import {fetchCEP} from "../../../service/apiUtils";
 import "../../../styles/form/step2.css";
-import { fetchCadastroEscola } from "../../../service/autenticador";
+import { fetchCadastraEscola } from "../../../service/escolaApi";
 
 const { Option } = Select;
 interface Step2Props {
@@ -187,7 +187,7 @@ export default function Step2({ onClickBack }: Step2Props) {
     };
 
     try {
-      await fetchCadastroEscola(registerSchoolData);
+      await fetchCadastraEscola(registerSchoolData);
       notification.success({ message: "Cadastro feito!" });
       navigate("/escolas-cadastradas");
     } catch (error) {

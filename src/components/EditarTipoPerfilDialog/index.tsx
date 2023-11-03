@@ -5,7 +5,7 @@ import Modal from "../Modal";
 import ReactLoading from "react-loading";
 import Select from "../Select";
 import "./styles.css";
-import fetchAtualizarTipoPerfil from "../../service/atualizarTipoPerfil";
+import {fetchAtualizaTipoPerfil} from "../../service/usuarioApi";
 import { UsuarioModel } from "../../models/usuario";
 
 
@@ -41,7 +41,7 @@ export function EditarTipoPerfilDialog({ closeDialog, listaOpcoes, usuarioId, li
     }
     setLoading(true);
 
-    fetchAtualizarTipoPerfil(usuarioId, perfilId)
+    fetchAtualizaTipoPerfil(usuarioId, perfilId)
       .then(() => {
         notification.success({ message: 'O perfil foi alterado com sucesso!' });
         closeDialog(true);

@@ -6,11 +6,11 @@ import {
   MunicipioData,
   SolicitacaoDeAcaoData,
 } from "../../models/service";
-import {fetchEtapasDeEnsino} from "../../service/receptor";
-import {fetchUnidadeFederativa} from "../../service/receptor";
-import {fetchEscolasInep} from "../../service/receptor";
-import {fetchMunicipio} from "../../service/receptor";
-import fetchSolicitaAcao from "../../service/solicitarAcao";
+import {fetchEtapasDeEnsino} from "../../service/escolaApi";
+import {fetchUnidadeFederativa} from "../../service/escolaApi";
+import {fetchEscolasInep} from "../../service/escolaApi";
+import {fetchMunicipio} from "../../service/escolaApi";
+import {fetchSolicitaAcao} from "../../service/escolaApi";
 import "../../styles/form.css";
 import { ButtonComponent } from "../Button";
 

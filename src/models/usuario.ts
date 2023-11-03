@@ -15,5 +15,14 @@ export interface UsuarioModel {
     perfil: PerfilModel;
     ufLotacao: number;
     municipio: number;
-  }
+}
+
+export interface ListarUsuariosQueryParams {
+    pagina: number;
+    itemsPorPagina: number;
+    nome?: string;
+    ufLotacao?: string;
+    perfilId?: string;
+    municipio?: string
+}
   
