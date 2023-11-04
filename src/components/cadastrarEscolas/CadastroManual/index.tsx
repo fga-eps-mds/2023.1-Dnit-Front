@@ -94,7 +94,7 @@ export default function CadastroManual({ onClickBack }: Step2Props) {
     } catch (error) {}
   };
   useEffect(() => {
-    if (opcoesUf.length == 0) consultaUf();
+    if (opcoesUf.length === 0) consultaUf();
   });
 
   const handleOptionClick = (option: any) => {

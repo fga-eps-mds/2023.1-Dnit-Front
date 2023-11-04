@@ -4,14 +4,6 @@ import { fireEvent, render, waitFor } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
-<<<<<<< HEAD
-import { AuthProvider } from "../provider/Autenticacao";
-import {fetchLogin} from "../service/autenticador";
-
-
-jest.mock("../service/autenticador", () => ({
-  ...jest.requireActual("../service/autenticador"),
-=======
 import { AuthLocalStorage, AuthProvider, atualizarToken, getPermissoes, removerLogin, salvarLogin, setPermissoes, temPermissao } from "../provider/Autenticacao";
 import {fetchLogin} from "../service/usuarioApi";
 import { LoginResponse, Permissao } from "../models/auth";
@@ -19,7 +11,6 @@ import { LoginResponse, Permissao } from "../models/auth";
 
 jest.mock("../service/usuarioApi", () => ({
   ...jest.requireActual("../service/usuarioApi"),
->>>>>>> hotfix/38-refatorar-comunicacao-com-a-api
   fetchLogin: jest.fn(),
 }));
 

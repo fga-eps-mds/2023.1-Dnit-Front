@@ -3,11 +3,6 @@ import * as URL from "../consts/service"
 import * as DATA from "../models/service";
 import { ResponseStatus, fetchCadastros, fetchModificador, fetchDados } from "./apiUtils";
 
-interface PlanilhaEscolaResponse {
-    status: number;
-    data: [];
-}
-  
 
 export async function fetchUnidadeFederativa(): Promise<DATA.UnidadeFederativaData[]>{
     return fetchDados<DATA.UnidadeFederativaData[]>(URL.unidadesFederativasURL);

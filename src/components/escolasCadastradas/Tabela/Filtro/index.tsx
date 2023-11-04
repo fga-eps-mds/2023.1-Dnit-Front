@@ -59,7 +59,7 @@ export default function Filtro() {
   };
 
   useEffect(() => {
-    if (opcoesUf.length == 0) getUf();
+    if (opcoesUf.length === 0) getUf();
   });
 
   const getSituacao = async () => {
@@ -69,7 +69,7 @@ export default function Filtro() {
     } catch (error) {}
   };
   useEffect(() => {
-    if (opcoesSituacao.length == 0) getSituacao();
+    if (opcoesSituacao.length === 0) getSituacao();
   });
 
   const getMunicipio = async () => {
@@ -82,7 +82,7 @@ export default function Filtro() {
   };
 
   useEffect(() => {
-    if (opcoesMunicipio.length == 0 || carregandoEscolas) getMunicipio();
+    if (opcoesMunicipio.length === 0 || carregandoEscolas) getMunicipio();
   }, [UFSelecionada, carregandoEscolas]);
 
   const getEtapasDeEnsino = async () => {
@@ -94,7 +94,7 @@ export default function Filtro() {
   };
 
   useEffect(() => {
-    if (opcoesSituacao.length == 0) getEtapasDeEnsino();
+    if (opcoesSituacao.length === 0) getEtapasDeEnsino();
   });
   const [, setShowOpcoesEtapasDeEnsino] = useState(false);
   const [OpcoesEtapasDeEnsino, setOpcoesEtapasDeEnsino] = useState<

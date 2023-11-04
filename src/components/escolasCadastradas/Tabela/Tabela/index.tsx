@@ -31,7 +31,7 @@ export default function Tabela() {
     useState<number>(0);
 
   const handleButtonClick = (selectNumeber: number) => {
-    if (selectNumeber == 1) {
+    if (selectNumeber === 1) {
       setOpcoesPaginas(!opcoesPaginas);
     }
   };

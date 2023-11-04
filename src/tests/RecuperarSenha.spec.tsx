@@ -5,19 +5,11 @@ import { act } from "react-dom/test-utils";
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
 import { AuthProvider } from "../provider/Autenticacao";
-<<<<<<< HEAD
-import {fetchRecuperarSenha} from "../service/modificador";
-
-jest.mock("../service/modificador", () => ({
-  ...jest.requireActual("../service/modificador"),
-  fetchRecuperarSenha: jest.fn(),
-=======
 import {fetchRecuperaSenha} from "../service/usuarioApi";
 
 jest.mock("../service/usuarioApi", () => ({
   ...jest.requireActual("../service/usuarioApi"),
   fetchRecuperaSenha: jest.fn(),
->>>>>>> hotfix/38-refatorar-comunicacao-com-a-api
 }));
 
 const mockedUseRecoverPassword = fetchRecuperaSenha as jest.Mock;

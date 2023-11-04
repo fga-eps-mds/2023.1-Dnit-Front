@@ -1,8 +1,7 @@
 import React, { createContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AtualizarTokenDto, LoginResponse, Permissao } from "../models/auth";
-import axios, { AxiosResponse } from "axios";
-import { atualizarTokenUrl } from "../consts/service";
+import axios from "axios";
 import { fetchAtualizaToken } from "../service/usuarioApi";
 
 export enum AuthLocalStorage {

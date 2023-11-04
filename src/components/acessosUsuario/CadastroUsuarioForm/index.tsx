@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { fetchCadastroUsuarioDnit } from "../../../service/usuarioApi";
 import {fetchUnidadeFederativa} from "../../../service/escolaApi";
-import "../../styles/form.css";
+import "../../../styles/form.css";
 import { ButtonComponent } from "../../Button";
 
 const { Option } = Select;

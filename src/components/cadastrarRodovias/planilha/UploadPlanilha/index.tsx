@@ -40,7 +40,7 @@ const UploadPlanilha: React.FC<UploadPlanilhaRodoviaProps> = ({
 
             } catch (error: any) {
                 console.log(error.response);
-                error.response && error.response.status == 406 && onClickErrorTamanho();
+                error.response && error.response.status === 406 && onClickErrorTamanho();
 
                 let mensagem = error.response?.data;
 

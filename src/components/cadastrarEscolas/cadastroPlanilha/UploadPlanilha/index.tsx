@@ -64,7 +64,7 @@ const UploadPlanilha: React.FC<UploadPlanilhaEscolaProps> = ({
           setEscolasCadastradas(response.data);
         }
       } catch (error: any) {
-        error.response && error.response.status == 406 && onClickError();
+        error.response && error.response.status === 406 && onClickError();
 
         const mensagem = error.response?.data;
         message.error(`${mensagem}`);

@@ -1,9 +1,9 @@
 import Footer from "../components/Footer";
 import "../styles/App.css";
-import Header from "../components/Cabecalho";
+import Header from "../components/Header";
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import TrilhaDeNavegacao from "../components/escolasCadastradas/TrilhaNavegacao";
+import TrilhaDeNavegacao from "../components/escolasCadastradas/Navegacao";
 import Table, { CustomTableRow } from "../components/Table/Table";
 import ReactLoading from "react-loading";
 import { EditarTipoPerfilDialog } from "../components/EditarTipoPerfilDialog";
@@ -13,7 +13,7 @@ import { notification } from "antd";
 import { UsuarioModel } from "../models/usuario";
 import {fetchUnidadeFederativa} from "../service/escolaApi";
 import {fetchPerfis} from "../service/usuarioApi";
-import { Permissao, TipoPerfil } from "../models/auth";
+import { Permissao } from "../models/auth";
 import { AuthContext } from "../provider/Autenticacao";
 import {fetchMunicipio} from "../service/escolaApi";
 
@@ -172,7 +172,7 @@ export default function GerenciarUsuario() {
           <Select items={listaPerfis} value={perfil} label={"Perfil:"} onChange={setPerfil} dropdownStyle={{ marginLeft: "20px", width: "260px" }} filtrarTodos={true}/>
           <Select items={listaMunicipios} value={municipio} label={"Municipios:"} onChange={setMunicipio} dropdownStyle={{ marginLeft: "20px", width: "260px" }} filtrarTodos={true}/>
         </div>
-        {listaUsuarios.length == 0 && <Table columsTitle={['Nome', 'Tipo de Perfil', 'UF', 'Município', 'Email']} initialItemsPerPage={10} title="Perfis de usuário cadastrados"><></><></></Table>}
+        {listaUsuarios.length === 0 && <Table columsTitle={['Nome', 'Tipo de Perfil', 'UF', 'Município', 'Email']} initialItemsPerPage={10} title="Perfis de usuário cadastrados"><></><></></Table>}
 
         <Table columsTitle={['Nome', 'Tipo de Perfil', 'UF', 'Município', 'Email']} initialItemsPerPage={10} title="Perfis de usuário cadastrados">
           {

@@ -1,11 +1,10 @@
-import { Button } from "antd";
 import { useNavigate } from "react-router-dom";
 import IconGov from "../../assets/govIcone.png";
 import BotaoAltoContraste from "../../assets/icones/BotaoAltoContraste2.svg";
 import "../../styles/App.css";
 import BotaoLinks from "../../assets/icones/BotaoLinks.svg";
-import BotaoMenu from "../assets/icones/BotaoMenu.svg";
-import LogoDNITAzul from "../assets/logoDnitAzul.png";
+import BotaoMenu from "../../assets/icones/BotaoMenu.svg";
+import LogoDNITAzul from "../../assets/logoDnitAzul.png";
 import "../estilo/Cabecalho.css";
 import IconUsuario from "../../assets/icones/usuario.svg";
 import { AuthLocalStorage } from "../../provider/Autenticacao";

@@ -35,12 +35,12 @@ const UploadPlanilha: React.FC<UploadPlanilhaSinistroProps> = ({
       formData.append("arquivo", fileList[0].originFileObj as File);
 
       try {
-        const response = await fetchCadastraSinistro(formData);
+        await fetchCadastraSinistro(formData);
 
         message.success(`Arquivo adicionado com sucesso.`);
         onClickAceito();
       } catch (error: any) {
-        error.response && error.response.status == 406 && onClickError();
+        error.response && error.response.status === 406 && onClickError();
 
         const mensagem = error.response?.data;
 

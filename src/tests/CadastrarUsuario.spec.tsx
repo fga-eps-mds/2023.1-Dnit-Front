@@ -4,21 +4,12 @@ import { act, fireEvent, render, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
 import { AuthProvider } from "../provider/Autenticacao";
-<<<<<<< HEAD
-import {fetchCadastroUsuario} from "../service/autenticador";
-import server from "./mock/servicosAPI";
-
-jest.mock("../service/autenticador", () => ({
-  ...jest.requireActual("../service/autenticador"),
-  fetchCadastroUsuario: jest.fn(),
-=======
 import {fetchCadastroUsuarioDnit} from "../service/usuarioApi";
 import server from "./mock/servicosAPI";
 
 jest.mock("../service/usuarioApi", () => ({
   ...jest.requireActual("../service/usuarioApi"),
   fetchCadastroUsuarioDnit: jest.fn(),
->>>>>>> hotfix/38-refatorar-comunicacao-com-a-api
 }));
 
 const mockedUseRegister = fetchCadastroUsuarioDnit as jest.Mock;

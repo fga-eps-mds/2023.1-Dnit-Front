@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "../components/Cabecalho"
-import TrilhaDeNavegacao from "../components/escolasCadastradas/TrilhaNavegacao";
+import Header from "../components/Header"
+import TrilhaDeNavegacao from "../components/escolasCadastradas/Navegacao";
 import PerfilDialog from "../components/PerfilDialog";
 import { Permissao, TipoPerfil } from "../models/auth";
 import Footer from "../components/Footer";
@@ -33,7 +33,7 @@ export function NomeFilter({ onNomeChange }: NomeFilterProps) {
         <div className="br-input large input-button">
           <input className="br-input-search-large" type="search" placeholder="Nome" value={nome}
             onChange={e => setNome(e.target.value)}
-            onKeyDown={e => e.key == 'Enter' && onNomeChange(nome)} />
+            onKeyDown={e => e.key === 'Enter' && onNomeChange(nome)} />
           <button className="br-button" type="button" aria-label="Buscar" onClick={() => onNomeChange(nome)}>
             <i className="fas fa-search" aria-hidden="true"></i>
           </button>
@@ -103,7 +103,7 @@ export default function GerenciarPerfis() {
           <NomeFilter onNomeChange={setNome} />
           {temPermissaoGerenciar.cadastrar && <ButtonComponent label="Criar Perfil" buttonStyle="primary" onClick={() => setShowPerfil({ id: null, readOnly: false })}></ButtonComponent>}
         </div>
-        {perfis.length == 0 && <Table columsTitle={['Nome', 'Número de Usuários', 'Permissões']} initialItemsPerPage={10} title="Perfis de usuário cadastrados"><></><></></Table>}
+        {perfis.length === 0 && <Table columsTitle={['Nome', 'Número de Usuários', 'Permissões']} initialItemsPerPage={10} title="Perfis de usuário cadastrados"><></><></></Table>}
 
         <Table columsTitle={['Nome', 'Número de Usuários', 'Permissões']} initialItemsPerPage={10} title="Perfis de usuário cadastrados">
           {
@@ -113,8 +113,8 @@ export default function GerenciarPerfis() {
                 onDeleteRow={() => setDeletarPerfil({ id: p.id, nome: p.nome, quantidade: p.quantidadeUsuarios })}
                 onEditRow={() => setShowPerfil({ id: p.id, readOnly: false })}
                 onDetailRow={() => setShowPerfil({ id: p.id, readOnly: true })}
-                hideEditIcon={p.tipo == TipoPerfil.Administrador || !temPermissaoGerenciar.editar}
-                hideTrashIcon={p.tipo != TipoPerfil.Customizavel || !temPermissaoGerenciar.remover}
+                hideEditIcon={p.tipo === TipoPerfil.Administrador || !temPermissaoGerenciar.editar}
+                hideTrashIcon={p.tipo !== TipoPerfil.Customizavel || !temPermissaoGerenciar.remover}
                 hideEyeIcon={!temPermissaoGerenciar.visualizar} />
             )
           }

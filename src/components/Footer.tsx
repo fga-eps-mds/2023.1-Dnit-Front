@@ -1,6 +1,6 @@
 import "../styles/App.css";
 import logoDnit from "../assets/logoDnit.png";
-import "./estilo/Footer.css";
+import "./Footer/styles.css";
 import { useNavigate } from "react-router-dom";
 
 interface FooterProps {

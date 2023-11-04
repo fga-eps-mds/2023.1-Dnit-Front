@@ -3,8 +3,8 @@ import {
   FileTextOutlined,
   FormOutlined,
 } from "@ant-design/icons";
-import IconGerenciarPerfis from "../assets/icones/GerenciarPerfis.svg";
-import IconGerenciarUsuarios from "../assets/icones/GerenciarUsuarios.svg";
+import IconGerenciarPerfis from "../../../assets/icones/GerenciarPerfis.svg";
+import IconGerenciarUsuarios from "../../../assets/icones/GerenciarUsuarios.svg";
 import { Card, Collapse, CollapseProps } from "antd";
 import { useNavigate } from "react-router";
 import Header from "../../../components/Header";

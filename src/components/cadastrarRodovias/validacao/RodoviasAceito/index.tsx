@@ -2,11 +2,11 @@ import "../../../../styles/dados.css"
 import { Button } from "antd";
 import { CheckCircleOutlined } from "@ant-design/icons"
 
-interface RodoviasAceito {
+interface RodoviasAceitoProps {
     onClickVoltar: () => void;
 }
 
-export default function RodoviasAceito({ onClickVoltar }: RodoviasAceito) {
+export default function RodoviasAceito({ onClickVoltar }: RodoviasAceitoProps) {
     return (
         <div className="form3_1">
             <div className="secaoTexto">

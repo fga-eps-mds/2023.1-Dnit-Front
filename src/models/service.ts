@@ -127,8 +127,6 @@ export interface FiltroEscolaData {
   };
 }
 
-<<<<<<< HEAD
-=======
 export interface EscolasFiltradasResponse {
   escolas: EscolaData[];
   escolasPorPagina: number;
@@ -136,7 +134,6 @@ export interface EscolasFiltradasResponse {
   totalPaginas: number;
 }
 
->>>>>>> hotfix/38-refatorar-comunicacao-com-a-api
 export interface AlterarDadosEscolaData {
   idEscola: number;
   idSituacao: number;
