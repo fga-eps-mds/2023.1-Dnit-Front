@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import Galera from "../../assets/galera.png";
 import Galera2 from "../../assets/galera2.png";
 import Header from "../../components/Header";
-import Footer from "../../components/Footer/styles";
+import Footer from "../../components/Footer";
 import "../../styles/App.css";
 import "./styles.css";
 import { Link } from "react-router-dom";
@@ -13,7 +13,7 @@ export default function Home() {
 
   return (
     <div className="App">
-      <Header login={true} />
+      <Header hasLogged={false} />
 
       <Row justify={"start"} className="image-home-row">
         <Image src={Galera} preview={false} className="image-home" />
@@ -92,10 +92,12 @@ export default function Home() {
         </Row>
         <Row className="container-link">
           <Link
-            to='https://servicos.dnit.gov.br/conexao'
+            to="https://servicos.dnit.gov.br/conexao"
             target={"_blank"}
             className="link"
-          >Conheça outros projetos do DNIT!</Link>
+          >
+            Conheça outros projetos do DNIT!
+          </Link>
         </Row>
       </Row>
 
@@ -105,7 +107,7 @@ export default function Home() {
       >
         <p className="text-acao">SOLICITE UMA AÇÃO</p>
       </Button>
-      <Footer />
+      <Footer home />
     </div>
   );
 }

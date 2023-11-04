@@ -2,7 +2,7 @@ import { FileOutlined } from "@ant-design/icons";
 import type { UploadFile, UploadProps } from "antd";
 import { Button, Upload, message } from "antd";
 import { UploadChangeParam } from "antd/lib/upload";
-import fetchImportaPlanilha from "../../../../service/importarPlanilha";
+import {fetchCadastraEscolaPlanilha} from "../../../../service/escolaApi";
 import React, { useRef, useState } from "react";
 import { cadastroEscolaPlanilhaURL } from "../../../../consts/service";
 import { useEscolasCadastradas } from "../../../../context/escolasCadastradasErro";
@@ -46,7 +46,7 @@ const UploadPlanilha: React.FC<UploadPlanilhaEscolaProps> = ({
       arquivoData.append("arquivo", arquivos[0].originFileObj as File);
 
       try {
-        const response = await fetchImportaPlanilha(cadastroEscolaPlanilhaURL, arquivoData);
+        const response = await fetchCadastraEscolaPlanilha(arquivoData);
 
         if (
           response &&

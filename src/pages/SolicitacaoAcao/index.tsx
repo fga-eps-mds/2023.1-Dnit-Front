@@ -2,11 +2,12 @@ import personagem from "../../assets/julia11.png";
 import Header from "../../components/Header";
 import SolicitacaoAcaoForm from "../../components/SolicitarAcaoForm";
 import "../../styles/App.css";
+import Footer from "../../components/Footer";
 
 function SolicitacaoAcao() {
   return (
     <div className="App">
-      <Header login />
+      <Header hasLogged={false} />
       <div className="Secao">
         <div className="Lateral">
           <div className=" Lateral">
@@ -18,6 +19,7 @@ function SolicitacaoAcao() {
           <SolicitacaoAcaoForm />
         </div>
       </div>
+      <Footer home />
     </div>
   );
 }

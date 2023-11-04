@@ -1,6 +1,6 @@
 import TrilhaNavegacao from "../../../../components/escolasCadastradas/Navegacao";
 import FiltragemTabela from "../../../../components/escolasCadastradas/Tabela/Filtro";
-import Footer from "../../../../components/Footer/styles";
+import Footer from "../../../../components/Footer";
 import Header from "../../../../components/escolasCadastradas/CabecalhoLista";
 import TabelaEscola from "../../../../components/escolasCadastradas/Tabela/Tabela";
 import { FiltroProvider } from "../../../../context/FiltroTabela";

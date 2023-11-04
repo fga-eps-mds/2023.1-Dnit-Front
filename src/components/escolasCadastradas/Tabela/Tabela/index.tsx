@@ -6,6 +6,7 @@ import ExibirInformacoesEscola from "../../../../pages/info/escola/Informacoes/"
 import "../../../../styles/App.css";
 import "./styles.css";
 
+
 export default function Tabela() {
   const {
     escolasFiltradas,
@@ -218,6 +219,7 @@ export default function Tabela() {
                           className="options"
                           onClick={() => handleOptionClick(Number(opcoes))}
                           data-testid={`options-${opcoes}`}
+                          onKeyDown={() => {}}
                         >
                           {opcoes}
                         </div>

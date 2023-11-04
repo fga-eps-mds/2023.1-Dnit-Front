@@ -1,0 +1,157 @@
+.br-button {
+  --button-radius: 100em;
+  --button-xsmall: 24px;
+  --button-small: 32px;
+  --button-medium: 40px;
+  --button-large: 48px;
+  --button-size: var(--button-medium);
+  align-items: center;
+  border: 0;
+  border-radius: var(--button-radius);
+  color: var(--interactive);
+  cursor: pointer;
+  display: flex;
+  font-size: var(--font-size-scale-up-01);
+  font-weight: var(--font-weight-semi-bold);
+  height: var(--button-size);
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  justify-content: center;
+  white-space: nowrap;
+  width: auto;
+  padding: var(--test-padding);
+}
+
+.br-button:hover {
+  opacity: 80%;
+}
+
+.br-button.block {
+  width: 100%;
+}
+@media (min-width: 576px) {
+  .br-button.block-sm {
+    width: 100%;
+  }
+  .br-button.auto-sm {
+    width: auto;
+  }
+}
+@media (min-width: 992px) {
+  .br-button.block-md {
+    width: 100%;
+  }
+  .br-button.auto-md {
+    width: auto;
+  }
+}
+@media (min-width: 1280px) {
+  .br-button.block-lg {
+    width: 100%;
+  }
+  .br-button.auto-lg {
+    width: auto;
+  }
+}
+@media (min-width: 1600px) {
+  .br-button.block-xl {
+    width: 100%;
+  }
+  .br-button.auto-xl {
+    width: auto;
+  }
+}
+
+.br-button:disabled {
+  cursor: not-allowed;
+}
+.br-button:not(:disabled) {
+  --focus-offset: var(--spacing-scale-half);
+}
+.br-button:not(:disabled):focus {
+  outline: none;
+}
+.br-button:not(:disabled).focus-visible, .br-button:not(:disabled):focus-visible {
+  outline-color: var(--focus);
+  outline-offset: var(--focus-offset);
+  outline-style: var(--focus-style);
+  outline-width: var(--focus-width);
+}
+.br-button:not(:disabled):not(:disabled):hover {
+  background-image: linear-gradient(rgba(var(--interactive-rgb), var(--hover)), rgba(var(--interactive-rgb), var(--hover)));
+}
+.br-button:not(:disabled):not(:disabled):active {
+  background-image: linear-gradient(rgba(var(--interactive-rgb), var(--pressed)), rgba(var(--interactive-rgb), var(--pressed)));
+}
+.br-button.active, .br-button.is-active, .br-button[active] {
+  --hover: var(--hover-dark);
+  background-color: var(--active);
+  color: var(--color-dark);
+}
+
+.br-button.inverted, .br-button.is-inverted, .br-button[inverted], .br-button.dark-mode {
+  --color: var(--color-dark);
+  --color-rgb: var(--color-dark-rgb);
+  --text-color: var(--color-dark);
+  --interactive: var(--interactive-dark);
+  --interactive-rgb: var(--interactive-dark-rgb);
+  --visited: var(--visited-dark);
+  --hover: var(--hover-dark);
+  --pressed: var(--pressed-dark);
+  --focus-color: var(--focus-color-dark);
+  --focus: var(--focus-color-dark);
+  color: var(--interactive-dark);
+}
+.br-button.inverted.primary, .br-button.inverted[primary], .br-button.inverted.is-primary, .br-button.is-inverted.primary, .br-button.is-inverted[primary], .br-button.is-inverted.is-primary, .br-button[inverted].primary, .br-button[inverted][primary], .br-button[inverted].is-primary, .br-button.dark-mode.primary, .br-button.dark-mode[primary], .br-button.dark-mode.is-primary {
+  --interactive-rgb: var(--background-dark-rgb);
+  background-color: var(--interactive-dark);
+  color: var(--background-dark);
+}
+.br-button.inverted.secondary, .br-button.inverted[secondary], .br-button.inverted.is-secondary, .br-button.is-inverted.secondary, .br-button.is-inverted[secondary], .br-button.is-inverted.is-secondary, .br-button[inverted].secondary, .br-button[inverted][secondary], .br-button[inverted].is-secondary, .br-button.dark-mode.secondary, .br-button.dark-mode[secondary], .br-button.dark-mode.is-secondary {
+  background-color: var(--background-dark);
+}
+.br-button.inverted.active, .br-button.is-inverted.active, .br-button[inverted].active, .br-button.dark-mode.active {
+  --hover: var(--hover-light);
+  --interactive-rgb: var(--active-rgb);
+  background-color: var(--background-light);
+  color: var(--active);
+}
+
+a.br-button {
+  font-weight: var(--font-weight-semi-bold);
+  text-decoration: none !important;
+}
+
+.primary-button {
+  background-color: #1351B4 !important;
+}
+
+.primary-text {
+  color: #ffffff !important;
+}
+
+.outlined-button {
+  background-color: transparent;
+  border: 1px solid #1351B4 !important;
+}
+
+.outlined-text {
+  color: #1351B4;
+}
+
+.none-text {
+  color: #1351B4;
+}
+
+.button-row {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle-button {
+  padding: 8px !important;
+  border-radius: 50%;
+}

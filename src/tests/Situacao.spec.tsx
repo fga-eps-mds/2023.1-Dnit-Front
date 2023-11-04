@@ -6,6 +6,9 @@ import ModalExibirInformacoes from "../components/escolasCadastradas/modal/Modal
 import { AuthProvider } from "../provider/Autenticacao";
 import localStorageMock from "./mock/memoriaLocal";
 import server from "./mock/servicosAPI";
+import { excluirSituacaoURL } from "../consts/service";
+import { Permissao } from "../models/auth";
+import { autenticar } from "./mock/autenticacao";
 
 beforeAll(() => server.listen());
 beforeEach(() => {
@@ -14,10 +17,8 @@ beforeEach(() => {
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
-const escolasService = "https://escola.dnit.eps-fga.live/api"
-
 test("Remover situação escola", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.EscolaVisualizar, Permissao.EscolaEditar);
 
   render(
     <MemoryRouter initialEntries={["/escolas-cadastradas"]}>
@@ -34,11 +35,11 @@ test("Remover situação escola", async () => {
 });
 
 test("Remover situação escola erro", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.EscolaRemover, Permissao.EscolaVisualizar);
 
   server.use(
     rest.post(
-      `${escolasService}/escolas/removerSituacao`,
+      excluirSituacaoURL,
       (req, res, ctx) => {
         return res(ctx.status(403));
       }
@@ -59,7 +60,7 @@ test("Remover situação escola erro", async () => {
 });
 
 test("Erro de Provider de selectedValue", async () => {
-  localStorage.setItem("login", "authenticated");
+  autenticar(Permissao.EscolaRemover, Permissao.EscolaVisualizar);
 
   const escola = {
     idEscola: 104,

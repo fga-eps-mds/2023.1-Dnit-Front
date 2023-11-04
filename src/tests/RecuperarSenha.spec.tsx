@@ -5,14 +5,22 @@ import { act } from "react-dom/test-utils";
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
 import { AuthProvider } from "../provider/Autenticacao";
+<<<<<<< HEAD
 import {fetchRecuperarSenha} from "../service/modificador";
 
 jest.mock("../service/modificador", () => ({
   ...jest.requireActual("../service/modificador"),
   fetchRecuperarSenha: jest.fn(),
+=======
+import {fetchRecuperaSenha} from "../service/usuarioApi";
+
+jest.mock("../service/usuarioApi", () => ({
+  ...jest.requireActual("../service/usuarioApi"),
+  fetchRecuperaSenha: jest.fn(),
+>>>>>>> hotfix/38-refatorar-comunicacao-com-a-api
 }));
 
-const mockedUseRecoverPassword = fetchRecuperarSenha as jest.Mock;
+const mockedUseRecoverPassword = fetchRecuperaSenha as jest.Mock;
 
 window.matchMedia = jest.fn().mockImplementation((query) => {
   return {
@@ -40,7 +48,7 @@ describe("Recover Password Tests", () => {
     );
     await act(async () => {
       const passwordInput = screen.getByLabelText("Email");
-      const sendButton = screen.getByText("Enviar link de recuperação");
+      const sendButton = screen.getByText("Enviar Link de Recuperação");
 
       fireEvent.change(passwordInput, { target: { value: "teste@gmail.com" } });
       fireEvent.click(sendButton);

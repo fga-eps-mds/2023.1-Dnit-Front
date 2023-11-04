@@ -6,13 +6,13 @@ import {
   MunicipioData,
   SolicitacaoDeAcaoData,
 } from "../../models/service";
-import {fetchEtapasDeEnsino} from "../../service/receptor";
-import {fetchUnidadeFederativa} from "../../service/receptor";
-import {fetchEscolasInep} from "../../service/receptor";
-import {fetchMunicipio} from "../../service/receptor";
-import fetchSolicitaAcao from "../../service/solicitarAcao";
+import {fetchEtapasDeEnsino} from "../../service/escolaApi";
+import {fetchUnidadeFederativa} from "../../service/escolaApi";
+import {fetchEscolasInep} from "../../service/escolaApi";
+import {fetchMunicipio} from "../../service/escolaApi";
+import {fetchSolicitaAcao} from "../../service/escolaApi";
 import "../../styles/form.css";
-import ButtonComponent from "../Botao";
+import { ButtonComponent } from "../Button";
 
 const { Option } = Select;
 
@@ -118,6 +118,10 @@ const SolicitacaoAcaoForm: React.FC = () => {
       Observacoes: values.observacoes,
     };
     enviarSolicitacao(formData as SolicitacaoDeAcaoData);
+  };
+
+  const handleCustomSubmit = () => {
+    form.submit();
   };
 
   return (
@@ -311,13 +315,11 @@ const SolicitacaoAcaoForm: React.FC = () => {
           <Form.Item>
             <Space>
               <ButtonComponent
-                data-testid="Enviar"
-                nome="Enviar solicitação"
-                cor="#1351B4"
-                cor_letra="#FFFFFF"
-                cor_borda="#1351B4"
-                largura="25em"
+                label="Enviar"
+                buttonStyle="primary"
+                padding="100px"
                 disabled={!botaoEnviarDisponivel}
+                onClick={handleCustomSubmit}
               />
             </Space>
           </Form.Item>

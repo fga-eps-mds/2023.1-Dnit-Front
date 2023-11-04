@@ -16,6 +16,9 @@
 .App {
   text-align: center;
   font-family: Rawline, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .App-logo {
@@ -30,6 +33,10 @@
   border-bottom: 1px solid var(--gray1);
   padding: 0 25px;
   height: 85px;
+}
+
+.Main-content {
+  flex: 1;
 }
 
 .iconGov {
@@ -84,7 +91,7 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  height: calc(100vh - 86px);
+  min-height: calc(100vh - 90px);
 }
 
 .Secao2 {
@@ -126,10 +133,20 @@
   justify-content: center;
 }
 
+.footer-small-page {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+.page-content {
+  min-height: calc(100vh - 90px);
+}
+
 @media (max-width: 1250px) {
   .Lateral {
     width: 100%;
-    height: 60%;
+    height: 35vh;
   }
 
   .Central {
@@ -145,5 +162,20 @@
   .Secao2 {
     width: 100%;
     height: 85%;
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+
+.btn-none {
+  background: transparent;
+  border: none;
+}
+
+.delete-perfil {
+  .br-modal {
+    height: fit-content;
   }
 }

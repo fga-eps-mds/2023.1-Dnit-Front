@@ -3,9 +3,9 @@ import type { UploadFile, UploadProps } from "antd";
 import { Button, Upload, message } from "antd";
 import { UploadChangeParam } from "antd/lib/upload";
 import React, { useRef, useState } from "react";
-import { cadastroRodoviasURL } from "../../../../consts/service";
 import "../../../../styles/dados.css";
-import { fetchForm } from "../../../../service/autenticador";
+import { cadastroRodoviasURL } from "../../../../consts/service";
+import { fetchCadastraRodovia } from "../../../../service/upsApi";
 
 const { Dragger } = Upload;
 
@@ -34,7 +34,7 @@ const UploadPlanilha: React.FC<UploadPlanilhaRodoviaProps> = ({
             const formData = new FormData();
             formData.append("arquivo", arquivos[0].originFileObj as File);
             try {
-                await fetchForm(formData);
+                await fetchCadastraRodovia(formData);
                 message.success("Arquivo adicionado com sucesso");
                 onClickAceito();
 

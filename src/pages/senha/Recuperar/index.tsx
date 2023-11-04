@@ -6,7 +6,7 @@ import "../../../styles/App.css";
 function EsqueciSenha() {
   return (
     <div className="App">
-      <Header />
+      <Header hasLogged={false} />
       <div className="Secao">
         <div className="Lateral">
           <img className="imgLateral" src={imgLateral} alt="Logo DNIT" />

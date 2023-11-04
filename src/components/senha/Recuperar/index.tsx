@@ -1,9 +1,9 @@
 import { Form, Input, notification, Space } from "antd";
 import React from "react";
 import LogoDNIT from "../../../assets/logoDnitAzul.png";
-import {fetchRecuperarSenha} from "../../../service/modificador";
+import {fetchRecuperaSenha} from "../../../service/usuarioApi";
 import "../../../styles/form.css";
-import ButtonComponent from "../../Botao";
+import {ButtonComponent} from "../../Button";
 
 const EsqueciSenhaForm: React.FC = () => {
   const [formulario] = Form.useForm();
@@ -22,11 +22,15 @@ const EsqueciSenhaForm: React.FC = () => {
     };
 
     try {
-      await fetchRecuperarSenha(recuperarSenhaData);
+      await fetchRecuperaSenha(recuperarSenhaData);
       api.success({ message: "Link de recuperação enviado ao email!" });
     } catch {
       api.error({ message: `Erro ao enviar link de recuperação` });
     }
+  };
+
+  const handleCustomSubmit = () => {
+    formulario.submit();
   };
 
   return (
@@ -55,11 +59,10 @@ const EsqueciSenhaForm: React.FC = () => {
           <Form.Item className="esqueci">
             <Space>
               <ButtonComponent
-                nome="Enviar link de recuperação"
-                cor="#1351B4"
-                cor_letra="#FFFFFF"
-                cor_borda="#1351B4"
-                largura="16em"
+                label="Enviar Link de Recuperação"
+                buttonStyle="primary"
+                padding="40px"
+                onClick={handleCustomSubmit}
               />
             </Space>
           </Form.Item>

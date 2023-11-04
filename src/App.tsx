@@ -12,13 +12,16 @@ import RegisterSchool from "./pages/cadastro/CadastrarEscola";
 import ResetPassword from "./pages/senha/Redefinir/";
 import SolicitacaoAcao from "./pages/SolicitacaoAcao/";
 import TelaUPS from "./pages/UPS/";
-import { AuthContext } from "./provider/Autenticacao";
+import GerenciarPerfis from "./pages/GerenciarPerfis";
+import GerenciarUsuario from "./pages/GerenciarUsuario";
+import { AuthContext, configuraAutenticacaoAxios } from "./provider/Autenticacao";
 import "./styles/App.css";
 
 function App() {
   const { getAuth } = useContext(AuthContext);
   const isAuthenticated = getAuth();
   document.title = "DNIT";
+  configuraAutenticacaoAxios();
   return (
     <Routes>
       {isAuthenticated ? (
@@ -30,6 +33,8 @@ function App() {
           <Route path="/escolas-cadastradas" element={<EscolasCadastradas />} />
           <Route path="/cadastrarRodovias" element={<CadastrarRodovias />} />
           <Route path="/telaUPS" element={<TelaUPS />} />
+          <Route path="/gerenciarUsuario" element={<GerenciarUsuario />}/>
+          <Route path="/gerenciarPerfis" element={<GerenciarPerfis />} />
         </>
       ) : (
         <>

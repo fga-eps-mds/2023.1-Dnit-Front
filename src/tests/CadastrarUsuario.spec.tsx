@@ -4,15 +4,24 @@ import { act, fireEvent, render, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
 import { AuthProvider } from "../provider/Autenticacao";
+<<<<<<< HEAD
 import {fetchCadastroUsuario} from "../service/autenticador";
 import server from "./mock/servicosAPI";
 
 jest.mock("../service/autenticador", () => ({
   ...jest.requireActual("../service/autenticador"),
   fetchCadastroUsuario: jest.fn(),
+=======
+import {fetchCadastroUsuarioDnit} from "../service/usuarioApi";
+import server from "./mock/servicosAPI";
+
+jest.mock("../service/usuarioApi", () => ({
+  ...jest.requireActual("../service/usuarioApi"),
+  fetchCadastroUsuarioDnit: jest.fn(),
+>>>>>>> hotfix/38-refatorar-comunicacao-com-a-api
 }));
 
-const mockedUseRegister = fetchCadastroUsuario as jest.Mock;
+const mockedUseRegister = fetchCadastroUsuarioDnit as jest.Mock;
 
 beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
@@ -33,21 +42,23 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
 
 test("should render Register", async () => {
   mockedUseRegister.mockResolvedValueOnce({ success: true });
-  
-    // eslint-disable-next-line testing-library/render-result-naming-convention
-    const screen = render(
-      <MemoryRouter initialEntries={["/cadastro"]}>
-        <AuthProvider>
-          <App />
-        </AuthProvider>
-      </MemoryRouter>
-    );
+
+  // eslint-disable-next-line testing-library/render-result-naming-convention
+  const screen = render(
+    <MemoryRouter initialEntries={["/cadastro"]}>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </MemoryRouter>
+  );
 
   const emailInput = screen.getByLabelText("E-mail Institucional");
   const passwordInput = screen.getByLabelText("Senha");
   const confirmPasswordInput = screen.getByLabelText("Confirmar Senha");
   const nomeInput = screen.getByLabelText("Nome Completo");
-  const usuarioDnitRadioButton = screen.getByRole("radio", { name: "Usuário DNIT" });
+  const usuarioDnitRadioButton = screen.getByRole("radio", {
+    name: "Usuário DNIT",
+  });
   const button = screen.getByText("Cadastrar-se");
 
   fireEvent.change(emailInput, { target: { value: "example@example.com" } });

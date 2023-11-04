@@ -46,7 +46,7 @@ export interface CadastroUsuarioData {
   email: string;
   senha: string;
   nome: string;
-  uf: number;
+  ufLotacao: number;
 }
 
 export interface CadastroEscolaData {
@@ -127,6 +127,16 @@ export interface FiltroEscolaData {
   };
 }
 
+<<<<<<< HEAD
+=======
+export interface EscolasFiltradasResponse {
+  escolas: EscolaData[];
+  escolasPorPagina: number;
+  totalEscolas: number;
+  totalPaginas: number;
+}
+
+>>>>>>> hotfix/38-refatorar-comunicacao-com-a-api
 export interface AlterarDadosEscolaData {
   idEscola: number;
   idSituacao: number;
@@ -165,4 +175,14 @@ export interface SolicitacaoDeAcaoData {
 export interface CalcularUpsData {
   latitude: number;
   longitude: number;
+}
+
+export interface CalcularUpsResponse {
+  status: number;
+  ups2018: number;
+  ups2019: number;
+  ups2020: number;
+  ups2021: number;
+  ups2022: number;
+  upsGeral: number;
 }

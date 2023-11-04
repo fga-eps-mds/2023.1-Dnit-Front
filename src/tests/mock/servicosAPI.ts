@@ -1,12 +1,24 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
+import { atualizarTipoPerfil, atualizarTokenUrl, cadastrarPerfilUrl, excluiPerfil, listarPerfis, listarPermissoesCategoria, listarUsuarioPermissoes, listarUsuarios, obterPerfil, urlAPIEscolas, urlAPIUps } from "../../consts/service";
+import { Permissao, TipoPerfil } from "../../models/auth";
+import { usuarios } from "../stub/usuarioModelos";
 
-const escolasService = `${process.env.REACT_APP_API_ESCOLAS}/api`
-const upsService = `${process.env.REACT_APP_API_UPS}/api`
+const escolasService = urlAPIEscolas;
+const upsService = urlAPIUps;
 
 const server = setupServer(
   rest.get(
-   `${escolasService}/escolas/obter`,
+    listarUsuarioPermissoes,
+    (_, res, ctx) => res(ctx.json(Object.values(Permissao))),
+  ),
+  rest.post(
+    atualizarTokenUrl,
+    (_, res, ctx) => res(
+      ctx.json({ token: "token", tokenAtualizacao: "token atualizacao", expiraEm: new Date().toISOString(), permissoes: [Permissao.EscolaCadastrar] })),
+  ),
+  rest.get(
+    `${escolasService}/escolas/obter`,
     (req, res, ctx) => {
       return res(
         ctx.json({
@@ -587,7 +599,168 @@ const server = setupServer(
         })
       );
     }
-  )
+  ),
+  rest.delete(
+    `${excluiPerfil}/1`,
+    (req, res, ctx) => {
+      return res(
+        ctx.delay(100),
+        ctx.json('Perfil excluido')
+      );
+    }
+  ),
+  rest.delete(
+    `${excluiPerfil}/erro`,
+    (req, res, ctx) => {
+      return res(ctx.status(400));
+    }
+  ),
+  rest.get(
+    `${listarPermissoesCategoria}`,
+    (req, res, ctx) => {
+      return res(ctx.status(200), ctx.json([
+        {
+          categoria: 'Escola',
+          permissoes: [Permissao.EscolaCadastrar, Permissao.EscolaEditar, Permissao.EscolaRemover],
+        },
+        {
+          categoria: 'Ups',
+          permissoes: [Permissao.UpsCalcularEscola, Permissao.UpsCalcularSinistro],
+        }
+      ]));
+    }
+  ),
+  rest.post(
+    `${cadastrarPerfilUrl}`,
+    (req, res, ctx) => {
+      return res(ctx.status(200), ctx.json({ 'id': '1' }));
+    }
+  ),
+  rest.get(
+    `${obterPerfil}/erro`,
+    (req, res, ctx) => { return res(ctx.status(404)) }
+  ),
+  rest.get(
+    `${obterPerfil}/1`,
+    (req, res, ctx) => {
+      return res(ctx.status(200),
+        ctx.json({
+          id: '1',
+          nome: 'perfil-teste',
+          quantidadeUsuarios: 1,
+          tipo: TipoPerfil.Customizavel,
+          permissoes: [Permissao.EscolaCadastrar],
+          categoriasPermissao: [
+            {
+              categoria: 'Escola',
+              permissoes: [Permissao.EscolaCadastrar],
+            },
+            {
+              categoria: 'Ups',
+              permissoes: [],
+            }
+          ]
+        }));
+    }
+  ),
+  rest.put(
+    `${obterPerfil}/1`,
+    (req, res, ctx) => {
+      return res(ctx.status(200),
+        ctx.json({
+          id: '1',
+          nome: 'perfil-teste',
+          quantidadeUsuarios: 1,
+          tipo: TipoPerfil.Customizavel,
+          permissoes: [Permissao.EscolaCadastrar],
+          categoriasPermissao: [
+            {
+              categoria: 'Escola',
+              permissoes: [Permissao.EscolaCadastrar],
+            },
+            {
+              categoria: 'Ups',
+              permissoes: [],
+            }
+          ]
+        }));
+    }
+  ),
+  rest.get(listarUsuarioPermissoes,
+    (req, res, ctx) => res(ctx.status(200), ctx.json([]))),
+  rest.get(listarPerfis,
+    (req, res, ctx) =>
+      res(
+        ctx.status(200),
+        ctx.json([
+          {
+            id: '1',
+            nome: 'Administrador',
+            quantidadeUsuarios: 1,
+            tipo: TipoPerfil.Administrador,
+            permissoes: [Permissao.EscolaCadastrar, Permissao.EscolaEditar, Permissao.EscolaRemover, Permissao.UpsCalcularEscola, Permissao.UpsCalcularSinistro],
+            categoriasPermissao: [
+              {
+                categoria: 'Escola',
+                permissoes: [Permissao.EscolaCadastrar, Permissao.EscolaEditar, Permissao.EscolaRemover],
+              },
+              {
+                categoria: 'Ups',
+                permissoes: [Permissao.UpsCalcularEscola, Permissao.UpsCalcularSinistro],
+              }
+            ]
+          },
+          {
+            id: '2',
+            nome: 'Básico',
+            quantidadeUsuarios: 1,
+            tipo: TipoPerfil.Basico,
+            permissoes: [Permissao.EscolaCadastrar],
+            categoriasPermissao: [
+              {
+                categoria: 'Escola',
+                permissoes: [Permissao.EscolaCadastrar],
+              },
+              {
+                categoria: 'Ups',
+                permissoes: [],
+              }
+            ]
+          },
+          {
+            id: '3',
+            nome: 'Custom',
+            quantidadeUsuarios: 1,
+            tipo: TipoPerfil.Customizavel,
+            permissoes: [Permissao.EscolaCadastrar],
+            categoriasPermissao: [
+              {
+                categoria: 'Escola',
+                permissoes: [Permissao.EscolaCadastrar],
+              },
+              {
+                categoria: 'Ups',
+                permissoes: [],
+              }
+            ]
+          }
+        ]),
+      )
+  ),
+  rest.patch(`${atualizarTipoPerfil}/0/perfil`,
+    (req, res, ctx) => res(ctx.status(200), ctx.json([]))),
+  rest.patch(`${atualizarTipoPerfil}/1/perfil`,
+    (req, res, ctx) => res(ctx.status(400), ctx.body("erro"))),
+  // rest.get('https://localhost:7083/api/usuario?pagina=1&itemsPorPagina=10',
+  rest.get(`${listarUsuarios}*`, (req, res, ctx) => res(ctx.status(200), ctx.json(
+    {
+      "pagina": 1,
+      "itemsPorPagina": 10,
+      "total": 10,
+      "totalPaginas": 10,
+      "items": usuarios
+    }
+  ))),
 );
 
 export default server;

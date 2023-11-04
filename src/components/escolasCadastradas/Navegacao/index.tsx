@@ -3,6 +3,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./styles.css";
 
+
 interface Pagina {
   nome: string;
   link: string;
@@ -10,11 +11,12 @@ interface Pagina {
 
 interface TrilhaNavegacaoProps {
   elementosLi: Pagina[];
-  escolasCadastradas?: boolean
+  escolasCadastradas?: boolean;
 }
 
 const TrilhaDeNavegacao: React.FC<TrilhaNavegacaoProps> = ({ elementosLi, escolasCadastradas }) => {
   const navigate = useNavigate();
+
   return (
     <div className="br-breadcrumb">
       <ul className="crumb-list">
