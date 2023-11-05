@@ -1,5 +1,5 @@
 import { notification } from "antd";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useFiltroTabela } from "../../../../context/FiltroTabela";
 import { useSelectedValue } from "../../../../context/Situacao";
 import { AlterarDadosEscolaData, EscolaData } from "../../../../models/service";
@@ -9,6 +9,8 @@ import {fetchExcluirSituacao} from "../../../../service/escolaApi";
 import ModalExcluirEscolas from "../ModalExcluir";
 import "./styles.css";
 import ModalBody from "../ModalCampos";
+import { AuthContext } from "../../../../provider/Autenticacao";
+import { Permissao } from "../../../../models/auth";
 
 interface ModalProps {
   escola: EscolaData;
@@ -28,7 +30,7 @@ const ModalInformacoes = ({ escola, open, close }: ModalProps) => {
   const [numAlunos, setNumAlunos] = useState(escola?.numeroTotalDeAlunos);
   const [numDocentes, setNumDocentes] = useState(escola?.numeroTotalDeDocentes);
   const [etapasEnsino, setEtapasEnsino] = useState(escola?.etapaEnsino);
-
+  const { temPermissao } = useContext(AuthContext);
   useEffect(() => {
     if (escola?.telefone) setTelefone(escola.telefone);
   }, [escola?.telefone]);
@@ -202,13 +204,15 @@ const ModalInformacoes = ({ escola, open, close }: ModalProps) => {
             />
             <div className="br-modal-footer ">
               <div className="content-left">
-                <button
-                  className=" br-button cancel-button "
-                  type="button"
-                  onClick={() => setIsModalExcluirEscolasOpen(true)}
-                >
-                  Excluir escola
-                </button>
+                {temPermissao(Permissao.EscolaRemover) &&
+                  <button
+                    className=" br-button cancel-button "
+                    type="button"
+                    onClick={() => setIsModalExcluirEscolasOpen(true)}
+                  >
+                    Excluir escola
+                  </button>
+                }
               </div>
               <div className="content-right">
                 <button
@@ -221,13 +225,15 @@ const ModalInformacoes = ({ escola, open, close }: ModalProps) => {
                 >
                   Cancelar
                 </button>
-                <button
-                  className="br-button primary ml-2 "
-                  type="button"
-                  onClick={onFinish}
-                >
-                  Salvar
-                </button>
+                {temPermissao(Permissao.EscolaEditar) &&
+                  <button
+                    className="br-button primary ml-2 "
+                    type="button"
+                    onClick={onFinish}
+                  >
+                    Salvar
+                  </button>
+                }
               </div>
             </div>
           </div>

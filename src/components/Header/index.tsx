@@ -5,7 +5,7 @@ import "../../styles/App.css";
 import BotaoLinks from "../../assets/icones/BotaoLinks.svg";
 import BotaoMenu from "../../assets/icones/BotaoMenu.svg";
 import LogoDNITAzul from "../../assets/logoDnitAzul.png";
-import "../estilo/Cabecalho.css";
+import "./styles.css";
 import IconUsuario from "../../assets/icones/usuario.svg";
 import { AuthLocalStorage } from "../../provider/Autenticacao";
 

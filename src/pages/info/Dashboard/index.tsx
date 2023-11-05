@@ -8,7 +8,7 @@ import IconGerenciarUsuarios from "../../../assets/icones/GerenciarUsuarios.svg"
 import { Card, Collapse, CollapseProps } from "antd";
 import { useNavigate } from "react-router";
 import Header from "../../../components/Header";
-import TrilhaDeNavegacao from "../../../components/escolasCadastradas/Navegacao";
+import TrilhaDeNavegacao from "../../../components/Navegacao";
 import Footer from "../../../components/Footer";
 import "../../../styles/App.css";
 import "./styles.css";

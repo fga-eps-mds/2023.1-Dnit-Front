@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./Styles.css";
+import "./styles.css";
 
 interface SelectOptions {
   id: string;

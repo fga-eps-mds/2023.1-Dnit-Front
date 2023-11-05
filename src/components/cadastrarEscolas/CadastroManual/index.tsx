@@ -197,7 +197,7 @@ export default function CadastroManual({ onClickBack }: Step2Props) {
   return (
     <div>
       {contextHolder}
-      <h2>Cadastrar EsAcola</h2>
+      <h2>Cadastrar Escola</h2>
       <Form
         form={form}
         onFinish={onFinish}

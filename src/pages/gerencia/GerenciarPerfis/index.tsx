@@ -1,18 +1,18 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "../components/Header"
-import TrilhaDeNavegacao from "../components/escolasCadastradas/Navegacao";
-import PerfilDialog from "../components/PerfilDialog";
-import { Permissao, TipoPerfil } from "../models/auth";
-import Footer from "../components/Footer";
-import Table, { CustomTableRow } from "../components/Table/Table";
+import Header from "../../../components/Header"
+import TrilhaDeNavegacao from "../../../components/Navegacao";
+import PerfilDialog from "../../../components/PerfilDialog";
+import { Permissao, TipoPerfil } from "../../../models/auth";
+import Footer from "../../../components/Footer";
+import Table, { CustomTableRow } from "../../../components/Table";
 import ReactLoading from "react-loading";
 import { notification } from "antd";
-import {fetchPerfis} from "../service/usuarioApi";
-import { DeletarPerfilArgs, DeletarPerfilDialog } from "../components/DeletarPerfilDialog";
-import { AuthContext } from "../provider/Autenticacao";
-import { ButtonComponent } from "../components/Button";
-import { PerfilModel } from "../models/perfil";
+import {fetchPerfis} from "../../../service/usuarioApi";
+import { DeletarPerfilArgs, DeletarPerfilDialog } from "../../../components/DeletarPerfilDialog";
+import { AuthContext } from "../../../provider/Autenticacao";
+import { ButtonComponent } from "../../../components/Button";
+import { PerfilModel } from "../../../models/perfil";
 
 interface PerfilDialogArgs {
   id: string | null;

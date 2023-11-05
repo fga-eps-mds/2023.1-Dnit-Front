@@ -12,8 +12,8 @@ import RegisterSchool from "./pages/cadastro/CadastrarEscola";
 import ResetPassword from "./pages/senha/Redefinir/";
 import SolicitacaoAcao from "./pages/SolicitacaoAcao/";
 import TelaUPS from "./pages/UPS/";
-import GerenciarPerfis from "./pages/GerenciarPerfis";
-import GerenciarUsuario from "./pages/GerenciarUsuario";
+import GerenciarPerfis from "./pages/gerencia/GerenciarPerfis";
+import GerenciarUsuario from "./pages/gerencia/GerenciarUsuario";
 import { AuthContext, configuraAutenticacaoAxios } from "./provider/Autenticacao";
 import "./styles/App.css";
 

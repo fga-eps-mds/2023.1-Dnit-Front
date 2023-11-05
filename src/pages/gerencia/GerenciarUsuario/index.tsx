@@ -1,21 +1,21 @@
-import Footer from "../components/Footer";
-import "../styles/App.css";
-import Header from "../components/Header";
+import Footer from "../../../components/Footer";
+import "../../../styles/App.css";
+import Header from "../../../components/Header";
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import TrilhaDeNavegacao from "../components/escolasCadastradas/Navegacao";
-import Table, { CustomTableRow } from "../components/Table/Table";
+import TrilhaDeNavegacao from "../../../components/Navegacao";
+import Table, { CustomTableRow } from "../../../components/Table";
 import ReactLoading from "react-loading";
-import { EditarTipoPerfilDialog } from "../components/EditarTipoPerfilDialog";
-import Select from "../components/Select";
-import {fetchUsuarios} from "../service/usuarioApi";
+import { EditarTipoPerfilDialog } from "../../../components/EditarTipoPerfilDialog";
+import Select from "../../../components/Select";
+import {fetchUsuarios} from "../../../service/usuarioApi";
 import { notification } from "antd";
-import { UsuarioModel } from "../models/usuario";
-import {fetchUnidadeFederativa} from "../service/escolaApi";
-import {fetchPerfis} from "../service/usuarioApi";
-import { Permissao } from "../models/auth";
-import { AuthContext } from "../provider/Autenticacao";
-import {fetchMunicipio} from "../service/escolaApi";
+import { UsuarioModel } from "../../../models/usuario";
+import {fetchUnidadeFederativa} from "../../../service/escolaApi";
+import {fetchPerfis} from "../../../service/usuarioApi";
+import { Permissao } from "../../../models/auth";
+import { AuthContext } from "../../../provider/Autenticacao";
+import {fetchMunicipio} from "../../../service/escolaApi";
 
 interface EditarTipoPerfilArgs {
   id: string | null;
