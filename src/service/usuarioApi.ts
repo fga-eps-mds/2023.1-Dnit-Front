@@ -4,15 +4,15 @@ import { PermissaoCategoria, LoginResponse, Permissao, AtualizarTokenDto } from 
 import { PerfilDto, PerfilModel } from "../models/perfil";
 import { ListarUsuariosQueryParams } from "../models/usuario";
 import * as DATA from "../models/service";
-import { ResponseStatus, fetchCadastros, fetchModificador, fetchDados } from "./apiUtils";
+import { ResponseStatus, sendCadastros, update, fetchDados } from "./apiUtils";
 import { AuthLocalStorage } from "../provider/Autenticacao";
 
 export async function fetchPermissoesCategoria(): Promise<PermissaoCategoria[]> {
     return fetchDados<PermissaoCategoria[]>(URL.listarPermissoesCategoria);
 }
 
-export async function fetchCadastroPerfil(perfil: PerfilDto): Promise<PerfilModel> {
-    //return fetchCadastros<PerfilModel>(URL.cadastrarPerfilUrl, perfil);
+export async function sendCadastroPerfil(perfil: PerfilDto): Promise<PerfilModel> {
+    //return sendCadastros<PerfilModel>(URL.cadastrarPerfilUrl, perfil);
     try {
         const response: AxiosResponse<PerfilModel> = await axios.post(
             URL.cadastrarPerfilUrl,
@@ -41,7 +41,7 @@ export async function fetchPerfis(pagina: number, tamanhoPagina: number, nome: s
     }
 }
 
-export async function fetchAtualizaPerfil(id: string, perfil: PerfilDto): Promise<PerfilModel> {
+export async function updatePerfil(id: string, perfil: PerfilDto): Promise<PerfilModel> {
     try {
         const response: AxiosResponse<PerfilModel> = await axios.put(`${URL.atualizarPerfil}/${id}`, perfil);
         return response.data;
@@ -51,7 +51,7 @@ export async function fetchAtualizaPerfil(id: string, perfil: PerfilDto): Promis
     }
 }
 
-export async function fetchExcluiPerfil(id: string): Promise<ResponseStatus> {
+export async function deletePerfil(id: string): Promise<ResponseStatus> {
     try {
         const response: AxiosResponse<ResponseStatus> = await axios.delete(
             URL.excluiPerfil + "/" + id
@@ -73,7 +73,7 @@ export async function fetchObtemPerfil(id: string): Promise<PerfilModel> {
     }
 }
 
-export async function fetchLogin(data: DATA.LoginData): Promise<LoginResponse> {
+export async function sendLogin(data: DATA.LoginData): Promise<LoginResponse> {
     try {
         const response: AxiosResponse<LoginResponse> = await axios.post(
             URL.loginURL,
@@ -97,7 +97,7 @@ export async function fetchPermissoesDoUsuario(): Promise<Permissao[]> {
     }
 }
 
-export async function fetchAtualizaToken(dados: AtualizarTokenDto): Promise<LoginResponse> {
+export async function sendNewToken(dados: AtualizarTokenDto): Promise<LoginResponse> {
     try {
         const response: AxiosResponse<LoginResponse> = await axios.post(
             URL.atualizarTokenUrl,
@@ -110,16 +110,16 @@ export async function fetchAtualizaToken(dados: AtualizarTokenDto): Promise<Logi
     }
 }
 
-export async function fetchCadastroUsuarioDnit(data: DATA.CadastroUsuarioData): Promise<ResponseStatus> {
-    return fetchCadastros<DATA.CadastroUsuarioData>(URL.cadastroUsuarioURL, data);
+export async function sendCadastroUsuarioDnit(data: DATA.CadastroUsuarioData): Promise<ResponseStatus> {
+    return sendCadastros<DATA.CadastroUsuarioData>(URL.cadastroUsuarioURL, data);
 }
 
-export async function fetchRecuperaSenha(data: DATA.RecuperarSenhaData): Promise<ResponseStatus> {
-    return fetchModificador<DATA.RecuperarSenhaData>(URL.recuperarSenhaURL, data);
+export async function updateRecuperarSenha(data: DATA.RecuperarSenhaData): Promise<ResponseStatus> {
+    return update<DATA.RecuperarSenhaData>(URL.recuperarSenhaURL, data);
 }
 
-export async function fetchRedefineSenha(data: DATA.RedefinirSenhaData): Promise<ResponseStatus> {
-    return fetchModificador<DATA.RedefinirSenhaData>(URL.redefinirSenhaURL, data);
+export async function updateRedefineSenha(data: DATA.RedefinirSenhaData): Promise<ResponseStatus> {
+    return update<DATA.RedefinirSenhaData>(URL.redefinirSenhaURL, data);
 }
 
 export async function fetchUsuarios<T>(params: ListarUsuariosQueryParams): Promise<T> {
