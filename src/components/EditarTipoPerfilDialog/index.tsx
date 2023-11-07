@@ -33,6 +33,11 @@ export function EditarTipoPerfilDialog({ closeDialog, listaOpcoes, usuarioId, li
   const [loading, setLoading] = useState(false);
   const [tipoPerfilId, setTipoPerfilId] = useState('');
   const [notificationApi, contextHolder] = notification.useNotification();
+  const [isModalOpen, setIsModalOpen] = useState(true);
+
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
 
   const salvarPerfil = (usuarioId: string, perfilId: string) => {
     if (!tipoPerfilId.trim()) {
@@ -66,7 +71,7 @@ export function EditarTipoPerfilDialog({ closeDialog, listaOpcoes, usuarioId, li
   if (loading) {
     
     return (
-      <Modal className="modal-title">
+      <Modal className="modal-title" closeModal={() => closeDialog(false)}>
         <h4 className="text-center mt-2">Carregando Edição de Perfil... </h4>
         <div className="d-flex justify-content-center m-4">
           <ReactLoading type="spinningBubbles" color="#000000" />
@@ -77,7 +82,7 @@ export function EditarTipoPerfilDialog({ closeDialog, listaOpcoes, usuarioId, li
   }
 
   return (
-    <Modal className="modal-title ">
+    <Modal className="modal-title " closeModal={() => closeDialog(false)}>
       {contextHolder}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         <h4 className="text-center mt-1">Tipo Perfil</h4>

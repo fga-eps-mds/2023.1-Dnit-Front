@@ -24,7 +24,6 @@ export default function Select({ items, value, label, onChange, inputStyle, drop
   const [novaLista, setNovaLista] = useState<SelectOptions[]>([]);
 
   const toggleDropdown = () => {
-    // console.log('toggleDropdown foi chamada');
     setIsOpen(!isOpen);
   };
 
@@ -46,29 +45,23 @@ export default function Select({ items, value, label, onChange, inputStyle, drop
     }
     else
       setNovaLista(items);
-    //console.log({novaLista});
   }, [items])
 
-  const wrapperRef = useRef<HTMLDivElement>(null); // Adiciona esta linha para criar a ref
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const fechaDropdown = (event: MouseEvent) => {
-      // Agora você verifica se o clique foi dentro do ref ou não
       if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
         setIsOpen(false);
       }
     };
 
-    // Adiciona o listener ao document
     document.addEventListener('mousedown', fechaDropdown);
 
-    // Retorna uma função de limpeza que remove o listener
     return () => {
       document.removeEventListener('mousedown', fechaDropdown);
     };
   }, []);
-
-  //getRotuloById(value, novaLista)
 
   return (
     <div ref={wrapperRef} className="profile-type-select br-select" style={{ flexBasis: "90%" }}>
