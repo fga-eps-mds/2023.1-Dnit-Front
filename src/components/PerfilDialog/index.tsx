@@ -5,8 +5,8 @@ import ReactLoading from "react-loading";
 import { Collapse, CollapseItem } from "../Collapse";
 import {
   fetchObtemPerfil,
-  fetchAtualizaPerfil,
-  fetchCadastroPerfil,
+  updatePerfil,
+  sendCadastroPerfil,
 } from "../../service/usuarioApi";
 import { useEffect, useState } from "react";
 import { notification } from "antd";
@@ -127,7 +127,7 @@ export default function PerfilDialog({
     };
 
     if (!id) {
-      fetchCadastroPerfil(perfil)
+      sendCadastroPerfil(perfil)
         .then((p) => {
           notification.success({
             message: "O perfil foi cadastrado com sucesso!",
@@ -144,7 +144,7 @@ export default function PerfilDialog({
         .finally(() => setLoading(false));
       return;
     }
-    fetchAtualizaPerfil(id, perfil)
+    updatePerfil(id, perfil)
       .then((p) => {
         notification.success({ message: "O perfil foi alterado com sucesso!" });
         closeDialog(p);

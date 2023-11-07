@@ -5,90 +5,89 @@ import { UploadChangeParam } from "antd/lib/upload";
 import React, { useRef, useState } from "react";
 import { cadastroRodoviasURL } from "../../consts/service";
 import "../../styles/form/step3.css";
-import { fetchCadastraRodovia } from "../../service/upsApi";
+import { sendCadastroRodovia } from "../../service/upsApi";
 
 const { Dragger } = Upload;
 
 interface UploadPlanilhaRodoviaProps {
-    onClickBack: () => void;
-    onClickErrorTamanho: () => void;
-    onClickAceito: () => void;
+  onClickBack: () => void;
+  onClickErrorTamanho: () => void;
+  onClickAceito: () => void;
 }
 
 const props: UploadProps = {
-    name: "arquivo",
-    multiple: true,
-    action: cadastroRodoviasURL,
-    beforeUpload: () => false,
+  name: "arquivo",
+  multiple: true,
+  action: cadastroRodoviasURL,
+  beforeUpload: () => false,
 };
 
 const App: React.FC<UploadPlanilhaRodoviaProps> = ({
-    onClickBack,
-    onClickErrorTamanho,
-    onClickAceito,
+  onClickBack,
+  onClickErrorTamanho,
+  onClickAceito,
 }: UploadPlanilhaRodoviaProps) => {
-    const uploadRef = useRef<any>(null);
-    const [arquivos, setArquivos] = useState<UploadFile<any>[]>([]);
-    const handleButtonClick = async () => {
-        if (arquivos.length > 0) {
-            const formData = new FormData();
-            formData.append("arquivo", arquivos[0].originFileObj as File);
-            try {
-                await fetchCadastraRodovia(formData);
-                message.success("Arquivo adicionado com sucesso");
-                onClickAceito();
+  const uploadRef = useRef<any>(null);
+  const [arquivos, setArquivos] = useState<UploadFile<any>[]>([]);
+  const handleButtonClick = async () => {
+    if (arquivos.length > 0) {
+      const formData = new FormData();
+      formData.append("arquivo", arquivos[0].originFileObj as File);
+      try {
+        await sendCadastroRodovia(formData);
+        message.success("Arquivo adicionado com sucesso");
+        onClickAceito();
+      } catch (error: any) {
+        console.log(error.response);
+        error.response && error.response.status == 406 && onClickErrorTamanho();
 
-            } catch (error: any) {
-                console.log(error.response);
-                error.response && error.response.status == 406 && onClickErrorTamanho();
+        let mensagem = error.response?.data;
 
-                let mensagem = error.response?.data;
-
-                if(mensagem === undefined){
-                    mensagem = 'Erro ao inserir arquivo'
-                }
-
-                message.error(`${mensagem}`);
-            }
-        } else {
-            message.warning("Nenhum arquivo carregado.");
+        if (mensagem === undefined) {
+          mensagem = "Erro ao inserir arquivo";
         }
-    };
 
-    const handleFileChange = ({ fileList }: UploadChangeParam) => {
-        setArquivos(fileList);
-    };
+        message.error(`${mensagem}`);
+      }
+    } else {
+      message.warning("Nenhum arquivo carregado.");
+    }
+  };
 
-    return (
-        <>
-            <Dragger
-                ref={uploadRef}
-                {...props}
-                fileList={arquivos}
-                onChange={handleFileChange}
-                data-testid="drag-drop-container"
-            >
-                <p className="ant-upload-drag-icon">
-                    <FileOutlined />
-                </p>
-                <p className="ant-upload-text">
-                    Você pode clicar ou arrastar arquivos aqui para adicioná-los.
-                </p>
-            </Dragger>
-            <div className="container-botoes">
-                <Button className="botaoCancelar" onClick={onClickBack}>
-                    Cancelar
-                </Button>
-                <Button
-                    className="botaoEnviar"
-                    type="primary"
-                    onClick={handleButtonClick}
-                >
-                    Enviar Arquivo
-                </Button>
-            </div>
-        </>
-    );
+  const handleFileChange = ({ fileList }: UploadChangeParam) => {
+    setArquivos(fileList);
+  };
+
+  return (
+    <>
+      <Dragger
+        ref={uploadRef}
+        {...props}
+        fileList={arquivos}
+        onChange={handleFileChange}
+        data-testid="drag-drop-container"
+      >
+        <p className="ant-upload-drag-icon">
+          <FileOutlined />
+        </p>
+        <p className="ant-upload-text">
+          Você pode clicar ou arrastar arquivos aqui para adicioná-los.
+        </p>
+      </Dragger>
+      <div className="container-botoes">
+        <Button className="botaoCancelar" onClick={onClickBack}>
+          Cancelar
+        </Button>
+        <Button
+          className="botaoEnviar"
+          type="primary"
+          onClick={handleButtonClick}
+        >
+          Enviar Arquivo
+        </Button>
+      </div>
+    </>
+  );
 };
 
 export default App;

@@ -10,7 +10,7 @@ import {
 } from "../../../service/escolaApi";
 import { fetchCEP } from "../../../service/apiUtils";
 import "../../../styles/form/step2.css";
-import { fetchCadastraEscola } from "../../../service/escolaApi";
+import { sendCadastroEscolas } from "../../../service/escolaApi";
 
 const { Option } = Select;
 interface Step2Props {
@@ -189,7 +189,7 @@ export default function Step2({ onClickBack }: Step2Props) {
     };
 
     try {
-      await fetchCadastraEscola(registerSchoolData);
+      await sendCadastroEscolas(registerSchoolData);
       notification.success({ message: "Cadastro feito!" });
       navigate("/escolas-cadastradas");
     } catch (error) {

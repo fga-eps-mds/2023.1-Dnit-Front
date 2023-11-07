@@ -2,7 +2,7 @@ import { FileOutlined } from "@ant-design/icons";
 import type { UploadFile, UploadProps } from "antd";
 import { Button, Upload, message } from "antd";
 import { UploadChangeParam } from "antd/lib/upload";
-import { fetchCadastraSinistro } from "../../service/upsApi";
+import { sendCadastroSinistro } from "../../service/upsApi";
 import React, { useRef, useState } from "react";
 import { cadastroSinistrosURL } from "../../consts/service";
 import "../../styles/form/step3.css";
@@ -35,7 +35,7 @@ const App: React.FC<UploadPlanilhaSinistroProps> = ({
       formData.append("arquivo", fileList[0].originFileObj as File);
 
       try {
-        await fetchCadastraSinistro(formData);
+        await sendCadastroSinistro(formData);
 
         message.success(`Arquivo adicionado com sucesso.`);
         onClickAceito();

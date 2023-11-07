@@ -5,8 +5,8 @@ import { useSelectedValue } from "../../context/Situacao";
 import { AlterarDadosEscolaData, EscolaData } from "../../models/service";
 import {
   fetchSituacao,
-  fetchAlteraDadosEscola,
-  fetchExcluirSituacao,
+  updateAlteraDadosEscola,
+  sendExcluirSituacao,
 } from "../../service/escolaApi";
 import ModalExcluirEscolas from "./ModalExcluirEscolas";
 import "../estilo/ModalExibirInformacoes.css";
@@ -127,7 +127,7 @@ const ModalExibirInformacoes = ({ escola, open, close }: ModalProps) => {
       };
 
       try {
-        await fetchExcluirSituacao(excluirSituacaoData);
+        await sendExcluirSituacao(excluirSituacaoData);
         notification.success({ message: `Situação excluída com sucesso!` });
         fetchEscolasFiltradas();
       } catch (error) {
@@ -158,7 +158,7 @@ const ModalExibirInformacoes = ({ escola, open, close }: ModalProps) => {
       };
 
       try {
-        await fetchAlteraDadosEscola(
+        await updateAlteraDadosEscola(
           alterarDadosEscolaData as AlterarDadosEscolaData
         );
         notification.success({ message: `Dados alterados com sucesso!` });

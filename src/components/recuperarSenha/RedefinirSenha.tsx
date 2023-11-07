@@ -2,7 +2,7 @@ import { Form, Input, Space, notification } from "antd";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import LogoDNIT from "../../assets/logoDnitAzul.png";
-import {fetchRedefineSenha} from "../../service/usuarioApi";
+import { updateRedefineSenha } from "../../service/usuarioApi";
 import "../../styles/form.css";
 import { ButtonComponent } from "../Button";
 
@@ -33,7 +33,7 @@ const RedefinirSenha: React.FC = () => {
     };
 
     try {
-      await fetchRedefineSenha(redefinirSenhaData);
+      await updateRedefineSenha(redefinirSenhaData);
       api.success({ message: "Senha alterada!" });
       navigate("/login");
     } catch {

@@ -2,7 +2,7 @@ import { FileOutlined } from "@ant-design/icons";
 import type { UploadFile, UploadProps } from "antd";
 import { Button, Upload, message } from "antd";
 import { UploadChangeParam } from "antd/lib/upload";
-import {fetchCadastraEscolaPlanilha} from "../../../service/escolaApi";
+import { sendCadastroEscolasPlanilha } from "../../../service/escolaApi";
 import React, { useRef, useState } from "react";
 import { cadastroEscolaPlanilhaURL } from "../../../consts/service";
 import { useEscolasCadastradas } from "../../../context/escolasCadastradasErro";
@@ -46,12 +46,13 @@ const App: React.FC<UploadPlanilhaEscolaProps> = ({
       arquivoData.append("arquivo", arquivos[0].originFileObj as File);
 
       try {
-        const response = await fetchCadastraEscolaPlanilha(arquivoData);
+        const response = await sendCadastroEscolasPlanilha(arquivoData);
 
         if (
           response &&
           Array.isArray(response) &&
-          response.length > 0 && response.length < 6 
+          response.length > 0 &&
+          response.length < 6
         ) {
           // A resposta do back-end é uma lista não nula
           // Faça o que for necessário com a lista
