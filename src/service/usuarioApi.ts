@@ -12,7 +12,6 @@ export async function fetchPermissoesCategoria(): Promise<PermissaoCategoria[]> 
 }
 
 export async function sendCadastroPerfil(perfil: PerfilDto): Promise<PerfilModel> {
-    //return sendCadastros<PerfilModel>(URL.cadastrarPerfilUrl, perfil);
     try {
         const response: AxiosResponse<PerfilModel> = await axios.post(
             URL.cadastrarPerfilUrl,

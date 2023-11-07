@@ -2,7 +2,8 @@ import { Select } from "antd";
 import { ChangeEvent, useState } from "react";
 import { useSelectedValue } from "../../context/Situacao";
 import { EscolaData, SituacaoData } from "../../models/service";
-import { fetchSituacao, fetchEtapasDeEnsino } from "../../service/escolaApi";
+import {fetchSituacao} from "../../service/escolaApi";
+import {fetchEtapasDeEnsino} from "../../service/escolaApi";
 import MenuSuspenso from "./MenuSuspenso";
 
 interface ModalCamposEscolaProps {
@@ -53,7 +54,7 @@ const ModalCamposEscola = ({
   };
 
   const handleTelefoneChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setNovoTel(event.target.value);
+    setNovoTel(event.target.value)
     onUpdateTelefone(event.target.value);
   };
 
@@ -62,27 +63,27 @@ const ModalCamposEscola = ({
   };
 
   const handleObservacaoChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setNovaObs(event.target.value);
+    setNovaObs(event.target.value)
     onUpdateObservacao(event.target.value);
   };
 
   const handleLatitudeChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setNovaLat(event.target.value);
+    setNovaLat(event.target.value)
     onUpdateLatitude(event.target.value);
   };
 
   const handleLongitudeChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setNovaLong(event.target.value);
+    setNovaLong(event.target.value)
     onUpdateLongitude(event.target.value);
   };
 
   const handleNumAlunosChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setNovoNumAlunos(Number(event.target.value));
+    setNovoNumAlunos(Number(event.target.value))
     onUpdateNumAlunos(Number(event.target.value));
   };
 
   const handleNumDocentesChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setNovoNumDoc(Number(event.target.value));
+    setNovoNumDoc(Number(event.target.value))
     onUpdateNumDocentes(Number(event.target.value));
   };
 
