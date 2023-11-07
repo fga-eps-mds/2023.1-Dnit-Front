@@ -12,15 +12,15 @@ afterEach(jest.clearAllMocks);
 
 describe("Testes para o componente Select", () => {
   it("Deve renderizar o Select Corretamente", () => {
-    
+
 
     const screen = render(
-      <Select 
+      <Select
         items={itemsTest}
         value={estadoInicial}
         label={"Título do Select"}
         definePlaceholder="perfilAtual"
-        onChange={() => {}}
+        onChange={() => { }}
       />
     )
 
@@ -30,7 +30,7 @@ describe("Testes para o componente Select", () => {
 
   it("Deve selecionar opção do dropdown do Select", () => {
     const screen = render(
-      <Select 
+      <Select
         items={itemsTest}
         value={estadoInicial}
         label={"Título do Select"}
@@ -49,6 +49,8 @@ describe("Testes para o componente Select", () => {
     fireEvent.click(opcao);
 
     expect(onChangeMock).toHaveBeenCalledWith("1");
+
+    expect(screen.queryByText('test1')).not.toBeInTheDocument();
   });
 
   it('Deve fechar o dropdown quando um clique ocorre fora do componente', () => {
@@ -56,8 +58,8 @@ describe("Testes para o componente Select", () => {
       <div>
         <div data-testid="outside">Área externa</div>
         <Select items={itemsTest}
-        value={itemsTest[0].id}
-        onChange={onChangeMock} />
+          value={itemsTest[0].id}
+          onChange={onChangeMock} />
       </div>
     );
 
@@ -66,6 +68,20 @@ describe("Testes para o componente Select", () => {
 
     fireEvent.mouseDown(screen.getByTestId('outside'));
     expect(screen.getByDisplayValue(itemsTest[0].rotulo)).toBeInTheDocument();
+  });
+
+  it('Deve incluir a opção Todos quando filtrarTodos é true', () => {
+    const screen = render(
+      <Select
+        items={itemsTest}
+        value=""
+        onChange={() => { }}
+        filtrarTodos={true}
+      />);
+
+    fireEvent.click(screen.getByTestId('customSelect'));
+
+    expect(screen.getByText('Todos')).toBeInTheDocument();
   });
 
 
