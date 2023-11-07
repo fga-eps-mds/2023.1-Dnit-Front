@@ -3,10 +3,12 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFiltroTabela } from "../../../context/FiltroTabela";
 import { UnidadeFederativaData, MunicipioData } from "../../../models/service";
-import { fetchEtapasDeEnsino } from "../../../service/escolaApi";
-import {fetchUnidadeFederativa} from "../../../service/escolaApi";
-import {fetchMunicipio} from "../../../service/escolaApi";
-import {fetchCEP} from "../../../service/apiUtils";
+import {
+  fetchEtapasDeEnsino,
+  fetchUnidadeFederativa,
+  fetchMunicipio,
+} from "../../../service/escolaApi";
+import { fetchCEP } from "../../../service/apiUtils";
 import "../../../styles/form/step2.css";
 import { fetchCadastraEscola } from "../../../service/escolaApi";
 
@@ -197,7 +199,7 @@ export default function Step2({ onClickBack }: Step2Props) {
   return (
     <div>
       {contextHolder}
-      <h2>Cadastrar EsAcola</h2>
+      <h2>Cadastrar Escola</h2>
       <Form
         form={form}
         onFinish={onFinish}

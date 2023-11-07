@@ -3,9 +3,11 @@ import { useEffect, useState } from "react";
 import { useFiltroTabela } from "../../context/FiltroTabela";
 import { useSelectedValue } from "../../context/Situacao";
 import { AlterarDadosEscolaData, EscolaData } from "../../models/service";
-import {fetchSituacao} from "../../service/escolaApi";
-import {fetchAlteraDadosEscola} from "../../service/escolaApi";
-import {fetchExcluirSituacao} from "../../service/escolaApi";
+import {
+  fetchSituacao,
+  fetchAlteraDadosEscola,
+  fetchExcluirSituacao,
+} from "../../service/escolaApi";
 import ModalExcluirEscolas from "./ModalExcluirEscolas";
 import "../estilo/ModalExibirInformacoes.css";
 import ModalBody from "./ModalCamposEscola";
