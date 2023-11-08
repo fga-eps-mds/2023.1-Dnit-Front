@@ -4,15 +4,15 @@ import { act, fireEvent, render, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
 import { AuthProvider } from "../provider/Autenticacao";
-import {fetchCadastroUsuarioDnit} from "../service/usuarioApi";
+import { sendCadastroUsuarioDnit } from "../service/usuarioApi";
 import server from "./mock/servicosAPI";
 
 jest.mock("../service/usuarioApi", () => ({
   ...jest.requireActual("../service/usuarioApi"),
-  fetchCadastroUsuarioDnit: jest.fn(),
+  sendCadastroUsuarioDnit: jest.fn(),
 }));
 
-const mockedUseRegister = fetchCadastroUsuarioDnit as jest.Mock;
+const mockedUseRegister = sendCadastroUsuarioDnit as jest.Mock;
 
 beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());

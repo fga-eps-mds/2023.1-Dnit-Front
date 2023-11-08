@@ -4,11 +4,13 @@ import { useNavigate } from "react-router-dom";
 import { useFiltroTabela } from "../../../context/FiltroTabela";
 import { UnidadeFederativaData, MunicipioData } from "../../../models/service";
 import "./styles.css";
-import { fetchEtapasDeEnsino } from "../../../service/escolaApi";
-import {fetchUnidadeFederativa} from "../../../service/escolaApi";
-import {fetchMunicipio} from "../../../service/escolaApi";
-import {fetchCEP} from "../../../service/apiUtils";
-import { fetchCadastraEscola } from "../../../service/escolaApi";
+import {
+  fetchEtapasDeEnsino,
+  fetchUnidadeFederativa,
+  fetchMunicipio,
+} from "../../../service/escolaApi";
+import { fetchCEP } from "../../../service/apiUtils";
+import { sendCadastroEscolas } from "../../../service/escolaApi";
 
 const { Option } = Select;
 interface Step2Props {
@@ -187,7 +189,7 @@ export default function CadastroManual({ onClickBack }: Step2Props) {
     };
 
     try {
-      await fetchCadastraEscola(registerSchoolData);
+      await sendCadastroEscolas(registerSchoolData);
       notification.success({ message: "Cadastro feito!" });
       navigate("/escolas-cadastradas");
     } catch (error) {

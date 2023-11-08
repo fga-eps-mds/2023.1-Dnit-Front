@@ -4,7 +4,7 @@ import * as DATA from "../models/service";
 
 export interface ResponseStatus { status: number }
 
-export async function fetchCadastros<T>(url: string, data: T): Promise<ResponseStatus> {
+export async function sendCadastros<T>(url: string, data: T): Promise<ResponseStatus> {
     try{
         const response: AxiosResponse<ResponseStatus> = await axios.post(
             url, data
@@ -17,7 +17,7 @@ export async function fetchCadastros<T>(url: string, data: T): Promise<ResponseS
     }
 }
 
-export async function fetchModificador<T>(url: string, data: T): Promise<ResponseStatus>{
+export async function update<T>(url: string, data: T): Promise<ResponseStatus>{
     try {
         const response: AxiosResponse<ResponseStatus> = await axios.put(
             url, data

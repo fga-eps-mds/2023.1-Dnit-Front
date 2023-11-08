@@ -4,17 +4,17 @@ import { fireEvent, render, waitFor } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
-import { AuthLocalStorage, AuthProvider, atualizarToken, getPermissoes, removerLogin, salvarLogin, setPermissoes, temPermissao } from "../provider/Autenticacao";
-import {fetchLogin} from "../service/usuarioApi";
+import { AuthLocalStorage, AuthProvider, atualizarToken, getPermissoes, removerLogin, 
+  salvarLogin, setPermissoes, temPermissao } from "../provider/Autenticacao";
+import { sendLogin } from "../service/usuarioApi";
 import { LoginResponse, Permissao } from "../models/auth";
-
 
 jest.mock("../service/usuarioApi", () => ({
   ...jest.requireActual("../service/usuarioApi"),
-  fetchLogin: jest.fn(),
+  sendLogin: jest.fn(),
 }));
 
-const mockedUseLogin = fetchLogin as jest.Mock;
+const mockedUseLogin = sendLogin as jest.Mock;
 
 window.matchMedia = jest.fn().mockImplementation((query) => {
   return {
@@ -68,10 +68,10 @@ test("Home", async () => {
 
 test("O login deve ser salvo", () => {
   const login: LoginResponse = {
-    token: 'token',
-    tokenAtualizacao: 'token atualizacao',
+    token: "token",
+    tokenAtualizacao: "token atualizacao",
     expiraEm: new Date().toISOString(),
-    permissoes: [Permissao.EscolaCadastrar, Permissao.EscolaVisualizar]
+    permissoes: [Permissao.EscolaCadastrar, Permissao.EscolaVisualizar],
   };
   salvarLogin(login);
 
@@ -97,14 +97,14 @@ test("O login deve ser removido", () => {
 
 test("Atualiza o token", () => {
   const login: LoginResponse = {
-    token: 'token',
-    tokenAtualizacao: 'token atualizacao',
+    token: "token",
+    tokenAtualizacao: "token atualizacao",
     expiraEm: new Date().toISOString(),
-    permissoes: [Permissao.EscolaCadastrar, Permissao.EscolaVisualizar]
+    permissoes: [Permissao.EscolaCadastrar, Permissao.EscolaVisualizar],
   };
   salvarLogin(login);
   atualizarToken();
 
   expect(localStorage.getItem(AuthLocalStorage.Token)).not.toBeNull();
   expect(temPermissao(Permissao.EscolaCadastrar)).toBeTruthy();
-})
+});

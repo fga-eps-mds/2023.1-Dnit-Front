@@ -3,9 +3,9 @@ import { Permissao, PermissaoCategoria, TipoPerfil } from "../../models/auth";
 import Modal from "../Modal";
 import ReactLoading from "react-loading";
 import { Collapse, CollapseItem } from "../Collapse";
-import {fetchCadastroPerfil} from "../../service/usuarioApi";
+import {sendCadastroPerfil} from "../../service/usuarioApi";
 import {fetchObtemPerfil} from "../../service/usuarioApi";
-import {fetchAtualizaPerfil} from "../../service/usuarioApi";
+import {updatePerfil} from "../../service/usuarioApi";
 import { useEffect, useState } from "react";
 import { notification } from "antd";
 import { PerfilModel } from "../../models/perfil";
@@ -100,7 +100,7 @@ export default function PerfilDialog({ id, readOnly, closeDialog }: PerfilDialog
     };
 
     if (!id) {
-      fetchCadastroPerfil(perfil)
+      sendCadastroPerfil(perfil)
         .then(p => {
           notification.success({message: 'O perfil foi cadastrado com sucesso!'});
           closeDialog(p);
@@ -111,7 +111,7 @@ export default function PerfilDialog({ id, readOnly, closeDialog }: PerfilDialog
         .finally(() => setLoading(false));
       return;
     }
-    fetchAtualizaPerfil(id, perfil)
+    updatePerfil(id, perfil)
       .then(p => {
         notification.success({message: 'O perfil foi alterado com sucesso!'});
         closeDialog(p);

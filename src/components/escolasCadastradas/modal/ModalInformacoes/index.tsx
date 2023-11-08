@@ -3,9 +3,11 @@ import { useEffect, useState, useContext } from "react";
 import { useFiltroTabela } from "../../../../context/FiltroTabela";
 import { useSelectedValue } from "../../../../context/Situacao";
 import { AlterarDadosEscolaData, EscolaData } from "../../../../models/service";
-import {fetchSituacao} from "../../../../service/escolaApi";
-import {fetchAlteraDadosEscola} from "../../../../service/escolaApi";
-import {fetchExcluirSituacao} from "../../../../service/escolaApi";
+import {
+  fetchSituacao,
+  updateAlteraDadosEscola,
+  sendExcluirSituacao,
+} from "../../../../service/escolaApi";
 import ModalExcluirEscolas from "../ModalExcluir";
 import "./styles.css";
 import ModalBody from "../ModalCampos";
@@ -127,7 +129,7 @@ const ModalInformacoes = ({ escola, open, close }: ModalProps) => {
       };
 
       try {
-        await fetchExcluirSituacao(excluirSituacaoData);
+        await sendExcluirSituacao(excluirSituacaoData);
         notification.success({ message: `Situação excluída com sucesso!` });
         fetchEscolasFiltradas();
       } catch (error) {
@@ -158,7 +160,7 @@ const ModalInformacoes = ({ escola, open, close }: ModalProps) => {
       };
 
       try {
-        await fetchAlteraDadosEscola(
+        await updateAlteraDadosEscola(
           alterarDadosEscolaData as AlterarDadosEscolaData
         );
         notification.success({ message: `Dados alterados com sucesso!` });

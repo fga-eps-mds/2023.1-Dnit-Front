@@ -2,7 +2,7 @@ import React, { createContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AtualizarTokenDto, LoginResponse, Permissao } from "../models/auth";
 import axios from "axios";
-import { fetchAtualizaToken } from "../service/usuarioApi";
+import { sendNewToken } from "../service/usuarioApi";
 
 export enum AuthLocalStorage {
   Token = "Token",
@@ -24,8 +24,8 @@ interface AuthContextType {
 }
 
 export const AuthContext = createContext<AuthContextType>({
-  login: () => { },
-  logout: () => { },
+  login: () => {},
+  logout: () => {},
   getAuth: () => false,
   getPermissoes: () => [],
   temPermissao: (_: Permissao) => false,
@@ -77,12 +77,15 @@ export function removerLogin() {
 
 export async function atualizarToken() {
   const dados: AtualizarTokenDto = {
-    token: (localStorage.getItem(AuthLocalStorage.Token) ?? "")?.replace("Bearer ", ""),
+    token: (localStorage.getItem(AuthLocalStorage.Token) ?? "")?.replace(
+      "Bearer ",
+      ""
+    ),
     tokenAtualizacao:
       localStorage.getItem(AuthLocalStorage.TokenAtualizacao) ?? "",
   };
-  const autenticacao = await fetchAtualizaToken(dados);
-  
+  const autenticacao = await sendNewToken(dados);
+
   salvarLogin(autenticacao);
   return autenticacao.token;
 }

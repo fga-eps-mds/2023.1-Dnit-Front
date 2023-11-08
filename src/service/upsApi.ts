@@ -1,14 +1,14 @@
 import axios, { AxiosResponse } from "axios";
 import * as URL from "../consts/service"
 import { CalcularUpsData, CalcularUpsResponse } from "../models/service";
-import { ResponseStatus, fetchCadastros } from "./apiUtils";
+import { ResponseStatus, sendCadastros } from "./apiUtils";
 
-export async function fetchCadastraRodovia(data: FormData): Promise<ResponseStatus> {
-    return fetchCadastros<FormData>(URL.cadastroRodoviasURL, data);
+export async function sendCadastroRodovia(data: FormData): Promise<ResponseStatus> {
+    return sendCadastros<FormData>(URL.cadastroRodoviasURL, data);
 }
 
-export async function fetchCadastraSinistro(data: FormData): Promise<ResponseStatus> {
-    return fetchCadastros<FormData>(URL.cadastroSinistrosURL, data);
+export async function sendCadastroSinistro(data: FormData): Promise<ResponseStatus> {
+    return sendCadastros<FormData>(URL.cadastroSinistrosURL, data);
 }
 
 export async function fetchCalculaUps(

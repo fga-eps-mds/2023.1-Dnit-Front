@@ -5,14 +5,14 @@ import { act } from "react-dom/test-utils";
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
 import { AuthProvider } from "../provider/Autenticacao";
-import {fetchRedefineSenha} from "../service/usuarioApi";
+import { updateRedefineSenha } from "../service/usuarioApi";
 
 jest.mock("../service/usuarioApi", () => ({
   ...jest.requireActual("../service/usuarioApi"),
-  fetchRedefineSenha: jest.fn(),
+  updateRedefineSenha: jest.fn(),
 }));
 
-const mockedUseResetPassword = fetchRedefineSenha as jest.Mock;
+const mockedUseResetPassword = updateRedefineSenha as jest.Mock;
 
 window.matchMedia = jest.fn().mockImplementation((query) => {
   return {

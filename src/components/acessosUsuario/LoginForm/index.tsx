@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import LogoDNIT from "../../../assets/logoDnitAzul.png";
 import { AuthContext } from "../../../provider/Autenticacao";
 import "../../../styles/form.css";
-import {fetchLogin} from "../../../service/usuarioApi"
+import { sendLogin } from "../../../service/usuarioApi"
 import { ButtonComponent } from "../../Button";
 
 const LoginForm: React.FC = () => {
@@ -37,7 +37,7 @@ const LoginForm: React.FC = () => {
     };
 
     try {
-      const dados = await fetchLogin(loginData);
+      const dados = await sendLogin(loginData);
       notification.success({ message: "Login realizado!" });
       login(dados);
     } catch (error) {

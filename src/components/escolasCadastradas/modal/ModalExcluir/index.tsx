@@ -1,7 +1,7 @@
 import { notification } from "antd";
 import "./styles.css";
 import { useFiltroTabela } from "../../../../context/FiltroTabela";
-import {fetchExcluirEscola} from "../../../../service/escolaApi";
+import { deleteEscola } from "../../../../service/escolaApi";
 
 interface ModalExcluirEscolaProps {
   open: boolean;
@@ -21,7 +21,7 @@ const ModalExcluir = ({
   const { fetchEscolasFiltradas } = useFiltroTabela();
   const excluirEscola = async () => {
     try {
-      await fetchExcluirEscola({ id_escola: id });
+      await deleteEscola({ id_escola: id });
       notification.success({
         message: `Escola ${nomeEscola} excluída com sucesso!`,
       });
