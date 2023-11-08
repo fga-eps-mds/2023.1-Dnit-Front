@@ -1,7 +1,7 @@
 import { Form, Input, notification, Space } from "antd";
 import React from "react";
 import LogoDNIT from "../../assets/logoDnitAzul.png";
-import fetchRecuperarSenha from "../../service/recuperarSenha";
+import { updateRecuperarSenha } from "../../service/usuarioApi";
 import "../../styles/form.css";
 import { ButtonComponent } from "../Button";
 
@@ -22,7 +22,7 @@ const EsqueciSenhaForm: React.FC = () => {
     };
 
     try {
-      await fetchRecuperarSenha(recuperarSenhaData);
+      await updateRecuperarSenha(recuperarSenhaData);
       api.success({ message: "Link de recuperação enviado ao email!" });
     } catch {
       api.error({ message: `Erro ao enviar link de recuperação` });

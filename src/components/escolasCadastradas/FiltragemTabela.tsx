@@ -1,11 +1,17 @@
 import { Select } from "antd";
 import { ChangeEvent, useEffect, useState } from "react";
 import { useFiltroTabela } from "../../context/FiltroTabela";
-import { UnidadeFederativaData, MunicipioData, SituacaoData } from "../../models/service";
-import fetchSituacao from "../../service/consultarSituacao";
-import fetchEtapasDeEnsino from "../../service/etapasDeEnsino";
-import fetchUnidadeFederativa from "../../service/unidadesFederativas";
-import fetchMunicipio from "../../service/municipio";
+import {
+  UnidadeFederativaData,
+  MunicipioData,
+  SituacaoData,
+} from "../../models/service";
+import {
+  fetchSituacao,
+  fetchEtapasDeEnsino,
+  fetchUnidadeFederativa,
+  fetchMunicipio,
+} from "../../service/escolaApi";
 import "../../styles/App.css";
 import "../estilo/FiltragemTabela.css";
 
@@ -82,7 +88,7 @@ export default function TabelaEscolas() {
   };
 
   useEffect(() => {
-    if (opcoesMunicipio.length == 0 || carregandoEscolas) getMunicipio();
+    if (opcoesMunicipio.length === 0 || carregandoEscolas) getMunicipio();
   }, [UFSelecionada, carregandoEscolas]);
 
   const getEtapasDeEnsino = async () => {

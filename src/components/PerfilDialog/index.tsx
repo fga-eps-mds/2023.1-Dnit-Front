@@ -1,11 +1,11 @@
-import fetchPermissoesCategoria from "../../service/listarPermissoesCategoria";
+import {fetchPermissoesCategoria} from "../../service/usuarioApi";
 import { Permissao, PermissaoCategoria, TipoPerfil } from "../../models/auth";
 import Modal from "../Modal";
 import ReactLoading from "react-loading";
 import { Collapse, CollapseItem } from "../Collapse";
-import fetchCadastroPerfil from "../../service/criarPerfil";
-import fetchObterPerfil from "../../service/obterPerfil";
-import fetchAtualizarPerfil from "../../service/atualizarPerfil";
+import {sendCadastroPerfil} from "../../service/usuarioApi";
+import {fetchObtemPerfil} from "../../service/usuarioApi";
+import {updatePerfil} from "../../service/usuarioApi";
 import { useEffect, useState } from "react";
 import { notification } from "antd";
 import { PerfilModel } from "../../models/perfil";
@@ -79,7 +79,7 @@ export default function PerfilDialog({ id, readOnly, closeDialog }: PerfilDialog
         if (!id) {
           return;
         }
-        return fetchObterPerfil(id)
+        return fetchObtemPerfil(id)
           .then(perfil => preencherPerfil(perfil))
           .catch(error => notificationApi.error({message: 'Falha na busca pelo perfil. ' + (error?.response?.data ?? '')}));
       })
@@ -100,7 +100,7 @@ export default function PerfilDialog({ id, readOnly, closeDialog }: PerfilDialog
     };
 
     if (!id) {
-      fetchCadastroPerfil(perfil)
+      sendCadastroPerfil(perfil)
         .then(p => {
           notification.success({message: 'O perfil foi cadastrado com sucesso!'});
           closeDialog(p);
@@ -111,7 +111,7 @@ export default function PerfilDialog({ id, readOnly, closeDialog }: PerfilDialog
         .finally(() => setLoading(false));
       return;
     }
-    fetchAtualizarPerfil(id, perfil)
+    updatePerfil(id, perfil)
       .then(p => {
         notification.success({message: 'O perfil foi alterado com sucesso!'});
         closeDialog(p);

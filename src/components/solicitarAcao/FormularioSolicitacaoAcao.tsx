@@ -6,11 +6,13 @@ import {
   MunicipioData,
   SolicitacaoDeAcaoData,
 } from "../../models/service";
-import fetchEtapasDeEnsino from "../../service/etapasDeEnsino";
-import fetchUnidadeFederativa from "../../service/unidadesFederativas";
-import { fetchEscolasInep } from "../../service/inepAPI";
-import fetchMunicipio from "../../service/municipio";
-import fetchSolicitaAcao from "../../service/solicitarAcao";
+import {
+  fetchEtapasDeEnsino,
+  fetchUnidadeFederativa,
+  fetchEscolasInep,
+  fetchMunicipio,
+  sendSolicitaAcao,
+} from "../../service/escolaApi";
 import "../../styles/form.css";
 import { ButtonComponent } from "../Button";
 
@@ -74,7 +76,7 @@ const SolicitacaoAcaoForm: React.FC = () => {
   const enviarSolicitacao = async (formData: SolicitacaoDeAcaoData) => {
     try {
       setBotaoEnviarDisponivel(false);
-      await fetchSolicitaAcao(formData);
+      await sendSolicitaAcao(formData);
       notification.success({ message: "Solicitação enviada com sucesso!" });
       setBotaoEnviarDisponivel(true);
     } catch (error) {

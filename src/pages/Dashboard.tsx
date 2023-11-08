@@ -17,7 +17,7 @@ import "../components/Collapse/index";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/Autenticacao";
 import { Permissao } from "../models/auth";
-import fetchPermissoesDoUsuario from "../service/listarPermissoesUsuario";
+import {fetchPermissoesDoUsuario} from "../service/usuarioApi";
 
 export default function Dashboard() {
   const navigate = useNavigate();

@@ -8,7 +8,7 @@ import Footer from "../components/Footer";
 import Table, { CustomTableRow } from "../components/Table/Table";
 import ReactLoading from "react-loading";
 import { notification } from "antd";
-import fetchPerfis from "../service/listarPerfis";
+import {fetchPerfis} from "../service/usuarioApi";
 import { DeletarPerfilArgs, DeletarPerfilDialog } from "../components/DeletarPerfilDialog";
 import { AuthContext } from "../provider/Autenticacao";
 import { ButtonComponent } from "../components/Button";

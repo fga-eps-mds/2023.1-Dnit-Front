@@ -1,10 +1,11 @@
 import { Form, Input, Radio, Select, Space, notification } from "antd";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import fetchUnidadeFederativa from "../../service/unidadesFederativas";
-import fetchCadastro from "../../service/cadastrarUsuario";
+import { sendCadastroUsuarioDnit } from "../../service/usuarioApi";
+import { fetchUnidadeFederativa } from "../../service/escolaApi";
 import "../../styles/form.css";
 import { ButtonComponent } from "../Button";
+
 const { Option } = Select;
 
 interface UfProps {
@@ -37,7 +38,7 @@ const CadastroUsuarioForm: React.FC = () => {
     };
 
     try {
-      await fetchCadastro(cadastroUsuarioData);
+      await sendCadastroUsuarioDnit(cadastroUsuarioData);
       notification.success({ message: "Cadastro feito!" });
       navigate("/login");
     } catch (error) {
