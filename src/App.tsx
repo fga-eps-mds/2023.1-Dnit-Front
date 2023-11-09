@@ -16,6 +16,7 @@ import TelaUPS from "./pages/TelaUPS";
 import GerenciarUsuario from "./pages/GerenciarUsuario";
 import { AuthContext, configuraAutenticacaoAxios } from "./provider/Autenticacao";
 import "./styles/App.css";
+import Ranque from "./pages/Ranque";
 
 function App() {
   const { getAuth } = useContext(AuthContext);
@@ -35,6 +36,7 @@ function App() {
           <Route path="/telaUPS" element={<TelaUPS />} />
           <Route path="/gerenciarUsuario" element={<GerenciarUsuario />}/>
           <Route path="/gerenciarPerfis" element={<GerenciarPerfis />} />
+          <Route path="/ranque" element={<Ranque />} />
         </>
       ) : (
         <>
