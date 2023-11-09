@@ -19,9 +19,9 @@ interface FilterOptions {
   rotulo: string;
 }
 interface EditarTipoPerfilDialogProps {
-  listaOpcoes: FilterOptions[];
+  listaOpcoes: FilterOptions[][];
   listaUsuarios: UsuarioModel[];
-  perfilAntesAlteracao: string;
+  perfilAntesAlteracao: string[];
   usuarioId: string;
   closeDialog: (edicao: boolean) => void;
   atualizaTabela: (atualizou: UsuarioModel[] ) => void;
@@ -32,6 +32,7 @@ interface EditarTipoPerfilDialogProps {
 export function EditarTipoPerfilDialog({ closeDialog, listaOpcoes, usuarioId, listaUsuarios, atualizaTabela, perfilAntesAlteracao }: EditarTipoPerfilDialogProps) {
   const [loading, setLoading] = useState(false);
   const [tipoPerfilId, setTipoPerfilId] = useState('');
+  const [newUF, setNewUF] = useState('');
   const [notificationApi, contextHolder] = notification.useNotification();
   const [isModalOpen, setIsModalOpen] = useState(true);
 
@@ -46,7 +47,7 @@ export function EditarTipoPerfilDialog({ closeDialog, listaOpcoes, usuarioId, li
     }
     setLoading(true);
 
-    fetchAtualizarTipoPerfil(usuarioId, perfilId)
+    fetchAtualizarTipoPerfil(usuarioId, perfilId, Number(newUF))
       .then(() => {
         notification.success({ message: 'O perfil foi alterado com sucesso!' });
         closeDialog(true);
@@ -60,7 +61,7 @@ export function EditarTipoPerfilDialog({ closeDialog, listaOpcoes, usuarioId, li
 
   function atualizarListagemUsuarios() {
     const listaUsuariosAtualizada = listaUsuarios.map((usuario) => {
-      if(usuario.id === usuarioId) return { ...usuario,  perfilId: tipoPerfilId }
+      if(usuario.id === usuarioId) return { ...usuario,  perfilId: tipoPerfilId, ufLotacao: Number(newUF) }
       return usuario;
     });
 
@@ -91,7 +92,7 @@ export function EditarTipoPerfilDialog({ closeDialog, listaOpcoes, usuarioId, li
         </button>
       </div>
       <Select 
-        items={listaOpcoes} 
+        items={listaOpcoes[0]} 
         value={tipoPerfilId} 
         label={"Perfil"} 
         onChange={(id) => setTipoPerfilId(id)} 
@@ -99,7 +100,20 @@ export function EditarTipoPerfilDialog({ closeDialog, listaOpcoes, usuarioId, li
         dropdownStyle={{ width: "450px" }} 
         buttonStyle={{ left: "150px" } } 
         filtrarTodos={false}
-        definePlaceholder={perfilAntesAlteracao}
+        definePlaceholder={perfilAntesAlteracao[0]}
+      />
+      <Select 
+        items={listaOpcoes[1]} 
+        value={newUF} 
+        label={"UF"} 
+        onChange={(uf) => {
+          console.log(uf);
+          setNewUF(uf)}} 
+        inputStyle={{ width: "450px" }} 
+        dropdownStyle={{ width: "450px" }} 
+        buttonStyle={{ left: "150px" } } 
+        filtrarTodos={false}
+        definePlaceholder={perfilAntesAlteracao[1]}
       />
       <div className="d-flex w-100 justify-content-end">
         <button data-testid="botaoCancelar" className="br-button secondary" type="button" onClick={() => closeDialog(false)}>Cancelar</button>

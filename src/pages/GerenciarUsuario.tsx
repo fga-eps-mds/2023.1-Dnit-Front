@@ -90,6 +90,7 @@ export default function GerenciarUsuario() {
   const [listaMunicipios, setListaMunicipios] = useState<FilterMunicipioOptions[]>([]);
   const [usuarioSelecionado, setUsuarioSelecionado] = useState('');
   const [atualizaPerfilSelecionado, setAtualizaPerfilSelecionado] = useState('');
+  const [atualizaUFSelecionada, setAtualizaUFSelecionada] = useState('');
 
   const navigate = useNavigate();
 
@@ -156,12 +157,12 @@ export default function GerenciarUsuario() {
     <div className="App">
       {notificationContextHandler}
       {mostrarPerfil != null && <EditarTipoPerfilDialog
-        listaOpcoes={listaPerfis}
+        listaOpcoes={[listaPerfis, listaUfs]}
         listaUsuarios={listaUsuarios}
         usuarioId={usuarioSelecionado}
         closeDialog={() => setMostrarPerfil(null)}
         atualizaTabela={setListaUsuarios}
-        perfilAntesAlteracao={atualizaPerfilSelecionado}
+        perfilAntesAlteracao={[atualizaPerfilSelecionado, atualizaUFSelecionada]}
       />}
       <Header /> 
       <TrilhaDeNavegacao elementosLi={paginas} />
@@ -183,6 +184,7 @@ export default function GerenciarUsuario() {
                 setUsuarioSelecionado(usuario.id)
                 setMostrarPerfil({ id: null, readOnly: true })
                 setAtualizaPerfilSelecionado(`${procuraNomePerfil(usuario)}`)
+                setAtualizaUFSelecionada(`${procuraRotuloUf(usuario) ?? ""}`)
               }
               }
               hideEditIcon={!podeEditarPerfilUsuario}
