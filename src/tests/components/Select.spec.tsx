@@ -33,12 +33,12 @@ describe("Testes para o componente Select", () => {
       <Select
         items={itemsTest}
         value={estadoInicial}
-        label={"Título do Select"}
+        label={"Título"}
         onChange={onChangeMock}
       />
     )
 
-    const botao = screen.getByTestId("customSelect");
+    const botao = screen.getByTestId("TítulocustomSelect");
     fireEvent.click(botao);
 
     expect(screen.getByText("test0")).toBeInTheDocument();
@@ -63,7 +63,7 @@ describe("Testes para o componente Select", () => {
       </div>
     );
 
-    const dropDown = screen.getByTestId("customSelect");
+    const dropDown = screen.getByTestId("undefinedcustomSelect");
     fireEvent.click(dropDown);
 
     fireEvent.mouseDown(screen.getByTestId('outside'));
@@ -79,7 +79,7 @@ describe("Testes para o componente Select", () => {
         filtrarTodos={true}
       />);
 
-    fireEvent.click(screen.getByTestId('customSelect'));
+    fireEvent.click(screen.getByTestId('undefinedcustomSelect'));
 
     expect(screen.getByText('Todos')).toBeInTheDocument();
   });

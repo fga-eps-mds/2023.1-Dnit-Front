@@ -157,12 +157,14 @@ export default function GerenciarUsuario() {
     <div className="App">
       {notificationContextHandler}
       {mostrarPerfil != null && <EditarTipoPerfilDialog
-        listaOpcoes={[listaPerfis, listaUfs]}
+        listaOpcoes={listaPerfis}
+        listaOpcoesUfs={listaUfs}
         listaUsuarios={listaUsuarios}
         usuarioId={usuarioSelecionado}
         closeDialog={() => setMostrarPerfil(null)}
         atualizaTabela={setListaUsuarios}
-        perfilAntesAlteracao={[atualizaPerfilSelecionado, atualizaUFSelecionada]}
+        perfilAntesAlteracao={atualizaPerfilSelecionado}
+        ufAntesAlteracao={atualizaUFSelecionada}
       />}
       <Header /> 
       <TrilhaDeNavegacao elementosLi={paginas} />

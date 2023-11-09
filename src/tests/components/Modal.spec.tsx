@@ -10,11 +10,9 @@ describe("Modal Component", () => {
       </Modal>
     );
 
-    // Check if the default class is applied
     const modalOverlay = screen.getByTestId("overlay");
     expect(modalOverlay).toHaveClass("overlay modal-container");
 
-    // Check if the children are rendered
     const modalContent = screen.getByText("Modal Content");
     expect(modalContent).toBeInTheDocument();
   });
@@ -26,7 +24,6 @@ describe("Modal Component", () => {
       </Modal>
     );
 
-    // Check if the custom class is applied
     const modalOverlay = screen.getByTestId("overlay");
     expect(modalOverlay).toHaveClass("overlay custom");
   });

@@ -5,7 +5,6 @@ import { EditarTipoPerfilDialog } from "../../components/EditarTipoPerfilDialog"
 import server from "../mock/servicosAPI";
 import { MemoryRouter } from "react-router-dom";
 import { usuarios } from "../stub/usuarioModelos";
-import { equal } from "assert";
 
 beforeAll(() => {
   server.listen();  
@@ -16,8 +15,10 @@ afterEach(() => {
 });
 
 const itemsPerfisTest = [{ id: "0", rotulo: "perfil0" }, { id: "1", rotulo: "perfil1" }, { id: "2", rotulo: "perfil2" }];
+const itemsUfTest = [{id: "0", rotulo: "uf0"}, {id: "1", rotulo: "uf1"}, {id: "2", rotulo: "uf2"}]
 const usuarioSelecionado = "0";
 const tipoPerfilSelecionado = "perfil0"
+const ufSelecionada = "uf0"
 
 describe("Testes para o componente EditarTipoPerfilDialog", () => {
 
@@ -25,9 +26,11 @@ describe("Testes para o componente EditarTipoPerfilDialog", () => {
     const screen = render(
       <EditarTipoPerfilDialog
         listaOpcoes={itemsPerfisTest}
+        listaOpcoesUfs={itemsUfTest}
         listaUsuarios={usuarios}
         usuarioId={usuarioSelecionado}
         perfilAntesAlteracao={tipoPerfilSelecionado}
+        ufAntesAlteracao={ufSelecionada}
         closeDialog={() => { }}
         atualizaTabela={() => { }}
       />
@@ -46,9 +49,11 @@ describe("Testes para o componente EditarTipoPerfilDialog", () => {
       <MemoryRouter>
         <EditarTipoPerfilDialog
           listaOpcoes={itemsPerfisTest}
+          listaOpcoesUfs={itemsUfTest}
           listaUsuarios={usuarios}
           usuarioId={usuarioSelecionado}
           perfilAntesAlteracao={tipoPerfilSelecionado}
+          ufAntesAlteracao={ufSelecionada}
           closeDialog={d => deletou = d}
           atualizaTabela={() => { }}
         />
@@ -67,16 +72,18 @@ describe("Testes para o componente EditarTipoPerfilDialog", () => {
       <MemoryRouter>
         <EditarTipoPerfilDialog
           listaOpcoes={itemsPerfisTest}
+          listaOpcoesUfs={itemsUfTest}
           listaUsuarios={usuarios}
           usuarioId={usuarioSelecionado}
           perfilAntesAlteracao={tipoPerfilSelecionado}
+          ufAntesAlteracao={ufSelecionada}
           closeDialog={() => {}}
           atualizaTabela={() => { }}
         />
       </MemoryRouter>
     )
 
-    const botao = screen.getByTestId("customSelect");
+    const botao = screen.getByTestId("PerfilcustomSelect");
     fireEvent.click(botao);
 
     const opcao = screen.getByText("perfil0");
@@ -94,9 +101,11 @@ describe("Testes para o componente EditarTipoPerfilDialog", () => {
       <MemoryRouter>
         <EditarTipoPerfilDialog
           listaOpcoes={itemsPerfisTest}
+          listaOpcoesUfs={itemsUfTest}
           listaUsuarios={usuarios}
           usuarioId={usuarioSelecionado}
           perfilAntesAlteracao={tipoPerfilSelecionado}
+          ufAntesAlteracao={ufSelecionada}
           closeDialog={() => {}}
           atualizaTabela={() => { }}
         />
@@ -117,9 +126,11 @@ describe("Testes para o componente EditarTipoPerfilDialog", () => {
       <MemoryRouter>
         <EditarTipoPerfilDialog
           listaOpcoes={itemsPerfisTest}
+          listaOpcoesUfs={itemsUfTest}
           listaUsuarios={usuarios}
           usuarioId={usuarioSelecionado}
           perfilAntesAlteracao={tipoPerfilSelecionado}
+          ufAntesAlteracao={ufSelecionada}
           closeDialog={d => deletou = d}
           atualizaTabela={() => { }}
         />
@@ -131,6 +142,35 @@ describe("Testes para o componente EditarTipoPerfilDialog", () => {
 
     expect(deletou).toBe(false);
 
+  });
+
+  it("Deve confirmar as UFs corretamente", async () => {
+    const screen = render(
+      <MemoryRouter>
+        <EditarTipoPerfilDialog
+          listaOpcoes={itemsPerfisTest}
+          listaOpcoesUfs={itemsUfTest}
+          listaUsuarios={usuarios}
+          usuarioId={usuarioSelecionado}
+          perfilAntesAlteracao={tipoPerfilSelecionado}
+          ufAntesAlteracao={ufSelecionada}
+          closeDialog={() => {}}
+          atualizaTabela={() => { }}
+        />
+      </MemoryRouter>
+    )
+
+    const botao = screen.getByTestId("UFcustomSelect");
+    fireEvent.click(botao);
+
+    const opcao = screen.getByText("uf0");
+    fireEvent.click(opcao); 
+
+    const buttom = screen.getByTestId("botaoConfirmar");
+    fireEvent.click(buttom);
+
+    await waitFor(() => expect(screen.queryAllByText('O perfil foi alterado com sucesso!').length).toBeGreaterThan(0));
+    
   });
 
 });
