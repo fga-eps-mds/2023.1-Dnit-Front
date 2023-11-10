@@ -16,6 +16,7 @@ import fetchPerfis from "../service/listarPerfis";
 import { Permissao, TipoPerfil } from "../models/auth";
 import { AuthContext } from "../provider/Autenticacao";
 import fetchMunicipio from "../service/municipio";
+import { MunicipioData } from "../models/service";
 
 interface EditarTipoPerfilArgs {
   id: string | null;
@@ -91,6 +92,7 @@ export default function GerenciarUsuario() {
   const [usuarioSelecionado, setUsuarioSelecionado] = useState('');
   const [atualizaPerfilSelecionado, setAtualizaPerfilSelecionado] = useState('');
   const [atualizaUFSelecionada, setAtualizaUFSelecionada] = useState('');
+  const [atualizaMunicipioSelecionado, setAtualizaMunicipioSelecionado] = useState('');
 
   const navigate = useNavigate();
 
@@ -98,7 +100,7 @@ export default function GerenciarUsuario() {
   const buscarUsuarios = () => {
     setLoading(true);
 
-    fetchUsuarios<ListaPaginada>({ pagina: 1, itemsPorPagina: tamanhoPagina, nome: nome, ufLotacao: uf, perfilId: perfil })
+    fetchUsuarios<ListaPaginada>({ pagina: 1, itemsPorPagina: tamanhoPagina, nome: nome, ufLotacao: uf, perfilId: perfil, municipioId: municipio })
       .then(lista => {
         // setBackupListaUsuarios(lista.items)
         setListaUsuarios(lista.items)
@@ -120,14 +122,25 @@ export default function GerenciarUsuario() {
   }
 
   async function fetchMunicipios(): Promise<void> {
-    console.log(Number(uf))
     const listaMunicipios = await fetchMunicipio(Number(uf));
-    const novoMunicipio = listaMunicipios.map((u) => ({ id:''+ u.id, rotulo: u.nome }));
+    const novoMunicipio = listaMunicipios.map((u) => ({ id: '' + u.id, rotulo: u.nome }));
     setListaMunicipios(novoMunicipio);
   }
 
   function procuraRotuloUf(usuario: UsuarioModel) {
     return listaUfs.find((uf) => uf.id === '' + usuario.ufLotacao)?.rotulo;
+  }
+
+  function procuraRotuloMunicipio(usuario: UsuarioModel) {
+    try {
+      return usuario.municipio.nome;
+    } catch (error) {
+      if (error instanceof TypeError && error.message.includes("Cannot read properties of null (reading 'nome')")) {
+        return "Não Cadastrado";
+      } else {
+        throw error;
+      }
+    }
   }
 
   function procuraNomePerfil(usuario: UsuarioModel) {
@@ -136,6 +149,7 @@ export default function GerenciarUsuario() {
 
   useEffect(() => {
     buscarUsuarios();
+    console.log(municipio);
   }, [nome, uf, perfil, municipio]);
 
   useEffect(() => {
@@ -165,15 +179,16 @@ export default function GerenciarUsuario() {
         atualizaTabela={setListaUsuarios}
         perfilAntesAlteracao={atualizaPerfilSelecionado}
         ufAntesAlteracao={atualizaUFSelecionada}
+        municipioAntesAlteracao={atualizaMunicipioSelecionado}
       />}
-      <Header /> 
+      <Header />
       <TrilhaDeNavegacao elementosLi={paginas} />
       <div className="d-flex flex-column m-5">
         <div className="d-flex justify-content-left align-items-center mr-5">
           <FiltroNome onNomeChange={setNome} />
-          <Select items={listaUfs} value={uf} label={"UF:"} onChange={setUF} dropdownStyle={{ marginLeft: "20px", width: "260px" }} filtrarTodos={true}/>
-          <Select items={listaPerfis} value={perfil} label={"Perfil:"} onChange={setPerfil} dropdownStyle={{ marginLeft: "20px", width: "260px" }} filtrarTodos={true}/>
-          <Select items={listaMunicipios} value={municipio} label={"Municipios:"} onChange={setMunicipio} dropdownStyle={{ marginLeft: "20px", width: "260px" }} filtrarTodos={true}/>
+          <Select items={listaUfs} value={uf} label={"UF:"} onChange={setUF} dropdownStyle={{ marginLeft: "20px", width: "260px" }} filtrarTodos={true} />
+          <Select items={listaPerfis} value={perfil} label={"Perfil:"} onChange={setPerfil} dropdownStyle={{ marginLeft: "20px", width: "260px" }} filtrarTodos={true} />
+          <Select items={listaMunicipios} value={municipio} label={"Municipios:"} onChange={setMunicipio} dropdownStyle={{ marginLeft: "20px", width: "260px" }} filtrarTodos={true} />
         </div>
         {listaUsuarios.length == 0 && <Table columsTitle={['Nome', 'Tipo de Perfil', 'UF', 'Município', 'Email']} initialItemsPerPage={10} title="Perfis de usuário cadastrados"><></><></></Table>}
 
@@ -181,12 +196,13 @@ export default function GerenciarUsuario() {
           {
             listaUsuarios.map((usuario, index) =>
             (<CustomTableRow key={`${usuario.id}-${index}`} id={index}
-              data={{ '0': usuario.nome, '1': `${procuraNomePerfil(usuario)}`, '2': `${procuraRotuloUf(usuario) ?? ""}`, '3': "Não Cadastrado"/*`${usuario.municipio}`*/, '4': usuario.email }}
+              data={{ '0': usuario.nome, '1': `${procuraNomePerfil(usuario)}`, '2': `${procuraRotuloUf(usuario) ?? ""}`, '3': `${procuraRotuloMunicipio(usuario)}`, '4': usuario.email }}
               onEditRow={() => {
                 setUsuarioSelecionado(usuario.id)
                 setMostrarPerfil({ id: null, readOnly: true })
                 setAtualizaPerfilSelecionado(`${procuraNomePerfil(usuario)}`)
                 setAtualizaUFSelecionada(`${procuraRotuloUf(usuario) ?? ""}`)
+                setAtualizaMunicipioSelecionado(`${procuraRotuloMunicipio(usuario)}`)
               }
               }
               hideEditIcon={!podeEditarPerfilUsuario}

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { notification } from "antd";
 import Modal from "../Modal";
 import ReactLoading from "react-loading";
@@ -6,6 +6,7 @@ import Select from "../Select";
 import "./styles.css";
 import fetchAtualizarTipoPerfil from "../../service/atualizarTipoPerfil";
 import { UsuarioModel } from "../../models/usuario";
+import fetchMunicipio from "../../service/municipio";
 
 
 export interface EditarTipoPerfilArgs {
@@ -23,6 +24,7 @@ interface EditarTipoPerfilDialogProps {
   listaUsuarios: UsuarioModel[];
   perfilAntesAlteracao: string;
   ufAntesAlteracao: string;
+  municipioAntesAlteracao: string;
   usuarioId: string;
   closeDialog: (edicao: boolean) => void;
   atualizaTabela: (atualizou: UsuarioModel[] ) => void;
@@ -30,10 +32,12 @@ interface EditarTipoPerfilDialogProps {
 
 
 
-export function EditarTipoPerfilDialog({ closeDialog, listaOpcoes, listaOpcoesUfs, usuarioId, listaUsuarios, atualizaTabela, perfilAntesAlteracao, ufAntesAlteracao }: EditarTipoPerfilDialogProps) {
+export function EditarTipoPerfilDialog({ closeDialog, listaOpcoes, listaOpcoesUfs, usuarioId, listaUsuarios, atualizaTabela, perfilAntesAlteracao, ufAntesAlteracao, municipioAntesAlteracao }: EditarTipoPerfilDialogProps) {
   const [loading, setLoading] = useState(false);
   const [tipoPerfilId, setTipoPerfilId] = useState('');
   const [newUF, setNewUF] = useState('');
+  const [listaMunicipios, setListaMunicipios] = useState<FilterOptions[]>([]);
+  const [newMunicipio, setNewMunicipio] = useState('');
   const [notificationApi, contextHolder] = notification.useNotification();
   const [isModalOpen, setIsModalOpen] = useState(true);
 
@@ -44,8 +48,9 @@ export function EditarTipoPerfilDialog({ closeDialog, listaOpcoes, listaOpcoesUf
     }
     setLoading(true);
 
-    fetchAtualizarTipoPerfil(usuarioId, perfilId, Number(newUF))
+    fetchAtualizarTipoPerfil(usuarioId, perfilId, Number(newUF), Number(newMunicipio))
       .then(() => {
+        console.log(newMunicipio);
         notification.success({ message: 'O perfil foi alterado com sucesso!' });
         closeDialog(true);
       })
@@ -56,15 +61,27 @@ export function EditarTipoPerfilDialog({ closeDialog, listaOpcoes, listaOpcoesUf
       });
   }
 
+  async function fetchMunicipios(): Promise<void> {
+    console.log(Number(newUF))
+    const listaMunicipios = await fetchMunicipio(Number(newUF));
+    const novoMunicipio = listaMunicipios.map((u) => ({ id:''+ u.id, rotulo: u.nome }));
+    setListaMunicipios(novoMunicipio);
+  }
+
   function atualizarListagemUsuarios() {
     const listaUsuariosAtualizada = listaUsuarios.map((usuario) => {
-      if(usuario.id === usuarioId) return { ...usuario,  perfilId: tipoPerfilId, ufLotacao: Number(newUF) }
+      if(usuario.id === usuarioId) return { ...usuario,  perfilId: tipoPerfilId, ufLotacao: Number(newUF)}
       return usuario;
     });
 
     atualizaTabela(listaUsuariosAtualizada);
      
   }
+
+  useEffect(() => {
+    fetchMunicipios();
+  }, [newUF]);
+
 
   if (loading) {
     
@@ -104,13 +121,25 @@ export function EditarTipoPerfilDialog({ closeDialog, listaOpcoes, listaOpcoesUf
         value={newUF} 
         label={"UF"} 
         onChange={(uf) => {
-          console.log(uf);
           setNewUF(uf)}} 
         inputStyle={{ width: "450px" }} 
         dropdownStyle={{ width: "450px" }} 
         buttonStyle={{ left: "150px" } } 
         filtrarTodos={false}
         definePlaceholder={ufAntesAlteracao}
+      />
+      <Select 
+        items={listaMunicipios} 
+        value={newMunicipio} 
+        label={"Municipio"} 
+        onChange={(municipio) => {
+          //console.log(municipio);
+          setNewMunicipio(municipio)}} 
+        inputStyle={{ width: "450px" }} 
+        dropdownStyle={{ width: "450px" }} 
+        buttonStyle={{ left: "150px" } } 
+        filtrarTodos={false}
+        definePlaceholder={municipioAntesAlteracao}
       />
       <div className="d-flex w-100 justify-content-end">
         <button data-testid="botaoCancelar" className="br-button secondary" type="button" onClick={() => closeDialog(false)}>Cancelar</button>

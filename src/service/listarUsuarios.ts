@@ -9,7 +9,7 @@ interface ListarUsuariosQueryParams {
   nome?: string;
   ufLotacao?: string;
   perfilId?: string;
-  municipio?: string
+  municipioId?: string
 }
 
 async function fetchUsuarios<T>(params: ListarUsuariosQueryParams): Promise<T> {
@@ -17,7 +17,7 @@ async function fetchUsuarios<T>(params: ListarUsuariosQueryParams): Promise<T> {
   if (params.nome === '') params.nome = undefined
   if (params.perfilId === '') params.perfilId = undefined
   if (params.ufLotacao  === '') params.ufLotacao = undefined
-  if (params.municipio  === '') params.municipio = undefined
+  if (params.municipioId  === '') params.municipioId = undefined
   try {
     const response: AxiosResponse<T> = await axios.get(listarUsuarios, {
       params
