@@ -50,7 +50,6 @@ export function EditarTipoPerfilDialog({ closeDialog, listaOpcoes, listaOpcoesUf
 
     fetchAtualizarTipoPerfil(usuarioId, perfilId, Number(newUF), Number(newMunicipio))
       .then(() => {
-        console.log(newMunicipio);
         notification.success({ message: 'O perfil foi alterado com sucesso!' });
         closeDialog(true);
       })
@@ -61,8 +60,12 @@ export function EditarTipoPerfilDialog({ closeDialog, listaOpcoes, listaOpcoesUf
       });
   }
 
+  function procuraRotuloMunicipio(idMunicipio: string){
+    console.log(idMunicipio);
+    return listaMunicipios.find((municipio) => municipio.id === idMunicipio)?.rotulo;
+  }
+
   async function fetchMunicipios(): Promise<void> {
-    console.log(Number(newUF))
     const listaMunicipios = await fetchMunicipio(Number(newUF));
     const novoMunicipio = listaMunicipios.map((u) => ({ id:''+ u.id, rotulo: u.nome }));
     setListaMunicipios(novoMunicipio);
@@ -70,7 +73,7 @@ export function EditarTipoPerfilDialog({ closeDialog, listaOpcoes, listaOpcoesUf
 
   function atualizarListagemUsuarios() {
     const listaUsuariosAtualizada = listaUsuarios.map((usuario) => {
-      if(usuario.id === usuarioId) return { ...usuario,  perfilId: tipoPerfilId, ufLotacao: Number(newUF)}
+      if(usuario.id === usuarioId) return { ...usuario,  perfilId: tipoPerfilId, ufLotacao: Number(newUF), municipio: {nome:`${procuraRotuloMunicipio(newMunicipio)}`, id: Number(newMunicipio)}}
       return usuario;
     });
 
@@ -133,7 +136,6 @@ export function EditarTipoPerfilDialog({ closeDialog, listaOpcoes, listaOpcoesUf
         value={newMunicipio} 
         label={"Municipio"} 
         onChange={(municipio) => {
-          //console.log(municipio);
           setNewMunicipio(municipio)}} 
         inputStyle={{ width: "450px" }} 
         dropdownStyle={{ width: "450px" }} 
