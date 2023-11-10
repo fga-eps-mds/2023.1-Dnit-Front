@@ -28,10 +28,10 @@ export const usuarios: UsuarioModel[] = [
     cnpj: "cnpj0",
     email: "Teste@email.com",
     nome: "usuario0",
-    ufLotacao: 1,
+    ufLotacao: 18,
     perfilId: "id0",
     perfil: perfil,
-    municipio: 10
+    municipio: {nome: "Barra do Piraí", id: 3300308}
   },
   {
     id: "1",
@@ -41,6 +41,6 @@ export const usuarios: UsuarioModel[] = [
     ufLotacao: 27,
     perfilId: "id1",
     perfil: perfil,
-    municipio: 1
+    municipio: {nome: "Brasília", id: 5300108}
   }
 ]

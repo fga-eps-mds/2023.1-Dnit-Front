@@ -35,9 +35,9 @@ interface EditarTipoPerfilDialogProps {
 export function EditarTipoPerfilDialog({ closeDialog, listaOpcoes, listaOpcoesUfs, usuarioId, listaUsuarios, atualizaTabela, perfilAntesAlteracao, ufAntesAlteracao, municipioAntesAlteracao }: EditarTipoPerfilDialogProps) {
   const [loading, setLoading] = useState(false);
   const [tipoPerfilId, setTipoPerfilId] = useState('');
-  const [newUF, setNewUF] = useState('');
+  const [newUF, setNewUF] = useState(ufAntesAlteracao);
   const [listaMunicipios, setListaMunicipios] = useState<FilterOptions[]>([]);
-  const [newMunicipio, setNewMunicipio] = useState('');
+  const [newMunicipio, setNewMunicipio] = useState(municipioAntesAlteracao);
   const [notificationApi, contextHolder] = notification.useNotification();
   const [isModalOpen, setIsModalOpen] = useState(true);
 
@@ -61,8 +61,11 @@ export function EditarTipoPerfilDialog({ closeDialog, listaOpcoes, listaOpcoesUf
   }
 
   function procuraRotuloMunicipio(idMunicipio: string){
-    console.log(idMunicipio);
     return listaMunicipios.find((municipio) => municipio.id === idMunicipio)?.rotulo;
+  }
+
+  function procuraRotuloUf(idUF: string) {
+    return listaOpcoesUfs.find((uf) => uf.id === '' + idUF)?.rotulo;
   }
 
   async function fetchMunicipios(): Promise<void> {
@@ -129,7 +132,7 @@ export function EditarTipoPerfilDialog({ closeDialog, listaOpcoes, listaOpcoesUf
         dropdownStyle={{ width: "450px" }} 
         buttonStyle={{ left: "150px" } } 
         filtrarTodos={false}
-        definePlaceholder={ufAntesAlteracao}
+        definePlaceholder={`${procuraRotuloUf(ufAntesAlteracao)}`}
       />
       <Select 
         items={listaMunicipios} 
@@ -141,7 +144,7 @@ export function EditarTipoPerfilDialog({ closeDialog, listaOpcoes, listaOpcoesUf
         dropdownStyle={{ width: "450px" }} 
         buttonStyle={{ left: "150px" } } 
         filtrarTodos={false}
-        definePlaceholder={municipioAntesAlteracao}
+        definePlaceholder={`${procuraRotuloMunicipio(municipioAntesAlteracao)}`}
       />
       <div className="d-flex w-100 justify-content-end">
         <button data-testid="botaoCancelar" className="br-button secondary" type="button" onClick={() => closeDialog(false)}>Cancelar</button>

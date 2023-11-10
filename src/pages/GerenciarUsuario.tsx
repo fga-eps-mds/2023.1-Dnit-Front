@@ -201,8 +201,8 @@ export default function GerenciarUsuario() {
                 setUsuarioSelecionado(usuario.id)
                 setMostrarPerfil({ id: null, readOnly: true })
                 setAtualizaPerfilSelecionado(`${procuraNomePerfil(usuario)}`)
-                setAtualizaUFSelecionada(`${procuraRotuloUf(usuario) ?? ""}`)
-                setAtualizaMunicipioSelecionado(`${procuraRotuloMunicipio(usuario)}`)
+                setAtualizaUFSelecionada(`${usuario.ufLotacao}`)
+                setAtualizaMunicipioSelecionado(`${usuario.municipio.id}`)
               }
               }
               hideEditIcon={!podeEditarPerfilUsuario}
