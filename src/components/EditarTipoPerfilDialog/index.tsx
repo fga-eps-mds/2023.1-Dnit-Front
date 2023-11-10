@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { notification } from "antd";
 // import fetchExcluirPerfil from "../../service/excluiPerfil";
 import Modal from "../Modal";
