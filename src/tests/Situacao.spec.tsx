@@ -2,7 +2,7 @@ import { render, screen, waitFor } from "@testing-library/react";
 import { rest } from "msw";
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
-import ModalExibirInformacoes from "../components/escolasCadastradas/ModalExibirInformacoes";
+import ModalExibirInformacoes from "../components/escolasCadastradas/modal/ModalInformacoes";
 import { AuthProvider } from "../provider/Autenticacao";
 import localStorageMock from "./mock/memoriaLocal";
 import server from "./mock/servicosAPI";

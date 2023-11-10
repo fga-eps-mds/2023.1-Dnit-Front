@@ -3,7 +3,7 @@
 import { render, fireEvent, waitFor, cleanup, prettyDOM } from "@testing-library/react";
 import server from "./mock/servicosAPI";
 import { MemoryRouter } from "react-router-dom";
-import GerenciarUsuario from "../pages/GerenciarUsuario";
+import GerenciarUsuario from "../pages/gerencia/GerenciarUsuario";
 import { AuthProvider } from "../provider/Autenticacao";
 import { autenticar } from "./mock/autenticacao";
 import { Permissao } from "../models/auth";

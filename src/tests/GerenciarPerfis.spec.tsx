@@ -6,7 +6,7 @@ import { autenticar } from "./mock/autenticacao";
 import server from "./mock/servicosAPI";
 import { MemoryRouter } from "react-router-dom";
 import { AuthProvider } from "../provider/Autenticacao";
-import GerenciarPerfis from "../pages/GerenciarPerfis";
+import GerenciarPerfis from "../pages/gerencia/GerenciarPerfis";
 
 beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());

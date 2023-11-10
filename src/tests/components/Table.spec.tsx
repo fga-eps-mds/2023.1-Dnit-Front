@@ -1,9 +1,6 @@
 /* eslint-disable testing-library/render-result-naming-convention */
-import { render, fireEvent, waitFor } from "@testing-library/react";
-import CustomTable, { CustomTableRow } from "../../components/Table/Table";
-import { assert } from "console";
-
-afterEach(jest.clearAllMocks)
+import { render, fireEvent } from "@testing-library/react";
+import CustomTable, { CustomTableRow } from "../../components/Table";
 
 describe("CustomTable Component", () => {
   const rowsData = [
