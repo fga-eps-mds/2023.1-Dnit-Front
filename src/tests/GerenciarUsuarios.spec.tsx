@@ -41,8 +41,8 @@ describe("Testes para a pagina de Gerenciar Usuarios", () => {
       </MemoryRouter>
     );
 
-    fireEvent.change(screen.getByTestId("filtroNome"), { target: { value: "usuario0" } });
-    expect(screen.getByTestId("filtroNome")).toHaveValue("usuario0");
-		expect((await screen.findAllByText("usuario0")).length).toBe(1);
+    fireEvent.change(screen.getByTestId("filtroNome"), { target: { value: "usuario1" } });
+    expect(screen.getByTestId("filtroNome")).toHaveValue("usuario1");
+		expect((await screen.findAllByText("usuario1")).length).toBe(1);
   });
 }); 

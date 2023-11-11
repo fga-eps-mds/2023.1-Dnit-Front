@@ -14,8 +14,8 @@ const categoria: PermissaoCategoria = {
 }
 
 const perfil: PerfilModel = {
-  id: "0",
-  nome: "perfil0",
+  id: "1",
+  nome: "perfil1",
   permissoes: [permissao],
   quantidadeUsuarios: 5,
   tipo: TipoPerfil.Basico,
@@ -24,20 +24,20 @@ const perfil: PerfilModel = {
 
 export const usuarios: UsuarioModel[] = [
   {
-    id: "0",
-    cnpj: "cnpj0",
-    email: "Teste@email.com",
-    nome: "usuario0",
-    ufLotacao: 18,
-    perfilId: "id0",
-    perfil: perfil,
-    municipio: {nome: "Barra do Piraí", id: 3300308}
-  },
-  {
     id: "1",
     cnpj: "cnpj1",
-    email: "Teste1@email.com",
+    email: "Teste@email.com",
     nome: "usuario1",
+    ufLotacao: 18,
+    perfilId: "id1",
+    perfil: perfil,
+    municipio: {nome: "Angra dos Reis", id: 3300100}
+  },
+  {
+    id: "2",
+    cnpj: "cnpj2",
+    email: "Teste1@email.com",
+    nome: "usuario2",
     ufLotacao: 27,
     perfilId: "id1",
     perfil: perfil,
