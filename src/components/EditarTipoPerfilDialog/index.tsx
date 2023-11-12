@@ -4,9 +4,10 @@ import Modal from "../Modal";
 import ReactLoading from "react-loading";
 import Select from "../Select";
 import "./styles.css";
-import fetchAtualizarTipoPerfil from "../../service/atualizarTipoPerfil";
+import {fetchAtualizaTipoPerfil} from "../../service/usuarioApi";
 import { UsuarioModel } from "../../models/usuario";
-import fetchMunicipio from "../../service/municipio";
+import { fetchMunicipio } from "../../service/escolaApi";
+import fetchAtualizarTipoPerfil from "../../service/atualizarTipoPerfil";
 
 
 export interface EditarTipoPerfilArgs {

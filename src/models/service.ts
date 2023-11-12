@@ -116,6 +116,24 @@ export interface EscolaData {
   observacao: string;
 }
 
+export interface FiltroEscolaData {
+  params: {
+    Pagina: number;
+    TamanhoPagina: number;
+    Nome: string;
+    IdSituacao: string | number;
+    IdMunicipio: string | number;
+    IdUf: string | number;
+  };
+}
+
+export interface EscolasFiltradasResponse {
+  escolas: EscolaData[];
+  escolasPorPagina: number;
+  totalEscolas: number;
+  totalPaginas: number;
+}
+
 export interface AlterarDadosEscolaData {
   idEscola: number;
   idSituacao: number;
@@ -154,4 +172,14 @@ export interface SolicitacaoDeAcaoData {
 export interface CalcularUpsData {
   latitude: number;
   longitude: number;
+}
+
+export interface CalcularUpsResponse {
+  status: number;
+  ups2018: number;
+  ups2019: number;
+  ups2020: number;
+  ups2021: number;
+  ups2022: number;
+  upsGeral: number;
 }

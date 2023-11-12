@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { notification } from "antd";
-import "./Styles.css";
+import "./styles.css";
 
 interface SelectOptions {
   id: string;

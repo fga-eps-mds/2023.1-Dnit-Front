@@ -3,20 +3,27 @@ import { PerfilModel } from "../../models/perfil";
 import { UsuarioModel } from "../../models/usuario";
 
 
-const permissao: PermissaoModel = {
-  codigo: Permissao.EmpresaCadastrar,
-  descricao: "descreve"
-}
+const permissao: PermissaoModel[] = [
+  {
+    codigo: Permissao.UsuarioVisualizar,
+    descricao: "Visualizar Usuário"
+  },
+  {
+    codigo: Permissao.UsuarioEditar,
+    descricao: "Editar Perfil Usuário"
+  }
+]
+
 
 const categoria: PermissaoCategoria = {
   categoria: "categoria a",
-  permissoes: [permissao]
+  permissoes: permissao
 }
 
 const perfil: PerfilModel = {
   id: "1",
   nome: "perfil1",
-  permissoes: [permissao],
+  permissoes: permissao,
   quantidadeUsuarios: 5,
   tipo: TipoPerfil.Basico,
   categoriasPermissao: [categoria]
@@ -39,7 +46,7 @@ export const usuarios: UsuarioModel[] = [
     email: "Teste1@email.com",
     nome: "usuario2",
     ufLotacao: 27,
-    perfilId: "id1",
+    perfilId: "a2627d97-f748-4d84-a80e-7b78ac540a7f",
     perfil: perfil,
     municipio: {nome: "Brasília", id: 5300108}
   }
