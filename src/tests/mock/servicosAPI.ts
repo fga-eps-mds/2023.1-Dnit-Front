@@ -793,7 +793,7 @@ const server = setupServer(
     {
       "pagina": 1,
       "itemsPorPagina": 10,
-      "total": 2,
+      "total": 3,
       "totalPaginas": 1,
       "items": usuarios
     }

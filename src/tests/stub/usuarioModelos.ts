@@ -2,7 +2,6 @@ import { Permissao, PermissaoCategoria, PermissaoModel, TipoPerfil } from "../..
 import { PerfilModel } from "../../models/perfil";
 import { UsuarioModel } from "../../models/usuario";
 
-
 const permissao: PermissaoModel[] = [
   {
     codigo: Permissao.UsuarioVisualizar,
@@ -49,5 +48,15 @@ export const usuarios: UsuarioModel[] = [
     perfilId: "a2627d97-f748-4d84-a80e-7b78ac540a7f",
     perfil: perfil,
     municipio: {nome: "Brasília", id: 5300108}
+  },
+  {
+    id: "3",
+    cnpj: "cnpj3",
+    email: "Teste3@email.com",
+    nome: "usuario3",
+    ufLotacao: 3,
+    perfilId: "a2627d97-f748-4d84-a80e-7b78ac540a7f",
+    perfil: perfil,
+    municipio: {nome: (String)(undefined), id: (Number)(undefined) },
   }
 ]
