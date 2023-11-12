@@ -202,11 +202,9 @@ export default function GerenciarUsuario() {
             buscarUsuarios(pagina - 1, tamanhoPagina)
           }}
           onPageResize={(newItensPerPage) => {
-            //setTamanhoPagina(newItensPerPage)
             buscarUsuarios(pagina, newItensPerPage)
           }}
           onPageSelect={(newSelectedPage) => {
-
             buscarUsuarios(newSelectedPage, tamanhoPagina)
           }}
         >

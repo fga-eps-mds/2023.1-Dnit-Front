@@ -29,7 +29,7 @@ describe("Testes para a pagina de Gerenciar Usuarios", () => {
     expect(screen.getByText("Perfis de usuário cadastrados")).toBeInTheDocument();
   });
 
-  it.skip("Deve filtrar por nome", async () => {
+  it("Deve filtrar por nome", async () => {
     autenticar(Permissao.UsuarioVisualizar, Permissao.UsuarioPerfilEditar)
     const screen = render(
       <MemoryRouter>
