@@ -54,17 +54,12 @@ describe("Testes para a pagina de Gerenciar Usuarios", () => {
       </MemoryRouter>
     );
 
-    // Espera pela renderização inicial
     await waitFor(() => screen.getByText("Perfis de usuário cadastrados"));
 
-    // Simula mudança no seletor de tamanho de página
     const tamanhoPaginaSelector = screen.getByTestId('items-per-page');
     fireEvent.change(tamanhoPaginaSelector, { target: { value: '1' } });
 
-    // Espera pela chamada da API após a mudança de tamanho de página
-    await waitFor(() => screen.getByText(`usuario0`)); // Verifica se o último usuário da página está renderizado
-
-    // Simula a seleção de uma nova página
+    await waitFor(() => screen.getByText(`usuario1`)); 
     const buttonNext = screen.getByTestId("proxima-pagina");
     fireEvent.click(buttonNext);
 
@@ -74,7 +69,6 @@ describe("Testes para a pagina de Gerenciar Usuarios", () => {
     const paginaSelectorDropdown = screen.getByTestId('drop-select-page');
     fireEvent.change(paginaSelectorDropdown, { target: { value: '2' } });
 
-    // Espera pela chamada da API após a mudança de página
     await waitFor(() => expect(screen.getByText("Nome:")).toBeInTheDocument());
 
   });
