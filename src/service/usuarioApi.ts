@@ -138,10 +138,10 @@ export async function fetchUsuarios<T>(params: ListarUsuariosQueryParams): Promi
     }
 }
 
-export async function fetchAtualizaTipoPerfil(usuarioId: string, perfilId: string): Promise<void> {
+export async function fetchAtualizaTipoPerfil(usuarioId: string, perfilId: string, ufLotacao: number, municipio: number): Promise<void> {
     try {
         await axios.patch(
-            `${URL.atualizarTipoPerfil}/${usuarioId}/perfil`, { novoPerfilId: perfilId });
+            `${URL.atualizarTipoPerfil}/${usuarioId}/perfil`, {novoPerfilId: perfilId, novaUF: ufLotacao, novoMunicipio: municipio});
     } catch (error) {
         console.log(error);
         throw error;

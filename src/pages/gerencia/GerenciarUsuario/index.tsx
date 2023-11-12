@@ -176,7 +176,7 @@ export default function GerenciarUsuario() {
         listaOpcoes={listaPerfis}
         listaOpcoesUfs={listaUfs}
         listaUsuarios={listaUsuarios}
-        usuarioId={usuarioSelecionado}
+        usuarioId={usuarioSelecionado} 
         closeDialog={() => setMostrarPerfil(null)}
         atualizaTabela={setListaUsuarios}
         perfilAntesAlteracao={atualizaPerfilSelecionado}

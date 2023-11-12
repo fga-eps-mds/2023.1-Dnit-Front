@@ -7,7 +7,6 @@ import "./styles.css";
 import {fetchAtualizaTipoPerfil} from "../../service/usuarioApi";
 import { UsuarioModel } from "../../models/usuario";
 import { fetchMunicipio } from "../../service/escolaApi";
-import fetchAtualizarTipoPerfil from "../../service/atualizarTipoPerfil";
 
 
 export interface EditarTipoPerfilArgs {
@@ -49,7 +48,7 @@ export function EditarTipoPerfilDialog({ closeDialog, listaOpcoes, listaOpcoesUf
     }
     setLoading(true);
 
-    fetchAtualizarTipoPerfil(usuarioId, perfilId, Number(newUF), Number(newMunicipio))
+    fetchAtualizaTipoPerfil(usuarioId, perfilId, Number(newUF), Number(newMunicipio))
       .then(() => {
         notification.success({ message: 'O perfil foi alterado com sucesso!' });
         closeDialog(true);
