@@ -70,6 +70,7 @@ export function FiltroNome({ onNomeChange, nome }: FiltroNomeProps) {
 
 export default function GerenciarUsuario() {
   const { temPermissao } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const [podeEditarPerfilUsuario, setPodeEditarPerfilUsuario] = useState(
     temPermissao(Permissao.UsuarioPerfilEditar)
@@ -84,23 +85,27 @@ export default function GerenciarUsuario() {
   const [municipio, setMunicipio] = useState('');
   const [listaUsuarios, setListaUsuarios] = useState<UsuarioModel[]>([]);
   const [notificationApi, notificationContextHandler] = notification.useNotification();
+  const [pagina, setPagina] = useState(1);
+  const [totalPaginas, setTotalPaginas] = useState(1);
   const [tamanhoPagina, setTamanhoPagina] = useState(10);
+  const [totalItens, setTotalItens] = useState(10);
   const [listaUfs, setListaUfs] = useState<FilterOptions[]>([]);
   const [listaPerfis, setListaPerfis] = useState<FilterProfileOptions[]>([]);
   const [listaMunicipios, setListaMunicipios] = useState<FilterMunicipioOptions[]>([]);
   const [usuarioSelecionado, setUsuarioSelecionado] = useState('');
   const [atualizaPerfilSelecionado, setAtualizaPerfilSelecionado] = useState('');
 
-  const navigate = useNavigate();
-
-
-  const buscarUsuarios = () => {
+  const buscarUsuarios = (pagina: number, itemsPorPagina: number) => {
     setLoading(true);
 
-    fetchUsuarios<ListaPaginada>({ pagina: 1, itemsPorPagina: tamanhoPagina, nome: nome, ufLotacao: uf, perfilId: perfil })
+    fetchUsuarios<ListaPaginada>({ pagina, itemsPorPagina, total: totalItens, nome: nome, ufLotacao: uf, perfilId: perfil })
       .then(lista => {
         // setBackupListaUsuarios(lista.items)
+        setPagina(lista.pagina)
         setListaUsuarios(lista.items)
+        setTotalPaginas(lista.totalPaginas)
+        setTamanhoPagina(lista.itemsPorPagina)
+        setTotalItens(lista.total)
       })
       .catch(error => notificationApi.error({ message: 'Falha na listagem de usuários. ' + (error?.response?.data || '') }))
       .finally(() => setLoading(false));
@@ -134,8 +139,8 @@ export default function GerenciarUsuario() {
   }
 
   useEffect(() => {
-    buscarUsuarios();
-  }, [nome, uf, perfil, municipio]);
+    buscarUsuarios(pagina, tamanhoPagina);
+  }, [nome, uf, perfil, municipio, tamanhoPagina, pagina]);
 
   useEffect(() => {
     fetchMunicipios();
@@ -158,7 +163,7 @@ export default function GerenciarUsuario() {
       {mostrarPerfil != null && <EditarTipoPerfilDialog
         listaOpcoes={listaPerfis}
         listaUsuarios={listaUsuarios}
-        usuarioId={usuarioSelecionado}
+        usuarioId={usuarioSelecionado} 
         closeDialog={() => setMostrarPerfil(null)}
         atualizaTabela={setListaUsuarios}
         perfilAntesAlteracao={atualizaPerfilSelecionado}
@@ -172,13 +177,46 @@ export default function GerenciarUsuario() {
           <Select items={listaPerfis} value={perfil} label={"Perfil:"} onChange={setPerfil} dropdownStyle={{ marginLeft: "20px", width: "260px" }} filtrarTodos={true}/>
           <Select items={listaMunicipios} value={municipio} label={"Municipios:"} onChange={setMunicipio} dropdownStyle={{ marginLeft: "20px", width: "260px" }} filtrarTodos={true}/>
         </div>
-        {listaUsuarios.length === 0 && <Table columsTitle={['Nome', 'Tipo de Perfil', 'UF', 'Município', 'Email']} initialItemsPerPage={10} title="Perfis de usuário cadastrados"><></><></></Table>}
+        {listaUsuarios.length == 0 && 
+          <Table 
+            columsTitle={['Nome', 'Tipo de Perfil', 'UF', 'Município', 'Email']} 
+            initialItemsPerPage={10} 
+            title="Perfis de usuário cadastrados"
+            totalPages={totalPaginas}
+          >
+            <></><></>
+          </Table>}
 
-        <Table columsTitle={['Nome', 'Tipo de Perfil', 'UF', 'Município', 'Email']} initialItemsPerPage={10} title="Perfis de usuário cadastrados">
-          {
-            listaUsuarios.map((usuario, index) =>
+        <Table 
+          title="Perfis de usuário cadastrados"
+          columsTitle={['Nome', 'Tipo de Perfil', 'UF', 'Município', 'Email']} 
+          initialItemsPerPage={tamanhoPagina} 
+          totalPages={totalPaginas}
+          totalItems={totalItens}
+          onNextPage={() => {
+            if (pagina === totalPaginas) return;
+            buscarUsuarios(pagina + 1, tamanhoPagina)
+          }}
+          onPreviousPage={() => {
+            if (pagina === 1) return;
+            buscarUsuarios(pagina - 1, tamanhoPagina)
+          }}
+          onPageResize={(newItensPerPage) => {
+            buscarUsuarios(pagina, newItensPerPage)
+          }}
+          onPageSelect={(newSelectedPage) => {
+            buscarUsuarios(newSelectedPage, tamanhoPagina)
+          }}
+        >
+          {listaUsuarios.map((usuario, index) =>
             (<CustomTableRow key={`${usuario.id}-${index}`} id={index}
-              data={{ '0': usuario.nome, '1': `${procuraNomePerfil(usuario)}`, '2': `${procuraRotuloUf(usuario) ?? ""}`, '3': "Não Cadastrado"/*`${usuario.municipio}`*/, '4': usuario.email }}
+              data={{ 
+                '0': usuario.nome, 
+                '1': `${procuraNomePerfil(usuario)}`, 
+                '2': `${procuraRotuloUf(usuario) ?? ""}`, 
+                '3': "Não Cadastrado"/*`${usuario.municipio}`*/, 
+                '4': usuario.email 
+              }}
               onEditRow={() => {
                 setUsuarioSelecionado(usuario.id)
                 setMostrarPerfil({ id: null, readOnly: true })
@@ -188,9 +226,7 @@ export default function GerenciarUsuario() {
               hideEditIcon={!podeEditarPerfilUsuario}
               hideTrashIcon={true}
               hideEyeIcon={true}
-            />
-            ))
-          }
+            />))}
         </Table>
         {loading && <div className="d-flex justify-content-center w-100 m-5"><ReactLoading type="spinningBubbles" color="#000000" /></div>}
       </div>

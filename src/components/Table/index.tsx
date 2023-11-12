@@ -1,11 +1,17 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import "./styles.css";
 
 interface CustomTableProps {
   title: string;
   initialItemsPerPage: number;
   columsTitle: string[];
+  totalPages?: number;
+  totalItems?: number;
   children: ReactNode[];
+  onNextPage?: () => void
+  onPreviousPage?: () => void
+  onPageResize?: (newItemsPerPage: number) => void;
+  onPageSelect?: (newSelectedPage: number) => void;
 }
 
 interface CustomTableRowsProps {
@@ -22,9 +28,9 @@ interface CustomTableRowsProps {
 export function CustomTableRow({
   data,
   id,
-  onDeleteRow = () => {},
-  onEditRow = () => {},
-  onDetailRow = () => {},
+  onDeleteRow = () => { },
+  onEditRow = () => { },
+  onDetailRow = () => { },
   hideEditIcon = false,
   hideEyeIcon = false,
   hideTrashIcon = false,
@@ -34,26 +40,26 @@ export function CustomTableRow({
   return (
     <tr>
       {columns.map((column, colIndex) => (
-        <td data-th={colIndex}>{data[column]}</td>
+        <td key={column} data-th={colIndex}>{data[column]}</td>
       ))}
       <td>
         <div className="icon-row">
           {!hideEditIcon && (
-            <i data-testId={`table-row-edit-${id}`}
+            <i data-testid={`table-row-edit-${id}`}
               className="fas fa-edit"
               aria-hidden="true"
               onClick={() => onEditRow(id)}
             />
           )}
           {!hideEyeIcon && (
-            <i data-testId={`table-row-eye-${id}`}
+            <i data-testid={`table-row-eye-${id}`}
               className="fas fa-eye"
               aria-hidden="true"
               onClick={() => onDetailRow(id)}
             />
           )}
           {!hideTrashIcon && (
-            <i data-testId={`table-row-delete-${id}`}
+            <i data-testid={`table-row-delete-${id}`}
               className="fas fa-trash-alt"
               aria-hidden="true"
               onClick={() => onDeleteRow(id)}
@@ -70,46 +76,91 @@ export default function CustomTable({
   children,
   columsTitle,
   initialItemsPerPage,
+  onNextPage,
+  onPreviousPage,
+  onPageResize,
+  onPageSelect,
+  totalPages,
+  totalItems,
 }: CustomTableProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(initialItemsPerPage);
   const [isPageItemsOpen, setPageItemsOpen] = useState(false);
   const [isPageIndexOpen, setPageIndexOpen] = useState(false);
+  const [indexOfFirstItem, setIndexOfFirstItem] = useState(0);
+  const [indexOfLastItem, setIndexOfLastItem] = useState(itemsPerPage);
+  const [currentItems, setCurrentItems] = useState<ReactNode[]>([]);
 
-  const indexOfLastItem =
-    currentPage * itemsPerPage > children.length
+  const dataSize = totalItems ? totalItems : 1;
+  
+  const pageNumbers: number[] = [];
+  for (let i = 1; i <= Math.max(1, Math.ceil(dataSize / itemsPerPage)); i++) {
+    pageNumbers.push(i);
+  }
+
+  
+
+  useEffect(() => {
+    const lastItem = currentPage * itemsPerPage > children.length
       ? children.length
       : currentPage * itemsPerPage;
 
-  const indexOfFirstItem = Math.max(indexOfLastItem - itemsPerPage, 0);
-  const currentItems = children.slice(indexOfFirstItem, indexOfLastItem);
-  
-  const pageNumbers: number[] = [];
-  for (let i = 1; i <= Math.ceil(children.length / itemsPerPage); i++) {
-    pageNumbers.push(i);
-  }
+    const firstItem = Math.max(lastItem - itemsPerPage, 0);
+
+
+    const screenLastItem = currentPage * itemsPerPage > dataSize
+      ? dataSize
+      : currentPage * itemsPerPage;
+
+    const screenFirstItem = Math.max(screenLastItem - itemsPerPage, 0);
+
+    setIndexOfFirstItem(screenFirstItem);
+    setIndexOfLastItem(screenLastItem);
+    setCurrentItems(children.slice(firstItem, lastItem));
+  }, [currentPage, itemsPerPage, children])
+
+
   if (children.length === 0) return null;
 
-  const dataSize = children.length;
 
   const changeItemsPerPage = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setItemsPerPage(parseInt(event.target.value));
+    const valorPagina = parseInt(event.target.value)
+    setItemsPerPage(valorPagina);
+    pageResize(valorPagina)
     setPageItemsOpen(false);
   };
 
+  const changeSelectedPage = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const valorPaginaSelecionada = parseInt(event.target.value)
+    setCurrentPage(valorPaginaSelecionada);
+    pageSelect(valorPaginaSelecionada);
+    setPageIndexOpen(false);
+  };
+
   function previousPage() {
-    if (currentPage !== 1) {
-      setCurrentPage(currentPage - 1);
-    }
+    if (currentPage === 1)
+      return
+    onPreviousPage && onPreviousPage();
+    setCurrentPage(currentPage - 1);
   }
 
   function nextPage() {
-    if (currentPage !== pageNumbers.length) {
-      setCurrentPage(currentPage + 1);
-    }
+    if (currentPage === totalPages)
+      return
+    onNextPage && onNextPage();
+    setCurrentPage(currentPage + 1);
   }
 
-  const pageOptions = [1, 2, 5, 10, 25, 100, 150, 200, 500, 1000, 2000];
+  function pageResize(newItensPerPage: number) {
+    onPageResize && onPageResize(newItensPerPage);
+    setItemsPerPage(newItensPerPage);
+  }
+
+  function pageSelect(newSelectedPage: number) {
+    onPageSelect && onPageSelect(newSelectedPage);
+  }
+
+  const pageOptions = [1, 2, 5, 10, 25, 50, 100, 150, 200, 500, 1000, 2000];
 
   return (
     <div
@@ -128,7 +179,7 @@ export default function CustomTable({
         <thead>
           <tr>
             {columsTitle.map((element) => (
-              <th scope="col" style={{color: "#1351B4", fontWeight: "bold"}}>{element}</th>
+              <th scope="col" style={{ color: "#1351B4", fontWeight: "bold" }}>{element}</th>
             ))}
             <th scope="col"></th>
           </tr>
@@ -148,16 +199,20 @@ export default function CustomTable({
               <div className="br-input select-div">
                 <label htmlFor="per-page-selection-random-94892">Exibir</label>
                 <select
+                  data-testid="items-per-page"
                   className="select-expand"
                   aria-label="Exibir lista"
                   tabIndex={-1}
                   data-trigger="data-trigger"
-                  onChange={(value) => changeItemsPerPage(value)}
+                  onChange={(value) => {
+                    changeItemsPerPage(value)
+                  }}
                   onFocus={() => setPageItemsOpen(true)}
                   onBlur={() => setPageItemsOpen(false)}
+
                 >
                   {pageOptions.map((element) => {
-                    return element <= dataSize * 2 ? (
+                    return element <= dataSize * 3 ? (
                       <option
                         value={element}
                         selected={itemsPerPage === element}
@@ -181,65 +236,68 @@ export default function CustomTable({
           <span className="br-divider d-none d-sm-block mx-3"></span>
           <div className="pagination-inhtmlFormation d-none d-sm-flex">
             <span className="current">
-              {`${
-                indexOfFirstItem + 1
-              }-${indexOfLastItem} de ${dataSize} itens`}
+              {`${indexOfFirstItem + 1
+                }-${indexOfLastItem} de ${dataSize <= 10 ? children.length : dataSize} itens`}
             </span>
           </div>
-        <div className="pagination-go-to-page d-none d-sm-flex ml-auto">
-          <div className="br-select">
-            <div className="br-input select-div">
-              <label htmlFor="per-page-selection-random-94892">Página</label>
-              <select
-                className="select-expand"
-                aria-label="Exibir página"
-                tabIndex={-1}
-                data-trigger="data-trigger"
-                onChange={(value) => {
-                  setCurrentPage(Number(value.target.value));
-                  setPageIndexOpen(false);
-                }}
-                onFocus={() => setPageIndexOpen(true)}
-                onBlur={() => setPageIndexOpen(false)}
-              >
-                {pageNumbers.map((element) => (
-                  <option value={element} selected={currentPage === element}>
-                    {element}
-                  </option>
-                ))}
-              </select>
-              <i
-                className={
-                  isPageIndexOpen
-                    ? "fas fa-angle-down select-icon"
-                    : "fas fa-angle-up select-icon"
-                }
-                aria-hidden="true"
-              />
+          <div className="pagination-go-to-page d-none d-sm-flex ml-auto">
+            <div className="br-select">
+              <div className="br-input select-div">
+                <label htmlFor="per-page-selection-random-94892">Página</label>
+                <select
+                  data-testid="drop-select-page"
+                  className="select-expand"
+                  aria-label="Exibir página"
+                  tabIndex={-1}
+                  data-trigger="data-trigger"
+                  onChange={(value) => {
+                    changeSelectedPage(value);
+                  }}
+                  defaultValue={currentPage}
+                  onFocus={() => setPageIndexOpen(true)}
+                  onBlur={() => setPageIndexOpen(false)}
+                >
+                  {pageNumbers.map((element) => (
+                    <option value={element} selected={currentPage === element} >
+                      {element}
+
+                    </option>
+                  ))}
+                </select>
+                <i
+                  className={
+                    isPageIndexOpen
+                      ? "fas fa-angle-down select-icon"
+                      : "fas fa-angle-up select-icon"
+                  }
+                  aria-hidden="true"
+                />
+              </div>
             </div>
           </div>
-        </div>
 
-        <span className="br-divider d-none d-sm-block mx-3"></span>
-        <div className="pagination-arrows ml-auto ml-sm-0">
-          <button
-            className="br-button circle"
-            type="button"
-            aria-label="Voltar página"
-            onClick={previousPage}
-          >
-            <i className="fas fa-angle-left" aria-hidden="true"></i>
-          </button>
-          <button
-            className="br-button circle"
-            type="button"
-            aria-label="Avançar página"
-            onClick={nextPage}
-          >
-            <i className="fas fa-angle-right" aria-hidden="true"></i>
-          </button>
-        </div>
-      </nav>
+          <span className="br-divider d-none d-sm-block mx-3"></span>
+          <div className="pagination-arrows ml-auto ml-sm-0">
+            <button
+              data-testid="volta-pagina"
+              className="br-button circle"
+              type="button"
+              aria-label="Voltar página"
+              onClick={previousPage}
+            >
+              <i className="fas fa-angle-left" aria-hidden="true"></i>
+            </button>
+            <button
+              data-testid="proxima-pagina"
+              className="br-button circle"
+              type="button"
+              aria-label="Avançar página"
+              onClick={nextPage}
+            >
+              <i className="fas fa-angle-right" aria-hidden="true"></i>
+            </button>
+          </div>
+        </nav>
       </div>
     </div>
   );

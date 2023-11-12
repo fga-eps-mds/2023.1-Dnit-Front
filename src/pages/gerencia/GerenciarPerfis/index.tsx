@@ -105,7 +105,12 @@ export default function GerenciarPerfis() {
         </div>
         {perfis.length === 0 && <Table columsTitle={['Nome', 'Número de Usuários', 'Permissões']} initialItemsPerPage={10} title="Perfis de usuário cadastrados"><></><></></Table>}
 
-        <Table columsTitle={['Nome', 'Número de Usuários', 'Permissões']} initialItemsPerPage={10} title="Perfis de usuário cadastrados">
+        <Table 
+        columsTitle={['Nome', 'Número de Usuários', 'Permissões']} 
+        initialItemsPerPage={10} 
+        title="Perfis de usuário cadastrados"
+        totalItems={perfis.length}
+        >
           {
             perfis.map((p, index) =>
               <CustomTableRow key={`${p.id}-${index}`} id={index}
