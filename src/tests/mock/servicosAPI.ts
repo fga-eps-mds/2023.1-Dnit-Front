@@ -755,9 +755,9 @@ const server = setupServer(
   rest.get(`${listarUsuarios}*`, (req, res, ctx) => res(ctx.status(200), ctx.json(
     {
       "pagina": 1,
-      "itemsPorPagina": 10,
-      "total": 10,
-      "totalPaginas": 10,
+      "itemsPorPagina": 2,
+      "total": 2,
+      "totalPaginas": 1,
       "items": usuarios
     }
   ))),

@@ -76,7 +76,7 @@ describe("Testes para o componente EditarTipoPerfilDialog", () => {
       </MemoryRouter>
     )
 
-    const botao = screen.getByTestId("customSelect");
+    const botao = screen.getByTestId("PerfilcustomSelect");
     fireEvent.click(botao);
 
     const opcao = screen.getByText("perfil0");

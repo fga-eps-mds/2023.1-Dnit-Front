@@ -36,7 +36,7 @@ export default function PerfilDialog({ id, readOnly, closeDialog }: PerfilDialog
   const [notificationApi, contextHolder] = notification.useNotification();
 
   const preencherPerfil = (perfil: PerfilModel) => {
-    if (perfil.tipo == TipoPerfil.Administrador) {
+    if (perfil.tipo === TipoPerfil.Administrador) {
       setCanEdit(false);
     }
     setCategorias(c => {
@@ -44,7 +44,7 @@ export default function PerfilDialog({ id, readOnly, closeDialog }: PerfilDialog
       return categorias.map(categoria => {
         const novaCategoria = { ...categoria };
         const permissoes = perfil.categoriasPermissao
-          ?.find(pc => pc.categoria == categoria.categoria)
+          ?.find(pc => pc.categoria === categoria.categoria)
           ?.permissoes
           ?.map(p => p.codigo) ?? [];
         novaCategoria.permissoes = novaCategoria.permissoes.map(p => { return { ...p, selecionada: p.selecionada = permissoes.includes(p.codigo) } });

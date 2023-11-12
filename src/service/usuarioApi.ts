@@ -140,7 +140,7 @@ export async function fetchUsuarios<T>(params: ListarUsuariosQueryParams): Promi
 
 export async function fetchAtualizaTipoPerfil(usuarioId: string, perfilId: string): Promise<void> {
     try {
-        const response: AxiosResponse<void> = await axios.patch(
+        await axios.patch(
             `${URL.atualizarTipoPerfil}/${usuarioId}/perfil`, { novoPerfilId: perfilId });
     } catch (error) {
         console.log(error);

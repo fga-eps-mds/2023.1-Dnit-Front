@@ -37,7 +37,7 @@ describe("Testes para o componente Select", () => {
       />
     )
 
-    const botao = screen.getByTestId("customSelect");
+    const botao = screen.getByTestId("Título do SelectcustomSelect");
     fireEvent.click(botao);
 
     expect(screen.getByText("test0")).toBeInTheDocument();

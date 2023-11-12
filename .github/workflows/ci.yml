@@ -20,7 +20,7 @@ jobs:
       - name: Print env
         run: printenv
       - name: Install dependencies
-        run: npm install
+        run: npm ci
       - name: Test and coverage
         env:
           REACT_APP_API_USUARIOS: https://usuario.dnit.eps-fga.live
