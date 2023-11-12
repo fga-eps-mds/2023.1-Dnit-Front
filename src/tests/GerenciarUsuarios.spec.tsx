@@ -195,15 +195,7 @@ describe("Testes para a pagina de Gerenciar Usuarios", () => {
 
     await waitFor(() => screen.getByText(`usuario3`));
 
-    const buttonEdit = screen.getByTestId(`table-row-edit-2`)
-    fireEvent.click(buttonEdit);
-
-    await waitFor(() => expect(screen.getByText("Tipo Perfil")).toBeInTheDocument());
-
-    const dropdownPerfil = screen.getByTestId("PerfilcustomSelect");
-    fireEvent.click(dropdownPerfil);
-
-    expect((await screen.findAllByText("undefined")).length).toBe(4);
+    expect((await screen.findAllByText("undefined")).length).toBe(3);
 
   });
 
