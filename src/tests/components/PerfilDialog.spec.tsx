@@ -73,7 +73,7 @@ describe('PerfilDialog Criação', () => {
   test('deve cadastrar', async () => {
     const screen = render(
       <MemoryRouter>
-        <PerfilDialog closeDialog={() => {}} id={null} readOnly={false} />
+        <PerfilDialog closeDialog={() => { }} id={null} readOnly={false} />
       </MemoryRouter>
     );
 
@@ -157,5 +157,21 @@ describe('PerfilDialog Detalhes', () => {
     await waitFor(() => expect(screen.getByText('Escola')).toBeInTheDocument());
     await waitFor(() => expect(screen.getByText('Ups')).toBeInTheDocument());
     await waitFor(() => expect(screen.getByTestId('perfil-nome')).toHaveAttribute('value', 'perfil-teste'));
+  });
+
+  test('Fecha ao clikar no overlay', async () => {
+      const screen = render(
+        <MemoryRouter>
+          <PerfilDialog closeDialog={() => { }} id={'1'} readOnly={true} />
+        </MemoryRouter>
+      );
+
+      await waitFor(() => expect(screen.getByText('Escola')).toBeInTheDocument());
+      await waitFor(() => expect(screen.getByText('Ups')).toBeInTheDocument());
+      await waitFor(() => expect(screen.getByTestId('perfil-nome')).toHaveAttribute('value', 'perfil-teste'));
+    
+      const overlay = screen.getByTestId('overlay');
+      fireEvent.click(overlay); 
+
   });
 });

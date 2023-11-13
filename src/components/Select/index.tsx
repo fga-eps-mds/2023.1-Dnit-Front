@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./styles.css";
 
 interface SelectOptions {
@@ -23,7 +23,6 @@ export default function Select({ items, value, label, onChange, inputStyle, drop
   const [novaLista, setNovaLista] = useState<SelectOptions[]>([]);
 
   const toggleDropdown = () => {
-    // console.log('toggleDropdown foi chamada');
     setIsOpen(!isOpen);
   };
 
@@ -45,15 +44,26 @@ export default function Select({ items, value, label, onChange, inputStyle, drop
     }
     else
       setNovaLista(items);
-    //console.log({novaLista});
-
-    
   }, [items])
 
-  //getRotuloById(value, novaLista)
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const fechaDropdown = (event: MouseEvent) => {
+      if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', fechaDropdown);
+
+    return () => {
+      document.removeEventListener('mousedown', fechaDropdown);
+    };
+  }, []);
 
   return (
-    <div className="profile-type-select br-select" style={{ flexBasis: "90%" }}>
+    <div ref={wrapperRef} className="profile-type-select br-select" style={{ flexBasis: "90%" }}>
       <div className="br-input ">
         <label className="profile-type-label ml-2" htmlFor="select-simple" ><p style={{ marginBottom: "4px" }}><strong>{label}</strong></p></label>
         <div className="br-input large input-button">
