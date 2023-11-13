@@ -28,10 +28,10 @@ export function NomeFilter({ onNomeChange }: NomeFilterProps) {
 
   return (
     <div className="d-flex flex-column ml-3 mt-5 mb-5">
-      <label className="ml-2" style={{ textAlign: 'start', fontSize: '16px' }}>Nome:</label>
+      <label className="ml-2" style={{ textAlign: 'start', fontSize: '16px' }}>Perfil:</label>
       <div className="d-flex" style={{ fontSize: '16px' }}>
         <div className="br-input large input-button">
-          <input className="br-input-search-large" type="search" placeholder="Nome" value={nome}
+          <input className="br-input-search-large" type="search" placeholder="Nome do Perfil" value={nome}
             onChange={e => setNome(e.target.value)}
             onKeyDown={e => e.key === 'Enter' && onNomeChange(nome)} />
           <button className="br-button" type="button" aria-label="Buscar" onClick={() => onNomeChange(nome)}>
@@ -103,10 +103,10 @@ export default function GerenciarPerfis() {
           <NomeFilter onNomeChange={setNome} />
           {temPermissaoGerenciar.cadastrar && <ButtonComponent label="Criar Perfil" buttonStyle="primary" onClick={() => setShowPerfil({ id: null, readOnly: false })}></ButtonComponent>}
         </div>
-        {perfis.length === 0 && <Table columsTitle={['Nome', 'Número de Usuários', 'Permissões']} initialItemsPerPage={10} title="Perfis de usuário cadastrados"><></><></></Table>}
+        {perfis.length === 0 && <Table columsTitle={['Perfil', 'Número de Usuários', 'Permissões']} initialItemsPerPage={10} title="Perfis de usuário cadastrados"><></><></></Table>}
 
         <Table 
-        columsTitle={['Nome', 'Número de Usuários', 'Permissões']} 
+        columsTitle={['Perfil', 'Número de Usuários', 'Permissões']} 
         initialItemsPerPage={10} 
         title="Perfis de usuário cadastrados"
         totalItems={perfis.length}
