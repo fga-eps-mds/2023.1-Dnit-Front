@@ -1,0 +1,50 @@
+name: Deploy
+
+on:
+  push:
+    branches: [ "develop" ]
+
+jobs:
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18]
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        
+    - name: Install Azure Static Web Apps CLI
+      run: npm install -g @azure/static-web-apps-cli@1.1.4
+      
+    - name: Install Dependencies
+      run: npm ci
+
+    - name: Environment
+      env:
+        DEPLOY_ENV: ${{ secrets.DEPLOY_ENV }}
+        DEPLOY_ENV_SEPARATOR: ${{ secrets.DEPLOY_ENV_SEPARATOR }}
+      run: echo "$DEPLOY_ENV" | tr "$DEPLOY_ENV_SEPARATOR" '\n' > .env
+
+    - name: Tests
+      run: npm run test -- --silent --ci --testLocationInResults  --maxWorkers=100%
+
+    - name: Build
+      env:
+        CI: false
+      run: npm run build
+
+    - name: Copy Configuration
+      run: cp staticwebapp.config.json build/
+
+    - name: Deploy
+      env:
+        TOKEN:  ${{ secrets.SWA_TOKEN }}
+      run: swa deploy --env production -d $TOKEN ./build

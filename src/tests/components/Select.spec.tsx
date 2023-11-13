@@ -14,11 +14,12 @@ describe("Testes para o componente Select", () => {
         items={itemsTest}
         value={estadoInicial}
         label={"Título do Select"}
+        definePlaceholder="perfilAtual"
         onChange={() => {}}
       />
     )
 
-    expect(screen.getByPlaceholderText("Todos")).toBeInTheDocument();
+    expect(screen.getByPlaceholderText("perfilAtual")).toBeInTheDocument();
     expect(screen.getByText("Título do Select")).toBeInTheDocument();
   });
 
@@ -36,7 +37,7 @@ describe("Testes para o componente Select", () => {
       />
     )
 
-    const botao = screen.getByTestId("customSelect");
+    const botao = screen.getByTestId("Título do SelectcustomSelect");
     fireEvent.click(botao);
 
     expect(screen.getByText("test0")).toBeInTheDocument();

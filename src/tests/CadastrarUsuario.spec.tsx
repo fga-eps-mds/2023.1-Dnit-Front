@@ -4,18 +4,18 @@ import { act, fireEvent, render, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
 import { AuthProvider } from "../provider/Autenticacao";
-import fetchCadastroUsuario from "../service/cadastrarUsuario";
+import { sendCadastroUsuarioDnit } from "../service/usuarioApi";
 import server from "./mock/servicosAPI";
 import { ExcessoesApi } from "../service/excessoes";
 import { notification } from "antd";
 import axios, { AxiosError } from "axios";
 
-jest.mock("../service/cadastrarUsuario", () => ({
-  __esModule: true,
-  default: jest.fn(),
+jest.mock("../service/usuarioApi", () => ({
+  ...jest.requireActual("../service/usuarioApi"),
+  sendCadastroUsuarioDnit: jest.fn(),
 }));
 
-const mockedUseRegister = fetchCadastroUsuario as jest.Mock;
+const mockedUseRegister = sendCadastroUsuarioDnit as jest.Mock;
 
 beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
@@ -143,22 +143,7 @@ test("should render error in the Register form when it exists", async () => {
     const options = screen.getByTestId("option-1");
     fireEvent.click(options);
 
-    
-    await expect(fetchCadastroUsuario({
-      email:"fulano@gmail.com",
-      senha:"123",
-      nome:"fulano",
-      ufLotacao:1
-    }
-      
-    )).rejects.toThrow(
-      mockedError
-    );
-
     fireEvent.click(button);
 
-
-
     await waitFor (() => expect(screen.getByText("Email já cadastrado")).toBeInTheDocument())
-  
 });

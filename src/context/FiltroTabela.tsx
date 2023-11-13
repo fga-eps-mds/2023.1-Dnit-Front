@@ -1,4 +1,3 @@
-import axios, { AxiosResponse } from "axios";
 import {
   Dispatch,
   SetStateAction,
@@ -7,13 +6,13 @@ import {
   useEffect,
   useState,
 } from "react";
-import { escolasFiltradasURL } from "../consts/service";
 import {
   EscolaData,
   UnidadeFederativaData,
   MunicipioData,
   SituacaoData,
 } from "../models/service";
+import {fetchListarEscolasFiltradas} from "../service/escolaApi";
 
 interface FiltroContextType {
   nomeEscola: string;
@@ -90,28 +89,26 @@ const FiltroProvider = ({ children }: any) => {
           [`IdEtapaEnsino[${index}]`]: item,
         })
       );
-      const response: AxiosResponse<ResponseData> = await axios.get(
-        escolasFiltradasURL,
-        {
-          params: {
-            Pagina: paginaAtual,
-            TamanhoPagina: escolasPorPagina,
-            Nome: NomePesquisado ? NomePesquisado : "",
-            IdSituacao: situacaoSelecionada ? situacaoSelecionada.id : "",
-            IdMunicipio: municipioSelecionado ? municipioSelecionado.id : "",
-            IdUf: UFSelecionada ? UFSelecionada.id : "",
-            ...idEtapaEnsinoParams.reduce(
-              (acc, obj) => ({ ...acc, ...obj }),
-              {}
-            ),
-          },
-        }
-      );
+        
+      const response = await fetchListarEscolasFiltradas({
+        params: {
+          Pagina: paginaAtual,
+          TamanhoPagina: escolasPorPagina,
+          Nome: NomePesquisado ? NomePesquisado : "",
+          IdSituacao: situacaoSelecionada ? situacaoSelecionada.id : "",
+          IdMunicipio: municipioSelecionado ? municipioSelecionado.id : "",
+          IdUf: UFSelecionada ? UFSelecionada.id : "",
+          ...idEtapaEnsinoParams.reduce(
+            (acc, obj) => ({ ...acc, ...obj }),
+            {}
+          ),
+        },
+      });
 
       setCarregandoEscolas(false);
-      setEscolasFiltradas(response.data.escolas);
-      setTotalEscolas(response.data.totalEscolas);
-      setTotalPaginas(response.data.totalPaginas);
+      setEscolasFiltradas(response.escolas);
+      setTotalEscolas(response.totalEscolas);
+      setTotalPaginas(response.totalPaginas);
     } catch (error) {
       setCarregandoEscolas(false);
       setEscolasFiltradas(false);
@@ -151,12 +148,6 @@ const FiltroProvider = ({ children }: any) => {
     fetchEscolasFiltradas();
   }, [paginaAtual, gatilho]);
 
-  interface ResponseData {
-    escolas: EscolaData[];
-    escolasPorPagina: number;
-    totalEscolas: number;
-    totalPaginas: number;
-  }
 
   const contextValue: FiltroContextType = {
     nomeEscola,
