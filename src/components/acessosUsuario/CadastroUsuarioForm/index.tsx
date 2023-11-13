@@ -48,7 +48,7 @@ const CadastroUsuarioForm: React.FC = () => {
         api.error({ message: error.message });
       }
       else
-        api.error({ message: "error.response.data" });
+        api.error({ message: "Erro interno" });
     }
   };
 
