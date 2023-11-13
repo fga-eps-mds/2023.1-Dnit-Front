@@ -195,7 +195,7 @@ describe("Testes para a pagina de Gerenciar Usuarios", () => {
 
     await waitFor(() => screen.getByText(`usuario3`));
 
-    expect((await screen.findAllByText("undefined")).length).toBe(3);
+    expect((await screen.findAllByText("undefined")).length).toBe(4);
 
   });
 

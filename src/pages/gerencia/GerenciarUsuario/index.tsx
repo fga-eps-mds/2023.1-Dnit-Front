@@ -135,15 +135,7 @@ export default function GerenciarUsuario() {
   }
 
   function procuraRotuloMunicipio(usuario: UsuarioModel) {
-    try {
-      return usuario.municipio.nome;
-    } catch (error) {
-      if (error instanceof TypeError && error.message.includes("Cannot read properties of null (reading 'nome')")) {
-        return "Não Cadastrado";
-      } else {
-        throw error;
-      }
-    }
+    return usuario.municipio === null ? "Não Cadastrado" : usuario.municipio?.nome;
   }
 
   function procuraNomePerfil(usuario: UsuarioModel) {
@@ -236,8 +228,8 @@ export default function GerenciarUsuario() {
               setUsuarioSelecionado(usuario.id)
               setMostrarPerfil({ id: null, readOnly: true })
               setAtualizaPerfilSelecionado(`${procuraNomePerfil(usuario)}`)
-              setAtualizaUFSelecionada(`${usuario.ufLotacao}`)
-              setAtualizaMunicipioSelecionado(`${usuario.municipio.id}`)
+              setAtualizaUFSelecionada(`${usuario.ufLotacao ?? '-'}`)
+              setAtualizaMunicipioSelecionado(`${usuario.municipio?.id}`)
             }
             }
             hideEditIcon={!podeEditarPerfilUsuario}
