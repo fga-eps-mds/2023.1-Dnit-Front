@@ -39,7 +39,6 @@ export function EditarTipoPerfilDialog({ closeDialog, listaOpcoes, listaOpcoesUf
   const [listaMunicipios, setListaMunicipios] = useState<FilterOptions[]>([]);
   const [newMunicipio, setNewMunicipio] = useState(municipioAntesAlteracao);
   const [notificationApi, contextHolder] = notification.useNotification();
-  const [isModalOpen, setIsModalOpen] = useState(true);
 
   const salvarPerfil = (usuarioId: string, perfilId: string) => {
     if (!tipoPerfilId.trim()) {
@@ -62,10 +61,6 @@ export function EditarTipoPerfilDialog({ closeDialog, listaOpcoes, listaOpcoesUf
 
   function procuraRotuloMunicipio(idMunicipio: string){
     return listaMunicipios.find((municipio) => municipio.id === idMunicipio)?.rotulo;
-  }
-
-  function procuraRotuloUf(idUF: string) {
-    return listaOpcoesUfs.find((uf) => uf.id === '' + idUF)?.rotulo;
   }
 
   async function fetchMunicipios(): Promise<void> {
@@ -132,7 +127,7 @@ export function EditarTipoPerfilDialog({ closeDialog, listaOpcoes, listaOpcoesUf
         dropdownStyle={{ width: "450px" }} 
         buttonStyle={{ left: "150px" } } 
         filtrarTodos={false}
-        definePlaceholder={`${procuraRotuloUf(ufAntesAlteracao)}`}
+        definePlaceholder="Escolha a Unidade Federativa"
       />
       <Select 
         items={listaMunicipios} 
@@ -144,7 +139,7 @@ export function EditarTipoPerfilDialog({ closeDialog, listaOpcoes, listaOpcoesUf
         dropdownStyle={{ width: "450px" }} 
         buttonStyle={{ left: "150px" } } 
         filtrarTodos={false}
-        definePlaceholder={`${procuraRotuloMunicipio(municipioAntesAlteracao)}`}
+        definePlaceholder="Escolha o Municipio"
       />
       <div className="d-flex w-100 justify-content-end">
         <button data-testid="botaoCancelar" className="br-button secondary" type="button" onClick={() => closeDialog(false)}>Cancelar</button>

@@ -135,7 +135,7 @@ export default function GerenciarUsuario() {
   }
 
   function procuraRotuloMunicipio(usuario: UsuarioModel) {
-    return usuario.municipio === null ? "Não Cadastrado" : usuario.municipio?.nome;
+    return usuario.municipio === null || usuario.municipio?.nome === "undefined" ? "Não Cadastrado" : usuario.municipio?.nome;
   }
 
   function procuraNomePerfil(usuario: UsuarioModel) {
