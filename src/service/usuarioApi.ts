@@ -4,7 +4,7 @@ import { PermissaoCategoria, LoginResponse, Permissao, AtualizarTokenDto } from 
 import { PerfilDto, PerfilModel } from "../models/perfil";
 import { ListarUsuariosQueryParams } from "../models/usuario";
 import * as DATA from "../models/service";
-import { ResponseStatus, sendCadastros, update, fetchDados } from "./apiUtils";
+import { ResponseStatus, sendCadastros, update, fetchDados, sendCadastrosDnit } from "./apiUtils";
 import { AuthLocalStorage } from "../provider/Autenticacao";
 
 export async function fetchPermissoesCategoria(): Promise<PermissaoCategoria[]> {
@@ -110,7 +110,7 @@ export async function sendNewToken(dados: AtualizarTokenDto): Promise<LoginRespo
 }
 
 export async function sendCadastroUsuarioDnit(data: DATA.CadastroUsuarioData): Promise<ResponseStatus> {
-    return sendCadastros<DATA.CadastroUsuarioData>(URL.cadastroUsuarioURL, data);
+    return sendCadastrosDnit<DATA.CadastroUsuarioData>(URL.cadastroUsuarioURL, data);
 }
 
 export async function updateRecuperarSenha(data: DATA.RecuperarSenhaData): Promise<ResponseStatus> {

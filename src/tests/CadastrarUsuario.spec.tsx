@@ -7,8 +7,6 @@ import { AuthProvider } from "../provider/Autenticacao";
 import { sendCadastroUsuarioDnit } from "../service/usuarioApi";
 import server from "./mock/servicosAPI";
 import { ExcessoesApi } from "../service/excessoes";
-import { notification } from "antd";
-import axios, { AxiosError } from "axios";
 
 jest.mock("../service/usuarioApi", () => ({
   ...jest.requireActual("../service/usuarioApi"),
@@ -101,49 +99,50 @@ test("should render error in Register form", async () => {
     });
     fireEvent.click(usuarioDnitRadioButton);
   });
+
 });
 
 test("should render error in the Register form when it exists", async () => {
-    const mockedError = new ExcessoesApi('409','Email já cadastrado', {"1":"null"});
-    mockedUseRegister.mockImplementation(() => Promise.reject(mockedError))
-  
-    const screen = render(
-      <MemoryRouter initialEntries={["/cadastro"]}>
-        <App />
-      </MemoryRouter>
-    );
+  const mockedError = new ExcessoesApi('409','Email já cadastrado', {"1":"null"});
+  mockedUseRegister.mockImplementation(() => Promise.reject(mockedError))
 
-    const emailInput = screen.getByLabelText("E-mail Institucional");
-    const passwordInput = screen.getByLabelText("Senha");
-    const confirmPasswordInput = screen.getByLabelText("Confirmar Senha");
-    const nomeInput = screen.getByLabelText("Nome Completo");
-    const usuarioDnitRadioButton = screen.getByRole("radio", {
-      name: "Usuário DNIT",
-    });
-    const button = screen.getByText("Cadastrar-se");
+  const screen = render(
+    <MemoryRouter initialEntries={["/cadastro"]}>
+      <App />
+    </MemoryRouter>
+  );
 
-    fireEvent.change(emailInput, { target: { value: "example@example.com" } });
-    fireEvent.change(passwordInput, { target: { value: "password123" } });
-    fireEvent.change(confirmPasswordInput, {
-      target: { value: "password123" },
-    });
-    fireEvent.change(nomeInput, { target: { value: "Example" } });
-    fireEvent.click(usuarioDnitRadioButton);
+  const emailInput = screen.getByLabelText("E-mail Institucional");
+  const passwordInput = screen.getByLabelText("Senha");
+  const confirmPasswordInput = screen.getByLabelText("Confirmar Senha");
+  const nomeInput = screen.getByLabelText("Nome Completo");
+  const usuarioDnitRadioButton = screen.getByRole("radio", {
+    name: "Usuário DNIT",
+  });
+  const button = screen.getByText("Cadastrar-se");
 
-    const ufSelect = screen.getByRole("combobox");
-    fireEvent.mouseDown(ufSelect);
+  fireEvent.change(emailInput, { target: { value: "example@example.com" } });
+  fireEvent.change(passwordInput, { target: { value: "password123" } });
+  fireEvent.change(confirmPasswordInput, {
+    target: { value: "password123" },
+  });
+  fireEvent.change(nomeInput, { target: { value: "Example" } });
+  fireEvent.click(usuarioDnitRadioButton);
 
-    await waitFor(() =>
-      expect(screen.queryByText("Carregando...")).not.toBeInTheDocument()
-    );
+  const ufSelect = screen.getByRole("combobox");
+  fireEvent.mouseDown(ufSelect);
 
-    const ufSelectValue = screen.getByText("Acre");
-    fireEvent.click(ufSelectValue);
+  await waitFor(() =>
+    expect(screen.queryByText("Carregando...")).not.toBeInTheDocument()
+  );
 
-    const options = screen.getByTestId("option-1");
-    fireEvent.click(options);
+  const ufSelectValue = screen.getByText("Acre");
+  fireEvent.click(ufSelectValue);
 
-    fireEvent.click(button);
+  const options = screen.getByTestId("option-1");
+  fireEvent.click(options);
 
-    await waitFor (() => expect(screen.getByText("Email já cadastrado")).toBeInTheDocument())
+  fireEvent.click(button);
+
+  await waitFor (() => expect(screen.getByText("Email já cadastrado")).toBeInTheDocument())
 });

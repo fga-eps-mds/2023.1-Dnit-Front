@@ -13,6 +13,19 @@ export async function sendCadastros<T>(url: string, data: T): Promise<ResponseSt
         return response.data;
     }
     catch(error){
+        console.log(error);
+        throw error;
+    }
+}
+
+export async function sendCadastrosDnit<T>(url: string, data: T): Promise<ResponseStatus> {
+    try{
+        const response: AxiosResponse<ResponseStatus> = await axios.post(
+            url, data
+        );
+        return response.data;
+    }
+    catch(error){
         if (error instanceof AxiosError) {
             let erro = error.response?.data as ExcessoesApi;
             throw new ExcessoesApi(
