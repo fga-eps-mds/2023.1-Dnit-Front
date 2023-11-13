@@ -6,6 +6,9 @@ import App from "../App";
 import { AuthProvider } from "../provider/Autenticacao";
 import fetchCadastroUsuario from "../service/cadastrarUsuario";
 import server from "./mock/servicosAPI";
+import { ExcessoesApi } from "../service/excessoes";
+import { notification } from "antd";
+import axios, { AxiosError } from "axios";
 
 jest.mock("../service/cadastrarUsuario", () => ({
   __esModule: true,
@@ -98,4 +101,64 @@ test("should render error in Register form", async () => {
     });
     fireEvent.click(usuarioDnitRadioButton);
   });
+});
+
+test("should render error in the Register form when it exists", async () => {
+    const mockedError = new ExcessoesApi('409','Email já cadastrado', {"1":"null"});
+    mockedUseRegister.mockImplementation(() => Promise.reject(mockedError))
+  
+    const screen = render(
+      <MemoryRouter initialEntries={["/cadastro"]}>
+        <App />
+      </MemoryRouter>
+    );
+
+    const emailInput = screen.getByLabelText("E-mail Institucional");
+    const passwordInput = screen.getByLabelText("Senha");
+    const confirmPasswordInput = screen.getByLabelText("Confirmar Senha");
+    const nomeInput = screen.getByLabelText("Nome Completo");
+    const usuarioDnitRadioButton = screen.getByRole("radio", {
+      name: "Usuário DNIT",
+    });
+    const button = screen.getByText("Cadastrar-se");
+
+    fireEvent.change(emailInput, { target: { value: "example@example.com" } });
+    fireEvent.change(passwordInput, { target: { value: "password123" } });
+    fireEvent.change(confirmPasswordInput, {
+      target: { value: "password123" },
+    });
+    fireEvent.change(nomeInput, { target: { value: "Example" } });
+    fireEvent.click(usuarioDnitRadioButton);
+
+    const ufSelect = screen.getByRole("combobox");
+    fireEvent.mouseDown(ufSelect);
+
+    await waitFor(() =>
+      expect(screen.queryByText("Carregando...")).not.toBeInTheDocument()
+    );
+
+    const ufSelectValue = screen.getByText("Acre");
+    fireEvent.click(ufSelectValue);
+
+    const options = screen.getByTestId("option-1");
+    fireEvent.click(options);
+
+    
+    await expect(fetchCadastroUsuario({
+      email:"fulano@gmail.com",
+      senha:"123",
+      nome:"fulano",
+      ufLotacao:1
+    }
+      
+    )).rejects.toThrow(
+      mockedError
+    );
+
+    fireEvent.click(button);
+
+
+
+    await waitFor (() => expect(screen.getByText("Email já cadastrado")).toBeInTheDocument())
+  
 });
