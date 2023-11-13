@@ -32,7 +32,10 @@ export function NomeFilter({ onNomeChange }: NomeFilterProps) {
       <div className="d-flex" style={{ fontSize: '16px' }}>
         <div className="br-input large input-button">
           <input className="br-input-search-large" type="search" placeholder="Nome do Perfil" value={nome}
-            onChange={e => setNome(e.target.value)}
+            onChange={e => {
+              onNomeChange(e.target.value);
+              setNome(e.target.value);
+            }}
             onKeyDown={e => e.key === 'Enter' && onNomeChange(nome)} />
           <button className="br-button" type="button" aria-label="Buscar" onClick={() => onNomeChange(nome)}>
             <i className="fas fa-search" aria-hidden="true"></i>
