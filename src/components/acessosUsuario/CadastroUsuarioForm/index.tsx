@@ -5,6 +5,8 @@ import { sendCadastroUsuarioDnit } from "../../../service/usuarioApi";
 import { fetchUnidadeFederativa } from "../../../service/escolaApi";
 import "../../../styles/form.css";
 import { ButtonComponent } from "../../Button";
+import { ExcessoesApi } from "../../../service/excessoes";
+
 
 const { Option } = Select;
 
@@ -42,7 +44,11 @@ const CadastroUsuarioForm: React.FC = () => {
       notification.success({ message: "Cadastro feito!" });
       navigate("/login");
     } catch (error) {
-      api.error({ message: `Erro ao fazer cadastro` });
+      if(error instanceof ExcessoesApi){
+        api.error({ message: error.message });
+      }
+      else
+        api.error({ message: "Erro interno" });
     }
   };
 

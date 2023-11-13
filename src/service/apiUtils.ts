@@ -1,6 +1,7 @@
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 import * as URL from "../consts/service";
 import * as DATA from "../models/service";
+import { ExcessoesApi } from "./excessoes";
 
 export interface ResponseStatus { status: number }
 
@@ -14,6 +15,26 @@ export async function sendCadastros<T>(url: string, data: T): Promise<ResponseSt
     catch(error){
         console.log(error);
         throw error;
+    }
+}
+
+export async function sendCadastrosDnit<T>(url: string, data: T): Promise<ResponseStatus> {
+    try{
+        const response: AxiosResponse<ResponseStatus> = await axios.post(
+            url, data
+        );
+        return response.data;
+    }
+    catch(error){
+        if (error instanceof AxiosError) {
+            let erro = error.response?.data as ExcessoesApi;
+            throw new ExcessoesApi(
+              erro.codeStr,
+              erro.message,
+              erro.details);
+          }
+          console.log({ error });
+          throw error;
     }
 }
 
