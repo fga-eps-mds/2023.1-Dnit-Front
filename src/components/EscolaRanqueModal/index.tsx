@@ -1,7 +1,7 @@
 import React from 'react';
-import { EscolaData } from '../../pages/Ranque'; 
+import { EscolaData } from '../../pages/Ranque/index'; 
 import "../../styles/App.css";
-import "../../styles/Ranque.css";
+import "../../pages/Ranque/index.css";
 
 interface ModalProps {
     isOpen: boolean;
@@ -71,13 +71,13 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, escolaSelecionada }) => 
           {escolaSelecionada && (
             <div>
               <p style={{ fontSize: '12px' }}>Nome: {escolaSelecionada.escola}</p>
-              <p style={{ fontSize: '12px' }}>Posição: {escolaSelecionada.posição}</p>
+              <p style={{ fontSize: '12px' }}>Posição: {escolaSelecionada.posicao}</p>
               <p style={{ fontSize: '12px' }}>Pontuação:</p>
                 Fator X, Peso X, Valor X<br/>
                 Fator Y, Peso Y, Valor Y<br/>
                 Fator Z, Peso Z, Valor Z<br/>
                 UPS, Peso 2,16<br/>
-              <p style={{ fontSize: '12px' }}>Total: {escolaSelecionada.pontuação}</p>
+              <p style={{ fontSize: '12px' }}>Total: {escolaSelecionada.pontuacao}</p>
               <p style={{ fontSize: '12px' }}><strong>Dados</strong></p>
               <p style={{ fontSize: '12px' }}>Código: {escolaSelecionada.código}</p>
               <p style={{ fontSize: '12px' }}>Alunos: {escolaSelecionada.alunos}</p>

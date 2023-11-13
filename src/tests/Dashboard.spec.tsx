@@ -59,7 +59,7 @@ test("Visualizar Escolas Sem Permissão", async () => {
 
 
 test("Visualizar Dados UPS", async () => {
-  autenticar(Permissao.UpsVisualizar);
+  autenticar(Permissao.RanqueVisualizar);
 
   const screen = render(
     <MemoryRouter initialEntries={["/dashboard"]}>
