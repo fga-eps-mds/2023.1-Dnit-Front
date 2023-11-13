@@ -57,6 +57,6 @@ export const usuarios: UsuarioModel[] = [
     ufLotacao: 3,
     perfilId: "a2627d97-f748-4d84-a80e-7b78ac540a7f",
     perfil: perfil,
-    municipio: null, //necessario para o teste de carregar um usuario sem municipio
+    municipio: {nome: '', id: 0}, 
   }
 ]
