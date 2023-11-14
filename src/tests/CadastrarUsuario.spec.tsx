@@ -4,15 +4,16 @@ import { act, fireEvent, render, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
 import { AuthProvider } from "../provider/Autenticacao";
-import fetchCadastroUsuario from "../service/cadastrarUsuario";
+import { sendCadastroUsuarioDnit } from "../service/usuarioApi";
 import server from "./mock/servicosAPI";
+import { ExcessoesApi } from "../service/excessoes";
 
-jest.mock("../service/cadastrarUsuario", () => ({
-  __esModule: true,
-  default: jest.fn(),
+jest.mock("../service/usuarioApi", () => ({
+  ...jest.requireActual("../service/usuarioApi"),
+  sendCadastroUsuarioDnit: jest.fn(),
 }));
 
-const mockedUseRegister = fetchCadastroUsuario as jest.Mock;
+const mockedUseRegister = sendCadastroUsuarioDnit as jest.Mock;
 
 beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
@@ -98,4 +99,95 @@ test("should render error in Register form", async () => {
     });
     fireEvent.click(usuarioDnitRadioButton);
   });
+
+});
+
+test("should render error in the Register form when it exists", async () => {
+  const mockedError = new ExcessoesApi('409','Email já cadastrado', {"1":"null"});
+  mockedUseRegister.mockImplementation(() => Promise.reject(mockedError))
+
+  const screen = render(
+    <MemoryRouter initialEntries={["/cadastro"]}>
+      <App />
+    </MemoryRouter>
+  );
+
+  const emailInput = screen.getByLabelText("E-mail Institucional");
+  const passwordInput = screen.getByLabelText("Senha");
+  const confirmPasswordInput = screen.getByLabelText("Confirmar Senha");
+  const nomeInput = screen.getByLabelText("Nome Completo");
+  const usuarioDnitRadioButton = screen.getByRole("radio", {
+    name: "Usuário DNIT",
+  });
+  const button = screen.getByText("Cadastrar-se");
+
+  fireEvent.change(emailInput, { target: { value: "example@example.com" } });
+  fireEvent.change(passwordInput, { target: { value: "password123" } });
+  fireEvent.change(confirmPasswordInput, {
+    target: { value: "password123" },
+  });
+  fireEvent.change(nomeInput, { target: { value: "Example" } });
+  fireEvent.click(usuarioDnitRadioButton);
+
+  const ufSelect = screen.getByRole("combobox");
+  fireEvent.mouseDown(ufSelect);
+
+  await waitFor(() =>
+    expect(screen.queryByText("Carregando...")).not.toBeInTheDocument()
+  );
+
+  const ufSelectValue = screen.getByText("Acre");
+  fireEvent.click(ufSelectValue);
+
+  const options = screen.getByTestId("option-1");
+  fireEvent.click(options);
+
+  fireEvent.click(button);
+
+  await waitFor (() => expect(screen.getByText("Email já cadastrado")).toBeInTheDocument())
+});
+
+test("should render error in the Register form when it exists", async () => {
+  const mockedError = new Error("Erro interno");
+  mockedUseRegister.mockImplementation(() => Promise.reject(mockedError))
+
+  const screen = render(
+    <MemoryRouter initialEntries={["/cadastro"]}>
+      <App />
+    </MemoryRouter>
+  );
+
+  const emailInput = screen.getByLabelText("E-mail Institucional");
+  const passwordInput = screen.getByLabelText("Senha");
+  const confirmPasswordInput = screen.getByLabelText("Confirmar Senha");
+  const nomeInput = screen.getByLabelText("Nome Completo");
+  const usuarioDnitRadioButton = screen.getByRole("radio", {
+    name: "Usuário DNIT",
+  });
+  const button = screen.getByText("Cadastrar-se");
+
+  fireEvent.change(emailInput, { target: { value: "example@example.com" } });
+  fireEvent.change(passwordInput, { target: { value: "password123" } });
+  fireEvent.change(confirmPasswordInput, {
+    target: { value: "password123" },
+  });
+  fireEvent.change(nomeInput, { target: { value: "Example" } });
+  fireEvent.click(usuarioDnitRadioButton);
+
+  const ufSelect = screen.getByRole("combobox");
+  fireEvent.mouseDown(ufSelect);
+
+  await waitFor(() =>
+    expect(screen.queryByText("Carregando...")).not.toBeInTheDocument()
+  );
+
+  const ufSelectValue = screen.getByText("Acre");
+  fireEvent.click(ufSelectValue);
+
+  const options = screen.getByTestId("option-1");
+  fireEvent.click(options);
+
+  fireEvent.click(button);
+
+  await waitFor (() => expect(screen.getByText("Erro interno")).toBeInTheDocument())
 });
