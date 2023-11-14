@@ -1,6 +1,6 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
-import { atualizarTipoPerfil, atualizarTokenUrl, cadastrarPerfilUrl, excluiPerfil, listarPerfis, listarPermissoesCategoria, listarUsuarioPermissoes, listarUsuarios, obterPerfil, urlAPIEscolas, urlAPIUps } from "../../consts/service";
+import { atualizarTipoPerfil, atualizarTokenUrl, cadastrarPerfilUrl, excluiPerfil, listarEscolasRanque, listarPerfis, listarPermissoesCategoria, listarUsuarioPermissoes, listarUsuarios, obterPerfil, urlAPIEscolas, urlAPIUps } from "../../consts/service";
 import { Permissao, TipoPerfil } from "../../models/auth";
 import { usuarios } from "../stub/usuarioModelos";
 
@@ -761,6 +761,89 @@ const server = setupServer(
       "items": usuarios
     }
   ))),
+  rest.get(`${listarEscolasRanque}`, (req, res, ctx) => res(
+    ctx.status(200),
+    ctx.json(
+      {
+        pagina: 1,
+        itemsPorPagina: 4,
+        total: 8,
+        totalPaginas: 0,
+        items: [
+          {
+            ranqueId: 1,
+            pontuacao: 50,
+            posicao: 1,
+            escola: {
+              id: 'id-1',
+              nome: "escola 2",
+              uf: "DF",
+              etapasEnsino: {
+                id: 1,
+                descricao: "Um municipio ai"
+              },
+              municipio: {
+                id: 1,
+                descricao: "Um municipio ai"
+              },
+            },
+          },
+          {
+            ranqueId: 1,
+            pontuacao: 40,
+            posicao: 1,
+            escola: {
+              id: 'id-2',
+              nome: "escola 2",
+              uf: "DF",
+              etapasEnsino: {
+                id: 1,
+                descricao: "Um municipio ai"
+              },
+              municipio: {
+                id: 1,
+                descricao: "Um municipio ai"
+              },
+            },
+          },{
+            ranqueId: 1,
+            pontuacao: 30,
+            posicao: 1,
+            escola: {
+              id: 'id-3',
+              nome: "escola 2",
+              uf: "DF",
+              etapasEnsino: {
+                id: 1,
+                descricao: "Um municipio ai"
+              },
+              municipio: {
+                id: 1,
+                descricao: "Um municipio ai"
+              },
+            },
+          },{
+            ranqueId: 1,
+            pontuacao: 20,
+            posicao: 1,
+            escola: {
+              id: 'id-4',
+              nome: "escola 2",
+              uf: "DF",
+              etapasEnsino: {
+                id: 1,
+                descricao: "Um municipio ai"
+              },
+              municipio: {
+                id: 1,
+                descricao: "Um municipio ai"
+              },
+            },
+          },
+        ]
+      }
+    )
+  ))
 );
 
 export default server;
