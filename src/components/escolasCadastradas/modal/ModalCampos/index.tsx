@@ -185,6 +185,7 @@ const ModalCampos = ({
             placeholder={data.cep}
             disabled
           />
+          
           <div className="br-select">
             <label htmlFor="select-multtiple">Etapas de Ensino</label>
             <Select
@@ -200,6 +201,33 @@ const ModalCampos = ({
             />
           </div>
         </div>
+        
+        <label htmlFor="input-default">CEP Superintendência</label>
+        <div className="input-group">
+          <div className="input-icon">
+            <i className="fas fa-thumbtack" aria-hidden="true"></i>
+          </div>
+          <input
+              id="input-default"
+              type="text"
+              placeholder="71021-931"
+              disabled
+          />
+        </div>
+
+        <label htmlFor="input-default">Endereço Superintendência</label>
+        <div className="input-group">
+          <div className="input-icon">
+            <i className="fas fa-home" aria-hidden="true"></i>
+          </div>
+          <input
+              id="input-default"
+              type="text"
+              placeholder="Goiania, rua figueiredo...."
+              disabled
+          />
+        </div>
+        
       </div>
       <div className="br-input">
         <div className="input-default">
@@ -325,6 +353,16 @@ const ModalCampos = ({
             type="text"
             placeholder={ultimaAtualizacao.toLocaleDateString()}
             disabled
+          />
+        </div>
+
+        <label htmlFor="input-default">Custo Logístico</label>
+        <div className="input-group">
+          <input
+              id="input-default"
+              type="text"
+              placeholder="$$$"
+              disabled
           />
         </div>
       </div>

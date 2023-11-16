@@ -205,18 +205,19 @@ const ModalInformacoes = ({ escola, open, close }: ModalProps) => {
               nomeEscola={escola.nomeEscola}
             />
             <div className="br-modal-footer ">
-              <div className="content-left">
+              
+              <div className="content-center">
+                
                 {temPermissao(Permissao.EscolaRemover) &&
-                  <button
-                    className=" br-button cancel-button "
-                    type="button"
-                    onClick={() => setIsModalExcluirEscolasOpen(true)}
-                  >
-                    Excluir escola
-                  </button>
+                    <button
+                        className=" br-button cancel-button "
+                        type="button"
+                        onClick={() => setIsModalExcluirEscolasOpen(true)}
+                    >
+                      Excluir escola
+                    </button>
                 }
-              </div>
-              <div className="content-right">
+                
                 <button
                   className="br-button secondary"
                   type="button"
@@ -227,6 +228,7 @@ const ModalInformacoes = ({ escola, open, close }: ModalProps) => {
                 >
                   Cancelar
                 </button>
+                
                 {temPermissao(Permissao.EscolaEditar) &&
                   <button
                     className="br-button primary ml-2 "
@@ -236,6 +238,7 @@ const ModalInformacoes = ({ escola, open, close }: ModalProps) => {
                     Salvar
                   </button>
                 }
+                
               </div>
             </div>
           </div>
