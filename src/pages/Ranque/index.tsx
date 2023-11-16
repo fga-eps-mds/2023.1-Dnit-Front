@@ -40,12 +40,11 @@ function Ranque() {
   const [ufs, setUfs] = useState<SelectItem[]>([]);
   const [municipio, setMunicipio] = useState<SelectItem | null>(null);
   const [municipios, setMunicipios] = useState<SelectItem[]>([]);
-  const [etapasEnsinoSelecionada, setEtapasEnsinoSelecionada] = useState('');
+  const [etapa, setEtapa] = useState<SelectItem | null>(null);
+  const [etapas, setEtapas] = useState<SelectItem[]>([]);
 
   const ProcessamentoUPS: boolean = false;
   const [ultimoProcessamento] = useState("23/05/2023 16:43");
-
-  const [etapasEnsino, setEtapasEnsino] = useState<EtapasDeEnsinoData[]>([]);
 
   const paginas = [{ nome: "Logout", link: "/login" }];
   const [loading, setLoading] = useState(true);
@@ -61,7 +60,7 @@ function Ranque() {
     fetchEtapasDeEnsino()
       .then(etapas => {
         etapas.sort((a, b) => b.descricao.localeCompare(a.descricao));
-        setEtapasEnsino(etapas);
+        setEtapas(etapas.map(e => ({ id: e.id.toString(), rotulo: e.descricao })));
       });
   }, []);
 
@@ -79,7 +78,10 @@ function Ranque() {
       filtro.idUf = Number(uf.id);
     }
     if (!!municipio) {
-      filtro.idMunicipio = Number(municipio?.id);
+      filtro.idMunicipio = Number(municipio.id);
+    }
+    if (!!etapa) {
+      filtro.idEtapaEnsino = [Number(etapa.id)];
     }
 
     fetchEscolasRanque(filtro)
@@ -90,7 +92,7 @@ function Ranque() {
         setEscolas(e);
       })
       .finally(() => setLoading(false));
-  }, [nome, uf, municipio, etapasEnsino, paginacao]);
+  }, [nome, uf, municipio, etapa, paginacao]);
 
   const formatEtapaEnsino = (etapaEnsino: EtapasDeEnsinoData[], max = 2) => {
     if (!etapaEnsino) {
@@ -110,17 +112,12 @@ function Ranque() {
         <div className='d-flex justify-content-between align-items-center'>
           <div className='d-flex align-items-center'>
             <FiltroNome nome={nome} onNomeChange={setNome} />
-            <Select items={ufs} value={uf?.id || ''} label={"UF:"} onChange={id => setUf(ufs.find(u => u.id == id) || null)} dropdownStyle={{ marginLeft: "20px", width: "260px" }} filtrarTodos={true} />
-            <Select items={municipios} value={municipio?.id || ''} label={"Municipios:"} onChange={id => setMunicipio(municipios.find(m => m.id == id) || null)} dropdownStyle={{ marginLeft: "20px", width: "260px" }} filtrarTodos={true} />
+            <Select items={ufs} value={uf?.id || ''} label={"UF"} onChange={id => setUf(ufs.find(u => u.id == id) || null)} dropdownStyle={{ marginLeft: "20px", width: "260px" }} filtrarTodos={true} />
+            <Select items={municipios} value={municipio?.id || ''} label={"Municipios"} onChange={id => setMunicipio(municipios.find(m => m.id == id) || null)} dropdownStyle={{ marginLeft: "20px", width: "260px" }} filtrarTodos={true} />
+            <Select items={etapas} value={etapa?.id || ''} label={"Etapas de Ensino"} onChange={id => setEtapa(etapas.find(e => e.id == id) || null)} dropdownStyle={{ marginLeft: "20px", width: "260px" }} filtrarTodos={true} />
           </div>
-          <div>
-            {ProcessamentoUPS ? (
-              <p className="small-font mb-0">Novo cálculo de ranking em processamento...</p>
-            ) : (
-              <p className="small-font mb-0">
-                Último processamento: {ultimoProcessamento}&nbsp; &nbsp; &nbsp; &nbsp;
-              </p>
-            )}
+          <div className='d-flex align-items-center small-font mr-3'>
+            {ProcessamentoUPS ? 'Novo cálculo de ranking em processamento...' : `Último processamento: ${ultimoProcessamento}`}
           </div>
         </div>
 

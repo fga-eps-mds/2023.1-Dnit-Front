@@ -29,4 +29,5 @@ export interface EscolaRanqueFiltro {
     nome?: string;
     idUf: number;
     idMunicipio?: number;
+    idEtapaEnsino?: number[];
 }
