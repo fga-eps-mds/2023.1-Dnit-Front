@@ -40,7 +40,7 @@ export function CustomTableRow({
   return (
     <tr>
       {columns.map((column, colIndex) => (
-        <td key={column} data-th={colIndex}>{data[column]}</td>
+        <td key={`${id}-${column}`} data-th={colIndex}>{data[column]}</td>
       ))}
       <td>
         <div className="icon-row">
@@ -92,13 +92,11 @@ export default function CustomTable({
   const [currentItems, setCurrentItems] = useState<ReactNode[]>([]);
 
   const dataSize = totalItems ? totalItems : 1;
-  
+
   const pageNumbers: number[] = [];
   for (let i = 1; i <= Math.max(1, Math.ceil(dataSize / itemsPerPage)); i++) {
     pageNumbers.push(i);
   }
-
-  
 
   useEffect(() => {
     const lastItem = currentPage * itemsPerPage > children.length
@@ -179,7 +177,7 @@ export default function CustomTable({
         <thead>
           <tr>
             {columsTitle.map((element) => (
-              <th key={element} scope="col" style={{ color: "#1351B4", fontWeight: "bold" }}>{element}</th>
+              <th key={`${title}-${element}`} scope="col" style={{ color: "#1351B4", fontWeight: "bold" }}>{element}</th>
             ))}
             <th scope="col"></th>
           </tr>
@@ -209,14 +207,13 @@ export default function CustomTable({
                   }}
                   onFocus={() => setPageItemsOpen(true)}
                   onBlur={() => setPageItemsOpen(false)}
-
+                  value={itemsPerPage}
                 >
                   {pageOptions.map(element => {
                     return element <= dataSize * 3 ? (
                       <option
                         key={element}
                         value={element}
-                        selected={itemsPerPage === element}
                       >
                         {element}
                       </option>
@@ -257,9 +254,10 @@ export default function CustomTable({
                   defaultValue={currentPage}
                   onFocus={() => setPageIndexOpen(true)}
                   onBlur={() => setPageIndexOpen(false)}
+                  value={currentPage}
                 >
                   {pageNumbers.map((element) => (
-                    <option value={element} selected={currentPage === element} >
+                    <option key={element} value={element} >
                       {element}
 
                     </option>

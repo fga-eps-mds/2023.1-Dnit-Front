@@ -8,7 +8,8 @@ import TrilhaDeNavegacao from '../../components/Navegacao';
 import ReactLoading from 'react-loading';
 import Table, { CustomTableRow } from '../../components/Table';
 import { fetchEscolasRanque } from '../../service/ranqueApi';
-import { EscolaRanqueData } from '../../models/ranque';
+import { EscolaRanqueData, EscolaRanqueFiltro, ListaPaginada } from '../../models/ranque';
+import { notification } from 'antd';
 
 export interface EscolaData {
   id: string;
@@ -44,8 +45,11 @@ function Ranque() {
 
   const paginas = [{ nome: "Logout", link: "/login" }];
   const [loading, setLoading] = useState(false);
-  const [escolas, setEscolas] = useState<EscolaRanqueData[]>([]);
+  const [escolas, setEscolas] = useState<ListaPaginada<EscolaRanqueData> | null>(null);
   const colunas = ['Posição', 'Pontuação', 'Escola', 'Etapas de Ensino', 'Município', 'UF'];
+
+  const [paginacao, setPaginacao] = useState({pagina: 1, tamanhoPagina: 10, });
+  const [notificationApi, notificationContextHandler] = notification.useNotification();
 
   useEffect(() => {
     fetchUnidadeFederativa()
@@ -59,21 +63,33 @@ function Ranque() {
 
   useEffect(() => {
     setLoading(true);
-    fetchEscolasRanque()
-      .then(escolas => setEscolas(escolas.items))
+    fetchEscolasRanque({...paginacao})
+      .then(e => {
+        if (escolas?.items != null && escolas.items.length > 0 && e.items[0]?.ranqueId != escolas?.items[0].ranqueId) {
+          notification.success({message: "A tabela foi atualizada com os resultados do novo processamento"});
+        }
+        setEscolas(e);
+      })
       .finally(() => setLoading(false));
-  }, [ufSelecionado, municipioSelecionado, etapasEnsino]);
+  }, [ufSelecionado, municipioSelecionado, etapasEnsino, paginacao]);
+
+  const formatEtapaEnsino = (etapaEnsino: EtapasDeEnsinoData[], max = 2) => {
+    if (!etapaEnsino) {
+      return '';
+    }
+    return `${etapaEnsino.map(etapa => etapa.descricao).slice(0, max).join(', ')}${etapaEnsino.length > max ? '...' : ''}`;
+  }
 
   return (
     <div className="App">
       <Header />
-      {/* {notificationContextHandler} */}
+      {notificationContextHandler}
       {/* <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} escolaSelecionada={escolaSelecionada} /> */}
       <TrilhaDeNavegacao elementosLi={paginas} />
 
       <div className='d-flex flex-column m-5'>
         <div className='d-flex justify-content-between align-items-center pl-3'>
-          <div className="filtros">
+          {/* <div className="filtros">
             <div className="mr-4 text-start">
               <label htmlFor="uf" className='text-start'>UF:</label>
               <select
@@ -105,11 +121,11 @@ function Ranque() {
                 onChange={(e) => setEtapasEnsinoSelecionada(e.target.value)}
                 style={{ marginLeft: "px", background: "none", height: "40px", width: "150px", borderRadius: "5px" }}
               >
-                <option value="">Todas</option>
+                <option value="_">Todas</option>
                 {etapasEnsino.map(e => <option key={e.id}>{e.descricao}</option>)}
               </select>
             </div>
-          </div>
+          </div> */}
 
           <div>
             {ProcessamentoUPS ? (
@@ -123,27 +139,43 @@ function Ranque() {
         </div>
 
 
-        {escolas.length === 0 && <Table columsTitle={colunas} initialItemsPerPage={10} title=""><></><></></Table>}
+        {escolas?.items.length === 0 && <Table columsTitle={colunas} initialItemsPerPage={10} title=""><></><></></Table>}
+        {escolas?.items != null && escolas.items.length  > 0 &&
+          <Table
+            columsTitle={colunas}
+            title='' initialItemsPerPage={10} totalItems={escolas?.total}
+            onNextPage={() => {
+              if (paginacao.pagina === escolas?.totalPaginas) return;
+              setPaginacao(p => {return {...p, pagina: p.pagina + 1}})
+            }}
+            onPreviousPage={() => {
+              if (paginacao.pagina === 1) return;
+              setPaginacao({...paginacao, pagina: paginacao.pagina - 1})
+            }}
+            onPageResize={(tamanhoPagina) => {
+              setPaginacao({...paginacao, tamanhoPagina})
+            }}
+            onPageSelect={(pagina) => {
+              setPaginacao({...paginacao, pagina})
+            }}>
+            {
+              escolas?.items.map((e, index) =>
+                <CustomTableRow
+                  key={e.escola.id}
+                  id={index}
+                  data={{ '0': `${e.posicao}°`,
+                          '1': `${e.pontuacao}`,
+                          '2': e.escola.nome,
+                          '3': formatEtapaEnsino(e.escola.etapaEnsino),
+                          '4': e.escola.municipio?.nome || '',
+                          '5': e.escola.uf || '' }}
+                  hideTrashIcon={true}
+                />
+              )
+            }
+          </Table>
+        }
 
-        <Table
-          columsTitle={colunas}
-          title='' initialItemsPerPage={10} totalItems={escolas.length}>
-          {
-            escolas.map((e, index) =>
-              <CustomTableRow
-                key={e.escola.id}
-                id={index}
-                data={{ '0': `${e.posicao}°`,
-                        '1': `${e.pontuacao}`,
-                        '2': e.escola.nome,
-                        '3': e.escola.etapasEnsino?.map(etapa => etapa.descricao).join(', ') || '',
-                        '4': e.escola.municipio?.nome || '',
-                        '5': e.escola.uf || '' }}
-                hideTrashIcon={true}
-              />
-            )
-          }
-        </Table>
         {loading && <div className="d-flex justify-content-center w-100 m-5"><ReactLoading type="spinningBubbles" color="#000000" /></div>}
       </div>
       <Footer />

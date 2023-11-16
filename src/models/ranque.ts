@@ -12,7 +12,7 @@ export interface EscolaRanqueInfo {
     id: string;
     nome: string;
     uf: string;
-    etapasEnsino: EtapasDeEnsinoData[];
+    etapaEnsino: EtapasDeEnsinoData[];
     municipio: MunicipioData; 
 }
 
@@ -21,4 +21,12 @@ export interface EscolaRanqueData {
     pontuacao: number;
     posicao: number;
     escola: EscolaRanqueInfo;
+}
+
+export interface EscolaRanqueFiltro {
+    pagina: number;
+    tamanhoPagina: number;
+    nome?: string;
+    uf?: number;
+    municipio?: number;
 }
