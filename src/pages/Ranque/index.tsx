@@ -44,7 +44,7 @@ function Ranque() {
   const [etapasEnsino, setEtapasEnsino] = useState<EtapasDeEnsinoData[]>([]);
 
   const paginas = [{ nome: "Logout", link: "/login" }];
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [escolas, setEscolas] = useState<ListaPaginada<EscolaRanqueData> | null>(null);
   const colunas = ['Posição', 'Pontuação', 'Escola', 'Etapas de Ensino', 'UF', 'Município'];
 
@@ -62,7 +62,6 @@ function Ranque() {
   }, []);
 
   useEffect(() => {
-    setLoading(true);
     fetchEscolasRanque({...paginacao})
       .then(e => {
         if (escolas?.items != null && escolas.items.length > 0 && e.items[0]?.ranqueId != escolas?.items[0].ranqueId) {
@@ -81,7 +80,7 @@ function Ranque() {
   }
 
   return (
-    <div className="App">
+    <div className="App ranque-container">
       <Header />
       {notificationContextHandler}
       {/* <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} escolaSelecionada={escolaSelecionada} /> */}
@@ -138,8 +137,8 @@ function Ranque() {
           </div>
         </div>
 
-        {escolas?.items.length == 0 && <Table columsTitle={colunas} initialItemsPerPage={10} title=""><></><></></Table>}
-        {escolas?.items != null && escolas.items.length  > 0 &&
+        {loading && <Table columsTitle={colunas} initialItemsPerPage={10} title=""><></><></></Table>}
+        {escolas?.items != null &&
           <Table
             columsTitle={colunas}
             title='' initialItemsPerPage={10} totalItems={escolas?.total}
