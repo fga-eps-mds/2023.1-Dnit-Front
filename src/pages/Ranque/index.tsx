@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import "./index.css";
-import { fetchEtapasDeEnsino, fetchUnidadeFederativa } from '../../service/escolaApi';
-import { EtapasDeEnsinoData, UnidadeFederativaData } from '../../models/service';
+import { fetchEtapasDeEnsino, fetchMunicipio, fetchUnidadeFederativa } from '../../service/escolaApi';
+import { EtapasDeEnsinoData } from '../../models/service';
 import TrilhaDeNavegacao from '../../components/Navegacao';
 import ReactLoading from 'react-loading';
 import Table, { CustomTableRow } from '../../components/Table';
@@ -11,6 +11,7 @@ import { fetchEscolasRanque } from '../../service/ranqueApi';
 import { EscolaRanqueData, EscolaRanqueFiltro, ListaPaginada } from '../../models/ranque';
 import { notification } from 'antd';
 import { FiltroNome } from '../../components/FiltroNome';
+import Select, { SelectItem } from '../../components/Select';
 
 export interface EscolaData {
   id: string;
@@ -34,15 +35,16 @@ export interface EscolaData {
 }
 
 function Ranque() {
-  const [ufSelecionado, setUfSelecionado] = useState('');
-  const [municipioSelecionado, setMunicipioSelecionado] = useState('');
-  const [etapasEnsinoSelecionada, setEtapasEnsinoSelecionada] = useState('');
   const [nome, setNome] = useState('')
+  const [uf, setUf] = useState<SelectItem | null>(null);
+  const [ufs, setUfs] = useState<SelectItem[]>([]);
+  const [municipio, setMunicipio] = useState<SelectItem | null>(null);
+  const [municipios, setMunicipios] = useState<SelectItem[]>([]);
+  const [etapasEnsinoSelecionada, setEtapasEnsinoSelecionada] = useState('');
 
   const ProcessamentoUPS: boolean = false;
   const [ultimoProcessamento] = useState("23/05/2023 16:43");
 
-  const [ufs, setUfs] = useState<UnidadeFederativaData[]>([]);
   const [etapasEnsino, setEtapasEnsino] = useState<EtapasDeEnsinoData[]>([]);
 
   const paginas = [{ nome: "Logout", link: "/login" }];
@@ -55,7 +57,7 @@ function Ranque() {
 
   useEffect(() => {
     fetchUnidadeFederativa()
-      .then(ufs => setUfs(ufs));
+      .then(ufs => setUfs(ufs.map(m => ({ id: m.id.toString(), rotulo: m.sigla }))));
     fetchEtapasDeEnsino()
       .then(etapas => {
         etapas.sort((a, b) => b.descricao.localeCompare(a.descricao));
@@ -64,7 +66,23 @@ function Ranque() {
   }, []);
 
   useEffect(() => {
-    fetchEscolasRanque({ ...paginacao, nome: nome.trim().replace(/ +/gm, ' ') })
+    if (!uf?.id) {
+      return;
+    }
+    fetchMunicipio(Number(uf.id)).then(municipios => setMunicipios(municipios.map(m => ({ id: m.id.toString(), rotulo: m.nome }))))
+  }, [uf]);
+
+  useEffect(() => {
+    const filtro = { ...paginacao, nome: nome.trim().replace(/ +/gm, ' ') } as EscolaRanqueFiltro;
+
+    if (!!uf) {
+      filtro.idUf = Number(uf.id);
+    }
+    if (!!municipio) {
+      filtro.idMunicipio = Number(municipio?.id);
+    }
+
+    fetchEscolasRanque(filtro)
       .then(e => {
         if (!!escolas?.items?.length && !!e.items.length && e.items[0]?.ranqueId != escolas?.items[0].ranqueId) {
           notificationApi.success({ message: "A tabela foi atualizada com os resultados do novo processamento" });
@@ -72,7 +90,7 @@ function Ranque() {
         setEscolas(e);
       })
       .finally(() => setLoading(false));
-  }, [nome, ufSelecionado, municipioSelecionado, etapasEnsino, paginacao]);
+  }, [nome, uf, municipio, etapasEnsino, paginacao]);
 
   const formatEtapaEnsino = (etapaEnsino: EtapasDeEnsinoData[], max = 2) => {
     if (!etapaEnsino) {
@@ -90,47 +108,11 @@ function Ranque() {
 
       <div className='d-flex flex-column m-5'>
         <div className='d-flex justify-content-between align-items-center'>
-          <div className='d-flex flex-column'>
+          <div className='d-flex align-items-center'>
             <FiltroNome nome={nome} onNomeChange={setNome} />
+            <Select items={ufs} value={uf?.id || ''} label={"UF:"} onChange={id => setUf(ufs.find(u => u.id == id) || null)} dropdownStyle={{ marginLeft: "20px", width: "260px" }} filtrarTodos={true} />
+            <Select items={municipios} value={municipio?.id || ''} label={"Municipios:"} onChange={id => setMunicipio(municipios.find(m => m.id == id) || null)} dropdownStyle={{ marginLeft: "20px", width: "260px" }} filtrarTodos={true} />
           </div>
-          {/* <div className="filtros">
-            <div className="mr-4 text-start">
-              <label htmlFor="uf" className='text-start'>UF:</label>
-              <select
-                id="uf"
-                value={ufSelecionado}
-                onChange={(e) => setUfSelecionado(e.target.value)}
-                style={{ marginLeft: "px", background: "none", color: "#1351b4", height: "40px", width: "150px", borderRadius: "5px" }}
-              >
-                <option value="">Todos</option>
-                {ufs.map(uf => <option key={uf.sigla} value={uf.sigla}>{uf.sigla}</option>)}
-              </select>
-            </div>
-            <div className="mr-4 text-start">
-              <label htmlFor="municipio">Município:</label>
-              <input
-                type="text"
-                id="municipio"
-                value={municipioSelecionado}
-                onChange={(e) => setMunicipioSelecionado(e.target.value)}
-                style={{ marginLeft: "px", background: "none", color: "#1351b4", height: "40px", width: "150px", borderRadius: "5px", border: "1px solid #000" }}
-              />
-            </div>
-
-            <div className="mr-4 text-start">
-              <label htmlFor="etapasEnsino">Etapas de Ensino:</label>
-              <select
-                id="etapasEnsino"
-                value={etapasEnsinoSelecionada}
-                onChange={(e) => setEtapasEnsinoSelecionada(e.target.value)}
-                style={{ marginLeft: "px", background: "none", height: "40px", width: "150px", borderRadius: "5px" }}
-              >
-                <option value="_">Todas</option>
-                {etapasEnsino.map(e => <option key={e.id}>{e.descricao}</option>)}
-              </select>
-            </div>
-          </div> */}
-
           <div>
             {ProcessamentoUPS ? (
               <p className="small-font mb-0">Novo cálculo de ranking em processamento...</p>

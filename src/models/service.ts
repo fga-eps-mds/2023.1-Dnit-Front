@@ -183,9 +183,3 @@ export interface CalcularUpsResponse {
   ups2022: number;
   upsGeral: number;
 }
-
-export interface UfModel {
-  if: number;
-  sigla: string;
-  nome: string;
-}
