@@ -16,6 +16,7 @@ import {fetchPerfis} from "../../../service/usuarioApi";
 import { Permissao } from "../../../models/auth";
 import { AuthContext } from "../../../provider/Autenticacao";
 import {fetchMunicipio} from "../../../service/escolaApi";
+import { FiltroNome } from "../../../components/FiltroNome";
 
 interface EditarTipoPerfilArgs {
   id: string | null;
@@ -28,11 +29,6 @@ interface ListaPaginada {
   total: number;
   totalPaginas: number;
   items: UsuarioModel[];
-}
-
-interface FiltroNomeProps {
-  nome?: string;
-  onNomeChange: (nome: string) => void;
 }
 
 interface FilterOptions {
@@ -48,24 +44,6 @@ interface FilterProfileOptions {
 interface FilterMunicipioOptions {
   id: string;
   rotulo: string;
-}
-
-export function FiltroNome({ onNomeChange, nome }: FiltroNomeProps) {
-  return (
-    <div className="d-flex flex-column ml-3 mt-5 mb-5">
-      <label className="ml-2" style={{ textAlign: 'start', fontSize: '16px' }}>Nome:</label>
-      <div className="d-flex" style={{ fontSize: '16px' }}>
-        <div className="br-input large input-button">
-          <input data-testid="filtroNome" className="br-input-search-large" type="search" placeholder="Nome" value={nome}
-            onChange={e => onNomeChange(e.target.value)}
-          />
-          <button className="br-button" type="button" aria-label="Buscar" onClick={() => { }}>
-            <i className="fas fa-search" aria-hidden="true"></i>
-          </button>
-        </div>
-      </div>
-    </div>
-  );
 }
 
 export default function GerenciarUsuario() {
@@ -172,7 +150,7 @@ export default function GerenciarUsuario() {
       <TrilhaDeNavegacao elementosLi={paginas} />
       <div className="d-flex flex-column m-5">
         <div className="d-flex justify-content-left align-items-center mr-5">
-          <FiltroNome onNomeChange={setNome} />
+          <FiltroNome onNomeChange={setNome} nome={nome} />
           <Select items={listaUfs} value={uf} label={"UF:"} onChange={setUF} dropdownStyle={{ marginLeft: "20px", width: "260px" }} filtrarTodos={true}/>
           <Select items={listaPerfis} value={perfil} label={"Perfil:"} onChange={setPerfil} dropdownStyle={{ marginLeft: "20px", width: "260px" }} filtrarTodos={true}/>
           <Select items={listaMunicipios} value={municipio} label={"Municipios:"} onChange={setMunicipio} dropdownStyle={{ marginLeft: "20px", width: "260px" }} filtrarTodos={true}/>
