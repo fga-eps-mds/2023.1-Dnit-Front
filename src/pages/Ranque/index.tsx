@@ -47,7 +47,7 @@ function Ranque() {
     const paginas = [{nome: "Logout", link: "/login"}];
     const [loading, setLoading] = useState(true);
     const [escolas, setEscolas] = useState<ListaPaginada<EscolaRanqueData> | null>(null);
-    const colunas = ['Posição', 'Pontuação', 'Escola', 'Etapas de Ensino', 'UF', 'Município'];
+    const colunas = ['Posição', 'Pontuação', 'Escola', 'Etapas de Ensino', 'UF', 'Município', 'UF Superintendência', 'Custo Logístico', 'Ações'];
 
     const [paginacao, setPaginacao] = useState({pagina: 1, tamanhoPagina: 10,});
     const [notificationApi, notificationContextHandler] = notification.useNotification();
@@ -79,12 +79,16 @@ function Ranque() {
         }
         return `${etapaEnsino.map(etapa => etapa.descricao).slice(0, max).join(', ')}${etapaEnsino.length > max ? '...' : ''}`;
     }
-
+    
     return (
         <div className="App ranque-container">
             <Header/>
             {notificationContextHandler}
-            {/* <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} escolaSelecionada={escolaSelecionada} /> */}
+
+            <div id="teste1" className="modal-informacoes" style={{ display: 'none' }}>
+                <label>TESTE TESTE</label>
+            </div>
+            
             <TrilhaDeNavegacao elementosLi={paginas}/>
 
             <div className='d-flex flex-column m-5'>
@@ -216,13 +220,14 @@ function Ranque() {
                                         '3': formatEtapaEnsino(e.escola.etapaEnsino),
                                         '4': e.escola.uf?.sigla || '',
                                         '5': e.escola.municipio?.nome || '',
-                                        '6': e.escola.municipio?.nome || '',
+                                        '6': "GO",     //TODO ADICIONAR SUPERINTENDENCIA
+                                        '7': "$$$",     //TODO CUSTO LOGISTICO
                                     }}
                                     hideEditIcon={true}
                                     hideTrashIcon={true}
+                            
                                     onDetailRow={id => {
-                                        console.log(id);
-
+                                       
                                     }}
                                 />
                             )
