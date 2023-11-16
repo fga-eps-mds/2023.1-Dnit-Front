@@ -46,7 +46,7 @@ function Ranque() {
   const paginas = [{ nome: "Logout", link: "/login" }];
   const [loading, setLoading] = useState(false);
   const [escolas, setEscolas] = useState<ListaPaginada<EscolaRanqueData> | null>(null);
-  const colunas = ['Posição', 'Pontuação', 'Escola', 'Etapas de Ensino', 'Município', 'UF'];
+  const colunas = ['Posição', 'Pontuação', 'Escola', 'Etapas de Ensino', 'UF', 'Município'];
 
   const [paginacao, setPaginacao] = useState({pagina: 1, tamanhoPagina: 10, });
   const [notificationApi, notificationContextHandler] = notification.useNotification();
@@ -66,7 +66,7 @@ function Ranque() {
     fetchEscolasRanque({...paginacao})
       .then(e => {
         if (escolas?.items != null && escolas.items.length > 0 && e.items[0]?.ranqueId != escolas?.items[0].ranqueId) {
-          notification.success({message: "A tabela foi atualizada com os resultados do novo processamento"});
+          notificationApi.success({message: "A tabela foi atualizada com os resultados do novo processamento"});
         }
         setEscolas(e);
       })
@@ -138,8 +138,7 @@ function Ranque() {
           </div>
         </div>
 
-
-        {escolas?.items.length === 0 && <Table columsTitle={colunas} initialItemsPerPage={10} title=""><></><></></Table>}
+        {escolas?.items.length == 0 && <Table columsTitle={colunas} initialItemsPerPage={10} title=""><></><></></Table>}
         {escolas?.items != null && escolas.items.length  > 0 &&
           <Table
             columsTitle={colunas}
@@ -167,8 +166,8 @@ function Ranque() {
                           '1': `${e.pontuacao}`,
                           '2': e.escola.nome,
                           '3': formatEtapaEnsino(e.escola.etapaEnsino),
-                          '4': e.escola.municipio?.nome || '',
-                          '5': e.escola.uf || '' }}
+                          '4': e.escola.uf?.sigla || '',
+                          '5': e.escola.municipio?.nome || ''}}
                   hideTrashIcon={true}
                 />
               )

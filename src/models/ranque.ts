@@ -1,4 +1,4 @@
-import { EtapasDeEnsinoData, MunicipioData } from "./service";
+import { EtapasDeEnsinoData, MunicipioData, UfModel } from "./service";
 
 export interface ListaPaginada<T> {
     pagina: number
@@ -11,7 +11,7 @@ export interface ListaPaginada<T> {
 export interface EscolaRanqueInfo {
     id: string;
     nome: string;
-    uf: string;
+    uf: UfModel;
     etapaEnsino: EtapasDeEnsinoData[];
     municipio: MunicipioData; 
 }
