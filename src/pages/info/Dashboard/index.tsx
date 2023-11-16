@@ -27,8 +27,8 @@ export default function Dashboard() {
   const [podeVisualizarEscola, setPodeVisualizarEscola] = useState(
     temPermissao(Permissao.EscolaVisualizar)
   );
-  const [podeVisualizarUps, setPodeVisualizarUps] = useState(
-    temPermissao(Permissao.UpsVisualizar)
+  const [podeVisualizarRanque, setPodeVisualizarRanque] = useState(
+    temPermissao(Permissao.RanqueVisualizar)
   );
   const [podeCadastrarEscola, setPodeCadastrarEscola] = useState(
     temPermissao(Permissao.EscolaCadastrar)
@@ -54,7 +54,7 @@ export default function Dashboard() {
       setPermissoes(permissoes);
 
       setPodeVisualizarEscola(temPermissao(Permissao.EscolaVisualizar));
-      setPodeVisualizarUps(temPermissao(Permissao.UpsVisualizar));
+      setPodeVisualizarRanque(temPermissao(Permissao.RanqueVisualizar));
       setPodeCadastrarEscola(temPermissao(Permissao.EscolaCadastrar));
       setPodeCadastrarSinistro(temPermissao(Permissao.SinistroCadastrar));
       setPodeCadastrarRodovias(temPermissao(Permissao.RodoviaCadastrar));
@@ -79,10 +79,10 @@ export default function Dashboard() {
               <p data-testid='visualizar-escola-option' className="text">Visualizar Escolas</p>
             </Card>
           )}
-          {podeVisualizarUps && (
-            <Card className="card" onClick={() => navigate("/telaUPS")}>
+          {podeVisualizarRanque && (
+            <Card className="card" onClick={() => navigate("/ranque")}>
               <FileTextOutlined className="icon" />
-              <p className="text">Visualizar Dados UPS</p>
+              <p className="text">Ranking de escolas</p>
             </Card>
           )}
         </div>

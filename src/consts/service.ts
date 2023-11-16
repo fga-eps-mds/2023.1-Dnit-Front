@@ -34,3 +34,4 @@ export const atualizarPerfil = `${urlAPIUsuario}/perfil`
 export const atualizarTipoPerfil = `${urlAPIUsuario}/usuario`
 export const excluiPerfil = `${urlAPIUsuario}/perfil`;
 export const listarUsuarios = `${urlAPIUsuario}/usuario`;
+export const listarEscolasRanque = `${urlAPIEscolas}/ranque/escolas`

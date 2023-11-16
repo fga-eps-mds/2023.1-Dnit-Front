@@ -179,7 +179,7 @@ export default function CustomTable({
         <thead>
           <tr>
             {columsTitle.map((element) => (
-              <th scope="col" style={{ color: "#1351B4", fontWeight: "bold" }}>{element}</th>
+              <th key={element} scope="col" style={{ color: "#1351B4", fontWeight: "bold" }}>{element}</th>
             ))}
             <th scope="col"></th>
           </tr>
@@ -211,9 +211,10 @@ export default function CustomTable({
                   onBlur={() => setPageItemsOpen(false)}
 
                 >
-                  {pageOptions.map((element) => {
+                  {pageOptions.map(element => {
                     return element <= dataSize * 3 ? (
                       <option
+                        key={element}
                         value={element}
                         selected={itemsPerPage === element}
                       >

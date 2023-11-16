@@ -5,10 +5,11 @@ services:
             CHOKIDAR_USEPOLLING: "true"
         volumes: 
             - ./src:/app/src
-            - .env:/app/.env
         container_name: frontend_dnit
         build:
             context: ./
         command: yarn start
         ports:
             - "3000:3000"
+        env_file:
+            - .env

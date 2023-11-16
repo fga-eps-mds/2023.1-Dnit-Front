@@ -31,7 +31,7 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
 
 describe("UPSForm", () => {
   test("Mostra mensagem de campos inválidos ao inserir valores inválidos", async () => {
-    autenticar(Permissao.UpsVisualizar, Permissao.UpsCalcularEscola, Permissao.UpsCalcularSinistro);
+    autenticar(Permissao.RanqueVisualizar, Permissao.UpsCalcularEscola, Permissao.UpsCalcularSinistro);
 
     const screen = render(
       <MemoryRouter initialEntries={["/telaUPS"]}>
@@ -66,7 +66,7 @@ describe("UPSForm", () => {
   });
 
   test("Exibe valores de UPS quando a resposta do calcularUps é recebida", async () => {
-    autenticar(Permissao.UpsVisualizar, Permissao.UpsCalcularEscola, Permissao.UpsCalcularSinistro);
+    autenticar(Permissao.RanqueVisualizar, Permissao.UpsCalcularEscola, Permissao.UpsCalcularSinistro);
 
     const screen = render(
       <MemoryRouter initialEntries={["/telaUPS"]}>
