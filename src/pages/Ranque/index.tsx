@@ -10,6 +10,7 @@ import Table, { CustomTableRow } from '../../components/Table';
 import { fetchEscolasRanque } from '../../service/ranqueApi';
 import { EscolaRanqueData, EscolaRanqueFiltro, ListaPaginada } from '../../models/ranque';
 import { notification } from 'antd';
+import { FiltroNome } from '../../components/FiltroNome';
 
 export interface EscolaData {
   id: string;
@@ -36,6 +37,7 @@ function Ranque() {
   const [ufSelecionado, setUfSelecionado] = useState('');
   const [municipioSelecionado, setMunicipioSelecionado] = useState('');
   const [etapasEnsinoSelecionada, setEtapasEnsinoSelecionada] = useState('');
+  const [nome, setNome] = useState('')
 
   const ProcessamentoUPS: boolean = false;
   const [ultimoProcessamento] = useState("23/05/2023 16:43");
@@ -48,7 +50,7 @@ function Ranque() {
   const [escolas, setEscolas] = useState<ListaPaginada<EscolaRanqueData> | null>(null);
   const colunas = ['Posição', 'Pontuação', 'Escola', 'Etapas de Ensino', 'UF', 'Município'];
 
-  const [paginacao, setPaginacao] = useState({pagina: 1, tamanhoPagina: 10, });
+  const [paginacao, setPaginacao] = useState({ pagina: 1, tamanhoPagina: 10, });
   const [notificationApi, notificationContextHandler] = notification.useNotification();
 
   useEffect(() => {
@@ -62,15 +64,15 @@ function Ranque() {
   }, []);
 
   useEffect(() => {
-    fetchEscolasRanque({...paginacao})
+    fetchEscolasRanque({ ...paginacao, nome: nome.trim().replace(/ +/gm, ' ') })
       .then(e => {
-        if (escolas?.items != null && escolas.items.length > 0 && e.items[0]?.ranqueId != escolas?.items[0].ranqueId) {
-          notificationApi.success({message: "A tabela foi atualizada com os resultados do novo processamento"});
+        if (!!escolas?.items?.length && !!e.items.length && e.items[0]?.ranqueId != escolas?.items[0].ranqueId) {
+          notificationApi.success({ message: "A tabela foi atualizada com os resultados do novo processamento" });
         }
         setEscolas(e);
       })
       .finally(() => setLoading(false));
-  }, [ufSelecionado, municipioSelecionado, etapasEnsino, paginacao]);
+  }, [nome, ufSelecionado, municipioSelecionado, etapasEnsino, paginacao]);
 
   const formatEtapaEnsino = (etapaEnsino: EtapasDeEnsinoData[], max = 2) => {
     if (!etapaEnsino) {
@@ -87,7 +89,10 @@ function Ranque() {
       <TrilhaDeNavegacao elementosLi={paginas} />
 
       <div className='d-flex flex-column m-5'>
-        <div className='d-flex justify-content-between align-items-center pl-3'>
+        <div className='d-flex justify-content-between align-items-center'>
+          <div className='d-flex flex-column'>
+            <FiltroNome nome={nome} onNomeChange={setNome} />
+          </div>
           {/* <div className="filtros">
             <div className="mr-4 text-start">
               <label htmlFor="uf" className='text-start'>UF:</label>
@@ -137,36 +142,38 @@ function Ranque() {
           </div>
         </div>
 
-        {loading && <Table columsTitle={colunas} initialItemsPerPage={10} title=""><></><></></Table>}
+        {(loading || !escolas?.items?.length) && <Table columsTitle={colunas} initialItemsPerPage={10} totalItems={0} title=""><></><></></Table>}
         {escolas?.items != null &&
           <Table
             columsTitle={colunas}
             title='' initialItemsPerPage={10} totalItems={escolas?.total}
             onNextPage={() => {
               if (paginacao.pagina === escolas?.totalPaginas) return;
-              setPaginacao(p => {return {...p, pagina: p.pagina + 1}})
+              setPaginacao(p => { return { ...p, pagina: p.pagina + 1 } })
             }}
             onPreviousPage={() => {
               if (paginacao.pagina === 1) return;
-              setPaginacao({...paginacao, pagina: paginacao.pagina - 1})
+              setPaginacao({ ...paginacao, pagina: paginacao.pagina - 1 })
             }}
             onPageResize={(tamanhoPagina) => {
-              setPaginacao({...paginacao, tamanhoPagina})
+              setPaginacao({ ...paginacao, tamanhoPagina })
             }}
             onPageSelect={(pagina) => {
-              setPaginacao({...paginacao, pagina})
+              setPaginacao({ ...paginacao, pagina })
             }}>
             {
               escolas?.items.map((e, index) =>
                 <CustomTableRow
                   key={e.escola.id}
                   id={index}
-                  data={{ '0': `${e.posicao}°`,
-                          '1': `${e.pontuacao}`,
-                          '2': e.escola.nome,
-                          '3': formatEtapaEnsino(e.escola.etapaEnsino),
-                          '4': e.escola.uf?.sigla || '',
-                          '5': e.escola.municipio?.nome || ''}}
+                  data={{
+                    '0': `${e.posicao + 1}°`,
+                    '1': `${e.pontuacao}`,
+                    '2': e.escola.nome,
+                    '3': formatEtapaEnsino(e.escola.etapaEnsino),
+                    '4': e.escola.uf?.sigla || '',
+                    '5': e.escola.municipio?.nome || ''
+                  }}
                   hideTrashIcon={true}
                 />
               )

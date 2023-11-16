@@ -233,10 +233,12 @@ export default function CustomTable({
           </div>
           <span className="br-divider d-none d-sm-block mx-3"></span>
           <div className="pagination-inhtmlFormation d-none d-sm-flex">
-            <span className="current">
-              {`${indexOfFirstItem + 1
-                }-${indexOfLastItem} de ${dataSize <= 10 ? children.length : dataSize} itens`}
-            </span>
+            {
+              !!totalItems &&
+              <span className="current">
+                {`${indexOfFirstItem + 1}-${indexOfLastItem} de ${dataSize <= 10 ? children.length : dataSize} itens`}
+              </span>
+            }
           </div>
           <div className="pagination-go-to-page d-none d-sm-flex ml-auto">
             <div className="br-select">
