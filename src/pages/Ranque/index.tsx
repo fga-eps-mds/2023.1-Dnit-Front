@@ -1,19 +1,14 @@
-import React, { useState, ChangeEvent, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import Modal from "../../components/EscolaRanqueModal"
 import "./index.css";
-import { library, dom, icon } from '@fortawesome/fontawesome-svg-core';
-import { faHome, faEye, faPlay, faArrowRight, faArrowLeft, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { fetchEtapasDeEnsino, fetchUnidadeFederativa } from '../../service/escolaApi';
-import { EtapasDeEnsinoData, FiltroEscolaData, UnidadeFederativaData } from '../../models/service';
+import { EtapasDeEnsinoData, UnidadeFederativaData } from '../../models/service';
 import TrilhaDeNavegacao from '../../components/Navegacao';
 import ReactLoading from 'react-loading';
 import Table, { CustomTableRow } from '../../components/Table';
 import { fetchEscolasRanque } from '../../service/ranqueApi';
 import { EscolaRanqueData } from '../../models/ranque';
-library.add(faHome, faEye, faPlay, faArrowRight, faArrowLeft, faArrowDown);
-dom.watch();
 
 export interface EscolaData {
   id: string;
