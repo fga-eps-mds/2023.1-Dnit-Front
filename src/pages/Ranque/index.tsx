@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import Modal from "../../components/Modal";
 import "./index.css";
 import { fetchEtapasDeEnsino, fetchUnidadeFederativa } from '../../service/escolaApi';
 import { EtapasDeEnsinoData, UnidadeFederativaData } from '../../models/service';
@@ -46,7 +47,7 @@ function Ranque() {
   const paginas = [{ nome: "Logout", link: "/login" }];
   const [loading, setLoading] = useState(true);
   const [escolas, setEscolas] = useState<ListaPaginada<EscolaRanqueData> | null>(null);
-  const colunas = ['Posição', 'Pontuação', 'Escola', 'Etapas de Ensino', 'UF', 'Município'];
+  const colunas = ['Pontuação', 'Escola', 'Etapas de Ensino', 'UF', 'Município', 'Data da última ação', 'Custo logístico', 'Ações'];
 
   const [paginacao, setPaginacao] = useState({pagina: 1, tamanhoPagina: 10, });
   const [notificationApi, notificationContextHandler] = notification.useNotification();
@@ -161,13 +162,20 @@ function Ranque() {
                       <CustomTableRow
                           key={e.escola.id}
                           id={index}
-                          data={{ '0': `${e.posicao}°`,
-                            '1': `${e.pontuacao}`,
-                            '2': e.escola.nome,
-                            '3': formatEtapaEnsino(e.escola.etapaEnsino),
-                            '4': e.escola.uf?.sigla || '',
-                            '5': e.escola.municipio?.nome || ''}}
+                          data={{ 
+                            '0': `${e.pontuacao}`,
+                            '1': e.escola.nome,
+                            '2': formatEtapaEnsino(e.escola.etapaEnsino),
+                            '3': e.escola.uf?.sigla || '',
+                            '4': e.escola.municipio?.nome || '',
+                            '5': 'Data',
+                            '6': '$$$'
+                          }}
+                          hideEditIcon={true}
                           hideTrashIcon={true}
+                          onDetailRow={ (id) => {
+                            console.log("INDEX CLICADO:", id)
+                          }}
                       />
                   )
                 }
