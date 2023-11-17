@@ -23,7 +23,7 @@ export async function fetchSituacao(): Promise<DATA.SituacaoData[]> {
 }
 
 export async function fetchData(id: any) {
-    const url = `${URL.urlAPIEscolas}/escolas/${id}`
+    const url = `${URL.urlAPIEscolas}/ranque/escolas/${id}`
     return fetchDados<EscolaData>(url);
 }
 
