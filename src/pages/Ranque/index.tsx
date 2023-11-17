@@ -12,7 +12,6 @@ import {EscolaRanqueData, ListaPaginada} from '../../models/ranque';
 import {notification} from 'antd';
 import {FiltroProvider} from "../../context/FiltroTabela";
 import ModalRanqueEscola from '../../components/EscolaRanqueModal';
-import PerfilDialog from "../../components/PerfilDialog";
 
 interface ranqueInfo {
     ranqueId: number;
@@ -132,7 +131,6 @@ function Ranque() {
             {notificationContextHandler}
 
             <FiltroProvider>
-                
                     {escolaAtual != null && <ModalRanqueEscola  onClose={()=>{setEscolaAtual(null)}} onCreateAcao={()=>{}} escolaId={escolaAtual.escola.id}/>}
             </FiltroProvider>
             

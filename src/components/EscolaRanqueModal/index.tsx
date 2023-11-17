@@ -38,6 +38,7 @@ const ModalRanqueEscola: React.FC<ModalProps> = ({ escolaId, onClose, onCreateAc
                       Fator Z, Peso Z, Valor Z<br/>
                       UPS, Peso 2,16<br/>
                       <p style={{ fontSize: '12px' }}>Total: {escolaSelecionada.ranqueInfo.pontuacao}</p>
+                      <hr />
                       <p style={{ fontSize: '12px' }}><strong>Dados</strong></p>
                       <p style={{ fontSize: '12px' }}>Código: {escolaSelecionada.escola.codigoEscola}</p>
                       <p style={{ fontSize: '12px' }}>Alunos: {escolaSelecionada.escola.numeroTotalDeAlunos}</p>
