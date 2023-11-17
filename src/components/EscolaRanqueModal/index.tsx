@@ -6,6 +6,8 @@ import { EscolaRanqueData } from '../../models/ranque';
 import { fetchData } from '../../service/escolaApi';
 import Modal from "../../components/Modal/index";
 
+
+
 interface ModalProps {
     isOpen: boolean;
     onClose: (status: boolean) => void;
@@ -52,7 +54,7 @@ const ModalRanqueEscola: React.FC<ModalProps> = ({ isOpen, onClose, escola }) =>
           className={"default"}
           closeModal={() => onClose(isOpen)}
       >
-        <h4 className="text-center mt-2">{escolaSelecionada?.escola}</h4>
+        {/* <h4 className="text-center mt-2">{escolaSelecionada?.escola}</h4> */}
 
           <div className="modal-content">
               <h2 style={{ fontSize: '16px' }}><strong>Detalhes da Escola</strong></h2>
@@ -66,6 +68,7 @@ const ModalRanqueEscola: React.FC<ModalProps> = ({ isOpen, onClose, escola }) =>
                       Fator Z, Peso Z, Valor Z<br/>
                       UPS, Peso 2,16<br/>
                       <p style={{ fontSize: '12px' }}>Total: {escolaSelecionada.pontuacao}</p>
+                      <hr />
                       <p style={{ fontSize: '12px' }}><strong>Dados</strong></p>
                       <p style={{ fontSize: '12px' }}>Código: {escolaSelecionada.código}</p>
                       <p style={{ fontSize: '12px' }}>Alunos: {escolaSelecionada.alunos}</p>
