@@ -12,6 +12,8 @@ import { EscolaRanqueData, EscolaRanqueFiltro, ListaPaginada } from '../../model
 import { notification } from 'antd';
 import { FiltroNome } from '../../components/FiltroNome';
 import Select, { SelectItem } from '../../components/Select';
+import {FiltroProvider} from "../../context/FiltroTabela";
+import Modal from "../../components/Modal/index"
 
 export interface EscolaData {
   id: string;
@@ -53,6 +55,24 @@ function Ranque() {
 
   const [paginacao, setPaginacao] = useState({ pagina: 1, tamanhoPagina: 10, });
   const [notificationApi, notificationContextHandler] = notification.useNotification();
+
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [escolaAtual, setEscolaAtual] = useState<EscolaRanqueData>();
+    
+    const abrirModal = (escolaAtual: EscolaRanqueData) => {
+        setEscolaAtual(escolaAtual);
+        const modal = document.getElementById("modal-informacoes");
+        if(modal && modal.style) modal.style.display = "block"
+        setIsOpen(true);
+    };
+
+    const fecharModal = (index: boolean) => {
+        if(isOpen){
+            const modal = document.getElementById("modal-informacoes");
+            if(modal && modal.style) modal.style.display = "none";
+            setIsOpen(false);
+        }
+    }
 
   useEffect(() => {
     fetchUnidadeFederativa()
@@ -105,6 +125,22 @@ function Ranque() {
     <div className="App ranque-container">
       <Header />
       {notificationContextHandler}
+      <FiltroProvider>
+                <div id="modal-informacoes" style={{ display: 'none' }}>
+                    <Modal
+                        className="modal"
+                    >
+                        <h4 className="text-center mt-2">{escolaAtual?.escola.nome}</h4>
+                        <button
+                            className="br-button primary"
+                            type="button"
+                            onClick={() => fecharModal(isOpen)}
+                        >
+                            Sair
+                        </button>
+                    </Modal>
+                </div>
+            </FiltroProvider>
       {/* <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} escolaSelecionada={escolaSelecionada} /> */}
       <TrilhaDeNavegacao elementosLi={paginas} />
 
@@ -154,6 +190,7 @@ function Ranque() {
                     '5': e.escola.municipio?.nome || ''
                   }}
                   hideTrashIcon={true}
+                  onDetailRow={id => abrirModal(e)}
                 />
               )
             }
