@@ -1,15 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { EscolaData } from '../../pages/Ranque/index'; 
 import "../../styles/App.css";
 import "../../pages/Ranque/index.css";
+import { EscolaRanqueData } from '../../models/ranque';
+import { fetchData } from '../../service/escolaApi';
 
 interface ModalProps {
     isOpen: boolean;
     onClose: () => void;
-    escolaSelecionada : EscolaData | null;
-  }
+    escola : EscolaRanqueData | undefined;
+}
 
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose, escolaSelecionada }) => {
+
+
+const ModalRanqueEscola: React.FC<ModalProps> = ({ isOpen, onClose, escola }) => {
+
+  const [escolaSelecionada, setEscolaSelecionada] = useState<EscolaData | undefined>();
+
+  const fetchEscolaSelecionada = async () => {
+    const escolas = await fetchData(escola?.escola?.id);
+    setEscolaSelecionada(escolas);
+  }
+  useEffect(()=>{
+    fetchEscolaSelecionada()
+  }, []);
+
   const modalStyle: React.CSSProperties = {
     display: isOpen ? 'block' : 'none',
     position: 'fixed',
@@ -111,4 +126,4 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, escolaSelecionada }) => 
   );
 };
 
-export default Modal;
+export default ModalRanqueEscola;
