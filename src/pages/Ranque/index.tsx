@@ -11,7 +11,6 @@ import {fetchEscolasRanque} from '../../service/ranqueApi';
 import {EscolaRanqueData, ListaPaginada} from '../../models/ranque';
 import {notification} from 'antd';
 import {FiltroProvider} from "../../context/FiltroTabela";
-import Modal from "../../components/Modal/index"
 import ModalRanqueEscola from '../../components/EscolaRanqueModal';
 
 export interface EscolaData {
@@ -108,25 +107,7 @@ function Ranque() {
 
             <FiltroProvider>
                 <div id="modal-informacoes" style={{ display: 'none' }}>
-                    {/* <Modal
-                        className="modal"
-                        closeModal={()=>fecharModal(isOpen)}
-                    >
-                        <h4 className="text-center mt-2">{escolaAtual?.escola.nome}</h4>
-                        <button
-                            className="br-button primary"
-                            type="button"
-                            onClick={() => fecharModal(isOpen)}
-                        >
-                            Sair
-                        </button>
-                    </Modal> */}
-
-                    <ModalRanqueEscola 
-                        isOpen={isOpen}
-                        onClose={()=>{}}
-                        escola={escolaAtual}
-                    />
+                    <ModalRanqueEscola isOpen={isOpen} onClose={()=>{}} escola={escolaAtual}/>
                 </div>
             </FiltroProvider>
             
