@@ -12,26 +12,56 @@ import {EscolaRanqueData, ListaPaginada} from '../../models/ranque';
 import {notification} from 'antd';
 import {FiltroProvider} from "../../context/FiltroTabela";
 import ModalRanqueEscola from '../../components/EscolaRanqueModal';
+import PerfilDialog from "../../components/PerfilDialog";
+
+interface ranqueInfo {
+    ranqueId: number;
+    pontuacao: number;
+    posicao: number;
+    fatores: {
+            nome: string;
+            peso: number;
+            valor: number;
+    }[];
+}
+
+interface escola {
+    idEscola: string;
+    codigoEscola: number;
+    nomeEscola: string;
+    idRede: number;
+    descricaoRede: string | null;
+    cep: string;
+    idUf: number;
+    uf: number;
+    descricaoUf: string;
+    endereco: string;
+    idMunicipio: number;
+    nomeMunicipio: string | null;
+    idLocalizacao: number;
+    descricaoLocalizacao: string | null;
+    longitude: string;
+    latitude: string;
+    idEtapasDeEnsino: number | null;
+    descricaoEtapasEnsino: string | null;
+    numeroTotalDeAlunos: number;
+    idSituacao: number | null;
+    descricaoSituacao: string | null;
+    idPorte: number;
+    telefone: string;
+    numeroTotalDeDocentes: number;
+    siglaUf: string;
+    observacao: string | null;
+    rede: number;
+    porte: number;
+    localizacao: number;
+    etapasEnsino: string | null;
+    situacao: string | null;
+}
 
 export interface EscolaData {
-    id: string;
-    posicao: string;
-    pontuacao: number;
-    escola: string;
-    etapasEnsino: string;
-    municipio: string;
-    uf: string;
-    código: string;
-    alunos: number;
-    porte: string;
-    situação: string;
-    endereço: string;
-    telefone: string;
-    professores: number;
-    rede: string;
-    etapasdeensino: string;
-    numero: string;
-    cep: string;
+    ranqueInfo: ranqueInfo;
+    escola: escola;
 }
 
 function Ranque() {
@@ -83,7 +113,7 @@ function Ranque() {
     }
     
     const [isOpen, setIsOpen] = useState<boolean>(false);
-    const [escolaAtual, setEscolaAtual] = useState<EscolaRanqueData>();
+    const [escolaAtual, setEscolaAtual] = useState<EscolaRanqueData | null>();
     
     const abrirModal = (escolaAtual: EscolaRanqueData) => {
         setEscolaAtual(escolaAtual);
@@ -93,11 +123,7 @@ function Ranque() {
     };
 
     const fecharModal = (index: boolean) => {
-        if(isOpen){
-            const modal = document.getElementById("modal-informacoes");
-            if(modal && modal.style) modal.style.display = "none";
-            setIsOpen(false);
-        }
+        setEscolaAtual(null)
     }
         
     return (
@@ -106,9 +132,8 @@ function Ranque() {
             {notificationContextHandler}
 
             <FiltroProvider>
-                <div id="modal-informacoes" style={{ display: 'none' }}>
-                    <ModalRanqueEscola isOpen={isOpen} onClose={()=>{fecharModal(isOpen)}} onCreateAcao={()=>{}} escola={escolaAtual}/>
-                </div>
+                
+                    {escolaAtual != null && <ModalRanqueEscola  onClose={()=>{setEscolaAtual(null)}} onCreateAcao={()=>{}} escolaId={escolaAtual.escola.id}/>}
             </FiltroProvider>
             
             <TrilhaDeNavegacao elementosLi={paginas}/>
