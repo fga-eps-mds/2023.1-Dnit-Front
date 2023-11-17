@@ -107,7 +107,7 @@ function Ranque() {
 
             <FiltroProvider>
                 <div id="modal-informacoes" style={{ display: 'none' }}>
-                    <ModalRanqueEscola isOpen={isOpen} onClose={()=>{}} escola={escolaAtual}/>
+                    <ModalRanqueEscola isOpen={isOpen} onClose={()=>{fecharModal(isOpen)}} onCreateAcao={()=>{}} escola={escolaAtual}/>
                 </div>
             </FiltroProvider>
             

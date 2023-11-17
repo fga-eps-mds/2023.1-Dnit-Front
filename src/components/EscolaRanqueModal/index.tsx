@@ -3,16 +3,16 @@ import { EscolaData } from '../../pages/Ranque/index';
 import "../../styles/App.css";
 import "../../pages/Ranque/index.css";
 import { EscolaRanqueData } from '../../models/ranque';
-import { fetchData } from '../../service/escolaApi';
 import Modal from "../../components/Modal/index";
 
 interface ModalProps {
     isOpen: boolean;
-    onClose: (status: boolean) => void;
+    onClose: () => void;
+    onCreateAcao: () => void;
     escola : EscolaRanqueData | undefined;
 }
 
-const ModalRanqueEscola: React.FC<ModalProps> = ({ isOpen, onClose, escola }) => {
+const ModalRanqueEscola: React.FC<ModalProps> = ({ isOpen, onClose, onCreateAcao, escola }) => {
 
   // const [escolaSelecionada, setEscolaSelecionada] = useState<EscolaData | undefined>();
   //
@@ -48,12 +48,10 @@ const ModalRanqueEscola: React.FC<ModalProps> = ({ isOpen, onClose, escola }) =>
   };
   
   return (
-      <Modal
-          className={"default"}
-          closeModal={() => onClose(isOpen)}
-      >
-        <h4 className="text-center mt-2">{escolaSelecionada?.escola}</h4>
-
+      <Modal className={"default"} closeModal={() => onClose()}>
+          
+          <h4 className="text-center mt-2">{escolaSelecionada?.escola}</h4>
+          
           <div className="modal-content">
               <h2 style={{ fontSize: '16px' }}><strong>Detalhes da Escola</strong></h2>
               {escolaSelecionada && (
@@ -91,15 +89,14 @@ const ModalRanqueEscola: React.FC<ModalProps> = ({ isOpen, onClose, escola }) =>
               </div>
           </div>      
           
-        <button
-            className="br-button primary"
-            type="button"
-            onClick={() => {
-              onClose(!isOpen);
-            }}
-        >
-          Sair
-        </button>
+        <div className="d-flex w-100 justify-content-end">
+            <button className="br-button secondary mr-3" type="button" onClick={() => onClose()}>
+                Fechar
+            </button>
+            <button className="br-button primary mr-3" type="button" onClick={() => {onCreateAcao()}}>
+                Criar Ação
+            </button>
+        </div>
 
       </Modal>
   );
