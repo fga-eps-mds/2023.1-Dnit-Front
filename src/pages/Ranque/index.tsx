@@ -131,6 +131,11 @@ function Ranque() {
                         className="modal"
                     >
                         <h4 className="text-center mt-2">{escolaAtual?.escola.nome}</h4>
+                        <div>
+                        <p><strong>Posição:</strong> {escolaAtual?.posicao}</p>
+                        <p><strong>Pontuação Total:</strong> {escolaAtual?.pontuacao}</p>
+                        <p><strong>Código:</strong> {escolaAtual?.ranqueId}</p>
+                        </div>
                         <button
                             className="br-button primary"
                             type="button"
