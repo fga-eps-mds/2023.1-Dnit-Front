@@ -5,7 +5,7 @@ import Modal from "../../components/Modal/index";
 describe("Modal Component", () => {
   test("Renders Modal component with default class and children", () => {
     render(
-      <Modal className="modal-container">
+      <Modal className="modal-container" closeModal={() => {}}>
         <div>Modal Content</div>
       </Modal>
     );
@@ -21,7 +21,7 @@ describe("Modal Component", () => {
 
   test("Renders Modal component with a custom class", () => {
     render(
-      <Modal className="custom">
+      <Modal className="custom" closeModal={() => {}}>
         <div>Custom Modal Content</div>
       </Modal>
     );
