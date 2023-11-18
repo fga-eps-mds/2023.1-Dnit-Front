@@ -11,19 +11,7 @@ import {fetchEscolasRanque} from '../../service/ranqueApi';
 import {EscolaRanqueData, ListaPaginada} from '../../models/ranque';
 import {notification} from 'antd';
 import ModalRanqueEscola from '../../components/EscolaRanqueModal';
-
-export function formataCustoLogistico(distancia: number){
-    switch(true){
-        case distancia <= 250:
-            return "$";
-        case distancia > 250 && distancia <= 500:
-            return  "$$"
-        case distancia > 500 && distancia <= 1000:
-            return "$$$"
-        default:
-            return "$$$$"
-    }
-}
+import {formataCustoLogistico} from "../../utils/utils";
 
 export interface EscolaDataRanque {
     ranqueInfo: RanqueInfo;

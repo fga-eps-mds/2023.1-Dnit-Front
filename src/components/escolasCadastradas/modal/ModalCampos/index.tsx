@@ -5,6 +5,7 @@ import { EscolaData, SituacaoData } from "../../../../models/service";
 import {fetchSituacao} from "../../../../service/escolaApi";
 import {fetchEtapasDeEnsino} from "../../../../service/escolaApi";
 import MenuSuspenso from "../../MenuSuspenso";
+import {formataCustoLogistico} from "../../../../utils/utils";
 
 interface ModalCamposEscolaProps {
   data: EscolaData;
@@ -210,7 +211,7 @@ const ModalCampos = ({
           <input
               id="input-default"
               type="text"
-              placeholder="71021-931"
+              placeholder={data.cepSuperintendencia}
               disabled
           />
         </div>
@@ -223,7 +224,7 @@ const ModalCampos = ({
           <input
               id="input-default"
               type="text"
-              placeholder="Goiania, rua figueiredo...."
+              placeholder={data.enderecoSuperintendecia}
               disabled
           />
         </div>
@@ -361,7 +362,7 @@ const ModalCampos = ({
           <input
               id="input-default"
               type="text"
-              placeholder="$$$"
+              placeholder={formataCustoLogistico(data.distanciaSuperintendencia)}
               disabled
           />
         </div>

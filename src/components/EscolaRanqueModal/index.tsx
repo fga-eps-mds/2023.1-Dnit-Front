@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import {EscolaDataRanque, formataCustoLogistico} from '../../pages/Ranque'; 
+import {EscolaDataRanque} from '../../pages/Ranque'; 
 import "../../styles/App.css";
 import "../../pages/Ranque/index.css";
 import Modal from "../../components/Modal/index";
 import {fetchEscolaData} from "../../service/escolaApi";
+import {formataCustoLogistico} from "../../utils/utils";
+
 
 interface ModalProps {
     onClose: () => void;
