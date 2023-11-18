@@ -14,26 +14,56 @@ import { FiltroNome } from '../../components/FiltroNome';
 import Select, { SelectItem } from '../../components/Select';
 import {FiltroProvider} from "../../context/FiltroTabela";
 import Modal from "../../components/Modal/index"
+import ModalRanqueEscola from '../../components/EscolaRanqueModal';
+
+interface ranqueInfo {
+  ranqueId: number;
+  pontuacao: number;
+  posicao: number;
+  fatores: {
+          nome: string;
+          peso: number;
+          valor: number;
+  }[];
+}
+
+interface escola {
+  idEscola: string;
+  codigoEscola: number;
+  nomeEscola: string;
+  idRede: number;
+  descricaoRede: string | null;
+  cep: string;
+  idUf: number;
+  uf: number;
+  descricaoUf: string;
+  endereco: string;
+  idMunicipio: number;
+  nomeMunicipio: string | null;
+  idLocalizacao: number;
+  descricaoLocalizacao: string | null;
+  longitude: string;
+  latitude: string;
+  idEtapasDeEnsino: number | null;
+  descricaoEtapasEnsino: string | null;
+  numeroTotalDeAlunos: number;
+  idSituacao: number | null;
+  descricaoSituacao: string | null;
+  idPorte: number;
+  telefone: string;
+  numeroTotalDeDocentes: number;
+  siglaUf: string;
+  observacao: string | null;
+  rede: number;
+  porte: number;
+  localizacao: number;
+  etapasEnsino: string | null;
+  situacao: string | null;
+}
 
 export interface EscolaData {
-  id: string;
-  posicao: string;
-  pontuacao: number;
-  escola: string;
-  etapasEnsino: string;
-  municipio: string;
-  uf: string;
-  código: string;
-  alunos: number;
-  porte: string;
-  situação: string;
-  endereço: string;
-  telefone: string;
-  professores: number;
-  rede: string;
-  etapasdeensino: string;
-  numero: string;
-  cep: string;
+  ranqueInfo: ranqueInfo;
+  escola: escola;
 }
 
 function Ranque() {
@@ -57,7 +87,7 @@ function Ranque() {
   const [notificationApi, notificationContextHandler] = notification.useNotification();
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [escolaAtual, setEscolaAtual] = useState<EscolaRanqueData>();
+  const [escolaAtual, setEscolaAtual] = useState<EscolaRanqueData | null>();
     
     const abrirModal = (escolaAtual: EscolaRanqueData) => {
         setEscolaAtual(escolaAtual);
@@ -125,26 +155,8 @@ function Ranque() {
     <div className="App ranque-container">
       <Header />
       {notificationContextHandler}
-      <FiltroProvider>
-                <div id="modal-informacoes" style={{ display: 'none' }}>
-                    <Modal
-                        className="modal"
-                    >
-                        <h4 className="text-center mt-2">{escolaAtual?.escola.nome}</h4>
-                        <div>
-                        <p><strong>Posição:</strong> {escolaAtual?.posicao}</p>
-                        <p><strong>Pontuação Total:</strong> {escolaAtual?.pontuacao}</p>
-                        <p><strong>Código:</strong> {escolaAtual?.ranqueId}</p>
-                        </div>
-                        <button
-                            className="br-button primary"
-                            type="button"
-                            onClick={() => fecharModal(isOpen)}
-                        >
-                            Sair
-                        </button>
-                    </Modal>
-                </div>
+            <FiltroProvider>
+                    {escolaAtual != null && <ModalRanqueEscola  onClose={()=>{setEscolaAtual(null)}} onCreateAcao={()=>{}} escolaId={escolaAtual.escola.id}/>}
             </FiltroProvider>
       {/* <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} escolaSelecionada={escolaSelecionada} /> */}
       <TrilhaDeNavegacao elementosLi={paginas} />
