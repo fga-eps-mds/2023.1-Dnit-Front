@@ -3,6 +3,7 @@ import * as URL from "../consts/service"
 import * as DATA from "../models/service";
 import { EscolaDataRanque } from "../pages/Ranque";
 import { ResponseStatus, sendCadastros, update, fetchDados } from "./apiUtils";
+import {Superintendencia} from "../models/service";
 
 
 export async function fetchUnidadeFederativa(): Promise<DATA.UnidadeFederativaData[]> {
@@ -22,9 +23,12 @@ export async function fetchSituacao(): Promise<DATA.SituacaoData[]> {
     return fetchDados<DATA.SituacaoData[]>(URL.situacaoURL);
 }
 
-export async function fetchData(id: any) {
-    const url = `${URL.urlAPIEscolas}/ranque/escolas/${id}`
-    return fetchDados<EscolaDataRanque>(url);
+export async function fetchEscolaData(id: any) {
+    return fetchDados<EscolaDataRanque>(`${URL.listarEscolasRanque}/${id}`);
+}
+
+export async function fetchSuperintendenciaData(id: any) {
+    return fetchDados<Superintendencia>(`${URL.listarSuperintendencia}/${id}`);
 }
 
 export async function sendCadastroEscolasPlanilha(data: FormData): Promise<any> {

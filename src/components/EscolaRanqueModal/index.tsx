@@ -3,7 +3,7 @@ import {EscolaDataRanque, formataCustoLogistico} from '../../pages/Ranque';
 import "../../styles/App.css";
 import "../../pages/Ranque/index.css";
 import Modal from "../../components/Modal/index";
-import {fetchData} from "../../service/escolaApi";
+import {fetchEscolaData} from "../../service/escolaApi";
 
 interface ModalProps {
     onClose: () => void;
@@ -16,7 +16,7 @@ const ModalRanqueEscola: React.FC<ModalProps> = ({ escolaId, onClose, onCreateAc
   const [escolaSelecionada, setEscolaSelecionada] = useState<EscolaDataRanque | undefined>();
 
   const fetchEscolaSelecionada = async () => {
-    const escolas = await fetchData(escolaId);
+    const escolas = await fetchEscolaData(escolaId);
     setEscolaSelecionada(escolas);
   }
   useEffect(()=>{
