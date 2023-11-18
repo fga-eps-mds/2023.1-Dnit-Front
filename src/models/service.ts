@@ -115,9 +115,8 @@ export interface EscolaData {
   numeroTotalDeDocentes: number;
   observacao: string;
   
-  cepSuperintendencia: string;
-  enderecoSuperintendecia: string;
   distanciaSuperintendencia: number;
+  superintendenciaId: number;
 }
 
 export interface FiltroEscolaData {
@@ -254,7 +253,5 @@ export interface Escola {
   situacao: string;
 
   distanciaSuperintendencia: number;
-  cepSuperintendencia: number;
-  enderecoSuperintendencia: string;
-  ufSuperintendencia: number;
+  superintendenciaId: number;
 }

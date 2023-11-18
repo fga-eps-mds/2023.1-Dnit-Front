@@ -3,9 +3,9 @@ import {EscolaDataRanque} from '../../pages/Ranque';
 import "../../styles/App.css";
 import "../../pages/Ranque/index.css";
 import Modal from "../../components/Modal/index";
-import {fetchEscolaData} from "../../service/escolaApi";
+import {fetchEscolaData, fetchSuperintendenciaData} from "../../service/escolaApi";
 import {formataCustoLogistico} from "../../utils/utils";
-
+import {Superintendencia} from "../../models/service";
 
 interface ModalProps {
     onClose: () => void;
@@ -15,23 +15,29 @@ interface ModalProps {
 
 const ModalRanqueEscola: React.FC<ModalProps> = ({ escolaId, onClose, onCreateAcao }) => {
 
-  const [escolaSelecionada, setEscolaSelecionada] = useState<EscolaDataRanque | undefined>();
-
-  const fetchEscolaSelecionada = async () => {
-    const escolas = await fetchEscolaData(escolaId);
-    setEscolaSelecionada(escolas);
-  }
-  useEffect(()=>{
-    fetchEscolaSelecionada()
-  }, []);
+    const [escolaSelecionada, setEscolaSelecionada] = useState<EscolaDataRanque | undefined>();
+    const [superintendenciaSelecionada, setSuperintendenciaSelecionada] = useState<Superintendencia | undefined>();
+    const fetchEscolaSelecionada = async () => {
+    const escola = await fetchEscolaData(escolaId);
+    setEscolaSelecionada(escola);
+    }
+    const fetchSuperintendenciaSelecionada = async () => {
+      const superintendencia = await fetchSuperintendenciaData(escolaSelecionada?.escola.superintendenciaId);
+      setSuperintendenciaSelecionada(superintendencia);
+    }
+    
+    useEffect(()=>{
+      fetchEscolaSelecionada();
+      fetchSuperintendenciaSelecionada();
+    }, []);
   
-  return (
-      <Modal className={"default"} closeModal={() => onClose()}>
+    return (
+        <Modal className={"default"} closeModal={() => onClose()}>
           
-          <div className="modal-content">
-              <h2 style={{ fontSize: '16px' }}><strong>Detalhes da Escola</strong></h2>
-              {escolaSelecionada && (
-                  <div>
+            <div className="modal-content">
+                <h2 style={{ fontSize: '16px' }}><strong>Detalhes da Escola</strong></h2>
+                {escolaSelecionada && (
+                    <div>
                       <p style={{ fontSize: '12px' }}>Nome: {escolaSelecionada.escola.nomeEscola}</p>
                       <p style={{ fontSize: '12px' }}>Posição: {escolaSelecionada.ranqueInfo.posicao}</p>
                       <p style={{ fontSize: '12px' }}>Pontuação:</p>
@@ -64,11 +70,11 @@ const ModalRanqueEscola: React.FC<ModalProps> = ({ escolaId, onClose, onCreateAc
                               </p>
                           ))}
                       </div>
-                  </div>
-              )}
-
-              <div className='lateralmodal'>
-                  {escolaSelecionada && (
+                    </div>
+                    )}
+                    
+                    <div className='lateralmodal'>
+                    {escolaSelecionada && (
                       <div>
                           <br/>
                           <br/>
@@ -80,10 +86,10 @@ const ModalRanqueEscola: React.FC<ModalProps> = ({ escolaId, onClose, onCreateAc
                           <p style={{ fontSize: '12px' }}>Rede: {escolaSelecionada.escola.rede}</p>
                           {/*<p style={{ fontSize: '12px' }}>Número: {escolaSelecionada.escola.telefone}</p>*/}
                       </div>
-                  )} 
-              </div>
-
-              {escolaSelecionada && (
+                    )} 
+                </div>
+                
+                {escolaSelecionada && (
                   <div>
                       <br/>
                       <hr/>
@@ -91,14 +97,14 @@ const ModalRanqueEscola: React.FC<ModalProps> = ({ escolaId, onClose, onCreateAc
                       <p style={{ fontSize: '12px' }}><strong>Superintendência</strong></p>
                       <p style={{ fontSize: '12px' }}>Distância Superintendência: {escolaSelecionada.escola.distanciaSuperintendencia}</p>
                       <p style={{ fontSize: '12px' }}>
-                          Endereço Superintendência: {escolaSelecionada.escola.enderecoSuperintendencia} - {escolaSelecionada.escola.cepSuperintendencia}
+                          Endereço Superintendência: {superintendenciaSelecionada?.endereco} - {superintendenciaSelecionada?.cep}
                       </p>
-                      <p style={{ fontSize: '12px' }}>UF Superintendência: {escolaSelecionada.escola.ufSuperintendencia}</p>
+                      <p style={{ fontSize: '12px' }}>UF Superintendência: {superintendenciaSelecionada?.siglaUf}</p>
                   </div>
-              )}
+                )}
               
-          </div>      
-          <br/>
+            </div>      
+            <br/>
         <div className="d-flex w-100 justify-content-end">
             <button className="br-button secondary mr-3" type="button" onClick={() => onClose()}>
                 Fechar
@@ -107,9 +113,9 @@ const ModalRanqueEscola: React.FC<ModalProps> = ({ escolaId, onClose, onCreateAc
                 Criar Ação
             </button>
         </div>
-
-      </Modal>
-  );
+        
+        </Modal>
+    );
 };
 
 export default ModalRanqueEscola;
