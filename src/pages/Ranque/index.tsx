@@ -12,6 +12,19 @@ import {EscolaRanqueData, ListaPaginada} from '../../models/ranque';
 import {notification} from 'antd';
 import ModalRanqueEscola from '../../components/EscolaRanqueModal';
 
+export function formataCustoLogistico(distancia: number){
+    switch(true){
+        case distancia <= 250:
+            return "$";
+        case distancia > 250 && distancia <= 500:
+            return  "$$"
+        case distancia > 500 && distancia <= 1000:
+            return "$$$"
+        default:
+            return "$$$$"
+    }
+}
+
 interface fatores {
     nome: string;
     peso: number;
@@ -262,7 +275,7 @@ function Ranque() {
                                         '4': e.escola.uf?.sigla || '',
                                         '5': e.escola.municipio?.nome || '',
                                         '6': e.escola.ufSuperintendencia,     
-                                        '7': "$$$",     //TODO CUSTO LOGISTICO
+                                        '7': formataCustoLogistico(e.escola.distanciaSuperintendencia)
                                     }}
                                     hideEditIcon={true}
                                     hideTrashIcon={true}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { EscolaDataR } from '../../pages/Ranque'; 
+import {EscolaDataR, formataCustoLogistico} from '../../pages/Ranque'; 
 import "../../styles/App.css";
 import "../../pages/Ranque/index.css";
 import Modal from "../../components/Modal/index";
@@ -11,7 +11,7 @@ interface ModalProps {
     escolaId : string;
 }
 
-const ModalRanqueEscola: React.FC<ModalProps> = ({ escolaId, onClose, onCreateAcao,}) => {
+const ModalRanqueEscola: React.FC<ModalProps> = ({ escolaId, onClose, onCreateAcao }) => {
 
   const [escolaSelecionada, setEscolaSelecionada] = useState<EscolaDataR | undefined>();
 
@@ -40,7 +40,9 @@ const ModalRanqueEscola: React.FC<ModalProps> = ({ escolaId, onClose, onCreateAc
                                   </p>
                               ))}
                               {/* TODO fazer função que transforma distancia em $ do custo logistico */}
-                              {/*<p style={{ fontSize: '12px' }}>Custo Logístico: {escolaSelecionada.escola.custoLogistico}</p>*/}
+                              <p style={{ fontSize: '12px' }}>
+                                  Custo Logístico: {formataCustoLogistico(escolaSelecionada.escola.distanciaSuperintendencia)}
+                              </p>
                           </div>
                       <p/>
                       <p style={{ fontSize: '12px' }}>Total: {escolaSelecionada.ranqueInfo.pontuacao}</p>
