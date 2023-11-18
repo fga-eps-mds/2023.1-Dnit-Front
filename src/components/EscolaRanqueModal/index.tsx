@@ -34,7 +34,7 @@ const ModalRanqueEscola: React.FC<ModalProps> = ({ escolaId, onClose, onCreateAc
                       <p style={{ fontSize: '12px' }}>Posição: {escolaSelecionada.ranqueInfo.posicao}</p>
                       <p style={{ fontSize: '12px' }}>Pontuação:</p>
                           <div style={{ marginLeft: '40px' }}>
-                              {escolaSelecionada.ranqueInfo.fatores.map((fator, index) => (
+                              {escolaSelecionada.ranqueInfo.fatores?.map((fator, index) => (
                                   <p key={index} style={{ fontSize: '12px' }}>
                                       Fator: {fator.nome}, Peso: {fator.peso}, Valor: {fator.valor}
                                   </p>
@@ -52,9 +52,15 @@ const ModalRanqueEscola: React.FC<ModalProps> = ({ escolaId, onClose, onCreateAc
                       <p style={{ fontSize: '12px' }}>Professores: {escolaSelecionada.escola.numeroTotalDeDocentes}</p>
                       <p style={{ fontSize: '12px' }}>Porte: {escolaSelecionada.escola.descricaoPorte}</p>
                       <p style={{ fontSize: '12px' }}>Telefone: {escolaSelecionada.escola.telefone}</p>
-                      {/* TODO ADICIONAR FUNCAO QUE VE A ETAPA DE ENSINO*/}
-                      {/*<p style={{ fontSize: '12px' }}>Etapas de Ensino: {escolaSelecionada.escola.etapasEnsino}</p>*/}
                       <p style={{ fontSize: '12px' }}>Situação: {escolaSelecionada.escola.situacao}</p>
+                      <p style={{ fontSize: '12px' }}>Etapas de ensino: </p>
+                      <div style={{ marginLeft: '40px' }}>
+                          {escolaSelecionada.escola.etapasEnsino?.map((etapa, index) => (
+                              <p key={index} style={{ fontSize: '12px' }}>
+                                  descrição: {etapa.descricao}
+                              </p>
+                          ))}
+                      </div>
                   </div>
               )}
 
