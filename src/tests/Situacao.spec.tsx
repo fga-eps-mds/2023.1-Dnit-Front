@@ -90,6 +90,8 @@ test("Erro de Provider de selectedValue", async () => {
     descricaoPorte: "123",
     observacao: "observacao teste",
     etapaEnsino: {},
+    superintendenciaId: 4,
+    distanciaSuperintendencia: 1231,
   };
   expect(() => {
     render(
