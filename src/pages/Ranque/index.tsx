@@ -10,7 +10,6 @@ import Table, {CustomTableRow} from '../../components/Table';
 import {fetchEscolasRanque} from '../../service/ranqueApi';
 import {EscolaRanqueData, ListaPaginada} from '../../models/ranque';
 import {notification} from 'antd';
-import {FiltroProvider} from "../../context/FiltroTabela";
 import ModalRanqueEscola from '../../components/EscolaRanqueModal';
 
 interface fatores {
@@ -128,9 +127,8 @@ function Ranque() {
             <Header/>
             {notificationContextHandler}
 
-            <FiltroProvider>
-                    {escolaAtual != null && <ModalRanqueEscola  onClose={()=>{setEscolaAtual(null)}} onCreateAcao={()=>{}} escolaId={escolaAtual.escola.id}/>}
-            </FiltroProvider>
+           
+            {escolaAtual != null && <ModalRanqueEscola  onClose={()=>{setEscolaAtual(null)}} onCreateAcao={()=>{}} escolaId={escolaAtual.escola.id}/>}
             
             <TrilhaDeNavegacao elementosLi={paginas}/>
 
