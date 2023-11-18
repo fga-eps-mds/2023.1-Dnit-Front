@@ -2,11 +2,10 @@ import { Select } from "antd";
 import {ChangeEvent, useEffect, useState} from "react";
 import { useSelectedValue } from "../../../../context/Situacao";
 import {EscolaData, SituacaoData, Superintendencia} from "../../../../models/service";
-import {fetchEscolaData, fetchSituacao, fetchSuperintendenciaData} from "../../../../service/escolaApi";
+import {fetchSituacao, fetchSuperintendenciaData} from "../../../../service/escolaApi";
 import {fetchEtapasDeEnsino} from "../../../../service/escolaApi";
 import MenuSuspenso from "../../MenuSuspenso";
 import {formataCustoLogistico} from "../../../../utils/utils";
-import {EscolaDataRanque} from "../../../../pages/Ranque";
 
 interface ModalCamposEscolaProps {
   data: EscolaData;
