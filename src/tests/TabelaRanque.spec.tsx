@@ -75,7 +75,7 @@ describe('TabelaRanque', () => {
 
     test("Deve renderizar o modal", async () => {
         render(
-            <Modal className="modal" >
+            <Modal className="modal" closeModal={() => {}}>
                 <h4 className="text-center mt-2">{""}</h4>
                 <div>
                     <p><strong>Posição:</strong> {""}</p>
