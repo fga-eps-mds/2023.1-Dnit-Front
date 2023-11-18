@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { EscolaData } from '../../pages/Ranque/index'; 
+import { EscolaDataR } from '../../pages/Ranque'; 
 import "../../styles/App.css";
 import "../../pages/Ranque/index.css";
 import Modal from "../../components/Modal/index";
@@ -13,7 +13,7 @@ interface ModalProps {
 
 const ModalRanqueEscola: React.FC<ModalProps> = ({ escolaId, onClose, onCreateAcao,}) => {
 
-  const [escolaSelecionada, setEscolaSelecionada] = useState<EscolaData | undefined>();
+  const [escolaSelecionada, setEscolaSelecionada] = useState<EscolaDataR | undefined>();
 
   const fetchEscolaSelecionada = async () => {
     const escolas = await fetchData(escolaId);
@@ -39,6 +39,8 @@ const ModalRanqueEscola: React.FC<ModalProps> = ({ escolaId, onClose, onCreateAc
                                       Fator: {fator.nome}, Peso: {fator.peso}, Valor: {fator.valor}
                                   </p>
                               ))}
+                              {/* TODO fazer função que transforma distancia em $ do custo logistico */}
+                              {/*<p style={{ fontSize: '12px' }}>Custo Logístico: {escolaSelecionada.escola.custoLogistico}</p>*/}
                           </div>
                       <p/>
                       <p style={{ fontSize: '12px' }}>Total: {escolaSelecionada.ranqueInfo.pontuacao}</p>
@@ -48,9 +50,10 @@ const ModalRanqueEscola: React.FC<ModalProps> = ({ escolaId, onClose, onCreateAc
                       <p style={{ fontSize: '12px' }}>Código: {escolaSelecionada.escola.codigoEscola}</p>
                       <p style={{ fontSize: '12px' }}>Alunos: {escolaSelecionada.escola.numeroTotalDeAlunos}</p>
                       <p style={{ fontSize: '12px' }}>Professores: {escolaSelecionada.escola.numeroTotalDeDocentes}</p>
-                      <p style={{ fontSize: '12px' }}>Porte: {escolaSelecionada.escola.porte}</p>
+                      <p style={{ fontSize: '12px' }}>Porte: {escolaSelecionada.escola.descricaoPorte}</p>
                       <p style={{ fontSize: '12px' }}>Telefone: {escolaSelecionada.escola.telefone}</p>
-                      <p style={{ fontSize: '12px' }}>Etapas de Ensino: {escolaSelecionada.escola.etapasEnsino}</p>
+                      {/* TODO ADICIONAR FUNCAO QUE VE A ETAPA DE ENSINO*/}
+                      {/*<p style={{ fontSize: '12px' }}>Etapas de Ensino: {escolaSelecionada.escola.etapasEnsino}</p>*/}
                       <p style={{ fontSize: '12px' }}>Situação: {escolaSelecionada.escola.situacao}</p>
                   </div>
               )}

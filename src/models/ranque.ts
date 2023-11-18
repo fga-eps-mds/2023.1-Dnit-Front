@@ -14,6 +14,9 @@ export interface EscolaRanqueInfo {
     uf: UfModel;
     etapaEnsino: EtapasDeEnsinoData[];
     municipio: MunicipioData;
+    
+    ufSuperintendencia: string;
+    distanciaSuperintendencia: number;
 }
 
 export interface EscolaRanqueData {

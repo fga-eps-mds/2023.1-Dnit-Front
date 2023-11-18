@@ -28,39 +28,47 @@ interface ranqueInfo {
 
 interface escola {
     idEscola: string;
+    
     codigoEscola: number;
     nomeEscola: string;
     idRede: number;
-    descricaoRede: string | null;
+    descricaoRede: string;
     cep: string;
     idUf: number;
-    uf: number;
-    descricaoUf: string;
+    siglaUf: string;
     endereco: string;
     idMunicipio: number;
-    nomeMunicipio: string | null;
+    nomeMunicipio: string;
     idLocalizacao: number;
-    descricaoLocalizacao: string | null;
+    descricaoLocalizacao: string;
     longitude: string;
     latitude: string;
-    idEtapasDeEnsino: number | null;
-    descricaoEtapasEnsino: string | null;
+    idEtapasDeEnsino: number;
+    etapasEnsino: EtapasDeEnsinoData[];
     numeroTotalDeAlunos: number;
-    idSituacao: number | null;
-    descricaoSituacao: string | null;
+    idSituacao: number;
+    descricaoSituacao: string;
     idPorte: number;
+    descricaoPorte: string;
     telefone: string;
     numeroTotalDeDocentes: number;
-    siglaUf: string;
-    observacao: string | null;
+    observacao: string;
+
+    uf: number;
+    descricaoUf: string;
+    descricaoEtapasEnsino: string;
     rede: number;
     porte: number;
     localizacao: number;
-    etapasEnsino: string | null;
-    situacao: string | null;
+    situacao: string;
+    
+    distanciaSuperintendencia: number;
+    cepSuperintendencia: number;
+    enderecoSuperintendencia: string;
+    ufSuperintendencia: number;
 }
 
-export interface EscolaData {
+export interface EscolaDataR {
     ranqueInfo: ranqueInfo;
     escola: escola;
 }
@@ -255,7 +263,7 @@ function Ranque() {
                                         '3': formatEtapaEnsino(e.escola.etapaEnsino),
                                         '4': e.escola.uf?.sigla || '',
                                         '5': e.escola.municipio?.nome || '',
-                                        '6': "GO",     //TODO ADICIONAR SUPERINTENDENCIA
+                                        '6': e.escola.ufSuperintendencia,     
                                         '7': "$$$",     //TODO CUSTO LOGISTICO
                                     }}
                                     hideEditIcon={true}
