@@ -9,6 +9,7 @@ import { Permissao } from "../models/auth";
 import { autenticar } from "./mock/autenticacao";
 import { wait } from "@testing-library/user-event/dist/utils";
 import Modal from "../components/Modal";
+import Ranque from "../pages/Ranque";
 
 window.matchMedia = jest.fn().mockImplementation((query) => {
     return {
@@ -56,6 +57,22 @@ describe('TabelaRanque', () => {
     //     expect(tituloModal).toBeInTheDocument()
     // })
 
+    it("Deve renderizar a pagina de Tabela Ranque", async () => {
+        autenticar(Permissao.UsuarioVisualizar, Permissao.UsuarioPerfilEditar)
+        render(
+          <MemoryRouter>
+            <AuthProvider>
+              <Ranque />
+            </AuthProvider>
+          </MemoryRouter>
+        );
+    
+        expect(screen.getByText("Nome:")).toBeInTheDocument();
+        expect(screen.getByText("UF:")).toBeInTheDocument();
+        expect(screen.getByText("Municípios:")).toBeInTheDocument();
+        expect(screen.getByText("Etapas de Ensino:")).toBeInTheDocument();
+      });
+
     test("Deve renderizar o modal", async () => {
         render(
             <Modal className="modal" >
@@ -75,5 +92,6 @@ describe('TabelaRanque', () => {
         expect(screen.getByText("Código:")).toBeInTheDocument;
         expect(screen.getByText("Sair")).toBeInTheDocument;
     })
+
 
 })
