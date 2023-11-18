@@ -40,7 +40,7 @@ export function DeletarPerfilDialog({
 
   if (loading) {
     return (
-      <Modal className="delete-perfil">
+      <Modal className="delete-perfil" closeModal={() => onClose(false)}>
         <h4 className="text-center mt-2">Deletando perfil {perfil.nome}...</h4>
         <div className="d-flex justify-content-center m-4">
           <ReactLoading type="spinningBubbles" color="#000000" />
@@ -50,7 +50,7 @@ export function DeletarPerfilDialog({
   }
 
   return (
-    <Modal className="delete-perfil">
+    <Modal className="delete-perfil" closeModal={() => onClose(false)}>
       <p>
         <strong>Tem certeza que deseja excluir esse perfil?</strong>
       </p>
