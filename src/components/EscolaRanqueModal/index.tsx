@@ -75,6 +75,20 @@ const ModalRanqueEscola: React.FC<ModalProps> = ({ escolaId, onClose, onCreateAc
                       </div>
                   )} 
               </div>
+
+              {escolaSelecionada && (
+                  <div>
+                      <br/>
+                      <hr/>
+                      <br/>
+                      <p style={{ fontSize: '12px' }}><strong>Superintendência</strong></p>
+                      <p style={{ fontSize: '12px' }}>Distância Superintendência: {escolaSelecionada.escola.distanciaSuperintendencia}</p>
+                      <p style={{ fontSize: '12px' }}>
+                          Endereço Superintendência: {escolaSelecionada.escola.enderecoSuperintendencia} - {escolaSelecionada.escola.cepSuperintendencia}
+                      </p>
+                      <p style={{ fontSize: '12px' }}>UF Superintendência: {escolaSelecionada.escola.ufSuperintendencia}</p>
+                  </div>
+              )}
               
           </div>      
           <br/>
