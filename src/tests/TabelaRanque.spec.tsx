@@ -26,37 +26,6 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
   
 
 describe('TabelaRanque', () => {
-    // test('Listar escolas em ranque', async () => {
-    //     render(
-    //         <MemoryRouter initialEntries={ ['/rota']} >
-    //             <AuthProvider>
-    //                 <App />
-    //             </AuthProvider>
-    //         </MemoryRouter>
-    //     );
-
-    //     await waitFor(() => {
-    //         // table-row-edit-${id}`
-    //         const linhas = screen.getAllByTestId("");
-    //         expect(linhas).toHaveLength(4)
-    //     })
-    // })
-
-    // test('Listar escolas em ranque', async () => {
-    //     render(
-    //         <MemoryRouter initialEntries={ ['/rota']} >
-    //             <AuthProvider>
-    //                 <App />
-    //             </AuthProvider>
-    //         </MemoryRouter>
-    //     );
-
-    //     // click('olhinho')
-        
-    //     const tituloModal = screen.getByText('Detalhes da Escola')
-    //     expect(tituloModal).toBeInTheDocument()
-    // })
-
     it("Deve renderizar a pagina de Tabela Ranque", async () => {
         autenticar(Permissao.UsuarioVisualizar, Permissao.UsuarioPerfilEditar)
         render(
@@ -93,5 +62,20 @@ describe('TabelaRanque', () => {
         expect(screen.getByText("Sair")).toBeInTheDocument;
     })
 
+    it("Deve filtrar a escola por nome", async () => {
+      autenticar(Permissao.UsuarioVisualizar, Permissao.UsuarioEditar);
+
+      render(
+        <MemoryRouter>
+          <AuthProvider>
+            <Ranque />
+          </AuthProvider>
+        </MemoryRouter>
+      );
+
+      fireEvent.change(screen.getByTestId("filtroNome"), { target: { value: "EM - ESCOLA MUNICIPAL ENGENHO NOVO"}})
+      expect(screen.getByTestId("filtroNome")).toHaveValue("EM - ESCOLA MUNICIPAL ENGENHO NOVO")
+      expect((await screen.findAllByText("EM - ESCOLA MUNICIPAL ENGENHO NOVO")).length).toBe(1);
+    })
 
 })
