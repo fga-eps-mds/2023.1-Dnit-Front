@@ -39,7 +39,6 @@ const ModalRanqueEscola: React.FC<ModalProps> = ({ escolaId, onClose, onCreateAc
                                       Fator: {fator.nome}, Peso: {fator.peso}, Valor: {fator.valor}
                                   </p>
                               ))}
-                              {/* TODO fazer função que transforma distancia em $ do custo logistico */}
                               <p style={{ fontSize: '12px' }}>
                                   Custo Logístico: {formataCustoLogistico(escolaSelecionada.escola.distanciaSuperintendencia)}
                               </p>
@@ -71,14 +70,12 @@ const ModalRanqueEscola: React.FC<ModalProps> = ({ escolaId, onClose, onCreateAc
                       <div>
                           <br/>
                           <br/>
-                          <br/>
                           <p style={{ fontSize: '12px' }}><strong>Endereço</strong></p>
                           {escolaSelecionada.escola.endereco}
                           <p/>
                           <p style={{ fontSize: '12px' }}>Estado: {escolaSelecionada.escola.descricaoUf}</p>
                           <p style={{ fontSize: '12px' }}>Cep: {escolaSelecionada.escola.cep}</p>
                           <p style={{ fontSize: '12px' }}>Rede: {escolaSelecionada.escola.rede}</p>
-                          {/*TODO VERIFICAR NUMERO*/}
                           {/*<p style={{ fontSize: '12px' }}>Número: {escolaSelecionada.escola.telefone}</p>*/}
                       </div>
                   )} 
