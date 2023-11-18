@@ -114,6 +114,10 @@ export interface EscolaData {
   telefone: string;
   numeroTotalDeDocentes: number;
   observacao: string;
+  
+  cepSuperintendencia: string;
+  enderecoSuperintendecia: string;
+  distanciaSuperintendencia: number;
 }
 
 export interface FiltroEscolaData {
@@ -188,4 +192,69 @@ export interface UfModel {
   if: number;
   sigla: string;
   nome: string;
+}
+
+export interface Superintendencia{
+  id: number;
+  endereco: string;
+  cep: string;
+  latitude: string;
+  longitude: string;
+  uf: number;
+  siglaUf: string;
+}
+
+export interface Fatores {
+  nome: string;
+  peso: number;
+  valor: number;
+}
+
+export interface RanqueInfo {
+  ranqueId: number;
+  pontuacao: number;
+  posicao: number;
+  fatores: Fatores[];
+}
+
+export interface Escola {
+  idEscola: string;
+
+  codigoEscola: number;
+  nomeEscola: string;
+  idRede: number;
+  descricaoRede: string;
+  cep: string;
+  idUf: number;
+  siglaUf: string;
+  endereco: string;
+  idMunicipio: number;
+  nomeMunicipio: string;
+  idLocalizacao: number;
+  descricaoLocalizacao: string;
+  longitude: string;
+  latitude: string;
+  idEtapasDeEnsino: number;
+  etapasEnsino: EtapasDeEnsinoData[];
+  numeroTotalDeAlunos: number;
+  idSituacao: number;
+  descricaoSituacao: string;
+  idPorte: number;
+  descricaoPorte: string;
+  telefone: string;
+  numeroTotalDeDocentes: number;
+  observacao: string;
+
+  uf: number;
+  descricaoUf: string;
+  descricaoEtapasEnsino: string;
+  rede: number;
+  porte: number;
+  localizacao: number;
+  situacao: string;
+
+  distanciaSuperintendencia: number;
+  cepSuperintendencia: number;
+  enderecoSuperintendencia: string;
+  ufSuperintendencia: number;
 }

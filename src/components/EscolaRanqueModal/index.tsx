@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {EscolaDataR, formataCustoLogistico} from '../../pages/Ranque'; 
+import {EscolaDataRanque, formataCustoLogistico} from '../../pages/Ranque'; 
 import "../../styles/App.css";
 import "../../pages/Ranque/index.css";
 import Modal from "../../components/Modal/index";
@@ -13,7 +13,7 @@ interface ModalProps {
 
 const ModalRanqueEscola: React.FC<ModalProps> = ({ escolaId, onClose, onCreateAcao }) => {
 
-  const [escolaSelecionada, setEscolaSelecionada] = useState<EscolaDataR | undefined>();
+  const [escolaSelecionada, setEscolaSelecionada] = useState<EscolaDataRanque | undefined>();
 
   const fetchEscolaSelecionada = async () => {
     const escolas = await fetchData(escolaId);

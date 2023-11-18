@@ -3,7 +3,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import "./index.css";
 import {fetchEtapasDeEnsino, fetchUnidadeFederativa} from '../../service/escolaApi';
-import {EtapasDeEnsinoData, UnidadeFederativaData} from '../../models/service';
+import {EtapasDeEnsinoData, UnidadeFederativaData, RanqueInfo, Escola} from '../../models/service';
 import TrilhaDeNavegacao from '../../components/Navegacao';
 import ReactLoading from 'react-loading';
 import Table, {CustomTableRow} from '../../components/Table';
@@ -25,64 +25,9 @@ export function formataCustoLogistico(distancia: number){
     }
 }
 
-interface fatores {
-    nome: string;
-    peso: number;
-    valor: number;
-}
-
-interface ranqueInfo {
-    ranqueId: number;
-    pontuacao: number;
-    posicao: number;
-    fatores: fatores[];
-}
-
-interface escola {
-    idEscola: string;
-    
-    codigoEscola: number;
-    nomeEscola: string;
-    idRede: number;
-    descricaoRede: string;
-    cep: string;
-    idUf: number;
-    siglaUf: string;
-    endereco: string;
-    idMunicipio: number;
-    nomeMunicipio: string;
-    idLocalizacao: number;
-    descricaoLocalizacao: string;
-    longitude: string;
-    latitude: string;
-    idEtapasDeEnsino: number;
-    etapasEnsino: EtapasDeEnsinoData[];
-    numeroTotalDeAlunos: number;
-    idSituacao: number;
-    descricaoSituacao: string;
-    idPorte: number;
-    descricaoPorte: string;
-    telefone: string;
-    numeroTotalDeDocentes: number;
-    observacao: string;
-
-    uf: number;
-    descricaoUf: string;
-    descricaoEtapasEnsino: string;
-    rede: number;
-    porte: number;
-    localizacao: number;
-    situacao: string;
-    
-    distanciaSuperintendencia: number;
-    cepSuperintendencia: number;
-    enderecoSuperintendencia: string;
-    ufSuperintendencia: number;
-}
-
-export interface EscolaDataR {
-    ranqueInfo: ranqueInfo;
-    escola: escola;
+export interface EscolaDataRanque {
+    ranqueInfo: RanqueInfo;
+    escola: Escola;
 }
 
 function Ranque() {

@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import * as URL from "../consts/service"
 import * as DATA from "../models/service";
-import { EscolaDataR } from "../pages/Ranque";
+import { EscolaDataRanque } from "../pages/Ranque";
 import { ResponseStatus, sendCadastros, update, fetchDados } from "./apiUtils";
 
 
@@ -24,7 +24,7 @@ export async function fetchSituacao(): Promise<DATA.SituacaoData[]> {
 
 export async function fetchData(id: any) {
     const url = `${URL.urlAPIEscolas}/ranque/escolas/${id}`
-    return fetchDados<EscolaDataR>(url);
+    return fetchDados<EscolaDataRanque>(url);
 }
 
 export async function sendCadastroEscolasPlanilha(data: FormData): Promise<any> {
