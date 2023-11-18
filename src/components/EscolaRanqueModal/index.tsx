@@ -39,6 +39,7 @@ const ModalRanqueEscola: React.FC<ModalProps> = ({ escolaId, onClose, onCreateAc
                       UPS, Peso 2,16<br/>
                       <p style={{ fontSize: '12px' }}>Total: {escolaSelecionada.ranqueInfo.pontuacao}</p>
                       <hr />
+                      <br/>
                       <p style={{ fontSize: '12px' }}><strong>Dados</strong></p>
                       <p style={{ fontSize: '12px' }}>Código: {escolaSelecionada.escola.codigoEscola}</p>
                       <p style={{ fontSize: '12px' }}>Alunos: {escolaSelecionada.escola.numeroTotalDeAlunos}</p>
@@ -50,6 +51,13 @@ const ModalRanqueEscola: React.FC<ModalProps> = ({ escolaId, onClose, onCreateAc
               <div className='lateralmodal'>
                   {escolaSelecionada && (
                       <div>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
                           <p style={{ fontSize: '12px' }}><strong>Endereço</strong></p>
                           {escolaSelecionada.escola.endereco}
                           <p style={{ fontSize: '12px' }}>Telefone: {escolaSelecionada.escola.telefone}</p>
@@ -64,7 +72,7 @@ const ModalRanqueEscola: React.FC<ModalProps> = ({ escolaId, onClose, onCreateAc
                   )} 
               </div>
           </div>      
-          
+          <br/>
         <div className="d-flex w-100 justify-content-end">
             <button className="br-button secondary mr-3" type="button" onClick={() => onClose()}>
                 Fechar
