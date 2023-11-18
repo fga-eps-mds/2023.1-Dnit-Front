@@ -136,7 +136,7 @@ export default function PerfilDialog({ id, readOnly, closeDialog }: PerfilDialog
   };
 
   return (
-    <Modal className="dialog-create-perfil">
+    <Modal className="dialog-create-perfil" closeModal={() => closeDialog(null)}>
       {contextHolder}
       <div className="d-flex justify-content-between">
         {id && <h4 className="text-center mt-1">{readOnly ? 'Detalhes do Perfil' : 'Edição de Perfil'}</h4>}
