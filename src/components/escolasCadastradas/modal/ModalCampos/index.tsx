@@ -1,11 +1,12 @@
 import { Select } from "antd";
-import { ChangeEvent, useState } from "react";
+import {ChangeEvent, useEffect, useState} from "react";
 import { useSelectedValue } from "../../../../context/Situacao";
-import { EscolaData, SituacaoData } from "../../../../models/service";
-import {fetchSituacao} from "../../../../service/escolaApi";
+import {EscolaData, SituacaoData, Superintendencia} from "../../../../models/service";
+import {fetchEscolaData, fetchSituacao, fetchSuperintendenciaData} from "../../../../service/escolaApi";
 import {fetchEtapasDeEnsino} from "../../../../service/escolaApi";
 import MenuSuspenso from "../../MenuSuspenso";
 import {formataCustoLogistico} from "../../../../utils/utils";
+import {EscolaDataRanque} from "../../../../pages/Ranque";
 
 interface ModalCamposEscolaProps {
   data: EscolaData;
@@ -43,7 +44,16 @@ const ModalCampos = ({
   const [novaObs, setNovaObs] = useState(data?.observacao);
 
   const ultimaAtualizacao = new Date();
-
+ 
+  const [superintendenciaSelecionada, setSuperintendenciaSelecionada] = useState<Superintendencia | undefined>();
+  const fetchSuperintendenciaSelecionada = async () => {
+    const superintendencia = await fetchSuperintendenciaData(data.superintendenciaId);
+    setSuperintendenciaSelecionada(superintendencia);
+  }
+  useEffect(()=>{
+    fetchSuperintendenciaSelecionada();
+  }, []);
+  
   const chamarSituacao = async () => {
     const situacoes = await fetchSituacao();
     setSituacoes(situacoes);
@@ -211,7 +221,7 @@ const ModalCampos = ({
           <input
               id="input-default"
               type="text"
-              placeholder={data.cepSuperintendencia}
+              placeholder={superintendenciaSelecionada?.cep}
               disabled
           />
         </div>
@@ -224,7 +234,7 @@ const ModalCampos = ({
           <input
               id="input-default"
               type="text"
-              placeholder={data.enderecoSuperintendecia}
+              placeholder={superintendenciaSelecionada?.endereco}
               disabled
           />
         </div>
