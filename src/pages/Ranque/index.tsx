@@ -113,19 +113,7 @@ function Ranque() {
         return `${etapaEnsino.map(etapa => etapa.descricao).slice(0, max).join(', ')}${etapaEnsino.length > max ? '...' : ''}`;
     }
     
-    const [isOpen, setIsOpen] = useState<boolean>(false);
     const [escolaAtual, setEscolaAtual] = useState<EscolaRanqueData | null>();
-    
-    const abrirModal = (escolaAtual: EscolaRanqueData) => {
-        setEscolaAtual(escolaAtual);
-        const modal = document.getElementById("modal-informacoes");
-        if(modal && modal.style) modal.style.display = "block"
-        setIsOpen(true);
-    };
-
-    const fecharModal = (index: boolean) => {
-        setEscolaAtual(null)
-    }
         
     return (
         <div className="App ranque-container">
@@ -272,7 +260,7 @@ function Ranque() {
                                     }}
                                     hideEditIcon={true}
                                     hideTrashIcon={true}
-                                    onDetailRow={id => abrirModal(e)}
+                                    onDetailRow={() => setEscolaAtual(e)}
                                 />
                             )
                         }
