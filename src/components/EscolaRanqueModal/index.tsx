@@ -32,18 +32,24 @@ const ModalRanqueEscola: React.FC<ModalProps> = ({ escolaId, onClose, onCreateAc
                   <div>
                       <p style={{ fontSize: '12px' }}>Nome: {escolaSelecionada.escola.nomeEscola}</p>
                       <p style={{ fontSize: '12px' }}>Posição: {escolaSelecionada.ranqueInfo.posicao}</p>
-                      <p style={{ fontSize: '12px' }}>Pontuação:</p>
-                      Fator X, Peso X, Valor X<br/>
-                      Fator Y, Peso Y, Valor Y<br/>
-                      Fator Z, Peso Z, Valor Z<br/>
-                      UPS, Peso 2,16<br/>
+                      <p style={{ fontSize: '12px' }}>Pontuação: {escolaSelecionada.ranqueInfo.pontuacao}</p>
+                          <div> 
+                              Fator X, Peso X, Valor X<br/>
+                              Fator Y, Peso Y, Valor Y<br/>
+                              Fator Z, Peso Z, Valor Z<br/>
+                              UPS, Peso 2,16<br/>
+                          </div>
+                      <p/>
                       <p style={{ fontSize: '12px' }}>Total: {escolaSelecionada.ranqueInfo.pontuacao}</p>
-                      <hr />
+                      <hr/>
                       <br/>
                       <p style={{ fontSize: '12px' }}><strong>Dados</strong></p>
                       <p style={{ fontSize: '12px' }}>Código: {escolaSelecionada.escola.codigoEscola}</p>
                       <p style={{ fontSize: '12px' }}>Alunos: {escolaSelecionada.escola.numeroTotalDeAlunos}</p>
+                      <p style={{ fontSize: '12px' }}>Professores: {escolaSelecionada.escola.numeroTotalDeDocentes}</p>
                       <p style={{ fontSize: '12px' }}>Porte: {escolaSelecionada.escola.porte}</p>
+                      <p style={{ fontSize: '12px' }}>Telefone: {escolaSelecionada.escola.telefone}</p>
+                      <p style={{ fontSize: '12px' }}>Etapas de Ensino: {escolaSelecionada.escola.etapasEnsino}</p>
                       <p style={{ fontSize: '12px' }}>Situação: {escolaSelecionada.escola.situacao}</p>
                   </div>
               )}
@@ -51,26 +57,21 @@ const ModalRanqueEscola: React.FC<ModalProps> = ({ escolaId, onClose, onCreateAc
               <div className='lateralmodal'>
                   {escolaSelecionada && (
                       <div>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <br/>
+                          <br/>
+                          <br/>
+                          <br/>
                           <p style={{ fontSize: '12px' }}><strong>Endereço</strong></p>
                           {escolaSelecionada.escola.endereco}
-                          <p style={{ fontSize: '12px' }}>Telefone: {escolaSelecionada.escola.telefone}</p>
-                          <p style={{ fontSize: '12px' }}>Professores: {escolaSelecionada.escola.numeroTotalDeDocentes}</p> 
-                          <p style={{ fontSize: '12px' }}>Rede: {escolaSelecionada.escola.rede}</p>
-                          <p style={{ fontSize: '12px' }}>Etapas de Ensino: {escolaSelecionada.escola.etapasEnsino}</p>
-                          {/*sem numero*/}
-                          <p style={{ fontSize: '12px' }}>Número: {escolaSelecionada.escola.telefone}</p> 
+                          <p/>
+                          <p style={{ fontSize: '12px' }}>Estado: {escolaSelecionada.escola.descricaoUf}</p>
                           <p style={{ fontSize: '12px' }}>Cep: {escolaSelecionada.escola.cep}</p>
-                          <p style={{ fontSize: '12px' }}>Estado: {escolaSelecionada.escola.uf}</p>
+                          <p style={{ fontSize: '12px' }}>Rede: {escolaSelecionada.escola.rede}</p>
+                          {/*TODO VERIFICAR NUMERO*/}
+                          {/*<p style={{ fontSize: '12px' }}>Número: {escolaSelecionada.escola.telefone}</p>*/}
                       </div>
                   )} 
               </div>
+              
           </div>      
           <br/>
         <div className="d-flex w-100 justify-content-end">
