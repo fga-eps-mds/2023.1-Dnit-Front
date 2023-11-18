@@ -122,7 +122,6 @@ export async function updateRedefineSenha(data: DATA.RedefinirSenhaData): Promis
 }
 
 export async function fetchUsuarios<T>(params: ListarUsuariosQueryParams): Promise<T> {
-    console.log({ params });
     if (params.nome === '') params.nome = undefined
     if (params.perfilId === '') params.perfilId = undefined
     if (params.ufLotacao === '') params.ufLotacao = undefined
