@@ -13,15 +13,17 @@ import {notification} from 'antd';
 import {FiltroProvider} from "../../context/FiltroTabela";
 import ModalRanqueEscola from '../../components/EscolaRanqueModal';
 
+interface fatores {
+    nome: string;
+    peso: number;
+    valor: number;
+}
+
 interface ranqueInfo {
     ranqueId: number;
     pontuacao: number;
     posicao: number;
-    fatores: {
-            nome: string;
-            peso: number;
-            valor: number;
-    }[];
+    fatores: fatores[];
 }
 
 interface escola {

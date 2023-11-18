@@ -32,12 +32,13 @@ const ModalRanqueEscola: React.FC<ModalProps> = ({ escolaId, onClose, onCreateAc
                   <div>
                       <p style={{ fontSize: '12px' }}>Nome: {escolaSelecionada.escola.nomeEscola}</p>
                       <p style={{ fontSize: '12px' }}>Posição: {escolaSelecionada.ranqueInfo.posicao}</p>
-                      <p style={{ fontSize: '12px' }}>Pontuação: {escolaSelecionada.ranqueInfo.pontuacao}</p>
-                          <div> 
-                              Fator X, Peso X, Valor X<br/>
-                              Fator Y, Peso Y, Valor Y<br/>
-                              Fator Z, Peso Z, Valor Z<br/>
-                              UPS, Peso 2,16<br/>
+                      <p style={{ fontSize: '12px' }}>Pontuação:</p>
+                          <div style={{ marginLeft: '40px' }}>
+                              {escolaSelecionada.ranqueInfo.fatores.map((fator, index) => (
+                                  <p key={index} style={{ fontSize: '12px' }}>
+                                      Fator: {fator.nome}, Peso: {fator.peso}, Valor: {fator.valor}
+                                  </p>
+                              ))}
                           </div>
                       <p/>
                       <p style={{ fontSize: '12px' }}>Total: {escolaSelecionada.ranqueInfo.pontuacao}</p>
@@ -78,7 +79,7 @@ const ModalRanqueEscola: React.FC<ModalProps> = ({ escolaId, onClose, onCreateAc
             <button className="br-button secondary mr-3" type="button" onClick={() => onClose()}>
                 Fechar
             </button>
-            <button className="br-button primary mr-3" type="button" onClick={() => {onCreateAcao()}}>
+            <button className="br-button primary mr-3" type="button" onClick={() => onCreateAcao()}>
                 Criar Ação
             </button>
         </div>
