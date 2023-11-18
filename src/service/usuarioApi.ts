@@ -4,7 +4,7 @@ import { PermissaoCategoria, LoginResponse, Permissao, AtualizarTokenDto } from 
 import { PerfilDto, PerfilModel } from "../models/perfil";
 import { ListarUsuariosQueryParams } from "../models/usuario";
 import * as DATA from "../models/service";
-import { ResponseStatus, sendCadastros, update, fetchDados } from "./apiUtils";
+import { ResponseStatus, sendCadastros, update, fetchDados, sendCadastrosDnit } from "./apiUtils";
 import { AuthLocalStorage } from "../provider/Autenticacao";
 
 export async function fetchPermissoesCategoria(): Promise<PermissaoCategoria[]> {
@@ -110,7 +110,7 @@ export async function sendNewToken(dados: AtualizarTokenDto): Promise<LoginRespo
 }
 
 export async function sendCadastroUsuarioDnit(data: DATA.CadastroUsuarioData): Promise<ResponseStatus> {
-    return sendCadastros<DATA.CadastroUsuarioData>(URL.cadastroUsuarioURL, data);
+    return sendCadastrosDnit<DATA.CadastroUsuarioData>(URL.cadastroUsuarioURL, data);
 }
 
 export async function updateRecuperarSenha(data: DATA.RecuperarSenhaData): Promise<ResponseStatus> {
@@ -122,11 +122,10 @@ export async function updateRedefineSenha(data: DATA.RedefinirSenhaData): Promis
 }
 
 export async function fetchUsuarios<T>(params: ListarUsuariosQueryParams): Promise<T> {
-    console.log({ params });
     if (params.nome === '') params.nome = undefined
     if (params.perfilId === '') params.perfilId = undefined
     if (params.ufLotacao === '') params.ufLotacao = undefined
-    if (params.municipio === '') params.municipio = undefined
+    if (params.municipioId === '') params.municipioId = undefined
     try {
         const response: AxiosResponse<T> = await axios.get(URL.listarUsuarios, {
             params
@@ -138,10 +137,10 @@ export async function fetchUsuarios<T>(params: ListarUsuariosQueryParams): Promi
     }
 }
 
-export async function fetchAtualizaTipoPerfil(usuarioId: string, perfilId: string): Promise<void> {
+export async function fetchAtualizaTipoPerfil(usuarioId: string, perfilId: string, ufLotacao: number, municipio: number): Promise<void> {
     try {
         await axios.patch(
-            `${URL.atualizarTipoPerfil}/${usuarioId}/perfil`, { novoPerfilId: perfilId });
+            `${URL.atualizarTipoPerfil}/${usuarioId}/perfil`, {novoPerfilId: perfilId, novaUF: ufLotacao, novoMunicipio: municipio});
     } catch (error) {
         console.log(error);
         throw error;

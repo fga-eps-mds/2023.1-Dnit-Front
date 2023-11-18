@@ -5,19 +5,22 @@ import { EditarTipoPerfilDialog } from "../../components/EditarTipoPerfilDialog"
 import server from "../mock/servicosAPI";
 import { MemoryRouter } from "react-router-dom";
 import { usuarios } from "../stub/usuarioModelos";
-import { equal } from "assert";
 
-beforeAll(() => {
-  server.listen();  
-});
-
+beforeAll(() => server.listen());
 afterEach(() => {
+  server.resetHandlers();
   cleanup();
 });
+afterAll(() => server.close());
 
-const itemsPerfisTest = [{ id: "0", rotulo: "perfil0" }, { id: "1", rotulo: "perfil1" }, { id: "2", rotulo: "perfil2" }];
-const usuarioSelecionado = "0";
-const tipoPerfilSelecionado = "perfil0"
+
+
+const itemsPerfisTest = [{ id: "1", rotulo: "perfil1" }, { id: "2", rotulo: "perfil2" }, { id: "3", rotulo: "perfil3" }];
+const itemsUfTest = [{ id: "3", rotulo: "uf3" }, { id: "18", rotulo: "RJ" }, { id: "27", rotulo: "DF" },];
+const usuarioSelecionado = "1";
+const tipoPerfilSelecionado = "perfil1";
+const ufSelecionada = "27";
+const municipioSelecionado = "5300108";
 
 describe("Testes para o componente EditarTipoPerfilDialog", () => {
 
@@ -25,9 +28,12 @@ describe("Testes para o componente EditarTipoPerfilDialog", () => {
     const screen = render(
       <EditarTipoPerfilDialog
         listaOpcoes={itemsPerfisTest}
+        listaOpcoesUfs={itemsUfTest}
         listaUsuarios={usuarios}
         usuarioId={usuarioSelecionado}
         perfilAntesAlteracao={tipoPerfilSelecionado}
+        ufAntesAlteracao={ufSelecionada}
+        municipioAntesAlteracao={municipioSelecionado}
         closeDialog={() => { }}
         atualizaTabela={() => { }}
       />
@@ -46,9 +52,12 @@ describe("Testes para o componente EditarTipoPerfilDialog", () => {
       <MemoryRouter>
         <EditarTipoPerfilDialog
           listaOpcoes={itemsPerfisTest}
+          listaOpcoesUfs={itemsUfTest}
           listaUsuarios={usuarios}
           usuarioId={usuarioSelecionado}
           perfilAntesAlteracao={tipoPerfilSelecionado}
+          ufAntesAlteracao={ufSelecionada}
+          municipioAntesAlteracao={municipioSelecionado}
           closeDialog={d => deletou = d}
           atualizaTabela={() => { }}
         />
@@ -62,31 +71,52 @@ describe("Testes para o componente EditarTipoPerfilDialog", () => {
 
   });
 
-  it("Deve confirmar o tipo do Perfil corretamente", async () => {
+  it("Deve alterar o usuario corretamente", async () => {
     const screen = render(
       <MemoryRouter>
         <EditarTipoPerfilDialog
           listaOpcoes={itemsPerfisTest}
+          listaOpcoesUfs={itemsUfTest}
           listaUsuarios={usuarios}
           usuarioId={usuarioSelecionado}
           perfilAntesAlteracao={tipoPerfilSelecionado}
-          closeDialog={() => {}}
+          ufAntesAlteracao={ufSelecionada}
+          municipioAntesAlteracao={municipioSelecionado}
+          closeDialog={() => { }}
           atualizaTabela={() => { }}
         />
       </MemoryRouter>
     )
 
-    const botao = screen.getByTestId("PerfilcustomSelect");
-    fireEvent.click(botao);
+    await waitFor(() => expect(screen.getByText("Tipo Perfil")).toBeInTheDocument());
 
-    const opcao = screen.getByText("perfil0");
-    fireEvent.click(opcao); 
+    const dropdownPerfil = screen.getByTestId("PerfilcustomSelect");
+    fireEvent.click(dropdownPerfil);
+
+    const opcaoPerfil = screen.getByText("perfil1");
+    fireEvent.click(opcaoPerfil);
+
+    const dropdownUF = screen.getByTestId("UFcustomSelect");
+    fireEvent.click(dropdownUF);
+
+    const opcaoUF = screen.getByText("RJ");
+    (fireEvent.click(opcaoUF));
+
+    await waitFor(() => {
+      const dropdownMunicipio = screen.getByTestId("MunicipiocustomSelect");
+      fireEvent.click(dropdownMunicipio)
+    });
+
+    await waitFor(() => {
+      const opcaoMunicipio = screen.getByText("Araruama");
+      fireEvent.click(opcaoMunicipio);
+    });
 
     const buttom = screen.getByTestId("botaoConfirmar");
     fireEvent.click(buttom);
 
     await waitFor(() => expect(screen.queryAllByText('O perfil foi alterado com sucesso!').length).toBeGreaterThan(0));
-    
+
   });
 
   it("Deve tentar alterar perfil sem selecionar opção", async () => {
@@ -94,10 +124,13 @@ describe("Testes para o componente EditarTipoPerfilDialog", () => {
       <MemoryRouter>
         <EditarTipoPerfilDialog
           listaOpcoes={itemsPerfisTest}
+          listaOpcoesUfs={itemsUfTest}
           listaUsuarios={usuarios}
           usuarioId={usuarioSelecionado}
           perfilAntesAlteracao={tipoPerfilSelecionado}
-          closeDialog={() => {}}
+          ufAntesAlteracao={ufSelecionada}
+          municipioAntesAlteracao={municipioSelecionado}
+          closeDialog={() => { }}
           atualizaTabela={() => { }}
         />
       </MemoryRouter>
@@ -107,9 +140,9 @@ describe("Testes para o componente EditarTipoPerfilDialog", () => {
     fireEvent.click(buttom);
 
     await waitFor(() => expect(screen.queryAllByText('Selecione um tipo de perfil').length).toBeGreaterThan(0));
-    
+
   });
-  
+
   it("Deve fechar o EditarTipoPerfilDialog Corretamente", () => {
     let deletou = true;
 
@@ -117,9 +150,12 @@ describe("Testes para o componente EditarTipoPerfilDialog", () => {
       <MemoryRouter>
         <EditarTipoPerfilDialog
           listaOpcoes={itemsPerfisTest}
+          listaOpcoesUfs={itemsUfTest}
           listaUsuarios={usuarios}
           usuarioId={usuarioSelecionado}
           perfilAntesAlteracao={tipoPerfilSelecionado}
+          ufAntesAlteracao={ufSelecionada}
+          municipioAntesAlteracao={municipioSelecionado}
           closeDialog={d => deletou = d}
           atualizaTabela={() => { }}
         />

@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { notification } from "antd";
-// import fetchExcluirPerfil from "../../service/excluiPerfil";
 import Modal from "../Modal";
 import ReactLoading from "react-loading";
 import Select from "../Select";
 import "./styles.css";
 import {fetchAtualizaTipoPerfil} from "../../service/usuarioApi";
 import { UsuarioModel } from "../../models/usuario";
+import { fetchMunicipio } from "../../service/escolaApi";
 
 
 export interface EditarTipoPerfilArgs {
@@ -20,8 +20,11 @@ interface FilterOptions {
 }
 interface EditarTipoPerfilDialogProps {
   listaOpcoes: FilterOptions[];
+  listaOpcoesUfs: FilterOptions[];
   listaUsuarios: UsuarioModel[];
   perfilAntesAlteracao: string;
+  ufAntesAlteracao: string;
+  municipioAntesAlteracao: string;
   usuarioId: string;
   closeDialog: (edicao: boolean) => void;
   atualizaTabela: (atualizou: UsuarioModel[] ) => void;
@@ -29,9 +32,12 @@ interface EditarTipoPerfilDialogProps {
 
 
 
-export function EditarTipoPerfilDialog({ closeDialog, listaOpcoes, usuarioId, listaUsuarios, atualizaTabela, perfilAntesAlteracao }: EditarTipoPerfilDialogProps) {
+export function EditarTipoPerfilDialog({ closeDialog, listaOpcoes, listaOpcoesUfs, usuarioId, listaUsuarios, atualizaTabela, perfilAntesAlteracao, ufAntesAlteracao, municipioAntesAlteracao }: EditarTipoPerfilDialogProps) {
   const [loading, setLoading] = useState(false);
   const [tipoPerfilId, setTipoPerfilId] = useState('');
+  const [newUF, setNewUF] = useState(ufAntesAlteracao);
+  const [listaMunicipios, setListaMunicipios] = useState<FilterOptions[]>([]);
+  const [newMunicipio, setNewMunicipio] = useState(municipioAntesAlteracao);
   const [notificationApi, contextHolder] = notification.useNotification();
 
   const salvarPerfil = (usuarioId: string, perfilId: string) => {
@@ -41,7 +47,7 @@ export function EditarTipoPerfilDialog({ closeDialog, listaOpcoes, usuarioId, li
     }
     setLoading(true);
 
-    fetchAtualizaTipoPerfil(usuarioId, perfilId)
+    fetchAtualizaTipoPerfil(usuarioId, perfilId, Number(newUF), Number(newMunicipio))
       .then(() => {
         notification.success({ message: 'O perfil foi alterado com sucesso!' });
         closeDialog(true);
@@ -53,15 +59,30 @@ export function EditarTipoPerfilDialog({ closeDialog, listaOpcoes, usuarioId, li
       });
   }
 
+  function procuraRotuloMunicipio(idMunicipio: string){
+    return listaMunicipios.find((municipio) => municipio.id === idMunicipio)?.rotulo;
+  }
+
+  async function fetchMunicipios(): Promise<void> {
+    const listaMunicipios = await fetchMunicipio(Number(newUF));
+    const novoMunicipio = listaMunicipios.map((u) => ({ id:''+ u.id, rotulo: u.nome }));
+    setListaMunicipios(novoMunicipio);
+  }
+
   function atualizarListagemUsuarios() {
     const listaUsuariosAtualizada = listaUsuarios.map((usuario) => {
-      if(usuario.id === usuarioId) return { ...usuario,  perfilId: tipoPerfilId }
+      if(usuario.id === usuarioId) return { ...usuario,  perfilId: tipoPerfilId, ufLotacao: Number(newUF), municipio: {nome:`${procuraRotuloMunicipio(newMunicipio)}`, id: Number(newMunicipio)}}
       return usuario;
     });
 
     atualizaTabela(listaUsuariosAtualizada);
      
   }
+
+  useEffect(() => {
+    fetchMunicipios();
+  }, [newUF]);
+
 
   if (loading) {
     
@@ -95,6 +116,30 @@ export function EditarTipoPerfilDialog({ closeDialog, listaOpcoes, usuarioId, li
         buttonStyle={{ left: "150px" } } 
         filtrarTodos={false}
         definePlaceholder={perfilAntesAlteracao}
+      />
+      <Select 
+        items={listaOpcoesUfs} 
+        value={newUF} 
+        label={"UF"} 
+        onChange={(uf) => {
+          setNewUF(uf)}} 
+        inputStyle={{ width: "450px" }} 
+        dropdownStyle={{ width: "450px" }} 
+        buttonStyle={{ left: "150px" } } 
+        filtrarTodos={false}
+        definePlaceholder="Escolha a Unidade Federativa"
+      />
+      <Select 
+        items={listaMunicipios} 
+        value={newMunicipio} 
+        label={"Municipio"} 
+        onChange={(municipio) => {
+          setNewMunicipio(municipio)}} 
+        inputStyle={{ width: "450px" }} 
+        dropdownStyle={{ width: "450px" }} 
+        buttonStyle={{ left: "150px" } } 
+        filtrarTodos={false}
+        definePlaceholder="Escolha o Municipio"
       />
       <div className="d-flex w-100 justify-content-end">
         <button data-testid="botaoCancelar" className="br-button secondary" type="button" onClick={() => closeDialog(false)}>Cancelar</button>
