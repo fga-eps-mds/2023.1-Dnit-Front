@@ -7,7 +7,7 @@ import { EtapasDeEnsinoData } from '../../models/service';
 import TrilhaDeNavegacao from '../../components/Navegacao';
 import ReactLoading from 'react-loading';
 import Table, { CustomTableRow } from '../../components/Table';
-import { fetchEscolasRanque } from '../../service/ranqueApi';
+import { fetchEscolasRanque, fetchProcessamentoRanque, fetchProcessamentoDataRanque } from '../../service/ranqueApi';
 import { EscolaRanqueData, EscolaRanqueFiltro, ListaPaginada } from '../../models/ranque';
 import { notification } from 'antd';
 import { FiltroNome } from '../../components/FiltroNome';
@@ -75,8 +75,21 @@ function Ranque() {
   const [etapa, setEtapa] = useState<SelectItem | null>(null);
   const [etapas, setEtapas] = useState<SelectItem[]>([]);
 
-  const ProcessamentoUPS: boolean = false;
-  const [ultimoProcessamento] = useState("23/05/2023 16:43");
+  const [ProcessamentoUPS, setProcessamentoUPS] = useState<boolean>(false);
+  const [ultimoProcessamento, setUltimoProcessamento] = useState<string>("");
+  useEffect(() => {
+    fetchProcessamentoRanque()
+      .then((result) => setProcessamentoUPS(result))
+      .catch((error) => {
+        console.error('Erro ao buscar estado de processamento:', error);
+      });
+
+    fetchProcessamentoDataRanque()
+      .then((result) => setUltimoProcessamento(result))
+      .catch((error) => {
+        console.error('Erro ao buscar data do último processamento:', error);
+      });
+  });
 
   const paginas = [{ nome: "Logout", link: "/login" }];
   const [loading, setLoading] = useState(true);
