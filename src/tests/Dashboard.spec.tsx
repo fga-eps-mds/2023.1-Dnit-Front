@@ -58,7 +58,7 @@ test("Visualizar Escolas Sem Permissão", async () => {
 });
 
 
-test("Visualizar Dados UPS", async () => {
+test("Visualizar Ranque", async () => {
   autenticar(Permissao.RanqueVisualizar);
 
   const screen = render(
@@ -69,7 +69,7 @@ test("Visualizar Dados UPS", async () => {
     </MemoryRouter>
   );
 
-  const ups = screen.getByText("Visualizar Dados UPS");
+  const ups = screen.getByText("Ranking de escolas");
   fireEvent.click(ups);
 });
 

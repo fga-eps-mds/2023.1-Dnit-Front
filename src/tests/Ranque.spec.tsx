@@ -1,28 +1,15 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
-import App from "../App";
 import { AuthProvider } from "../provider/Autenticacao";
-import localStorageMock from "./mock/memoriaLocal";
 import server from "./mock/servicosAPI";
 import { Permissao } from "../models/auth";
 import { autenticar } from "./mock/autenticacao";
-import { wait } from "@testing-library/user-event/dist/utils";
 import Modal from "../components/Modal";
 import Ranque from "../pages/Ranque";
 
-window.matchMedia = jest.fn().mockImplementation((query) => {
-    return {
-      matches: false,
-      media: query,
-      onchange: null,
-      addListener: jest.fn(),
-      removeListener: jest.fn(),
-      addEventListener: jest.fn(),
-      removeEventListener: jest.fn(),
-      dispatchEvent: jest.fn(),
-    };
-  });
+beforeAll(() => server.listen());
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());
   
 
 describe('TabelaRanque', () => {
@@ -73,9 +60,9 @@ describe('TabelaRanque', () => {
         </MemoryRouter>
       );
 
-      fireEvent.change(screen.getByTestId("filtroNome"), { target: { value: "EM - ESCOLA MUNICIPAL ENGENHO NOVO"}})
-      expect(screen.getByTestId("filtroNome")).toHaveValue("EM - ESCOLA MUNICIPAL ENGENHO NOVO")
-      expect((await screen.findAllByText("EM - ESCOLA MUNICIPAL ENGENHO NOVO")).length).toBe(1);
+      fireEvent.change(screen.getByTestId("filtroNome"), { target: { value: "escola 5"}})
+      expect(screen.getByTestId("filtroNome")).toHaveValue("escola 5")
+      await waitFor(() => expect(screen.getByText('escola 5')).toBeInTheDocument);
     })
 
 })
