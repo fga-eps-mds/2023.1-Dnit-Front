@@ -6,7 +6,6 @@ import {EtapasDeEnsinoData, RanqueInfo, Escola} from '../../models/service';
 import {
   fetchEtapasDeEnsino,
   fetchMunicipio,
-  fetchSuperintendenciaData,
   fetchUnidadeFederativa
 } from '../../service/escolaApi';
 import TrilhaDeNavegacao from '../../components/Navegacao';
@@ -19,7 +18,6 @@ import ModalRanqueEscola from '../../components/EscolaRanqueModal';
 import {formataCustoLogistico} from "../../utils/utils";
 import { FiltroNome } from '../../components/FiltroNome';
 import Select, { SelectItem } from '../../components/Select';
-import {Await} from "react-router-dom";
 
 export interface EscolaDataRanque {
     ranqueInfo: RanqueInfo;
@@ -114,10 +112,8 @@ function Ranque() {
       <div className="App ranque-container">
         <Header />
         {notificationContextHandler}
-        
-        {escolaAtual != null && <ModalRanqueEscola  onClose={()=>{setEscolaAtual(null)}} onCreateAcao={()=>{}} escolaId={escolaAtual.escola.id}/>}
-        
-        {/* <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} escolaSelecionada={escolaSelecionada} /> */}
+        {escolaAtual != null && <ModalRanqueEscola  onClose={()=>{setEscolaAtual(null)}} onCreateAcao={()=>{}} escolaRanque={escolaAtual}/>}
+          
         <TrilhaDeNavegacao elementosLi={paginas} />
 
         <div className='d-flex flex-column m-5'>

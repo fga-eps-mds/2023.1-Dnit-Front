@@ -6,19 +6,20 @@ import Modal from "../../components/Modal/index";
 import {fetchEscolaData, fetchSuperintendenciaData} from "../../service/escolaApi";
 import {formataCustoLogistico} from "../../utils/utils";
 import {Superintendencia} from "../../models/service";
+import {EscolaRanqueData} from "../../models/ranque";
 
 interface ModalProps {
     onClose: () => void;
     onCreateAcao: () => void;
-    escolaId : string;
+    escolaRanque : EscolaRanqueData;
 }
 
-const ModalRanqueEscola: React.FC<ModalProps> = ({ escolaId, onClose, onCreateAcao }) => {
+const ModalRanqueEscola: React.FC<ModalProps> = ({ escolaRanque, onClose, onCreateAcao }) => {
 
     const [escolaSelecionada, setEscolaSelecionada] = useState<EscolaDataRanque | undefined>();
     const [superintendenciaSelecionada, setSuperintendenciaSelecionada] = useState<Superintendencia | undefined>();
     const fetchEscolaSelecionada = async () => {
-    const escola = await fetchEscolaData(escolaId);
+    const escola = await fetchEscolaData(escolaRanque?.escola.id);
     setEscolaSelecionada(escola);
     }
     const fetchSuperintendenciaSelecionada = async () => {
@@ -39,56 +40,55 @@ const ModalRanqueEscola: React.FC<ModalProps> = ({ escolaId, onClose, onCreateAc
                 {escolaSelecionada && (
                     <div>
                         <hr/>
-                      <p style={{ fontSize: '12px' }}>Nome: {escolaSelecionada.escola.nomeEscola}</p>
-                      <p style={{ fontSize: '12px' }}>Posição: {escolaSelecionada.ranqueInfo.posicao}</p>
-                      <p style={{ fontSize: '12px' }}>Pontuação:</p>
+                          <p style={{ fontSize: '12px' }}>Nome: {escolaSelecionada.escola.nomeEscola}</p>
+                          <p style={{ fontSize: '12px' }}>Posição: {escolaSelecionada.ranqueInfo.posicao}</p>
+                          <p style={{ fontSize: '12px' }}>Pontuação:</p>
+                              <div style={{ marginLeft: '40px' }}>
+                                  {escolaSelecionada.ranqueInfo.fatores?.map((fator, index) => (
+                                      <p key={index} style={{ fontSize: '12px' }}>
+                                          Fator: {fator.nome}, Peso: {fator.peso}, Valor: {fator.valor}
+                                      </p>
+                                  ))}
+                                  <p style={{ fontSize: '12px' }}>
+                                      Custo Logístico: {formataCustoLogistico(escolaSelecionada.escola.distanciaSuperintendencia)}
+                                  </p>
+                              </div>
+                          <p/>
+                          <p style={{ fontSize: '12px' }}>Total: {escolaSelecionada.ranqueInfo.pontuacao}</p>
+                            
+                          <hr/>
+                          <p style={{ fontSize: '12px' }}><strong>Dados</strong></p>
+                          <p style={{ fontSize: '12px' }}>Código: {escolaSelecionada.escola.codigoEscola}</p>
+                          <p style={{ fontSize: '12px' }}>Alunos: {escolaSelecionada.escola.numeroTotalDeAlunos}</p>
+                          <p style={{ fontSize: '12px' }}>Professores: {escolaSelecionada.escola.numeroTotalDeDocentes}</p>
+                          <p style={{ fontSize: '12px' }}>Porte: {escolaSelecionada.escola.descricaoPorte}</p>
+                          <p style={{ fontSize: '12px' }}>Telefone: {escolaSelecionada.escola.telefone}</p>
+                          <p style={{ fontSize: '12px' }}>Situação: {escolaSelecionada.escola.situacao}</p>
+                          <p style={{ fontSize: '12px' }}>Etapas de ensino: </p>
                           <div style={{ marginLeft: '40px' }}>
-                              {escolaSelecionada.ranqueInfo.fatores?.map((fator, index) => (
+                              {escolaRanque?.escola.etapaEnsino?.map((etapa, index) => (
                                   <p key={index} style={{ fontSize: '12px' }}>
-                                      Fator: {fator.nome}, Peso: {fator.peso}, Valor: {fator.valor}
+                                      {etapa.descricao}
                                   </p>
                               ))}
-                              <p style={{ fontSize: '12px' }}>
-                                  Custo Logístico: {formataCustoLogistico(escolaSelecionada.escola.distanciaSuperintendencia)}
-                              </p>
                           </div>
-                      <p/>
-                      <p style={{ fontSize: '12px' }}>Total: {escolaSelecionada.ranqueInfo.pontuacao}</p>
-                        
-                      <hr/>
-                      <p style={{ fontSize: '12px' }}><strong>Dados</strong></p>
-                      <p style={{ fontSize: '12px' }}>Código: {escolaSelecionada.escola.codigoEscola}</p>
-                      <p style={{ fontSize: '12px' }}>Alunos: {escolaSelecionada.escola.numeroTotalDeAlunos}</p>
-                      <p style={{ fontSize: '12px' }}>Professores: {escolaSelecionada.escola.numeroTotalDeDocentes}</p>
-                      <p style={{ fontSize: '12px' }}>Porte: {escolaSelecionada.escola.descricaoPorte}</p>
-                      <p style={{ fontSize: '12px' }}>Telefone: {escolaSelecionada.escola.telefone}</p>
-                      <p style={{ fontSize: '12px' }}>Situação: {escolaSelecionada.escola.situacao}</p>
-                      <p style={{ fontSize: '12px' }}>Etapas de ensino: </p>
-                      <div style={{ marginLeft: '40px' }}>
-                          {escolaSelecionada.escola.etapasEnsino?.map((etapa, index) => (
-                              <p key={index} style={{ fontSize: '12px' }}>
-                                  descrição: {etapa.descricao}
-                              </p>
-                          ))}
-                      </div>
                     </div>
                     )}
                     
-                    <div className='lateralmodal'>
-                    {escolaSelecionada && (
-                      <div>
-                          <br/>
-                          <hr/>
-                          <p style={{ fontSize: '12px' }}><strong>Endereço</strong></p>
-                          {escolaSelecionada.escola.endereco}
-                          <p/>
-                          <p style={{ fontSize: '12px' }}>Estado: {escolaSelecionada.escola.descricaoUf}</p>
-                          <p style={{ fontSize: '12px' }}>Cep: {escolaSelecionada.escola.cep}</p>
-                          <p style={{ fontSize: '12px' }}>Rede: {escolaSelecionada.escola.rede}</p>
-                          {/*<p style={{ fontSize: '12px' }}>Número: {escolaSelecionada.escola.telefone}</p>*/}
-                      </div>
-                    )} 
-                </div>
+                    
+                {escolaSelecionada && (
+                  <div>
+                      <hr/>
+                      <p style={{ fontSize: '12px' }}><strong>Endereço</strong></p>
+                      {escolaSelecionada.escola.endereco}
+                      <p/>
+                      <p style={{ fontSize: '12px' }}>Estado: {escolaSelecionada.escola.descricaoUf}</p>
+                      <p style={{ fontSize: '12px' }}>Cep: {escolaSelecionada.escola.cep}</p>
+                      <p style={{ fontSize: '12px' }}>Rede: {escolaSelecionada.escola.rede}</p>
+                      {/*<p style={{ fontSize: '12px' }}>Número: {escolaSelecionada.escola.telefone}</p>*/}
+                  </div>
+                )} 
+                
                 
                 {escolaSelecionada && (
                   <div>

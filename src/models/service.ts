@@ -114,7 +114,6 @@ export interface EscolaData {
   telefone: string;
   numeroTotalDeDocentes: number;
   observacao: string;
-  
   distanciaSuperintendencia: number;
   superintendenciaId: number;
 }
@@ -218,7 +217,6 @@ export interface RanqueInfo {
 
 export interface Escola {
   idEscola: string;
-
   codigoEscola: number;
   nomeEscola: string;
   idRede: number;
@@ -243,7 +241,6 @@ export interface Escola {
   telefone: string;
   numeroTotalDeDocentes: number;
   observacao: string;
-
   uf: number;
   descricaoUf: string;
   descricaoEtapasEnsino: string;
@@ -251,7 +248,6 @@ export interface Escola {
   porte: number;
   localizacao: number;
   situacao: string;
-
   distanciaSuperintendencia: number;
   superintendenciaId: number;
 }
