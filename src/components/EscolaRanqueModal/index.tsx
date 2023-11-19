@@ -58,24 +58,47 @@ const ModalRanqueEscola: React.FC<ModalProps> = ({ escolaId, onClose, onCreateAc
           <Label>Total: {escolaSelecionada.ranqueInfo.pontuacao}</Label>
           <hr />
           <Label><strong>Dados</strong></Label>
-          <Label>Código: {escolaSelecionada.codigo}</Label>
-          <Label>Alunos: {escolaSelecionada.totalAlunos}</Label>
-          <Label>Porte: {escolaSelecionada.porte?.descricao || ''}</Label>
-          <Label>Situação: {escolaSelecionada.situacao?.descricao || ''}</Label>
+          <div className='row mb-2'>
+            <div className='col-12 col-md-6'>
+              <Label>Código: {escolaSelecionada.codigo}</Label>
+            </div>
+            <div className='col-12 col-md-6'>
+              <Label>Telefone: {escolaSelecionada.telefone}</Label>
+            </div>
+          </div>
+          <div className='row mb-2'>
+            <div className='col-12 col-md-6'>
+              <Label>Alunos: {escolaSelecionada.totalAlunos}</Label>
+            </div>
+            <div className='col-12 col-md-6'>
+              <Label>Professores: {escolaSelecionada.totalDocentes}</Label>
+            </div>
+          </div>
+          <div className='row mb-2'>
+            <div className='col-12 col-md-6'>
+              <Label>Porte: {escolaSelecionada.porte?.descricao || ''}</Label>
+            </div>
+            <div className='col-12 col-md-6'>
+              <Label>Situação: {escolaSelecionada.situacao?.descricao || ''}</Label>
+            </div>
+          </div>
+          <Label>Rede: {escolaSelecionada.rede?.id || ''}</Label>
+          <Label>Etapas de Ensino: {escolaSelecionada.etapasEnsino?.map(e => e.descricao).join(', ') || ''}</Label>
         </div>
 
         <div className='lateralmodal'>
           <div className='d-flex flex-column'>
             <Label><strong>Endereço</strong></Label>
             <Label>{escolaSelecionada.endereco}</Label>
-            <Label>Telefone: {escolaSelecionada.telefone}</Label>
-            <Label>Professores: {escolaSelecionada.totalDocentes}</Label>
-            <Label>Rede: {escolaSelecionada.rede?.id || ''}</Label>
-            <Label>Etapas de Ensino: {escolaSelecionada.etapasEnsino?.map(e => e.descricao).join(',') || ''}</Label>
-            <Label>Número: {escolaSelecionada.telefone}</Label>
             <Label>Cep: {escolaSelecionada.cep}</Label>
-            <Label>Estado: {escolaSelecionada.uf?.sigla}</Label>
-            <Label>Município: {escolaSelecionada.municipio?.nome}</Label>
+            <div className='row'>
+              <div className='col-12 col-md-6'>
+                <Label>Estado: {escolaSelecionada.uf?.sigla}</Label>
+              </div>
+              <div className='col-12 col-md-6'>
+                <Label>Município: {escolaSelecionada.municipio?.nome}</Label>
+              </div>
+            </div>
           </div>
         </div>
       </div>
