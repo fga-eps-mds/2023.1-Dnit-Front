@@ -1,8 +1,9 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
-import { atualizarTipoPerfil, atualizarTokenUrl, cadastrarPerfilUrl, excluiPerfil, listarEscolasRanque, listarPerfis, listarPermissoesCategoria, listarUsuarioPermissoes, listarUsuarios, municipioURL, obterPerfil, urlAPIEscolas, urlAPIUps } from "../../consts/service";
+import { atualizarTipoPerfil, atualizarTokenUrl, cadastrarPerfilUrl, excluiPerfil, listarEscolasRanque, listarPerfis, listarPermissoesCategoria, listarUsuarioPermissoes, listarUsuarios, municipioURL, obterPerfil, unidadesFederativasURL, urlAPIEscolas, urlAPIUps } from "../../consts/service";
 import { Permissao, TipoPerfil } from "../../models/auth";
 import { usuarios } from "../stub/usuarioModelos";
+import { ranqueData } from "../stub/ranqueModelos";
 
 const escolasService = urlAPIEscolas;
 const upsService = urlAPIUps;
@@ -798,99 +799,36 @@ const server = setupServer(
       "items": usuarios
     }
   ))),
-  rest.get(`${listarEscolasRanque}`, (req, res, ctx) => res(
+  rest.get(listarEscolasRanque, (req, res, ctx) => res(
     ctx.status(200),
-    ctx.json(listarEscolasRanqueFiltro(req.params))
-  ))
+    ctx.json(ranqueData)
+  )),
+  rest.get(unidadesFederativasURL, (_, res, ctx) => res(
+    ctx.json([
+      {
+        id: 1,
+        nome: 'Distrito Federal',
+        sigla: 'DF',
+      },
+      {
+        id: 2,
+        nome: 'Goiás',
+        sigla: 'GO',
+      }
+    ])
+  )),
+  rest.get(municipioURL, (_, res, ctx) => res(
+    ctx.json([
+      {
+        id: 1,
+        nome: 'municipio 1',
+      },
+      {
+        id: 2,
+        nome: 'municipio 2',
+      }
+    ])
+  )),
 );
-
-const ranqueData = {
-  pagina: 1,
-  itemsPorPagina: 4,
-  total: 8,
-  totalPaginas: 0,
-  items: [
-    {
-      ranqueId: 1,
-      pontuacao: 50,
-      posicao: 1,
-      escola: {
-        id: 'id-1',
-        nome: "escola 2",
-        uf: "DF",
-        etapasEnsino: {
-          id: 1,
-          descricao: "Um municipio ai"
-        },
-        municipio: {
-          id: 1,
-          descricao: "Um municipio ai"
-        },
-      },
-    },
-    {
-      ranqueId: 1,
-      pontuacao: 40,
-      posicao: 1,
-      escola: {
-        id: 'id-2',
-        nome: "escola 3",
-        uf: "DF",
-        etapasEnsino: {
-          id: 1,
-          descricao: "Um municipio ai"
-        },
-        municipio: {
-          id: 1,
-          descricao: "Um municipio ai"
-        },
-      },
-    },{
-      ranqueId: 1,
-      pontuacao: 30,
-      posicao: 1,
-      escola: {
-        id: 'id-3',
-        nome: "escola 4",
-        uf: "DF",
-        etapasEnsino: {
-          id: 1,
-          descricao: "Um municipio ai"
-        },
-        municipio: {
-          id: 1,
-          descricao: "Um municipio ai"
-        },
-      },
-    },{
-      ranqueId: 1,
-      pontuacao: 20,
-      posicao: 1,
-      escola: {
-        id: 'id-4',
-        nome: "escola 5",
-        uf: "DF",
-        etapasEnsino: {
-          id: 1,
-          descricao: "Um municipio ai"
-        },
-        municipio: {
-          id: 1,
-          descricao: "Um municipio ai"
-        },
-      },
-    },
-  ]
-};
-
-function listarEscolasRanqueFiltro(params: any) {
-  let data = {...ranqueData};
-  if (params?.nome) {
-    data.items = data.items.filter(e => e.escola.nome.toLowerCase().includes(params.nome!.toLowerCase()));
-  }
-  data.itemsPorPagina = params.tamanhoPagina;
-  data.pagina = params.pagina;
-  return data;
-}
 
 export default server;

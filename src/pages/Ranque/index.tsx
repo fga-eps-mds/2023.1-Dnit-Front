@@ -12,7 +12,7 @@ import { EscolaRanqueData, EscolaRanqueFiltro, ListaPaginada } from '../../model
 import { notification } from 'antd';
 import { FiltroNome } from '../../components/FiltroNome';
 import Select, { SelectItem } from '../../components/Select';
-import {FiltroProvider} from "../../context/FiltroTabela";
+import { FiltroProvider } from "../../context/FiltroTabela";
 import Modal from "../../components/Modal/index"
 import ModalRanqueEscola from '../../components/EscolaRanqueModal';
 
@@ -21,9 +21,9 @@ interface ranqueInfo {
   pontuacao: number;
   posicao: number;
   fatores: {
-          nome: string;
-          peso: number;
-          valor: number;
+    nome: string;
+    peso: number;
+    valor: number;
   }[];
 }
 
@@ -77,19 +77,6 @@ function Ranque() {
 
   const [ProcessamentoUPS, setProcessamentoUPS] = useState<boolean>(false);
   const [ultimoProcessamento, setUltimoProcessamento] = useState<string>("");
-  useEffect(() => {
-    fetchProcessamentoRanque()
-      .then((result) => setProcessamentoUPS(result))
-      .catch((error) => {
-        console.error('Erro ao buscar estado de processamento:', error);
-      });
-
-    fetchProcessamentoDataRanque()
-      .then((result) => setUltimoProcessamento(result))
-      .catch((error) => {
-        console.error('Erro ao buscar data do último processamento:', error);
-      });
-  });
 
   const paginas = [{ nome: "Logout", link: "/login" }];
   const [loading, setLoading] = useState(true);
@@ -101,21 +88,6 @@ function Ranque() {
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [escolaAtual, setEscolaAtual] = useState<EscolaRanqueData | null>();
-    
-    const abrirModal = (escolaAtual: EscolaRanqueData) => {
-        setEscolaAtual(escolaAtual);
-        const modal = document.getElementById("modal-informacoes");
-        if(modal && modal.style) modal.style.display = "block"
-        setIsOpen(true);
-    };
-
-    const fecharModal = (index: boolean) => {
-        if(isOpen){
-            const modal = document.getElementById("modal-informacoes");
-            if(modal && modal.style) modal.style.display = "none";
-            setIsOpen(false);
-        }
-    }
 
   useEffect(() => {
     fetchUnidadeFederativa()
@@ -124,6 +96,17 @@ function Ranque() {
       .then(etapas => {
         etapas.sort((a, b) => b.descricao.localeCompare(a.descricao));
         setEtapas(etapas.map(e => ({ id: e.id.toString(), rotulo: e.descricao })));
+      });
+    fetchProcessamentoRanque()
+      .then((result) => setProcessamentoUPS(result))
+      .catch((error) => {
+        console.error('Erro ao buscar estado de processamento:', error);
+      });
+
+    fetchProcessamentoDataRanque()
+      .then((result) => setUltimoProcessamento(result))
+      .catch((error) => {
+        console.error('Erro ao buscar data do último processamento:', error);
       });
   }, []);
 
@@ -168,10 +151,9 @@ function Ranque() {
     <div className="App ranque-container">
       <Header />
       {notificationContextHandler}
-            <FiltroProvider>
-                    {escolaAtual != null && <ModalRanqueEscola  onClose={()=>{setEscolaAtual(null)}} onCreateAcao={()=>{}} escolaId={escolaAtual.escola.id}/>}
-            </FiltroProvider>
-      {/* <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} escolaSelecionada={escolaSelecionada} /> */}
+      <FiltroProvider>
+        {escolaAtual != null && <ModalRanqueEscola onClose={() => { setEscolaAtual(null) }} onCreateAcao={() => { }} escolaId={escolaAtual.escola.id} />}
+      </FiltroProvider>
       <TrilhaDeNavegacao elementosLi={paginas} />
 
       <div className='d-flex flex-column m-5'>
@@ -220,7 +202,7 @@ function Ranque() {
                     '5': e.escola.municipio?.nome || ''
                   }}
                   hideTrashIcon={true}
-                  onDetailRow={id => abrirModal(e)}
+                  onDetailRow={_ => setEscolaAtual(e)}
                 />
               )
             }

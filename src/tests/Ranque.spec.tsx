@@ -4,7 +4,6 @@ import { AuthProvider } from "../provider/Autenticacao";
 import server from "./mock/servicosAPI";
 import { Permissao } from "../models/auth";
 import { autenticar } from "./mock/autenticacao";
-import Modal from "../components/Modal";
 import Ranque from "../pages/Ranque";
 
 beforeAll(() => server.listen());
@@ -14,7 +13,7 @@ afterAll(() => server.close());
 
 describe('TabelaRanque', () => {
     it("Deve renderizar a pagina de Tabela Ranque", async () => {
-        autenticar(Permissao.UsuarioVisualizar, Permissao.UsuarioPerfilEditar)
+        autenticar(Permissao.RanqueVisualizar)
         render(
           <MemoryRouter>
             <AuthProvider>
@@ -29,28 +28,8 @@ describe('TabelaRanque', () => {
         expect(screen.getByText("Etapas de Ensino:")).toBeInTheDocument();
       });
 
-    test("Deve renderizar o modal", async () => {
-        render(
-            <Modal className="modal" closeModal={() => {}}>
-                <h4 className="text-center mt-2">{""}</h4>
-                <div>
-                    <p><strong>Posição:</strong> {""}</p>
-                    <p><strong>Pontuação Total:</strong> {""}</p>
-                    <p><strong>Código:</strong> {""}</p>
-                </div>
-                <button>
-                    Sair
-                </button>
-            </Modal>
-        )
-        expect(screen.getByText("Posição:")).toBeInTheDocument;
-        expect(screen.getByText("Pontuação Total:")).toBeInTheDocument;
-        expect(screen.getByText("Código:")).toBeInTheDocument;
-        expect(screen.getByText("Sair")).toBeInTheDocument;
-    })
-
-    it("Deve filtrar a escola por nome", async () => {
-      autenticar(Permissao.UsuarioVisualizar, Permissao.UsuarioEditar);
+    it("Deve filtrar a escola", async () => {
+      autenticar(Permissao.RanqueVisualizar);
 
       render(
         <MemoryRouter>
@@ -60,8 +39,22 @@ describe('TabelaRanque', () => {
         </MemoryRouter>
       );
 
-      fireEvent.change(screen.getByTestId("filtroNome"), { target: { value: "escola 5"}})
-      expect(screen.getByTestId("filtroNome")).toHaveValue("escola 5")
+      fireEvent.change(screen.getByTestId("filtroNome"), { target: { value: "escola 5"}});
+      expect(screen.getByTestId("filtroNome")).toHaveValue("escola 5");
+
+      screen.getByTestId('UF:customSelect').click();
+      await waitFor(() => expect(screen.getByTestId('UF:1')).toBeInTheDocument);
+      screen.getByTestId('UF:1').click();
+
+      screen.getByTestId('Municípios:customSelect').click();
+      await waitFor(() => expect(screen.getByTestId('Municípios:1')).toBeInTheDocument);
+      screen.getByTestId('Municípios:1').click();
+
+      screen.getByTestId('Etapas de Ensino:customSelect').click();
+      await waitFor(() => expect(screen.getByTestId('Etapas de Ensino:1')).toBeInTheDocument);
+      screen.getByTestId('Etapas de Ensino:1').click();
+
+      expect(screen.getByTestId("filtroNome")).toHaveValue("escola 5");
       await waitFor(() => expect(screen.getByText('escola 5')).toBeInTheDocument);
     })
 
