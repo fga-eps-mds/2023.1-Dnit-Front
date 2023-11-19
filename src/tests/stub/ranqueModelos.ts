@@ -1,8 +1,8 @@
 export const ranqueData = {
     pagina: 1,
     itemsPorPagina: 4,
-    total: 8,
-    totalPaginas: 0,
+    total: 16,
+    totalPaginas: 4,
     items: [
       {
         ranqueId: 1,

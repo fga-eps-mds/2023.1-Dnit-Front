@@ -58,4 +58,29 @@ describe('TabelaRanque', () => {
       await waitFor(() => expect(screen.getByText('escola 5')).toBeInTheDocument);
     })
 
+    it("Deve paginar o ranqueamento", async () => {
+      autenticar(Permissao.RanqueVisualizar);
+
+      render(
+        <MemoryRouter>
+          <AuthProvider>
+            <Ranque />
+          </AuthProvider>
+        </MemoryRouter>
+      );
+
+      await waitFor(() => expect(screen.getByText('escola 5')).toBeInTheDocument);
+
+      await waitFor(() => expect(screen.getByTestId('proxima-pagina')).toBeInTheDocument);
+      screen.getByTestId('proxima-pagina').click();
+
+      await waitFor(() => expect(screen.getByTestId('volta-pagina')).toBeInTheDocument);
+      screen.getByTestId('volta-pagina').click();
+
+      fireEvent.change(screen.getByTestId("drop-select-page"), { target: { value: 2}});
+
+      fireEvent.change(screen.getByTestId("items-per-page"), { target: { value: 2}});
+
+      await waitFor(() => expect(screen.getByText('escola 5')).toBeInTheDocument);
+    })
 })
