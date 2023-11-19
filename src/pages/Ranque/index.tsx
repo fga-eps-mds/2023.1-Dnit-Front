@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import "./index.css";
@@ -13,6 +13,9 @@ import { notification } from 'antd';
 import { FiltroNome } from '../../components/FiltroNome';
 import Select, { SelectItem } from '../../components/Select';
 import ModalRanqueEscola from '../../components/EscolaRanqueModal';
+import { AuthContext } from '../../provider/Autenticacao';
+import { Permissao } from '../../models/auth';
+import { useNavigate } from 'react-router-dom';
 
 
 function Ranque() {
@@ -36,7 +39,14 @@ function Ranque() {
 
   const [escolaAtual, setEscolaAtual] = useState<EscolaRanqueData | null>();
 
+  const navigate = useNavigate();
+  const { temPermissao } = useContext(AuthContext);
+
   useEffect(() => {
+    if (!temPermissao(Permissao.RanqueVisualizar)) {
+      navigate("/");
+    }
+
     fetchUnidadeFederativa()
       .then(ufs => setUfs(ufs.map(m => ({ id: m.id.toString(), rotulo: m.sigla }))));
     fetchEtapasDeEnsino()
