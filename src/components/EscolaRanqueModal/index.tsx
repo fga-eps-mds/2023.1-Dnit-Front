@@ -39,6 +39,7 @@ const ModalRanqueEscola: React.FC<ModalProps> = ({ escolaId, onClose, onCreateAc
         <div className="d-flex justify-content-center m-4">
           <ReactLoading type="spinningBubbles" color="#000000" />
         </div>
+        <span></span>
       </Modal>
     );
   }
