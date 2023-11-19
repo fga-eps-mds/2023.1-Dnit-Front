@@ -69,7 +69,7 @@ const ModalRanqueEscola: React.FC<ModalProps> = ({ escolaId, onClose, onCreateAc
             <Label>{escolaSelecionada.endereco}</Label>
             <Label>Telefone: {escolaSelecionada.telefone}</Label>
             <Label>Professores: {escolaSelecionada.totalDocentes}</Label>
-            <Label>Rede: {escolaSelecionada.rede?.descricao || ''}</Label>
+            <Label>Rede: {escolaSelecionada.rede?.id || ''}</Label>
             <Label>Etapas de Ensino: {escolaSelecionada.etapasEnsino?.map(e => e.descricao).join(',') || ''}</Label>
             <Label>Número: {escolaSelecionada.telefone}</Label>
             <Label>Cep: {escolaSelecionada.cep}</Label>
