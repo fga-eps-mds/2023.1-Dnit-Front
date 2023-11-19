@@ -38,6 +38,7 @@ const ModalRanqueEscola: React.FC<ModalProps> = ({ escolaId, onClose, onCreateAc
                 <h2 style={{ fontSize: '16px' }}><strong>Detalhes da Escola</strong></h2>
                 {escolaSelecionada && (
                     <div>
+                        <hr/>
                       <p style={{ fontSize: '12px' }}>Nome: {escolaSelecionada.escola.nomeEscola}</p>
                       <p style={{ fontSize: '12px' }}>Posição: {escolaSelecionada.ranqueInfo.posicao}</p>
                       <p style={{ fontSize: '12px' }}>Pontuação:</p>
@@ -53,8 +54,8 @@ const ModalRanqueEscola: React.FC<ModalProps> = ({ escolaId, onClose, onCreateAc
                           </div>
                       <p/>
                       <p style={{ fontSize: '12px' }}>Total: {escolaSelecionada.ranqueInfo.pontuacao}</p>
+                        
                       <hr/>
-                      <br/>
                       <p style={{ fontSize: '12px' }}><strong>Dados</strong></p>
                       <p style={{ fontSize: '12px' }}>Código: {escolaSelecionada.escola.codigoEscola}</p>
                       <p style={{ fontSize: '12px' }}>Alunos: {escolaSelecionada.escola.numeroTotalDeAlunos}</p>
@@ -77,7 +78,7 @@ const ModalRanqueEscola: React.FC<ModalProps> = ({ escolaId, onClose, onCreateAc
                     {escolaSelecionada && (
                       <div>
                           <br/>
-                          <br/>
+                          <hr/>
                           <p style={{ fontSize: '12px' }}><strong>Endereço</strong></p>
                           {escolaSelecionada.escola.endereco}
                           <p/>
@@ -93,7 +94,6 @@ const ModalRanqueEscola: React.FC<ModalProps> = ({ escolaId, onClose, onCreateAc
                   <div>
                       <br/>
                       <hr/>
-                      <br/>
                       <p style={{ fontSize: '12px' }}><strong>Superintendência</strong></p>
                       <p style={{ fontSize: '12px' }}>Distância Superintendência: {escolaSelecionada.escola.distanciaSuperintendencia}</p>
                       <p style={{ fontSize: '12px' }}>
