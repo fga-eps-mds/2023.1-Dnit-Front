@@ -1,3 +1,5 @@
+import { type } from "os";
+
 export interface UnidadeFederativaData {
   id: number;
   nome: string;
@@ -25,15 +27,15 @@ export interface MunicipioData {
   nome: string;
 }
 
-export interface SituacaoData {
+export interface EnumData {
   id: number;
   descricao: string;
 }
 
-export interface EtapasDeEnsinoData {
-  id: number;
-  descricao: string;
-}
+export type SituacaoData = EnumData;
+export type EtapasDeEnsinoData = EnumData;
+export type LocalizacaoData = EnumData;
+export type RedeData = EnumData;
 
 export interface LoginData {
   email: string;

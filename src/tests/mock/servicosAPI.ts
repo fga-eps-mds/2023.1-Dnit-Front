@@ -1,8 +1,9 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
-import { atualizarTipoPerfil, atualizarTokenUrl, cadastrarPerfilUrl, excluiPerfil, listarEscolasRanque, listarPerfis, listarPermissoesCategoria, listarUsuarioPermissoes, listarUsuarios, obterPerfil, urlAPIEscolas, urlAPIUps } from "../../consts/service";
+import { atualizarTipoPerfil, atualizarTokenUrl, cadastrarPerfilUrl, excluiPerfil, listarEscolasRanque, listarPerfis, listarPermissoesCategoria, listarUsuarioPermissoes, listarUsuarios, municipioURL, obterPerfil, ranqueamentoProcessamento, unidadesFederativasURL, urlAPIEscolas, urlAPIUps } from "../../consts/service";
 import { Permissao, TipoPerfil } from "../../models/auth";
 import { usuarios } from "../stub/usuarioModelos";
+import { ranqueData } from "../stub/ranqueModelos";
 
 const escolasService = urlAPIEscolas;
 const upsService = urlAPIUps;
@@ -798,90 +799,103 @@ const server = setupServer(
       "items": usuarios
     }
   ))),
-  rest.get(`${listarEscolasRanque}`, (req, res, ctx) => res(
+  rest.get(listarEscolasRanque, (_, res, ctx) => res(
     ctx.status(200),
-    ctx.json(
+    ctx.json(ranqueData)
+  )),
+  rest.get(ranqueamentoProcessamento, (_, res, ctx) => res(
+    ctx.json({
+      id: 1,
+      emProgresso: false,
+      dataInicio: "2023-11-19T12:58:05.053016+00:00",
+      dataFim: "2023-11-19T12:59:16.556424+00:00"
+    })
+  )),
+  rest.get(unidadesFederativasURL, (_, res, ctx) => res(
+    ctx.json([
       {
-        pagina: 1,
-        itemsPorPagina: 4,
-        total: 8,
-        totalPaginas: 0,
-        items: [
-          {
-            ranqueId: 1,
-            pontuacao: 50,
-            posicao: 1,
-            escola: {
-              id: 'id-1',
-              nome: "escola 2",
-              uf: "DF",
-              etapasEnsino: {
-                id: 1,
-                descricao: "Um municipio ai"
-              },
-              municipio: {
-                id: 1,
-                descricao: "Um municipio ai"
-              },
-            },
-          },
-          {
-            ranqueId: 1,
-            pontuacao: 40,
-            posicao: 1,
-            escola: {
-              id: 'id-2',
-              nome: "escola 2",
-              uf: "DF",
-              etapasEnsino: {
-                id: 1,
-                descricao: "Um municipio ai"
-              },
-              municipio: {
-                id: 1,
-                descricao: "Um municipio ai"
-              },
-            },
-          },{
-            ranqueId: 1,
-            pontuacao: 30,
-            posicao: 1,
-            escola: {
-              id: 'id-3',
-              nome: "escola 2",
-              uf: "DF",
-              etapasEnsino: {
-                id: 1,
-                descricao: "Um municipio ai"
-              },
-              municipio: {
-                id: 1,
-                descricao: "Um municipio ai"
-              },
-            },
-          },{
-            ranqueId: 1,
-            pontuacao: 20,
-            posicao: 1,
-            escola: {
-              id: 'id-4',
-              nome: "escola 2",
-              uf: "DF",
-              etapasEnsino: {
-                id: 1,
-                descricao: "Um municipio ai"
-              },
-              municipio: {
-                id: 1,
-                descricao: "Um municipio ai"
-              },
-            },
-          },
-        ]
+        id: 1,
+        nome: 'Distrito Federal',
+        sigla: 'DF',
+      },
+      {
+        id: 2,
+        nome: 'Goiás',
+        sigla: 'GO',
       }
-    )
-  ))
+    ])
+  )),
+  rest.get(municipioURL, (_, res, ctx) => res(
+    ctx.json([
+      {
+        id: 1,
+        nome: 'municipio 1',
+      },
+      {
+        id: 2,
+        nome: 'municipio 2',
+      }
+    ])
+  )),
+  rest.get(`${listarEscolasRanque}/1`, (_, res, ctx) => res(ctx.json({
+    ranqueInfo: {
+      ranqueId: 1,
+      pontuacao: 1000,
+      posicao: 1,
+      fatores: [
+        {
+          nome: "UPS",
+          peso: 1,
+          valor: 1454
+        }
+      ],
+    },
+    id: '1',
+    codigo: '123',
+    nome: 'escola teste',
+    cep: '72844654',
+    endereco: 'endereco',
+    longitude: '1.0',
+    latitude: '1.0',
+    totalDocentes: 10,
+    totalAlunos: 10,
+    telefone: '40028922',
+    uf: {
+      id: 1,
+      sigla: 'DF',
+      nome: 'Distrito Federal'
+    },
+    municipio: {
+      id: 1,
+      nome: 'municipio'
+    },
+    rede: {
+      id: 'Municipal',
+      nome: 'Municipal',
+    },
+    porte: {
+      id: 'Entre51e200',
+      descricao: 'Entre 51 e 200 matrículas de escolarização'
+    },
+    localizacao: {
+      id: 'Urbana',
+      descricao: 'Urbana'
+    },
+    situacao: {
+      id: 'Critica',
+      descricao: 'Critica',
+    },
+    etapasEnsino: [
+      {
+        id: '1',
+        descricao: 'etapa'
+      },
+      {
+        id: '2',
+        descricao: 'etapa 2'
+      }
+    ],
+  })))
 );
-
 
 export default server;

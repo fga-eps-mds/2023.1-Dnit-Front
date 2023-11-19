@@ -1,4 +1,4 @@
-import { EtapasDeEnsinoData, MunicipioData, UnidadeFederativaData } from "./service";
+import { EtapasDeEnsinoData, MunicipioData, RedeData, SituacaoData, Superintendencia, UnidadeFederativaData } from "./service";
 
 export interface ListaPaginada<T> {
     pagina: number
@@ -14,8 +14,8 @@ export interface EscolaRanqueInfo {
     uf: UnidadeFederativaData;
     etapaEnsino: EtapasDeEnsinoData[];
     municipio: MunicipioData;
-    ufSuperintendencia: string;
     distanciaSuperintendencia: number;
+    superintendencia: SuperintendenciaModel;
 }
 
 export interface EscolaRanqueData {
@@ -32,4 +32,50 @@ export interface EscolaRanqueFiltro {
     idUf: number;
     idMunicipio?: number;
     idEtapaEnsino?: number[];
+}
+
+export interface RanqueProcessamentoData {
+    id: number;
+    emProgresso: boolean;
+    dataInicio: string;
+    dataFim: string;
+}
+
+interface ranqueInfo {
+    ranqueId: number;
+    pontuacao: number;
+    posicao: number;
+    fatores: {
+        nome: string;
+        peso: number;
+        valor: number;
+    }[];
+}
+
+export interface EscolaRanqueDetalhes {
+    ranqueInfo: ranqueInfo;
+    id: string;
+    codigo: string;
+    nome: string;
+    cep: string;
+    endereco: string;
+    longitude: string;
+    latitude: string;
+    totalAlunos: string;
+    telefone: string;
+    totalDocentes: string;
+    uf?: UnidadeFederativaData;
+    municipio?: MunicipioData;
+    rede?: RedeData;
+    porte?: SituacaoData;
+    localizacao?: SituacaoData;
+    situacao?: SituacaoData;
+    etapasEnsino?: EtapasDeEnsinoData[];
+    superintendencia?: SuperintendenciaModel;
+    distanciaSuperintendencia: number;
+}
+
+export interface SuperintendenciaModel {
+    id: number;
+    uf: string;
 }

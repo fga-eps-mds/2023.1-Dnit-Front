@@ -24,12 +24,12 @@ interface AuthContextType {
 }
 
 export const AuthContext = createContext<AuthContextType>({
-  login: () => {},
-  logout: () => {},
+  login: () => { },
+  logout: () => { },
   getAuth: () => false,
   getPermissoes: () => [],
   temPermissao: (_: Permissao) => false,
-  setPermissoes: (_: Permissao[]) => {},
+  setPermissoes: (_: Permissao[]) => { },
 });
 
 function setApiToken(token?: string | null) {
@@ -50,13 +50,7 @@ export function getPermissoes() {
 }
 
 export function temPermissao(permissao: Permissao) {
-  const temPermissaoSolicitada = getPermissoes().includes(permissao);
-  if (!temPermissaoSolicitada) {
-    console.warn(
-      `O usuário não tem a permissao ${permissao}. Permissões do usuário: ${getPermissoes()}`
-    );
-  }
-  return temPermissaoSolicitada;
+  return getPermissoes().includes(permissao);
 }
 
 export function salvarLogin(dados: LoginResponse) {

@@ -1,119 +1,142 @@
-import React, { useState, useEffect } from 'react';
-import {EscolaDataRanque} from '../../pages/Ranque'; 
+import React, { ReactNode, useState, useEffect } from 'react';
 import "../../styles/App.css";
-import "../../pages/Ranque/index.css";
+import "../../pages/Ranque/";
 import Modal from "../../components/Modal/index";
-import {fetchEscolaData, fetchSuperintendenciaData} from "../../service/escolaApi";
-import {formataCustoLogistico} from "../../utils/utils";
-import {Superintendencia} from "../../models/service";
-import {EscolaRanqueData} from "../../models/ranque";
+import { fetchEscolaRanque } from '../../service/ranqueApi';
+import { fetchSuperintendenciaData } from '../../service/escolaApi';
+import { EscolaRanqueDetalhes } from '../../models/ranque';
+import ReactLoading from "react-loading";
+import { Superintendencia } from '../../models/service';
+import { formataCustoLogistico } from '../../utils/utils';
 
 interface ModalProps {
     onClose: () => void;
     onCreateAcao: () => void;
-    escolaRanque : EscolaRanqueData;
+    escolaId: string;
 }
 
-const ModalRanqueEscola: React.FC<ModalProps> = ({ escolaRanque, onClose, onCreateAcao }) => {
+interface LabelProps {
+    children: ReactNode,
+    className?: string,
+}
 
-    const [escolaSelecionada, setEscolaSelecionada] = useState<EscolaDataRanque | undefined>();
+function Label({ children, className }: LabelProps) {
+    return (<label style={{ fontSize: '14px', fontWeight: 'normal' }} className={'mb-2 ' + className}>
+        {children}
+    </label>)
+}
+
+const ModalRanqueEscola: React.FC<ModalProps> = ({ escolaId, onClose, onCreateAcao }) => {
+
+    const [escolaSelecionada, setEscolaSelecionada] = useState<EscolaRanqueDetalhes | null>(null);
     const [superintendenciaSelecionada, setSuperintendenciaSelecionada] = useState<Superintendencia | undefined>();
-    const fetchEscolaSelecionada = async () => {
-    const escola = await fetchEscolaData(escolaRanque?.escola.id);
-    setEscolaSelecionada(escola);
+
+    const fetchSuperintendenciaSelecionada = async (superintendenciaId?: number) => {
+        const superintendencia = await fetchSuperintendenciaData(superintendenciaId);
+        setSuperintendenciaSelecionada(superintendencia);
     }
-    const fetchSuperintendenciaSelecionada = async () => {
-      const superintendencia = await fetchSuperintendenciaData(escolaSelecionada?.escola.superintendenciaId);
-      setSuperintendenciaSelecionada(superintendencia);
-    }
-    
-    useEffect(()=>{
-      fetchEscolaSelecionada();
-      fetchSuperintendenciaSelecionada();
+
+    useEffect(() => {
+        fetchEscolaRanque(escolaId)
+            .then((escola) => {
+                setEscolaSelecionada(escola);
+                fetchSuperintendenciaSelecionada(escola.superintendencia?.id);
+            }
+            )
+
     }, []);
-  
+
+
+    if (!escolaSelecionada) {
+        return (
+            <Modal className="modal-title" closeModal={() => onClose()}>
+                <h4 className="text-center mt-2">Carregando Escola...</h4>
+                <div className="d-flex justify-content-center m-4">
+                    <ReactLoading type="spinningBubbles" color="#000000" />
+                </div>
+                <span></span>
+            </Modal>
+        );
+    }
+
     return (
-        <Modal className={"default"} closeModal={() => onClose()}>
-          
-            <div className="modal-content">
-                <h2 style={{ fontSize: '16px' }}><strong>Detalhes da Escola</strong></h2>
-                {escolaSelecionada && (
-                    <div>
-                        <hr/>
-                          <p style={{ fontSize: '12px' }}>Nome: {escolaSelecionada.escola.nomeEscola}</p>
-                          <p style={{ fontSize: '12px' }}>Posição: {escolaSelecionada.ranqueInfo.posicao}</p>
-                          <p style={{ fontSize: '12px' }}>Pontuação:</p>
-                              <div style={{ marginLeft: '40px' }}>
-                                  {escolaSelecionada.ranqueInfo.fatores?.map((fator, index) => (
-                                      <p key={index} style={{ fontSize: '12px' }}>
-                                          Fator: {fator.nome}, Peso: {fator.peso}, Valor: {fator.valor}
-                                      </p>
-                                  ))}
-                                  <p style={{ fontSize: '12px' }}>
-                                      Custo Logístico: {formataCustoLogistico(escolaSelecionada.escola.distanciaSuperintendencia)}
-                                  </p>
-                              </div>
-                          <p/>
-                          <p style={{ fontSize: '12px' }}>Total: {escolaSelecionada.ranqueInfo.pontuacao}</p>
-                            
-                          <hr/>
-                          <p style={{ fontSize: '12px' }}><strong>Dados</strong></p>
-                          <p style={{ fontSize: '12px' }}>Código: {escolaSelecionada.escola.codigoEscola}</p>
-                          <p style={{ fontSize: '12px' }}>Alunos: {escolaSelecionada.escola.numeroTotalDeAlunos}</p>
-                          <p style={{ fontSize: '12px' }}>Professores: {escolaSelecionada.escola.numeroTotalDeDocentes}</p>
-                          <p style={{ fontSize: '12px' }}>Porte: {escolaSelecionada.escola.descricaoPorte}</p>
-                          <p style={{ fontSize: '12px' }}>Telefone: {escolaSelecionada.escola.telefone}</p>
-                          <p style={{ fontSize: '12px' }}>Situação: {escolaSelecionada.escola.situacao}</p>
-                          <p style={{ fontSize: '12px' }}>Etapas de ensino: </p>
-                          <div style={{ marginLeft: '40px' }}>
-                              {escolaRanque?.escola.etapaEnsino?.map((etapa, index) => (
-                                  <p key={index} style={{ fontSize: '12px' }}>
-                                      {etapa.descricao}
-                                  </p>
-                              ))}
-                          </div>
+        <Modal className="default" closeModal={() => onClose()}>
+            <div className="d-flex flex-column">
+                <h4 className="text-center mt-1">Detalhes da Escola</h4>
+                <div className='d-flex flex-column '>
+                    <Label>Nome: {escolaSelecionada.nome}</Label>
+                    <Label>Posição: {escolaSelecionada.ranqueInfo.posicao}</Label>
+                    <Label>Pontuação:</Label>
+                    <div className='d-flex flex-column'>
+                        {escolaSelecionada.ranqueInfo.fatores.map(f => <Label className='ml-4'>Fator {f.nome}, Peso {f.peso}, Valor {f.valor}</Label>)}
+                        <Label className='ml-4'>Custo Logístico: {formataCustoLogistico(escolaSelecionada.distanciaSuperintendencia)}</Label>
                     </div>
-                    )}
-                    
-                    
-                {escolaSelecionada && (
-                  <div>
-                      <hr/>
-                      <p style={{ fontSize: '12px' }}><strong>Endereço</strong></p>
-                      {escolaSelecionada.escola.endereco}
-                      <p/>
-                      <p style={{ fontSize: '12px' }}>Estado: {escolaSelecionada.escola.descricaoUf}</p>
-                      <p style={{ fontSize: '12px' }}>Cep: {escolaSelecionada.escola.cep}</p>
-                      <p style={{ fontSize: '12px' }}>Rede: {escolaSelecionada.escola.rede}</p>
-                      {/*<p style={{ fontSize: '12px' }}>Número: {escolaSelecionada.escola.telefone}</p>*/}
-                  </div>
-                )} 
-                
-                
-                {escolaSelecionada && (
-                  <div>
-                      <br/>
-                      <hr/>
-                      <p style={{ fontSize: '12px' }}><strong>Superintendência</strong></p>
-                      <p style={{ fontSize: '12px' }}>Distância Superintendência: {escolaSelecionada.escola.distanciaSuperintendencia}</p>
-                      <p style={{ fontSize: '12px' }}>
-                          Endereço Superintendência: {superintendenciaSelecionada?.endereco} - {superintendenciaSelecionada?.cep}
-                      </p>
-                      <p style={{ fontSize: '12px' }}>UF Superintendência: {superintendenciaSelecionada?.siglaUf}</p>
-                  </div>
-                )}
-              
-            </div>      
-            <br/>
-        <div className="d-flex w-100 justify-content-end">
-            <button className="br-button secondary mr-3" type="button" onClick={() => onClose()}>
-                Fechar
-            </button>
-            <button className="br-button primary mr-3" type="button" onClick={() => onCreateAcao()}>
-                Criar Ação
-            </button>
-        </div>
-        
+                    <Label>Total: {escolaSelecionada.ranqueInfo.pontuacao}</Label>
+                    <hr />
+                    <Label><strong>Dados</strong></Label>
+                    <div className='row mb-2'>
+                        <div className='col-12 col-md-6'>
+                            <Label>Código: {escolaSelecionada.codigo}</Label>
+                        </div>
+                        <div className='col-12 col-md-6'>
+                            <Label>Telefone: {escolaSelecionada.telefone}</Label>
+                        </div>
+                    </div>
+                    <div className='row mb-2'>
+                        <div className='col-12 col-md-6'>
+                            <Label>Alunos: {escolaSelecionada.totalAlunos}</Label>
+                        </div>
+                        <div className='col-12 col-md-6'>
+                            <Label>Professores: {escolaSelecionada.totalDocentes}</Label>
+                        </div>
+                    </div>
+                    <div className='row mb-2'>
+                        <div className='col-12 col-md-6'>
+                            <Label>Porte: {escolaSelecionada.porte?.descricao || ''}</Label>
+                        </div>
+                        <div className='col-12 col-md-6'>
+                            <Label>Situação: {escolaSelecionada.situacao?.descricao || ''}</Label>
+                        </div>
+                    </div>
+                    <Label>Rede: {escolaSelecionada.rede?.id || ''}</Label>
+                    <Label>Etapas de Ensino: {escolaSelecionada.etapasEnsino?.map(e => e.descricao).join(', ') || ''}</Label>
+                    <div>
+                        <div className='d-flex flex-column'>
+                            <Label><strong>Endereço</strong></Label>
+                            <Label>{escolaSelecionada.endereco}</Label>
+                            <Label>Cep: {escolaSelecionada.cep}</Label>
+                            <div className='row'>
+                                <div className='col-12 col-md-6'>
+                                    <Label>Estado: {escolaSelecionada.uf?.sigla}</Label>
+                                </div>
+                                <div className='col-12 col-md-6'>
+                                    <Label>Município: {escolaSelecionada.municipio?.nome}</Label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <hr />
+                        <Label><strong>Superintendência</strong></Label>
+                        <Label>Distância: {escolaSelecionada.distanciaSuperintendencia?.toFixed(2)} Km</Label>
+                        <Label>
+                            Endereço: {superintendenciaSelecionada?.endereco} - {superintendenciaSelecionada?.cep}
+                        </Label>
+                        <Label>UF: {superintendenciaSelecionada?.uf}</Label>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div className="d-flex w-100 justify-content-end">
+                <button className="br-button secondary mr-3" type="button" onClick={() => onClose()}>
+                    Fechar
+                </button>
+                <button className="br-button primary mr-3" type="button" onClick={() => { onCreateAcao() }}>
+                    Criar Ação
+                </button>
+            </div>
+
         </Modal>
     );
 };
