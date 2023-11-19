@@ -1,88 +1,94 @@
-import React, { useState, useEffect } from 'react';
-import { EscolaData } from '../../pages/Ranque/index'; 
+import React, { ReactNode, useState, useEffect } from 'react';
 import "../../styles/App.css";
 import "../../pages/Ranque/index.css";
 import Modal from "../../components/Modal/index";
-import {fetchData} from "../../service/escolaApi";
+import { fetchEscolaRanque } from '../../service/ranqueApi';
+import { EscolaRanqueDetalhes } from '../../models/ranque';
+import ReactLoading from "react-loading";
 
 interface ModalProps {
-    onClose: () => void;
-    onCreateAcao: () => void;
-    escolaId : string;
-  }
+  onClose: () => void;
+  onCreateAcao: () => void;
+  escolaId: string;
+}
+
+interface LabelProps {
+  children: ReactNode,
+  className?: string,
+}
+
+function Label({ children, className }: LabelProps) {
+  return (<label style={{ fontSize: '14px', fontWeight: 'normal' }} className={'mb-2 ' + className}>
+    {children}
+  </label>)
+}
 
 const ModalRanqueEscola: React.FC<ModalProps> = ({ escolaId, onClose, onCreateAcao }) => {
 
-  const [escolaSelecionada, setEscolaSelecionada] = useState<EscolaData | undefined>();
+  const [escolaSelecionada, setEscolaSelecionada] = useState<EscolaRanqueDetalhes | null>(null);
 
-  const fetchEscolaSelecionada = async () => {
-    const escolas = await fetchData(escolaId);
-    setEscolaSelecionada(escolas);
-  }
-  useEffect(()=>{
-    fetchEscolaSelecionada()
+  useEffect(() => {
+    fetchEscolaRanque(escolaId)
+      .then(setEscolaSelecionada)
   }, []);
 
-  return (
-    <Modal className={"default"} closeModal={() => onClose()}>
-          
-          <div className="modal-content">
-              <h2 style={{ fontSize: '16px' }}><strong>Detalhes da Escola</strong></h2>
-              {escolaSelecionada && (
-                  <div>
-                      <p style={{ fontSize: '12px' }}>Nome: {escolaSelecionada.escola.nomeEscola}</p>
-                      <p style={{ fontSize: '12px' }}>Posição: {escolaSelecionada.ranqueInfo.posicao}</p>
-                      <p style={{ fontSize: '12px' }}>Pontuação:</p>
-                      Fator X, Peso X, Valor X<br/>
-                      Fator Y, Peso Y, Valor Y<br/>
-                      Fator Z, Peso Z, Valor Z<br/>
-                      UPS, Peso 2,16<br/>
-                      <p style={{ fontSize: '12px' }}>Total: {escolaSelecionada.ranqueInfo.pontuacao}</p>
-                      <hr />
-                      <br/>
-                      <p style={{ fontSize: '12px' }}><strong>Dados</strong></p>
-                      <p style={{ fontSize: '12px' }}>Código: {escolaSelecionada.escola.codigoEscola}</p>
-                      <p style={{ fontSize: '12px' }}>Alunos: {escolaSelecionada.escola.numeroTotalDeAlunos}</p>
-                      <p style={{ fontSize: '12px' }}>Porte: {escolaSelecionada.escola.porte}</p>
-                      <p style={{ fontSize: '12px' }}>Situação: {escolaSelecionada.escola.situacao}</p>
-                  </div>
-              )}
+  if (!escolaSelecionada) {
+    return (
+      <Modal className="modal-title" closeModal={() => onClose()}>
+        <h4 className="text-center mt-2">Carregando Escola... </h4>
+        <div className="d-flex justify-content-center m-4">
+          <ReactLoading type="spinningBubbles" color="#000000" />
+        </div>
+      </Modal>
+    );
+  }
 
-              <div className='lateralmodal'>
-                  {escolaSelecionada && (
-                      <div>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <br/>
-                          <p style={{ fontSize: '12px' }}><strong>Endereço</strong></p>
-                          {escolaSelecionada.escola.endereco}
-                          <p style={{ fontSize: '12px' }}>Telefone: {escolaSelecionada.escola.telefone}</p>
-                          <p style={{ fontSize: '12px' }}>Professores: {escolaSelecionada.escola.numeroTotalDeDocentes}</p> 
-                          <p style={{ fontSize: '12px' }}>Rede: {escolaSelecionada.escola.rede}</p>
-                          <p style={{ fontSize: '12px' }}>Etapas de Ensino: {escolaSelecionada.escola.etapasEnsino}</p>
-                          {/*sem numero*/}
-                          <p style={{ fontSize: '12px' }}>Número: {escolaSelecionada.escola.telefone}</p> 
-                          <p style={{ fontSize: '12px' }}>Cep: {escolaSelecionada.escola.cep}</p>
-                          <p style={{ fontSize: '12px' }}>Estado: {escolaSelecionada.escola.uf}</p>
-                      </div>
-                  )} 
-              </div>
-          </div>      
-          <br/>
-        <div className="d-flex w-100 justify-content-end">
-            <button className="br-button secondary mr-3" type="button" onClick={() => onClose()}>
-                Fechar
-            </button>
-            <button className="br-button primary mr-3" type="button" onClick={() => {onCreateAcao()}}>
-                Criar Ação
-            </button>
+  return (
+    <Modal className="default" closeModal={() => onClose()}>
+      <div className="modal-content d-flex flex-column">
+        <h4 className="text-center mt-1">Detalhes da Escola</h4>
+        <div className='d-flex flex-column '>
+          <Label>Nome: {escolaSelecionada.nome}</Label>
+          <Label>Posição: {escolaSelecionada.ranqueInfo.posicao}</Label>
+          <Label>Pontuação:</Label>
+          <div className='d-flex flex-column'>
+            {escolaSelecionada.ranqueInfo.fatores.map(f => <Label className='ml-4'>Fator {f.nome}, Peso {f.peso}, Valor {f.valor}</Label>)}
+          </div>
+          <Label>Total: {escolaSelecionada.ranqueInfo.pontuacao}</Label>
+          <hr />
+          <Label><strong>Dados</strong></Label>
+          <Label>Código: {escolaSelecionada.codigo}</Label>
+          <Label>Alunos: {escolaSelecionada.totalAlunos}</Label>
+          <Label>Porte: {escolaSelecionada.porte?.descricao || ''}</Label>
+          <Label>Situação: {escolaSelecionada.situacao?.descricao || ''}</Label>
         </div>
 
-      </Modal>
+        <div className='lateralmodal'>
+          <div className='d-flex flex-column'>
+            <Label><strong>Endereço</strong></Label>
+            <Label>{escolaSelecionada.endereco}</Label>
+            <Label>Telefone: {escolaSelecionada.telefone}</Label>
+            <Label>Professores: {escolaSelecionada.totalDocentes}</Label>
+            <Label>Rede: {escolaSelecionada.rede?.descricao || ''}</Label>
+            <Label>Etapas de Ensino: {escolaSelecionada.etapasEnsino?.map(e => e.descricao).join(',') || ''}</Label>
+            <Label>Número: {escolaSelecionada.telefone}</Label>
+            <Label>Cep: {escolaSelecionada.cep}</Label>
+            <Label>Estado: {escolaSelecionada.uf?.sigla}</Label>
+            <Label>Município: {escolaSelecionada.municipio?.nome}</Label>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div className="d-flex w-100 justify-content-end">
+        <button className="br-button secondary mr-3" type="button" onClick={() => onClose()}>
+          Fechar
+        </button>
+        <button className="br-button primary mr-3" type="button" onClick={() => { onCreateAcao() }}>
+          Criar Ação
+        </button>
+      </div>
+
+    </Modal>
   );
 };
 

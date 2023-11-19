@@ -12,59 +12,8 @@ import { EscolaRanqueData, EscolaRanqueFiltro, ListaPaginada, RanqueProcessament
 import { notification } from 'antd';
 import { FiltroNome } from '../../components/FiltroNome';
 import Select, { SelectItem } from '../../components/Select';
-import { FiltroProvider } from "../../context/FiltroTabela";
-import Modal from "../../components/Modal/index"
 import ModalRanqueEscola from '../../components/EscolaRanqueModal';
 
-interface ranqueInfo {
-  ranqueId: number;
-  pontuacao: number;
-  posicao: number;
-  fatores: {
-    nome: string;
-    peso: number;
-    valor: number;
-  }[];
-}
-
-interface escola {
-  idEscola: string;
-  codigoEscola: number;
-  nomeEscola: string;
-  idRede: number;
-  descricaoRede: string | null;
-  cep: string;
-  idUf: number;
-  uf: number;
-  descricaoUf: string;
-  endereco: string;
-  idMunicipio: number;
-  nomeMunicipio: string | null;
-  idLocalizacao: number;
-  descricaoLocalizacao: string | null;
-  longitude: string;
-  latitude: string;
-  idEtapasDeEnsino: number | null;
-  descricaoEtapasEnsino: string | null;
-  numeroTotalDeAlunos: number;
-  idSituacao: number | null;
-  descricaoSituacao: string | null;
-  idPorte: number;
-  telefone: string;
-  numeroTotalDeDocentes: number;
-  siglaUf: string;
-  observacao: string | null;
-  rede: number;
-  porte: number;
-  localizacao: number;
-  etapasEnsino: string | null;
-  situacao: string | null;
-}
-
-export interface EscolaData {
-  ranqueInfo: ranqueInfo;
-  escola: escola;
-}
 
 function Ranque() {
   const [nome, setNome] = useState('')
@@ -95,7 +44,7 @@ function Ranque() {
         etapas.sort((a, b) => b.descricao.localeCompare(a.descricao));
         setEtapas(etapas.map(e => ({ id: e.id.toString(), rotulo: e.descricao })));
       });
-      fetchProcessamentoRanque()
+    fetchProcessamentoRanque()
       .then(result => setUltimoProcessamento(result))
       .catch((error) => {
         console.error('Erro ao buscar informações do último processamento:', error);
@@ -149,9 +98,7 @@ function Ranque() {
     <div className="App ranque-container">
       <Header />
       {notificationContextHandler}
-      <FiltroProvider>
-        {escolaAtual != null && <ModalRanqueEscola onClose={() => { setEscolaAtual(null) }} onCreateAcao={() => { }} escolaId={escolaAtual.escola.id} />}
-      </FiltroProvider>
+      {escolaAtual != null && <ModalRanqueEscola onClose={() => { setEscolaAtual(null) }} onCreateAcao={() => { }} escolaId={escolaAtual.escola.id} />}
       <TrilhaDeNavegacao elementosLi={paginas} />
 
       <div className='d-flex flex-column m-5'>
@@ -163,7 +110,7 @@ function Ranque() {
             <Select items={etapas} value={etapa?.id || ''} label={"Etapas de Ensino:"} onChange={id => setEtapa(etapas.find(e => e.id == id) || null)} dropdownStyle={{ marginLeft: "20px", width: "260px" }} filtrarTodos={true} />
           </div>
           {
-            ultimoProcessamento && 
+            ultimoProcessamento &&
             <div className='d-flex align-items-center small-font mr-3'>
               {ultimoProcessamento.emProgresso
                 ? `Novo cálculo de ranking iniciado em ${formatDate(ultimoProcessamento.dataInicio)} em processamento...`

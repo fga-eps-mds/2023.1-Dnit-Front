@@ -1,6 +1,6 @@
 import * as URL from "../consts/service"
 import { fetchDados } from "./apiUtils";
-import { EscolaRanqueData, EscolaRanqueFiltro, ListaPaginada, RanqueProcessamentoData } from "../models/ranque";
+import { EscolaRanqueData, EscolaRanqueDetalhes, EscolaRanqueFiltro, ListaPaginada, RanqueProcessamentoData } from "../models/ranque";
 
 
 export async function fetchEscolasRanque(filtro: EscolaRanqueFiltro): Promise<ListaPaginada<EscolaRanqueData>> {
@@ -9,4 +9,9 @@ export async function fetchEscolasRanque(filtro: EscolaRanqueFiltro): Promise<Li
 
 export async function fetchProcessamentoRanque(): Promise<RanqueProcessamentoData> {
   return fetchDados<RanqueProcessamentoData>(URL.ranqueamentoProcessamento);
+}
+
+export async function fetchEscolaRanque(id: string) {
+  const url = `${URL.listarEscolasRanque}/${id}`
+  return fetchDados<EscolaRanqueDetalhes>(url);
 }
