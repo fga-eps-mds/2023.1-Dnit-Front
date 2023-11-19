@@ -43,19 +43,19 @@ describe('TabelaRanque', () => {
       expect(screen.getByTestId("filtroNome")).toHaveValue("escola 5");
 
       screen.getByTestId('UF:customSelect').click();
-      await waitFor(() => expect(screen.getByTestId('UF:1')).toBeInTheDocument);
+      await waitFor(() => expect(screen.getByTestId('UF:1')).toBeInTheDocument());
       screen.getByTestId('UF:1').click();
 
       screen.getByTestId('Municípios:customSelect').click();
-      await waitFor(() => expect(screen.getByTestId('Municípios:1')).toBeInTheDocument);
+      await waitFor(() => expect(screen.getByTestId('Municípios:1')).toBeInTheDocument());
       screen.getByTestId('Municípios:1').click();
 
       screen.getByTestId('Etapas de Ensino:customSelect').click();
-      await waitFor(() => expect(screen.getByTestId('Etapas de Ensino:1')).toBeInTheDocument);
+      await waitFor(() => expect(screen.getByTestId('Etapas de Ensino:1')).toBeInTheDocument());
       screen.getByTestId('Etapas de Ensino:1').click();
 
       expect(screen.getByTestId("filtroNome")).toHaveValue("escola 5");
-      await waitFor(() => expect(screen.getByText('escola 5')).toBeInTheDocument);
+      await waitFor(() => expect(screen.getByText('escola 5')).toBeInTheDocument());
     })
 
     it("Deve paginar o ranqueamento", async () => {
@@ -69,18 +69,36 @@ describe('TabelaRanque', () => {
         </MemoryRouter>
       );
 
-      await waitFor(() => expect(screen.getByText('escola 5')).toBeInTheDocument);
+      await waitFor(() => expect(screen.getByText('escola 5')).toBeInTheDocument());
 
-      await waitFor(() => expect(screen.getByTestId('proxima-pagina')).toBeInTheDocument);
+      await waitFor(() => expect(screen.getByTestId('proxima-pagina')).toBeInTheDocument());
       screen.getByTestId('proxima-pagina').click();
 
-      await waitFor(() => expect(screen.getByTestId('volta-pagina')).toBeInTheDocument);
+      await waitFor(() => expect(screen.getByTestId('volta-pagina')).toBeInTheDocument());
       screen.getByTestId('volta-pagina').click();
 
       fireEvent.change(screen.getByTestId("drop-select-page"), { target: { value: 2}});
 
       fireEvent.change(screen.getByTestId("items-per-page"), { target: { value: 2}});
 
-      await waitFor(() => expect(screen.getByText('escola 5')).toBeInTheDocument);
+      await waitFor(() => expect(screen.getByText('escola 5')).toBeInTheDocument());
+    })
+
+    it("Deve abrir os detalhes da escola", async () => {
+      autenticar(Permissao.RanqueVisualizar);
+
+      render(
+        <MemoryRouter>
+          <AuthProvider>
+            <Ranque />
+          </AuthProvider>
+        </MemoryRouter>
+      );
+
+      await waitFor(() => expect(screen.getByText('escola 5')).toBeInTheDocument());
+
+      screen.getByTestId('table-row-eye-3').click();
+
+      await waitFor(() => expect(screen.getByText('Carregando Escola...')).toBeInTheDocument());
     })
 })

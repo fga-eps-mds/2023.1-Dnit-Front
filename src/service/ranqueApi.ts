@@ -12,6 +12,5 @@ export async function fetchProcessamentoRanque(): Promise<RanqueProcessamentoDat
 }
 
 export async function fetchEscolaRanque(id: string) {
-  const url = `${URL.listarEscolasRanque}/${id}`
-  return fetchDados<EscolaRanqueDetalhes>(url);
+  return fetchDados<EscolaRanqueDetalhes>(`${URL.listarEscolasRanque}/${id}`);
 }

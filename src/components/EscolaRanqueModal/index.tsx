@@ -35,7 +35,7 @@ const ModalRanqueEscola: React.FC<ModalProps> = ({ escolaId, onClose, onCreateAc
   if (!escolaSelecionada) {
     return (
       <Modal className="modal-title" closeModal={() => onClose()}>
-        <h4 className="text-center mt-2">Carregando Escola... </h4>
+        <h4 className="text-center mt-2">Carregando Escola...</h4>
         <div className="d-flex justify-content-center m-4">
           <ReactLoading type="spinningBubbles" color="#000000" />
         </div>
