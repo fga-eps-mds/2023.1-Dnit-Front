@@ -5,8 +5,14 @@ interface SelectOptions {
   id: string;
   rotulo: string;
 }
+
+export interface SelectItem {
+  id: string;
+  rotulo: string;
+}
+
 export interface SelectProps {
-  items: { id: string, rotulo: string }[];
+  items: SelectItem[];
   value: string; //Valor selecionado atualmente
   label?: string; //Titulo do dropdown
   inputStyle?: object;
@@ -15,7 +21,6 @@ export interface SelectProps {
   onChange: (id: string) => void;
   filtrarTodos?: boolean;
   definePlaceholder?: string;
-  
 }
 
 export default function Select({ items, value, label, onChange, inputStyle, dropdownStyle, buttonStyle, filtrarTodos, definePlaceholder }: SelectProps) {
@@ -31,7 +36,7 @@ export default function Select({ items, value, label, onChange, inputStyle, drop
     setIsOpen(false);
   };
 
-  const getRotuloById = (id: string, items: { id: string, rotulo: string }[]): string => {
+  const getRotuloById = (id: string, items: SelectItem[]): string => {
     const item = items.find(item => item.id === id);
     return item ? item.rotulo : '';
   };

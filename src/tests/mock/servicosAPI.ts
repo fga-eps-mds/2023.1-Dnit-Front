@@ -310,6 +310,41 @@ const server = setupServer(
       return res(ctx.json({}));
     }
   ),
+  rest.get(`${escolasService}/dominio/municipio`, (req, res, ctx) => {
+    const ufId = req.url.searchParams.get('idUf');
+    if (ufId === '27') {
+      return res(ctx.status(200), ctx.json([
+        {
+          nome: "Brasília",
+          id: 5300108,
+        },
+      ]));
+    }
+    if (ufId === '18') {
+      return res(ctx.status(200), ctx.json([
+        {
+          nome: "Angra dos Reis",
+          id: 3300100,
+        },
+        {
+          nome: "Aperibé",
+          id: 3300159,
+        },
+        {
+          nome: "Araruama",
+          id: 3300209,
+        },
+        {
+          nome: "Areal",
+          id: 3300225,
+        },
+        {
+          nome: "Armação dos Búzios",
+          id: 3300233,
+        },
+      ]));
+    }
+  }),
   rest.get(
     `${escolasService}/dominio/municipio`,
     (req, res, ctx) => {
@@ -757,8 +792,8 @@ const server = setupServer(
   rest.get(`${listarUsuarios}*`, (req, res, ctx) => res(ctx.status(200), ctx.json(
     {
       "pagina": 1,
-      "itemsPorPagina": 2,
-      "total": 2,
+      "itemsPorPagina": 10,
+      "total": 3,
       "totalPaginas": 1,
       "items": usuarios
     }
@@ -847,5 +882,6 @@ const server = setupServer(
     )
   ))
 );
+
 
 export default server;

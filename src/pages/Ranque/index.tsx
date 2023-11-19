@@ -2,16 +2,18 @@ import {useEffect, useState} from 'react';
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import "./index.css";
-import {fetchEtapasDeEnsino, fetchUnidadeFederativa} from '../../service/escolaApi';
-import {EtapasDeEnsinoData, UnidadeFederativaData, RanqueInfo, Escola} from '../../models/service';
+import {EtapasDeEnsinoData, RanqueInfo, Escola} from '../../models/service';
+import { fetchEtapasDeEnsino, fetchMunicipio, fetchUnidadeFederativa } from '../../service/escolaApi';
 import TrilhaDeNavegacao from '../../components/Navegacao';
 import ReactLoading from 'react-loading';
 import Table, {CustomTableRow} from '../../components/Table';
-import {fetchEscolasRanque} from '../../service/ranqueApi';
-import {EscolaRanqueData, ListaPaginada} from '../../models/ranque';
+import {fetchEscolasRanque, fetchProcessamentoDataRanque, fetchProcessamentoRanque} from '../../service/ranqueApi';
+import {EscolaRanqueData, EscolaRanqueFiltro, ListaPaginada} from '../../models/ranque';
 import {notification} from 'antd';
 import ModalRanqueEscola from '../../components/EscolaRanqueModal';
 import {formataCustoLogistico} from "../../utils/utils";
+import { FiltroNome } from '../../components/FiltroNome';
+import Select, { SelectItem } from '../../components/Select';
 
 export interface EscolaDataRanque {
     ranqueInfo: RanqueInfo;
@@ -19,16 +21,29 @@ export interface EscolaDataRanque {
 }
 
 function Ranque() {
-    const [ufSelecionado, setUfSelecionado] = useState('');
-    const [municipioSelecionado, setMunicipioSelecionado] = useState('');
-    const [etapasEnsinoSelecionada, setEtapasEnsinoSelecionada] = useState('');
-    const [ultimaAcaoSelecionada, setultimaAcaoSelecionada] = useState('');
+  const [nome, setNome] = useState('')
+  const [uf, setUf] = useState<SelectItem | null>(null);
+  const [ufs, setUfs] = useState<SelectItem[]>([]);
+  const [municipio, setMunicipio] = useState<SelectItem | null>(null);
+  const [municipios, setMunicipios] = useState<SelectItem[]>([]);
+  const [etapa, setEtapa] = useState<SelectItem | null>(null);
+  const [etapas, setEtapas] = useState<SelectItem[]>([]);
 
-    const ProcessamentoUPS: boolean = false;
-    const [ultimoProcessamento] = useState("23/05/2023 16:43");
+  const [ProcessamentoUPS, setProcessamentoUPS] = useState<boolean>(false);
+  const [ultimoProcessamento, setUltimoProcessamento] = useState<string>("");
+  useEffect(() => {
+    fetchProcessamentoRanque()
+      .then((result) => setProcessamentoUPS(result))
+      .catch((error) => {
+        console.error('Erro ao buscar estado de processamento:', error);
+      });
 
-    const [ufs, setUfs] = useState<UnidadeFederativaData[]>([]);
-    const [etapasEnsino, setEtapasEnsino] = useState<EtapasDeEnsinoData[]>([]);
+    fetchProcessamentoDataRanque()
+      .then((result) => setUltimoProcessamento(result))
+      .catch((error) => {
+        console.error('Erro ao buscar data do último processamento:', error);
+      });
+  });
 
     const paginas = [{nome: "Logout", link: "/login"}];
     const [loading, setLoading] = useState(true);
@@ -38,26 +53,46 @@ function Ranque() {
     const [paginacao, setPaginacao] = useState({pagina: 1, tamanhoPagina: 10,});
     const [notificationApi, notificationContextHandler] = notification.useNotification();
 
-    useEffect(() => {
-        fetchUnidadeFederativa()
-            .then(ufs => setUfs(ufs));
-        fetchEtapasDeEnsino()
-            .then(etapas => {
-                etapas.sort((a, b) => b.descricao.localeCompare(a.descricao));
-                setEtapasEnsino(etapas);
-            });
-    }, []);
+  useEffect(() => {
+    fetchUnidadeFederativa()
+      .then(ufs => setUfs(ufs.map(m => ({ id: m.id.toString(), rotulo: m.sigla }))));
+    fetchEtapasDeEnsino()
+      .then(etapas => {
+        etapas.sort((a, b) => b.descricao.localeCompare(a.descricao));
+        setEtapas(etapas.map(e => ({ id: e.id.toString(), rotulo: e.descricao })));
+      });
+  }, []);
 
-    useEffect(() => {
-        fetchEscolasRanque({...paginacao})
-            .then(e => {
-                if (escolas?.items != null && escolas.items.length > 0 && e.items[0]?.ranqueId != escolas?.items[0].ranqueId) {
-                    notificationApi.success({message: "A tabela foi atualizada com os resultados do novo processamento"});
-                }
-                setEscolas(e);
-            })
-            .finally(() => setLoading(false));
-    }, [ufSelecionado, municipioSelecionado, etapasEnsino, paginacao]);
+  useEffect(() => {
+    if (!uf?.id) {
+      return;
+    }
+    fetchMunicipio(Number(uf.id)).then(municipios => setMunicipios(municipios.map(m => ({ id: m.id.toString(), rotulo: m.nome }))))
+  }, [uf]);
+
+  useEffect(() => {
+    const filtro = { ...paginacao, nome: nome.trim().replace(/ +/gm, ' ') } as EscolaRanqueFiltro;
+
+    if (!!uf) {
+      filtro.idUf = Number(uf.id);
+    }
+    if (!!municipio) {
+      filtro.idMunicipio = Number(municipio.id);
+    }
+    if (!!etapa) {
+      filtro.idEtapaEnsino = [Number(etapa.id)];
+    }
+
+    fetchEscolasRanque(filtro)
+      .then(e => {
+        if (!!escolas?.items?.length && !!e.items.length && e.items[0]?.ranqueId != escolas?.items[0].ranqueId) {
+          notificationApi.success({ message: "A tabela foi atualizada com os resultados do novo processamento" });
+        }
+        setEscolas(e);
+      })
+      .finally(() => setLoading(false));
+  }, [nome, uf, municipio, etapa, paginacao]);
+  
 
     const formatEtapaEnsino = (etapaEnsino: EtapasDeEnsinoData[], max = 2) => {
         if (!etapaEnsino) {
@@ -78,152 +113,66 @@ function Ranque() {
             
             <TrilhaDeNavegacao elementosLi={paginas}/>
 
-            <div className='d-flex flex-column m-5'>
-                <div className='d-flex justify-content-between align-items-center pl-3'>
-                    <div className="filtros">
-
-                        <div className="mr-4 text-start">
-                            <label htmlFor="uf" className='text-start'>UF:</label>
-                            <select
-                                id="uf"
-                                value={ufSelecionado}
-                                onChange={(e) => setUfSelecionado(e.target.value)}
-                                style={{
-                                    marginLeft: "px",
-                                    background: "none",
-                                    height: "40px",
-                                    width: "150px",
-                                    borderRadius: "5px",
-                                    border: "1px solid #000"
-                                }}
-                            >
-                                <option value="">Todos</option>
-                                {ufs.map(uf => <option key={uf.sigla} value={uf.sigla}>{uf.sigla}</option>)}
-                            </select>
-                        </div>
-
-                        <div className="mr-4 text-start">
-                            <label htmlFor="municipio">Município:</label>
-                            <input
-                                type="text"
-                                id="municipio"
-                                value={municipioSelecionado}
-                                onChange={(e) => setMunicipioSelecionado(e.target.value)}
-                                style={{
-                                    marginLeft: "px",
-                                    background: "none",
-                                    height: "40px",
-                                    width: "150px",
-                                    borderRadius: "5px",
-                                    border: "1px solid #000"
-                                }}
-                            />
-                        </div>
-
-                        <div className="mr-4 text-start">
-                            <label htmlFor="etapasEnsino">Etapas de Ensino:</label>
-                            <select
-                                id="etapasEnsino"
-                                value={etapasEnsinoSelecionada}
-                                onChange={(e) => setEtapasEnsinoSelecionada(e.target.value)}
-                                style={{
-                                    marginLeft: "px",
-                                    background: "none",
-                                    height: "40px",
-                                    width: "150px",
-                                    borderRadius: "5px",
-                                    border: "1px solid #000"
-                                }}
-                            >
-                                <option value="_">Todas</option>
-                                {etapasEnsino.map(e => <option key={e.id}>{e.descricao}</option>)}
-                            </select>
-                        </div>
-
-                        <div className="mr-4 text-start">
-                            <label htmlFor="municipio">Última ação:</label>
-                            <input
-                                type="text"
-                                id="ultimaAcao"
-                                value={ultimaAcaoSelecionada}
-                                onChange={(e) => setultimaAcaoSelecionada(e.target.value)}
-                                style={{
-                                    marginLeft: "px",
-                                    background: "none",
-                                    height: "40px",
-                                    width: "150px",
-                                    borderRadius: "5px",
-                                    border: "1px solid #000"
-                                }}
-                            />
-                        </div>
-
-                    </div>
-
-                    <div>
-                        {ProcessamentoUPS ? (
-                            <p className="small-font mb-0">Novo cálculo de ranking em processamento...</p>
-                        ) : (
-                            <p className="small-font mb-0">
-                                Último processamento: {ultimoProcessamento}&nbsp; &nbsp; &nbsp; &nbsp;
-                            </p>
-                        )}
-                    </div>
-
-                </div>
-
-                {loading && <Table columsTitle={colunas} initialItemsPerPage={10} title=""><></>
-                    <></>
-                </Table>}
-                {escolas?.items != null &&
-                    <Table
-                        columsTitle={colunas}
-                        title='' initialItemsPerPage={10} totalItems={escolas?.total}
-                        onNextPage={() => {
-                            if (paginacao.pagina === escolas?.totalPaginas) return;
-                            setPaginacao(p => {
-                                return {...p, pagina: p.pagina + 1}
-                            })
-                        }}
-                        onPreviousPage={() => {
-                            if (paginacao.pagina === 1) return;
-                            setPaginacao({...paginacao, pagina: paginacao.pagina - 1})
-                        }}
-                        onPageResize={(tamanhoPagina) => {
-                            setPaginacao({...paginacao, tamanhoPagina})
-                        }}
-                        onPageSelect={(pagina) => {
-                            setPaginacao({...paginacao, pagina})
-                        }}>
-                        {
-                            escolas?.items.map((e, index) =>
-                                <CustomTableRow
-                                    key={e.escola.id}
-                                    id={index}
-                                    data={{
-                                        '0': `${e.posicao}°`,
-                                        '1': `${e.pontuacao}`,
-                                        '2': e.escola.nome,
-                                        '3': formatEtapaEnsino(e.escola.etapaEnsino),
-                                        '4': e.escola.uf?.sigla || '',
-                                        '5': e.escola.municipio?.nome || '',
-                                        '6': e.escola.ufSuperintendencia,     
-                                        '7': formataCustoLogistico(e.escola.distanciaSuperintendencia)
-                                    }}
-                                    hideEditIcon={true}
-                                    hideTrashIcon={true}
-                                    onDetailRow={() => setEscolaAtual(e)}
-                                />
-                            )
-                        }
-                    </Table>
-                }
-                {loading &&
-                    <div className="d-flex justify-content-center w-100 m-5"><ReactLoading type="spinningBubbles" color="#000000"/></div>}
-            </div>
-            <Footer/>
+      <div className='d-flex flex-column m-5'>
+        <div className='d-flex justify-content-between align-items-center'>
+          <div className='d-flex align-items-center'>
+            <FiltroNome nome={nome} onNomeChange={setNome} />
+            <Select items={ufs} value={uf?.id || ''} label={"UF:"} onChange={id => setUf(ufs.find(u => u.id == id) || null)} dropdownStyle={{ marginLeft: "20px", width: "260px" }} filtrarTodos={true} />
+            <Select items={municipios} value={municipio?.id || ''} label={"Municípios:"} onChange={id => setMunicipio(municipios.find(m => m.id == id) || null)} dropdownStyle={{ marginLeft: "20px", width: "260px" }} filtrarTodos={true} />
+            <Select items={etapas} value={etapa?.id || ''} label={"Etapas de Ensino:"} onChange={id => setEtapa(etapas.find(e => e.id == id) || null)} dropdownStyle={{ marginLeft: "20px", width: "260px" }} filtrarTodos={true} />
+          </div>
+          <div className='d-flex align-items-center small-font mr-3'>
+            {ProcessamentoUPS ? 'Novo cálculo de ranking em processamento...' : `Último processamento: ${ultimoProcessamento}`}
+          </div>
         </div>
-    );
+
+        {(loading || !escolas?.items?.length) && <Table columsTitle={colunas} initialItemsPerPage={10} totalItems={0} title=""><></><></></Table>}
+        {escolas?.items != null &&
+          <Table
+            columsTitle={colunas}
+            title='' initialItemsPerPage={10} totalItems={escolas?.total}
+            onNextPage={() => {
+              if (paginacao.pagina === escolas?.totalPaginas) return;
+              setPaginacao(p => { return { ...p, pagina: p.pagina + 1 } })
+            }}
+            onPreviousPage={() => {
+              if (paginacao.pagina === 1) return;
+              setPaginacao({ ...paginacao, pagina: paginacao.pagina - 1 })
+            }}
+            onPageResize={(tamanhoPagina) => {
+              setPaginacao({ ...paginacao, tamanhoPagina })
+            }}
+            onPageSelect={(pagina) => {
+              setPaginacao({ ...paginacao, pagina })
+            }}>
+            {
+              escolas?.items.map((e, index) =>
+                <CustomTableRow
+                  key={e.escola.id}
+                  id={index}
+                  data={{
+                      '0': `${e.posicao}°`,
+                      '1': `${e.pontuacao}`,
+                      '2': e.escola.nome,
+                      '3': formatEtapaEnsino(e.escola.etapaEnsino),
+                      '4': e.escola.uf?.sigla || '',
+                      '5': e.escola.municipio?.nome || '',
+                      '6': e.escola.ufSuperintendencia,
+                      '7': formataCustoLogistico(e.escola.distanciaSuperintendencia)
+                  }}
+                  hideTrashIcon={true}
+                  onDetailRow={() => setEscolaAtual(e)}
+                />
+              )
+            }
+          </Table>
+        }
+
+        {loading && <div className="d-flex justify-content-center w-100 m-5"><ReactLoading type="spinningBubbles" color="#000000" /></div>}
+      </div>
+      <Footer />
+    </div>
+  );
 }
 
 export default Ranque;
