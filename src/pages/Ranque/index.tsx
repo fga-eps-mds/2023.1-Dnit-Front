@@ -3,7 +3,12 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import "./index.css";
 import {EtapasDeEnsinoData, RanqueInfo, Escola} from '../../models/service';
-import { fetchEtapasDeEnsino, fetchMunicipio, fetchUnidadeFederativa } from '../../service/escolaApi';
+import {
+  fetchEtapasDeEnsino,
+  fetchMunicipio,
+  fetchSuperintendenciaData,
+  fetchUnidadeFederativa
+} from '../../service/escolaApi';
 import TrilhaDeNavegacao from '../../components/Navegacao';
 import ReactLoading from 'react-loading';
 import Table, {CustomTableRow} from '../../components/Table';
@@ -14,6 +19,7 @@ import ModalRanqueEscola from '../../components/EscolaRanqueModal';
 import {formataCustoLogistico} from "../../utils/utils";
 import { FiltroNome } from '../../components/FiltroNome';
 import Select, { SelectItem } from '../../components/Select';
+import {Await} from "react-router-dom";
 
 export interface EscolaDataRanque {
     ranqueInfo: RanqueInfo;
@@ -45,12 +51,13 @@ function Ranque() {
       });
   });
 
-    const paginas = [{nome: "Logout", link: "/login"}];
-    const [loading, setLoading] = useState(true);
-    const [escolas, setEscolas] = useState<ListaPaginada<EscolaRanqueData> | null>(null);
-    const colunas = ['Posição', 'Pontuação', 'Escola', 'Etapas de Ensino', 'UF', 'Município', 'UF Superintendência', 'Custo Logístico', 'Ações'];
+  const paginas = [{ nome: "Logout", link: "/login" }];
+  const [loading, setLoading] = useState(true);
+  const [escolas, setEscolas] = useState<ListaPaginada<EscolaRanqueData> | null>(null);
+  const colunas = ['Posição', 'Pontuação', 'Escola', 'Etapas de Ensino', 'UF', 'Município', 'UF Superintendência', 'Custo Logístico'];
 
-    const [paginacao, setPaginacao] = useState({pagina: 1, tamanhoPagina: 10,});
+
+  const [paginacao, setPaginacao] = useState({pagina: 1, tamanhoPagina: 10,});
     const [notificationApi, notificationContextHandler] = notification.useNotification();
 
   useEffect(() => {
@@ -102,76 +109,77 @@ function Ranque() {
     }
     
     const [escolaAtual, setEscolaAtual] = useState<EscolaRanqueData | null>();
+
+  return (
+      <div className="App ranque-container">
+        <Header />
+        {notificationContextHandler}
         
-    return (
-        <div className="App ranque-container">
-            <Header/>
-            {notificationContextHandler}
+        {escolaAtual != null && <ModalRanqueEscola  onClose={()=>{setEscolaAtual(null)}} onCreateAcao={()=>{}} escolaId={escolaAtual.escola.id}/>}
+        
+        {/* <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} escolaSelecionada={escolaSelecionada} /> */}
+        <TrilhaDeNavegacao elementosLi={paginas} />
 
-           
-            {escolaAtual != null && <ModalRanqueEscola  onClose={()=>{setEscolaAtual(null)}} onCreateAcao={()=>{}} escolaId={escolaAtual.escola.id}/>}
-            
-            <TrilhaDeNavegacao elementosLi={paginas}/>
-
-      <div className='d-flex flex-column m-5'>
-        <div className='d-flex justify-content-between align-items-center'>
-          <div className='d-flex align-items-center'>
-            <FiltroNome nome={nome} onNomeChange={setNome} />
-            <Select items={ufs} value={uf?.id || ''} label={"UF:"} onChange={id => setUf(ufs.find(u => u.id == id) || null)} dropdownStyle={{ marginLeft: "20px", width: "260px" }} filtrarTodos={true} />
-            <Select items={municipios} value={municipio?.id || ''} label={"Municípios:"} onChange={id => setMunicipio(municipios.find(m => m.id == id) || null)} dropdownStyle={{ marginLeft: "20px", width: "260px" }} filtrarTodos={true} />
-            <Select items={etapas} value={etapa?.id || ''} label={"Etapas de Ensino:"} onChange={id => setEtapa(etapas.find(e => e.id == id) || null)} dropdownStyle={{ marginLeft: "20px", width: "260px" }} filtrarTodos={true} />
+        <div className='d-flex flex-column m-5'>
+          <div className='d-flex justify-content-between align-items-center'>
+            <div className='d-flex align-items-center'>
+              <FiltroNome nome={nome} onNomeChange={setNome} />
+              <Select items={ufs} value={uf?.id || ''} label={"UF:"} onChange={id => setUf(ufs.find(u => u.id == id) || null)} dropdownStyle={{ marginLeft: "20px", width: "260px" }} filtrarTodos={true} />
+              <Select items={municipios} value={municipio?.id || ''} label={"Municípios:"} onChange={id => setMunicipio(municipios.find(m => m.id == id) || null)} dropdownStyle={{ marginLeft: "20px", width: "260px" }} filtrarTodos={true} />
+              <Select items={etapas} value={etapa?.id || ''} label={"Etapas de Ensino:"} onChange={id => setEtapa(etapas.find(e => e.id == id) || null)} dropdownStyle={{ marginLeft: "20px", width: "260px" }} filtrarTodos={true} />
+            </div>
+            <div className='d-flex align-items-center small-font mr-3'>
+              {ProcessamentoUPS ? 'Novo cálculo de ranking em processamento...' : `Último processamento: ${ultimoProcessamento}`}
+            </div>
           </div>
-          <div className='d-flex align-items-center small-font mr-3'>
-            {ProcessamentoUPS ? 'Novo cálculo de ranking em processamento...' : `Último processamento: ${ultimoProcessamento}`}
-          </div>
-        </div>
 
-        {(loading || !escolas?.items?.length) && <Table columsTitle={colunas} initialItemsPerPage={10} totalItems={0} title=""><></><></></Table>}
-        {escolas?.items != null &&
-          <Table
-            columsTitle={colunas}
-            title='' initialItemsPerPage={10} totalItems={escolas?.total}
-            onNextPage={() => {
-              if (paginacao.pagina === escolas?.totalPaginas) return;
-              setPaginacao(p => { return { ...p, pagina: p.pagina + 1 } })
-            }}
-            onPreviousPage={() => {
-              if (paginacao.pagina === 1) return;
-              setPaginacao({ ...paginacao, pagina: paginacao.pagina - 1 })
-            }}
-            onPageResize={(tamanhoPagina) => {
-              setPaginacao({ ...paginacao, tamanhoPagina })
-            }}
-            onPageSelect={(pagina) => {
-              setPaginacao({ ...paginacao, pagina })
-            }}>
-            {
-              escolas?.items.map((e, index) =>
-                <CustomTableRow
-                  key={e.escola.id}
-                  id={index}
-                  data={{
-                      '0': `${e.posicao}°`,
-                      '1': `${e.pontuacao}`,
-                      '2': e.escola.nome,
-                      '3': formatEtapaEnsino(e.escola.etapaEnsino),
-                      '4': e.escola.uf?.sigla || '',
-                      '5': e.escola.municipio?.nome || '',
-                      '6': e.escola.ufSuperintendencia,
-                      '7': formataCustoLogistico(e.escola.distanciaSuperintendencia)
+          {(loading || !escolas?.items?.length) && <Table columsTitle={colunas} initialItemsPerPage={10} totalItems={0} title=""><></><></></Table>}
+          {escolas?.items != null &&
+              <Table
+                  columsTitle={colunas}
+                  title='' initialItemsPerPage={10} totalItems={escolas?.total}
+                  onNextPage={() => {
+                    if (paginacao.pagina === escolas?.totalPaginas) return;
+                    setPaginacao(p => { return { ...p, pagina: p.pagina + 1 } })
                   }}
-                  hideTrashIcon={true}
-                  onDetailRow={() => setEscolaAtual(e)}
-                />
-              )
-            }
-          </Table>
-        }
+                  onPreviousPage={() => {
+                    if (paginacao.pagina === 1) return;
+                    setPaginacao({ ...paginacao, pagina: paginacao.pagina - 1 })
+                  }}
+                  onPageResize={(tamanhoPagina) => {
+                    setPaginacao({ ...paginacao, tamanhoPagina })
+                  }}
+                  onPageSelect={(pagina) => {
+                    setPaginacao({ ...paginacao, pagina })
+                  }}>
+                {
+                  escolas?.items.map((e, index) =>
+                      <CustomTableRow
+                          key={e.escola.id}
+                          id={index}
+                          data={{
+                            '0': `${e.posicao + 1}°`,
+                            '1': `${e.pontuacao}`,
+                            '2': e.escola.nome,
+                            '3': formatEtapaEnsino(e.escola.etapaEnsino),
+                            '4': e.escola.uf?.sigla || '',
+                            '5': e.escola.municipio?.nome || '',
+                            '6': e.escola.ufSuperintendencia || '' ,
+                            '7': formataCustoLogistico(e.escola.distanciaSuperintendencia),
+                          }}
+                          hideEditIcon={true}
+                          hideTrashIcon={true}
+                          onDetailRow={() => setEscolaAtual(e)}
+                      />
+                  )
+                }
+              </Table>
+          }
 
-        {loading && <div className="d-flex justify-content-center w-100 m-5"><ReactLoading type="spinningBubbles" color="#000000" /></div>}
+          {loading && <div className="d-flex justify-content-center w-100 m-5"><ReactLoading type="spinningBubbles" color="#000000" /></div>}
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
   );
 }
 
