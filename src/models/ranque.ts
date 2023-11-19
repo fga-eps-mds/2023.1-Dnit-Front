@@ -31,3 +31,10 @@ export interface EscolaRanqueFiltro {
     idMunicipio?: number;
     idEtapaEnsino?: number[];
 }
+
+export interface RanqueProcessamentoData {
+    id: number;
+    emProgresso: boolean;
+    dataInicio: string;
+    dataFim: string;
+}

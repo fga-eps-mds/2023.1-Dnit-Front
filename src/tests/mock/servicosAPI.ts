@@ -1,6 +1,6 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
-import { atualizarTipoPerfil, atualizarTokenUrl, cadastrarPerfilUrl, excluiPerfil, listarEscolasRanque, listarPerfis, listarPermissoesCategoria, listarUsuarioPermissoes, listarUsuarios, municipioURL, obterPerfil, unidadesFederativasURL, urlAPIEscolas, urlAPIUps } from "../../consts/service";
+import { atualizarTipoPerfil, atualizarTokenUrl, cadastrarPerfilUrl, excluiPerfil, listarEscolasRanque, listarPerfis, listarPermissoesCategoria, listarUsuarioPermissoes, listarUsuarios, municipioURL, obterPerfil, ranqueamentoProcessamento, unidadesFederativasURL, urlAPIEscolas, urlAPIUps } from "../../consts/service";
 import { Permissao, TipoPerfil } from "../../models/auth";
 import { usuarios } from "../stub/usuarioModelos";
 import { ranqueData } from "../stub/ranqueModelos";
@@ -799,9 +799,17 @@ const server = setupServer(
       "items": usuarios
     }
   ))),
-  rest.get(listarEscolasRanque, (req, res, ctx) => res(
+  rest.get(listarEscolasRanque, (_, res, ctx) => res(
     ctx.status(200),
     ctx.json(ranqueData)
+  )),
+  rest.get(ranqueamentoProcessamento, (_, res, ctx) => res(
+    ctx.json({
+      id: 1,
+      emProgresso: false,
+      dataInicio: "2023-11-19T12:58:05.053016+00:00",
+      dataFim: "2023-11-19T12:59:16.556424+00:00"
+    })
   )),
   rest.get(unidadesFederativasURL, (_, res, ctx) => res(
     ctx.json([

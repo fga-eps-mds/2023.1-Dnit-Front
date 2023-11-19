@@ -7,8 +7,8 @@ import { EtapasDeEnsinoData } from '../../models/service';
 import TrilhaDeNavegacao from '../../components/Navegacao';
 import ReactLoading from 'react-loading';
 import Table, { CustomTableRow } from '../../components/Table';
-import { fetchEscolasRanque, fetchProcessamentoRanque, fetchProcessamentoDataRanque } from '../../service/ranqueApi';
-import { EscolaRanqueData, EscolaRanqueFiltro, ListaPaginada } from '../../models/ranque';
+import { fetchEscolasRanque, fetchProcessamentoRanque } from '../../service/ranqueApi';
+import { EscolaRanqueData, EscolaRanqueFiltro, ListaPaginada, RanqueProcessamentoData } from '../../models/ranque';
 import { notification } from 'antd';
 import { FiltroNome } from '../../components/FiltroNome';
 import Select, { SelectItem } from '../../components/Select';
@@ -75,8 +75,7 @@ function Ranque() {
   const [etapa, setEtapa] = useState<SelectItem | null>(null);
   const [etapas, setEtapas] = useState<SelectItem[]>([]);
 
-  const [ProcessamentoUPS, setProcessamentoUPS] = useState<boolean>(false);
-  const [ultimoProcessamento, setUltimoProcessamento] = useState<string>("");
+  const [ultimoProcessamento, setUltimoProcessamento] = useState<RanqueProcessamentoData | null>(null);
 
   const paginas = [{ nome: "Logout", link: "/login" }];
   const [loading, setLoading] = useState(true);
@@ -86,7 +85,6 @@ function Ranque() {
   const [paginacao, setPaginacao] = useState({ pagina: 1, tamanhoPagina: 10, });
   const [notificationApi, notificationContextHandler] = notification.useNotification();
 
-  const [isOpen, setIsOpen] = useState<boolean>(false);
   const [escolaAtual, setEscolaAtual] = useState<EscolaRanqueData | null>();
 
   useEffect(() => {
@@ -97,16 +95,10 @@ function Ranque() {
         etapas.sort((a, b) => b.descricao.localeCompare(a.descricao));
         setEtapas(etapas.map(e => ({ id: e.id.toString(), rotulo: e.descricao })));
       });
-    fetchProcessamentoRanque()
-      .then((result) => setProcessamentoUPS(result))
+      fetchProcessamentoRanque()
+      .then(result => setUltimoProcessamento(result))
       .catch((error) => {
-        console.error('Erro ao buscar estado de processamento:', error);
-      });
-
-    fetchProcessamentoDataRanque()
-      .then((result) => setUltimoProcessamento(result))
-      .catch((error) => {
-        console.error('Erro ao buscar data do último processamento:', error);
+        console.error('Erro ao buscar informações do último processamento:', error);
       });
   }, []);
 
@@ -147,6 +139,12 @@ function Ranque() {
     return `${etapaEnsino.map(etapa => etapa.descricao).slice(0, max).join(', ')}${etapaEnsino.length > max ? '...' : ''}`;
   }
 
+  const formatDate = (dateStr: string) => {
+    const date = new Date(dateStr);
+    const padZeros = (n: number) => n.toString().padStart(2, '0');
+    return `${padZeros(date.getDate())}/${padZeros(date.getMonth())}/${date.getFullYear()} ${padZeros(date.getHours())}:${padZeros(date.getMinutes())}`
+  }
+
   return (
     <div className="App ranque-container">
       <Header />
@@ -164,9 +162,15 @@ function Ranque() {
             <Select items={municipios} value={municipio?.id || ''} label={"Municípios:"} onChange={id => setMunicipio(municipios.find(m => m.id == id) || null)} dropdownStyle={{ marginLeft: "20px", width: "260px" }} filtrarTodos={true} />
             <Select items={etapas} value={etapa?.id || ''} label={"Etapas de Ensino:"} onChange={id => setEtapa(etapas.find(e => e.id == id) || null)} dropdownStyle={{ marginLeft: "20px", width: "260px" }} filtrarTodos={true} />
           </div>
-          <div className='d-flex align-items-center small-font mr-3'>
-            {ProcessamentoUPS ? 'Novo cálculo de ranking em processamento...' : `Último processamento: ${ultimoProcessamento}`}
-          </div>
+          {
+            ultimoProcessamento && 
+            <div className='d-flex align-items-center small-font mr-3'>
+              {ultimoProcessamento.emProgresso
+                ? `Novo cálculo de ranking iniciado em ${formatDate(ultimoProcessamento.dataInicio)} em processamento...`
+                : `Último processamento: ${formatDate(ultimoProcessamento.dataFim)}`
+              }
+            </div>
+          }
         </div>
 
         {(loading || !escolas?.items?.length) && <Table columsTitle={colunas} initialItemsPerPage={10} totalItems={0} title=""><></><></></Table>}
@@ -194,7 +198,7 @@ function Ranque() {
                   key={e.escola.id}
                   id={index}
                   data={{
-                    '0': `${e.posicao + 1}°`,
+                    '0': `${e.posicao}°`,
                     '1': `${e.pontuacao}`,
                     '2': e.escola.nome,
                     '3': formatEtapaEnsino(e.escola.etapaEnsino),
@@ -202,6 +206,7 @@ function Ranque() {
                     '5': e.escola.municipio?.nome || ''
                   }}
                   hideTrashIcon={true}
+                  hideEditIcon={true}
                   onDetailRow={_ => setEscolaAtual(e)}
                 />
               )
